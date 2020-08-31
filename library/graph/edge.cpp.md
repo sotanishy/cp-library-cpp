@@ -38,14 +38,20 @@ layout: default
 
 ## Required by
 
+* :heavy_check_mark: <a href="bellman_ford.cpp.html">graph/bellman_ford.cpp</a>
+* :heavy_check_mark: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="kruskal.cpp.html">graph/kruskal.cpp</a>
 * :heavy_check_mark: <a href="prim.cpp.html">graph/prim.cpp</a>
+* :heavy_check_mark: <a href="../tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
 
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_1_A.test.cpp.html">test/aoj/GRL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_1_B.test.cpp.html">test/aoj/GRL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.prim.test.cpp.html">test/aoj/GRL_2_A.prim.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_5_A.test.cpp.html">test/aoj/GRL_5_A.test.cpp</a>
 
 
 ## Code

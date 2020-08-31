@@ -25,15 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: graph/bellman_ford.cpp
+# :heavy_check_mark: graph/bellman_ford.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/bellman_ford.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-08-31 15:48:39+09:00
 
 
+
+
+## Depends on
+
+* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_1_B.test.cpp.html">test/aoj/GRL_1_B.test.cpp</a>
 
 
 ## Code
@@ -42,17 +52,8 @@ layout: default
 {% raw %}
 ```cpp
 #include <bits/stdc++.h>
+#include "edge.cpp"
 using namespace std;
-
-template <typename T>
-struct Edge {
-    int from, to;
-    T cost;
-
-    Edge(int to, T cost) : from(-1), to(to), cost(cost) {}
-
-    Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}
-};
 
 // returns an empty vector if there exists a negative cycle
 template <typename T>
@@ -78,17 +79,18 @@ vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s) {
 ```cpp
 #line 1 "graph/bellman_ford.cpp"
 #include <bits/stdc++.h>
+#line 2 "graph/edge.cpp"
 using namespace std;
 
 template <typename T>
 struct Edge {
     int from, to;
     T cost;
-
     Edge(int to, T cost) : from(-1), to(to), cost(cost) {}
-
     Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}
 };
+#line 3 "graph/bellman_ford.cpp"
+using namespace std;
 
 // returns an empty vector if there exists a negative cycle
 template <typename T>

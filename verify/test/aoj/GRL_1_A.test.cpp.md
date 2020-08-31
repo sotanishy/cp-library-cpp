@@ -21,29 +21,26 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/dijkstra.cpp
+# :heavy_check_mark: test/aoj/GRL_1_A.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/dijkstra.cpp">View this file on GitHub</a>
+* category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_1_A.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-08-31 15:48:39+09:00
 
 
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_1_A.test.cpp.html">test/aoj/GRL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 
 
 ## Code
@@ -51,34 +48,29 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <bits/stdc++.h>
-#include "edge.cpp"
-using namespace std;
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
-template <typename T>
-vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
-    const auto INF = numeric_limits<T>::max();
-    vector<T> dist(V, INF);
-    dist[s] = 0;
-    using P = pair<T, int>;
-    priority_queue<P, vector<P>, greater<P>> pq;
-    pq.emplace(0, s);
+#include "../../graph/dijkstra.cpp"
 
-    while (!pq.empty()) {
-        T cost;
-        int v;
-        tie(cost, v) = pq.top();
-        pq.pop();
-        if (dist[v] < cost) continue;
-        for (auto& e : G[v]) {
-            if (dist[e.to] > dist[v] + e.cost) {
-                dist[e.to] = dist[v] + e.cost;
-                pq.emplace(dist[e.to], e.to);
-            }
-        }
+const int INF = 1e9;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int V, E, r;
+    cin >> V >> E >> r;
+    vector<vector<Edge<int>>> G(V);
+    for (int i = 0; i < E; i++) {
+        int s, t, d;
+        cin >> s >> t >> d;
+        G[s].push_back({t, d});
     }
-
-    return dist;
+    auto dist = dijkstra(G, V, r);
+    for (int i = 0; i < V; i++) {
+        if (dist[i] < INF) cout << dist[i] << "\n";
+        else cout << "INF\n";
+    }
 }
 ```
 {% endraw %}
@@ -86,6 +78,9 @@ vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "test/aoj/GRL_1_A.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
+
 #line 1 "graph/dijkstra.cpp"
 #include <bits/stdc++.h>
 #line 2 "graph/edge.cpp"
@@ -126,9 +121,31 @@ vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
 
     return dist;
 }
+#line 4 "test/aoj/GRL_1_A.test.cpp"
+
+const int INF = 1e9;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int V, E, r;
+    cin >> V >> E >> r;
+    vector<vector<Edge<int>>> G(V);
+    for (int i = 0; i < E; i++) {
+        int s, t, d;
+        cin >> s >> t >> d;
+        G[s].push_back({t, d});
+    }
+    auto dist = dijkstra(G, V, r);
+    for (int i = 0; i < V; i++) {
+        if (dist[i] < INF) cout << dist[i] << "\n";
+        else cout << "INF\n";
+    }
+}
 
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
