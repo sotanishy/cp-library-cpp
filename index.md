@@ -40,14 +40,13 @@ layout: default
 
 * :warning: <a href="library/data-structure/fenwick_tree.cpp.html">data-structure/fenwick_tree.cpp</a>
 * :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">data-structure/fenwick_tree_2d.cpp</a>
-* :warning: <a href="library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
+* :x: <a href="library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
 * :warning: <a href="library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
 * :warning: <a href="library/data-structure/partially_persistent_union_find.cpp.html">data-structure/partially_persistent_union_find.cpp</a>
 * :warning: <a href="library/data-structure/range_fenwick_tree.cpp.html">data-structure/range_fenwick_tree.cpp</a>
 * :warning: <a href="library/data-structure/rmq.cpp.html">data-structure/rmq.cpp</a>
 * :warning: <a href="library/data-structure/segment_tree.cpp.html">data-structure/segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/sparse_table.cpp.html">data-structure/sparse_table.cpp</a>
-* :warning: <a href="library/data-structure/trie.cpp.html">data-structure/trie.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/weighted_union_find.cpp.html">data-structure/weighted_union_find.cpp</a>
 
@@ -57,8 +56,8 @@ layout: default
 ### flow
 
 * :warning: <a href="library/flow/bipartite_matching.cpp.html">flow/bipartite_matching.cpp</a>
-* :warning: <a href="library/flow/dinic.cpp.html">flow/dinic.cpp</a>
-* :warning: <a href="library/flow/ford_fulkerson.cpp.html">flow/ford_fulkerson.cpp</a>
+* :heavy_check_mark: <a href="library/flow/dinic.cpp.html">flow/dinic.cpp</a>
+* :heavy_check_mark: <a href="library/flow/ford_fulkerson.cpp.html">flow/ford_fulkerson.cpp</a>
 * :warning: <a href="library/flow/min_cost_flow.cpp.html">flow/min_cost_flow.cpp</a>
 
 
@@ -125,6 +124,9 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
+* :x: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.dinic.test.cpp.html">test/aoj/GRL_6_A.dinic.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.ford_fulkerson.test.cpp.html">test/aoj/GRL_6_A.ford_fulkerson.test.cpp</a>
 
 
