@@ -7,24 +7,29 @@ struct KDTree {
     struct Point {
         int id;
         T x, y;
+        Point(T x, T y) : x(x), y(y) {}
         Point(int id, T x, T y) : id(id), x(x), y(y) {}
     };
 
     vector<Point> points;
 
-    void add_point(int i, T x, T y) {
-        points.emplace_back(i, x, y);
+    void add_point(int id, T x, T y) {
+        points.emplace_back(id, x, y);
     }
 
-    void build(int left, int right, int depth) {
+    void build() {
+        build_rec(0, points.size() - 1, 0);
+    }
+
+    void build_rec(int left, int right, int depth) {
         if (left > right) return;
 
         int axis = depth % 2;
         if (axis == 0) sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
         else sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
         int mid = (left + right) / 2;
-        build(left, mid - 1, depth + 1);
-        build(mid + 1, right, depth + 1);
+        build_rec(left, mid - 1, depth + 1);
+        build_rec(mid + 1, right, depth + 1);
     }
 
     int check_position(Point& point, Point& start, Point& end, int axis) {
@@ -40,8 +45,8 @@ struct KDTree {
     }
 
     vector<int> search(T sx, T tx, T sy, T ty) {
-        Point s {-1, min(sx, tx), min(sy, ty)};
-        Point t {-1, max(sx, tx), max(sy, ty)};
+        Point s(min(sx, tx), min(sy, ty));
+        Point t(max(sx, tx), max(sy, ty));
         vector<int> res;
         search_rec(s, t, res, 0, points.size() - 1, 0);
         return res;

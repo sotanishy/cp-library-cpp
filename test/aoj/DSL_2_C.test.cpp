@@ -14,6 +14,7 @@ int main() {
         cin >> x >> y;
         kd_tree.add_point(i, x, y);
     }
+    kd_tree.build();
     int q;
     cin >> q;
     for (int i = 0; i < q; i++) {
