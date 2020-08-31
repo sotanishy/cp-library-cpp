@@ -1,5 +1,7 @@
 {
 "test/aoj/DSL_1_A.test.cpp": "2020-08-31 10:11:59 +0900",
 "test/aoj/DSL_1_B.test.cpp": "2020-08-31 10:11:59 +0900",
-"test/aoj/DSL_3_D.test.cpp": "2020-08-31 10:27:41 +0900"
+"test/aoj/DSL_3_D.test.cpp": "2020-08-31 10:27:41 +0900",
+"test/aoj/GRL_6_A.dinic.test.cpp": "2020-08-31 11:08:28 +0900",
+"test/aoj/GRL_6_A.ford_fulkerson.test.cpp": "2020-08-31 11:08:28 +0900"
 }
