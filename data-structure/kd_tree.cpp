@@ -1,16 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Point {
-    int x, y, id;
-};
-
+template <typename T>
 struct KDTree {
 
-    vector<Point>& points;
+    struct Point {
+        int id;
+        T x, y;
+        Point(int id, T x, T y) : id(id), x(x), y(y) {}
+    };
 
-    KDTree(vector<Point>& points) : points(points) {
-        build(0, points.size() - 1, 0);
+    vector<Point> points;
+
+    void add_point(int i, T x, T y) {
+        points.emplace_back(i, x, y);
     }
 
     void build(int left, int right, int depth) {
@@ -36,9 +39,9 @@ struct KDTree {
         }
     }
 
-    vector<int> search(Point& start, Point& end) {
-        Point s {min(start.x, end.x), min(start.y, end.y)};
-        Point t {max(start.x, end.x), max(start.y, end.y)};
+    vector<int> search(T sx, T tx, T sy, T ty) {
+        Point s {-1, min(sx, tx), min(sy, ty)};
+        Point t {-1, max(sx, tx), max(sy, ty)};
         vector<int> res;
         search_rec(s, t, res, 0, points.size() - 1, 0);
         return res;
