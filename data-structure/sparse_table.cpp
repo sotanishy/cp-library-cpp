@@ -3,9 +3,11 @@ using namespace std;
 
 template <typename T>
 struct SparseTable {
+private:
     vector<vector<T>> lookup;
     vector<int> len;
 
+public:
     SparseTable(vector<int>& v) {
         int n = 1;
         int b = 0;
