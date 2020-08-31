@@ -4,7 +4,7 @@ using namespace std;
 // returns an empty list if G is not a DAG
 vector<int> topological_sort(vector<vector<int>>& G) {
     int V = G.size();
-    vector<int> par_count(0, V);
+    vector<int> par_count(V);
     for (int u = 0; u < V; u++) {
         for (int v : G[u]) par_count[v]++;
     }

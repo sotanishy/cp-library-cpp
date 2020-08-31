@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include "../graph/edge.cpp"
 using namespace std;
 
 struct TreeDiameter {
@@ -14,7 +15,19 @@ struct TreeDiameter {
         return ret;
     }
 
-    static int tree_diameter(vector<vector<int>>& G) {
+    static pair<int, int> dfs(vector<vector<Edge<int>>>& G, int v, int p) {
+        pair<int, int> ret(0, v);
+        for (auto& e : G[v]) {
+            if (e.to == p) continue;
+            auto cost = dfs(G, e.to, v);
+            cost.first += e.cost;
+            ret = max(ret, cost);
+        }
+        return ret;
+    }
+
+    template <class T>
+    static int diameter(vector<vector<T>>& G) {
         auto p = dfs(G, 0, -1);
         auto q = dfs(G, p.second, -1);
         return q.first;
