@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 
-#include "../../data-structures/union_find.cpp"
+#include "../../data-structure/union_find.cpp"
 
 int main() {
     ios_base::sync_with_stdio(false);

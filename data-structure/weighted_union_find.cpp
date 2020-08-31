@@ -4,19 +4,25 @@ using namespace std;
 template <typename T>
 struct WeightedUnionFind {
     vector<int> par;
-    vector<T> weight;
+    vector<T> ws;
 
-    WeightedUnionFind(int n) : par(n, -1), weight(n) {}
+    WeightedUnionFind(int n) : par(n, -1), ws(n) {}
 
     int find(int x) {
         if (par[x] < 0) return x;
         int r = find(par[x]);
-        weight[x] += weight[par[x]];
+        ws[x] += ws[par[x]];
         return par[x] = r;
     }
 
+    T weight(int x) {
+        find(x);
+        return ws[x];
+    }
+
     bool unite(int x, int y, T w) {
-        w += weight[x] - weight[y];
+        w += weight(x);
+        w -= weight(y);
         x = find(x);
         y = find(y);
         if (x == y) return false;
@@ -26,7 +32,7 @@ struct WeightedUnionFind {
         }
         par[x] += par[y];
         par[y] = x;
-        weight[y] = w;
+        ws[y] = w;
         return true;
     }
 
@@ -35,9 +41,7 @@ struct WeightedUnionFind {
     }
 
     T diff(int x, int y) {
-        find(x);
-        find(y);
-        return weight[y] - weight[x];
+        return weight(y) - weight(x);
     }
 
     int size(int x) {
