@@ -40,7 +40,7 @@ layout: default
 
 * :warning: <a href="library/data-structure/fenwick_tree.cpp.html">data-structure/fenwick_tree.cpp</a>
 * :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">data-structure/fenwick_tree_2d.cpp</a>
-* :x: <a href="library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
 * :warning: <a href="library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
 * :warning: <a href="library/data-structure/partially_persistent_union_find.cpp.html">data-structure/partially_persistent_union_find.cpp</a>
 * :warning: <a href="library/data-structure/range_fenwick_tree.cpp.html">data-structure/range_fenwick_tree.cpp</a>
@@ -124,7 +124,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
-* :x: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.dinic.test.cpp.html">test/aoj/GRL_6_A.dinic.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.ford_fulkerson.test.cpp.html">test/aoj/GRL_6_A.ford_fulkerson.test.cpp</a>
