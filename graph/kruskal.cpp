@@ -1,16 +1,7 @@
 #include <bits/stdc++.h>
-#include "../data-structures/union_find.cpp";
+#include "edge.cpp"
+#include "../data-structure/union_find.cpp"
 using namespace std;
-
-template <typename T>
-struct Edge {
-    int from, to;
-    T cost;
-
-    Edge(int to, T cost) : from(-1), to(to), cost(cost) {}
-
-    Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {};
-};
 
 template <typename T>
 T kruskal(vector<Edge<T>>& G, int V) {
