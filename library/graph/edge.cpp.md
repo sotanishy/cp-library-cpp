@@ -25,24 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/prim.cpp
+# :heavy_check_mark: graph/edge.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/prim.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/graph/edge.cpp">View this file on GitHub</a>
     - Last commit date: 2020-08-31 15:01:14+09:00
 
 
 
 
-## Depends on
+## Required by
 
-* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
+* :heavy_check_mark: <a href="kruskal.cpp.html">graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="prim.cpp.html">graph/prim.cpp</a>
 
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.prim.test.cpp.html">test/aoj/GRL_2_A.prim.test.cpp</a>
 
 
@@ -52,38 +54,6 @@ layout: default
 {% raw %}
 ```cpp
 #include <bits/stdc++.h>
-#include "edge.cpp"
-using namespace std;
-
-template <typename T>
-T prim(vector<vector<Edge<T>>>& G) {
-    vector<bool> used(G.size());
-    using P = pair<T, int>;
-    priority_queue<P, vector<P>, greater<P>> pq;
-    pq.emplace(0, 0);
-    T ret = 0;
-    while (!pq.empty()) {
-        auto p = pq.top();
-        pq.pop();
-        int v = p.second;
-        if (used[v]) continue;
-        used[v] = true;
-        ret += p.first;
-        for (auto& e : G[v]) {
-            pq.emplace(e.cost, e.to);
-        }
-    }
-    return ret;
-}
-```
-{% endraw %}
-
-<a id="bundled"></a>
-{% raw %}
-```cpp
-#line 1 "graph/prim.cpp"
-#include <bits/stdc++.h>
-#line 2 "graph/edge.cpp"
 using namespace std;
 
 template <typename T>
@@ -93,29 +63,24 @@ struct Edge {
     Edge(int to, T cost) : from(-1), to(to), cost(cost) {}
     Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}
 };
-#line 3 "graph/prim.cpp"
+
+```
+{% endraw %}
+
+<a id="bundled"></a>
+{% raw %}
+```cpp
+#line 1 "graph/edge.cpp"
+#include <bits/stdc++.h>
 using namespace std;
 
 template <typename T>
-T prim(vector<vector<Edge<T>>>& G) {
-    vector<bool> used(G.size());
-    using P = pair<T, int>;
-    priority_queue<P, vector<P>, greater<P>> pq;
-    pq.emplace(0, 0);
-    T ret = 0;
-    while (!pq.empty()) {
-        auto p = pq.top();
-        pq.pop();
-        int v = p.second;
-        if (used[v]) continue;
-        used[v] = true;
-        ret += p.first;
-        for (auto& e : G[v]) {
-            pq.emplace(e.cost, e.to);
-        }
-    }
-    return ret;
-}
+struct Edge {
+    int from, to;
+    T cost;
+    Edge(int to, T cost) : from(-1), to(to), cost(cost) {}
+    Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}
+};
 
 ```
 {% endraw %}

@@ -21,30 +21,27 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/kruskal.cpp
+# :heavy_check_mark: test/aoj/GRL_2_A.kruskal.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/kruskal.cpp">View this file on GitHub</a>
+* category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_2_A.kruskal.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-08-31 15:01:14+09:00
 
 
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
-* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 
 
 ## Code
@@ -52,25 +49,23 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <bits/stdc++.h>
-#include "edge.cpp"
-#include "../data-structure/union_find.cpp"
-using namespace std;
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
-template <typename T>
-T kruskal(vector<Edge<T>>& G, int V) {
-    sort(G.begin(), G.end(), [](const auto& e1, const auto& e2) {
-        return e1.cost < e2.cost;
-    });
-    UnionFind uf(V);
-    T ret = 0;
-    for (auto& e : G) {
-        if (!uf.same(e.from, e.to)) {
-            uf.unite(e.from, e.to);
-            ret += e.cost;
-        }
+#include "../../graph/kruskal.cpp"
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int V, E;
+    cin >> V >> E;
+    vector<Edge<int>> edges;
+    for (int i = 0; i < E; i++) {
+        int s, t, w;
+        cin >> s >> t >> w;
+        edges.emplace_back(s, t, w);
     }
-    return ret;
+    cout << kruskal(edges, V) << endl;
 }
 ```
 {% endraw %}
@@ -78,6 +73,9 @@ T kruskal(vector<Edge<T>>& G, int V) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "test/aoj/GRL_2_A.kruskal.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
+
 #line 1 "graph/kruskal.cpp"
 #include <bits/stdc++.h>
 #line 2 "graph/edge.cpp"
@@ -138,9 +136,25 @@ T kruskal(vector<Edge<T>>& G, int V) {
     }
     return ret;
 }
+#line 4 "test/aoj/GRL_2_A.kruskal.test.cpp"
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int V, E;
+    cin >> V >> E;
+    vector<Edge<int>> edges;
+    for (int i = 0; i < E; i++) {
+        int s, t, w;
+        cin >> s >> t >> w;
+        edges.emplace_back(s, t, w);
+    }
+    cout << kruskal(edges, V) << endl;
+}
 
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 

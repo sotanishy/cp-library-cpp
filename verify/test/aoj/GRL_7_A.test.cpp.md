@@ -21,24 +21,25 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: flow/bipartite_matching.cpp
+# :heavy_check_mark: test/aoj/GRL_7_A.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
-* <a href="{{ site.github.repository_url }}/blob/master/flow/bipartite_matching.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
-
-
+* category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_7_A.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-08-31 15:01:14+09:00
 
 
-## Verified with
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A</a>
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_7_A.test.cpp.html">test/aoj/GRL_7_A.test.cpp</a>
+
+## Depends on
+
+* :heavy_check_mark: <a href="../../../library/flow/bipartite_matching.cpp.html">flow/bipartite_matching.cpp</a>
 
 
 ## Code
@@ -46,52 +47,33 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A"
 
-struct BipartiteMatching {
-    vector<vector<int>> G;
-    vector<bool> used;
-    vector<int> match;
+#include "../../flow/bipartite_matching.cpp"
 
-    BipartiteMatching(int V) : G(V), used(V), match(V) {}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-    void add_edge(int u, int v) {
-        G[u].push_back(v);
-        G[v].push_back(u);
+    int X, Y, E;
+    cin >> X >> Y >> E;
+    BipartiteMatching bm(X + Y);
+    for (int i = 0; i < E; i++) {
+        int x, y;
+        cin >> x >> y;
+        bm.add_edge(x, X + y);
     }
-
-    bool dfs(int u) {
-        used[u] = true;
-        for (int v : G[u]) {
-            int w = match[v];
-            if (w < 0 || (!used[w] && dfs(w))) {
-                match[u] = v;
-                match[v] = u;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    int bipartite_matching() {
-        int res = 0;
-        fill(match.begin(), match.end(), -1);
-        for (int v = 0; v < G.size(); v++) {
-            if (match[v] == -1) {
-                fill(used.begin(), used.end(), false);
-                if (dfs(v)) res++;
-            }
-        }
-        return res;
-    }
-};
+    cout << bm.bipartite_matching() << endl;
+}
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "test/aoj/GRL_7_A.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A"
+
 #line 1 "flow/bipartite_matching.cpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -133,9 +115,25 @@ struct BipartiteMatching {
         return res;
     }
 };
+#line 4 "test/aoj/GRL_7_A.test.cpp"
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int X, Y, E;
+    cin >> X >> Y >> E;
+    BipartiteMatching bm(X + Y);
+    for (int i = 0; i < E; i++) {
+        int x, y;
+        cin >> x >> y;
+        bm.add_edge(x, X + y);
+    }
+    cout << bm.bipartite_matching() << endl;
+}
 
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 

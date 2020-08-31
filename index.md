@@ -55,10 +55,10 @@ layout: default
 
 ### flow
 
-* :warning: <a href="library/flow/bipartite_matching.cpp.html">flow/bipartite_matching.cpp</a>
+* :heavy_check_mark: <a href="library/flow/bipartite_matching.cpp.html">flow/bipartite_matching.cpp</a>
 * :heavy_check_mark: <a href="library/flow/dinic.cpp.html">flow/dinic.cpp</a>
 * :heavy_check_mark: <a href="library/flow/ford_fulkerson.cpp.html">flow/ford_fulkerson.cpp</a>
-* :warning: <a href="library/flow/min_cost_flow.cpp.html">flow/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="library/flow/min_cost_flow.cpp.html">flow/min_cost_flow.cpp</a>
 
 
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
@@ -67,9 +67,10 @@ layout: default
 
 * :warning: <a href="library/graph/bellman_ford.cpp.html">graph/bellman_ford.cpp</a>
 * :warning: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/graph/edge.cpp.html">graph/edge.cpp</a>
 * :warning: <a href="library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
-* :warning: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
-* :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
+* :heavy_check_mark: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
 * :warning: <a href="library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
 * :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
 
@@ -126,7 +127,11 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_2_A.prim.test.cpp.html">test/aoj/GRL_2_A.prim.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.dinic.test.cpp.html">test/aoj/GRL_6_A.dinic.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.ford_fulkerson.test.cpp.html">test/aoj/GRL_6_A.ford_fulkerson.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_6_B.test.cpp.html">test/aoj/GRL_6_B.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_7_A.test.cpp.html">test/aoj/GRL_7_A.test.cpp</a>
 
 
