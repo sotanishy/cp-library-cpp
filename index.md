@@ -110,6 +110,7 @@ layout: default
 ### string
 
 * :warning: <a href="library/string/manacher.cpp.html">string/manacher.cpp</a>
+* :heavy_check_mark: <a href="library/string/suffix_array.cpp.html">string/suffix_array.cpp</a>
 * :warning: <a href="library/string/trie.cpp.html">string/trie.cpp</a>
 
 
@@ -123,6 +124,7 @@ layout: default
 
 ## Verify Files
 
+* :heavy_check_mark: <a href="verify/test/aoj/ALDS1_14_B.test.cpp.html">test/aoj/ALDS1_14_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
