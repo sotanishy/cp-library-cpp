@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/GRL_1_C.test.cpp
+# :heavy_check_mark: test/aoj/GRL_1_C.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_1_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 16:03:55+09:00
+    - Last commit date: 2020-09-02 16:12:20+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
 
 
 ## Code
@@ -77,7 +77,7 @@ int main() {
     }
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
-            if (dist[i][j] < 1e9) cout << dist[i][j];
+            if (dist[i][j] < 1e10) cout << dist[i][j];
             else cout << "INF";
             if (j < V - 1) cout << " ";
             else cout << "\n";
@@ -136,7 +136,7 @@ int main() {
     }
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
-            if (dist[i][j] < 1e9) cout << dist[i][j];
+            if (dist[i][j] < 1e10) cout << dist[i][j];
             else cout << "INF";
             if (j < V - 1) cout << " ";
             else cout << "\n";
