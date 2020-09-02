@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_1_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-02 16:03:55+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C</a>
@@ -51,7 +51,9 @@ layout: default
 
 #include "../../graph/floyd_warshall.cpp"
 
-const int INF = 1e9;
+using ll = long long;
+
+const ll INF = 1e18;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -59,7 +61,7 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<vector<int>> dist(V, vector<int>(V, INF));
+    vector<vector<ll>> dist(V, vector<ll>(V, INF));
     for (int i = 0; i < V; i++) dist[i][i] = 0;
     for (int i = 0; i < E; i++) {
         int s, t, d;
@@ -75,7 +77,7 @@ int main() {
     }
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
-            if (dist[i][j] < INF) cout << dist[i][j];
+            if (dist[i][j] < 1e9) cout << dist[i][j];
             else cout << "INF";
             if (j < V - 1) cout << " ";
             else cout << "\n";
@@ -108,7 +110,9 @@ void floyd_warshall(vector<vector<T>>& dist) {
 }
 #line 4 "test/aoj/GRL_1_C.test.cpp"
 
-const int INF = 1e9;
+using ll = long long;
+
+const ll INF = 1e18;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -116,7 +120,7 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<vector<int>> dist(V, vector<int>(V, INF));
+    vector<vector<ll>> dist(V, vector<ll>(V, INF));
     for (int i = 0; i < V; i++) dist[i][i] = 0;
     for (int i = 0; i < E; i++) {
         int s, t, d;
@@ -132,7 +136,7 @@ int main() {
     }
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
-            if (dist[i][j] < INF) cout << dist[i][j];
+            if (dist[i][j] < 1e9) cout << dist[i][j];
             else cout << "INF";
             if (j < V - 1) cout << " ";
             else cout << "\n";
