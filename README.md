@@ -29,6 +29,7 @@
 ### Graph
 * Bellman-Ford
 * Dijkstra
+* Edge
 * Floyd-Warshall
 * Kruskal
 * Prim
@@ -59,6 +60,7 @@
 
 ### String
 * Manacher
+* Suffix array
 * Trie
 
 ### Tree

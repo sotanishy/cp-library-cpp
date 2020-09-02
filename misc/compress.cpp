@@ -5,7 +5,7 @@ template <typename T>
 struct Compress {
     vector<T> xs;
 
-    Compress(const vector<T>& xs) : xs(xs) {
+    Compress(const vector<T>& vs) : xs(vs) {
         sort(xs.begin(), xs.end());
         xs.erase(unique(xs.begin(), xs.end()), xs.end());
     }
