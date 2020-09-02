@@ -28,7 +28,7 @@ int main() {
     }
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
-            if (dist[i][j] < 1e9) cout << dist[i][j];
+            if (dist[i][j] < 1e10) cout << dist[i][j];
             else cout << "INF";
             if (j < V - 1) cout << " ";
             else cout << "\n";
