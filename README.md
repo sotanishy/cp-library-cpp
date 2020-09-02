@@ -10,10 +10,10 @@
 
 * Fenwick tree
 * 2D Fenwick tree
-* Range Fenwick tree
+* Fenwick tree with range update
 * k-d tree
 * Segment tree
-* Lazy segment tree
+* Segment tree with lazy propagation
 * Range minimum query
 * Sparse table
 * Union find
@@ -46,7 +46,7 @@
 * Geometry
 * Primality test
 * Matrix
-* Mod log
+* Discrete logarithm
 * Mod power
 * Mod int
 * Prime factorization
