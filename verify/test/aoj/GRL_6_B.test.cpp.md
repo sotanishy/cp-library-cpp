@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_6_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:01:14+09:00
+    - Last commit date: 2020-09-07 04:14:56+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B</a>
@@ -88,7 +88,7 @@ struct MinCostFlow {
         Edge(int to, TF cap, TC cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const int INF = numeric_limits<TC>::max();
+    const TC INF = numeric_limits<TC>::max();
 
     int V;
     vector<vector<Edge>> G;

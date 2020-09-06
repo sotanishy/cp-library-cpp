@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/flow/dinic.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 11:08:28+09:00
+    - Last commit date: 2020-09-07 04:14:56+09:00
 
 
 
@@ -58,7 +58,7 @@ struct Dinic {
         Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
     };
 
-    const int INF = numeric_limits<T>::max() / 2;
+    const T INF = numeric_limits<T>::max() / 2;
 
     vector<vector<Edge>> G;
     vector<int> level, iter;
@@ -133,7 +133,7 @@ struct Dinic {
         Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
     };
 
-    const int INF = numeric_limits<T>::max() / 2;
+    const T INF = numeric_limits<T>::max() / 2;
 
     vector<vector<Edge>> G;
     vector<int> level, iter;

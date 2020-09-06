@@ -91,7 +91,7 @@ layout: default
 * :heavy_check_mark: <a href="library/math/mod_pow.cpp.html">math/mod_pow.cpp</a>
 * :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
 * :heavy_check_mark: <a href="library/math/prime_factor.cpp.html">math/prime_factor.cpp</a>
-* :x: <a href="library/math/sieve.cpp.html">math/sieve.cpp</a>
+* :warning: <a href="library/math/sieve.cpp.html">math/sieve.cpp</a>
 
 
 <div id="bc957e26ff41470c556ee5d09e96880b"></div>
@@ -126,7 +126,6 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/ALDS1_14_B.test.cpp.html">test/aoj/ALDS1_14_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/ALDS1_1_C.is_prime.test.cpp.html">test/aoj/ALDS1_1_C.is_prime.test.cpp</a>
-* :x: <a href="verify/test/aoj/ALDS1_1_C.sieve.test.cpp.html">test/aoj/ALDS1_1_C.sieve.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>

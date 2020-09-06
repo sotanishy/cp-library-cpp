@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/flow/min_cost_flow.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:01:14+09:00
+    - Last commit date: 2020-09-07 04:14:56+09:00
 
 
 
@@ -59,7 +59,7 @@ struct MinCostFlow {
         Edge(int to, TF cap, TC cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const int INF = numeric_limits<TC>::max();
+    const TC INF = numeric_limits<TC>::max();
 
     int V;
     vector<vector<Edge>> G;
@@ -140,7 +140,7 @@ struct MinCostFlow {
         Edge(int to, TF cap, TC cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const int INF = numeric_limits<TC>::max();
+    const TC INF = numeric_limits<TC>::max();
 
     int V;
     vector<vector<Edge>> G;
