@@ -11,7 +11,7 @@ struct MinCostFlow {
         Edge(int to, TF cap, TC cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const int INF = numeric_limits<TC>::max();
+    const TC INF = numeric_limits<TC>::max();
 
     int V;
     vector<vector<Edge>> G;

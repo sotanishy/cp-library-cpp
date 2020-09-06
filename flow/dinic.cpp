@@ -10,7 +10,7 @@ struct Dinic {
         Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
     };
 
-    const int INF = numeric_limits<T>::max() / 2;
+    const T INF = numeric_limits<T>::max() / 2;
 
     vector<vector<Edge>> G;
     vector<int> level, iter;
