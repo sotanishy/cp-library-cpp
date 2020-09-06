@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: data-structure/range_fenwick_tree.cpp
+# :x: data-structure/range_fenwick_tree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/range_fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 10:11:59+09:00
+    - Last commit date: 2020-09-07 03:18:51+09:00
 
 
 
 
-## Depends on
+## Verified with
 
-* :warning: <a href="fenwick_tree.cpp.html">data-structure/fenwick_tree.cpp</a>
+* :x: <a href="../../verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
 
 
 ## Code
@@ -47,24 +47,36 @@ layout: default
 {% raw %}
 ```cpp
 #include <bits/stdc++.h>
-#include "fenwick_tree.cpp"
 using namespace std;
 
 template <typename T>
 struct RangeFenwickTree {
-    FenwickTree<T> bit0, bit1;
+    int n;
+    vector<T> data0, data1;
 
-    RangeFenwickTree(int n) : bit0(n), bit1(n) {}
+    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
 
+private:
+    T _sum(vector<int>& data, int i) {
+        T ret = 0;
+        for (i++; i > 0; i -= i & -i) ret += data[i];
+        return ret;
+    }
+
+    void _add(vector<int>& data, int i, T x) {
+        for (i++; i <= n; i += i & -i) data[i] += x;
+    }
+
+public:
     T sum(int i) {
-        return bit0.sum(i) * i + bit1.sum(i);
+        return _sum(data0, i) * i + _sum(data1, i);
     }
 
     void add(int l, int r, T x) {
-        bit0.add(l, x);
-        bit0.add(r + 1, -x);
-        bit1.add(l, -x * (l - 1));
-        bit1.add(r + 1, x * r);
+        _add(data0, l, x);
+        _add(data0, r + 1, -x);
+        _add(data1, l, -x * (l - 1));
+        _add(data1, r + 1, x * r);
     }
 };
 ```
@@ -75,58 +87,36 @@ struct RangeFenwickTree {
 ```cpp
 #line 1 "data-structure/range_fenwick_tree.cpp"
 #include <bits/stdc++.h>
-#line 2 "data-structure/fenwick_tree.cpp"
 using namespace std;
 
 template <typename T>
-struct FenwickTree {
+struct RangeFenwickTree {
     int n;
-    vector<T> data;
+    vector<T> data0, data1;
 
-    FenwickTree(int n) : n(n), data(n+1) {}
+    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
 
-    T sum(int i) {
+private:
+    T _sum(vector<int>& data, int i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void add(int i, T x) {
+    void _add(vector<int>& data, int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 
-    int lower_bound(T x) {
-        if (x <= 0) return 0;
-        int k = 1;
-        while (k * 2 <= n) k *= 2;
-        int j = 0;
-        for (; k > 0; k /= 2) {
-            if (j + k <= n && data[j+k] < x) {
-                x -= data[j+k];
-                j += k;
-            }
-        }
-        return j;
-    }
-};
-#line 3 "data-structure/range_fenwick_tree.cpp"
-using namespace std;
-
-template <typename T>
-struct RangeFenwickTree {
-    FenwickTree<T> bit0, bit1;
-
-    RangeFenwickTree(int n) : bit0(n), bit1(n) {}
-
+public:
     T sum(int i) {
-        return bit0.sum(i) * i + bit1.sum(i);
+        return _sum(data0, i) * i + _sum(data1, i);
     }
 
     void add(int l, int r, T x) {
-        bit0.add(l, x);
-        bit0.add(r + 1, -x);
-        bit1.add(l, -x * (l - 1));
-        bit1.add(r + 1, x * r);
+        _add(data0, l, x);
+        _add(data0, r + 1, -x);
+        _add(data1, l, -x * (l - 1));
+        _add(data1, r + 1, x * r);
     }
 };
 
