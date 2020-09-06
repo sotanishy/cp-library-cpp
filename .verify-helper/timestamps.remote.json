@@ -6,6 +6,7 @@
 "test/aoj/DSL_2_A.test.cpp": "2020-09-07 03:18:51 +0900",
 "test/aoj/DSL_2_B.test.cpp": "2020-09-07 03:18:51 +0900",
 "test/aoj/DSL_2_C.test.cpp": "2020-08-31 11:44:31 +0900",
+"test/aoj/DSL_2_G.range_fenwick_tree.test.cpp": "2020-09-07 04:02:57 +0900",
 "test/aoj/DSL_3_D.test.cpp": "2020-08-31 10:27:41 +0900",
 "test/aoj/GRL_1_A.test.cpp": "2020-08-31 15:48:39 +0900",
 "test/aoj/GRL_1_B.test.cpp": "2020-08-31 15:48:39 +0900",
