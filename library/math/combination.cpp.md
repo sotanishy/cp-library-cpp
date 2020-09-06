@@ -31,14 +31,9 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/combination.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-07 03:54:07+09:00
 
 
-
-
-## Depends on
-
-* :warning: <a href="mod_pow.cpp.html">math/mod_pow.cpp</a>
 
 
 ## Code
@@ -47,26 +42,48 @@ layout: default
 {% raw %}
 ```cpp
 #include <bits/stdc++.h>
-#include "mod_pow.cpp"
 using namespace std;
 
-long long comb(int n, int k, int mod) {
-    long long num = 1, den = 1;
-    for (int i = 0; i < k; i++) {
-        num = num * (n-i) % mod;
-        den = den * (i+1) % mod;
-    }
-    return num * mod_inv(den, mod) % mod;
-}
+struct Combination {
+    long long mod;
+    vector<long long> fact, fact_inv;
 
-void comb(int n, int mod) {
-    vector<long long> fact(n+1, 1), fact_inv(n+1, 1);
-    for (long long i = 1; i <= n; i++) {
-        fact[i] = i * fact[i-1] % mod;
+private:
+    static long long mod_pow(long long n, long long p, long long mod) {
+        long long ret = 1;
+        while (p > 0) {
+            if (p & 1) ret = ret * n % mod;
+            n = n * n % mod;
+            p >>= 1;
+        }
+        return ret;
     }
-    fact_inv[n] = mod_inv(fact[n], mod);
-    for (long long i = n; i > 0; i--) {
-        fact_inv[i-1] = i * fact_inv[i] % mod;
+
+public:
+    static long long C(int n, int r, long long mod) {
+        long long num = 1, den = 1;
+        for (int i = 1; i <= r; i++) {
+            num = num * (n - i + 1) % mod;
+            den = den * i % mod;
+        }
+        return num * mod_pow(den, mod - 2, mod) % mod;
+    }
+
+    Combination(int n, long long mod) : mod(mod), fact(n+1), fact_inv(n+1) {
+        fact[0] = fact_inv[0] = 1;
+        for (int i = 1; i <= n; i++) fact[i] = fact[i-1] * i % mod;
+        fact_inv[n] = mod_pow(n, mod - 2, mod);
+        for (int i = n; i > 0; i--) fact_inv[i-1] = fact_inv[i] * i % mod;
+    }
+
+    long long P(int n, int r) const {
+        if (r < 0 || n < r) return 0;
+        return fact[n] * fact_inv[n - r] % mod;
+    }
+
+    long long C(int n, int r) const {
+        if (r < 0 || n < r) return 0;
+        return fact[n] * fact_inv[r] % mod * fact_inv[n - r] % mod;
     }
 }
 ```
@@ -77,42 +94,48 @@ void comb(int n, int mod) {
 ```cpp
 #line 1 "math/combination.cpp"
 #include <bits/stdc++.h>
-#line 2 "math/mod_pow.cpp"
 using namespace std;
 
-long long mod_pow(long long n, long long p, long long mod) {
-    long long ret = 1;
-    while (p > 0) {
-        if (p & 1) ret = ret * n % mod;
-        n = n * n % mod;
-        p >>= 1;
-    }
-    return ret;
-}
+struct Combination {
+    long long mod;
+    vector<long long> fact, fact_inv;
 
-long long mod_inv(long long n, long long mod) {
-    return mod_pow(n, mod - 2, mod);
-}
-#line 3 "math/combination.cpp"
-using namespace std;
-
-long long comb(int n, int k, int mod) {
-    long long num = 1, den = 1;
-    for (int i = 0; i < k; i++) {
-        num = num * (n-i) % mod;
-        den = den * (i+1) % mod;
+private:
+    static long long mod_pow(long long n, long long p, long long mod) {
+        long long ret = 1;
+        while (p > 0) {
+            if (p & 1) ret = ret * n % mod;
+            n = n * n % mod;
+            p >>= 1;
+        }
+        return ret;
     }
-    return num * mod_inv(den, mod) % mod;
-}
 
-void comb(int n, int mod) {
-    vector<long long> fact(n+1, 1), fact_inv(n+1, 1);
-    for (long long i = 1; i <= n; i++) {
-        fact[i] = i * fact[i-1] % mod;
+public:
+    static long long C(int n, int r, long long mod) {
+        long long num = 1, den = 1;
+        for (int i = 1; i <= r; i++) {
+            num = num * (n - i + 1) % mod;
+            den = den * i % mod;
+        }
+        return num * mod_pow(den, mod - 2, mod) % mod;
     }
-    fact_inv[n] = mod_inv(fact[n], mod);
-    for (long long i = n; i > 0; i--) {
-        fact_inv[i-1] = i * fact_inv[i] % mod;
+
+    Combination(int n, long long mod) : mod(mod), fact(n+1), fact_inv(n+1) {
+        fact[0] = fact_inv[0] = 1;
+        for (int i = 1; i <= n; i++) fact[i] = fact[i-1] * i % mod;
+        fact_inv[n] = mod_pow(n, mod - 2, mod);
+        for (int i = n; i > 0; i--) fact_inv[i-1] = fact_inv[i] * i % mod;
+    }
+
+    long long P(int n, int r) const {
+        if (r < 0 || n < r) return 0;
+        return fact[n] * fact_inv[n - r] % mod;
+    }
+
+    long long C(int n, int r) const {
+        if (r < 0 || n < r) return 0;
+        return fact[n] * fact_inv[r] % mod * fact_inv[n - r] % mod;
     }
 }
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 03:18:51+09:00
+    - Last commit date: 2020-09-07 03:54:07+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G</a>
@@ -57,7 +57,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    RangeFenwickTree<int> ft(n+1);
+    RangeFenwickTree<long long> ft(n+1);
     for (int i = 0; i < q; i++) {
         int type;
         cin >> type;
@@ -123,7 +123,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    RangeFenwickTree<int> ft(n+1);
+    RangeFenwickTree<long long> ft(n+1);
     for (int i = 0; i < q; i++) {
         int type;
         cin >> type;

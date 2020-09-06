@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: math/mod_pow.cpp
+# :heavy_check_mark: math/mod_pow.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,8 +38,12 @@ layout: default
 
 ## Required by
 
-* :warning: <a href="combination.cpp.html">math/combination.cpp</a>
 * :warning: <a href="mod_log.cpp.html">math/mod_log.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/test/aoj/NTL_1_B.test.cpp.html">test/aoj/NTL_1_B.test.cpp</a>
 
 
 ## Code

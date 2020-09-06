@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="mod_pow.cpp.html">math/mod_pow.cpp</a>
+* :heavy_check_mark: <a href="mod_pow.cpp.html">math/mod_pow.cpp</a>
 
 
 ## Code

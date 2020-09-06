@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: math/is_prime.cpp
+# :heavy_check_mark: math/is_prime.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-08-31 09:52:54+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/test/aoj/ALDS1_1_C.is_prime.test.cpp.html">test/aoj/ALDS1_1_C.is_prime.test.cpp</a>
 
 
 ## Code

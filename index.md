@@ -81,17 +81,17 @@ layout: default
 * :warning: <a href="library/math/change_base.cpp.html">math/change_base.cpp</a>
 * :warning: <a href="library/math/combination.cpp.html">math/combination.cpp</a>
 * :warning: <a href="library/math/divisor.cpp.html">math/divisor.cpp</a>
-* :warning: <a href="library/math/euler_totient.cpp.html">math/euler_totient.cpp</a>
+* :heavy_check_mark: <a href="library/math/euler_totient.cpp.html">math/euler_totient.cpp</a>
 * :warning: <a href="library/math/extgcd.cpp.html">math/extgcd.cpp</a>
 * :warning: <a href="library/math/fast_fourier_transform.cpp.html">math/fast_fourier_transform.cpp</a>
 * :warning: <a href="library/math/geometry.cpp.html">math/geometry.cpp</a>
-* :warning: <a href="library/math/is_prime.cpp.html">math/is_prime.cpp</a>
+* :heavy_check_mark: <a href="library/math/is_prime.cpp.html">math/is_prime.cpp</a>
 * :warning: <a href="library/math/matrix.cpp.html">math/matrix.cpp</a>
 * :warning: <a href="library/math/mod_log.cpp.html">math/mod_log.cpp</a>
-* :warning: <a href="library/math/mod_pow.cpp.html">math/mod_pow.cpp</a>
+* :heavy_check_mark: <a href="library/math/mod_pow.cpp.html">math/mod_pow.cpp</a>
 * :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
-* :warning: <a href="library/math/prime_factor.cpp.html">math/prime_factor.cpp</a>
-* :warning: <a href="library/math/sieve.cpp.html">math/sieve.cpp</a>
+* :heavy_check_mark: <a href="library/math/prime_factor.cpp.html">math/prime_factor.cpp</a>
+* :x: <a href="library/math/sieve.cpp.html">math/sieve.cpp</a>
 
 
 <div id="bc957e26ff41470c556ee5d09e96880b"></div>
@@ -125,6 +125,8 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/aoj/ALDS1_14_B.test.cpp.html">test/aoj/ALDS1_14_B.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/ALDS1_1_C.is_prime.test.cpp.html">test/aoj/ALDS1_1_C.is_prime.test.cpp</a>
+* :x: <a href="verify/test/aoj/ALDS1_1_C.sieve.test.cpp.html">test/aoj/ALDS1_1_C.sieve.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>
@@ -144,5 +146,8 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.ford_fulkerson.test.cpp.html">test/aoj/GRL_6_A.ford_fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_B.test.cpp.html">test/aoj/GRL_6_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_7_A.test.cpp.html">test/aoj/GRL_7_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/NTL_1_A.test.cpp.html">test/aoj/NTL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/NTL_1_B.test.cpp.html">test/aoj/NTL_1_B.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/NTL_1_D.test.cpp.html">test/aoj/NTL_1_D.test.cpp</a>
 
 
