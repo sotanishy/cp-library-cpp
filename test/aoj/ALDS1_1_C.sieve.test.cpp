@@ -6,7 +6,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
-    vector<bool> prime = sieve(1e8);
+    auto prime = sieve(100000000);
     int n;
     cin >> n;
     int ans = 0;
