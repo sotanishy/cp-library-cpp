@@ -8,7 +8,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    RangeFenwickTree<int> ft(n+1);
+    RangeFenwickTree<long long> ft(n+1);
     for (int i = 0; i < q; i++) {
         int type;
         cin >> type;

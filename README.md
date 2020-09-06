@@ -14,7 +14,6 @@
 * k-d tree
 * Segment tree
 * Segment tree with lazy propagation
-* Range minimum query
 * Sparse table
 * Union find
 * Weighted union find
