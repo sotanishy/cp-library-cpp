@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/ALDS1_1_C.sieve.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 03:54:07+09:00
+    - Last commit date: 2020-09-07 04:06:39+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C</a>
@@ -55,7 +55,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
-    vector<bool> prime = sieve(1e8);
+    auto prime = sieve(100000000);
     int n;
     cin >> n;
     int ans = 0;
@@ -95,7 +95,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
-    vector<bool> prime = sieve(1e8);
+    auto prime = sieve(100000000);
     int n;
     cin >> n;
     int ans = 0;

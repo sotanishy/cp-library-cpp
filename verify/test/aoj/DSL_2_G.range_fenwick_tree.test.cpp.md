@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
+# :heavy_check_mark: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 03:54:07+09:00
+    - Last commit date: 2020-09-07 04:02:57+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/range_fenwick_tree.cpp.html">data-structure/range_fenwick_tree.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/range_fenwick_tree.cpp.html">data-structure/range_fenwick_tree.cpp</a>
 
 
 ## Code
@@ -93,13 +93,13 @@ struct RangeFenwickTree {
     RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
 
 private:
-    T _sum(vector<int>& data, int i) {
+    T _sum(vector<T>& data, int i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void _add(vector<int>& data, int i, T x) {
+    void _add(vector<T>& data, int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 
