@@ -9,13 +9,13 @@ struct RangeFenwickTree {
     RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
 
 private:
-    T _sum(vector<int>& data, int i) {
+    T _sum(vector<T>& data, int i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void _add(vector<int>& data, int i, T x) {
+    void _add(vector<T>& data, int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 
