@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 20:07:17+09:00
+    - Last commit date: 2020-09-08 20:12:18+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
 
 
 ## Code
@@ -143,9 +143,8 @@ struct LazySegmentTree {
         if (r <= a || b <= l) return tid;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        int vl = query(a, b, 2 * k, l, m);
-        int vr = query(a, b, 2 * k + 1, m, r);
-        return op(vl, vr);
+        return op(query(a, b, 2 * k, l, m),
+                  query(a, b, 2 * k + 1, m, r));
     }
 };
 #line 4 "test/aoj/DSL_2_F.test.cpp"

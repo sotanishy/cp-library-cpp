@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: data-structure/lazy_segment_tree.cpp
+# :heavy_check_mark: data-structure/lazy_segment_tree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 20:07:17+09:00
+    - Last commit date: 2020-09-08 20:12:18+09:00
 
 
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
-* :x: <a href="../../verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
 
 
 ## Code
@@ -103,9 +103,8 @@ struct LazySegmentTree {
         if (r <= a || b <= l) return tid;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        int vl = query(a, b, 2 * k, l, m);
-        int vr = query(a, b, 2 * k + 1, m, r);
-        return op(vl, vr);
+        return op(query(a, b, 2 * k, l, m),
+                  query(a, b, 2 * k + 1, m, r));
     }
 };
 ```
@@ -171,9 +170,8 @@ struct LazySegmentTree {
         if (r <= a || b <= l) return tid;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        int vl = query(a, b, 2 * k, l, m);
-        int vr = query(a, b, 2 * k + 1, m, r);
-        return op(vl, vr);
+        return op(query(a, b, 2 * k, l, m),
+                  query(a, b, 2 * k + 1, m, r));
     }
 };
 
