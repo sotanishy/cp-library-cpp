@@ -21,25 +21,25 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: data-structure/lazy_segment_tree.cpp
+# :x: test/aoj/DSL_2_F.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segment_tree.cpp">View this file on GitHub</a>
+* category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_F.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-09-08 19:33:24+09:00
 
 
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
 
 
-## Verified with
+## Depends on
 
-* :x: <a href="../../verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
-* :x: <a href="../../verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
+* :x: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
 
 
 ## Code
@@ -47,73 +47,45 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 
-template <typename T, T (*op)(T, T), T tid, typename E, T (*apply)(T, E), E (*comp)(E, E), E (*prod)(E, int), E eid>
-struct LazySegmentTree {
-    int size, h;
-    vector<T> node;
-    vector<E> lazy;
+#include "../../data-structure/lazy_segment_tree.cpp"
 
-    LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, tid)) {}
-    LazySegmentTree(const vector<T>& v) {
-        size = 1;
-        while (size < v.size()) size <<= 1, h++;
-        node.resize(2 * size, tid);
-        lazy.resize(2 * size, eid);
-        for (int i = 0; i < size; i++) node[i + size] = v[i];
-        for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
-    }
+const int id = (1u << 31) - 1;
 
-    T operator[](int k) {
-        return query(k, k + 1);
-    }
+int op(int a, int b) { return min(a, b); }
+int apply(int a, int b) { return b; }
+int comp(int a, int b) { return b; }
+int prod(int a, int b) { return a; }
 
-    void push(int k, int len) {
-        if (lazy[k] == eid) return;
-        if (k < size) {
-            lazy[2 * k] = comp(lazy[2 * k], lazy[k]);
-            lazy[2 * k + 1] = comp(lazy[2 * k + 1], lazy[k]);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n, q;
+    cin >> n >> q;
+    LazySegmentTree<int, op, id, int, apply, comp, prod, id> st(n);
+    for (int i = 0; i < q; i++) {
+        int type, s, t;
+        cin >> type >> s >> t;
+        if (type == 0) {
+            int x;
+            cin >> x;
+            st.update(s, t + 1, x);
+        } else {
+            cout << st.query(s, t + 1) << "\n";
         }
-        node[k] = apply(node[k], prod(lazy[k], len));
-        lazy[k] = eid;
     }
-
-    void update(int a, int b, const T& x, int k = 1, int l = 0, int r = -1) {
-        if (r == -1) r = size;
-
-        push(k, r - l);
-        if (r <= a || b <= l) return;
-        if (a <= l && r <= b) {
-            lazy[k] = comp(lazy[k], x);
-            push(k, r - l);
-            return;
-        }
-        int m = (l + r) / 2;
-        update(a, b, x, 2 * k, l, m);
-        update(a, b, x, 2 * k + 1, m, r);
-        node[k] = op(node[2 * k], node[2 * k + 1]);
-    }
-
-    T query(int a, int b, int k = 1, int l = 0, int r = -1) {
-        if (r == -1) r = size;
-
-        push(k, r - l);
-        if (r <= a || b <= l) return tid;
-        if (a <= l && r <= b) return node[k];
-        int m = (l + r) / 2;
-        int vl = query(a, b, 2 * k, l, m);
-        int vr = query(a, b, 2 * k + 1, m, r);
-        return op(vl, vr);
-    }
-};
+}
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "test/aoj/DSL_2_F.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
+
 #line 1 "data-structure/lazy_segment_tree.cpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -176,9 +148,37 @@ struct LazySegmentTree {
         return op(vl, vr);
     }
 };
+#line 4 "test/aoj/DSL_2_F.test.cpp"
+
+const int id = (1u << 31) - 1;
+
+int op(int a, int b) { return min(a, b); }
+int apply(int a, int b) { return b; }
+int comp(int a, int b) { return b; }
+int prod(int a, int b) { return a; }
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n, q;
+    cin >> n >> q;
+    LazySegmentTree<int, op, id, int, apply, comp, prod, id> st(n);
+    for (int i = 0; i < q; i++) {
+        int type, s, t;
+        cin >> type >> s >> t;
+        if (type == 0) {
+            int x;
+            cin >> x;
+            st.update(s, t + 1, x);
+        } else {
+            cout << st.query(s, t + 1) << "\n";
+        }
+    }
+}
 
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 

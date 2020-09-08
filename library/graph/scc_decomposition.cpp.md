@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/scc_decomposition.cpp
+# :x: graph/scc_decomposition.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/scc_decomposition.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-08 19:33:24+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_3_C.test.cpp.html">test/aoj/GRL_3_C.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/GRL_3_C.test.cpp.html">test/aoj/GRL_3_C.test.cpp</a>
 
 
 ## Code
@@ -50,11 +50,7 @@ layout: default
 using namespace std;
 
 struct SCC {
-    vector<vector<int>>& G;
-    vector<vector<int>> G_rev;
-    vector<int> comp, order;
-    vector<bool> visited;
-
+public:
     SCC(vector<vector<int>>& G) : G(G), comp(G.size(), -1), visited(G.size()), G_rev(G.size()) {
         for (int u = 0; u < G.size(); u++) {
             for (int v : G[u]) G_rev[v].push_back(u);
@@ -66,9 +62,14 @@ struct SCC {
         for (int v : order) if (comp[v] == -1) rdfs(v, c++);
     }
 
-    int operator[](int k) {
+    int operator[](int k) const {
         return comp[k];
     }
+
+private:
+    vector<vector<int>> G, G_rev;
+    vector<int> comp, order;
+    vector<bool> visited;
 
     void dfs(int u) {
         if (visited[u]) return;
@@ -94,11 +95,7 @@ struct SCC {
 using namespace std;
 
 struct SCC {
-    vector<vector<int>>& G;
-    vector<vector<int>> G_rev;
-    vector<int> comp, order;
-    vector<bool> visited;
-
+public:
     SCC(vector<vector<int>>& G) : G(G), comp(G.size(), -1), visited(G.size()), G_rev(G.size()) {
         for (int u = 0; u < G.size(); u++) {
             for (int v : G[u]) G_rev[v].push_back(u);
@@ -110,9 +107,14 @@ struct SCC {
         for (int v : order) if (comp[v] == -1) rdfs(v, c++);
     }
 
-    int operator[](int k) {
+    int operator[](int k) const {
         return comp[k];
     }
+
+private:
+    vector<vector<int>> G, G_rev;
+    vector<int> comp, order;
+    vector<bool> visited;
 
     void dfs(int u) {
         if (visited[u]) return;

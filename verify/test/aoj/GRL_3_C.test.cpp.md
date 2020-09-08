@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/GRL_3_C.test.cpp
+# :x: test/aoj/GRL_3_C.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_3_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-08 19:33:24+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
+* :x: <a href="../../../library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
 
 
 ## Code
@@ -87,11 +87,7 @@ int main() {
 using namespace std;
 
 struct SCC {
-    vector<vector<int>>& G;
-    vector<vector<int>> G_rev;
-    vector<int> comp, order;
-    vector<bool> visited;
-
+public:
     SCC(vector<vector<int>>& G) : G(G), comp(G.size(), -1), visited(G.size()), G_rev(G.size()) {
         for (int u = 0; u < G.size(); u++) {
             for (int v : G[u]) G_rev[v].push_back(u);
@@ -103,9 +99,14 @@ struct SCC {
         for (int v : order) if (comp[v] == -1) rdfs(v, c++);
     }
 
-    int operator[](int k) {
+    int operator[](int k) const {
         return comp[k];
     }
+
+private:
+    vector<vector<int>> G, G_rev;
+    vector<int> comp, order;
+    vector<bool> visited;
 
     void dfs(int u) {
         if (visited[u]) return;

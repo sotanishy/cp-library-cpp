@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL_2_A.test.cpp
+# :x: test/aoj/DSL_2_A.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 10:36:41+09:00
+    - Last commit date: 2020-09-08 19:33:24+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/segment_tree.cpp.html">data-structure/segment_tree.cpp</a>
+* :x: <a href="../../../library/data-structure/segment_tree.cpp.html">data-structure/segment_tree.cpp</a>
 
 
 ## Code
@@ -87,22 +87,17 @@ struct SegmentTree {
     int size;
     vector<T> node;
 
-    SegmentTree(int n) {
+    SegmentTree(int n) : SegmentTree(vector<T>(id)) {}
+    SegmentTree(const vector<T>& v) {
         size = 1;
-        while (size < n) size <<= 1;
+        while (size < v.size()) size <<= 1;
         node.resize(2 * size, id);
-    }
-
-    void set(int k, const T& x) {
-        node[k + size] = x;
+        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 
     T operator[](int k) const {
         return node[k + size];
-    }
-
-    void build() {
-        for (int k = size - 1; k > 0; k--) node[k] = op(node[2 * k], node[2 * k + 1]);
     }
 
     void update(int k, const T& x) {
@@ -112,29 +107,29 @@ struct SegmentTree {
     }
 
     T query(int l, int r) {
-        T L = id, R = id;
+        T vl = id, vr = id;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) L = op(L, node[l++]);
-            if (r & 1) R = op(node[--r], R);
+            if (l & 1) vl = op(vl, node[l++]);
+            if (r & 1) vr = op(node[--r], vr);
         }
-        return op(L, R);
+        return op(vl, vr);
     }
 
     int find_first(int l, const function<bool(T)>& cond) {
-        T L = id;
+        T vl = id;
         int r = 2 * size;
         for (l += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
-                T nxt = op(L, node[l]);
+                T nxt = op(vl, node[l]);
                 if (cond(nxt)) {
                     while (l < size) {
-                        nxt = op(L, node[2 * l]);
+                        nxt = op(vl, node[2 * l]);
                         if (cond(nxt)) l = 2 * l;
-                        else L = nxt, l = 2 * l + 1;
+                        else vl = nxt, l = 2 * l + 1;
                     }
                     return l - size;
                 }
-                L = nxt;
+                vl = nxt;
                 l++;
             }
         }
@@ -142,21 +137,21 @@ struct SegmentTree {
     }
 
     int find_last(int r, const function<bool(T)>& cond) {
-        T R = id;
+        T vr = id;
         int l = size;
         for (r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {
                 r--;
-                T nxt = op(node[r], R);
+                T nxt = op(node[r], vr);
                 if (cond(nxt)) {
                     while (r < size) {
-                        nxt = op(node[2 * r + 1], R);
+                        nxt = op(node[2 * r + 1], vr);
                         if (cond(nxt)) r = 2 * r + 1;
-                        else R = nxt, r = 2 * r;
+                        else vr = nxt, r = 2 * r;
                     }
                     return r - size;
                 }
-                R = nxt;
+                vr = nxt;
             }
         }
         return -1;
