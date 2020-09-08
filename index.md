@@ -70,7 +70,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
 * :heavy_check_mark: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :heavy_check_mark: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
-* :x: <a href="library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
+* :heavy_check_mark: <a href="library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
 * :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
 
 
@@ -140,7 +140,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_1_C.test.cpp.html">test/aoj/GRL_1_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_2_A.prim.test.cpp.html">test/aoj/GRL_2_A.prim.test.cpp</a>
-* :x: <a href="verify/test/aoj/GRL_3_C.test.cpp.html">test/aoj/GRL_3_C.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/GRL_3_C.test.cpp.html">test/aoj/GRL_3_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_5_A.test.cpp.html">test/aoj/GRL_5_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_5_C.test.cpp.html">test/aoj/GRL_5_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.dinic.test.cpp.html">test/aoj/GRL_6_A.dinic.test.cpp</a>

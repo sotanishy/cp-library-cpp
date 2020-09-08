@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 19:33:24+09:00
+    - Last commit date: 2020-09-08 19:54:37+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -92,14 +92,14 @@ using namespace std;
 
 template <typename T, T (*op)(T, T), T tid, typename E, T (*apply)(T, E), E (*comp)(E, E), E (*prod)(E, int), E eid>
 struct LazySegmentTree {
-    int size, h;
+    int size;
     vector<T> node;
     vector<E> lazy;
 
     LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, tid)) {}
     LazySegmentTree(const vector<T>& v) {
         size = 1;
-        while (size < v.size()) size <<= 1, h++;
+        while (size < v.size()) size <<= 1;
         node.resize(2 * size, tid);
         lazy.resize(2 * size, eid);
         for (int i = 0; i < size; i++) node[i + size] = v[i];
