@@ -2,12 +2,31 @@
 
 #include "../../data-structure/lazy_segment_tree.cpp"
 
-const int id = (1u << 31) - 1;
+ struct S {
+    struct V {
+        using T = int;
+        inline static const T id = (1u << 31) - 1;
+        static T op(T a, T b) {
+            return min(a, b);
+        }
+    };
 
-int op(int a, int b) { return min(a, b); }
-int apply(int a, int b) { return b; }
-int comp(int a, int b) { return b; }
-int prod(int a, int b) { return a; }
+    struct O {
+        using E = int;
+        inline static const E id = (1u << 31) - 1;
+        static E op(E a, E b) {
+            return b;
+        }
+    };
+
+    static V::T op(V::T a, O::E b) {
+        return b;
+    }
+
+    static O::E prod(O::E a, int b) {
+        return a;
+    }
+};
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -15,7 +34,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    LazySegmentTree<int, op, id, int, apply, comp, prod, id> st(n);
+    LazySegmentTree<S> st(n);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;

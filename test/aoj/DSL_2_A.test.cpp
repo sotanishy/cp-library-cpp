@@ -2,9 +2,13 @@
 
 #include "../../data-structure/segment_tree.cpp"
 
-int op(int a, int b) {
-    return min(a, b);
-}
+struct Monoid {
+    using T = int;
+    inline static const T id = (1u << 31) - 1;
+    static T op(T a, T b) {
+        return min(a, b);
+    }
+};
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -12,7 +16,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    SegmentTree<int, op, (1u << 31) - 1> st(n);
+    SegmentTree<Monoid> st(n);
     for (int i = 0; i < q; i++) {
         int com, x, y;
         cin >> com >> x >> y;

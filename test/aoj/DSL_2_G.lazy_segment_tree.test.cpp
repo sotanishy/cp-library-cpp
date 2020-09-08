@@ -4,10 +4,31 @@
 
 using ll = long long;
 
-ll op(ll a, ll b) { return a + b; }
-ll apply(ll a, ll b) { return a + b; }
-ll comp(ll a, ll b) { return a + b; }
-ll prod(ll a, int b) { return a * b; }
+struct S {
+    struct V {
+        using T = ll;
+        inline static const T id = 0;
+        static T op(T a, T b) {
+            return a + b;
+        }
+    };
+
+    struct O {
+        using E = ll;
+        inline static const E id = 0;
+        static E op(E a, E b) {
+            return a + b;
+        }
+    };
+
+    static V::T op(V::T a, O::E b) {
+        return a + b;
+    }
+
+    static O::E prod(O::E a, int b) {
+        return a * b;
+    }
+};
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -15,7 +36,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    LazySegmentTree<ll, op, 0, ll, apply, comp, prod, 0> st(n);
+    LazySegmentTree<S> st(n);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;
