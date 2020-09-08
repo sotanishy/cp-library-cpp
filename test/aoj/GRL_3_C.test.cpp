@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
-#include "../../graph/scc_decomposition.cpp"
+#include "../../graph/scc.cpp"
 
 int main() {
     ios_base::sync_with_stdio(false);

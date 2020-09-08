@@ -32,7 +32,7 @@
 * Floyd-Warshall
 * Kruskal
 * Prim
-* Strongly connected components decomposition
+* Strongly connected components
 * Topological sort
 
 ### Math
