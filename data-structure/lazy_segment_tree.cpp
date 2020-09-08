@@ -54,8 +54,7 @@ struct LazySegmentTree {
         if (r <= a || b <= l) return tid;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        int vl = query(a, b, 2 * k, l, m);
-        int vr = query(a, b, 2 * k + 1, m, r);
-        return op(vl, vr);
+        return op(query(a, b, 2 * k, l, m),
+                  query(a, b, 2 * k + 1, m, r));
     }
 };
