@@ -1,63 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// this is not abstract
-// range sum
+template <typename T, T (*op)(T, T), T tid, typename E, T (*apply)(T, E), E (*comp)(E, E), E (*prod)(E, int), E eid>
 struct LazySegmentTree {
-    int size;
-    vector<int> node, lazy;
-    const int I = 0;
+    int size, h;
+    vector<T> node;
+    vector<E> lazy;
 
-    LazySegmentTree(int n) {
+    LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, tid)) {}
+    LazySegmentTree(const vector<T>& v) {
         size = 1;
-        while (size < n) size <<= 1;
-        node.resize(2 * size, I);
-        lazy.resize(2 * size, I);
+        while (size < v.size()) size <<= 1, h++;
+        node.resize(2 * size, tid);
+        lazy.resize(2 * size, eid);
+        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 
-    void init(vector<int>& v) {
-        for (int k = 0; k < v.size(); k++) {
-            node[k + size] = v[k];
-        }
-        for (int k = size - 1; k > 0; k--) {
-            node[k] = node[2 * k] + node[2 * k + 1];
-        }
+    T operator[](int k) {
+        return query(k, k + 1);
     }
 
-    void eval(int k) {
-        if (lazy[k] == I) return;
-        if (k < size) { // not a leaf
-            lazy[2 * k] = lazy[2 * k + 1] = lazy[k] / 2;
+    void push(int k, int len) {
+        if (lazy[k] == eid) return;
+        if (k < size) {
+            lazy[2 * k] = comp(lazy[2 * k], lazy[k]);
+            lazy[2 * k + 1] = comp(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] += lazy[k];
-        lazy[k] = I;
+        node[k] = apply(node[k], prod(lazy[k], len));
+        lazy[k] = eid;
     }
 
-    void update(int a, int b, int x, int k = 1, int l = 0, int r = -1) {
+    void update(int a, int b, const T& x, int k = 1, int l = 0, int r = -1) {
         if (r == -1) r = size;
 
-        eval(k);
+        push(k, r - l);
         if (r <= a || b <= l) return;
         if (a <= l && r <= b) {
-            lazy[k] += (r - l) * x;
-            eval(k);
-        } else {
-            int m = (l + r) / 2;
-            update(a, b, x, 2 * k, l, m);
-            update(a, b, x, 2 * k + 1, m, r);
-            node[k] = node[2 * k] + node[2 * k + 1];
+            lazy[k] = comp(lazy[k], x);
+            push(k, r - l);
+            return;
         }
+        int m = (l + r) / 2;
+        update(a, b, x, 2 * k, l, m);
+        update(a, b, x, 2 * k + 1, m, r);
+        node[k] = op(node[2 * k], node[2 * k + 1]);
     }
 
-    int query(int a, int b, int k = 1, int l = 0, int r = -1) {
+    T query(int a, int b, int k = 1, int l = 0, int r = -1) {
         if (r == -1) r = size;
 
-        eval(k);
-        if (r <= a || b <= l) return I;
+        push(k, r - l);
+        if (r <= a || b <= l) return tid;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
         int vl = query(a, b, 2 * k, l, m);
         int vr = query(a, b, 2 * k + 1, m, r);
-        return vl + vr;
+        return op(vl, vr);
     }
 };
