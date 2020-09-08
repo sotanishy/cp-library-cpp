@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_6_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 04:14:56+09:00
+    - Last commit date: 2020-09-08 10:36:41+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B</a>
@@ -78,33 +78,33 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename TF, typename TC>
+template <typename Cap, typename Cost>
 struct MinCostFlow {
     struct Edge {
         int to;
-        TF cap;
-        TC cost;
+        Cap cap;
+        Cost cost;
         int rev;
-        Edge(int to, TF cap, TC cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const TC INF = numeric_limits<TC>::max();
+    const Cost INF = numeric_limits<Cost>::max() / 2;
 
     int V;
     vector<vector<Edge>> G;
 
     MinCostFlow(int V) : V(V), G(V) {}
 
-    void add_edge(int u, int v, TF cap, TC cost) {
+    void add_edge(int u, int v, Cap cap, Cost cost) {
         G[u].emplace_back(v, cap, cost, G[v].size());
         G[v].emplace_back(u, 0, -cost, G[u].size() - 1);
     }
 
-    TC min_cost_flow(int s, int t, TF f) {
+    Cost min_cost_flow(int s, int t, Cap f) {
         int ret = 0;
-        vector<TC> dist(V), h(V);
+        vector<Cost> dist(V), h(V);
         vector<int> prevv(V), preve(V);
-        using P = pair<TC, int>;
+        using P = pair<Cost, int>;
         priority_queue<P, vector<P>, greater<P>> pq;
 
         while (f > 0) {
@@ -113,14 +113,14 @@ struct MinCostFlow {
             dist[s] = 0;
             pq.emplace(0, s);
             while (!pq.empty()) {
-                TC d;
+                Cost d;
                 int v;
                 tie(d, v) = pq.top();
                 pq.pop();
                 if (dist[v] < d) continue;
                 for (int i = 0; i < G[v].size(); i++) {
                     Edge& e = G[v][i];
-                    TC ndist = dist[v] + e.cost + h[v] - h[e.to];
+                    Cost ndist = dist[v] + e.cost + h[v] - h[e.to];
                     if (e.cap > 0 && dist[e.to] > ndist) {
                         dist[e.to] = ndist;
                         prevv[e.to] = v;
@@ -133,7 +133,7 @@ struct MinCostFlow {
             if (dist[t] == INF) return -1;
             for (int v = 0; v < V; v++) h[v] += dist[v];
 
-            TF m = f;
+            Cap m = f;
             int v = t;
             for (int v = t; v != s; v = prevv[v]) {
                 m = min(m, G[prevv[v]][preve[v]].cap);
