@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 19:54:37+09:00
+    - Last commit date: 2020-09-08 20:07:17+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
+* :question: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
 
 
 ## Code
@@ -102,7 +102,7 @@ struct LazySegmentTree {
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, tid);
         lazy.resize(2 * size, eid);
-        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
         for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 

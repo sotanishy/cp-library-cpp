@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL_2_A.test.cpp
+# :heavy_check_mark: test/aoj/DSL_2_A.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 19:54:37+09:00
+    - Last commit date: 2020-09-08 20:07:17+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/segment_tree.cpp.html">data-structure/segment_tree.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/segment_tree.cpp.html">data-structure/segment_tree.cpp</a>
 
 
 ## Code
@@ -51,7 +51,7 @@ layout: default
 
 #include "../../data-structure/segment_tree.cpp"
 
-unsigned int f(unsigned int a, unsigned int b) {
+int op(int a, int b) {
     return min(a, b);
 }
 
@@ -61,9 +61,9 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    SegmentTree<unsigned int, f, (1u << 31) - 1> st(n);
+    SegmentTree<int, op, (1u << 31) - 1> st(n);
     for (int i = 0; i < q; i++) {
-        unsigned int com, x, y;
+        int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) st.update(x, y);
         else cout << st.query(x, y + 1) << "\n";
@@ -92,7 +92,7 @@ struct SegmentTree {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, id);
-        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
         for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 
@@ -159,7 +159,7 @@ struct SegmentTree {
 };
 #line 4 "test/aoj/DSL_2_A.test.cpp"
 
-unsigned int f(unsigned int a, unsigned int b) {
+int op(int a, int b) {
     return min(a, b);
 }
 
@@ -169,9 +169,9 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    SegmentTree<unsigned int, f, (1u << 31) - 1> st(n);
+    SegmentTree<int, op, (1u << 31) - 1> st(n);
     for (int i = 0; i < q; i++) {
-        unsigned int com, x, y;
+        int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) st.update(x, y);
         else cout << st.query(x, y + 1) << "\n";

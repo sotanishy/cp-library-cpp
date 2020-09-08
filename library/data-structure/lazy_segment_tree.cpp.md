@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: data-structure/lazy_segment_tree.cpp
+# :question: data-structure/lazy_segment_tree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 19:54:37+09:00
+    - Last commit date: 2020-09-08 20:07:17+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
 * :x: <a href="../../verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
 
 
@@ -62,7 +62,7 @@ struct LazySegmentTree {
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, tid);
         lazy.resize(2 * size, eid);
-        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
         for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 
@@ -130,7 +130,7 @@ struct LazySegmentTree {
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, tid);
         lazy.resize(2 * size, eid);
-        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
         for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 
