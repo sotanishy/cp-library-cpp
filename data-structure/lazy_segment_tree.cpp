@@ -3,14 +3,14 @@ using namespace std;
 
 template <typename T, T (*op)(T, T), T tid, typename E, T (*apply)(T, E), E (*comp)(E, E), E (*prod)(E, int), E eid>
 struct LazySegmentTree {
-    int size, h;
+    int size;
     vector<T> node;
     vector<E> lazy;
 
     LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, tid)) {}
     LazySegmentTree(const vector<T>& v) {
         size = 1;
-        while (size < v.size()) size <<= 1, h++;
+        while (size < v.size()) size <<= 1;
         node.resize(2 * size, tid);
         lazy.resize(2 * size, eid);
         for (int i = 0; i < size; i++) node[i + size] = v[i];

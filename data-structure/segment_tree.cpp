@@ -6,7 +6,7 @@ struct SegmentTree {
     int size;
     vector<T> node;
 
-    SegmentTree(int n) : SegmentTree(vector<T>(id)) {}
+    SegmentTree(int n) : SegmentTree(vector<T>(n, id)) {}
     SegmentTree(const vector<T>& v) {
         size = 1;
         while (size < v.size()) size <<= 1;
