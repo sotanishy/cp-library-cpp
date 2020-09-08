@@ -11,7 +11,7 @@ struct SegmentTree {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, id);
-        for (int i = 0; i < size; i++) node[i + size] = v[i];
+        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
         for (int i = size - 1; i > 0; i--) node[i] = op(node[2 * i], node[2 * i + 1]);
     }
 

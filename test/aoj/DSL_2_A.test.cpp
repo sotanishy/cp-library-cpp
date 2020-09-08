@@ -2,7 +2,7 @@
 
 #include "../../data-structure/segment_tree.cpp"
 
-unsigned int f(unsigned int a, unsigned int b) {
+int op(int a, int b) {
     return min(a, b);
 }
 
@@ -12,9 +12,9 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    SegmentTree<unsigned int, f, (1u << 31) - 1> st(n);
+    SegmentTree<int, op, (1u << 31) - 1> st(n);
     for (int i = 0; i < q; i++) {
-        unsigned int com, x, y;
+        int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) st.update(x, y);
         else cout << st.query(x, y + 1) << "\n";
