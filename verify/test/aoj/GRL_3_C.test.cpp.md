@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_3_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 19:33:24+09:00
+    - Last commit date: 2020-09-09 01:05:03+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/scc.cpp.html">graph/scc.cpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
-#include "../../graph/scc_decomposition.cpp"
+#include "../../graph/scc.cpp"
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -82,7 +82,7 @@ int main() {
 #line 1 "test/aoj/GRL_3_C.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
-#line 1 "graph/scc_decomposition.cpp"
+#line 1 "graph/scc.cpp"
 #include <bits/stdc++.h>
 using namespace std;
 

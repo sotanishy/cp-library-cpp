@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 01:02:01+09:00
+    - Last commit date: 2020-09-09 11:54:04+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G</a>
@@ -68,14 +68,13 @@ struct S {
         static E op(E a, E b) {
             return a + b;
         }
+        static E prod(E a, int b) {
+            return a * b;
+        }
     };
 
     static V::T op(V::T a, O::E b) {
         return a + b;
-    }
-
-    static O::E prod(O::E a, int b) {
-        return a * b;
     }
 };
 
@@ -118,32 +117,19 @@ struct LazySegmentTree {
     using O = typename S::O;
     using E = typename O::E;
 
-    int size;
-    vector<T> node;
-    vector<E> lazy;
-
     LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, V::id)) {}
     LazySegmentTree(const vector<T>& v) {
         size = 1;
-        while (size < v.size()) size <<= 1;
+        height = 0;
+        while (size < v.size()) size <<= 1, height++;
         node.resize(2 * size, V::id);
         lazy.resize(2 * size, O::id);
-        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
+        copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; i--) node[i] = V::op(node[2 * i], node[2 * i + 1]);
     }
 
     T operator[](int k) {
         return query(k, k + 1);
-    }
-
-    void push(int k, int len) {
-        if (lazy[k] == O::id) return;
-        if (k < size) {
-            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
-            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
-        }
-        node[k] = S::op(node[k], S::prod(lazy[k], len));
-        lazy[k] = O::id;
     }
 
     void update(int a, int b, const E& x, int k = 1, int l = 0, int r = -1) {
@@ -172,6 +158,21 @@ struct LazySegmentTree {
         return V::op(query(a, b, 2 * k, l, m),
                      query(a, b, 2 * k + 1, m, r));
     }
+
+private:
+    int size, height;
+    vector<T> node;
+    vector<E> lazy;
+
+    void push(int k, int len) {
+        if (lazy[k] == O::id) return;
+        if (k < size) {
+            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
+            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
+        }
+        node[k] = S::op(node[k], O::prod(lazy[k], len));
+        lazy[k] = O::id;
+    }
 };
 
 // struct S {
@@ -189,14 +190,13 @@ struct LazySegmentTree {
 //         static E op(E a, E b) {
 //             return a + b;
 //         }
+//         static E prod(E a, int b) {
+//             return a * b;
+//         }
 //     };
 
 //     static V::T op(V::T a, O::E b) {
 //         return a + b;
-//     }
-
-//     static O::E prod(O::E a, int b) {
-//         return a * b;
 //     }
 // };
 #line 4 "test/aoj/DSL_2_G.lazy_segment_tree.test.cpp"
@@ -218,14 +218,13 @@ struct S {
         static E op(E a, E b) {
             return a + b;
         }
+        static E prod(E a, int b) {
+            return a * b;
+        }
     };
 
     static V::T op(V::T a, O::E b) {
         return a + b;
-    }
-
-    static O::E prod(O::E a, int b) {
-        return a * b;
     }
 };
 

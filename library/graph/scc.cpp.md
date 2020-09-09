@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/scc_decomposition.cpp
+# :heavy_check_mark: graph/scc.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/scc_decomposition.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 19:33:24+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/graph/scc.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 01:05:03+09:00
 
 
 
@@ -90,7 +90,7 @@ private:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "graph/scc_decomposition.cpp"
+#line 1 "graph/scc.cpp"
 #include <bits/stdc++.h>
 using namespace std;
 

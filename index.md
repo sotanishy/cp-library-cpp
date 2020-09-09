@@ -38,6 +38,7 @@ layout: default
 
 ### data-structure
 
+* :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">data-structure/dual_segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">data-structure/fenwick_tree.cpp</a>
 * :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">data-structure/fenwick_tree_2d.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
@@ -70,7 +71,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
 * :heavy_check_mark: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :heavy_check_mark: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
-* :heavy_check_mark: <a href="library/graph/scc_decomposition.cpp.html">graph/scc_decomposition.cpp</a>
+* :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 * :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
 
 
@@ -131,6 +132,8 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_D.test.cpp.html">test/aoj/DSL_2_D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_E.test.cpp.html">test/aoj/DSL_2_E.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 01:02:01+09:00
+    - Last commit date: 2020-09-09 11:54:04+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -98,7 +98,7 @@ struct SegmentTree {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, M::id);
-        for (int i = 0; i < v.size(); i++) node[i + size] = v[i];
+        copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
