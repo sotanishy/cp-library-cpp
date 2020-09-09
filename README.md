@@ -13,6 +13,7 @@
 * Fenwick tree with range update
 * k-d tree
 * Segment tree
+* Dual segment tree
 * Segment tree with lazy propagation
 * Sparse table
 * Union find

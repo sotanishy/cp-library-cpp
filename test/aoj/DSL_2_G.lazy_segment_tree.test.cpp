@@ -19,14 +19,13 @@ struct S {
         static E op(E a, E b) {
             return a + b;
         }
+        static E prod(E a, int b) {
+            return a * b;
+        }
     };
 
     static V::T op(V::T a, O::E b) {
         return a + b;
-    }
-
-    static O::E prod(O::E a, int b) {
-        return a * b;
     }
 };
 
