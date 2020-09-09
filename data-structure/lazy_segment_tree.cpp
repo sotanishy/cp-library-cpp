@@ -61,7 +61,7 @@ private:
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] = S::op(node[k], O::prod(lazy[k], len));
+        node[k] = S::op(node[k], S::mul(lazy[k], len));
         lazy[k] = O::id;
     }
 };
@@ -81,12 +81,13 @@ private:
 //         static E op(E a, E b) {
 //             return a + b;
 //         }
-//         static E prod(E a, int b) {
-//             return a * b;
-//         }
 //     };
 
 //     static V::T op(V::T a, O::E b) {
 //         return a + b;
+//     }
+
+//     static O::E mul(O::E a, int b) {
+//         return a * b;
 //     }
 // };

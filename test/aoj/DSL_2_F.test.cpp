@@ -17,13 +17,14 @@
         static E op(E a, E b) {
             return b;
         }
-        static E prod(E a, int b) {
-            return a;
-        }
     };
 
     static V::T op(V::T a, O::E b) {
         return b;
+    }
+
+    static O::E mul(O::E a, int b) {
+        return a;
     }
 };
 
