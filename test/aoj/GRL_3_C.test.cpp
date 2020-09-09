@@ -8,14 +8,13 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<vector<int>> G(V);
+    SCC scc(V);
     for (int i = 0; i < E; i++) {
         int s, t;
         cin >> s >> t;
-        G[s].push_back(t);
+        scc.add_edge(s, t);
     }
-    SCC scc(G);
-
+    scc.build();
     int Q;
     cin >> Q;
     for (int i = 0; i < Q; i++) {

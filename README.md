@@ -34,6 +34,7 @@
 * Kruskal
 * Prim
 * Strongly connected components
+* 2-SAT
 * Topological sort
 
 ### Math

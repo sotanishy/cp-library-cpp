@@ -3,19 +3,24 @@ using namespace std;
 
 struct SCC {
 public:
-    SCC(vector<vector<int>>& G) : G(G), comp(G.size(), -1), visited(G.size()), G_rev(G.size()) {
-        for (int u = 0; u < G.size(); u++) {
-            for (int v : G[u]) G_rev[v].push_back(u);
-        }
+    int num;
 
-        for (int v = 0; v < G.size(); v++) dfs(v);
-        reverse(order.begin(), order.end());
-        int c = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, c++);
+    SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
+
+    void add_edge(int u, int v) {
+        G[u].push_back(v);
+        G_rev[v].push_back(u);
     }
 
-    int operator[](int k) const {
-        return comp[k];
+    void build() {
+        for (int v = 0; v < G.size(); v++) dfs(v);
+        reverse(order.begin(), order.end());
+        num = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+    }
+
+    int operator[](int i) const {
+        return comp[i];
     }
 
 private:

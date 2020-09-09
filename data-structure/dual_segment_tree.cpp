@@ -17,17 +17,20 @@ struct DualSegmentTree {
     }
 
     void update(int l, int r, const T& x) {
+        l += size;
+        r += size;
         propagate(l);
         propagate(r - 1);
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        for (; l < r; l >>= 1, r >>= 1) {
             if (l & 1) lazy[l] = M::op(lazy[l], x), l++;
             if (r & 1) --r, lazy[r] = M::op(lazy[r], x);
         }
     }
 
     T query(int k) {
+        k += size;
         propagate(k);
-        return lazy[k + size];
+        return lazy[k];
     }
 
 private:
@@ -42,7 +45,6 @@ private:
     }
 
     void propagate(int k) {
-        k += size;
         for (int i = height; i > 0; i--) push(k >> i);
     }
 };
