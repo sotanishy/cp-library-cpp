@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/ntt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-10 20:23:07+09:00
+    - Last commit date: 2020-09-11 01:14:21+09:00
 
 
 
@@ -47,11 +47,11 @@ using namespace std;
 template <long long mod, long long primitive_root>
 struct NTT {
 private:
-    static long long mod_pow(long long n, long long p, long long m) {
+    static long long mod_pow(long long n, long long p) {
         long long ret = 1;
         while (p > 0) {
-            if (p & 1) ret = ret * n % m;
-            n = n * n % m;
+            if (p & 1) ret = ret * n % mod;
+            n = n * n % mod;
             p >>= 1;
         }
         return ret;
@@ -71,49 +71,70 @@ private:
         return {sx, sy};
     }
 
-    static long long mod_inv(long long a, long long m) {
-        long long inv = extgcd(a, m).first;
-        return (inv % m + m) % m;
+    static long long mod_inv(long long a) {
+        long long inv = extgcd(a, mod).first;
+        return (inv % mod + mod) % mod;
     }
 
-    static void ntt(vector<long long>& f, int sign) {
-        int n = f.size();
-        if (n == 1) return;
-        vector<long long> a, b;
-        for (int i = 0; i < n / 2; i++) {
-            a.push_back(f[2 * i]);
-            b.push_back(f[2 * i + 1]);
-        }
-        ntt(a, sign);
-        ntt(b, sign);
-        long long cur = 1;
-        long long omega = mod_pow(primitive_root, (mod - 1) / n, mod);
-        if (sign == -1) omega = mod_inv(omega, mod);
-        for (int i = 0; i < n; i++) {
-            f[i] = (a[i % (n / 2)] + cur * b[i % (n / 2)]) % mod;
-            cur = cur * omega % mod;
+    static void untt(vector<long long>& a) {
+        int n = a.size();
+        for (int m = n; m > 1; m >>= 1) {
+            long long omega = mod_pow(primitive_root, (mod - 1) / m);
+            for (int s = 0; s < n / m; s++) {
+                long long w = 1;
+                for (int i = 0; i < m / 2; i++) {
+                    long long l = a[s * m + i];
+                    long long r = a[s * m + i + m / 2];
+                    a[s * m + i] = (l + r) % mod;
+                    a[s * m + i + m / 2] = (l - r + mod) * w % mod;
+                    w = w * omega % mod;
+                }
+            }
         }
     }
+
+    static void iuntt(vector<long long>& a) {
+        int n = a.size();
+        for (int m = 2; m <= n; m <<= 1) {
+            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
+            for (int s = 0; s < n / m; s++) {
+                long long w = 1;
+                for (int i = 0; i < m / 2; i++) {
+                    long long l = a[s * m + i];
+                    long long r = a[s * m + i + m / 2] * w % mod;
+                    a[s * m + i] = (l + r) % mod;
+                    a[s * m + i + m / 2] = (l - r + mod) % mod;
+                    w = w * omega % mod;
+                }
+            }
+        }
+    }
+
 
 public:
     static vector<long long> convolution(const vector<long long>& a, const vector<long long>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
-
         vector<long long> na = a, nb = b;
         na.resize(n);
         nb.resize(n);
-        ntt(na, 1);
-        ntt(nb, 1);
+        untt(na);
+        untt(nb);
         for (int i = 0; i < n; i++) na[i] = na[i] * nb[i] % mod;
-        ntt(na, -1);
+        iuntt(na);
         na.resize(size);
-        long long n_inv = mod_inv(n, mod);
+        long long n_inv = mod_inv(n);
         for (int i = 0; i < size; i++) na[i] = na[i] * n_inv % mod;
         return na;
     }
 };
+
+// <167772161, 3>
+// <469762049, 3>
+// <754974721, 11>
+// <998244353, 3>
+// <1224736769, 3>
 ```
 {% endraw %}
 
@@ -127,11 +148,11 @@ using namespace std;
 template <long long mod, long long primitive_root>
 struct NTT {
 private:
-    static long long mod_pow(long long n, long long p, long long m) {
+    static long long mod_pow(long long n, long long p) {
         long long ret = 1;
         while (p > 0) {
-            if (p & 1) ret = ret * n % m;
-            n = n * n % m;
+            if (p & 1) ret = ret * n % mod;
+            n = n * n % mod;
             p >>= 1;
         }
         return ret;
@@ -151,49 +172,70 @@ private:
         return {sx, sy};
     }
 
-    static long long mod_inv(long long a, long long m) {
-        long long inv = extgcd(a, m).first;
-        return (inv % m + m) % m;
+    static long long mod_inv(long long a) {
+        long long inv = extgcd(a, mod).first;
+        return (inv % mod + mod) % mod;
     }
 
-    static void ntt(vector<long long>& f, int sign) {
-        int n = f.size();
-        if (n == 1) return;
-        vector<long long> a, b;
-        for (int i = 0; i < n / 2; i++) {
-            a.push_back(f[2 * i]);
-            b.push_back(f[2 * i + 1]);
-        }
-        ntt(a, sign);
-        ntt(b, sign);
-        long long cur = 1;
-        long long omega = mod_pow(primitive_root, (mod - 1) / n, mod);
-        if (sign == -1) omega = mod_inv(omega, mod);
-        for (int i = 0; i < n; i++) {
-            f[i] = (a[i % (n / 2)] + cur * b[i % (n / 2)]) % mod;
-            cur = cur * omega % mod;
+    static void untt(vector<long long>& a) {
+        int n = a.size();
+        for (int m = n; m > 1; m >>= 1) {
+            long long omega = mod_pow(primitive_root, (mod - 1) / m);
+            for (int s = 0; s < n / m; s++) {
+                long long w = 1;
+                for (int i = 0; i < m / 2; i++) {
+                    long long l = a[s * m + i];
+                    long long r = a[s * m + i + m / 2];
+                    a[s * m + i] = (l + r) % mod;
+                    a[s * m + i + m / 2] = (l - r + mod) * w % mod;
+                    w = w * omega % mod;
+                }
+            }
         }
     }
+
+    static void iuntt(vector<long long>& a) {
+        int n = a.size();
+        for (int m = 2; m <= n; m <<= 1) {
+            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
+            for (int s = 0; s < n / m; s++) {
+                long long w = 1;
+                for (int i = 0; i < m / 2; i++) {
+                    long long l = a[s * m + i];
+                    long long r = a[s * m + i + m / 2] * w % mod;
+                    a[s * m + i] = (l + r) % mod;
+                    a[s * m + i + m / 2] = (l - r + mod) % mod;
+                    w = w * omega % mod;
+                }
+            }
+        }
+    }
+
 
 public:
     static vector<long long> convolution(const vector<long long>& a, const vector<long long>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
-
         vector<long long> na = a, nb = b;
         na.resize(n);
         nb.resize(n);
-        ntt(na, 1);
-        ntt(nb, 1);
+        untt(na);
+        untt(nb);
         for (int i = 0; i < n; i++) na[i] = na[i] * nb[i] % mod;
-        ntt(na, -1);
+        iuntt(na);
         na.resize(size);
-        long long n_inv = mod_inv(n, mod);
+        long long n_inv = mod_inv(n);
         for (int i = 0; i < size; i++) na[i] = na[i] * n_inv % mod;
         return na;
     }
 };
+
+// <167772161, 3>
+// <469762049, 3>
+// <754974721, 11>
+// <998244353, 3>
+// <1224736769, 3>
 
 ```
 {% endraw %}
