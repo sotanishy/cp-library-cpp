@@ -38,12 +38,13 @@ layout: default
 
 ## Required by
 
-* :warning: <a href="twosat.cpp.html">graph/twosat.cpp</a>
+* :heavy_check_mark: <a href="twosat.cpp.html">graph/twosat.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/GRL_3_C.test.cpp.html">test/aoj/GRL_3_C.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/two_sat.test.cpp.html">test/yosupo/two_sat.test.cpp</a>
 
 
 ## Code

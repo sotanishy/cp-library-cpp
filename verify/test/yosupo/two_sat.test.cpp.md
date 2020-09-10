@@ -21,29 +21,26 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/twosat.cpp
+# :heavy_check_mark: test/yosupo/two_sat.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/twosat.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 21:08:56+09:00
+* category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/two_sat.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-11 01:37:18+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="scc.cpp.html">graph/scc.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/test/yosupo/two_sat.test.cpp.html">test/yosupo/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/scc.cpp.html">graph/scc.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/twosat.cpp.html">graph/twosat.cpp</a>
 
 
 ## Code
@@ -51,46 +48,43 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <bits/stdc++.h>
-#include "scc.cpp"
-using namespace std;
+#define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-struct TwoSat {
-    bool satisfiable = true;
+#include "../../graph/twosat.cpp"
 
-    TwoSat(int n) : n(n), scc(2 * n), val(n) {}
+using ll = long long;
 
-    void add_clause(int u, bool a, int v, bool b) {
-        scc.add_edge(n * a + u, n * (!b) + v);
-        scc.add_edge(n * b + v, n * (!a) + u);
+int main() {
+    string _p, _cnf;
+    int N, M;
+    cin >> _p >> _cnf >> N >> M;
+    TwoSat sat(N);
+    for (int i = 0; i < M; i++) {
+        int a, b, _c;
+        cin >> a >> b >> _c;
+        sat.add_clause(abs(a) - 1, (a > 0), abs(b) - 1, (b > 0));
     }
-
-    void solve() {
-        scc.build();
-        for (int i = 0; i < n; i++) {
-            if (scc[i] == scc[n + i]) {
-                satisfiable = false;
-                break;
-            }
-            val[i] = scc[i] > scc[n + i];
+    sat.solve();
+    if (sat.satisfiable) {
+        cout << "s SATISFIABLE\nv";
+        for (int i = 0; i < N; i++) {
+            cout << " " << (sat[i] ? 1 : -1) * (i + 1);
         }
+        cout << " 0\n";
+    } else {
+        cout << "s UNSATISFIABLE\n";
     }
+}
 
-    bool operator[](int i) const {
-        return val[i];
-    }
-
-private:
-    int n;
-    SCC scc;
-    vector<bool> val;
-};
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "test/yosupo/two_sat.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
+
 #line 1 "graph/twosat.cpp"
 #include <bits/stdc++.h>
 #line 2 "graph/scc.cpp"
@@ -169,9 +163,34 @@ private:
     SCC scc;
     vector<bool> val;
 };
+#line 4 "test/yosupo/two_sat.test.cpp"
+
+using ll = long long;
+
+int main() {
+    string _p, _cnf;
+    int N, M;
+    cin >> _p >> _cnf >> N >> M;
+    TwoSat sat(N);
+    for (int i = 0; i < M; i++) {
+        int a, b, _c;
+        cin >> a >> b >> _c;
+        sat.add_clause(abs(a) - 1, (a > 0), abs(b) - 1, (b > 0));
+    }
+    sat.solve();
+    if (sat.satisfiable) {
+        cout << "s SATISFIABLE\nv";
+        for (int i = 0; i < N; i++) {
+            cout << " " << (sat[i] ? 1 : -1) * (i + 1);
+        }
+        cout << " 0\n";
+    } else {
+        cout << "s UNSATISFIABLE\n";
+    }
+}
 
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 

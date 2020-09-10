@@ -73,7 +73,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 * :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
-* :warning: <a href="library/graph/twosat.cpp.html">graph/twosat.cpp</a>
+* :heavy_check_mark: <a href="library/graph/twosat.cpp.html">graph/twosat.cpp</a>
 
 
 <div id="7e676e9e663beb40fd133f5ee24487c2"></div>
@@ -92,7 +92,7 @@ layout: default
 * :warning: <a href="library/math/mod_log.cpp.html">math/mod_log.cpp</a>
 * :heavy_check_mark: <a href="library/math/mod_pow.cpp.html">math/mod_pow.cpp</a>
 * :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
-* :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
+* :heavy_check_mark: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
 * :heavy_check_mark: <a href="library/math/prime_factor.cpp.html">math/prime_factor.cpp</a>
 * :warning: <a href="library/math/sieve.cpp.html">math/sieve.cpp</a>
 
@@ -155,5 +155,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/NTL_1_A.test.cpp.html">test/aoj/NTL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/NTL_1_B.test.cpp.html">test/aoj/NTL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/NTL_1_D.test.cpp.html">test/aoj/NTL_1_D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/two_sat.test.cpp.html">test/yosupo/two_sat.test.cpp</a>
 
 
