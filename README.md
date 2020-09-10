@@ -44,6 +44,7 @@
 * Euler's totient function
 * Extented Euclidean algorithm
 * Fast Fourier transform
+* Number theoretic transform
 * Geometry
 * Primality test
 * Matrix

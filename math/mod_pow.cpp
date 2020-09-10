@@ -10,7 +10,3 @@ long long mod_pow(long long n, long long p, long long mod) {
     }
     return ret;
 }
-
-long long mod_inv(long long n, long long mod) {
-    return mod_pow(n, mod - 2, mod);
-}
