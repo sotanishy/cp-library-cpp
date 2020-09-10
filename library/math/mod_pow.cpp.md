@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/mod_pow.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-10 20:23:07+09:00
 
 
 
@@ -63,10 +63,6 @@ long long mod_pow(long long n, long long p, long long mod) {
     }
     return ret;
 }
-
-long long mod_inv(long long n, long long mod) {
-    return mod_pow(n, mod - 2, mod);
-}
 ```
 {% endraw %}
 
@@ -85,10 +81,6 @@ long long mod_pow(long long n, long long p, long long mod) {
         p >>= 1;
     }
     return ret;
-}
-
-long long mod_inv(long long n, long long mod) {
-    return mod_pow(n, mod - 2, mod);
 }
 
 ```

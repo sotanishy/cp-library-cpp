@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 11:54:04+09:00
+    - Last commit date: 2020-09-10 07:21:03+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -66,13 +66,14 @@ layout: default
         static E op(E a, E b) {
             return b;
         }
-        static E prod(E a, int b) {
-            return a;
-        }
     };
 
     static V::T op(V::T a, O::E b) {
         return b;
+    }
+
+    static O::E mul(O::E a, int b) {
+        return a;
     }
 };
 
@@ -168,7 +169,7 @@ private:
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] = S::op(node[k], O::prod(lazy[k], len));
+        node[k] = S::op(node[k], S::mul(lazy[k], len));
         lazy[k] = O::id;
     }
 };
@@ -188,13 +189,14 @@ private:
 //         static E op(E a, E b) {
 //             return a + b;
 //         }
-//         static E prod(E a, int b) {
-//             return a * b;
-//         }
 //     };
 
 //     static V::T op(V::T a, O::E b) {
 //         return a + b;
+//     }
+
+//     static O::E mul(O::E a, int b) {
+//         return a * b;
 //     }
 // };
 #line 4 "test/aoj/DSL_2_F.test.cpp"
@@ -214,13 +216,14 @@ private:
         static E op(E a, E b) {
             return b;
         }
-        static E prod(E a, int b) {
-            return a;
-        }
     };
 
     static V::T op(V::T a, O::E b) {
         return b;
+    }
+
+    static O::E mul(O::E a, int b) {
+        return a;
     }
 };
 

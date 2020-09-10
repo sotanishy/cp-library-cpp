@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_3_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 01:05:03+09:00
+    - Last commit date: 2020-09-09 21:08:56+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C</a>
@@ -57,14 +57,13 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<vector<int>> G(V);
+    SCC scc(V);
     for (int i = 0; i < E; i++) {
         int s, t;
         cin >> s >> t;
-        G[s].push_back(t);
+        scc.add_edge(s, t);
     }
-    SCC scc(G);
-
+    scc.build();
     int Q;
     cin >> Q;
     for (int i = 0; i < Q; i++) {
@@ -88,19 +87,24 @@ using namespace std;
 
 struct SCC {
 public:
-    SCC(vector<vector<int>>& G) : G(G), comp(G.size(), -1), visited(G.size()), G_rev(G.size()) {
-        for (int u = 0; u < G.size(); u++) {
-            for (int v : G[u]) G_rev[v].push_back(u);
-        }
+    int num;
 
-        for (int v = 0; v < G.size(); v++) dfs(v);
-        reverse(order.begin(), order.end());
-        int c = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, c++);
+    SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
+
+    void add_edge(int u, int v) {
+        G[u].push_back(v);
+        G_rev[v].push_back(u);
     }
 
-    int operator[](int k) const {
-        return comp[k];
+    void build() {
+        for (int v = 0; v < G.size(); v++) dfs(v);
+        reverse(order.begin(), order.end());
+        num = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+    }
+
+    int operator[](int i) const {
+        return comp[i];
     }
 
 private:
@@ -129,14 +133,13 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<vector<int>> G(V);
+    SCC scc(V);
     for (int i = 0; i < E; i++) {
         int s, t;
         cin >> s >> t;
-        G[s].push_back(t);
+        scc.add_edge(s, t);
     }
-    SCC scc(G);
-
+    scc.build();
     int Q;
     cin >> Q;
     for (int i = 0; i < Q; i++) {

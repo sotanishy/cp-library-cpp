@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/combination.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 03:54:07+09:00
+    - Last commit date: 2020-09-10 20:23:07+09:00
 
 
 
@@ -49,14 +49,23 @@ struct Combination {
     vector<long long> fact, fact_inv;
 
 private:
-    static long long mod_pow(long long n, long long p, long long mod) {
-        long long ret = 1;
-        while (p > 0) {
-            if (p & 1) ret = ret * n % mod;
-            n = n * n % mod;
-            p >>= 1;
+    static pair<long long, long long> extgcd(long long a, long long b) {
+        long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;
+        while (t) {
+            long long q = s / t;
+            s -= t * q;
+            swap(s, t);
+            sx -= tx * q;
+            swap(sx, tx);
+            sy -= ty * q;
+            swap(sy, ty);
         }
-        return ret;
+        return {sx, sy};
+    }
+
+    static long long mod_inv(long long a, long long mod) {
+        long long inv = extgcd(a, mod).first;
+        return (inv % mod + mod) % mod;
     }
 
 public:
@@ -66,13 +75,13 @@ public:
             num = num * (n - i + 1) % mod;
             den = den * i % mod;
         }
-        return num * mod_pow(den, mod - 2, mod) % mod;
+        return num * mod_inv(den, mod) % mod;
     }
 
     Combination(int n, long long mod) : mod(mod), fact(n+1), fact_inv(n+1) {
         fact[0] = fact_inv[0] = 1;
         for (int i = 1; i <= n; i++) fact[i] = fact[i-1] * i % mod;
-        fact_inv[n] = mod_pow(n, mod - 2, mod);
+        fact_inv[n] = mod_inv(n, mod);
         for (int i = n; i > 0; i--) fact_inv[i-1] = fact_inv[i] * i % mod;
     }
 
@@ -101,14 +110,23 @@ struct Combination {
     vector<long long> fact, fact_inv;
 
 private:
-    static long long mod_pow(long long n, long long p, long long mod) {
-        long long ret = 1;
-        while (p > 0) {
-            if (p & 1) ret = ret * n % mod;
-            n = n * n % mod;
-            p >>= 1;
+    static pair<long long, long long> extgcd(long long a, long long b) {
+        long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;
+        while (t) {
+            long long q = s / t;
+            s -= t * q;
+            swap(s, t);
+            sx -= tx * q;
+            swap(sx, tx);
+            sy -= ty * q;
+            swap(sy, ty);
         }
-        return ret;
+        return {sx, sy};
+    }
+
+    static long long mod_inv(long long a, long long mod) {
+        long long inv = extgcd(a, mod).first;
+        return (inv % mod + mod) % mod;
     }
 
 public:
@@ -118,13 +136,13 @@ public:
             num = num * (n - i + 1) % mod;
             den = den * i % mod;
         }
-        return num * mod_pow(den, mod - 2, mod) % mod;
+        return num * mod_inv(den, mod) % mod;
     }
 
     Combination(int n, long long mod) : mod(mod), fact(n+1), fact_inv(n+1) {
         fact[0] = fact_inv[0] = 1;
         for (int i = 1; i <= n; i++) fact[i] = fact[i-1] * i % mod;
-        fact_inv[n] = mod_pow(n, mod - 2, mod);
+        fact_inv[n] = mod_inv(n, mod);
         for (int i = n; i > 0; i--) fact_inv[i-1] = fact_inv[i] * i % mod;
     }
 

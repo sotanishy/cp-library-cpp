@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/NTL_1_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 03:54:07+09:00
+    - Last commit date: 2020-09-10 20:23:07+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B</a>
@@ -80,10 +80,6 @@ long long mod_pow(long long n, long long p, long long mod) {
         p >>= 1;
     }
     return ret;
-}
-
-long long mod_inv(long long n, long long mod) {
-    return mod_pow(n, mod - 2, mod);
 }
 #line 4 "test/aoj/NTL_1_B.test.cpp"
 

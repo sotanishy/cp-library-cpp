@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_D.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 11:54:04+09:00
+    - Last commit date: 2020-09-09 21:08:56+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D</a>
@@ -109,17 +109,20 @@ struct DualSegmentTree {
     }
 
     void update(int l, int r, const T& x) {
+        l += size;
+        r += size;
         propagate(l);
         propagate(r - 1);
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        for (; l < r; l >>= 1, r >>= 1) {
             if (l & 1) lazy[l] = M::op(lazy[l], x), l++;
             if (r & 1) --r, lazy[r] = M::op(lazy[r], x);
         }
     }
 
     T query(int k) {
+        k += size;
         propagate(k);
-        return lazy[k + size];
+        return lazy[k];
     }
 
 private:
@@ -134,7 +137,6 @@ private:
     }
 
     void propagate(int k) {
-        k += size;
         for (int i = height; i > 0; i--) push(k >> i);
     }
 };

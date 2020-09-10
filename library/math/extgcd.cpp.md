@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/extgcd.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-10 20:23:07+09:00
 
 
 
@@ -44,16 +44,23 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
-long long extgcd(long long a, long long b, long long& x, long long& y) {
-    long long d = a;
-    if (b == 0) {
-        x = 1;
-        y = 0;
-    } else {
-        d = extgcd(b, a % b, y, x);
-        y -= (a / b) * x;
+pair<long long, long long> extgcd(long long a, long long b) {
+    long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;
+    while (t) {
+        long long q = s / t;
+        s -= t * q;
+        swap(s, t);
+        sx -= tx * q;
+        swap(sx, tx);
+        sy -= ty * q;
+        swap(sy, ty);
     }
-    return d;
+    return {sx, sy};
+}
+
+long long mod_inv(long long a, long long mod) {
+    long long inv = extgcd(a, mod).first;
+    return (inv % mod + mod) % mod;
 }
 ```
 {% endraw %}
@@ -65,16 +72,23 @@ long long extgcd(long long a, long long b, long long& x, long long& y) {
 #include <bits/stdc++.h>
 using namespace std;
 
-long long extgcd(long long a, long long b, long long& x, long long& y) {
-    long long d = a;
-    if (b == 0) {
-        x = 1;
-        y = 0;
-    } else {
-        d = extgcd(b, a % b, y, x);
-        y -= (a / b) * x;
+pair<long long, long long> extgcd(long long a, long long b) {
+    long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;
+    while (t) {
+        long long q = s / t;
+        s -= t * q;
+        swap(s, t);
+        sx -= tx * q;
+        swap(sx, tx);
+        sy -= ty * q;
+        swap(sy, ty);
     }
-    return d;
+    return {sx, sy};
+}
+
+long long mod_inv(long long a, long long mod) {
+    long long inv = extgcd(a, mod).first;
+    return (inv % mod + mod) % mod;
 }
 
 ```

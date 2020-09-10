@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 11:54:04+09:00
+    - Last commit date: 2020-09-10 07:21:03+09:00
 
 
 
@@ -110,7 +110,7 @@ private:
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] = S::op(node[k], O::prod(lazy[k], len));
+        node[k] = S::op(node[k], S::mul(lazy[k], len));
         lazy[k] = O::id;
     }
 };
@@ -130,13 +130,14 @@ private:
 //         static E op(E a, E b) {
 //             return a + b;
 //         }
-//         static E prod(E a, int b) {
-//             return a * b;
-//         }
 //     };
 
 //     static V::T op(V::T a, O::E b) {
 //         return a + b;
+//     }
+
+//     static O::E mul(O::E a, int b) {
+//         return a * b;
 //     }
 // };
 ```
@@ -209,7 +210,7 @@ private:
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] = S::op(node[k], O::prod(lazy[k], len));
+        node[k] = S::op(node[k], S::mul(lazy[k], len));
         lazy[k] = O::id;
     }
 };
@@ -229,13 +230,14 @@ private:
 //         static E op(E a, E b) {
 //             return a + b;
 //         }
-//         static E prod(E a, int b) {
-//             return a * b;
-//         }
 //     };
 
 //     static V::T op(V::T a, O::E b) {
 //         return a + b;
+//     }
+
+//     static O::E mul(O::E a, int b) {
+//         return a * b;
 //     }
 // };
 

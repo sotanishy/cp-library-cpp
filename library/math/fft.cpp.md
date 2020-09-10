@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: math/fast_fourier_transform.cpp
+# :warning: math/fft.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
-* <a href="{{ site.github.repository_url }}/blob/master/math/fast_fourier_transform.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/math/fft.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-10 20:23:07+09:00
 
 
 
@@ -44,9 +44,11 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
-struct FastFourierTransform {
+struct FFT {
 private:
-    static void dft(vector<complex<double>>& f, int inv) {
+    inline static const double PI = acos(-1);
+
+    static void dft(vector<complex<double>>& f, int sign) {
         int n = f.size();
         if (n == 1) return;
         vector<complex<double>> a, b;
@@ -54,9 +56,9 @@ private:
             a.push_back(f[2 * i]);
             b.push_back(f[2 * i + 1]);
         }
-        dft(a, inv);
-        dft(b, inv);
-        complex<double> cur = 1, zeta = polar(1.0, inv * 2.0 * acos(-1) / n);
+        dft(a, sign);
+        dft(b, sign);
+        complex<double> cur = 1, zeta = polar(1.0, sign * 2.0 * PI / n);
         for (int i = 0; i < n; i++) {
             f[i] = a[i % (n / 2)] + cur * b[i % (n / 2)];
             cur *= zeta;
@@ -65,20 +67,21 @@ private:
 
 public:
     template <typename T>
-    static vector<double> multiply(vector<T> f, vector<T> g) {
+    static vector<double> convolution(const vector<T>& a, const vector<T>& b) {
+        int size = a.size() + b.size() - 1;
         int n = 1;
-        while (n < f.size() + g.size()) n *= 2;
-        vector<complex<double>> nf(n), ng(n);
-        for (int i = 0; i < f.size(); i++) {
-            nf[i] = f[i];
-            ng[i] = g[i];
+        while (n < size) n <<= 1;
+        vector<complex<double>> na(n), nb(n);
+        for (int i = 0; i < a.size(); i++) {
+            na[i] = a[i];
+            nb[i] = b[i];
         }
-        dft(nf, 1);
-        dft(ng, 1);
-        for (int i = 0; i < n; i++) nf[i] *= ng[i];
-        dft(nf, -1);
-        vector<double> ret(n);
-        for (int i = 0; i < n; i++) ret[i] = nf[i].real() / n;
+        dft(na, 1);
+        dft(nb, 1);
+        for (int i = 0; i < n; i++) na[i] *= nb[i];
+        dft(na, -1);
+        vector<double> ret(size);
+        for (int i = 0; i < size; i++) ret[i] = na[i].real() / n;
         return ret;
     }
 };
@@ -88,13 +91,15 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "math/fast_fourier_transform.cpp"
+#line 1 "math/fft.cpp"
 #include <bits/stdc++.h>
 using namespace std;
 
-struct FastFourierTransform {
+struct FFT {
 private:
-    static void dft(vector<complex<double>>& f, int inv) {
+    inline static const double PI = acos(-1);
+
+    static void dft(vector<complex<double>>& f, int sign) {
         int n = f.size();
         if (n == 1) return;
         vector<complex<double>> a, b;
@@ -102,9 +107,9 @@ private:
             a.push_back(f[2 * i]);
             b.push_back(f[2 * i + 1]);
         }
-        dft(a, inv);
-        dft(b, inv);
-        complex<double> cur = 1, zeta = polar(1.0, inv * 2.0 * acos(-1) / n);
+        dft(a, sign);
+        dft(b, sign);
+        complex<double> cur = 1, zeta = polar(1.0, sign * 2.0 * PI / n);
         for (int i = 0; i < n; i++) {
             f[i] = a[i % (n / 2)] + cur * b[i % (n / 2)];
             cur *= zeta;
@@ -113,20 +118,21 @@ private:
 
 public:
     template <typename T>
-    static vector<double> multiply(vector<T> f, vector<T> g) {
+    static vector<double> convolution(const vector<T>& a, const vector<T>& b) {
+        int size = a.size() + b.size() - 1;
         int n = 1;
-        while (n < f.size() + g.size()) n *= 2;
-        vector<complex<double>> nf(n), ng(n);
-        for (int i = 0; i < f.size(); i++) {
-            nf[i] = f[i];
-            ng[i] = g[i];
+        while (n < size) n <<= 1;
+        vector<complex<double>> na(n), nb(n);
+        for (int i = 0; i < a.size(); i++) {
+            na[i] = a[i];
+            nb[i] = b[i];
         }
-        dft(nf, 1);
-        dft(ng, 1);
-        for (int i = 0; i < n; i++) nf[i] *= ng[i];
-        dft(nf, -1);
-        vector<double> ret(n);
-        for (int i = 0; i < n; i++) ret[i] = nf[i].real() / n;
+        dft(na, 1);
+        dft(nb, 1);
+        for (int i = 0; i < n; i++) na[i] *= nb[i];
+        dft(na, -1);
+        vector<double> ret(size);
+        for (int i = 0; i < size; i++) ret[i] = na[i].real() / n;
         return ret;
     }
 };
