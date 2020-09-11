@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_2_A.kruskal.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:01:14+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
 * :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 * :heavy_check_mark: <a href="../../../library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 
@@ -91,6 +91,10 @@ struct Edge {
 #line 2 "data-structure/union_find.cpp"
 using namespace std;
 
+/*
+ * @brief Union Find
+ * @docs docs/data-structure/union_find.md
+ */
 struct UnionFind {
     vector<int> par;
 

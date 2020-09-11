@@ -31,14 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/kruskal.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:01:14+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
 * :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
 
 
@@ -93,6 +93,10 @@ struct Edge {
 #line 2 "data-structure/union_find.cpp"
 using namespace std;
 
+/*
+ * @brief Union Find
+ * @docs docs/data-structure/union_find.md
+ */
 struct UnionFind {
     vector<int> par;
 

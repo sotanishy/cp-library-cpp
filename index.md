@@ -38,17 +38,17 @@ layout: default
 
 ### data-structure
 
-* :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">data-structure/dual_segment_tree.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">data-structure/fenwick_tree.cpp</a>
-* :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">data-structure/fenwick_tree_2d.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
+* :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">2D Fenwick Tree <small>(data-structure/fenwick_tree_2d.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/lazy_segment_tree.cpp.html">data-structure/lazy_segment_tree.cpp</a>
-* :warning: <a href="library/data-structure/partially_persistent_union_find.cpp.html">data-structure/partially_persistent_union_find.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/range_fenwick_tree.cpp.html">data-structure/range_fenwick_tree.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/segment_tree.cpp.html">data-structure/segment_tree.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/sparse_table.cpp.html">data-structure/sparse_table.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/weighted_union_find.cpp.html">data-structure/weighted_union_find.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
+* :warning: <a href="library/data-structure/partially_persistent_union_find.cpp.html">Partially Persistent Union Find <small>(data-structure/partially_persistent_union_find.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/range_fenwick_tree.cpp.html">Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/segment_tree.cpp.html">Segment Tree <small>(data-structure/segment_tree.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/weighted_union_find.cpp.html">Weighted Union Find <small>(data-structure/weighted_union_find.cpp)</small></a>
 
 
 <div id="cff5497121104c2b8e0cb41ed2083a9b"></div>
@@ -86,6 +86,7 @@ layout: default
 * :heavy_check_mark: <a href="library/math/euler_totient.cpp.html">math/euler_totient.cpp</a>
 * :warning: <a href="library/math/extgcd.cpp.html">math/extgcd.cpp</a>
 * :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
+* :warning: <a href="library/math/floor_sum.cpp.html">math/floor_sum.cpp</a>
 * :warning: <a href="library/math/geometry.cpp.html">math/geometry.cpp</a>
 * :heavy_check_mark: <a href="library/math/is_prime.cpp.html">math/is_prime.cpp</a>
 * :warning: <a href="library/math/matrix.cpp.html">math/matrix.cpp</a>

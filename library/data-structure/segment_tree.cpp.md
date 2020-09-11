@@ -25,16 +25,63 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/segment_tree.cpp
+# :heavy_check_mark: Segment Tree <small>(data-structure/segment_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 11:54:04+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
+
+# Segment Tree
+
+A segment tree stores a sequence $(a_0, a_1, \dots, a_n)$ of a monoid $M$.
+
+See the note for how to use the template argument.
+
+A segment tree supports point update and range query both in $O(\lg n)$ time.
+
+For range update and point query, use [a dual segment tree](dual_segment_tree.md)
+
+For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
+
+Space complexity: $O(n)$
+
+## Methods
+
+- `SegmentTree(int n)`
+    - Constructs a segment tree of size `n` with all elements set to the identity $e$.
+    - Time complexity: $O(n)$
+- `SegmentTree(const vector<T>& v)`
+    - Constructs a segment tree of size `v.size()` using the given sequence.
+    - Time complexity: $O(n)$
+- `T operator[](int k)`
+    - Returns $a_k$.
+    - Time complexity: $O(1)$
+- `void update(int k, const T& x)`
+    - Sets $a_k$ to $x$.
+    - Time complexity: $O(\lg n)$
+- `T query(int l, int r)`
+    - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
+    - Time complexity: $O(\lg n)$
+- `int find_first(int l, const function<bool(T)>& cond)`
+    - Returns the first index $r$ after $l$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`. Returns `-1` if none found.
+    - Time complexity: $O(\lg n)$
+- `int find_last(int r, const function<bool(T)>& cond)`
+    - Returns the last index $l$ before $r$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`. Returns `-1` if none found.
+    - Time complexity: $O(\lg n)$
+
+## Note
+
+The template argument `M` represents a monoid $M$ and is a class/struct with the following members defined:
+* `T`: the type of the elements in $M$
+* `T id`: the identity element $e$
+* `T op(T, T)`: an associative binary operation $\cdot$
+
+See the verify files for examples of implementation.
 
 ## Verified with
 
@@ -49,6 +96,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Segment Tree
+ * @docs docs/data-structure/segment_tree.md
+ */
 template <typename M>
 struct SegmentTree {
     using T = typename M::T;
@@ -144,6 +195,10 @@ struct SegmentTree {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Segment Tree
+ * @docs docs/data-structure/segment_tree.md
+ */
 template <typename M>
 struct SegmentTree {
     using T = typename M::T;

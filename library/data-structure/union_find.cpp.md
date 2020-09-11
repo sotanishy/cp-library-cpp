@@ -25,16 +25,46 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/union_find.cpp
+# :heavy_check_mark: Union Find <small>(data-structure/union_find.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 10:11:59+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
+
+# Union Find
+
+A union find, or a disjoint set union, is a data structure that stores a collection of disjoint sets.
+
+This version uses path compression and union by size.
+
+Space complexity: $O(n)$
+
+## Methods
+
+- `UnionFind(int n)`
+    - Constructs a union find of size `n`.
+    - Time complexity: $O(n)$
+- `int find(int x)`
+    - Returns the root of the tree $x$ belongs to.
+    - Time complexity: $\mathrm{amortized} O(\alpha(n))$
+- `void unite(int x, int y)`
+    - Unites the set $x$ belongs to and the set $y$ belongs to.
+    - Time complexity: $\mathrm{amortized} O(\alpha(n))$
+- `bool same(int x, int y)`
+    - Checks if $x$ and $y$ are in the same set.
+    - Time complexity: $\mathrm{amortized} O(\alpha(n))$
+- `int size(int x)`
+    - Returns the size of the set $x$ belongs to.
+    - Time complexity: $\mathrm{amortized} O(\alpha(n))$
+
+## Note
+
+$\alpha(x)$ is the inverse Ackermann function.
 
 ## Required by
 
@@ -55,6 +85,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Union Find
+ * @docs docs/data-structure/union_find.md
+ */
 struct UnionFind {
     vector<int> par;
 
@@ -92,6 +126,10 @@ struct UnionFind {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Union Find
+ * @docs docs/data-structure/union_find.md
+ */
 struct UnionFind {
     vector<int> par;
 

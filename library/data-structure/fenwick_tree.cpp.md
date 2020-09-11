@@ -25,16 +25,43 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/fenwick_tree.cpp
+# :heavy_check_mark: Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 10:11:59+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
+
+# Fenwick Tree
+
+A Fenwick tree, or a binary indexed tree, is a data structure that can update elements and calculate prefix sums.
+
+The interface is 0-indexed.
+
+Space complexity: $O(n)$
+
+## Methods
+
+- `FenwickTree(int n)`
+    - Constructs a Fenwick tree of size `n` with all elements set to $0$.
+    - Time complexity: $O(n)$
+- `T sum(int i)`
+    - Calculates the prefix sum, i.e. calculates the sum $a_0, a_1, \dots, a_i$
+    - Time complexity: $O(\lg n)$
+- `void add(int i, T x)`
+    - Adds $x$ to $a_i$.
+    - Time complexity: $O(\lg n)$
+- `int lower_bound(T x)`
+    - Returns the first index $i$ such that the prefix sum at $i$ is greater than or equal to $x$
+    - Time complexity: $O(\lg n)$
+
+## Note
+
+A Fenwick tree can be generalized to be able to treat any sequence of a commutative monoid.
 
 ## Verified with
 
@@ -49,6 +76,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Fenwick Tree
+ * @docs docs/data-structure/fenwick_tree.md
+ */
 template <typename T>
 struct FenwickTree {
     int n;
@@ -90,6 +121,10 @@ struct FenwickTree {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Fenwick Tree
+ * @docs docs/data-structure/fenwick_tree.md
+ */
 template <typename T>
 struct FenwickTree {
     int n;

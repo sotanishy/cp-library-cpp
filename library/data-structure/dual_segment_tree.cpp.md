@@ -25,16 +25,54 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/dual_segment_tree.cpp
+# :heavy_check_mark: Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/dual_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 21:08:56+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
+
+# Dual Segment Tree
+
+A dual segment tree stores a sequence $(a_0, a_1, \dots, a_n)$ of an operator monoid $M$.
+
+See the note for the description of a monoid.
+
+A dual segment tree supports range update and point query both in $O(\lg n)$ time.
+
+For point update and range query, use [a segment tree](segment_tree.md)
+
+For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
+
+Space complexity: $O(n)$
+
+## Methods
+
+- `DualSegmentTree(int n)`
+    - Constructs a dual segment tree of size `n` with all elements set to the identity $e$.
+    - Time complexity: $O(n)$
+- `T operator[](int k)`
+    - Returns $a_k$ (same as `T query(int k)`).
+    - Time complexity: $O(\lg n)$
+- `void update(int l, int r, const T& x)`
+    - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
+    - Time complexity: $O(\lg n)$
+- `T query(int k)`
+    - Returns $a_k$ (same as `T operator[](int k)`).
+    - Time complexity: $O(\lg n)$
+
+## Note
+
+The template argument `M` represents a monoid $M$ and is a class/struct with the following members defined:
+* `T`: the type of the elements in $M$
+* `T id`: the identity element $e$
+* `T op(T, T)`: an associative binary operation $\cdot$
+
+See the verify files for examples of implementation.
 
 ## Verified with
 
@@ -50,6 +88,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Dual Segment Tree
+ * @docs docs/data-structure/dual_segment_tree.md
+ */
 template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;
@@ -115,6 +157,10 @@ private:
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Dual Segment Tree
+ * @docs docs/data-structure/dual_segment_tree.md
+ */
 template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;

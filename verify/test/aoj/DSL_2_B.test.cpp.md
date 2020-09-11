@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 03:18:51+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/fenwick_tree.cpp.html">data-structure/fenwick_tree.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
 
 
 ## Code
@@ -78,6 +78,10 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Fenwick Tree
+ * @docs docs/data-structure/fenwick_tree.md
+ */
 template <typename T>
 struct FenwickTree {
     int n;

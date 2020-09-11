@@ -25,16 +25,35 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/sparse_table.cpp
+# :heavy_check_mark: Sparse Table <small>(data-structure/sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 10:27:41+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
+
+# Sparse Table
+
+A sparse table is a data structure that can quickly find the minimum value in a range of a static sequence.
+
+Space complexity: $O(n \lg n)$
+
+## Methods
+
+- `SparseTable(const vector<T>& v)`
+    - Constructs a sparse table from `v`
+    - Time complexity: $O(n \lg n)$
+- `T query(int l, int r)`
+    - Returns the minimum element in the range $[l, r)$
+    - Time complexity: $O(1)$
+
+## Note
+
+A sparse table can handle other associative and idempotent binary operations: max, gcd, bitwise and, bitwise or, etc.
 
 ## Verified with
 
@@ -49,6 +68,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Sparse Table
+ * @docs docs/data-structure/sparse_table.md
+ */
 template <typename T>
 struct SparseTable {
 private:
@@ -56,7 +79,7 @@ private:
     vector<int> len;
 
 public:
-    SparseTable(vector<int>& v) {
+    SparseTable(const vector<int>& v) {
         int n = 1;
         int b = 0;
         while (n <= v.size()) {
@@ -91,6 +114,10 @@ public:
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Sparse Table
+ * @docs docs/data-structure/sparse_table.md
+ */
 template <typename T>
 struct SparseTable {
 private:
@@ -98,7 +125,7 @@ private:
     vector<int> len;
 
 public:
-    SparseTable(vector<int>& v) {
+    SparseTable(const vector<int>& v) {
         int n = 1;
         int b = 0;
         while (n <= v.size()) {

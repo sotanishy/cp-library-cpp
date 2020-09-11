@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_3_D.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 10:27:41+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/sparse_table.cpp.html">data-structure/sparse_table.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
 
 
 ## Code
@@ -81,6 +81,10 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Sparse Table
+ * @docs docs/data-structure/sparse_table.md
+ */
 template <typename T>
 struct SparseTable {
 private:
@@ -88,7 +92,7 @@ private:
     vector<int> len;
 
 public:
-    SparseTable(vector<int>& v) {
+    SparseTable(const vector<int>& v) {
         int n = 1;
         int b = 0;
         while (n <= v.size()) {

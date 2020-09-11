@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: data-structure/fenwick_tree_2d.cpp
+# :warning: 2D Fenwick Tree <small>(data-structure/fenwick_tree_2d.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fenwick_tree_2d.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 10:11:59+09:00
+    - Last commit date: 2020-09-11 18:56:12+09:00
 
 
 
@@ -44,6 +44,9 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief 2D Fenwick Tree
+ */
 template <typename T>
 struct FenwickTree2D {
     int H, W;
@@ -83,6 +86,9 @@ struct FenwickTree2D {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief 2D Fenwick Tree
+ */
 template <typename T>
 struct FenwickTree2D {
     int H, W;
