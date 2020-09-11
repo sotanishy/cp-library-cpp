@@ -1,8 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Dinic's Algorithm
+ * @docs docs/flow/dinic.md
+ */
 template <typename T>
 struct Dinic {
+public:
+    Dinic(int V) : G(V), level(V), iter(V) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (bfs(s, t)) {
+            fill(iter.begin(), iter.end(), 0);
+            T f = 0;
+            while ((f = dfs(s, t, INF)) > 0) flow += f;
+        }
+        return flow;
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -14,13 +37,6 @@ struct Dinic {
 
     vector<vector<Edge>> G;
     vector<int> level, iter;
-
-    Dinic(int V) : G(V), level(V), iter(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     bool bfs(int s, int t) {
         fill(level.begin(), level.end(), -1);
@@ -54,15 +70,5 @@ struct Dinic {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (bfs(s, t)) {
-            fill(iter.begin(), iter.end(), 0);
-            T f = 0;
-            while ((f = dfs(s, t, INF)) > 0) flow += f;
-        }
-        return flow;
     }
 };

@@ -1,8 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Ford-Fulkerson Algorithm
+ * @docs docs/flow/ford_fulkerson.md
+ */
 template <typename T>
 struct FordFulkerson {
+public:
+    FordFulkerson(int n) : G(n), used(n) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (true) {
+            fill(used.begin(), used.end(), false);
+            T f = dfs(s, t, INF);
+            if (f == 0) return flow;
+            flow += f;
+        }
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -14,13 +37,6 @@ struct FordFulkerson {
 
     vector<vector<Edge>> G;
     vector<bool> used;
-
-    FordFulkerson(int V) : G(V), used(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     T dfs(int v, int t, T f) {
         if (v == t) return f;
@@ -36,15 +52,5 @@ struct FordFulkerson {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (true) {
-            fill(used.begin(), used.end(), false);
-            T f = dfs(s, t, INF);
-            if (f == 0) return flow;
-            flow += f;
-        }
     }
 };

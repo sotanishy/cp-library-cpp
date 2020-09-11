@@ -1,29 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Bipartite Matching
+ * @docs docs/flow/bipartite_matching.md
+ */
 struct BipartiteMatching {
-    vector<vector<int>> G;
-    vector<bool> used;
-    vector<int> match;
-
-    BipartiteMatching(int V) : G(V), used(V), match(V) {}
+public:
+    BipartiteMatching(int n) : G(n), used(n), match(n) {}
 
     void add_edge(int u, int v) {
         G[u].push_back(v);
         G[v].push_back(u);
-    }
-
-    bool dfs(int u) {
-        used[u] = true;
-        for (int v : G[u]) {
-            int w = match[v];
-            if (w < 0 || (!used[w] && dfs(w))) {
-                match[u] = v;
-                match[v] = u;
-                return true;
-            }
-        }
-        return false;
     }
 
     int bipartite_matching() {
@@ -36,5 +24,23 @@ struct BipartiteMatching {
             }
         }
         return res;
+    }
+
+private:
+    vector<vector<int>> G;
+    vector<bool> used;
+    vector<int> match;
+
+    bool dfs(int u) {
+        used[u] = true;
+        for (int v : G[u]) {
+            int w = match[v];
+            if (w < 0 || (!used[w] && dfs(w))) {
+                match[u] = v;
+                match[v] = u;
+                return true;
+            }
+        }
+        return false;
     }
 };

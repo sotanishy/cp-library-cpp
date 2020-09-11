@@ -1,21 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Minimum Cost Flow
+ * @docs docs/flow/min_cost_flow.md
+ */
 template <typename Cap, typename Cost>
 struct MinCostFlow {
-    struct Edge {
-        int to;
-        Cap cap;
-        Cost cost;
-        int rev;
-        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
-    };
-
-    const Cost INF = numeric_limits<Cost>::max() / 2;
-
-    int V;
-    vector<vector<Edge>> G;
-
+public:
     MinCostFlow(int V) : V(V), G(V) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
@@ -71,4 +63,18 @@ struct MinCostFlow {
         }
         return ret;
     }
+
+private:
+    struct Edge {
+        int to;
+        Cap cap;
+        Cost cost;
+        int rev;
+        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+    };
+
+    const Cost INF = numeric_limits<Cost>::max() / 2;
+
+    int V;
+    vector<vector<Edge>> G;
 };
