@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Floyd-Warshall Algorithm
+ * @docs docs/graph/floyd_warshall.md
+ */
 template <typename T>
 void floyd_warshall(vector<vector<T>>& dist) {
     int V = dist.size();

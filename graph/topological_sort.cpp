@@ -1,7 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// returns an empty list if G is not a DAG
+/*
+ * @brief Topological Sort
+ * @docs docs/graph/topological_sort.md
+ */
 vector<int> topological_sort(vector<vector<int>>& G) {
     int V = G.size();
     vector<int> par_count(V);

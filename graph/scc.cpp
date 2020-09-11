@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Strongly Connected Components
+ * @docs docs/graph/scc.md
+ */
 struct SCC {
 public:
     int num;

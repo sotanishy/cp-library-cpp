@@ -2,6 +2,10 @@
 #include "scc.cpp"
 using namespace std;
 
+/*
+ * @brief 2-SAT
+ * @docs docs/graph/twosat.md
+ */
 struct TwoSat {
     bool satisfiable = true;
 

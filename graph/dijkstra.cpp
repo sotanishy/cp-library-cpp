@@ -2,10 +2,14 @@
 #include "edge.cpp"
 using namespace std;
 
+/*
+ * @brief Dijkstra's Algorithm
+ * @docs docs/graph/dijkstra.md
+ */
 template <typename T>
-vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
-    const auto INF = numeric_limits<T>::max();
-    vector<T> dist(V, INF);
+vector<T> dijkstra(vector<vector<Edge<T>>>& G, int s) {
+    const T INF = numeric_limits<T>::max();
+    vector<T> dist(G.size(), INF);
     dist[s] = 0;
     using P = pair<T, int>;
     priority_queue<P, vector<P>, greater<P>> pq;

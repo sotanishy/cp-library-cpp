@@ -2,6 +2,10 @@
 #include "edge.cpp"
 using namespace std;
 
+/*
+ * @brief Prim's Algorithm
+ * @docs docs/graph/prim.md
+ */
 template <typename T>
 T prim(vector<vector<Edge<T>>>& G) {
     vector<bool> used(G.size());

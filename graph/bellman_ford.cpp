@@ -2,7 +2,10 @@
 #include "edge.cpp"
 using namespace std;
 
-// returns an empty vector if there exists a negative cycle
+/*
+ * @brief Bellman-Ford Algorithm
+ * @docs docs/graph/bellman_ford.md
+ */
 template <typename T>
 vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s) {
     const auto INF = numeric_limits<T>::max();
