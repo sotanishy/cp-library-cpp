@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Lowerst Common Ancestor
+ * @docs docs/tree/lca.md
+ */
 struct LCA {
-    const int LOG;
-    const vector<vector<int>>& G;
-    vector<vector<int>> table;
-    vector<int> depth;
-
+public:
     LCA(vector<vector<int>>& G, int root) : G(G), depth(G.size()), LOG(32 - __builtin_clz(G.size())) {
         int V = G.size();
         table.assign(LOG, vector<int>(V, -1));
@@ -19,14 +19,6 @@ struct LCA {
                     table[k+1][v] = table[k][table[k][v]];
                 }
             }
-        }
-    }
-
-    void dfs(int v, int p, int d) {
-        table[0][v] = p;
-        depth[v] = d;
-        for (int c : G[v]) {
-            if (c != p) dfs(c, v, d + 1);
         }
     }
 
@@ -52,5 +44,19 @@ struct LCA {
 
     int dist(int u, int v) {
         return depth[u] + depth[v] - 2 * depth[query(u, v)];
+    }
+
+private:
+    const int LOG;
+    const vector<vector<int>>& G;
+    vector<vector<int>> table;
+    vector<int> depth;
+
+    void dfs(int v, int p, int d) {
+        table[0][v] = p;
+        depth[v] = d;
+        for (int c : G[v]) {
+            if (c != p) dfs(c, v, d + 1);
+        }
     }
 };
