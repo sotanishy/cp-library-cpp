@@ -26,5 +26,7 @@
 "test/aoj/GRL_7_A.test.cpp": "2020-08-31 15:01:14 +0900",
 "test/aoj/NTL_1_A.test.cpp": "2020-09-07 03:54:07 +0900",
 "test/aoj/NTL_1_B.test.cpp": "2020-09-10 20:23:07 +0900",
-"test/aoj/NTL_1_D.test.cpp": "2020-09-07 03:54:07 +0900"
+"test/aoj/NTL_1_D.test.cpp": "2020-09-07 03:54:07 +0900",
+"test/yosupo/convolution_mod.test.cpp": "2020-09-11 01:37:18 +0900",
+"test/yosupo/two_sat.test.cpp": "2020-09-11 01:37:18 +0900"
 }
