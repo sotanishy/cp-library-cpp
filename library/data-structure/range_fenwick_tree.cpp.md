@@ -31,14 +31,16 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/range_fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-11 21:10:15+09:00
 
 
 
 
-# Fenwick Tree
+# Fenwick Tree with Range Update
 
-A Fenwick tree, or a binary indexed tree, is a data structure that can update elements and calculate prefix sums.
+By using two Fenwick trees, one can efficiently handle range updates.
+
+See [Wikipedia](https://en.wikipedia.org/wiki/Fenwick_tree) for details.
 
 The interface is 0-indexed.
 
@@ -46,22 +48,15 @@ Space complexity: $O(n)$
 
 ## Methods
 
-- `FenwickTree(int n)`
-    - Constructs a Fenwick tree of size `n` with all elements set to $0$.
+- `RangeFenwickTree(int n)`
+    - Constructs a Fenwick tree with range update of size `n` with all elements initialized to $0$.
     - Time complexity: $O(n)$
 - `T sum(int i)`
     - Calculates the prefix sum, i.e. calculates the sum $a_0, a_1, \dots, a_i$
     - Time complexity: $O(\lg n)$
-- `void add(int i, T x)`
-    - Adds $x$ to $a_i$.
+- `void add(int l, int r, T x)`
+    - Adds $x$ to $a_l, \dots, a_r$
     - Time complexity: $O(\lg n)$
-- `int lower_bound(T x)`
-    - Returns the first index $i$ such that the prefix sum at $i$ is greater than or equal to $x$
-    - Time complexity: $O(\lg n)$
-
-## Note
-
-A Fenwick tree can be generalized to be able to treat any sequence of a commutative monoid.
 
 ## Verified with
 
@@ -78,7 +73,7 @@ using namespace std;
 
 /*
  * @brief Fenwick Tree with Range Update
- * @docs docs/data-structure/fenwick_tree.md
+ * @docs docs/data-structure/range_fenwick_tree.md
  */
 template <typename T>
 struct RangeFenwickTree {
@@ -122,7 +117,7 @@ using namespace std;
 
 /*
  * @brief Fenwick Tree with Range Update
- * @docs docs/data-structure/fenwick_tree.md
+ * @docs docs/data-structure/range_fenwick_tree.md
  */
 template <typename T>
 struct RangeFenwickTree {

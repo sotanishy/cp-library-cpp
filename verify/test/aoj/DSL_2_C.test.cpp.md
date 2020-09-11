@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 11:44:31+09:00
+    - Last commit date: 2020-09-11 21:10:15+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/kd_tree.cpp.html">data-structure/kd_tree.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/kd_tree.cpp.html">k-d Tree <small>(data-structure/kd_tree.cpp)</small></a>
 
 
 ## Code
@@ -88,18 +88,13 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief k-d Tree
+ * @docs docs/data-structure/kd_tree.md
+ */
 template <typename T>
 struct KDTree {
-
-    struct Point {
-        int id;
-        T x, y;
-        Point(T x, T y) : x(x), y(y) {}
-        Point(int id, T x, T y) : id(id), x(x), y(y) {}
-    };
-
-    vector<Point> points;
-
+public:
     void add_point(int id, T x, T y) {
         points.emplace_back(id, x, y);
     }
@@ -108,16 +103,23 @@ struct KDTree {
         build_rec(0, points.size() - 1, 0);
     }
 
-    void build_rec(int left, int right, int depth) {
-        if (left > right) return;
-
-        int axis = depth % 2;
-        if (axis == 0) sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
-        else sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
-        int mid = (left + right) / 2;
-        build_rec(left, mid - 1, depth + 1);
-        build_rec(mid + 1, right, depth + 1);
+    vector<int> search(T sx, T tx, T sy, T ty) {
+        Point s(min(sx, tx), min(sy, ty));
+        Point t(max(sx, tx), max(sy, ty));
+        vector<int> res;
+        search_rec(s, t, res, 0, points.size() - 1, 0);
+        return res;
     }
+
+private:
+    struct Point {
+        int id;
+        T x, y;
+        Point(T x, T y) : x(x), y(y) {}
+        Point(int id, T x, T y) : id(id), x(x), y(y) {}
+    };
+
+    vector<Point> points;
 
     int check_position(Point& point, Point& start, Point& end, int axis) {
         if (axis == 0) {
@@ -131,12 +133,15 @@ struct KDTree {
         }
     }
 
-    vector<int> search(T sx, T tx, T sy, T ty) {
-        Point s(min(sx, tx), min(sy, ty));
-        Point t(max(sx, tx), max(sy, ty));
-        vector<int> res;
-        search_rec(s, t, res, 0, points.size() - 1, 0);
-        return res;
+    void build_rec(int left, int right, int depth) {
+        if (left > right) return;
+
+        int axis = depth % 2;
+        if (axis == 0) sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
+        else sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
+        int mid = (left + right) / 2;
+        build_rec(left, mid - 1, depth + 1);
+        build_rec(mid + 1, right, depth + 1);
     }
 
     void search_rec(Point& start, Point& end, vector<int>& res, int left, int right, int depth) {
