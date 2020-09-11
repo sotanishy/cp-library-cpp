@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Partially Persistent Union Find
+ * @docs docs/data-structure/partially_persistent_union_find.md
+ */
 struct PartiallyPersistentUnionFind {
     vector<int> par, time;
     vector<vector<pair<int, int>>> sz;

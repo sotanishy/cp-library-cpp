@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Union Find
+ * @docs docs/data-structure/union_find.md
+ */
 struct UnionFind {
     vector<int> par;
 

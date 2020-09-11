@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Weighted Union Find
+ * @docs docs/data-structure/weighted_union_find.md
+ */
 template <typename T>
 struct WeightedUnionFind {
     vector<int> par;

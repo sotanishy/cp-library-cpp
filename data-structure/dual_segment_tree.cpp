@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Dual Segment Tree
+ * @docs docs/data-structure/dual_segment_tree.md
+ */
 template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;

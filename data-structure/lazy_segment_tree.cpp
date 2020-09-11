@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Segment Tree with Lazy Propagation
+ * @docs docs/data-structure/lazy_segment_tree.md
+ */
 template <typename S>
 struct LazySegmentTree {
     using V = typename S::V;

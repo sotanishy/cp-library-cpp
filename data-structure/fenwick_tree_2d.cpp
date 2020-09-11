@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief 2D Fenwick Tree
+ */
 template <typename T>
 struct FenwickTree2D {
     int H, W;

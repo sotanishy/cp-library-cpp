@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Sparse Table
+ * @docs docs/data-structure/sparse_table.md
+ */
 template <typename T>
 struct SparseTable {
 private:
@@ -8,7 +12,7 @@ private:
     vector<int> len;
 
 public:
-    SparseTable(vector<int>& v) {
+    SparseTable(const vector<int>& v) {
         int n = 1;
         int b = 0;
         while (n <= v.size()) {

@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Segment Tree
+ * @docs docs/data-structure/segment_tree.md
+ */
 template <typename M>
 struct SegmentTree {
     using T = typename M::T;
