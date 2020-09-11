@@ -25,16 +25,32 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: flow/ford_fulkerson.cpp
+# :heavy_check_mark: Ford-Fulkerson Algorithm <small>(flow/ford_fulkerson.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/flow/ford_fulkerson.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 04:14:56+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 
+
+# Ford-Fulkerson Algorithm
+
+The Ford-Fulkerson algorithm is an algorithm for findng the maximum flow. It continuously finds an augmenting path in the residual graph using DFS and sends flow along the path.
+
+# Methods
+
+- `FordFulkerson(int n)`
+    - Initializes the graph with $n$ vertices.
+    - Time complexity: $O(n)$
+- `void add_edge(int u, int v, T cap)`
+    - Adds an edge $(u, v)$ with a capacity $cap$.
+    - Time complexity: $O(1)$
+- `T max_flow(int s, int t)`
+    - Calculates the maximum flow from the source $s$ to the sink $t$.
+    - Time complexity: $O(Ef)$
 
 ## Verified with
 
@@ -49,8 +65,31 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Ford-Fulkerson Algorithm
+ * @docs docs/flow/ford_fulkerson.md
+ */
 template <typename T>
 struct FordFulkerson {
+public:
+    FordFulkerson(int n) : G(n), used(n) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (true) {
+            fill(used.begin(), used.end(), false);
+            T f = dfs(s, t, INF);
+            if (f == 0) return flow;
+            flow += f;
+        }
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -62,13 +101,6 @@ struct FordFulkerson {
 
     vector<vector<Edge>> G;
     vector<bool> used;
-
-    FordFulkerson(int V) : G(V), used(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     T dfs(int v, int t, T f) {
         if (v == t) return f;
@@ -84,16 +116,6 @@ struct FordFulkerson {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (true) {
-            fill(used.begin(), used.end(), false);
-            T f = dfs(s, t, INF);
-            if (f == 0) return flow;
-            flow += f;
-        }
     }
 };
 ```
@@ -106,8 +128,31 @@ struct FordFulkerson {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Ford-Fulkerson Algorithm
+ * @docs docs/flow/ford_fulkerson.md
+ */
 template <typename T>
 struct FordFulkerson {
+public:
+    FordFulkerson(int n) : G(n), used(n) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (true) {
+            fill(used.begin(), used.end(), false);
+            T f = dfs(s, t, INF);
+            if (f == 0) return flow;
+            flow += f;
+        }
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -119,13 +164,6 @@ struct FordFulkerson {
 
     vector<vector<Edge>> G;
     vector<bool> used;
-
-    FordFulkerson(int V) : G(V), used(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     T dfs(int v, int t, T f) {
         if (v == t) return f;
@@ -141,16 +179,6 @@ struct FordFulkerson {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (true) {
-            fill(used.begin(), used.end(), false);
-            T f = dfs(s, t, INF);
-            if (f == 0) return flow;
-            flow += f;
-        }
     }
 };
 

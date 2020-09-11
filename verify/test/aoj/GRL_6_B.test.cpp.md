@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_6_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 10:36:41+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/flow/min_cost_flow.cpp.html">flow/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="../../../library/flow/min_cost_flow.cpp.html">Minimum Cost Flow <small>(flow/min_cost_flow.cpp)</small></a>
 
 
 ## Code
@@ -78,21 +78,13 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Minimum Cost Flow
+ * @docs docs/flow/min_cost_flow.md
+ */
 template <typename Cap, typename Cost>
 struct MinCostFlow {
-    struct Edge {
-        int to;
-        Cap cap;
-        Cost cost;
-        int rev;
-        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
-    };
-
-    const Cost INF = numeric_limits<Cost>::max() / 2;
-
-    int V;
-    vector<vector<Edge>> G;
-
+public:
     MinCostFlow(int V) : V(V), G(V) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
@@ -148,6 +140,20 @@ struct MinCostFlow {
         }
         return ret;
     }
+
+private:
+    struct Edge {
+        int to;
+        Cap cap;
+        Cost cost;
+        int rev;
+        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+    };
+
+    const Cost INF = numeric_limits<Cost>::max() / 2;
+
+    int V;
+    vector<vector<Edge>> G;
 };
 #line 4 "test/aoj/GRL_6_B.test.cpp"
 

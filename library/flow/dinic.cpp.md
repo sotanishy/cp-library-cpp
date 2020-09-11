@@ -25,16 +25,32 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: flow/dinic.cpp
+# :heavy_check_mark: Dinic's Algorithm <small>(flow/dinic.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/flow/dinic.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 04:14:56+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 
+
+# Dinic's Algorithm
+
+Dinic's algorithm is an algorithm for findng the maximum flow. It continuously calculates the shortest distance from the source using BFS, finds an augmenting path in the residual graph using DFS, and sends flow along the path.
+
+# Methods
+
+- `Dinic(int n)`
+    - Initializes the graph with $n$ vertices.
+    - Time complexity: $O(n)$
+- `void add_edge(int u, int v, T cap)`
+    - Adds an edge $(u, v)$ with a capacity $cap$.
+    - Time complexity: $O(1)$
+- `T max_flow(int s, int t)`
+    - Calculates the maximum flow from the source $s$ to the sink $t$.
+    - Time complexity: $O(V^2E)$
 
 ## Verified with
 
@@ -49,8 +65,31 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Dinic's Algorithm
+ * @docs docs/flow/dinic.md
+ */
 template <typename T>
 struct Dinic {
+public:
+    Dinic(int V) : G(V), level(V), iter(V) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (bfs(s, t)) {
+            fill(iter.begin(), iter.end(), 0);
+            T f = 0;
+            while ((f = dfs(s, t, INF)) > 0) flow += f;
+        }
+        return flow;
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -62,13 +101,6 @@ struct Dinic {
 
     vector<vector<Edge>> G;
     vector<int> level, iter;
-
-    Dinic(int V) : G(V), level(V), iter(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     bool bfs(int s, int t) {
         fill(level.begin(), level.end(), -1);
@@ -102,16 +134,6 @@ struct Dinic {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (bfs(s, t)) {
-            fill(iter.begin(), iter.end(), 0);
-            T f = 0;
-            while ((f = dfs(s, t, INF)) > 0) flow += f;
-        }
-        return flow;
     }
 };
 ```
@@ -124,8 +146,31 @@ struct Dinic {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Dinic's Algorithm
+ * @docs docs/flow/dinic.md
+ */
 template <typename T>
 struct Dinic {
+public:
+    Dinic(int V) : G(V), level(V), iter(V) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (bfs(s, t)) {
+            fill(iter.begin(), iter.end(), 0);
+            T f = 0;
+            while ((f = dfs(s, t, INF)) > 0) flow += f;
+        }
+        return flow;
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -137,13 +182,6 @@ struct Dinic {
 
     vector<vector<Edge>> G;
     vector<int> level, iter;
-
-    Dinic(int V) : G(V), level(V), iter(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     bool bfs(int s, int t) {
         fill(level.begin(), level.end(), -1);
@@ -177,16 +215,6 @@ struct Dinic {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (bfs(s, t)) {
-            fill(iter.begin(), iter.end(), 0);
-            T f = 0;
-            while ((f = dfs(s, t, INF)) > 0) flow += f;
-        }
-        return flow;
     }
 };
 

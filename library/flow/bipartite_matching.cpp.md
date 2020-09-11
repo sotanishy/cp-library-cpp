@@ -25,16 +25,32 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: flow/bipartite_matching.cpp
+# :heavy_check_mark: Bipartite Matching <small>(flow/bipartite_matching.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/flow/bipartite_matching.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 
+
+# Bipartite Matching
+
+This struct calculates the maximum matching of a bipartite graph using the Ford-Fulkerson algorithm.
+
+# Methods
+
+- `BipartiteMatching(int n)`
+    - Initializes the bipartite graph with $n$ vertices.
+    - Time complexity: $O(n)$
+- `void add_edge(int u, int v)`
+    - Adds an edge $(u, v)$.
+    - Time complexity: $O(1)$
+- `int bipartite_matching()`
+    - Calculates the maximum matching of the bipartite graph.
+    - Time complexity: $O(VE)$
 
 ## Verified with
 
@@ -49,29 +65,17 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Bipartite Matching
+ * @docs docs/flow/bipartite_matching.md
+ */
 struct BipartiteMatching {
-    vector<vector<int>> G;
-    vector<bool> used;
-    vector<int> match;
-
-    BipartiteMatching(int V) : G(V), used(V), match(V) {}
+public:
+    BipartiteMatching(int n) : G(n), used(n), match(n) {}
 
     void add_edge(int u, int v) {
         G[u].push_back(v);
         G[v].push_back(u);
-    }
-
-    bool dfs(int u) {
-        used[u] = true;
-        for (int v : G[u]) {
-            int w = match[v];
-            if (w < 0 || (!used[w] && dfs(w))) {
-                match[u] = v;
-                match[v] = u;
-                return true;
-            }
-        }
-        return false;
     }
 
     int bipartite_matching() {
@@ -84,6 +88,24 @@ struct BipartiteMatching {
             }
         }
         return res;
+    }
+
+private:
+    vector<vector<int>> G;
+    vector<bool> used;
+    vector<int> match;
+
+    bool dfs(int u) {
+        used[u] = true;
+        for (int v : G[u]) {
+            int w = match[v];
+            if (w < 0 || (!used[w] && dfs(w))) {
+                match[u] = v;
+                match[v] = u;
+                return true;
+            }
+        }
+        return false;
     }
 };
 ```
@@ -96,29 +118,17 @@ struct BipartiteMatching {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Bipartite Matching
+ * @docs docs/flow/bipartite_matching.md
+ */
 struct BipartiteMatching {
-    vector<vector<int>> G;
-    vector<bool> used;
-    vector<int> match;
-
-    BipartiteMatching(int V) : G(V), used(V), match(V) {}
+public:
+    BipartiteMatching(int n) : G(n), used(n), match(n) {}
 
     void add_edge(int u, int v) {
         G[u].push_back(v);
         G[v].push_back(u);
-    }
-
-    bool dfs(int u) {
-        used[u] = true;
-        for (int v : G[u]) {
-            int w = match[v];
-            if (w < 0 || (!used[w] && dfs(w))) {
-                match[u] = v;
-                match[v] = u;
-                return true;
-            }
-        }
-        return false;
     }
 
     int bipartite_matching() {
@@ -131,6 +141,24 @@ struct BipartiteMatching {
             }
         }
         return res;
+    }
+
+private:
+    vector<vector<int>> G;
+    vector<bool> used;
+    vector<int> match;
+
+    bool dfs(int u) {
+        used[u] = true;
+        for (int v : G[u]) {
+            int w = match[v];
+            if (w < 0 || (!used[w] && dfs(w))) {
+                match[u] = v;
+                match[v] = u;
+                return true;
+            }
+        }
+        return false;
     }
 };
 

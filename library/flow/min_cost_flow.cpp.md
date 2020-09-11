@@ -25,16 +25,32 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: flow/min_cost_flow.cpp
+# :heavy_check_mark: Minimum Cost Flow <small>(flow/min_cost_flow.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#cff5497121104c2b8e0cb41ed2083a9b">flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/flow/min_cost_flow.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 10:36:41+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 
+
+# Minimum Cost Flow
+
+This struct calculates the minimum cost flow of a directed graph.
+
+# Methods
+
+- `MinCostFlow(int V)`
+    - Initializes the graph with $V$ vertices.
+    - Time complexity: $O(V)$
+- `void add_edge(int u, int v, Cap cap, Cost cost)`
+    - Adds an edge $(u, v)$ with a capacity $cap$ and a cost $cost$.
+    - Time complexity: $O(1)$
+- `Cost min_cost_flow(int s, int t, Cap f)`
+    - Calculates the minimum cost flow from the source $s$ to the sink $t$ with flow $f$.
+    - Time complexity: $O(fE\lg V)$
 
 ## Verified with
 
@@ -49,21 +65,13 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Minimum Cost Flow
+ * @docs docs/flow/min_cost_flow.md
+ */
 template <typename Cap, typename Cost>
 struct MinCostFlow {
-    struct Edge {
-        int to;
-        Cap cap;
-        Cost cost;
-        int rev;
-        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
-    };
-
-    const Cost INF = numeric_limits<Cost>::max() / 2;
-
-    int V;
-    vector<vector<Edge>> G;
-
+public:
     MinCostFlow(int V) : V(V), G(V) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
@@ -119,6 +127,20 @@ struct MinCostFlow {
         }
         return ret;
     }
+
+private:
+    struct Edge {
+        int to;
+        Cap cap;
+        Cost cost;
+        int rev;
+        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+    };
+
+    const Cost INF = numeric_limits<Cost>::max() / 2;
+
+    int V;
+    vector<vector<Edge>> G;
 };
 ```
 {% endraw %}
@@ -130,21 +152,13 @@ struct MinCostFlow {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Minimum Cost Flow
+ * @docs docs/flow/min_cost_flow.md
+ */
 template <typename Cap, typename Cost>
 struct MinCostFlow {
-    struct Edge {
-        int to;
-        Cap cap;
-        Cost cost;
-        int rev;
-        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
-    };
-
-    const Cost INF = numeric_limits<Cost>::max() / 2;
-
-    int V;
-    vector<vector<Edge>> G;
-
+public:
     MinCostFlow(int V) : V(V), G(V) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
@@ -200,6 +214,20 @@ struct MinCostFlow {
         }
         return ret;
     }
+
+private:
+    struct Edge {
+        int to;
+        Cap cap;
+        Cost cost;
+        int rev;
+        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+    };
+
+    const Cost INF = numeric_limits<Cost>::max() / 2;
+
+    int V;
+    vector<vector<Edge>> G;
 };
 
 ```

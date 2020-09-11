@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_6_A.ford_fulkerson.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 04:14:56+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/flow/ford_fulkerson.cpp.html">flow/ford_fulkerson.cpp</a>
+* :heavy_check_mark: <a href="../../../library/flow/ford_fulkerson.cpp.html">Ford-Fulkerson Algorithm <small>(flow/ford_fulkerson.cpp)</small></a>
 
 
 ## Code
@@ -78,8 +78,31 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Ford-Fulkerson Algorithm
+ * @docs docs/flow/ford_fulkerson.md
+ */
 template <typename T>
 struct FordFulkerson {
+public:
+    FordFulkerson(int n) : G(n), used(n) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].emplace_back(v, cap, (int) G[v].size());
+        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (true) {
+            fill(used.begin(), used.end(), false);
+            T f = dfs(s, t, INF);
+            if (f == 0) return flow;
+            flow += f;
+        }
+    }
+
+private:
     struct Edge {
         int to;
         T cap;
@@ -91,13 +114,6 @@ struct FordFulkerson {
 
     vector<vector<Edge>> G;
     vector<bool> used;
-
-    FordFulkerson(int V) : G(V), used(V) {}
-
-    void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
-    }
 
     T dfs(int v, int t, T f) {
         if (v == t) return f;
@@ -113,16 +129,6 @@ struct FordFulkerson {
             }
         }
         return 0;
-    }
-
-    T max_flow(int s, int t) {
-        T flow = 0;
-        while (true) {
-            fill(used.begin(), used.end(), false);
-            T f = dfs(s, t, INF);
-            if (f == 0) return flow;
-            flow += f;
-        }
     }
 };
 #line 4 "test/aoj/GRL_6_A.ford_fulkerson.test.cpp"

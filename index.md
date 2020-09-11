@@ -55,10 +55,10 @@ layout: default
 
 ### flow
 
-* :heavy_check_mark: <a href="library/flow/bipartite_matching.cpp.html">flow/bipartite_matching.cpp</a>
-* :heavy_check_mark: <a href="library/flow/dinic.cpp.html">flow/dinic.cpp</a>
-* :heavy_check_mark: <a href="library/flow/ford_fulkerson.cpp.html">flow/ford_fulkerson.cpp</a>
-* :heavy_check_mark: <a href="library/flow/min_cost_flow.cpp.html">flow/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="library/flow/bipartite_matching.cpp.html">Bipartite Matching <small>(flow/bipartite_matching.cpp)</small></a>
+* :heavy_check_mark: <a href="library/flow/dinic.cpp.html">Dinic's Algorithm <small>(flow/dinic.cpp)</small></a>
+* :heavy_check_mark: <a href="library/flow/ford_fulkerson.cpp.html">Ford-Fulkerson Algorithm <small>(flow/ford_fulkerson.cpp)</small></a>
+* :heavy_check_mark: <a href="library/flow/min_cost_flow.cpp.html">Minimum Cost Flow <small>(flow/min_cost_flow.cpp)</small></a>
 
 
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>

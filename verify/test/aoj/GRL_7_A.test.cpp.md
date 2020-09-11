@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_7_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:01:14+09:00
+    - Last commit date: 2020-09-12 00:51:47+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/flow/bipartite_matching.cpp.html">flow/bipartite_matching.cpp</a>
+* :heavy_check_mark: <a href="../../../library/flow/bipartite_matching.cpp.html">Bipartite Matching <small>(flow/bipartite_matching.cpp)</small></a>
 
 
 ## Code
@@ -78,29 +78,17 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Bipartite Matching
+ * @docs docs/flow/bipartite_matching.md
+ */
 struct BipartiteMatching {
-    vector<vector<int>> G;
-    vector<bool> used;
-    vector<int> match;
-
-    BipartiteMatching(int V) : G(V), used(V), match(V) {}
+public:
+    BipartiteMatching(int n) : G(n), used(n), match(n) {}
 
     void add_edge(int u, int v) {
         G[u].push_back(v);
         G[v].push_back(u);
-    }
-
-    bool dfs(int u) {
-        used[u] = true;
-        for (int v : G[u]) {
-            int w = match[v];
-            if (w < 0 || (!used[w] && dfs(w))) {
-                match[u] = v;
-                match[v] = u;
-                return true;
-            }
-        }
-        return false;
     }
 
     int bipartite_matching() {
@@ -113,6 +101,24 @@ struct BipartiteMatching {
             }
         }
         return res;
+    }
+
+private:
+    vector<vector<int>> G;
+    vector<bool> used;
+    vector<int> match;
+
+    bool dfs(int u) {
+        used[u] = true;
+        for (int v : G[u]) {
+            int w = match[v];
+            if (w < 0 || (!used[w] && dfs(w))) {
+                match[u] = v;
+                match[v] = u;
+                return true;
+            }
+        }
+        return false;
     }
 };
 #line 4 "test/aoj/GRL_7_A.test.cpp"
