@@ -65,15 +65,15 @@ layout: default
 
 ### graph
 
-* :heavy_check_mark: <a href="library/graph/bellman_ford.cpp.html">graph/bellman_ford.cpp</a>
-* :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/graph/bellman_ford.cpp.html">Bellman-Ford Algorithm <small>(graph/bellman_ford.cpp)</small></a>
+* :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">Dijkstra's Algorithm <small>(graph/dijkstra.cpp)</small></a>
 * :heavy_check_mark: <a href="library/graph/edge.cpp.html">graph/edge.cpp</a>
-* :heavy_check_mark: <a href="library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
-* :heavy_check_mark: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
-* :heavy_check_mark: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
-* :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
-* :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
-* :heavy_check_mark: <a href="library/graph/twosat.cpp.html">graph/twosat.cpp</a>
+* :heavy_check_mark: <a href="library/graph/floyd_warshall.cpp.html">Floyd-Warshall Algorithm <small>(graph/floyd_warshall.cpp)</small></a>
+* :heavy_check_mark: <a href="library/graph/kruskal.cpp.html">Kruskal's Algorithm <small>(graph/kruskal.cpp)</small></a>
+* :heavy_check_mark: <a href="library/graph/prim.cpp.html">Prim's Algorithm <small>(graph/prim.cpp)</small></a>
+* :heavy_check_mark: <a href="library/graph/scc.cpp.html">Strongly Connected Components <small>(graph/scc.cpp)</small></a>
+* :warning: <a href="library/graph/topological_sort.cpp.html">Topological Sort <small>(graph/topological_sort.cpp)</small></a>
+* :heavy_check_mark: <a href="library/graph/twosat.cpp.html">2-SAT <small>(graph/twosat.cpp)</small></a>
 
 
 <div id="7e676e9e663beb40fd133f5ee24487c2"></div>

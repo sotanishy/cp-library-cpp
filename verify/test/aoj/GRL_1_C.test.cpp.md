@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_1_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 16:12:20+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/floyd_warshall.cpp.html">graph/floyd_warshall.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/floyd_warshall.cpp.html">Floyd-Warshall Algorithm <small>(graph/floyd_warshall.cpp)</small></a>
 
 
 ## Code
@@ -97,6 +97,10 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Floyd-Warshall Algorithm
+ * @docs docs/graph/floyd_warshall.md
+ */
 template <typename T>
 void floyd_warshall(vector<vector<T>>& dist) {
     int V = dist.size();

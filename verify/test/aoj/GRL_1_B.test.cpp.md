@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_1_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/bellman_ford.cpp.html">graph/bellman_ford.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/bellman_ford.cpp.html">Bellman-Ford Algorithm <small>(graph/bellman_ford.cpp)</small></a>
 * :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 
 
@@ -99,7 +99,10 @@ struct Edge {
 #line 3 "graph/bellman_ford.cpp"
 using namespace std;
 
-// returns an empty vector if there exists a negative cycle
+/*
+ * @brief Bellman-Ford Algorithm
+ * @docs docs/graph/bellman_ford.md
+ */
 template <typename T>
 vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s) {
     const auto INF = numeric_limits<T>::max();

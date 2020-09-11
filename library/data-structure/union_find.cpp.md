@@ -68,7 +68,7 @@ $\alpha(x)$ is the inverse Ackermann function.
 
 ## Required by
 
-* :heavy_check_mark: <a href="../graph/kruskal.cpp.html">graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="../graph/kruskal.cpp.html">Kruskal's Algorithm <small>(graph/kruskal.cpp)</small></a>
 
 
 ## Verified with

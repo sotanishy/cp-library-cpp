@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/two_sat.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 01:37:18+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/scc.cpp.html">graph/scc.cpp</a>
-* :heavy_check_mark: <a href="../../../library/graph/twosat.cpp.html">graph/twosat.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/scc.cpp.html">Strongly Connected Components <small>(graph/scc.cpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/graph/twosat.cpp.html">2-SAT <small>(graph/twosat.cpp)</small></a>
 
 
 ## Code
@@ -90,6 +90,10 @@ int main() {
 #line 2 "graph/scc.cpp"
 using namespace std;
 
+/*
+ * @brief Strongly Connected Components
+ * @docs docs/graph/scc.md
+ */
 struct SCC {
 public:
     int num;
@@ -133,6 +137,10 @@ private:
 #line 3 "graph/twosat.cpp"
 using namespace std;
 
+/*
+ * @brief 2-SAT
+ * @docs docs/graph/twosat.md
+ */
 struct TwoSat {
     bool satisfiable = true;
 

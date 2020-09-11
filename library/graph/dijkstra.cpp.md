@@ -25,16 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/dijkstra.cpp
+# :heavy_check_mark: Dijkstra's Algorithm <small>(graph/dijkstra.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Dijkstra's Algorithm
+
+Dijkstra's algorithm is an algorithm for finding the shortest paths from a single source vertex to all other vertices in a weighted graph without negative edges.
+
+- `vector<T> dijkstra(vector<vector<Edge<T>>>& G, int s)`
+    - Returns the shortest distance from the source vertex $s$ to all vertices in the graph $G$, given its adjacency list.
+    - Time complexity: $O(E \lg V)$
 
 ## Depends on
 
@@ -55,10 +63,14 @@ layout: default
 #include "edge.cpp"
 using namespace std;
 
+/*
+ * @brief Dijkstra's Algorithm
+ * @docs docs/graph/dijkstra.md
+ */
 template <typename T>
-vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
-    const auto INF = numeric_limits<T>::max();
-    vector<T> dist(V, INF);
+vector<T> dijkstra(vector<vector<Edge<T>>>& G, int s) {
+    const T INF = numeric_limits<T>::max();
+    vector<T> dist(G.size(), INF);
     dist[s] = 0;
     using P = pair<T, int>;
     priority_queue<P, vector<P>, greater<P>> pq;
@@ -101,10 +113,14 @@ struct Edge {
 #line 3 "graph/dijkstra.cpp"
 using namespace std;
 
+/*
+ * @brief Dijkstra's Algorithm
+ * @docs docs/graph/dijkstra.md
+ */
 template <typename T>
-vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
-    const auto INF = numeric_limits<T>::max();
-    vector<T> dist(V, INF);
+vector<T> dijkstra(vector<vector<Edge<T>>>& G, int s) {
+    const T INF = numeric_limits<T>::max();
+    vector<T> dist(G.size(), INF);
     dist[s] = 0;
     using P = pair<T, int>;
     priority_queue<P, vector<P>, greater<P>> pq;

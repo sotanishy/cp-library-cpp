@@ -25,16 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/prim.cpp
+# :heavy_check_mark: Prim's Algorithm <small>(graph/prim.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/prim.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:01:14+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Prim's Algorithm
+
+Prim's algorithm is an algorithm for finding the minimum spanning tree of an undirected weighted graph.
+
+- `T prim(vector<vector<Edge<T>>>& G)`
+    - Returns the weight of the minimum spanning tree of the undirected weighted graph $G$, given its adjancency list.
+    - Time complexity: O(E\lg V)
 
 ## Depends on
 
@@ -55,6 +63,10 @@ layout: default
 #include "edge.cpp"
 using namespace std;
 
+/*
+ * @brief Prim's Algorithm
+ * @docs docs/graph/prim.md
+ */
 template <typename T>
 T prim(vector<vector<Edge<T>>>& G) {
     vector<bool> used(G.size());
@@ -96,6 +108,10 @@ struct Edge {
 #line 3 "graph/prim.cpp"
 using namespace std;
 
+/*
+ * @brief Prim's Algorithm
+ * @docs docs/graph/prim.md
+ */
 template <typename T>
 T prim(vector<vector<Edge<T>>>& G) {
     vector<bool> used(G.size());

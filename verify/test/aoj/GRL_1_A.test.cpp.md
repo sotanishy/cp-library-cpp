@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-11 22:38:15+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/dijkstra.cpp.html">Dijkstra's Algorithm <small>(graph/dijkstra.cpp)</small></a>
 * :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 
 
@@ -66,7 +66,7 @@ int main() {
         cin >> s >> t >> d;
         G[s].push_back({t, d});
     }
-    auto dist = dijkstra(G, V, r);
+    auto dist = dijkstra(G, r);
     for (int i = 0; i < V; i++) {
         if (dist[i] < INF) cout << dist[i] << "\n";
         else cout << "INF\n";
@@ -96,10 +96,14 @@ struct Edge {
 #line 3 "graph/dijkstra.cpp"
 using namespace std;
 
+/*
+ * @brief Dijkstra's Algorithm
+ * @docs docs/graph/dijkstra.md
+ */
 template <typename T>
-vector<T> dijkstra(vector<vector<Edge<T>>>& G, int V, int s) {
-    const auto INF = numeric_limits<T>::max();
-    vector<T> dist(V, INF);
+vector<T> dijkstra(vector<vector<Edge<T>>>& G, int s) {
+    const T INF = numeric_limits<T>::max();
+    vector<T> dist(G.size(), INF);
     dist[s] = 0;
     using P = pair<T, int>;
     priority_queue<P, vector<P>, greater<P>> pq;
@@ -137,7 +141,7 @@ int main() {
         cin >> s >> t >> d;
         G[s].push_back({t, d});
     }
-    auto dist = dijkstra(G, V, r);
+    auto dist = dijkstra(G, r);
     for (int i = 0; i < V; i++) {
         if (dist[i] < INF) cout << dist[i] << "\n";
         else cout << "INF\n";

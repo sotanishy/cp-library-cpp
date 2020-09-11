@@ -25,20 +25,49 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/scc.cpp
+# :heavy_check_mark: Strongly Connected Components <small>(graph/scc.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/scc.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 21:08:56+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Strongly Connected Components
+
+This struct decomposes the given graph $G$ into strongly connected components (SCCs) i.e. subgraphs of $G$ that are strongly connected and maximal, using Kosaraju's algorithm.
+
+If each SCC is contracted into a single vertex, the resulting graph will be a directed acyclic graph (DAG).
+
+The labels of SCCs are in the topological order.
+
+Space complexity: $O(V + E)$
+
+## Attributes
+
+- `int num`
+    - The number of strongly connected components
+
+## Methods
+
+- `SCC(int n)`
+    - Creates a graph with $n$ vertices and no edges.
+- `void add_edge(int u, int v)`
+    - Adds an edge $(u, v)$
+    - Time complexity: $O(1)$
+- `void build()`
+    - Decomposes the graph into strongly connected components.
+    - Time complexity: $O(V + E)$
+- `int operator[](int i)`
+    - Returns the label of the strongly connected component the vertex $i$ belongs to.
+    - Time complexity: $O(1)$
 
 ## Required by
 
-* :heavy_check_mark: <a href="twosat.cpp.html">graph/twosat.cpp</a>
+* :heavy_check_mark: <a href="twosat.cpp.html">2-SAT <small>(graph/twosat.cpp)</small></a>
 
 
 ## Verified with
@@ -55,6 +84,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Strongly Connected Components
+ * @docs docs/graph/scc.md
+ */
 struct SCC {
 public:
     int num;
@@ -105,6 +138,10 @@ private:
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Strongly Connected Components
+ * @docs docs/graph/scc.md
+ */
 struct SCC {
 public:
     int num;

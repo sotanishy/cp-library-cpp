@@ -25,20 +25,47 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/twosat.cpp
+# :heavy_check_mark: 2-SAT <small>(graph/twosat.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/twosat.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 21:08:56+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# 2-SAT
+
+This struct solves the 2-satisfiability (2-SAT) problem in conjunctive normal form (CNF).
+
+A 2-SAT can be solved with SCC decomposition, using the fact that a clause $(u \lor v)$ is logically equivalent to $(\lnot u \implies v) \land (\lnot v \implies u)$.
+
+Space complexity: $O(n + m)$, where $n$ is the number of variables and $m$ is the number of clauses.
+
+## Attributes
+
+- `bool satisfiable`
+    - `true` if the given problem is satisfiable, otherwise `false`.
+
+## Methods
+
+- `TwoSat(int n)`
+    - Initializes the struct with $n$ variables.
+- `void add_clause(int u, bool a, int v, bool b)`
+    - Adds a clause $(u \lor v)$. If `a == false`, replace $u$ with $\lnot u$. Similarly, if `b == false`, replace $v$ with $\lnot v$.
+    - Time complexity: $O(1)$
+- `void solve()`
+    - Solves the given problem.
+    - Time complexity: $O(n + m)$
+- `bool operator[](int i)`
+    - Returns the truth value of the $i$th variable if `satisfiable == true`
+    - Time complexity: $O(1)$
 
 ## Depends on
 
-* :heavy_check_mark: <a href="scc.cpp.html">graph/scc.cpp</a>
+* :heavy_check_mark: <a href="scc.cpp.html">Strongly Connected Components <small>(graph/scc.cpp)</small></a>
 
 
 ## Verified with
@@ -55,6 +82,10 @@ layout: default
 #include "scc.cpp"
 using namespace std;
 
+/*
+ * @brief 2-SAT
+ * @docs docs/graph/twosat.md
+ */
 struct TwoSat {
     bool satisfiable = true;
 
@@ -96,6 +127,10 @@ private:
 #line 2 "graph/scc.cpp"
 using namespace std;
 
+/*
+ * @brief Strongly Connected Components
+ * @docs docs/graph/scc.md
+ */
 struct SCC {
 public:
     int num;
@@ -139,6 +174,10 @@ private:
 #line 3 "graph/twosat.cpp"
 using namespace std;
 
+/*
+ * @brief 2-SAT
+ * @docs docs/graph/twosat.md
+ */
 struct TwoSat {
     bool satisfiable = true;
 

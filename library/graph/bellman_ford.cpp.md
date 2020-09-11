@@ -25,16 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/bellman_ford.cpp
+# :heavy_check_mark: Bellman-Ford Algorithm <small>(graph/bellman_ford.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/bellman_ford.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Bellman-Ford Algorithm
+
+The Bellman-Ford algorithm is an algorithm for finding the shortest paths from a single source vertex to all other vertices in a weighted graph. It can also be used for negative cycle detection.
+
+- `vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s)`
+    - Returns the shortest distance from the source vertex $s$ to all vertices in the graph $G$ with $V$ vertices, given the list of its edges. Returns an empty list if $G$ contains a negative cycle.
+    - Time complexity: $O(VE)$
 
 ## Depends on
 
@@ -55,7 +63,10 @@ layout: default
 #include "edge.cpp"
 using namespace std;
 
-// returns an empty vector if there exists a negative cycle
+/*
+ * @brief Bellman-Ford Algorithm
+ * @docs docs/graph/bellman_ford.md
+ */
 template <typename T>
 vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s) {
     const auto INF = numeric_limits<T>::max();
@@ -92,7 +103,10 @@ struct Edge {
 #line 3 "graph/bellman_ford.cpp"
 using namespace std;
 
-// returns an empty vector if there exists a negative cycle
+/*
+ * @brief Bellman-Ford Algorithm
+ * @docs docs/graph/bellman_ford.md
+ */
 template <typename T>
 vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s) {
     const auto INF = numeric_limits<T>::max();

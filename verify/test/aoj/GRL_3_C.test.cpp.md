@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_3_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 21:08:56+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/scc.cpp.html">graph/scc.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/scc.cpp.html">Strongly Connected Components <small>(graph/scc.cpp)</small></a>
 
 
 ## Code
@@ -85,6 +85,10 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Strongly Connected Components
+ * @docs docs/graph/scc.md
+ */
 struct SCC {
 public:
     int num;

@@ -25,16 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/floyd_warshall.cpp
+# :heavy_check_mark: Floyd-Warshall Algorithm <small>(graph/floyd_warshall.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/floyd_warshall.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Floyd-Warshall Algorithm
+
+The Floyd-Warshall algorithm is an algorithm for finding the shortest paths between all pairs of vertices in a weighted graph $G$ without negative cycles. If $dist(i, i) < 0$ for any $i \in V$, $G$ contains a negative cycle.
+
+- `void floyd_warshall(vector<vector<T>>& dist)`
+    - Calculates the shortest distance between all pairs of vertices in the graph $G$, given its adjacency matrix.
+    - Time complexity: $O(V^3)$
 
 ## Verified with
 
@@ -49,6 +57,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Floyd-Warshall Algorithm
+ * @docs docs/graph/floyd_warshall.md
+ */
 template <typename T>
 void floyd_warshall(vector<vector<T>>& dist) {
     int V = dist.size();
@@ -70,6 +82,10 @@ void floyd_warshall(vector<vector<T>>& dist) {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Floyd-Warshall Algorithm
+ * @docs docs/graph/floyd_warshall.md
+ */
 template <typename T>
 void floyd_warshall(vector<vector<T>>& dist) {
     int V = dist.size();

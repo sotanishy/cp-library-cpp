@@ -38,10 +38,10 @@ layout: default
 
 ## Required by
 
-* :heavy_check_mark: <a href="bellman_ford.cpp.html">graph/bellman_ford.cpp</a>
-* :heavy_check_mark: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
-* :heavy_check_mark: <a href="kruskal.cpp.html">graph/kruskal.cpp</a>
-* :heavy_check_mark: <a href="prim.cpp.html">graph/prim.cpp</a>
+* :heavy_check_mark: <a href="bellman_ford.cpp.html">Bellman-Ford Algorithm <small>(graph/bellman_ford.cpp)</small></a>
+* :heavy_check_mark: <a href="dijkstra.cpp.html">Dijkstra's Algorithm <small>(graph/dijkstra.cpp)</small></a>
+* :heavy_check_mark: <a href="kruskal.cpp.html">Kruskal's Algorithm <small>(graph/kruskal.cpp)</small></a>
+* :heavy_check_mark: <a href="prim.cpp.html">Prim's Algorithm <small>(graph/prim.cpp)</small></a>
 * :heavy_check_mark: <a href="../tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
 
 

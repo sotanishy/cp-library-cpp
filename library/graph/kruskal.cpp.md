@@ -25,16 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: graph/kruskal.cpp
+# :heavy_check_mark: Kruskal's Algorithm <small>(graph/kruskal.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/kruskal.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Kruskal's Algorithm
+
+Kruskal's algorithm is an algorithm for finding the minimum spanning tree of an undirected weighted graph.
+
+- `T kruskal(vector<Edge<T>>& G, int V)`
+    - Returns the weight of the minimum spanning tree of the undirected weighted graph $G$ with $V$ vertices, given the list of its edges.
+    - Time complexity: O(E\lg E)
 
 ## Depends on
 
@@ -57,6 +65,10 @@ layout: default
 #include "../data-structure/union_find.cpp"
 using namespace std;
 
+/*
+ * @brief Kruskal's Algorithm
+ * @docs docs/graph/kruskal.md
+ */
 template <typename T>
 T kruskal(vector<Edge<T>>& G, int V) {
     sort(G.begin(), G.end(), [](const auto& e1, const auto& e2) {
@@ -127,6 +139,10 @@ struct UnionFind {
 #line 4 "graph/kruskal.cpp"
 using namespace std;
 
+/*
+ * @brief Kruskal's Algorithm
+ * @docs docs/graph/kruskal.md
+ */
 template <typename T>
 T kruskal(vector<Edge<T>>& G, int V) {
     sort(G.begin(), G.end(), [](const auto& e1, const auto& e2) {

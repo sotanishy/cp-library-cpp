@@ -25,16 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: graph/topological_sort.cpp
+# :warning: Topological Sort <small>(graph/topological_sort.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/topological_sort.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 
+
+# Topological Sort
+
+A topological sort of a directed acyclic graph (DAG) is a linear ordering of its vertices such that for every edge $(u, v)$, $u$ comes before $v$.
+
+- `vector<int> topological_sort(vector<vector<int>>& G)`
+    - Returns a topological sort of the graph $G$. If $G$ is not a DAG, returns an empty list.
+    - Time complexity: $O(V + E)$
 
 ## Code
 
@@ -44,7 +52,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
-// returns an empty list if G is not a DAG
+/*
+ * @brief Topological Sort
+ * @docs docs/graph/topological_sort.md
+ */
 vector<int> topological_sort(vector<vector<int>>& G) {
     int V = G.size();
     vector<int> par_count(V);
@@ -82,7 +93,10 @@ vector<int> topological_sort(vector<vector<int>>& G) {
 #include <bits/stdc++.h>
 using namespace std;
 
-// returns an empty list if G is not a DAG
+/*
+ * @brief Topological Sort
+ * @docs docs/graph/topological_sort.md
+ */
 vector<int> topological_sort(vector<vector<int>>& G) {
     int V = G.size();
     vector<int> par_count(V);

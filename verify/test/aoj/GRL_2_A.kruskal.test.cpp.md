@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_2_A.kruskal.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-11 22:35:33+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A</a>
@@ -41,7 +41,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../../../library/data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
 * :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
-* :heavy_check_mark: <a href="../../../library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/kruskal.cpp.html">Kruskal's Algorithm <small>(graph/kruskal.cpp)</small></a>
 
 
 ## Code
@@ -125,6 +125,10 @@ struct UnionFind {
 #line 4 "graph/kruskal.cpp"
 using namespace std;
 
+/*
+ * @brief Kruskal's Algorithm
+ * @docs docs/graph/kruskal.md
+ */
 template <typename T>
 T kruskal(vector<Edge<T>>& G, int V) {
     sort(G.begin(), G.end(), [](const auto& e1, const auto& e2) {
