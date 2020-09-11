@@ -40,7 +40,6 @@ layout: default
 
 This struct calculates the diameter of the given tree using DFS.
 
-
 ## Methods
 
 - `static int diameter(vector<vector<int>>& G)`
