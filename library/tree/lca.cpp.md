@@ -25,16 +25,32 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: tree/lca.cpp
+# :heavy_check_mark: Lowerst Common Ancestor <small>(tree/lca.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/lca.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-11 23:11:46+09:00
 
 
 
+
+# Lowest Common Ancestor
+
+This struct calculates the lowest common ancestor between pairs of vertices in a tree.
+
+## Methods
+
+- `LCA(vector<vector<int>>& G, int root)`
+    - Builds a lookup table.
+    - Time complexity: O(n\lg n)
+- `int query(int u, int v)`
+    - Returns the lowest common ancestor of $u$ and $v$.
+    - Time complexity: O(\lg n)
+- `int dist(int u, int v)`
+    - Calculates the distance between $u$ and $v$.
+    - Time complexity: O(\lg n)
 
 ## Verified with
 
@@ -49,12 +65,12 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Lowerst Common Ancestor
+ * @docs docs/tree/lca.md
+ */
 struct LCA {
-    const int LOG;
-    const vector<vector<int>>& G;
-    vector<vector<int>> table;
-    vector<int> depth;
-
+public:
     LCA(vector<vector<int>>& G, int root) : G(G), depth(G.size()), LOG(32 - __builtin_clz(G.size())) {
         int V = G.size();
         table.assign(LOG, vector<int>(V, -1));
@@ -67,14 +83,6 @@ struct LCA {
                     table[k+1][v] = table[k][table[k][v]];
                 }
             }
-        }
-    }
-
-    void dfs(int v, int p, int d) {
-        table[0][v] = p;
-        depth[v] = d;
-        for (int c : G[v]) {
-            if (c != p) dfs(c, v, d + 1);
         }
     }
 
@@ -100,6 +108,20 @@ struct LCA {
 
     int dist(int u, int v) {
         return depth[u] + depth[v] - 2 * depth[query(u, v)];
+    }
+
+private:
+    const int LOG;
+    const vector<vector<int>>& G;
+    vector<vector<int>> table;
+    vector<int> depth;
+
+    void dfs(int v, int p, int d) {
+        table[0][v] = p;
+        depth[v] = d;
+        for (int c : G[v]) {
+            if (c != p) dfs(c, v, d + 1);
+        }
     }
 };
 ```
@@ -112,12 +134,12 @@ struct LCA {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Lowerst Common Ancestor
+ * @docs docs/tree/lca.md
+ */
 struct LCA {
-    const int LOG;
-    const vector<vector<int>>& G;
-    vector<vector<int>> table;
-    vector<int> depth;
-
+public:
     LCA(vector<vector<int>>& G, int root) : G(G), depth(G.size()), LOG(32 - __builtin_clz(G.size())) {
         int V = G.size();
         table.assign(LOG, vector<int>(V, -1));
@@ -130,14 +152,6 @@ struct LCA {
                     table[k+1][v] = table[k][table[k][v]];
                 }
             }
-        }
-    }
-
-    void dfs(int v, int p, int d) {
-        table[0][v] = p;
-        depth[v] = d;
-        for (int c : G[v]) {
-            if (c != p) dfs(c, v, d + 1);
         }
     }
 
@@ -163,6 +177,20 @@ struct LCA {
 
     int dist(int u, int v) {
         return depth[u] + depth[v] - 2 * depth[query(u, v)];
+    }
+
+private:
+    const int LOG;
+    const vector<vector<int>>& G;
+    vector<vector<int>> table;
+    vector<int> depth;
+
+    void dfs(int v, int p, int d) {
+        table[0][v] = p;
+        depth[v] = d;
+        for (int c : G[v]) {
+            if (c != p) dfs(c, v, d + 1);
+        }
     }
 };
 

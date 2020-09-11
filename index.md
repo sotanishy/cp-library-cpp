@@ -122,8 +122,8 @@ layout: default
 
 ### tree
 
-* :heavy_check_mark: <a href="library/tree/lca.cpp.html">tree/lca.cpp</a>
-* :heavy_check_mark: <a href="library/tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
+* :heavy_check_mark: <a href="library/tree/lca.cpp.html">Lowerst Common Ancestor <small>(tree/lca.cpp)</small></a>
+* :heavy_check_mark: <a href="library/tree/tree_diameter.cpp.html">Diameter of a Tree <small>(tree/tree_diameter.cpp)</small></a>
 
 
 ## Verify Files

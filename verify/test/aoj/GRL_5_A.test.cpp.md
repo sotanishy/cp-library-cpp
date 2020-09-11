@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_5_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 15:48:39+09:00
+    - Last commit date: 2020-09-11 23:11:46+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
-* :heavy_check_mark: <a href="../../../library/tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
+* :heavy_check_mark: <a href="../../../library/tree/tree_diameter.cpp.html">Diameter of a Tree <small>(tree/tree_diameter.cpp)</small></a>
 
 
 ## Code
@@ -91,8 +91,26 @@ struct Edge {
 #line 3 "tree/tree_diameter.cpp"
 using namespace std;
 
+/*
+ * @brief Diameter of a Tree
+ * @docs docs/tree/tree_diameter.md
+ */
 struct TreeDiameter {
+public:
+    static int diameter(vector<vector<int>>& G) {
+        auto p = dfs(G, 0, -1);
+        auto q = dfs(G, p.second, -1);
+        return q.first;
+    }
 
+    template <typename T>
+    static T diameter(vector<vector<Edge<T>>>& G) {
+        auto p = dfs(G, 0, -1);
+        auto q = dfs(G, p.second, -1);
+        return q.first;
+    }
+
+private:
     static pair<int, int> dfs(vector<vector<int>>& G, int v, int p) {
         pair<int, int> ret(0, v);
         for (int c : G[v]) {
@@ -104,8 +122,9 @@ struct TreeDiameter {
         return ret;
     }
 
-    static pair<int, int> dfs(vector<vector<Edge<int>>>& G, int v, int p) {
-        pair<int, int> ret(0, v);
+    template <typename T>
+    static pair<T, int> dfs(vector<vector<Edge<T>>>& G, int v, int p) {
+        pair<T, int> ret(0, v);
         for (auto& e : G[v]) {
             if (e.to == p) continue;
             auto cost = dfs(G, e.to, v);
@@ -113,13 +132,6 @@ struct TreeDiameter {
             ret = max(ret, cost);
         }
         return ret;
-    }
-
-    template <class T>
-    static int diameter(vector<vector<T>>& G) {
-        auto p = dfs(G, 0, -1);
-        auto q = dfs(G, p.second, -1);
-        return q.first;
     }
 };
 #line 4 "test/aoj/GRL_5_A.test.cpp"
