@@ -5,9 +5,7 @@ A segment tree stores a sequence $(a_0, a_1, \dots, a_n)$ of a monoid $M$.
 See the note for how to use the template argument.
 
 A segment tree supports point update and range query both in $O(\lg n)$ time.
-
 For range update and point query, use [a dual segment tree](dual_segment_tree.md)
-
 For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
 
 Space complexity: $O(n)$
@@ -38,9 +36,9 @@ Space complexity: $O(n)$
 
 ## Note
 
-The template argument `M` represents a monoid $M$ and is a class/struct with the following members defined:
-* `T`: the type of the elements in $M$
+The template argument `M` represents a monoid $(T, \cdot, e)$ and is a class/struct with the following members defined:
+* `T`: the type of the set $T$
 * `T id`: the identity element $e$
-* `T op(T, T)`: an associative binary operation $\cdot$
+* `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
 
 See the verify files for examples of implementation.

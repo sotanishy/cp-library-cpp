@@ -23,4 +23,4 @@ Space complexity: $O(n)$
 
 ## Note
 
-A Fenwick tree can be generalized to be able to treat any sequence of a commutative monoid.
+A Fenwick tree can be generalized to treat any sequence of a commutative monoid.

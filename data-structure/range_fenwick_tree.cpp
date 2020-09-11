@@ -3,7 +3,7 @@ using namespace std;
 
 /*
  * @brief Fenwick Tree with Range Update
- * @docs docs/data-structure/fenwick_tree.md
+ * @docs docs/data-structure/range_fenwick_tree.md
  */
 template <typename T>
 struct RangeFenwickTree {
