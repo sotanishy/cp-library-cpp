@@ -16,7 +16,7 @@ int main() {
         cin >> s >> t >> d;
         G[s].push_back({t, d});
     }
-    auto dist = dijkstra(G, V, r);
+    auto dist = dijkstra(G, r);
     for (int i = 0; i < V; i++) {
         if (dist[i] < INF) cout << dist[i] << "\n";
         else cout << "INF\n";
