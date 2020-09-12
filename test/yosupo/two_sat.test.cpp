@@ -15,7 +15,7 @@ int main() {
         sat.add_clause(abs(a) - 1, (a > 0), abs(b) - 1, (b > 0));
     }
     sat.solve();
-    if (sat.satisfiable) {
+    if (sat.is_satisfiable()) {
         cout << "s SATISFIABLE\nv";
         for (int i = 0; i < N; i++) {
             cout << " " << (sat[i] ? 1 : -1) * (i + 1);

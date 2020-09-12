@@ -2,6 +2,8 @@
 
 #include "../../data-structure/sparse_table.cpp"
 
+int f(const int a, const int b) { return min(a, b); }
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
@@ -11,7 +13,7 @@ int main() {
     vector<int> a(N);
     for (int i = 0; i < N; i++) cin >> a[i];
 
-    SparseTable<int> st(a);
+    SparseTable<int, f> st(a);
 
     for (int i = 0; i < N - L + 1; i++) {
         cout << st.query(i, i + L);

@@ -7,8 +7,6 @@ using namespace std;
  * @docs docs/graph/twosat.md
  */
 struct TwoSat {
-    bool satisfiable = true;
-
     TwoSat(int n) : n(n), scc(2 * n), val(n) {}
 
     void add_clause(int u, bool a, int v, bool b) {
@@ -27,6 +25,10 @@ struct TwoSat {
         }
     }
 
+    bool is_satisfiable() const {
+        return satisfiable;
+    }
+
     bool operator[](int i) const {
         return val[i];
     }
@@ -35,4 +37,5 @@ private:
     int n;
     SCC scc;
     vector<bool> val;
+    bool satisfiable = true;
 };

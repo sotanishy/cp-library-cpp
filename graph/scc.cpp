@@ -7,8 +7,6 @@ using namespace std;
  */
 struct SCC {
 public:
-    int num;
-
     SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
 
     void add_edge(int u, int v) {
@@ -19,18 +17,23 @@ public:
     void build() {
         for (int v = 0; v < G.size(); v++) dfs(v);
         reverse(order.begin(), order.end());
-        num = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+        cnt = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
     }
 
     int operator[](int i) const {
         return comp[i];
     }
 
+    int count() {
+        return cnt;
+    }
+
 private:
     vector<vector<int>> G, G_rev;
     vector<int> comp, order;
     vector<bool> visited;
+    int cnt;
 
     void dfs(int u) {
         if (visited[u]) return;

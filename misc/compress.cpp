@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Coordinate Compression
+ * @docs docs/misc/compress.md
+ */
 template <typename T>
 struct Compress {
     vector<T> xs;

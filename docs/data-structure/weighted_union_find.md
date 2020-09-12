@@ -6,11 +6,19 @@ This version uses path compression and union by size.
 
 Space complexity: $O(n)$
 
-## Methods
+## Template parameters
+
+- `T`
+    - The type of the weights
+
+## Constructor
 
 - `WeightedUnionFind(int n)`
     - Constructs a weighted union find of size `n`.
     - Time complexity: $O(n)$
+
+## Member functions
+
 - `int find(int x)`
     - Returns the root of the tree $x$ belongs to.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$

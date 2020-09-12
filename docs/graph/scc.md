@@ -8,15 +8,13 @@ The labels of SCCs are in the topological order.
 
 Space complexity: $O(V + E)$
 
-## Attributes
-
-- `int num`
-    - The number of strongly connected components
-
-## Methods
+## Constructor
 
 - `SCC(int n)`
     - Creates a graph with $n$ vertices and no edges.
+
+## Member functions
+
 - `void add_edge(int u, int v)`
     - Adds an edge $(u, v)$
     - Time complexity: $O(1)$
@@ -25,4 +23,7 @@ Space complexity: $O(V + E)$
     - Time complexity: $O(V + E)$
 - `int operator[](int i)`
     - Returns the label of the strongly connected component the vertex $i$ belongs to.
+    - Time complexity: $O(1)$
+- `int count()`
+    - Returns the number of strongly connected components.
     - Time complexity: $O(1)$

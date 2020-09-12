@@ -1,23 +1,42 @@
 # Lazy Segment Tree
 
-A lazy segment tree stores a sequence $(a_0, a_1, \dots, a_n)$ of a monoid $V$ and operations from an operator monoid $O$.
+A segment tree with lazy propagation is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e_V)$ and handles actions $*$ of an operator monoid $(E, \circ, e_O)$. It offers range update and range query operations.
 
-See the note for how to use the template argument.
+The action $*: T \times E \rightarrow T$ satisfies the following conditions:
+- $\forall a \in T, a * e_O = a$
+- $\forall f, g \in E, a \in T, a * (f \circ g) = (a * f) * g$
 
-A segment tree with lazy propagation supports range update and range query both in $O(\lg n)$ time.
 For point update and range query, use [a segment tree](segment_tree.md)
 For range update and point query, use [a dual segment tree](dual_segment_tree.md)
 
 Space complexity: $O(n)$
 
-## Methods
+## Template parameters
+
+- `S`
+    - It has two member types and two member functions.
+        - `V`: a monoid $(T, \cdot, e_V)$. It must have the following publicly accessible members:
+            - `T`: the type of the set $T$
+            - `T id`: the identity element $e_V$
+            - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+        - `O`: an operator monoid $(E, \circ, e_O)$. It must have the following publicly accessible members:
+            - `E`: the type of the set $E$
+            - `E id`: the identity element $e_O$
+            - `E op(E, E)`: an associative binary operation $\circ: E \times E \rightarrow E$
+        - `T op(T, E)`: an action $*: T \times E \rightarrow T$.
+        - `E mul(E, int)`: a function $p: E \times \mathbb{N} \rightarrow E$ such that for $a \in T, x \in E, k \in \mathbb{N}$, $(a_i * x) \cdot \cdots \cdot (a_{i+k-1} * x) = (a_i \cdot \cdots \cdot a_{i+k-1}) * p(x, k)$
+
+## Constructor
 
 - `LazySegmentTree(int n)`
     - Constructs a segment tree with lazy propagation of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 - `LazySegmentTree(const vector<T>& v)`
-    - Constructs a segment tree with lazy propagation of size `v.size()` using the given sequence.
+    - Constructs a segment tree with lazy propagation of size `n = v.size()` using the values in `v`.
     - Time complexity: $O(n)$
+
+## Member functions
+
 - `T operator[](int k)`
     - Returns $a_k$.
     - Time complexity: $O(\lg n)$
@@ -27,19 +46,3 @@ Space complexity: $O(n)$
 - `T query(int a, int b)`
     - Returns $a_a \cdot a_{a+1} \cdot \cdots \cdot a_{b-1}\$.
     - Time complexity: $O(\lg n)$
-
-## Note
-
-The template argument `S` is a class/struct with following members defined:
-* `V`: a class/struct representing a monoid $(T, \cdot, e_V)$, and has the following members defined
-    * `T`: the type of the set $T$
-    * `T id`: the identity element $e_V$
-    * `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
-* `O`: a class/struct representing an operator monoid $(E, \circ, e_O)$, and has the following members defined
-    * `E`: the type of the set $E$
-    * `E id`: the identity element $e_O$
-    * `E op(E, E)`: an associative binary operation $\circ: E \times E \rightarrow E$
-* `T op(T, E)`: a mapping $f: T \times E \rightarrow T$
-* `E mul(E, int)`: a mapping $p: E \times \mathbb{N} \rightarrow E$ such that for $a \in T, x \in E, k \in \mathbb{N}$, $\left(f(a, x)\right)^k = f(a^k, p(x, k))$
-
-See the verify files for examples of implementation.

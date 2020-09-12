@@ -6,7 +6,7 @@ This k-d tree supports axis-aligned rectangular range searches in a 2-dimensiona
 
 Space complexity: $O(n)$
 
-## Methods
+## Member functions
 
 - `void add_point(int id, T x, T y)`
     - Adds the point $(x, y)$ labeled `id`.
