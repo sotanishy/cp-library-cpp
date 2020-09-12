@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/GRL_3_C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 22:35:33+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C</a>
@@ -91,8 +91,6 @@ using namespace std;
  */
 struct SCC {
 public:
-    int num;
-
     SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
 
     void add_edge(int u, int v) {
@@ -103,18 +101,23 @@ public:
     void build() {
         for (int v = 0; v < G.size(); v++) dfs(v);
         reverse(order.begin(), order.end());
-        num = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+        cnt = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
     }
 
     int operator[](int i) const {
         return comp[i];
     }
 
+    int count() {
+        return cnt;
+    }
+
 private:
     vector<vector<int>> G, G_rev;
     vector<int> comp, order;
     vector<bool> visited;
+    int cnt;
 
     void dfs(int u) {
         if (visited[u]) return;

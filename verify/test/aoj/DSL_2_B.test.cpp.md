@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL_2_B.test.cpp
+# :x: test/aoj/DSL_2_B.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
+* :x: <a href="../../../library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
 
 
 ## Code
@@ -51,18 +51,26 @@ layout: default
 
 #include "../../data-structure/fenwick_tree.cpp"
 
+struct Monoid {
+    using T = int;
+    static inline T id = 0;
+    static T op(T a, T b) {
+        return a + b;
+    }
+};
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
     int n, q;
     cin >> n >> q;
-    FenwickTree<int> ft(n+1);
+    FenwickTree<Monoid> ft(n+1);
     for (int i = 0; i < q; i++) {
         int com, x, y;
         cin >> com >> x >> y;
-        if (com == 0) ft.add(x - 1, y);
-        else cout << (ft.sum(y - 1) - ft.sum(x - 2)) << "\n";
+        if (com == 0) ft.update(x - 1, y);
+        else cout << (ft.query(y) - ft.query(x - 1)) << "\n";
     }
 }
 ```
@@ -82,38 +90,57 @@ using namespace std;
  * @brief Fenwick Tree
  * @docs docs/data-structure/fenwick_tree.md
  */
-template <typename T>
+template <typename M>
 struct FenwickTree {
+    using T = typename M::T;
+
     int n;
     vector<T> data;
 
-    FenwickTree(int n) : n(n), data(n+1) {}
+    FenwickTree(int n) : n(n), data(n+1, M::id) {}
 
-    T sum(int i) {
-        T ret = 0;
-        for (i++; i > 0; i -= i & -i) ret += data[i];
+    T query(int i) {
+        T ret = M::id;
+        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
 
-    void add(int i, T x) {
-        for (i++; i <= n; i += i & -i) data[i] += x;
+    void update(int i, T x) {
+        for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    int lower_bound(T x) {
-        if (x <= 0) return 0;
+    int find_first(const function<bool(T)>& cond) {
         int k = 1;
-        while (k * 2 <= n) k *= 2;
-        int j = 0;
-        for (; k > 0; k /= 2) {
-            if (j + k <= n && data[j+k] < x) {
-                x -= data[j+k];
+        while (k * 2 <= n) k <<= 1;
+        int i = 0;
+        T x = M::id;
+        for (; k > 0; k >>= 1) {
+            if (i + k <= n && !cond(M::op(x, data[i+k]))) {
+                x = M::op(x, data[i+k]);
+                i += k;
                 j += k;
             }
         }
-        return j;
+        return i - 1;
     }
 };
+
+// struct Monoid {
+//     using T = int;
+//     static inline T id = (1u << 31) - 1;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 #line 4 "test/aoj/DSL_2_B.test.cpp"
+
+struct Monoid {
+    using T = int;
+    static inline T id = 0;
+    static T op(T a, T b) {
+        return a + b;
+    }
+};
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -121,12 +148,12 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    FenwickTree<int> ft(n+1);
+    FenwickTree<Monoid> ft(n+1);
     for (int i = 0; i < q; i++) {
         int com, x, y;
         cin >> com >> x >> y;
-        if (com == 0) ft.add(x - 1, y);
-        else cout << (ft.sum(y - 1) - ft.sum(x - 2)) << "\n";
+        if (com == 0) ft.update(x - 1, y);
+        else cout << (ft.query(y) - ft.query(x - 1)) << "\n";
     }
 }
 

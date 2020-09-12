@@ -38,21 +38,29 @@ layout: default
 
 # Dual Segment Tree
 
-A dual segment tree stores a sequence $(a_0, a_1, \dots, a_n)$ of an operator monoid $M$.
+A dual segment tree is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e)$ and offers range update and point query operations.
 
-See the note for how to use the template argument.
-
-A dual segment tree supports range update and point query both in $O(\lg n)$ time.
 For point update and range query, use [a segment tree](segment_tree.md)
 For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
 
 Space complexity: $O(n)$
 
-## Methods
+## Template parameters
+
+- `M`
+    - A monoid $(T, \cdot, e)$. It must have the following publicly accessible members:
+        - `T`: the type of the set $T$
+        - `T id`: the identity element $e$
+        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+
+## Constructor
 
 - `DualSegmentTree(int n)`
     - Constructs a dual segment tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
+
+## Methods
+
 - `T operator[](int k)`
     - Returns $a_k$ (same as `T query(int k)`).
     - Time complexity: $O(\lg n)$
@@ -62,15 +70,6 @@ Space complexity: $O(n)$
 - `T query(int k)`
     - Returns $a_k$ (same as `T operator[](int k)`).
     - Time complexity: $O(\lg n)$
-
-## Note
-
-The template argument `M` represents a monoid $(T, \cdot, e)$ and is a class/struct with the following members defined:
-* `T`: the type of the set $T$
-* `T id`: the identity element $e$
-* `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
-
-See the verify files for examples of implementation.
 
 ## Verified with
 

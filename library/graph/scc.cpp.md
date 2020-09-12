@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/scc.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 22:35:33+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 
@@ -46,15 +46,13 @@ The labels of SCCs are in the topological order.
 
 Space complexity: $O(V + E)$
 
-## Attributes
-
-- `int num`
-    - The number of strongly connected components
-
-## Methods
+## Constructor
 
 - `SCC(int n)`
     - Creates a graph with $n$ vertices and no edges.
+
+## Member functions
+
 - `void add_edge(int u, int v)`
     - Adds an edge $(u, v)$
     - Time complexity: $O(1)$
@@ -63,6 +61,9 @@ Space complexity: $O(V + E)$
     - Time complexity: $O(V + E)$
 - `int operator[](int i)`
     - Returns the label of the strongly connected component the vertex $i$ belongs to.
+    - Time complexity: $O(1)$
+- `int count()`
+    - Returns the number of strongly connected components.
     - Time complexity: $O(1)$
 
 ## Required by
@@ -90,8 +91,6 @@ using namespace std;
  */
 struct SCC {
 public:
-    int num;
-
     SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
 
     void add_edge(int u, int v) {
@@ -102,18 +101,23 @@ public:
     void build() {
         for (int v = 0; v < G.size(); v++) dfs(v);
         reverse(order.begin(), order.end());
-        num = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+        cnt = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
     }
 
     int operator[](int i) const {
         return comp[i];
     }
 
+    int count() {
+        return cnt;
+    }
+
 private:
     vector<vector<int>> G, G_rev;
     vector<int> comp, order;
     vector<bool> visited;
+    int cnt;
 
     void dfs(int u) {
         if (visited[u]) return;
@@ -144,8 +148,6 @@ using namespace std;
  */
 struct SCC {
 public:
-    int num;
-
     SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
 
     void add_edge(int u, int v) {
@@ -156,18 +158,23 @@ public:
     void build() {
         for (int v = 0; v < G.size(); v++) dfs(v);
         reverse(order.begin(), order.end());
-        num = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+        cnt = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
     }
 
     int operator[](int i) const {
         return comp[i];
     }
 
+    int count() {
+        return cnt;
+    }
+
 private:
     vector<vector<int>> G, G_rev;
     vector<int> comp, order;
     vector<bool> visited;
+    int cnt;
 
     void dfs(int u) {
         if (visited[u]) return;

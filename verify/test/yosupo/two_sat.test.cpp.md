@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/two_sat.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 22:35:33+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
@@ -65,7 +65,7 @@ int main() {
         sat.add_clause(abs(a) - 1, (a > 0), abs(b) - 1, (b > 0));
     }
     sat.solve();
-    if (sat.satisfiable) {
+    if (sat.is_satisfiable()) {
         cout << "s SATISFIABLE\nv";
         for (int i = 0; i < N; i++) {
             cout << " " << (sat[i] ? 1 : -1) * (i + 1);
@@ -96,8 +96,6 @@ using namespace std;
  */
 struct SCC {
 public:
-    int num;
-
     SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
 
     void add_edge(int u, int v) {
@@ -108,18 +106,23 @@ public:
     void build() {
         for (int v = 0; v < G.size(); v++) dfs(v);
         reverse(order.begin(), order.end());
-        num = 0;
-        for (int v : order) if (comp[v] == -1) rdfs(v, num++);
+        cnt = 0;
+        for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
     }
 
     int operator[](int i) const {
         return comp[i];
     }
 
+    int count() {
+        return cnt;
+    }
+
 private:
     vector<vector<int>> G, G_rev;
     vector<int> comp, order;
     vector<bool> visited;
+    int cnt;
 
     void dfs(int u) {
         if (visited[u]) return;
@@ -142,8 +145,6 @@ using namespace std;
  * @docs docs/graph/twosat.md
  */
 struct TwoSat {
-    bool satisfiable = true;
-
     TwoSat(int n) : n(n), scc(2 * n), val(n) {}
 
     void add_clause(int u, bool a, int v, bool b) {
@@ -162,6 +163,10 @@ struct TwoSat {
         }
     }
 
+    bool is_satisfiable() const {
+        return satisfiable;
+    }
+
     bool operator[](int i) const {
         return val[i];
     }
@@ -170,6 +175,7 @@ private:
     int n;
     SCC scc;
     vector<bool> val;
+    bool satisfiable = true;
 };
 #line 4 "test/yosupo/two_sat.test.cpp"
 
@@ -186,7 +192,7 @@ int main() {
         sat.add_clause(abs(a) - 1, (a > 0), abs(b) - 1, (b > 0));
     }
     sat.solve();
-    if (sat.satisfiable) {
+    if (sat.is_satisfiable()) {
         cout << "s SATISFIABLE\nv";
         for (int i = 0; i < N; i++) {
             cout << " " << (sat[i] ? 1 : -1) * (i + 1);

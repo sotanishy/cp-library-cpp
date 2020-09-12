@@ -25,16 +25,34 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: misc/compress.cpp
+# :warning: Coordinate Compression <small>(misc/compress.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#bc957e26ff41470c556ee5d09e96880b">misc</a>
 * <a href="{{ site.github.repository_url }}/blob/master/misc/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 16:03:55+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 
+
+# Coordinate Compression
+
+This struct compresses a list of values into a list of integers less than the size of the list.
+
+Space complexity: $O(n)$
+
+## Methods
+
+- `Compress(const vector<T>& vs)`
+    - Compresses the given list `vs`
+    - Time complexity: $O(n \lg n)$
+- `int compress(const T& x)`
+    - Compresses the value into an integer less than $n$
+    - Time complexity: $O(\lg n)$
+- `T decompress(int i)`
+    - Converts the compressed value into the original value.
+    - Time complexity: $O(1)$
 
 ## Code
 
@@ -44,6 +62,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Coordinate Compression
+ * @docs docs/misc/compress.md
+ */
 template <typename T>
 struct Compress {
     vector<T> xs;
@@ -71,6 +93,10 @@ struct Compress {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Coordinate Compression
+ * @docs docs/misc/compress.md
+ */
 template <typename T>
 struct Compress {
     vector<T> xs;

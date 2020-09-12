@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_3_D.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D</a>
@@ -51,6 +51,8 @@ layout: default
 
 #include "../../data-structure/sparse_table.cpp"
 
+int f(const int a, const int b) { return min(a, b); }
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
@@ -60,7 +62,7 @@ int main() {
     vector<int> a(N);
     for (int i = 0; i < N; i++) cin >> a[i];
 
-    SparseTable<int> st(a);
+    SparseTable<int, f> st(a);
 
     for (int i = 0; i < N - L + 1; i++) {
         cout << st.query(i, i + L);
@@ -85,25 +87,25 @@ using namespace std;
  * @brief Sparse Table
  * @docs docs/data-structure/sparse_table.md
  */
-template <typename T>
+template <typename T, T (*op)(T, T)>
 struct SparseTable {
 private:
     vector<vector<T>> lookup;
     vector<int> len;
 
 public:
-    SparseTable(const vector<int>& v) {
+    SparseTable(const vector<T>& v) {
         int n = 1;
         int b = 0;
         while (n <= v.size()) {
             n <<= 1;
             b++;
         }
-        lookup.resize(v.size(), vector<int>(b));
+        lookup.resize(v.size(), vector<T>(b));
         for (int i = 0; i < v.size(); i++) lookup[i][0] = v[i];
         for (int j = 1; j < b; j++) {
             for (int i = 0; i + (1 << j) <= v.size(); i++) {
-                lookup[i][j] = min(lookup[i][j-1], lookup[i + (1 << (j-1))][j-1]);
+                lookup[i][j] = op(lookup[i][j-1], lookup[i + (1 << (j-1))][j-1]);
             }
         }
         len.resize(v.size() + 1);
@@ -114,10 +116,12 @@ public:
 
     T query(int l, int r) {
         int b = len[r - l];
-        return min(lookup[l][b], lookup[r - (1 << b)][b]);
+        return op(lookup[l][b], lookup[r - (1 << b)][b]);
     }
 };
 #line 4 "test/aoj/DSL_3_D.test.cpp"
+
+int f(const int a, const int b) { return min(a, b); }
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -128,7 +132,7 @@ int main() {
     vector<int> a(N);
     for (int i = 0; i < N; i++) cin >> a[i];
 
-    SparseTable<int> st(a);
+    SparseTable<int, f> st(a);
 
     for (int i = 0; i < N - L + 1; i++) {
         cout << st.query(i, i + L);

@@ -25,47 +25,52 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small>
+# :x: Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-12 22:11:54+09:00
 
 
 
 
 # Fenwick Tree
 
-A Fenwick tree, or a binary indexed tree, is a data structure that can update elements and calculate prefix sums.
-
-The interface is 0-indexed.
+A Fenwick tree, or a binary indexed tree, is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a commutative monoid $(T, \cdot, e)$ and offers point update and prefix fold operations.
 
 Space complexity: $O(n)$
 
-## Methods
+## Template parameters
+
+- `M`
+    - A commutative monoid $(T, \cdot, e)$. It must have the following publicly accessible members:
+        - `T`: the type of the set $T$
+        - `T id`: the identity element $e$
+        - `T op(T, T)`: an associative and commutative binary operation $\cdot: T \times T \rightarrow T$
+
+## Constructor
 
 - `FenwickTree(int n)`
-    - Constructs a Fenwick tree of size `n` with all elements set to $0$.
+    - Constructs a Fenwick tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
-- `T sum(int i)`
-    - Calculates the prefix sum, i.e. calculates the sum $a_0, a_1, \dots, a_i$
-    - Time complexity: $O(\lg n)$
-- `void add(int i, T x)`
-    - Adds $x$ to $a_i$.
-    - Time complexity: $O(\lg n)$
-- `int lower_bound(T x)`
-    - Returns the first index $i$ such that the prefix sum at $i$ is greater than or equal to $x$
-    - Time complexity: $O(\lg n)$
 
-## Note
+## Member functions
 
-A Fenwick tree can be generalized to treat any sequence of a commutative monoid.
+- `T query(int i)`
+    - Calculates $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$
+    - Time complexity: $O(\lg n)$
+- `void update(int i, T x)`
+    - Update $a_i$ with $a_i \cdot x$
+    - Time complexity: $O(\lg n)$
+- `int find_first(const function<bool(T)>& cond)`
+    - Returns the first index $i$ such that $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ satisfies the condition `cond`. Returns $n$ if not found.
+    - Time complexity: $O(\lg n)$
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
 
 
 ## Code
@@ -80,37 +85,48 @@ using namespace std;
  * @brief Fenwick Tree
  * @docs docs/data-structure/fenwick_tree.md
  */
-template <typename T>
+template <typename M>
 struct FenwickTree {
+    using T = typename M::T;
+
     int n;
     vector<T> data;
 
-    FenwickTree(int n) : n(n), data(n+1) {}
+    FenwickTree(int n) : n(n), data(n+1, M::id) {}
 
-    T sum(int i) {
-        T ret = 0;
-        for (i++; i > 0; i -= i & -i) ret += data[i];
+    T query(int i) {
+        T ret = M::id;
+        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
 
-    void add(int i, T x) {
-        for (i++; i <= n; i += i & -i) data[i] += x;
+    void update(int i, T x) {
+        for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    int lower_bound(T x) {
-        if (x <= 0) return 0;
+    int find_first(const function<bool(T)>& cond) {
         int k = 1;
-        while (k * 2 <= n) k *= 2;
-        int j = 0;
-        for (; k > 0; k /= 2) {
-            if (j + k <= n && data[j+k] < x) {
-                x -= data[j+k];
+        while (k * 2 <= n) k <<= 1;
+        int i = 0;
+        T x = M::id;
+        for (; k > 0; k >>= 1) {
+            if (i + k <= n && !cond(M::op(x, data[i+k]))) {
+                x = M::op(x, data[i+k]);
+                i += k;
                 j += k;
             }
         }
-        return j;
+        return i - 1;
     }
 };
+
+// struct Monoid {
+//     using T = int;
+//     static inline T id = (1u << 31) - 1;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 ```
 {% endraw %}
 
@@ -125,37 +141,48 @@ using namespace std;
  * @brief Fenwick Tree
  * @docs docs/data-structure/fenwick_tree.md
  */
-template <typename T>
+template <typename M>
 struct FenwickTree {
+    using T = typename M::T;
+
     int n;
     vector<T> data;
 
-    FenwickTree(int n) : n(n), data(n+1) {}
+    FenwickTree(int n) : n(n), data(n+1, M::id) {}
 
-    T sum(int i) {
-        T ret = 0;
-        for (i++; i > 0; i -= i & -i) ret += data[i];
+    T query(int i) {
+        T ret = M::id;
+        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
 
-    void add(int i, T x) {
-        for (i++; i <= n; i += i & -i) data[i] += x;
+    void update(int i, T x) {
+        for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    int lower_bound(T x) {
-        if (x <= 0) return 0;
+    int find_first(const function<bool(T)>& cond) {
         int k = 1;
-        while (k * 2 <= n) k *= 2;
-        int j = 0;
-        for (; k > 0; k /= 2) {
-            if (j + k <= n && data[j+k] < x) {
-                x -= data[j+k];
+        while (k * 2 <= n) k <<= 1;
+        int i = 0;
+        T x = M::id;
+        for (; k > 0; k >>= 1) {
+            if (i + k <= n && !cond(M::op(x, data[i+k]))) {
+                x = M::op(x, data[i+k]);
+                i += k;
                 j += k;
             }
         }
-        return j;
+        return i - 1;
     }
 };
+
+// struct Monoid {
+//     using T = int;
+//     static inline T id = (1u << 31) - 1;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 
 ```
 {% endraw %}

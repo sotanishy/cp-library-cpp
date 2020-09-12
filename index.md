@@ -39,7 +39,7 @@ layout: default
 ### data-structure
 
 * :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
+* :x: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
 * :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">2D Fenwick Tree <small>(data-structure/fenwick_tree_2d.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">k-d Tree <small>(data-structure/kd_tree.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
@@ -102,7 +102,7 @@ layout: default
 
 ### misc
 
-* :warning: <a href="library/misc/compress.cpp.html">misc/compress.cpp</a>
+* :warning: <a href="library/misc/compress.cpp.html">Coordinate Compression <small>(misc/compress.cpp)</small></a>
 * :warning: <a href="library/misc/counting_sort.cpp.html">misc/counting_sort.cpp</a>
 * :warning: <a href="library/misc/marathon_template.cpp.html">misc/marathon_template.cpp</a>
 * :warning: <a href="library/misc/random.cpp.html">misc/random.cpp</a>
@@ -133,7 +133,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
+* :x: <a href="verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_D.test.cpp.html">test/aoj/DSL_2_D.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_E.test.cpp.html">test/aoj/DSL_2_E.test.cpp</a>
