@@ -13,7 +13,7 @@ struct DisjointSparseTable {
         int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
-        copy(v.begin(), v.end(), lookup[0]);
+        copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i <= b; i++) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {

@@ -1,4 +1,4 @@
-# Lazy Segment Tree
+# Segment Tree with Lazy Propagation
 
 A segment tree with lazy propagation is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e_V)$ and handles actions $*$ of an operator monoid $(E, \circ, e_O)$. It offers range update and range query operations.
 
@@ -7,6 +7,7 @@ The action $*: T \times E \rightarrow T$ satisfies the following conditions:
 - $\forall f, g \in E, a \in T, a * (f \circ g) = (a * f) * g$
 
 For point update and range query, use [a segment tree](segment_tree.md)
+
 For range update and point query, use [a dual segment tree](dual_segment_tree.md)
 
 Space complexity: $O(n)$

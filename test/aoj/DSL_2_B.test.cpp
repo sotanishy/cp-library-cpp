@@ -16,7 +16,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    FenwickTree<Monoid> ft(n+1);
+    FenwickTree<Monoid> ft(n);
     for (int i = 0; i < q; i++) {
         int com, x, y;
         cin >> com >> x >> y;

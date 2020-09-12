@@ -33,7 +33,6 @@ struct FenwickTree {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
                 x = M::op(x, data[i+k]);
                 i += k;
-                j += k;
             }
         }
         return i - 1;
