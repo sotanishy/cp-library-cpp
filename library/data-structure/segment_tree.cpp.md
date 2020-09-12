@@ -41,6 +41,7 @@ layout: default
 A segment tree is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e)$ and offers point update and range query operations.
 
 For range update and point query, use [a dual segment tree](dual_segment_tree.md)
+
 For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
 
 Space complexity: $O(n)$

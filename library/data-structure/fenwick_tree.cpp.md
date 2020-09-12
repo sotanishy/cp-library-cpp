@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small>
+# :heavy_check_mark: Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-12 22:11:54+09:00
+    - Last commit date: 2020-09-13 01:20:21+09:00
 
 
 
@@ -70,7 +70,7 @@ Space complexity: $O(n)$
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
 
 
 ## Code
@@ -113,7 +113,6 @@ struct FenwickTree {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
                 x = M::op(x, data[i+k]);
                 i += k;
-                j += k;
             }
         }
         return i - 1;
@@ -169,7 +168,6 @@ struct FenwickTree {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
                 x = M::op(x, data[i+k]);
                 i += k;
-                j += k;
             }
         }
         return i - 1;

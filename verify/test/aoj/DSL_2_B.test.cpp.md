@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL_2_B.test.cpp
+# :heavy_check_mark: test/aoj/DSL_2_B.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-12 22:11:54+09:00
+    - Last commit date: 2020-09-13 01:20:21+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
 
 
 ## Code
@@ -65,7 +65,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    FenwickTree<Monoid> ft(n+1);
+    FenwickTree<Monoid> ft(n);
     for (int i = 0; i < q; i++) {
         int com, x, y;
         cin >> com >> x >> y;
@@ -118,7 +118,6 @@ struct FenwickTree {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
                 x = M::op(x, data[i+k]);
                 i += k;
-                j += k;
             }
         }
         return i - 1;
@@ -148,7 +147,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    FenwickTree<Monoid> ft(n+1);
+    FenwickTree<Monoid> ft(n);
     for (int i = 0; i < q; i++) {
         int com, x, y;
         cin >> com >> x >> y;

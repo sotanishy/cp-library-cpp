@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/staticrmq.test.cpp
+# :heavy_check_mark: test/yosupo/staticrmq.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/staticrmq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 01:07:34+09:00
+    - Last commit date: 2020-09-13 01:20:21+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
 
 
 ## Code
@@ -93,7 +93,7 @@ struct DisjointSparseTable {
         int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
-        copy(v.begin(), v.end(), lookup[0]);
+        copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i <= b; i++) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {

@@ -38,9 +38,9 @@ layout: default
 
 ### data-structure
 
-* :x: <a href="library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
-* :x: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
 * :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">2D Fenwick Tree <small>(data-structure/fenwick_tree_2d.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">k-d Tree <small>(data-structure/kd_tree.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
@@ -134,7 +134,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>
-* :x: <a href="verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_D.test.cpp.html">test/aoj/DSL_2_D.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_E.test.cpp.html">test/aoj/DSL_2_E.test.cpp</a>
@@ -161,7 +161,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.test.cpp.html">test/yosupo/point_add_range_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.test.cpp.html">test/yosupo/point_set_range_composite.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/range_affine_range_sum.test.cpp.html">test/yosupo/range_affine_range_sum.test.cpp</a>
-* :x: <a href="verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/two_sat.test.cpp.html">test/yosupo/two_sat.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/unionfind.test.cpp.html">test/yosupo/unionfind.test.cpp</a>
 

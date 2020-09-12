@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
+# :heavy_check_mark: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint_sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 00:11:57+09:00
+    - Last commit date: 2020-09-13 01:20:21+09:00
 
 
 
@@ -66,7 +66,7 @@ Space complexity: $O(n \lg n)$
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
 
 
 ## Code
@@ -89,7 +89,7 @@ struct DisjointSparseTable {
         int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
-        copy(v.begin(), v.end(), lookup[0]);
+        copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i <= b; i++) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {
@@ -134,7 +134,7 @@ struct DisjointSparseTable {
         int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
-        copy(v.begin(), v.end(), lookup[0]);
+        copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i <= b; i++) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {
