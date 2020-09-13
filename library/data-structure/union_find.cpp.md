@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -96,14 +96,14 @@ using namespace std;
 struct UnionFind {
     vector<int> par;
 
-    UnionFind(size_t n) : par(n, -1) {}
+    UnionFind(int n) : par(n, -1) {}
 
-    size_t find(size_t x) {
+    int find(int x) {
         if (par[x] < 0) return x;
         return par[x] = find(par[x]);
     }
 
-    void unite(size_t x, size_t y) {
+    void unite(int x, int y) {
         x = find(x);
         y = find(y);
         if (x == y) return;
@@ -112,11 +112,11 @@ struct UnionFind {
         par[y] = x;
     }
 
-    bool same(size_t x, size_t y) {
+    bool same(int x, int y) {
         return find(x) == find(y);
     }
 
-    size_t size(size_t x) {
+    int size(int x) {
         return -par[find(x)];
     }
 };
@@ -137,14 +137,14 @@ using namespace std;
 struct UnionFind {
     vector<int> par;
 
-    UnionFind(size_t n) : par(n, -1) {}
+    UnionFind(int n) : par(n, -1) {}
 
-    size_t find(size_t x) {
+    int find(int x) {
         if (par[x] < 0) return x;
         return par[x] = find(par[x]);
     }
 
-    void unite(size_t x, size_t y) {
+    void unite(int x, int y) {
         x = find(x);
         y = find(y);
         if (x == y) return;
@@ -153,11 +153,11 @@ struct UnionFind {
         par[y] = x;
     }
 
-    bool same(size_t x, size_t y) {
+    bool same(int x, int y) {
         return find(x) == find(y);
     }
 
-    size_t size(size_t x) {
+    int size(int x) {
         return -par[find(x)];
     }
 };

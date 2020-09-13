@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -42,7 +42,8 @@ A segment tree with lazy propagation is a data structure that stores a sequence 
 
 The action $*: T \times E \rightarrow T$ satisfies the following conditions:
 - $\forall a \in T, a * e_O = a$
-- $\forall f, g \in E, a \in T, a * (f \circ g) = (a * f) * g$
+- $\forall a, b \in T, f \in E, (a \cdot b) * f = (a * f) \cdot (b * f)$
+- $\forall a \in T, f, g \in E, a * (f \circ g) = (a * f) * g$
 
 For point update and range query, use a segment tree.
 
@@ -52,22 +53,22 @@ Space complexity: $O(n)$
 
 ## Template parameters
 
-- `S`
-    - It has two member types and two member functions.
-        - `V`: a monoid $(T, \cdot, e_V)$. It must have the following publicly accessible members:
-            - `T`: the type of the set $T$
-            - `T id`: the identity element $e_V$
-            - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
-        - `O`: an operator monoid $(E, \circ, e_O)$. It must have the following publicly accessible members:
-            - `E`: the type of the set $E$
-            - `E id`: the identity element $e_O$
-            - `E op(E, E)`: an associative binary operation $\circ: E \times E \rightarrow E$
-        - `T op(T, E)`: an action $*: T \times E \rightarrow T$.
-        - `E mul(E, size_t)`: a function $p: E \times \mathbb{N} \rightarrow E$ such that for $a \in T, x \in E, k \in \mathbb{N}$, $(a_i * x) \cdot \cdots \cdot (a_{i+k-1} * x) = (a_i \cdot \cdots \cdot a_{i+k-1}) * p(x, k)$
+- `M`
+    - A monoid $(T, \cdot, e_V)$. It must have the following publicly accessible members:
+        - `T`: the type of the set $T$
+        - `T id`: the identity element $e_V$
+        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+- `O`
+    - An operator monoid $(E, \circ, e_O)$. It must have the following publicly accessible members:
+        - `E`: the type of the set $E$
+        - `E id`: the identity element $e_O$
+        - `E op(E, E)`: an associative binary operation $\circ: E \times E \rightarrow E$
+- `M::T act(M::T, O::E)`
+    - An action $*: T \times E \rightarrow T$.
 
 ## Constructor
 
-- `LazySegmentTree(size_t n)`
+- `LazySegmentTree(int n)`
     - Constructs a segment tree with lazy propagation of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 - `LazySegmentTree(const vector<T>& v)`
@@ -76,13 +77,13 @@ Space complexity: $O(n)$
 
 ## Member functions
 
-- `T operator[](size_t k)`
+- `T operator[](int k)`
     - Returns $a_k$.
     - Time complexity: $O(\lg n)$
-- `void update(size_t l, size_t r, const E& x)`
+- `void update(int l, int r, const E& x)`
     - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
     - Time complexity: $O(\lg n)$
-- `T fold(size_t l, size_t r)`
+- `T fold(int l, int r)`
     - Returns $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}\$.
     - Time complexity: $O(\lg n)$
 
@@ -105,96 +106,88 @@ using namespace std;
  * @brief Segment Tree with Lazy Propagation
  * @docs docs/data-structure/lazy_segment_tree.md
  */
-template <typename S>
+template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::E)>
 struct LazySegmentTree {
-    using V = typename S::V;
-    using T = typename V::T;
-    using O = typename S::O;
+    using T = typename M::T;
     using E = typename O::E;
 
-    LazySegmentTree(size_t n) : LazySegmentTree(vector<T>(n, V::id)) {}
+    LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
     LazySegmentTree(const vector<T>& v) {
         size = 1;
         height = 0;
         while (size < v.size()) size <<= 1, height++;
-        node.resize(2 * size, V::id);
+        node.resize(2 * size, M::id);
         lazy.resize(2 * size, O::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (size_t i = size - 1; i > 0; i--) node[i] = V::op(node[2 * i], node[2 * i + 1]);
+        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](size_t k) {
+    T operator[](int k) {
         return fold(k, k + 1);
     }
 
-    void update(size_t l, size_t r, const E& x) { update(l, r, x, 1, 0, size); }
+    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }
 
-    T fold(size_t l, size_t r) { return fold(l, r, 1, 0, size); }
+    T fold(int l, int r) { return fold(l, r, 1, 0, size); }
 
 private:
-    size_t size, height;
+    int size, height;
     vector<T> node;
     vector<E> lazy;
 
-    void push(size_t k, size_t len) {
+    void push(int k) {
         if (lazy[k] == O::id) return;
         if (k < size) {
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] = S::op(node[k], S::mul(lazy[k], len));
+        node[k] = act(node[k], lazy[k]);
         lazy[k] = O::id;
     }
 
-    void update(size_t a, size_t b, const E& x, size_t k, size_t l, size_t r) {
-        push(k, r - l);
+    void update(int a, int b, const E& x, int k, int l, int r) {
+        push(k);
         if (r <= a || b <= l) return;
         if (a <= l && r <= b) {
             lazy[k] = O::op(lazy[k], x);
-            push(k, r - l);
+            push(k);
             return;
         }
-        size_t m = (l + r) / 2;
+        int m = (l + r) / 2;
         update(a, b, x, 2 * k, l, m);
         update(a, b, x, 2 * k + 1, m, r);
-        node[k] = V::op(node[2 * k], node[2 * k + 1]);
+        node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T fold(size_t a, size_t b, size_t k, int l, int r) {
-        push(k, r - l);
-        if (r <= a || b <= l) return V::id;
+    T fold(int a, int b, int k, int l, int r) {
+        push(k);
+        if (r <= a || b <= l) return M::id;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        return V::op(fold(a, b, 2 * k, l, m),
+        return M::op(fold(a, b, 2 * k, l, m),
                      fold(a, b, 2 * k + 1, m, r));
     }
 };
 
-// struct S {
-//     struct V {
-//         using T = ll;
-//         inline static const T id = 0;
-//         static T op(T a, T b) {
-//             return a + b;
-//         }
-//     };
-
-//     struct O {
-//         using E = ll;
-//         inline static const E id = 0;
-//         static E op(E a, E b) {
-//             return a + b;
-//         }
-//     };
-
-//     static V::T op(V::T a, O::E b) {
+// struct V {
+//     using T = ll;
+//     inline static const T id = 0;
+//     static T op(T a, T b) {
 //         return a + b;
 //     }
+// };
 
-//     static O::E mul(O::E a, size_t b) {
-//         return a * b;
+// struct O {
+//     using E = ll;
+//     inline static const E id = 0;
+//     static E op(E a, E b) {
+//         return a + b;
 //     }
 // };
+
+// V::T op(V::T a, O::E b) {
+//     return a + b;
+// }
 ```
 {% endraw %}
 
@@ -209,96 +202,88 @@ using namespace std;
  * @brief Segment Tree with Lazy Propagation
  * @docs docs/data-structure/lazy_segment_tree.md
  */
-template <typename S>
+template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::E)>
 struct LazySegmentTree {
-    using V = typename S::V;
-    using T = typename V::T;
-    using O = typename S::O;
+    using T = typename M::T;
     using E = typename O::E;
 
-    LazySegmentTree(size_t n) : LazySegmentTree(vector<T>(n, V::id)) {}
+    LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
     LazySegmentTree(const vector<T>& v) {
         size = 1;
         height = 0;
         while (size < v.size()) size <<= 1, height++;
-        node.resize(2 * size, V::id);
+        node.resize(2 * size, M::id);
         lazy.resize(2 * size, O::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (size_t i = size - 1; i > 0; i--) node[i] = V::op(node[2 * i], node[2 * i + 1]);
+        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](size_t k) {
+    T operator[](int k) {
         return fold(k, k + 1);
     }
 
-    void update(size_t l, size_t r, const E& x) { update(l, r, x, 1, 0, size); }
+    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }
 
-    T fold(size_t l, size_t r) { return fold(l, r, 1, 0, size); }
+    T fold(int l, int r) { return fold(l, r, 1, 0, size); }
 
 private:
-    size_t size, height;
+    int size, height;
     vector<T> node;
     vector<E> lazy;
 
-    void push(size_t k, size_t len) {
+    void push(int k) {
         if (lazy[k] == O::id) return;
         if (k < size) {
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        node[k] = S::op(node[k], S::mul(lazy[k], len));
+        node[k] = act(node[k], lazy[k]);
         lazy[k] = O::id;
     }
 
-    void update(size_t a, size_t b, const E& x, size_t k, size_t l, size_t r) {
-        push(k, r - l);
+    void update(int a, int b, const E& x, int k, int l, int r) {
+        push(k);
         if (r <= a || b <= l) return;
         if (a <= l && r <= b) {
             lazy[k] = O::op(lazy[k], x);
-            push(k, r - l);
+            push(k);
             return;
         }
-        size_t m = (l + r) / 2;
+        int m = (l + r) / 2;
         update(a, b, x, 2 * k, l, m);
         update(a, b, x, 2 * k + 1, m, r);
-        node[k] = V::op(node[2 * k], node[2 * k + 1]);
+        node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T fold(size_t a, size_t b, size_t k, int l, int r) {
-        push(k, r - l);
-        if (r <= a || b <= l) return V::id;
+    T fold(int a, int b, int k, int l, int r) {
+        push(k);
+        if (r <= a || b <= l) return M::id;
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        return V::op(fold(a, b, 2 * k, l, m),
+        return M::op(fold(a, b, 2 * k, l, m),
                      fold(a, b, 2 * k + 1, m, r));
     }
 };
 
-// struct S {
-//     struct V {
-//         using T = ll;
-//         inline static const T id = 0;
-//         static T op(T a, T b) {
-//             return a + b;
-//         }
-//     };
-
-//     struct O {
-//         using E = ll;
-//         inline static const E id = 0;
-//         static E op(E a, E b) {
-//             return a + b;
-//         }
-//     };
-
-//     static V::T op(V::T a, O::E b) {
+// struct V {
+//     using T = ll;
+//     inline static const T id = 0;
+//     static T op(T a, T b) {
 //         return a + b;
 //     }
+// };
 
-//     static O::E mul(O::E a, size_t b) {
-//         return a * b;
+// struct O {
+//     using E = ll;
+//     inline static const E id = 0;
+//     static E op(E a, E b) {
+//         return a + b;
 //     }
 // };
+
+// V::T op(V::T a, O::E b) {
+//     return a + b;
+// }
 
 ```
 {% endraw %}

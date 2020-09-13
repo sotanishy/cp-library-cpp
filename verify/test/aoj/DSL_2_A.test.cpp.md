@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -94,29 +94,29 @@ template <typename M>
 struct SegmentTree {
     using T = typename M::T;
 
-    size_t size;
+    int size;
     vector<T> node;
 
-    SegmentTree(size_t n) : SegmentTree(vector<T>(n, M::id)) {}
+    SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
     SegmentTree(const vector<T>& v) {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (size_t i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](size_t k) const {
+    T operator[](int k) const {
         return node[k + size];
     }
 
-    void update(size_t k, const T& x) {
+    void update(int k, const T& x) {
         k += size;
         node[k] = x;
         while (k >>= 1) node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T fold(size_t l, size_t r) {
+    T fold(int l, int r) {
         T vl = M::id, vr = M::id;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) vl = M::op(vl, node[l++]);
@@ -125,9 +125,9 @@ struct SegmentTree {
         return M::op(vl, vr);
     }
 
-    int find_first(size_t l, const function<bool(T)>& cond) {
+    int find_first(int l, const function<bool(T)>& cond) {
         T vl = M::id;
-        size_t r = 2 * size;
+        int r = 2 * size;
         for (l += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
                 T nxt = M::op(vl, node[l]);
@@ -146,9 +146,9 @@ struct SegmentTree {
         return -1;
     }
 
-    int find_last(size_t r, const function<bool(T)>& cond) {
+    int find_last(int r, const function<bool(T)>& cond) {
         T vr = M::id;
-        size_t l = size;
+        int l = size;
         for (r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {
                 r--;

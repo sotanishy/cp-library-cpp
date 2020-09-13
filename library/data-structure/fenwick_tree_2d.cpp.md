@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fenwick_tree_2d.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -49,27 +49,27 @@ using namespace std;
  */
 template <typename T>
 struct FenwickTree2D {
-    size_t H, W;
+    int H, W;
     vector<vector<T>> data;
 
-    FenwickTree2D(size_t H, size_t W) : H(H), W(W), data(H+1, vector<T>(W+1)) {}
+    FenwickTree2D(int H, int W) : H(H), W(W), data(H+1, vector<T>(W+1)) {}
 
-    void add(size_t a, size_t b, T x) {
+    void add(int a, int b, T x) {
         a++;
         b++;
-        for (size_t i = a; i <= H; i += i & -i) {
-            for (size_t j = b; j <= W; j += j & -j) {
+        for (int i = a; i <= H; i += i & -i) {
+            for (int j = b; j <= W; j += j & -j) {
                 data[i][j] += x;
             }
         }
     }
 
-    T sum(size_t a, size_t b) {
+    T sum(int a, int b) {
         a++;
         b++;
         T ret = 0;
-        for (size_t i = a; i > 0; i -= i & -i) {
-            for (size_t j = b; j > 0; j -= j & -j) {
+        for (int i = a; i > 0; i -= i & -i) {
+            for (int j = b; j > 0; j -= j & -j) {
                 ret += bit[i][j];
             }
         }
@@ -91,27 +91,27 @@ using namespace std;
  */
 template <typename T>
 struct FenwickTree2D {
-    size_t H, W;
+    int H, W;
     vector<vector<T>> data;
 
-    FenwickTree2D(size_t H, size_t W) : H(H), W(W), data(H+1, vector<T>(W+1)) {}
+    FenwickTree2D(int H, int W) : H(H), W(W), data(H+1, vector<T>(W+1)) {}
 
-    void add(size_t a, size_t b, T x) {
+    void add(int a, int b, T x) {
         a++;
         b++;
-        for (size_t i = a; i <= H; i += i & -i) {
-            for (size_t j = b; j <= W; j += j & -j) {
+        for (int i = a; i <= H; i += i & -i) {
+            for (int j = b; j <= W; j += j & -j) {
                 data[i][j] += x;
             }
         }
     }
 
-    T sum(size_t a, size_t b) {
+    T sum(int a, int b) {
         a++;
         b++;
         T ret = 0;
-        for (size_t i = a; i > 0; i -= i & -i) {
-            for (size_t j = b; j > 0; j -= j & -j) {
+        for (int i = a; i > 0; i -= i & -i) {
+            for (int j = b; j > 0; j -= j & -j) {
                 ret += bit[i][j];
             }
         }

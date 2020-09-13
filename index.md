@@ -107,6 +107,7 @@ layout: default
 * :warning: <a href="library/misc/counting_sort.cpp.html">misc/counting_sort.cpp</a>
 * :warning: <a href="library/misc/marathon_template.cpp.html">misc/marathon_template.cpp</a>
 * :warning: <a href="library/misc/random.cpp.html">misc/random.cpp</a>
+* :warning: <a href="library/misc/slide_min.cpp.html">misc/slide_min.cpp</a>
 * :warning: <a href="library/misc/timer.cpp.html">misc/timer.cpp</a>
 
 

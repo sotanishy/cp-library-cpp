@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint_sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 12:16:53+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -60,7 +60,7 @@ Space complexity: $O(n \lg n)$
 
 ## Member functions
 
-- `T fold(size_t l, size_t r)`
+- `T fold(int l, int r)`
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
     - Time complexity: $O(1)$
 
@@ -86,29 +86,29 @@ struct DisjointSparseTable {
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
-        size_t n = v.size(), b = 0;
+        int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
         copy(v.begin(), v.end(), lookup[0].begin());
-        for (size_t i = 1; i <= b; i++) {
-            size_t len = 1 << i;
-            for (size_t l = 0; l + len / 2 < n; l += len) {
-                size_t m = l + len / 2;
+        for (int i = 1; i <= b; i++) {
+            int len = 1 << i;
+            for (int l = 0; l + len / 2 < n; l += len) {
+                int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (size_t j = 1; j < len / 2; j++) {
+                for (int j = 1; j < len / 2; j++) {
                     lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
-                for (size_t j = 1; m + j < min(l + len, n); j++) {
+                for (int j = 1; m + j < min(l + len, n); j++) {
                     lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
     }
 
-    T fold(size_t l, size_t r) {
+    T fold(int l, int r) {
         if (r - l == 1) return lookup[0][l];
-        size_t i = 32 - __builtin_clz(l ^ (r - 1));
+        int i = 32 - __builtin_clz(l ^ (r - 1));
         return op(lookup[i][l], lookup[i][r - 1]);
     }
 };
@@ -131,29 +131,29 @@ struct DisjointSparseTable {
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
-        size_t n = v.size(), b = 0;
+        int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
         copy(v.begin(), v.end(), lookup[0].begin());
-        for (size_t i = 1; i <= b; i++) {
-            size_t len = 1 << i;
-            for (size_t l = 0; l + len / 2 < n; l += len) {
-                size_t m = l + len / 2;
+        for (int i = 1; i <= b; i++) {
+            int len = 1 << i;
+            for (int l = 0; l + len / 2 < n; l += len) {
+                int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (size_t j = 1; j < len / 2; j++) {
+                for (int j = 1; j < len / 2; j++) {
                     lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
-                for (size_t j = 1; m + j < min(l + len, n); j++) {
+                for (int j = 1; m + j < min(l + len, n); j++) {
                     lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
     }
 
-    T fold(size_t l, size_t r) {
+    T fold(int l, int r) {
         if (r - l == 1) return lookup[0][l];
-        size_t i = 32 - __builtin_clz(l ^ (r - 1));
+        int i = 32 - __builtin_clz(l ^ (r - 1));
         return op(lookup[i][l], lookup[i][r - 1]);
     }
 };

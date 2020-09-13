@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#bc957e26ff41470c556ee5d09e96880b">misc</a>
 * <a href="{{ site.github.repository_url }}/blob/master/misc/marathon_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-31 09:52:54+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -74,7 +74,7 @@ struct Random {
     }
 
     // returns a random integer in the range [0, n)
-    int next_int(int n) {
+    unsigned int next_int(unsigned int n) {
         return xorshift() % n;
     }
 
@@ -214,7 +214,7 @@ struct Random {
     }
 
     // returns a random integer in the range [0, n)
-    int next_int(int n) {
+    unsigned int next_int(unsigned int n) {
         return xorshift() % n;
     }
 

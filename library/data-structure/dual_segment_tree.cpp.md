@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/dual_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -56,16 +56,16 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `DualSegmentTree(size_t n)`
+- `DualSegmentTree(int n)`
     - Constructs a dual segment tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 
 ## Methods
 
-- `T operator[](size_t k)`
+- `T operator[](int k)`
     - Returns $a_k$.
     - Time complexity: $O(\lg n)$
-- `void update(size_t l, size_t r, const T& x)`
+- `void update(int l, int r, const T& x)`
     - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
     - Time complexity: $O(\lg n)$
 
@@ -91,20 +91,20 @@ template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;
 
-    DualSegmentTree(size_t n) {
+    DualSegmentTree(int n) {
         size = 1;
         height = 1;
         while (size < n) size <<= 1, height++;
         lazy.resize(2 * size, M::id);
     }
 
-    T operator[](size_t k) {
+    T operator[](int k) {
         k += size;
         propagate(k);
         return lazy[k];
     }
 
-    void update(size_t l, size_t r, const T& x) {
+    void update(int l, int r, const T& x) {
         l += size;
         r += size;
         propagate(l);
@@ -116,18 +116,18 @@ struct DualSegmentTree {
     }
 
 private:
-    size_t size, height;
+    int size, height;
     vector<T> lazy;
 
-    void push(size_t k) {
+    void push(int k) {
         if (lazy[k] == M::id) return;
         lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);
         lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);
         lazy[k] = M::id;
     }
 
-    void propagate(size_t k) {
-        for (size_t i = height; i > 0; i--) push(k >> i);
+    void propagate(int k) {
+        for (int i = height; i > 0; i--) push(k >> i);
     }
 };
 
@@ -156,20 +156,20 @@ template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;
 
-    DualSegmentTree(size_t n) {
+    DualSegmentTree(int n) {
         size = 1;
         height = 1;
         while (size < n) size <<= 1, height++;
         lazy.resize(2 * size, M::id);
     }
 
-    T operator[](size_t k) {
+    T operator[](int k) {
         k += size;
         propagate(k);
         return lazy[k];
     }
 
-    void update(size_t l, size_t r, const T& x) {
+    void update(int l, int r, const T& x) {
         l += size;
         r += size;
         propagate(l);
@@ -181,18 +181,18 @@ struct DualSegmentTree {
     }
 
 private:
-    size_t size, height;
+    int size, height;
     vector<T> lazy;
 
-    void push(size_t k) {
+    void push(int k) {
         if (lazy[k] == M::id) return;
         lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);
         lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);
         lazy[k] = M::id;
     }
 
-    void propagate(size_t k) {
-        for (size_t i = height; i > 0; i--) push(k >> i);
+    void propagate(int k) {
+        for (int i = height; i > 0; i--) push(k >> i);
     }
 };
 

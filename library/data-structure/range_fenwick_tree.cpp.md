@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/range_fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -46,16 +46,16 @@ Space complexity: $O(n)$
 
 ## Template parameters
 
-- `RangeFenwickTree(size_t n)`
+- `RangeFenwickTree(int n)`
     - Constructs a Fenwick tree with range update of size `n` with all elements initialized to $0$.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `T sum(size_t i)`
+- `T sum(int i)`
     - Calculates the prefix sum, i.e. calculates the sum $a_0, a_1, \dots, a_i$
     - Time complexity: $O(\lg n)$
-- `void add(size_t l, size_t r, T x)`
+- `void add(int l, int r, T x)`
     - Adds $x$ to $a_l, \dots, a_r$
     - Time complexity: $O(\lg n)$
 
@@ -79,13 +79,13 @@ using namespace std;
 template <typename T>
 struct RangeFenwickTree {
 public:
-    RangeFenwickTree(size_t n) : n(n), data0(n+1), data1(n+1) {}
+    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
 
-    T sum(size_t i) {
+    T sum(int i) {
         return sum(data0, i) * i + sum(data1, i);
     }
 
-    void add(size_t l, size_t r, T x) {
+    void add(int l, int r, T x) {
         add(data0, l, x);
         add(data0, r + 1, -x);
         add(data1, l, -x * (l - 1));
@@ -93,16 +93,16 @@ public:
     }
 
 private:
-    size_t n;
+    int n;
     vector<T> data0, data1;
 
-    T sum(vector<T>& data, size_t i) {
+    T sum(vector<T>& data, int i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void add(vector<T>& data, size_t i, T x) {
+    void add(vector<T>& data, int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 };
@@ -123,13 +123,13 @@ using namespace std;
 template <typename T>
 struct RangeFenwickTree {
 public:
-    RangeFenwickTree(size_t n) : n(n), data0(n+1), data1(n+1) {}
+    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
 
-    T sum(size_t i) {
+    T sum(int i) {
         return sum(data0, i) * i + sum(data1, i);
     }
 
-    void add(size_t l, size_t r, T x) {
+    void add(int l, int r, T x) {
         add(data0, l, x);
         add(data0, r + 1, -x);
         add(data1, l, -x * (l - 1));
@@ -137,16 +137,16 @@ public:
     }
 
 private:
-    size_t n;
+    int n;
     vector<T> data0, data1;
 
-    T sum(vector<T>& data, size_t i) {
+    T sum(vector<T>& data, int i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void add(vector<T>& data, size_t i, T x) {
+    void add(vector<T>& data, int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 };

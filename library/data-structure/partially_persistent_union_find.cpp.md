@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/partially_persistent_union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -47,22 +47,22 @@ Space complexity: $O(n + q)$
 
 ## Constructor
 
-- `PartiallyPersistentUnionFind(size_t n)`
+- `PartiallyPersistentUnionFind(int n)`
     - Constructs a partially persistent union find of size `n`. The initial time is set to 0.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `size_t find(time_type t, size_t x)`
+- `int find(time_type t, int x)`
     - Returns the root of the tree $x$ belongs to at time $t$.
     - Time complexity: $O(\lg n)$
-- `void unite(size_t x, size_t y)`
+- `void unite(int x, int y)`
     - Increments the time by 1, and unites the set $x$ belongs to and the set $y$ belongs to.
     - Time complexity: $O(\lg n)$
-- `bool same(time_type t, size_t x, size_t y)`
+- `bool same(time_type t, int x, int y)`
     - Checks if $x$ and $y$ are in the same set at time $t$.
     - Time complexity: $O(\lg n)$
-- `size_t size(time_type t, size_t x)`
+- `int size(time_type t, int x)`
     - Returns the size of the set $x$ belongs to at time $t$.
     - Time complexity: $O(\lg n)$
 
@@ -81,20 +81,20 @@ using namespace std;
 struct PartiallyPersistentUnionFind {
     using time_type = unsigned int;
 
-    vector<size_t> par;
+    vector<int> par;
     vector<time_type> time;
-    vector<vector<pair<time_type, size_t>>> sz;
+    vector<vector<pair<time_type, int>>> sz;
     time_type now = 0;
     const time_type INF = numeric_limits<time_type>::max();
 
-    PartiallyPersistentUnionFind(size_t n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
+    PartiallyPersistentUnionFind(int n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
 
-    size_t find(time_type t, size_t x) {
+    int find(time_type t, int x) {
         if (t < time[x]) return x;
         return find(t, par[x]);
     }
 
-    void unite(size_t x, size_t y) {
+    void unite(int x, int y) {
         now++;
         x = find(now, x);
         y = find(now, y);
@@ -106,11 +106,11 @@ struct PartiallyPersistentUnionFind {
         time[y] = now;
     }
 
-    bool same(time_type t, size_t x, size_t y) {
+    bool same(time_type t, int x, int y) {
         return find(t, x) == find(t, y);
     }
 
-    size_t size(time_type t, size_t x) {
+    int size(time_type t, int x) {
         x = find(t, x);
         return (--lower_bound(sz[x].begin(), sz[x].end(), make_pair(t, INF)))->second;
     }
@@ -132,20 +132,20 @@ using namespace std;
 struct PartiallyPersistentUnionFind {
     using time_type = unsigned int;
 
-    vector<size_t> par;
+    vector<int> par;
     vector<time_type> time;
-    vector<vector<pair<time_type, size_t>>> sz;
+    vector<vector<pair<time_type, int>>> sz;
     time_type now = 0;
     const time_type INF = numeric_limits<time_type>::max();
 
-    PartiallyPersistentUnionFind(size_t n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
+    PartiallyPersistentUnionFind(int n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
 
-    size_t find(time_type t, size_t x) {
+    int find(time_type t, int x) {
         if (t < time[x]) return x;
         return find(t, par[x]);
     }
 
-    void unite(size_t x, size_t y) {
+    void unite(int x, int y) {
         now++;
         x = find(now, x);
         y = find(now, y);
@@ -157,11 +157,11 @@ struct PartiallyPersistentUnionFind {
         time[y] = now;
     }
 
-    bool same(time_type t, size_t x, size_t y) {
+    bool same(time_type t, int x, int y) {
         return find(t, x) == find(t, y);
     }
 
-    size_t size(time_type t, size_t x) {
+    int size(time_type t, int x) {
         x = find(t, x);
         return (--lower_bound(sz[x].begin(), sz[x].end(), make_pair(t, INF)))->second;
     }

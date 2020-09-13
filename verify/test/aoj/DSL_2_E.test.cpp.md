@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_E.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E</a>
@@ -101,20 +101,20 @@ template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;
 
-    DualSegmentTree(size_t n) {
+    DualSegmentTree(int n) {
         size = 1;
         height = 1;
         while (size < n) size <<= 1, height++;
         lazy.resize(2 * size, M::id);
     }
 
-    T operator[](size_t k) {
+    T operator[](int k) {
         k += size;
         propagate(k);
         return lazy[k];
     }
 
-    void update(size_t l, size_t r, const T& x) {
+    void update(int l, int r, const T& x) {
         l += size;
         r += size;
         propagate(l);
@@ -126,18 +126,18 @@ struct DualSegmentTree {
     }
 
 private:
-    size_t size, height;
+    int size, height;
     vector<T> lazy;
 
-    void push(size_t k) {
+    void push(int k) {
         if (lazy[k] == M::id) return;
         lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);
         lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);
         lazy[k] = M::id;
     }
 
-    void propagate(size_t k) {
-        for (size_t i = height; i > 0; i--) push(k >> i);
+    void propagate(int k) {
+        for (int i = height; i > 0; i--) push(k >> i);
     }
 };
 

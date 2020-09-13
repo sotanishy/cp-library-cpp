@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 10:49:49+09:00
+    - Last commit date: 2020-09-14 04:40:59+09:00
 
 
 
@@ -52,19 +52,19 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `FenwickTree(size_t n)`
+- `FenwickTree(int n)`
     - Constructs a Fenwick tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `T prefix_fold(size_t i)`
+- `T prefix_fold(int i)`
     - Calculates $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$
     - Time complexity: $O(\lg n)$
-- `void update(size_t i, T x)`
+- `void update(int i, T x)`
     - Update $a_i$ with $a_i \cdot x$
     - Time complexity: $O(\lg n)$
-- `size_t find_first(const function<bool(T)>& cond)`
+- `int find_first(const function<bool(T)>& cond)`
     - Returns the first index $i$ such that $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ satisfies the condition `cond`. Returns $n$ if not found.
     - Time complexity: $O(\lg n)$
 
@@ -89,25 +89,25 @@ template <typename M>
 struct FenwickTree {
     using T = typename M::T;
 
-    size_t n;
+    int n;
     vector<T> data;
 
-    FenwickTree(size_t n) : n(n), data(n+1, M::id) {}
+    FenwickTree(int n) : n(n), data(n+1, M::id) {}
 
-    T prefix_fold(size_t i) {
+    T prefix_fold(int i) {
         T ret = M::id;
         for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
 
-    void update(size_t i, T x) {
+    void update(int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    size_t find_first(const function<bool(T)>& cond) {
-        size_t k = 1;
+    int find_first(const function<bool(T)>& cond) {
+        int k = 1;
         while (k * 2 <= n) k <<= 1;
-        size_t i = 0;
+        int i = 0;
         T x = M::id;
         for (; k > 0; k >>= 1) {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
@@ -144,25 +144,25 @@ template <typename M>
 struct FenwickTree {
     using T = typename M::T;
 
-    size_t n;
+    int n;
     vector<T> data;
 
-    FenwickTree(size_t n) : n(n), data(n+1, M::id) {}
+    FenwickTree(int n) : n(n), data(n+1, M::id) {}
 
-    T prefix_fold(size_t i) {
+    T prefix_fold(int i) {
         T ret = M::id;
         for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
 
-    void update(size_t i, T x) {
+    void update(int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    size_t find_first(const function<bool(T)>& cond) {
-        size_t k = 1;
+    int find_first(const function<bool(T)>& cond) {
+        int k = 1;
         while (k * 2 <= n) k <<= 1;
-        size_t i = 0;
+        int i = 0;
         T x = M::id;
         for (; k > 0; k >>= 1) {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
