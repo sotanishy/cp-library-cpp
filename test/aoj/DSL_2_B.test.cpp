@@ -21,6 +21,6 @@ int main() {
         int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) ft.update(x - 1, y);
-        else cout << (ft.query(y) - ft.query(x - 1)) << "\n";
+        else cout << (ft.prefix_fold(y) - ft.prefix_fold(x - 1)) << "\n";
     }
 }

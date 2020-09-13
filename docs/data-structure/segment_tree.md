@@ -18,7 +18,7 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `SegmentTree(int n)`
+- `SegmentTree(size_t n)`
     - Constructs a segment tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 - `SegmentTree(const vector<T>& v)`
@@ -27,18 +27,18 @@ Space complexity: $O(n)$
 
 ## Member functions
 
-- `T operator[](int k)`
+- `T operator[](size_t k)`
     - Returns $a_k$.
     - Time complexity: $O(1)$
-- `void update(int k, const T& x)`
+- `void update(size_t k, const T& x)`
     - Sets $a_k$ to $x$.
     - Time complexity: $O(\lg n)$
-- `T query(int l, int r)`
+- `T fold(size_t l, size_t r)`
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$. Returns $e$ if $l = r$.
     - Time complexity: $O(\lg n)$
-- `int find_first(int l, const function<bool(T)>& cond)`
+- `int find_first(size_t l, const function<bool(T)>& cond)`
     - Returns the first index $r$ after $l$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`, assuming that the sequence is monotonic. Returns `-1` if not found.
     - Time complexity: $O(\lg n)$
-- `int find_last(int r, const function<bool(T)>& cond)`
+- `int find_last(size_t r, const function<bool(T)>& cond)`
     - Returns the last index $l$ before $r$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`, assuming that the sequence is monotonic. Returns `-1` if not found.
     - Time complexity: $O(\lg n)$

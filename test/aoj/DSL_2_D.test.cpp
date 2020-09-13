@@ -27,7 +27,7 @@ int main() {
         } else {
             int i;
             cin >> i;
-            cout << st.query(i) << "\n";
+            cout << st[i] << "\n";
         }
     }
 }

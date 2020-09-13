@@ -27,7 +27,7 @@ struct S {
         return (a * b.first + b.second) % mod;
     }
 
-    static O::E mul(O::E a, int b) {
+    static O::E mul(O::E a, size_t b) {
         return {a.first, a.second * b % mod};
     }
 };
@@ -51,7 +51,7 @@ int main() {
         } else {
             int l, r;
             cin >> l >> r;
-            cout << st.query(l, r) << "\n";
+            cout << st.fold(l, r) << "\n";
         }
     }
 }

@@ -14,18 +14,18 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `FenwickTree(int n)`
+- `FenwickTree(size_t n)`
     - Constructs a Fenwick tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `T query(int i)`
+- `T prefix_fold(size_t i)`
     - Calculates $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$
     - Time complexity: $O(\lg n)$
-- `void update(int i, T x)`
+- `void update(size_t i, T x)`
     - Update $a_i$ with $a_i \cdot x$
     - Time complexity: $O(\lg n)$
-- `int find_first(const function<bool(T)>& cond)`
+- `size_t find_first(const function<bool(T)>& cond)`
     - Returns the first index $i$ such that $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ satisfies the condition `cond`. Returns $n$ if not found.
     - Time complexity: $O(\lg n)$

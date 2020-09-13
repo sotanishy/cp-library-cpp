@@ -23,7 +23,7 @@
         return b;
     }
 
-    static O::E mul(O::E a, int b) {
+    static O::E mul(O::E a, size_t b) {
         return a;
     }
 };
@@ -43,7 +43,7 @@ int main() {
             cin >> x;
             st.update(s, t + 1, x);
         } else {
-            cout << st.query(s, t + 1) << "\n";
+            cout << st.fold(s, t + 1) << "\n";
         }
     }
 }

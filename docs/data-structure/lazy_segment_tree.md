@@ -25,11 +25,11 @@ Space complexity: $O(n)$
             - `E id`: the identity element $e_O$
             - `E op(E, E)`: an associative binary operation $\circ: E \times E \rightarrow E$
         - `T op(T, E)`: an action $*: T \times E \rightarrow T$.
-        - `E mul(E, int)`: a function $p: E \times \mathbb{N} \rightarrow E$ such that for $a \in T, x \in E, k \in \mathbb{N}$, $(a_i * x) \cdot \cdots \cdot (a_{i+k-1} * x) = (a_i \cdot \cdots \cdot a_{i+k-1}) * p(x, k)$
+        - `E mul(E, size_t)`: a function $p: E \times \mathbb{N} \rightarrow E$ such that for $a \in T, x \in E, k \in \mathbb{N}$, $(a_i * x) \cdot \cdots \cdot (a_{i+k-1} * x) = (a_i \cdot \cdots \cdot a_{i+k-1}) * p(x, k)$
 
 ## Constructor
 
-- `LazySegmentTree(int n)`
+- `LazySegmentTree(size_t n)`
     - Constructs a segment tree with lazy propagation of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 - `LazySegmentTree(const vector<T>& v)`
@@ -38,12 +38,12 @@ Space complexity: $O(n)$
 
 ## Member functions
 
-- `T operator[](int k)`
+- `T operator[](size_t k)`
     - Returns $a_k$.
     - Time complexity: $O(\lg n)$
-- `void update(int l, int r, const E& x)`
+- `void update(size_t l, size_t r, const E& x)`
     - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
     - Time complexity: $O(\lg n)$
-- `T query(int a, int b)`
-    - Returns $a_a \cdot a_{a+1} \cdot \cdots \cdot a_{b-1}\$.
+- `T fold(size_t l, size_t r)`
+    - Returns $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}\$.
     - Time complexity: $O(\lg n)$

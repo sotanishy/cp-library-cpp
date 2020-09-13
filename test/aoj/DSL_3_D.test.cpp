@@ -16,7 +16,7 @@ int main() {
     SparseTable<int, f> st(a);
 
     for (int i = 0; i < N - L + 1; i++) {
-        cout << st.query(i, i + L);
+        cout << st.fold(i, i + L);
         if (i < N - L) cout << " ";
         else cout << "\n";
     }

@@ -25,7 +25,7 @@ struct S {
         return a + b;
     }
 
-    static O::E mul(O::E a, int b) {
+    static O::E mul(O::E a, size_t b) {
         return a * b;
     }
 };
@@ -45,7 +45,7 @@ int main() {
             cin >> x;
             st.update(s - 1, t, x);
         } else {
-            cout << st.query(s - 1, t) << "\n";
+            cout << st.fold(s - 1, t) << "\n";
         }
     }
 }

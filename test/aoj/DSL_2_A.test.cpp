@@ -21,6 +21,6 @@ int main() {
         int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) st.update(x, y);
-        else cout << st.query(x, y + 1) << "\n";
+        else cout << st.fold(x, y + 1) << "\n";
     }
 }

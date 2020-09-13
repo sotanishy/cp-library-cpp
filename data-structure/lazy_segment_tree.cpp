@@ -12,7 +12,7 @@ struct LazySegmentTree {
     using O = typename S::O;
     using E = typename O::E;
 
-    LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, V::id)) {}
+    LazySegmentTree(size_t n) : LazySegmentTree(vector<T>(n, V::id)) {}
     LazySegmentTree(const vector<T>& v) {
         size = 1;
         height = 0;
@@ -20,46 +20,23 @@ struct LazySegmentTree {
         node.resize(2 * size, V::id);
         lazy.resize(2 * size, O::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; i--) node[i] = V::op(node[2 * i], node[2 * i + 1]);
+        for (size_t i = size - 1; i > 0; i--) node[i] = V::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](int k) {
-        return query(k, k + 1);
+    T operator[](size_t k) {
+        return fold(k, k + 1);
     }
 
-    void update(int a, int b, const E& x, int k = 1, int l = 0, int r = -1) {
-        if (r == -1) r = size;
+    void update(size_t l, size_t r, const E& x) { update(l, r, x, 1, 0, size); }
 
-        push(k, r - l);
-        if (r <= a || b <= l) return;
-        if (a <= l && r <= b) {
-            lazy[k] = O::op(lazy[k], x);
-            push(k, r - l);
-            return;
-        }
-        int m = (l + r) / 2;
-        update(a, b, x, 2 * k, l, m);
-        update(a, b, x, 2 * k + 1, m, r);
-        node[k] = V::op(node[2 * k], node[2 * k + 1]);
-    }
-
-    T query(int a, int b, int k = 1, int l = 0, int r = -1) {
-        if (r == -1) r = size;
-
-        push(k, r - l);
-        if (r <= a || b <= l) return V::id;
-        if (a <= l && r <= b) return node[k];
-        int m = (l + r) / 2;
-        return V::op(query(a, b, 2 * k, l, m),
-                     query(a, b, 2 * k + 1, m, r));
-    }
+    T fold(size_t l, size_t r) { return fold(l, r, 1, 0, size); }
 
 private:
-    int size, height;
+    size_t size, height;
     vector<T> node;
     vector<E> lazy;
 
-    void push(int k, int len) {
+    void push(size_t k, size_t len) {
         if (lazy[k] == O::id) return;
         if (k < size) {
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
@@ -67,6 +44,29 @@ private:
         }
         node[k] = S::op(node[k], S::mul(lazy[k], len));
         lazy[k] = O::id;
+    }
+
+    void update(size_t a, size_t b, const E& x, size_t k, size_t l, size_t r) {
+        push(k, r - l);
+        if (r <= a || b <= l) return;
+        if (a <= l && r <= b) {
+            lazy[k] = O::op(lazy[k], x);
+            push(k, r - l);
+            return;
+        }
+        size_t m = (l + r) / 2;
+        update(a, b, x, 2 * k, l, m);
+        update(a, b, x, 2 * k + 1, m, r);
+        node[k] = V::op(node[2 * k], node[2 * k + 1]);
+    }
+
+    T fold(size_t a, size_t b, size_t k, int l, int r) {
+        push(k, r - l);
+        if (r <= a || b <= l) return V::id;
+        if (a <= l && r <= b) return node[k];
+        int m = (l + r) / 2;
+        return V::op(fold(a, b, 2 * k, l, m),
+                     fold(a, b, 2 * k + 1, m, r));
     }
 };
 
@@ -91,7 +91,7 @@ private:
 //         return a + b;
 //     }
 
-//     static O::E mul(O::E a, int b) {
+//     static O::E mul(O::E a, size_t b) {
 //         return a * b;
 //     }
 // };

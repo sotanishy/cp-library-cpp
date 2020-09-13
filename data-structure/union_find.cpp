@@ -8,14 +8,14 @@ using namespace std;
 struct UnionFind {
     vector<int> par;
 
-    UnionFind(int n) : par(n, -1) {}
+    UnionFind(size_t n) : par(n, -1) {}
 
-    int find(int x) {
+    size_t find(size_t x) {
         if (par[x] < 0) return x;
         return par[x] = find(par[x]);
     }
 
-    void unite(int x, int y) {
+    void unite(size_t x, size_t y) {
         x = find(x);
         y = find(y);
         if (x == y) return;
@@ -24,11 +24,11 @@ struct UnionFind {
         par[y] = x;
     }
 
-    bool same(int x, int y) {
+    bool same(size_t x, size_t y) {
         return find(x) == find(y);
     }
 
-    int size(int x) {
+    size_t size(size_t x) {
         return -par[find(x)];
     }
 };

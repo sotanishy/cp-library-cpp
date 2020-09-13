@@ -31,7 +31,7 @@ int main() {
         } else {
             int l, r;
             cin >> l >> r;
-            cout << st.query(l, r) << "\n";
+            cout << st.fold(l, r) << "\n";
         }
     }
 }

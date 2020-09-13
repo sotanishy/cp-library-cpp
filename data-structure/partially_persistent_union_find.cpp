@@ -6,19 +6,22 @@ using namespace std;
  * @docs docs/data-structure/partially_persistent_union_find.md
  */
 struct PartiallyPersistentUnionFind {
-    vector<int> par, time;
-    vector<vector<pair<int, int>>> sz;
-    int now = 0;
-    const int INF = 1e9;
+    using time_type = unsigned int;
 
-    PartiallyPersistentUnionFind(int n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
+    vector<size_t> par;
+    vector<time_type> time;
+    vector<vector<pair<time_type, size_t>>> sz;
+    time_type now = 0;
+    const time_type INF = numeric_limits<time_type>::max();
 
-    int find(int t, int x) {
+    PartiallyPersistentUnionFind(size_t n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
+
+    size_t find(time_type t, size_t x) {
         if (t < time[x]) return x;
         return find(t, par[x]);
     }
 
-    void unite(int x, int y) {
+    void unite(size_t x, size_t y) {
         now++;
         x = find(now, x);
         y = find(now, y);
@@ -30,11 +33,11 @@ struct PartiallyPersistentUnionFind {
         time[y] = now;
     }
 
-    bool same(int t, int x, int y) {
+    bool same(time_type t, size_t x, size_t y) {
         return find(t, x) == find(t, y);
     }
 
-    int size(int t, int x) {
+    size_t size(time_type t, size_t x) {
         x = find(t, x);
         return (--lower_bound(sz[x].begin(), sz[x].end(), make_pair(t, INF)))->second;
     }

@@ -13,28 +13,28 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `WeightedUnionFind(int n)`
+- `WeightedUnionFind(size_t n)`
     - Constructs a weighted union find of size `n`.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `int find(int x)`
+- `size_t find(size_t x)`
     - Returns the root of the tree $x$ belongs to.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `T weight(int x)`
+- `T weight(size_t x)`
     - Returns the weight of $x$ relative to the root of the set.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `void unite(int x, int y, T w)`
+- `void unite(size_t x, size_t y, T w)`
     - Unites the set $x$ belongs to and the set $y$ belongs to, so that $weight(y) - weight(x) = w$.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `bool same(int x, int y)`
+- `bool same(size_t x, size_t y)`
     - Checks if $x$ and $y$ are in the same set.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `T diff(int x, int y)`
+- `T diff(size_t x, size_t y)`
     - Returns the weight of $y$ relative to $x$, i.e. $weight(y) - weight(x)$.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `int size(int x)`
+- `size_t size(size_t x)`
     - Returns the size of the set $x$ belongs to.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
 

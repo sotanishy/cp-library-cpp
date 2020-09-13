@@ -37,7 +37,7 @@ int main() {
         } else {
             int l, r, x;
             cin >> l >> r >> x;
-            auto f = st.query(l, r);
+            auto f = st.fold(l, r);
             cout << (f.first * x + f.second) % mod << "\n";
         }
     }

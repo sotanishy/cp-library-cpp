@@ -18,18 +18,15 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `DualSegmentTree(int n)`
+- `DualSegmentTree(size_t n)`
     - Constructs a dual segment tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 
 ## Methods
 
-- `T operator[](int k)`
-    - Returns $a_k$ (same as `T query(int k)`).
+- `T operator[](size_t k)`
+    - Returns $a_k$.
     - Time complexity: $O(\lg n)$
-- `void update(int l, int r, const T& x)`
+- `void update(size_t l, size_t r, const T& x)`
     - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
-    - Time complexity: $O(\lg n)$
-- `T query(int k)`
-    - Returns $a_k$ (same as `T operator[](int k)`).
     - Time complexity: $O(\lg n)$
