@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/staticrmq.test.cpp
+# :x: test/yosupo/staticrmq.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/staticrmq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 01:20:21+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
+* :x: <a href="../../../library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
 
 
 ## Code
@@ -65,7 +65,7 @@ int main() {
     for (int i = 0; i < Q; i++) {
         int l, r;
         cin >> l >> r;
-        cout << st.query(l, r) << "\n";
+        cout << st.fold(l, r) << "\n";
     }
 }
 ```
@@ -90,29 +90,29 @@ struct DisjointSparseTable {
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
-        int n = v.size(), b = 0;
+        size_t n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
         copy(v.begin(), v.end(), lookup[0].begin());
-        for (int i = 1; i <= b; i++) {
-            int len = 1 << i;
-            for (int l = 0; l + len / 2 < n; l += len) {
-                int m = l + len / 2;
+        for (size_t i = 1; i <= b; i++) {
+            size_t len = 1 << i;
+            for (size_t l = 0; l + len / 2 < n; l += len) {
+                size_t m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (int j = m - 2; j >= l; j--) {
+                for (size_t j = m - 2; j >= l; j--) {
                     lookup[i][j] = op(v[j], lookup[i][j + 1]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = m + 1; j < min(l + len, n); j++) {
+                for (size_t j = m + 1; j < min(l + len, n); j++) {
                     lookup[i][j] = op(lookup[i][j - 1], v[j]);
                 }
             }
         }
     }
 
-    T query(int l, int r) {
+    T fold(size_t l, size_t r) {
         if (r - l == 1) return lookup[0][l];
-        int i = 32 - __builtin_clz(l ^ (r - 1));
+        size_t i = 32 - __builtin_clz(l ^ (r - 1));
         return op(lookup[i][l], lookup[i][r - 1]);
     }
 };
@@ -132,7 +132,7 @@ int main() {
     for (int i = 0; i < Q; i++) {
         int l, r;
         cin >> l >> r;
-        cout << st.query(l, r) << "\n";
+        cout << st.fold(l, r) << "\n";
     }
 }
 

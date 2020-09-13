@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
+* :question: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 * :heavy_check_mark: <a href="../../../library/graph/prim.cpp.html">Prim's Algorithm <small>(graph/prim.cpp)</small></a>
 
 

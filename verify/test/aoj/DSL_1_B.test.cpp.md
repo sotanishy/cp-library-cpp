@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_1_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B</a>
@@ -96,21 +96,21 @@ struct WeightedUnionFind {
     vector<int> par;
     vector<T> ws;
 
-    WeightedUnionFind(int n) : par(n, -1), ws(n) {}
+    WeightedUnionFind(size_t n) : par(n, -1), ws(n) {}
 
-    int find(int x) {
+    size_t find(size_t x) {
         if (par[x] < 0) return x;
-        int r = find(par[x]);
+        size_t r = find(par[x]);
         ws[x] += ws[par[x]];
         return par[x] = r;
     }
 
-    T weight(int x) {
+    T weight(size_t x) {
         find(x);
         return ws[x];
     }
 
-    bool unite(int x, int y, T w) {
+    bool unite(size_t x, size_t y, T w) {
         w += weight(x);
         w -= weight(y);
         x = find(x);
@@ -126,15 +126,15 @@ struct WeightedUnionFind {
         return true;
     }
 
-    bool same(int x, int y) {
+    bool same(size_t x, size_t y) {
         return find(x) == find(y);
     }
 
-    T diff(int x, int y) {
+    T diff(size_t x, size_t y) {
         return weight(y) - weight(x);
     }
 
-    int size(int x) {
+    size_t size(size_t x) {
         return -par[find(x)];
     }
 };

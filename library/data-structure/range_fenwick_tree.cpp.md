@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small>
+# :x: Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/range_fenwick_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 21:10:15+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 
@@ -46,22 +46,22 @@ Space complexity: $O(n)$
 
 ## Template parameters
 
-- `RangeFenwickTree(int n)`
+- `RangeFenwickTree(size_t n)`
     - Constructs a Fenwick tree with range update of size `n` with all elements initialized to $0$.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `T sum(int i)`
+- `T sum(size_t i)`
     - Calculates the prefix sum, i.e. calculates the sum $a_0, a_1, \dots, a_i$
     - Time complexity: $O(\lg n)$
-- `void add(int l, int r, T x)`
+- `void add(size_t l, size_t r, T x)`
     - Adds $x$ to $a_l, \dots, a_r$
     - Time complexity: $O(\lg n)$
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
 
 
 ## Code
@@ -79,13 +79,13 @@ using namespace std;
 template <typename T>
 struct RangeFenwickTree {
 public:
-    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
+    RangeFenwickTree(size_t n) : n(n), data0(n+1), data1(n+1) {}
 
-    T sum(int i) {
+    T sum(size_t i) {
         return sum(data0, i) * i + sum(data1, i);
     }
 
-    void add(int l, int r, T x) {
+    void add(size_t l, size_t r, T x) {
         add(data0, l, x);
         add(data0, r + 1, -x);
         add(data1, l, -x * (l - 1));
@@ -93,16 +93,16 @@ public:
     }
 
 private:
-    int n;
+    size_t n;
     vector<T> data0, data1;
 
-    T sum(vector<T>& data, int i) {
+    T sum(vector<T>& data, size_t i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void add(vector<T>& data, int i, T x) {
+    void add(vector<T>& data, size_t i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 };
@@ -123,13 +123,13 @@ using namespace std;
 template <typename T>
 struct RangeFenwickTree {
 public:
-    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
+    RangeFenwickTree(size_t n) : n(n), data0(n+1), data1(n+1) {}
 
-    T sum(int i) {
+    T sum(size_t i) {
         return sum(data0, i) * i + sum(data1, i);
     }
 
-    void add(int l, int r, T x) {
+    void add(size_t l, size_t r, T x) {
         add(data0, l, x);
         add(data0, r + 1, -x);
         add(data1, l, -x * (l - 1));
@@ -137,16 +137,16 @@ public:
     }
 
 private:
-    int n;
+    size_t n;
     vector<T> data0, data1;
 
-    T sum(vector<T>& data, int i) {
+    T sum(vector<T>& data, size_t i) {
         T ret = 0;
         for (i++; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void add(vector<T>& data, int i, T x) {
+    void add(vector<T>& data, size_t i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 };

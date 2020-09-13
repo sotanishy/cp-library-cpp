@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Segment Tree <small>(data-structure/segment_tree.cpp)</small>
+# :question: Segment Tree <small>(data-structure/segment_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 
@@ -40,9 +40,9 @@ layout: default
 
 A segment tree is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e)$ and offers point update and range query operations.
 
-For range update and point query, use [a dual segment tree](dual_segment_tree.md)
+For range update and point query, use a dual segment tree.
 
-For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
+For range update and range query, use a segment tree with lazy propagation.
 
 Space complexity: $O(n)$
 
@@ -56,7 +56,7 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `SegmentTree(int n)`
+- `SegmentTree(size_t n)`
     - Constructs a segment tree of size `n` with all elements set to the identity $e$.
     - Time complexity: $O(n)$
 - `SegmentTree(const vector<T>& v)`
@@ -65,27 +65,27 @@ Space complexity: $O(n)$
 
 ## Member functions
 
-- `T operator[](int k)`
+- `T operator[](size_t k)`
     - Returns $a_k$.
     - Time complexity: $O(1)$
-- `void update(int k, const T& x)`
+- `void update(size_t k, const T& x)`
     - Sets $a_k$ to $x$.
     - Time complexity: $O(\lg n)$
-- `T query(int l, int r)`
+- `T fold(size_t l, size_t r)`
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$. Returns $e$ if $l = r$.
     - Time complexity: $O(\lg n)$
-- `int find_first(int l, const function<bool(T)>& cond)`
+- `int find_first(size_t l, const function<bool(T)>& cond)`
     - Returns the first index $r$ after $l$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`, assuming that the sequence is monotonic. Returns `-1` if not found.
     - Time complexity: $O(\lg n)$
-- `int find_last(int r, const function<bool(T)>& cond)`
+- `int find_last(size_t r, const function<bool(T)>& cond)`
     - Returns the last index $l$ before $r$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`, assuming that the sequence is monotonic. Returns `-1` if not found.
     - Time complexity: $O(\lg n)$
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/test/yosupo/point_add_range_sum.test.cpp.html">test/yosupo/point_add_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/test/yosupo/point_set_range_composite.test.cpp.html">test/yosupo/point_set_range_composite.test.cpp</a>
+* :x: <a href="../../verify/test/yosupo/point_add_range_sum.test.cpp.html">test/yosupo/point_add_range_sum.test.cpp</a>
+* :x: <a href="../../verify/test/yosupo/point_set_range_composite.test.cpp.html">test/yosupo/point_set_range_composite.test.cpp</a>
 
 
 ## Code
@@ -104,29 +104,29 @@ template <typename M>
 struct SegmentTree {
     using T = typename M::T;
 
-    int size;
+    size_t size;
     vector<T> node;
 
-    SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
+    SegmentTree(size_t n) : SegmentTree(vector<T>(n, M::id)) {}
     SegmentTree(const vector<T>& v) {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (size_t i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](int k) const {
+    T operator[](size_t k) const {
         return node[k + size];
     }
 
-    void update(int k, const T& x) {
+    void update(size_t k, const T& x) {
         k += size;
         node[k] = x;
         while (k >>= 1) node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T query(int l, int r) {
+    T fold(size_t l, size_t r) {
         T vl = M::id, vr = M::id;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) vl = M::op(vl, node[l++]);
@@ -135,9 +135,9 @@ struct SegmentTree {
         return M::op(vl, vr);
     }
 
-    int find_first(int l, const function<bool(T)>& cond) {
+    int find_first(size_t l, const function<bool(T)>& cond) {
         T vl = M::id;
-        int r = 2 * size;
+        size_t r = 2 * size;
         for (l += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
                 T nxt = M::op(vl, node[l]);
@@ -156,9 +156,9 @@ struct SegmentTree {
         return -1;
     }
 
-    int find_last(int r, const function<bool(T)>& cond) {
+    int find_last(size_t r, const function<bool(T)>& cond) {
         T vr = M::id;
-        int l = size;
+        size_t l = size;
         for (r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {
                 r--;
@@ -203,29 +203,29 @@ template <typename M>
 struct SegmentTree {
     using T = typename M::T;
 
-    int size;
+    size_t size;
     vector<T> node;
 
-    SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
+    SegmentTree(size_t n) : SegmentTree(vector<T>(n, M::id)) {}
     SegmentTree(const vector<T>& v) {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (size_t i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](int k) const {
+    T operator[](size_t k) const {
         return node[k + size];
     }
 
-    void update(int k, const T& x) {
+    void update(size_t k, const T& x) {
         k += size;
         node[k] = x;
         while (k >>= 1) node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T query(int l, int r) {
+    T fold(size_t l, size_t r) {
         T vl = M::id, vr = M::id;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) vl = M::op(vl, node[l++]);
@@ -234,9 +234,9 @@ struct SegmentTree {
         return M::op(vl, vr);
     }
 
-    int find_first(int l, const function<bool(T)>& cond) {
+    int find_first(size_t l, const function<bool(T)>& cond) {
         T vl = M::id;
-        int r = 2 * size;
+        size_t r = 2 * size;
         for (l += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
                 T nxt = M::op(vl, node[l]);
@@ -255,9 +255,9 @@ struct SegmentTree {
         return -1;
     }
 
-    int find_last(int r, const function<bool(T)>& cond) {
+    int find_last(size_t r, const function<bool(T)>& cond) {
         T vr = M::id;
-        int l = size;
+        size_t l = size;
         for (r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {
                 r--;

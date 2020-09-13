@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/point_set_range_composite.test.cpp
+# :x: test/yosupo/point_set_range_composite.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/point_set_range_composite.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 01:07:34+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/segment_tree.cpp.html">Segment Tree <small>(data-structure/segment_tree.cpp)</small></a>
+* :question: <a href="../../../library/data-structure/segment_tree.cpp.html">Segment Tree <small>(data-structure/segment_tree.cpp)</small></a>
 
 
 ## Code
@@ -86,7 +86,7 @@ int main() {
         } else {
             int l, r, x;
             cin >> l >> r >> x;
-            auto f = st.query(l, r);
+            auto f = st.fold(l, r);
             cout << (f.first * x + f.second) % mod << "\n";
         }
     }
@@ -112,29 +112,29 @@ template <typename M>
 struct SegmentTree {
     using T = typename M::T;
 
-    int size;
+    size_t size;
     vector<T> node;
 
-    SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
+    SegmentTree(size_t n) : SegmentTree(vector<T>(n, M::id)) {}
     SegmentTree(const vector<T>& v) {
         size = 1;
         while (size < v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (size_t i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](int k) const {
+    T operator[](size_t k) const {
         return node[k + size];
     }
 
-    void update(int k, const T& x) {
+    void update(size_t k, const T& x) {
         k += size;
         node[k] = x;
         while (k >>= 1) node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T query(int l, int r) {
+    T fold(size_t l, size_t r) {
         T vl = M::id, vr = M::id;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) vl = M::op(vl, node[l++]);
@@ -143,9 +143,9 @@ struct SegmentTree {
         return M::op(vl, vr);
     }
 
-    int find_first(int l, const function<bool(T)>& cond) {
+    int find_first(size_t l, const function<bool(T)>& cond) {
         T vl = M::id;
-        int r = 2 * size;
+        size_t r = 2 * size;
         for (l += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
                 T nxt = M::op(vl, node[l]);
@@ -164,9 +164,9 @@ struct SegmentTree {
         return -1;
     }
 
-    int find_last(int r, const function<bool(T)>& cond) {
+    int find_last(size_t r, const function<bool(T)>& cond) {
         T vr = M::id;
-        int l = size;
+        size_t l = size;
         for (r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {
                 r--;
@@ -230,7 +230,7 @@ int main() {
         } else {
             int l, r, x;
             cin >> l >> r >> x;
-            auto f = st.query(l, r);
+            auto f = st.fold(l, r);
             cout << (f.first * x + f.second) % mod << "\n";
         }
     }

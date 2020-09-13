@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL_2_E.test.cpp
+# :x: test/aoj/DSL_2_E.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_E.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
+* :x: <a href="../../../library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
 
 
 ## Code
@@ -76,7 +76,7 @@ int main() {
         } else {
             int i;
             cin >> i;
-            cout << st.query(i - 1) << "\n";
+            cout << st[i - 1] << "\n";
         }
     }
 }
@@ -101,18 +101,20 @@ template <typename M>
 struct DualSegmentTree {
     using T = typename M::T;
 
-    DualSegmentTree(int n) {
+    DualSegmentTree(size_t n) {
         size = 1;
         height = 1;
         while (size < n) size <<= 1, height++;
         lazy.resize(2 * size, M::id);
     }
 
-    T operator[](int k) {
-        return query(k);
+    T operator[](size_t k) {
+        k += size;
+        propagate(k);
+        return lazy[k];
     }
 
-    void update(int l, int r, const T& x) {
+    void update(size_t l, size_t r, const T& x) {
         l += size;
         r += size;
         propagate(l);
@@ -123,25 +125,19 @@ struct DualSegmentTree {
         }
     }
 
-    T query(int k) {
-        k += size;
-        propagate(k);
-        return lazy[k];
-    }
-
 private:
-    int size, height;
+    size_t size, height;
     vector<T> lazy;
 
-    void push(int k) {
+    void push(size_t k) {
         if (lazy[k] == M::id) return;
         lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);
         lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);
         lazy[k] = M::id;
     }
 
-    void propagate(int k) {
-        for (int i = height; i > 0; i--) push(k >> i);
+    void propagate(size_t k) {
+        for (size_t i = height; i > 0; i--) push(k >> i);
     }
 };
 
@@ -179,7 +175,7 @@ int main() {
         } else {
             int i;
             cin >> i;
-            cout << st.query(i - 1) << "\n";
+            cout << st[i - 1] << "\n";
         }
     }
 }

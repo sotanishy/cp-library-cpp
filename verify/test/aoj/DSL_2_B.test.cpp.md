@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 01:20:21+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
@@ -70,7 +70,7 @@ int main() {
         int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) ft.update(x - 1, y);
-        else cout << (ft.query(y) - ft.query(x - 1)) << "\n";
+        else cout << (ft.prefix_fold(y) - ft.prefix_fold(x - 1)) << "\n";
     }
 }
 ```
@@ -94,25 +94,25 @@ template <typename M>
 struct FenwickTree {
     using T = typename M::T;
 
-    int n;
+    size_t n;
     vector<T> data;
 
-    FenwickTree(int n) : n(n), data(n+1, M::id) {}
+    FenwickTree(size_t n) : n(n), data(n+1, M::id) {}
 
-    T query(int i) {
+    T prefix_fold(size_t i) {
         T ret = M::id;
         for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
 
-    void update(int i, T x) {
+    void update(size_t i, T x) {
         for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    int find_first(const function<bool(T)>& cond) {
-        int k = 1;
+    size_t find_first(const function<bool(T)>& cond) {
+        size_t k = 1;
         while (k * 2 <= n) k <<= 1;
-        int i = 0;
+        size_t i = 0;
         T x = M::id;
         for (; k > 0; k >>= 1) {
             if (i + k <= n && !cond(M::op(x, data[i+k]))) {
@@ -152,7 +152,7 @@ int main() {
         int com, x, y;
         cin >> com >> x >> y;
         if (com == 0) ft.update(x - 1, y);
-        else cout << (ft.query(y) - ft.query(x - 1)) << "\n";
+        else cout << (ft.prefix_fold(y) - ft.prefix_fold(x - 1)) << "\n";
     }
 }
 

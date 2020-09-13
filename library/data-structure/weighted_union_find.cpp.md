@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/weighted_union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 18:56:12+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 
@@ -51,28 +51,28 @@ Space complexity: $O(n)$
 
 ## Constructor
 
-- `WeightedUnionFind(int n)`
+- `WeightedUnionFind(size_t n)`
     - Constructs a weighted union find of size `n`.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `int find(int x)`
+- `size_t find(size_t x)`
     - Returns the root of the tree $x$ belongs to.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `T weight(int x)`
+- `T weight(size_t x)`
     - Returns the weight of $x$ relative to the root of the set.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `void unite(int x, int y, T w)`
+- `void unite(size_t x, size_t y, T w)`
     - Unites the set $x$ belongs to and the set $y$ belongs to, so that $weight(y) - weight(x) = w$.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `bool same(int x, int y)`
+- `bool same(size_t x, size_t y)`
     - Checks if $x$ and $y$ are in the same set.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `T diff(int x, int y)`
+- `T diff(size_t x, size_t y)`
     - Returns the weight of $y$ relative to $x$, i.e. $weight(y) - weight(x)$.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
-- `int size(int x)`
+- `size_t size(size_t x)`
     - Returns the size of the set $x$ belongs to.
     - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
 
@@ -102,21 +102,21 @@ struct WeightedUnionFind {
     vector<int> par;
     vector<T> ws;
 
-    WeightedUnionFind(int n) : par(n, -1), ws(n) {}
+    WeightedUnionFind(size_t n) : par(n, -1), ws(n) {}
 
-    int find(int x) {
+    size_t find(size_t x) {
         if (par[x] < 0) return x;
-        int r = find(par[x]);
+        size_t r = find(par[x]);
         ws[x] += ws[par[x]];
         return par[x] = r;
     }
 
-    T weight(int x) {
+    T weight(size_t x) {
         find(x);
         return ws[x];
     }
 
-    bool unite(int x, int y, T w) {
+    bool unite(size_t x, size_t y, T w) {
         w += weight(x);
         w -= weight(y);
         x = find(x);
@@ -132,15 +132,15 @@ struct WeightedUnionFind {
         return true;
     }
 
-    bool same(int x, int y) {
+    bool same(size_t x, size_t y) {
         return find(x) == find(y);
     }
 
-    T diff(int x, int y) {
+    T diff(size_t x, size_t y) {
         return weight(y) - weight(x);
     }
 
-    int size(int x) {
+    size_t size(size_t x) {
         return -par[find(x)];
     }
 };
@@ -163,21 +163,21 @@ struct WeightedUnionFind {
     vector<int> par;
     vector<T> ws;
 
-    WeightedUnionFind(int n) : par(n, -1), ws(n) {}
+    WeightedUnionFind(size_t n) : par(n, -1), ws(n) {}
 
-    int find(int x) {
+    size_t find(size_t x) {
         if (par[x] < 0) return x;
-        int r = find(par[x]);
+        size_t r = find(par[x]);
         ws[x] += ws[par[x]];
         return par[x] = r;
     }
 
-    T weight(int x) {
+    T weight(size_t x) {
         find(x);
         return ws[x];
     }
 
-    bool unite(int x, int y, T w) {
+    bool unite(size_t x, size_t y, T w) {
         w += weight(x);
         w -= weight(y);
         x = find(x);
@@ -193,15 +193,15 @@ struct WeightedUnionFind {
         return true;
     }
 
-    bool same(int x, int y) {
+    bool same(size_t x, size_t y) {
         return find(x) == find(y);
     }
 
-    T diff(int x, int y) {
+    T diff(size_t x, size_t y) {
         return weight(y) - weight(x);
     }
 
-    int size(int x) {
+    size_t size(size_t x) {
         return -par[find(x)];
     }
 };

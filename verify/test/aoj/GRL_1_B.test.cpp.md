@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/graph/bellman_ford.cpp.html">Bellman-Ford Algorithm <small>(graph/bellman_ford.cpp)</small></a>
-* :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
+* :question: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 
 
 ## Code

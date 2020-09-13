@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Kruskal's Algorithm <small>(graph/kruskal.cpp)</small>
+# :x: Kruskal's Algorithm <small>(graph/kruskal.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/kruskal.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 22:35:33+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 
@@ -46,13 +46,13 @@ Kruskal's algorithm is an algorithm for finding the minimum spanning tree of an 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
-* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
+* :question: <a href="../data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
+* :question: <a href="edge.cpp.html">graph/edge.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
 
 
 ## Code
@@ -112,14 +112,14 @@ using namespace std;
 struct UnionFind {
     vector<int> par;
 
-    UnionFind(int n) : par(n, -1) {}
+    UnionFind(size_t n) : par(n, -1) {}
 
-    int find(int x) {
+    size_t find(size_t x) {
         if (par[x] < 0) return x;
         return par[x] = find(par[x]);
     }
 
-    void unite(int x, int y) {
+    void unite(size_t x, size_t y) {
         x = find(x);
         y = find(y);
         if (x == y) return;
@@ -128,11 +128,11 @@ struct UnionFind {
         par[y] = x;
     }
 
-    bool same(int x, int y) {
+    bool same(size_t x, size_t y) {
         return find(x) == find(y);
     }
 
-    int size(int x) {
+    size_t size(size_t x) {
         return -par[find(x)];
     }
 };

@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
+# :x: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint_sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 01:20:21+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 
@@ -40,14 +40,14 @@ layout: default
 
 A disjoint sparse table is a data structure that can quickly answer range queries on a static sequence of a semigroup $(T, \cdot)$.
 
-The binary operation $\cdot$ is not required to be idempotent; for idempotent operations, [a sparse table](sparse_table.md) might be faster by a constant factor.
+If the binary operation $\cdot$ is idempotent, a sparse table might be faster by a constant factor.
 
 Space complexity: $O(n \lg n)$
 
 ## Template parameters
 
 - `T`
-    - The type of the elements.
+    - The type of the set $T$.
 
 - `T op(T, T)`
     - An associative binary operation $\cdot: T \times T \rightarrow T$.
@@ -60,13 +60,13 @@ Space complexity: $O(n \lg n)$
 
 ## Member functions
 
-- `T query(int l, int r)`
+- `T fold(size_t l, size_t r)`
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
     - Time complexity: $O(1)$
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
+* :x: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
 
 
 ## Code
@@ -86,29 +86,29 @@ struct DisjointSparseTable {
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
-        int n = v.size(), b = 0;
+        size_t n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
         copy(v.begin(), v.end(), lookup[0].begin());
-        for (int i = 1; i <= b; i++) {
-            int len = 1 << i;
-            for (int l = 0; l + len / 2 < n; l += len) {
-                int m = l + len / 2;
+        for (size_t i = 1; i <= b; i++) {
+            size_t len = 1 << i;
+            for (size_t l = 0; l + len / 2 < n; l += len) {
+                size_t m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (int j = m - 2; j >= l; j--) {
+                for (size_t j = m - 2; j >= l; j--) {
                     lookup[i][j] = op(v[j], lookup[i][j + 1]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = m + 1; j < min(l + len, n); j++) {
+                for (size_t j = m + 1; j < min(l + len, n); j++) {
                     lookup[i][j] = op(lookup[i][j - 1], v[j]);
                 }
             }
         }
     }
 
-    T query(int l, int r) {
+    T fold(size_t l, size_t r) {
         if (r - l == 1) return lookup[0][l];
-        int i = 32 - __builtin_clz(l ^ (r - 1));
+        size_t i = 32 - __builtin_clz(l ^ (r - 1));
         return op(lookup[i][l], lookup[i][r - 1]);
     }
 };
@@ -131,29 +131,29 @@ struct DisjointSparseTable {
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
-        int n = v.size(), b = 0;
+        size_t n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
         copy(v.begin(), v.end(), lookup[0].begin());
-        for (int i = 1; i <= b; i++) {
-            int len = 1 << i;
-            for (int l = 0; l + len / 2 < n; l += len) {
-                int m = l + len / 2;
+        for (size_t i = 1; i <= b; i++) {
+            size_t len = 1 << i;
+            for (size_t l = 0; l + len / 2 < n; l += len) {
+                size_t m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (int j = m - 2; j >= l; j--) {
+                for (size_t j = m - 2; j >= l; j--) {
                     lookup[i][j] = op(v[j], lookup[i][j + 1]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = m + 1; j < min(l + len, n); j++) {
+                for (size_t j = m + 1; j < min(l + len, n); j++) {
                     lookup[i][j] = op(lookup[i][j - 1], v[j]);
                 }
             }
         }
     }
 
-    T query(int l, int r) {
+    T fold(size_t l, size_t r) {
         if (r - l == 1) return lookup[0][l];
-        int i = 32 - __builtin_clz(l ^ (r - 1));
+        size_t i = 32 - __builtin_clz(l ^ (r - 1));
         return op(lookup[i][l], lookup[i][r - 1]);
     }
 };

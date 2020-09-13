@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL_3_D.test.cpp
+# :x: test/aoj/DSL_3_D.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_3_D.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 00:11:57+09:00
+    - Last commit date: 2020-09-13 10:49:49+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
+* :x: <a href="../../../library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
 
 
 ## Code
@@ -65,7 +65,7 @@ int main() {
     SparseTable<int, f> st(a);
 
     for (int i = 0; i < N - L + 1; i++) {
-        cout << st.query(i, i + L);
+        cout << st.fold(i, i + L);
         if (i < N - L) cout << " ";
         else cout << "\n";
     }
@@ -92,19 +92,19 @@ struct SparseTable {
     vector<vector<T>> lookup;
 
     SparseTable(const vector<T>& v) {
-        int n = v.size(), b = 0;
+        size_t n = v.size(), b = 0;
         while ((1 << b) <= n) b++;
         lookup.resize(b, vector<T>(n));
         copy(v.begin(), v.end(), lookup[0].begin());
-        for (int i = 1; i < b; i++) {
-            for (int j = 0; j + (1 << i) <= n; j++) {
+        for (size_t i = 1; i < b; i++) {
+            for (size_t j = 0; j + (1 << i) <= n; j++) {
                 lookup[i][j] = op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
 
-    T query(int l, int r) {
-        int i = 31 - __builtin_clz(r - l);
+    T fold(size_t l, size_t r) {
+        size_t i = 31 - __builtin_clz(r - l);
         return op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 };
@@ -124,7 +124,7 @@ int main() {
     SparseTable<int, f> st(a);
 
     for (int i = 0; i < N - L + 1; i++) {
-        cout << st.query(i, i + L);
+        cout << st.fold(i, i + L);
         if (i < N - L) cout << " ";
         else cout << "\n";
     }

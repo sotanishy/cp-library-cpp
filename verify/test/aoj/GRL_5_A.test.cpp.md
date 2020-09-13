@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
+* :question: <a href="../../../library/graph/edge.cpp.html">graph/edge.cpp</a>
 * :heavy_check_mark: <a href="../../../library/tree/tree_diameter.cpp.html">Diameter of a Tree <small>(tree/tree_diameter.cpp)</small></a>
 
 
