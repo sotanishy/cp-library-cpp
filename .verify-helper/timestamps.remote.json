@@ -31,6 +31,7 @@
 "test/yosupo/point_add_range_sum.test.cpp": "2020-09-13 10:49:49 +0900",
 "test/yosupo/point_set_range_composite.test.cpp": "2020-09-13 10:49:49 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-09-13 10:49:49 +0900",
+"test/yosupo/staticrmq.test.cpp": "2020-09-13 12:16:53 +0900",
 "test/yosupo/two_sat.test.cpp": "2020-09-12 22:11:54 +0900",
 "test/yosupo/unionfind.test.cpp": "2020-09-13 10:49:49 +0900"
 }
