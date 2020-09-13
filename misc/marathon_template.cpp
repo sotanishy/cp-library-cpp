@@ -31,7 +31,7 @@ struct Random {
     }
 
     // returns a random integer in the range [0, n)
-    int next_int(int n) {
+    unsigned int next_int(unsigned int n) {
         return xorshift() % n;
     }
 

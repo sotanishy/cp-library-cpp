@@ -10,21 +10,21 @@ struct WeightedUnionFind {
     vector<int> par;
     vector<T> ws;
 
-    WeightedUnionFind(size_t n) : par(n, -1), ws(n) {}
+    WeightedUnionFind(int n) : par(n, -1), ws(n) {}
 
-    size_t find(size_t x) {
+    int find(int x) {
         if (par[x] < 0) return x;
-        size_t r = find(par[x]);
+        int r = find(par[x]);
         ws[x] += ws[par[x]];
         return par[x] = r;
     }
 
-    T weight(size_t x) {
+    T weight(int x) {
         find(x);
         return ws[x];
     }
 
-    bool unite(size_t x, size_t y, T w) {
+    bool unite(int x, int y, T w) {
         w += weight(x);
         w -= weight(y);
         x = find(x);
@@ -40,15 +40,15 @@ struct WeightedUnionFind {
         return true;
     }
 
-    bool same(size_t x, size_t y) {
+    bool same(int x, int y) {
         return find(x) == find(y);
     }
 
-    T diff(size_t x, size_t y) {
+    T diff(int x, int y) {
         return weight(y) - weight(x);
     }
 
-    size_t size(size_t x) {
+    int size(int x) {
         return -par[find(x)];
     }
 };

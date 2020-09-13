@@ -9,21 +9,21 @@ Space complexity: $O(n + q)$
 
 ## Constructor
 
-- `PartiallyPersistentUnionFind(size_t n)`
+- `PartiallyPersistentUnionFind(int n)`
     - Constructs a partially persistent union find of size `n`. The initial time is set to 0.
     - Time complexity: $O(n)$
 
 ## Member functions
 
-- `size_t find(time_type t, size_t x)`
+- `int find(time_type t, int x)`
     - Returns the root of the tree $x$ belongs to at time $t$.
     - Time complexity: $O(\lg n)$
-- `void unite(size_t x, size_t y)`
+- `void unite(int x, int y)`
     - Increments the time by 1, and unites the set $x$ belongs to and the set $y$ belongs to.
     - Time complexity: $O(\lg n)$
-- `bool same(time_type t, size_t x, size_t y)`
+- `bool same(time_type t, int x, int y)`
     - Checks if $x$ and $y$ are in the same set at time $t$.
     - Time complexity: $O(\lg n)$
-- `size_t size(time_type t, size_t x)`
+- `int size(time_type t, int x)`
     - Returns the size of the set $x$ belongs to at time $t$.
     - Time complexity: $O(\lg n)$

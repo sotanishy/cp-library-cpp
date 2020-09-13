@@ -22,6 +22,6 @@ Space complexity: $O(n \lg n)$
 
 ## Member functions
 
-- `T fold(size_t l, size_t r)`
+- `T fold(int l, int r)`
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
     - Time complexity: $O(1)$

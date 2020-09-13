@@ -8,20 +8,20 @@ using namespace std;
 struct PartiallyPersistentUnionFind {
     using time_type = unsigned int;
 
-    vector<size_t> par;
+    vector<int> par;
     vector<time_type> time;
-    vector<vector<pair<time_type, size_t>>> sz;
+    vector<vector<pair<time_type, int>>> sz;
     time_type now = 0;
     const time_type INF = numeric_limits<time_type>::max();
 
-    PartiallyPersistentUnionFind(size_t n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
+    PartiallyPersistentUnionFind(int n) : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
 
-    size_t find(time_type t, size_t x) {
+    int find(time_type t, int x) {
         if (t < time[x]) return x;
         return find(t, par[x]);
     }
 
-    void unite(size_t x, size_t y) {
+    void unite(int x, int y) {
         now++;
         x = find(now, x);
         y = find(now, y);
@@ -33,11 +33,11 @@ struct PartiallyPersistentUnionFind {
         time[y] = now;
     }
 
-    bool same(time_type t, size_t x, size_t y) {
+    bool same(time_type t, int x, int y) {
         return find(t, x) == find(t, y);
     }
 
-    size_t size(time_type t, size_t x) {
+    int size(time_type t, int x) {
         x = find(t, x);
         return (--lower_bound(sz[x].begin(), sz[x].end(), make_pair(t, INF)))->second;
     }

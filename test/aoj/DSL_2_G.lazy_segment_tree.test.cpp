@@ -4,31 +4,25 @@
 
 using ll = long long;
 
-struct S {
-    struct V {
-        using T = ll;
-        inline static const T id = 0;
-        static T op(T a, T b) {
-            return a + b;
-        }
-    };
-
-    struct O {
-        using E = ll;
-        inline static const E id = 0;
-        static E op(E a, E b) {
-            return a + b;
-        }
-    };
-
-    static V::T op(V::T a, O::E b) {
-        return a + b;
-    }
-
-    static O::E mul(O::E a, size_t b) {
-        return a * b;
+struct M {
+    using T = pair<ll, int>;
+    inline static const T id = {0, 0};
+    static T op(T a, T b) {
+        return {a.first + b.first, a.second + b.second};
     }
 };
+
+struct O {
+    using E = ll;
+    inline static const E id = 0;
+    static E op(E a, E b) {
+        return a + b;
+    }
+};
+
+M::T act(M::T a, O::E b) {
+    return {a.first + a.second * b, a.second};
+}
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -36,7 +30,8 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    LazySegmentTree<S> st(n);
+    vector<pair<ll, int>> a(n, {0, 1});
+    LazySegmentTree<M, O, act> st(a);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;
@@ -45,7 +40,7 @@ int main() {
             cin >> x;
             st.update(s - 1, t, x);
         } else {
-            cout << st.fold(s - 1, t) << "\n";
+            cout << st.fold(s - 1, t).first << "\n";
         }
     }
 }
