@@ -39,7 +39,7 @@ struct FenwickTree {
     }
 };
 
-// struct Monoid {
+// struct M {
 //     using T = int;
 //     static inline T id = (1u << 31) - 1;
 //     static T op(T a, T b) {

@@ -8,11 +8,10 @@ Space complexity: $O(n \lg n)$
 
 ## Template parameters
 
-- `T`
-    - The type of the set $T$.
-
-- `T op(T, T)`
-    - An associative and idempotent binary operation $\cdot: T \times T \rightarrow T$.
+- `S`
+    - The idempotent semigroup $(T, \cdot)$ with the following members defined:
+        - `T`: the type of the set $T$
+        - `T op(T, T)`: an associative and idempotent binary operation $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
@@ -25,7 +24,3 @@ Space complexity: $O(n \lg n)$
 - `T fold(int l, int r)`
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
     - Time complexity: $O(1)$
-
-## Note
-
-$\cdot$ is not required to be commutative, as the overlapping part reduces to a single sequence due to idempotence.

@@ -11,7 +11,7 @@ Space complexity: $O(n)$
 ## Template parameters
 
 - `M`
-    - A monoid $(T, \cdot, e)$. It must have the following publicly accessible members:
+    - A monoid $(T, \cdot, e)$ with the following members defined:
         - `T`: the type of the set $T$
         - `T id`: the identity element $e$
         - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$

@@ -8,11 +8,10 @@ Space complexity: $O(n \lg n)$
 
 ## Template parameters
 
-- `T`
-    - The type of the set $T$.
-
-- `T op(T, T)`
-    - An associative binary operation $\cdot: T \times T \rightarrow T$.
+- `S`
+    - The idempotent semigroup $(T, \cdot)$ with the following members defined:
+        - `T`: the type of the set $T$
+        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 

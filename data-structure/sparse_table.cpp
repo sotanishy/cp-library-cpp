@@ -5,8 +5,10 @@ using namespace std;
  * @brief Sparse Table
  * @docs docs/data-structure/sparse_table.md
  */
-template <typename T, T (*op)(T, T)>
+template <typename S>
 struct SparseTable {
+    using T = S::T;
+
     vector<vector<T>> lookup;
 
     SparseTable(const vector<T>& v) {
@@ -16,13 +18,20 @@ struct SparseTable {
         copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i < b; i++) {
             for (int j = 0; j + (1 << i) <= n; j++) {
-                lookup[i][j] = op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
+                lookup[i][j] = S::op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
 
     T fold(int l, int r) {
         int i = 31 - __builtin_clz(r - l);
-        return op(lookup[i][l], lookup[i][r - (1 << i)]);
+        return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 };
+
+// struct S {
+//     using T = int;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };

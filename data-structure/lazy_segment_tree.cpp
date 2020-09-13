@@ -68,7 +68,7 @@ private:
     }
 };
 
-// struct V {
+// struct M {
 //     using T = ll;
 //     inline static const T id = 0;
 //     static T op(T a, T b) {
@@ -84,6 +84,6 @@ private:
 //     }
 // };
 
-// V::T op(V::T a, O::E b) {
+// M::T op(M::T a, O::E b) {
 //     return a + b;
 // }
