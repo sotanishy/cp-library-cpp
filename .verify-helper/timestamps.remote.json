@@ -4,6 +4,7 @@
 "test/aoj/DSL_1_A.test.cpp": "2020-09-11 18:56:12 +0900",
 "test/aoj/DSL_1_B.test.cpp": "2020-09-11 18:56:12 +0900",
 "test/aoj/DSL_2_A.test.cpp": "2020-09-11 18:56:12 +0900",
+"test/aoj/DSL_2_B.test.cpp": "2020-09-13 01:20:21 +0900",
 "test/aoj/DSL_2_C.test.cpp": "2020-09-11 21:10:15 +0900",
 "test/aoj/DSL_2_D.test.cpp": "2020-09-11 18:56:12 +0900",
 "test/aoj/DSL_2_E.test.cpp": "2020-09-11 18:56:12 +0900",
@@ -30,6 +31,7 @@
 "test/yosupo/point_add_range_sum.test.cpp": "2020-09-13 01:07:34 +0900",
 "test/yosupo/point_set_range_composite.test.cpp": "2020-09-13 01:07:34 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-09-13 01:07:34 +0900",
+"test/yosupo/staticrmq.test.cpp": "2020-09-13 01:20:21 +0900",
 "test/yosupo/two_sat.test.cpp": "2020-09-12 22:11:54 +0900",
 "test/yosupo/unionfind.test.cpp": "2020-09-13 01:07:34 +0900"
 }
