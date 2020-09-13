@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small>
+# :heavy_check_mark: Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
@@ -61,7 +61,7 @@ Space complexity: $O(n)$
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
 
 
 ## Code

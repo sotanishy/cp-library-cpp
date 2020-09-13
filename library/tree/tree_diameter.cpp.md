@@ -51,7 +51,7 @@ This struct calculates the diameter of the given tree using DFS.
 
 ## Depends on
 
-* :question: <a href="../graph/edge.cpp.html">graph/edge.cpp</a>
+* :heavy_check_mark: <a href="../graph/edge.cpp.html">graph/edge.cpp</a>
 
 
 ## Verified with

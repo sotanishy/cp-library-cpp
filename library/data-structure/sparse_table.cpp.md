@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Sparse Table <small>(data-structure/sparse_table.cpp)</small>
+# :heavy_check_mark: Sparse Table <small>(data-structure/sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
@@ -70,7 +70,7 @@ $\cdot$ is not required to be commutative, as the overlapping part reduces to a 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
 
 
 ## Code

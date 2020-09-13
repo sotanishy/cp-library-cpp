@@ -25,16 +25,28 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: math/fft.cpp
+# :warning: Fast Fourier Transform <small>(math/fft.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/fft.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 01:14:21+09:00
+    - Last commit date: 2020-09-13 11:34:00+09:00
 
 
 
+
+# Fast Fourier Transform
+
+A fast Fourier Transform (FFT) is an algorithm for computing the discrete Fourier transform of a sequence, and it is used for efficiently calculating the convolution of two sequences.
+
+This struct uses the Cooley-Tukey algorithm to compute the FFT of a sequence.
+
+## Member functions
+
+- `template <typename T> static vector<double> convolution(const vector<T>& a, const vector<T>& b)`
+    - Calculates the convolution of `a` and `b`.
+    - Time complexity: $O(n\lg n)$
 
 ## Code
 
@@ -44,6 +56,10 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Fast Fourier Transform
+ * @docs docs/math/fft.md
+ */
 struct FFT {
 private:
     inline static const double PI = acos(-1);
@@ -121,6 +137,10 @@ public:
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Fast Fourier Transform
+ * @docs docs/math/fft.md
+ */
 struct FFT {
 private:
     inline static const double PI = acos(-1);

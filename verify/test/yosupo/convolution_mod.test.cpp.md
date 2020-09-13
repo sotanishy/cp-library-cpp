@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 01:37:18+09:00
+    - Last commit date: 2020-09-13 11:34:00+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/math/ntt.cpp.html">math/ntt.cpp</a>
+* :heavy_check_mark: <a href="../../../library/math/ntt.cpp.html">Number Theoretic Transform <small>(math/ntt.cpp)</small></a>
 
 
 ## Code
@@ -76,6 +76,10 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Number Theoretic Transform
+ * @docs docs/math/ntt.md
+ */
 template <long long mod, long long primitive_root>
 struct NTT {
 private:
@@ -111,7 +115,7 @@ private:
     static void untt(vector<long long>& a) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
-            long long omega = mod_pow(primitive_root, (mod - 1) / m);
+            long long omega = mod_pow(primitive_root, (mod - 1) * mod_inv(m) % mod);
             for (int s = 0; s < n / m; s++) {
                 long long w = 1;
                 for (int i = 0; i < m / 2; i++) {
@@ -128,7 +132,7 @@ private:
     static void iuntt(vector<long long>& a) {
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
-            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
+            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) * mod_inv(m) % mod));
             for (int s = 0; s < n / m; s++) {
                 long long w = 1;
                 for (int i = 0; i < m / 2; i++) {

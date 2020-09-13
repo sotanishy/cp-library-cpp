@@ -46,7 +46,7 @@ The Bellman-Ford algorithm is an algorithm for finding the shortest paths from a
 
 ## Depends on
 
-* :question: <a href="edge.cpp.html">graph/edge.cpp</a>
+* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
 
 
 ## Verified with

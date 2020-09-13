@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Kruskal's Algorithm <small>(graph/kruskal.cpp)</small>
+# :heavy_check_mark: Kruskal's Algorithm <small>(graph/kruskal.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
@@ -46,13 +46,13 @@ Kruskal's algorithm is an algorithm for finding the minimum spanning tree of an 
 
 ## Depends on
 
-* :question: <a href="../data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
-* :question: <a href="edge.cpp.html">graph/edge.cpp</a>
+* :heavy_check_mark: <a href="../data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
+* :heavy_check_mark: <a href="edge.cpp.html">graph/edge.cpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
 
 
 ## Code
