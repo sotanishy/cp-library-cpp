@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Sparse Table <small>(data-structure/sparse_table.cpp)</small>
+# :x: Sparse Table <small>(data-structure/sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 04:40:59+09:00
+    - Last commit date: 2020-09-14 05:19:47+09:00
 
 
 
@@ -46,11 +46,10 @@ Space complexity: $O(n \lg n)$
 
 ## Template parameters
 
-- `T`
-    - The type of the set $T$.
-
-- `T op(T, T)`
-    - An associative and idempotent binary operation $\cdot: T \times T \rightarrow T$.
+- `S`
+    - The idempotent semigroup $(T, \cdot)$ with the following members defined:
+        - `T`: the type of the set $T$
+        - `T op(T, T)`: an associative and idempotent binary operation $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
@@ -64,13 +63,9 @@ Space complexity: $O(n \lg n)$
     - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
     - Time complexity: $O(1)$
 
-## Note
-
-$\cdot$ is not required to be commutative, as the overlapping part reduces to a single sequence due to idempotence.
-
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
 
 
 ## Code
@@ -85,8 +80,10 @@ using namespace std;
  * @brief Sparse Table
  * @docs docs/data-structure/sparse_table.md
  */
-template <typename T, T (*op)(T, T)>
+template <typename S>
 struct SparseTable {
+    using T = S::T;
+
     vector<vector<T>> lookup;
 
     SparseTable(const vector<T>& v) {
@@ -96,16 +93,23 @@ struct SparseTable {
         copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i < b; i++) {
             for (int j = 0; j + (1 << i) <= n; j++) {
-                lookup[i][j] = op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
+                lookup[i][j] = S::op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
 
     T fold(int l, int r) {
         int i = 31 - __builtin_clz(r - l);
-        return op(lookup[i][l], lookup[i][r - (1 << i)]);
+        return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 };
+
+// struct S {
+//     using T = int;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 ```
 {% endraw %}
 
@@ -120,8 +124,10 @@ using namespace std;
  * @brief Sparse Table
  * @docs docs/data-structure/sparse_table.md
  */
-template <typename T, T (*op)(T, T)>
+template <typename S>
 struct SparseTable {
+    using T = S::T;
+
     vector<vector<T>> lookup;
 
     SparseTable(const vector<T>& v) {
@@ -131,16 +137,23 @@ struct SparseTable {
         copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i < b; i++) {
             for (int j = 0; j + (1 << i) <= n; j++) {
-                lookup[i][j] = op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
+                lookup[i][j] = S::op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
 
     T fold(int l, int r) {
         int i = 31 - __builtin_clz(r - l);
-        return op(lookup[i][l], lookup[i][r - (1 << i)]);
+        return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 };
+
+// struct S {
+//     using T = int;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 
 ```
 {% endraw %}

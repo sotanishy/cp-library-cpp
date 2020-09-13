@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 04:40:59+09:00
+    - Last commit date: 2020-09-14 05:19:47+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -170,7 +170,7 @@ private:
     }
 };
 
-// struct V {
+// struct M {
 //     using T = ll;
 //     inline static const T id = 0;
 //     static T op(T a, T b) {
@@ -186,7 +186,7 @@ private:
 //     }
 // };
 
-// V::T op(V::T a, O::E b) {
+// M::T op(M::T a, O::E b) {
 //     return a + b;
 // }
 #line 4 "test/aoj/DSL_2_F.test.cpp"

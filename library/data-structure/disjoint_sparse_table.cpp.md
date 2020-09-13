@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
+# :x: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint_sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 04:40:59+09:00
+    - Last commit date: 2020-09-14 05:19:47+09:00
 
 
 
@@ -46,11 +46,10 @@ Space complexity: $O(n \lg n)$
 
 ## Template parameters
 
-- `T`
-    - The type of the set $T$.
-
-- `T op(T, T)`
-    - An associative binary operation $\cdot: T \times T \rightarrow T$.
+- `S`
+    - The idempotent semigroup $(T, \cdot)$ with the following members defined:
+        - `T`: the type of the set $T$
+        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
@@ -66,7 +65,7 @@ Space complexity: $O(n \lg n)$
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
+* :x: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
 
 
 ## Code
@@ -81,8 +80,10 @@ using namespace std;
  * @brief Disjoint Sparse Table
  * @docs docs/data-structure/disjoint_sparse_table.md
  */
-template <typename T, T (*op)(T, T)>
+template <typename S>
 struct DisjointSparseTable {
+    using T = S::T;
+
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
@@ -96,11 +97,11 @@ struct DisjointSparseTable {
                 int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
                 for (int j = 1; j < len / 2; j++) {
-                    lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
+                    lookup[i][m - 1 - j] = S::op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
                 for (int j = 1; m + j < min(l + len, n); j++) {
-                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
+                    lookup[i][m + j] = S::op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
@@ -109,9 +110,16 @@ struct DisjointSparseTable {
     T fold(int l, int r) {
         if (r - l == 1) return lookup[0][l];
         int i = 32 - __builtin_clz(l ^ (r - 1));
-        return op(lookup[i][l], lookup[i][r - 1]);
+        return S::op(lookup[i][l], lookup[i][r - 1]);
     }
 };
+
+// struct S {
+//     using T = int;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 ```
 {% endraw %}
 
@@ -126,8 +134,10 @@ using namespace std;
  * @brief Disjoint Sparse Table
  * @docs docs/data-structure/disjoint_sparse_table.md
  */
-template <typename T, T (*op)(T, T)>
+template <typename S>
 struct DisjointSparseTable {
+    using T = S::T;
+
     vector<vector<T>> lookup;
 
     DisjointSparseTable(const vector<T>& v) {
@@ -141,11 +151,11 @@ struct DisjointSparseTable {
                 int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
                 for (int j = 1; j < len / 2; j++) {
-                    lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
+                    lookup[i][m - 1 - j] = S::op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
                 for (int j = 1; m + j < min(l + len, n); j++) {
-                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
+                    lookup[i][m + j] = S::op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
@@ -154,9 +164,16 @@ struct DisjointSparseTable {
     T fold(int l, int r) {
         if (r - l == 1) return lookup[0][l];
         int i = 32 - __builtin_clz(l ^ (r - 1));
-        return op(lookup[i][l], lookup[i][r - 1]);
+        return S::op(lookup[i][l], lookup[i][r - 1]);
     }
 };
+
+// struct S {
+//     using T = int;
+//     static T op(T a, T b) {
+//         return min(a, b);
+//     }
+// };
 
 ```
 {% endraw %}

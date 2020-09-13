@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/range_affine_range_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 04:40:59+09:00
+    - Last commit date: 2020-09-14 05:19:47+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
@@ -178,7 +178,7 @@ private:
     }
 };
 
-// struct V {
+// struct M {
 //     using T = ll;
 //     inline static const T id = 0;
 //     static T op(T a, T b) {
@@ -194,7 +194,7 @@ private:
 //     }
 // };
 
-// V::T op(V::T a, O::E b) {
+// M::T op(M::T a, O::E b) {
 //     return a + b;
 // }
 #line 4 "test/yosupo/range_affine_range_sum.test.cpp"
