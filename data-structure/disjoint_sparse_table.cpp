@@ -20,11 +20,11 @@ struct DisjointSparseTable {
                 size_t m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
                 for (size_t j = 1; j < len / 2; j++) {
-                    lookup[i][m - 1 - j] = op(v[j], lookup[i][m - j]);
+                    lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
                 for (size_t j = 1; m + j < min(l + len, n); j++) {
-                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[j]);
+                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
