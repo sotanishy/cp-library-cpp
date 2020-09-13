@@ -6,9 +6,9 @@ The action $*: T \times E \rightarrow T$ satisfies the following conditions:
 - $\forall a \in T, a * e_O = a$
 - $\forall f, g \in E, a \in T, a * (f \circ g) = (a * f) * g$
 
-For point update and range query, use [a segment tree](segment_tree.md)
+For point update and range query, use a segment tree.
 
-For range update and point query, use [a dual segment tree](dual_segment_tree.md)
+For range update and point query, use a dual segment tree.
 
 Space complexity: $O(n)$
 

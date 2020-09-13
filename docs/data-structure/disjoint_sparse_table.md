@@ -2,7 +2,7 @@
 
 A disjoint sparse table is a data structure that can quickly answer range queries on a static sequence of a semigroup $(T, \cdot)$.
 
-If the binary operation $\cdot$ is idempotent, [a sparse table](sparse_table.md) might be faster by a constant factor.
+If the binary operation $\cdot$ is idempotent, a sparse table might be faster by a constant factor.
 
 Space complexity: $O(n \lg n)$
 

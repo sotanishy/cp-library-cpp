@@ -2,9 +2,9 @@
 
 A dual segment tree is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e)$ and offers range update and point query operations.
 
-For point update and range query, use [a segment tree](segment_tree.md)
+For point update and range query, use a segment tree.
 
-For range update and range query, use [a segment tree with lazy propagation](lazy_segment_tree.md)
+For range update and range query, use a segment tree with lazy propagation.
 
 Space complexity: $O(n)$
 
