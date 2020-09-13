@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
+# :heavy_check_mark: Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint_sparse_table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 12:09:22+09:00
+    - Last commit date: 2020-09-13 12:16:53+09:00
 
 
 
@@ -66,7 +66,7 @@ Space complexity: $O(n \lg n)$
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
 
 
 ## Code
@@ -96,11 +96,11 @@ struct DisjointSparseTable {
                 size_t m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
                 for (size_t j = 1; j < len / 2; j++) {
-                    lookup[i][m - 1 - j] = op(v[j], lookup[i][m - j]);
+                    lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
                 for (size_t j = 1; m + j < min(l + len, n); j++) {
-                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[j]);
+                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
@@ -141,11 +141,11 @@ struct DisjointSparseTable {
                 size_t m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
                 for (size_t j = 1; j < len / 2; j++) {
-                    lookup[i][m - 1 - j] = op(v[j], lookup[i][m - j]);
+                    lookup[i][m - 1 - j] = op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
                 for (size_t j = 1; m + j < min(l + len, n); j++) {
-                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[j]);
+                    lookup[i][m + j] = op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
         }
