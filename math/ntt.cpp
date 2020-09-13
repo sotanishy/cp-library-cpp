@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Number Theoretic Transform
+ * @docs docs/math/ntt.md
+ */
 template <long long mod, long long primitive_root>
 struct NTT {
 private:
@@ -36,7 +40,7 @@ private:
     static void untt(vector<long long>& a) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
-            long long omega = mod_pow(primitive_root, (mod - 1) / m);
+            long long omega = mod_pow(primitive_root, (mod - 1) * mod_inv(m) % mod);
             for (int s = 0; s < n / m; s++) {
                 long long w = 1;
                 for (int i = 0; i < m / 2; i++) {
@@ -53,7 +57,7 @@ private:
     static void iuntt(vector<long long>& a) {
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
-            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
+            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) * mod_inv(m) % mod));
             for (int s = 0; s < n / m; s++) {
                 long long w = 1;
                 for (int i = 0; i < m / 2; i++) {

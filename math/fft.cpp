@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Fast Fourier Transform
+ * @docs docs/math/fft.md
+ */
 struct FFT {
 private:
     inline static const double PI = acos(-1);
