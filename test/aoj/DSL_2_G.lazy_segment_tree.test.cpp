@@ -6,7 +6,7 @@ using ll = long long;
 
 struct M {
     using T = pair<ll, int>;
-    inline static const T id = {0, 0};
+    inline static const T id = {0, 1};
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
     }
@@ -30,8 +30,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    vector<pair<ll, int>> a(n, {0, 1});
-    LazySegmentTree<M, O, act> st(a);
+    LazySegmentTree<M, O, act> st(n);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;

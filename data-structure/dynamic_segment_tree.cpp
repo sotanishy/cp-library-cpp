@@ -52,8 +52,8 @@ private:
     }
 
     T fold(int a, int b, Node* n, int l, int r) {
-        if (a <= l && r <= b) return n->val;
         if (r <= a || b <= l) return M::id;
+        if (a <= l && r <= b) return n->val;
         int m = (l + r) / 2;
         T vl = n->left ? fold(a, b, n->left, l, m) : M::id;
         T vr = n->right ? fold(a, b, n->right, m, r) : M::id;

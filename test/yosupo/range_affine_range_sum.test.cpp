@@ -8,7 +8,7 @@ const ll mod = 998244353;
 
 struct M {
     using T = pair<ll, int>;
-    inline static const T id = {0, 0};
+    inline static const T id = {0, 1};
     static T op(T a, T b) {
         return {(a.first + b.first) % mod, a.second + b.second};
     }
@@ -32,7 +32,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    vector<pair<ll, int>> a(N, {0, 1});
+    vector<pair<ll, int>> a(N);
     for (int i = 0; i < N; i++) cin >> a[i].first;
     LazySegmentTree<M, O, act> st(a);
     for (int i = 0; i < Q; i++) {
