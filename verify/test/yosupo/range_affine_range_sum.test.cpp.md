@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/range_affine_range_sum.test.cpp
+# :x: test/yosupo/range_affine_range_sum.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/range_affine_range_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 16:31:52+09:00
+    - Last commit date: 2020-09-15 00:50:25+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
+* :question: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
 
 
 ## Code
@@ -57,7 +57,7 @@ const ll mod = 998244353;
 
 struct M {
     using T = pair<ll, int>;
-    inline static const T id = {0, 0};
+    inline static const T id = {0, 1};
     static T op(T a, T b) {
         return {(a.first + b.first) % mod, a.second + b.second};
     }
@@ -81,7 +81,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    vector<pair<ll, int>> a(N, {0, 1});
+    vector<pair<ll, int>> a(N);
     for (int i = 0; i < N; i++) cin >> a[i].first;
     LazySegmentTree<M, O, act> st(a);
     for (int i = 0; i < Q; i++) {
@@ -185,7 +185,7 @@ const ll mod = 998244353;
 
 struct M {
     using T = pair<ll, int>;
-    inline static const T id = {0, 0};
+    inline static const T id = {0, 1};
     static T op(T a, T b) {
         return {(a.first + b.first) % mod, a.second + b.second};
     }
@@ -209,7 +209,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    vector<pair<ll, int>> a(N, {0, 1});
+    vector<pair<ll, int>> a(N);
     for (int i = 0; i < N; i++) cin >> a[i].first;
     LazySegmentTree<M, O, act> st(a);
     for (int i = 0; i < Q; i++) {

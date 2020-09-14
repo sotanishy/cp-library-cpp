@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/dynamic_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 16:31:52+09:00
+    - Last commit date: 2020-09-15 00:50:25+09:00
 
 
 
@@ -133,8 +133,8 @@ private:
     }
 
     T fold(int a, int b, Node* n, int l, int r) {
-        if (a <= l && r <= b) return n->val;
         if (r <= a || b <= l) return M::id;
+        if (a <= l && r <= b) return n->val;
         int m = (l + r) / 2;
         T vl = n->left ? fold(a, b, n->left, l, m) : M::id;
         T vr = n->right ? fold(a, b, n->right, m, r) : M::id;
@@ -202,8 +202,8 @@ private:
     }
 
     T fold(int a, int b, Node* n, int l, int r) {
-        if (a <= l && r <= b) return n->val;
         if (r <= a || b <= l) return M::id;
+        if (a <= l && r <= b) return n->val;
         int m = (l + r) / 2;
         T vl = n->left ? fold(a, b, n->left, l, m) : M::id;
         T vr = n->right ? fold(a, b, n->right, m, r) : M::id;

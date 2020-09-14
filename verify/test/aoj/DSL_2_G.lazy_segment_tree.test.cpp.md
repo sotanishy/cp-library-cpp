@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 16:31:52+09:00
+    - Last commit date: 2020-09-15 00:50:25+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
+* :question: <a href="../../../library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
 
 
 ## Code
@@ -55,7 +55,7 @@ using ll = long long;
 
 struct M {
     using T = pair<ll, int>;
-    inline static const T id = {0, 0};
+    inline static const T id = {0, 1};
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
     }
@@ -79,8 +79,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    vector<pair<ll, int>> a(n, {0, 1});
-    LazySegmentTree<M, O, act> st(a);
+    LazySegmentTree<M, O, act> st(n);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;
@@ -178,7 +177,7 @@ using ll = long long;
 
 struct M {
     using T = pair<ll, int>;
-    inline static const T id = {0, 0};
+    inline static const T id = {0, 1};
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
     }
@@ -202,8 +201,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    vector<pair<ll, int>> a(n, {0, 1});
-    LazySegmentTree<M, O, act> st(a);
+    LazySegmentTree<M, O, act> st(n);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;
