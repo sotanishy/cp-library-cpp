@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL_3_D.test.cpp
+# :heavy_check_mark: test/aoj/DSL_3_D.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL_3_D.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 05:19:47+09:00
+    - Last commit date: 2020-09-14 16:31:52+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
 
 
 ## Code
@@ -92,7 +92,7 @@ using namespace std;
  */
 template <typename S>
 struct SparseTable {
-    using T = S::T;
+    using T = typename S::T;
 
     vector<vector<T>> lookup;
 
@@ -113,13 +113,6 @@ struct SparseTable {
         return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 };
-
-// struct S {
-//     using T = int;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };
 #line 4 "test/aoj/DSL_3_D.test.cpp"
 
 struct S {

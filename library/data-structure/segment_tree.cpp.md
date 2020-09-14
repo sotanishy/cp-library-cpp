@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 05:19:47+09:00
+    - Last commit date: 2020-09-14 16:31:52+09:00
 
 
 
@@ -177,14 +177,6 @@ struct SegmentTree {
         return -1;
     }
 };
-
-// struct M {
-//     using T = int;
-//     static inline T id = (1u << 31) - 1;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };
 ```
 {% endraw %}
 
@@ -276,14 +268,6 @@ struct SegmentTree {
         return -1;
     }
 };
-
-// struct M {
-//     using T = int;
-//     static inline T id = (1u << 31) - 1;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };
 
 ```
 {% endraw %}

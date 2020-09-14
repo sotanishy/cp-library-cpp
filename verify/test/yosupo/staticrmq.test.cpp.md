@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/staticrmq.test.cpp
+# :heavy_check_mark: test/yosupo/staticrmq.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/staticrmq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 05:19:47+09:00
+    - Last commit date: 2020-09-14 16:31:52+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
 
 
 ## Code
@@ -92,7 +92,7 @@ using namespace std;
  */
 template <typename S>
 struct DisjointSparseTable {
-    using T = S::T;
+    using T = typename S::T;
 
     vector<vector<T>> lookup;
 
@@ -123,13 +123,6 @@ struct DisjointSparseTable {
         return S::op(lookup[i][l], lookup[i][r - 1]);
     }
 };
-
-// struct S {
-//     using T = int;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };
 #line 4 "test/yosupo/staticrmq.test.cpp"
 
 struct S {

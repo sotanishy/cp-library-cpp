@@ -38,16 +38,18 @@ layout: default
 
 ### data-structure
 
-* :x: <a href="library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
+* :warning: <a href="library/data-structure/dynamic_segment_tree.cpp.html">Dynamic Segment Tree <small>(data-structure/dynamic_segment_tree.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
 * :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">2D Fenwick Tree <small>(data-structure/fenwick_tree_2d.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">k-d Tree <small>(data-structure/kd_tree.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
+* :warning: <a href="library/data-structure/monoids.cpp.html">data-structure/monoids.cpp</a>
 * :warning: <a href="library/data-structure/partially_persistent_union_find.cpp.html">Partially Persistent Union Find <small>(data-structure/partially_persistent_union_find.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/range_fenwick_tree.cpp.html">Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/segment_tree.cpp.html">Segment Tree <small>(data-structure/segment_tree.cpp)</small></a>
-* :x: <a href="library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
+* :heavy_check_mark: <a href="library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
 * :heavy_check_mark: <a href="library/data-structure/weighted_union_find.cpp.html">Weighted Union Find <small>(data-structure/weighted_union_find.cpp)</small></a>
 
@@ -142,7 +144,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
-* :x: <a href="verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_1_A.test.cpp.html">test/aoj/GRL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_1_B.test.cpp.html">test/aoj/GRL_1_B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/GRL_1_C.test.cpp.html">test/aoj/GRL_1_C.test.cpp</a>
@@ -162,7 +164,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.test.cpp.html">test/yosupo/point_add_range_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.test.cpp.html">test/yosupo/point_set_range_composite.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/range_affine_range_sum.test.cpp.html">test/yosupo/range_affine_range_sum.test.cpp</a>
-* :x: <a href="verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/two_sat.test.cpp.html">test/yosupo/two_sat.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/unionfind.test.cpp.html">test/yosupo/unionfind.test.cpp</a>
 

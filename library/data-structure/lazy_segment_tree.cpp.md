@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 05:19:47+09:00
+    - Last commit date: 2020-09-14 16:31:52+09:00
 
 
 
@@ -42,8 +42,10 @@ A segment tree with lazy propagation is a data structure that stores a sequence 
 
 The action $*: T \times E \rightarrow T$ satisfies the following conditions:
 - $\forall a \in T, a * e_O = a$
-- $\forall a, b \in T, f \in E, (a \cdot b) * f = (a * f) \cdot (b * f)$
 - $\forall a \in T, f, g \in E, a * (f \circ g) = (a * f) * g$
+- $\forall a, b \in T, f \in E, (a \cdot b) * f = (a * f) \cdot (b * f)$
+
+The third criterion makes $*$ an endomorphism of $T$.
 
 For point update and range query, use a segment tree.
 
@@ -106,10 +108,10 @@ using namespace std;
  * @brief Segment Tree with Lazy Propagation
  * @docs docs/data-structure/lazy_segment_tree.md
  */
-template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::E)>
+template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 struct LazySegmentTree {
     using T = typename M::T;
-    using E = typename O::E;
+    using E = typename O::T;
 
     LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
     LazySegmentTree(const vector<T>& v) {
@@ -168,26 +170,6 @@ private:
                      fold(a, b, 2 * k + 1, m, r));
     }
 };
-
-// struct M {
-//     using T = ll;
-//     inline static const T id = 0;
-//     static T op(T a, T b) {
-//         return a + b;
-//     }
-// };
-
-// struct O {
-//     using E = ll;
-//     inline static const E id = 0;
-//     static E op(E a, E b) {
-//         return a + b;
-//     }
-// };
-
-// M::T op(M::T a, O::E b) {
-//     return a + b;
-// }
 ```
 {% endraw %}
 
@@ -202,10 +184,10 @@ using namespace std;
  * @brief Segment Tree with Lazy Propagation
  * @docs docs/data-structure/lazy_segment_tree.md
  */
-template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::E)>
+template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 struct LazySegmentTree {
     using T = typename M::T;
-    using E = typename O::E;
+    using E = typename O::T;
 
     LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
     LazySegmentTree(const vector<T>& v) {
@@ -264,26 +246,6 @@ private:
                      fold(a, b, 2 * k + 1, m, r));
     }
 };
-
-// struct M {
-//     using T = ll;
-//     inline static const T id = 0;
-//     static T op(T a, T b) {
-//         return a + b;
-//     }
-// };
-
-// struct O {
-//     using E = ll;
-//     inline static const E id = 0;
-//     static E op(E a, E b) {
-//         return a + b;
-//     }
-// };
-
-// M::T op(M::T a, O::E b) {
-//     return a + b;
-// }
 
 ```
 {% endraw %}

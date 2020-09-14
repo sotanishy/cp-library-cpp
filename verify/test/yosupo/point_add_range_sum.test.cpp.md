@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/point_add_range_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 05:19:47+09:00
+    - Last commit date: 2020-09-14 16:31:52+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
@@ -178,14 +178,6 @@ struct SegmentTree {
         return -1;
     }
 };
-
-// struct M {
-//     using T = int;
-//     static inline T id = (1u << 31) - 1;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };
 #line 4 "test/yosupo/point_add_range_sum.test.cpp"
 
 using ll = long long;

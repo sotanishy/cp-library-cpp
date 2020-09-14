@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/dual_segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-14 04:40:59+09:00
+    - Last commit date: 2020-09-14 16:31:52+09:00
 
 
 
@@ -130,14 +130,6 @@ private:
         for (int i = height; i > 0; i--) push(k >> i);
     }
 };
-
-// struct M {
-//     using T = int;
-//     inline static const T id = 0;
-//     static T op(T a, T b) {
-//         return a + b;
-//     }
-// };
 ```
 {% endraw %}
 
@@ -195,14 +187,6 @@ private:
         for (int i = height; i > 0; i--) push(k >> i);
     }
 };
-
-// struct M {
-//     using T = int;
-//     inline static const T id = 0;
-//     static T op(T a, T b) {
-//         return a + b;
-//     }
-// };
 
 ```
 {% endraw %}
