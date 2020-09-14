@@ -7,7 +7,7 @@ using namespace std;
  */
 template <typename S>
 struct SparseTable {
-    using T = S::T;
+    using T = typename S::T;
 
     vector<vector<T>> lookup;
 
@@ -28,10 +28,3 @@ struct SparseTable {
         return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 };
-
-// struct S {
-//     using T = int;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };

@@ -13,14 +13,14 @@ struct M {
 };
 
 struct O {
-    using E = ll;
-    inline static const E id = 0;
-    static E op(E a, E b) {
+    using T = ll;
+    inline static const T id = 0;
+    static T op(T a, T b) {
         return a + b;
     }
 };
 
-M::T act(M::T a, O::E b) {
+M::T act(M::T a, O::T b) {
     return {a.first + a.second * b, a.second};
 }
 

@@ -15,14 +15,14 @@ struct M {
 };
 
 struct O {
-    using E = pair<ll, ll>;
-    inline static const E id = {1, 0};
-    static E op(E a, E b) {
+    using T = pair<ll, ll>;
+    inline static const T id = {1, 0};
+    static T op(T a, T b) {
         return {a.first * b.first % mod, (a.second * b.first + b.second) % mod};
     }
 };
 
-M::T act(M::T a, O::E b) {
+M::T act(M::T a, O::T b) {
     return {(a.first * b.first + a.second * b.second) % mod, a.second};
 }
 

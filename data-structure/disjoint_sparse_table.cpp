@@ -7,7 +7,7 @@ using namespace std;
  */
 template <typename S>
 struct DisjointSparseTable {
-    using T = S::T;
+    using T = typename S::T;
 
     vector<vector<T>> lookup;
 
@@ -38,10 +38,3 @@ struct DisjointSparseTable {
         return S::op(lookup[i][l], lookup[i][r - 1]);
     }
 };
-
-// struct S {
-//     using T = int;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };

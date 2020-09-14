@@ -11,14 +11,14 @@ struct M {
 };
 
 struct O {
-    using E = int;
-    inline static const E id = (1u << 31) - 1;
-    static E op(E a, E b) {
+    using T = int;
+    inline static const T id = (1u << 31) - 1;
+    static T op(T a, T b) {
         return b;
     }
 };
 
-M::T act(M::T a, O::E b) {
+M::T act(M::T a, O::T b) {
     return b;
 }
 

@@ -48,11 +48,3 @@ private:
         for (int i = height; i > 0; i--) push(k >> i);
     }
 };
-
-// struct M {
-//     using T = int;
-//     inline static const T id = 0;
-//     static T op(T a, T b) {
-//         return a + b;
-//     }
-// };

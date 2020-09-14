@@ -82,11 +82,3 @@ struct SegmentTree {
         return -1;
     }
 };
-
-// struct M {
-//     using T = int;
-//     static inline T id = (1u << 31) - 1;
-//     static T op(T a, T b) {
-//         return min(a, b);
-//     }
-// };

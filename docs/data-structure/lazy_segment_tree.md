@@ -4,8 +4,10 @@ A segment tree with lazy propagation is a data structure that stores a sequence 
 
 The action $*: T \times E \rightarrow T$ satisfies the following conditions:
 - $\forall a \in T, a * e_O = a$
-- $\forall a, b \in T, f \in E, (a \cdot b) * f = (a * f) \cdot (b * f)$
 - $\forall a \in T, f, g \in E, a * (f \circ g) = (a * f) * g$
+- $\forall a, b \in T, f \in E, (a \cdot b) * f = (a * f) \cdot (b * f)$
+
+The third criterion makes $*$ an endomorphism of $T$.
 
 For point update and range query, use a segment tree.
 
