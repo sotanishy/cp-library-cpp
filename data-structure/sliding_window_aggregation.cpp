@@ -25,7 +25,7 @@ struct SlidingWindowAggregation {
             while (!back.empty()) {
                 x = back.top().first;
                 back.pop();
-                front.emplace(x, M::op(front.top().second, x));
+                front.emplace(x, M::op(x, front.top().second));
             }
         }
         front.pop();
