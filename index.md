@@ -1,173 +1,303 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: data-structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data-structure/disjoint_sparse_table.cpp
+      title: Disjoint Sparse Table
+    - icon: ':heavy_check_mark:'
+      path: data-structure/dual_segment_tree.cpp
+      title: Dual Segment Tree
+    - icon: ':warning:'
+      path: data-structure/dynamic_segment_tree.cpp
+      title: Dynamic Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/fenwick_tree.cpp
+      title: Fenwick Tree
+    - icon: ':warning:'
+      path: data-structure/fenwick_tree_2d.cpp
+      title: 2D Fenwick Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/kd_tree.cpp
+      title: k-d Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/lazy_segment_tree.cpp
+      title: Segment Tree with Lazy Propagation
+    - icon: ':warning:'
+      path: data-structure/monoids.cpp
+      title: data-structure/monoids.cpp
+    - icon: ':warning:'
+      path: data-structure/partially_persistent_union_find.cpp
+      title: Partially Persistent Union Find
+    - icon: ':heavy_check_mark:'
+      path: data-structure/range_fenwick_tree.cpp
+      title: Fenwick Tree with Range Update
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segment_tree.cpp
+      title: Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segment_tree_beats.cpp
+      title: Segment Tree Beats
+    - icon: ':x:'
+      path: data-structure/sliding_window_aggregation.cpp
+      title: Sliding Window Aggregation
+    - icon: ':heavy_check_mark:'
+      path: data-structure/sparse_table.cpp
+      title: Sparse Table
+    - icon: ':heavy_check_mark:'
+      path: data-structure/union_find.cpp
+      title: Union Find
+    - icon: ':heavy_check_mark:'
+      path: data-structure/weighted_union_find.cpp
+      title: Weighted Union Find
+  - name: flow
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: flow/bipartite_matching.cpp
+      title: Bipartite Matching
+    - icon: ':heavy_check_mark:'
+      path: flow/dinic.cpp
+      title: Dinic's Algorithm
+    - icon: ':heavy_check_mark:'
+      path: flow/ford_fulkerson.cpp
+      title: Ford-Fulkerson Algorithm
+    - icon: ':heavy_check_mark:'
+      path: flow/min_cost_flow.cpp
+      title: Minimum Cost Flow
+  - name: graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/bellman_ford.cpp
+      title: Bellman-Ford Algorithm
+    - icon: ':heavy_check_mark:'
+      path: graph/dijkstra.cpp
+      title: Dijkstra's Algorithm
+    - icon: ':heavy_check_mark:'
+      path: graph/edge.cpp
+      title: graph/edge.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/floyd_warshall.cpp
+      title: Floyd-Warshall Algorithm
+    - icon: ':heavy_check_mark:'
+      path: graph/kruskal.cpp
+      title: Kruskal's Algorithm
+    - icon: ':heavy_check_mark:'
+      path: graph/prim.cpp
+      title: Prim's Algorithm
+    - icon: ':heavy_check_mark:'
+      path: graph/scc.cpp
+      title: Strongly Connected Components
+    - icon: ':warning:'
+      path: graph/topological_sort.cpp
+      title: Topological Sort
+    - icon: ':heavy_check_mark:'
+      path: graph/twosat.cpp
+      title: 2-SAT
+  - name: math
+    pages:
+    - icon: ':warning:'
+      path: math/change_base.cpp
+      title: math/change_base.cpp
+    - icon: ':warning:'
+      path: math/combination.cpp
+      title: math/combination.cpp
+    - icon: ':warning:'
+      path: math/divisor.cpp
+      title: math/divisor.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/euler_totient.cpp
+      title: math/euler_totient.cpp
+    - icon: ':warning:'
+      path: math/extgcd.cpp
+      title: math/extgcd.cpp
+    - icon: ':warning:'
+      path: math/fft.cpp
+      title: Fast Fourier Transform
+    - icon: ':warning:'
+      path: math/floor_sum.cpp
+      title: math/floor_sum.cpp
+    - icon: ':warning:'
+      path: math/geometry.cpp
+      title: math/geometry.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/is_prime.cpp
+      title: math/is_prime.cpp
+    - icon: ':warning:'
+      path: math/matrix.cpp
+      title: math/matrix.cpp
+    - icon: ':warning:'
+      path: math/mod_log.cpp
+      title: math/mod_log.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/mod_pow.cpp
+      title: math/mod_pow.cpp
+    - icon: ':warning:'
+      path: math/modint.cpp
+      title: math/modint.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/ntt.cpp
+      title: Number Theoretic Transform
+    - icon: ':heavy_check_mark:'
+      path: math/prime_factor.cpp
+      title: math/prime_factor.cpp
+    - icon: ':warning:'
+      path: math/sieve.cpp
+      title: math/sieve.cpp
+  - name: misc
+    pages:
+    - icon: ':warning:'
+      path: misc/compress.cpp
+      title: Coordinate Compression
+    - icon: ':warning:'
+      path: misc/counting_sort.cpp
+      title: misc/counting_sort.cpp
+    - icon: ':warning:'
+      path: misc/marathon_template.cpp
+      title: misc/marathon_template.cpp
+    - icon: ':warning:'
+      path: misc/random.cpp
+      title: misc/random.cpp
+    - icon: ':warning:'
+      path: misc/slide_min.cpp
+      title: misc/slide_min.cpp
+    - icon: ':warning:'
+      path: misc/timer.cpp
+      title: misc/timer.cpp
+  - name: string
+    pages:
+    - icon: ':warning:'
+      path: string/manacher.cpp
+      title: string/manacher.cpp
+    - icon: ':heavy_check_mark:'
+      path: string/suffix_array.cpp
+      title: string/suffix_array.cpp
+    - icon: ':warning:'
+      path: string/trie.cpp
+      title: string/trie.cpp
+  - name: tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: tree/lca.cpp
+      title: Lowerst Common Ancestor
+    - icon: ':heavy_check_mark:'
+      path: tree/tree_diameter.cpp
+      title: Diameter of a Tree
+  verificationCategories:
+  - name: test/aoj
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_14_B.test.cpp
+      title: test/aoj/ALDS1_14_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_1_C.is_prime.test.cpp
+      title: test/aoj/ALDS1_1_C.is_prime.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_1_A.test.cpp
+      title: test/aoj/DSL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_1_B.test.cpp
+      title: test/aoj/DSL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_A.test.cpp
+      title: test/aoj/DSL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_B.test.cpp
+      title: test/aoj/DSL_2_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_C.test.cpp
+      title: test/aoj/DSL_2_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_D.test.cpp
+      title: test/aoj/DSL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_E.test.cpp
+      title: test/aoj/DSL_2_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_F.test.cpp
+      title: test/aoj/DSL_2_F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
+      title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
+      title: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_3_D.test.cpp
+      title: test/aoj/DSL_3_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_1_A.test.cpp
+      title: test/aoj/GRL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_1_B.test.cpp
+      title: test/aoj/GRL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_1_C.test.cpp
+      title: test/aoj/GRL_1_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_2_A.kruskal.test.cpp
+      title: test/aoj/GRL_2_A.kruskal.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_2_A.prim.test.cpp
+      title: test/aoj/GRL_2_A.prim.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_3_C.test.cpp
+      title: test/aoj/GRL_3_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_5_A.test.cpp
+      title: test/aoj/GRL_5_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_5_C.test.cpp
+      title: test/aoj/GRL_5_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_6_A.dinic.test.cpp
+      title: test/aoj/GRL_6_A.dinic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
+      title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_6_B.test.cpp
+      title: test/aoj/GRL_6_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_7_A.test.cpp
+      title: test/aoj/GRL_7_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_A.test.cpp
+      title: test/aoj/NTL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_B.test.cpp
+      title: test/aoj/NTL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_D.test.cpp
+      title: test/aoj/NTL_1_D.test.cpp
+  - name: test/yosupo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution_mod.test.cpp
+      title: test/yosupo/convolution_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/point_add_range_sum.test.cpp
+      title: test/yosupo/point_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/point_set_range_composite.test.cpp
+      title: test/yosupo/point_set_range_composite.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/queue_operate_all_composite.test.cpp
+      title: test/yosupo/queue_operate_all_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/range_affine_range_sum.test.cpp
+      title: test/yosupo/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
+      title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/staticrmq.test.cpp
+      title: test/yosupo/staticrmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/two_sat.test.cpp
+      title: test/yosupo/two_sat.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/unionfind.test.cpp
+      title: test/yosupo/unionfind.test.cpp
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/online-judge-tools/verification-helper">online-judge-tools/verification-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="36397fe12f935090ad150c6ce0c258d4"></div>
-
-### data-structure
-
-* :heavy_check_mark: <a href="library/data-structure/disjoint_sparse_table.cpp.html">Disjoint Sparse Table <small>(data-structure/disjoint_sparse_table.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/dual_segment_tree.cpp.html">Dual Segment Tree <small>(data-structure/dual_segment_tree.cpp)</small></a>
-* :warning: <a href="library/data-structure/dynamic_segment_tree.cpp.html">Dynamic Segment Tree <small>(data-structure/dynamic_segment_tree.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/fenwick_tree.cpp.html">Fenwick Tree <small>(data-structure/fenwick_tree.cpp)</small></a>
-* :warning: <a href="library/data-structure/fenwick_tree_2d.cpp.html">2D Fenwick Tree <small>(data-structure/fenwick_tree_2d.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/kd_tree.cpp.html">k-d Tree <small>(data-structure/kd_tree.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/lazy_segment_tree.cpp.html">Segment Tree with Lazy Propagation <small>(data-structure/lazy_segment_tree.cpp)</small></a>
-* :warning: <a href="library/data-structure/monoids.cpp.html">data-structure/monoids.cpp</a>
-* :warning: <a href="library/data-structure/partially_persistent_union_find.cpp.html">Partially Persistent Union Find <small>(data-structure/partially_persistent_union_find.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/range_fenwick_tree.cpp.html">Fenwick Tree with Range Update <small>(data-structure/range_fenwick_tree.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/segment_tree.cpp.html">Segment Tree <small>(data-structure/segment_tree.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/segment_tree_beats.cpp.html">Segment Tree Beats <small>(data-structure/segment_tree_beats.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/sparse_table.cpp.html">Sparse Table <small>(data-structure/sparse_table.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">Union Find <small>(data-structure/union_find.cpp)</small></a>
-* :heavy_check_mark: <a href="library/data-structure/weighted_union_find.cpp.html">Weighted Union Find <small>(data-structure/weighted_union_find.cpp)</small></a>
-
-
-<div id="cff5497121104c2b8e0cb41ed2083a9b"></div>
-
-### flow
-
-* :heavy_check_mark: <a href="library/flow/bipartite_matching.cpp.html">Bipartite Matching <small>(flow/bipartite_matching.cpp)</small></a>
-* :heavy_check_mark: <a href="library/flow/dinic.cpp.html">Dinic's Algorithm <small>(flow/dinic.cpp)</small></a>
-* :heavy_check_mark: <a href="library/flow/ford_fulkerson.cpp.html">Ford-Fulkerson Algorithm <small>(flow/ford_fulkerson.cpp)</small></a>
-* :heavy_check_mark: <a href="library/flow/min_cost_flow.cpp.html">Minimum Cost Flow <small>(flow/min_cost_flow.cpp)</small></a>
-
-
-<div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
-
-### graph
-
-* :heavy_check_mark: <a href="library/graph/bellman_ford.cpp.html">Bellman-Ford Algorithm <small>(graph/bellman_ford.cpp)</small></a>
-* :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">Dijkstra's Algorithm <small>(graph/dijkstra.cpp)</small></a>
-* :heavy_check_mark: <a href="library/graph/edge.cpp.html">graph/edge.cpp</a>
-* :heavy_check_mark: <a href="library/graph/floyd_warshall.cpp.html">Floyd-Warshall Algorithm <small>(graph/floyd_warshall.cpp)</small></a>
-* :heavy_check_mark: <a href="library/graph/kruskal.cpp.html">Kruskal's Algorithm <small>(graph/kruskal.cpp)</small></a>
-* :heavy_check_mark: <a href="library/graph/prim.cpp.html">Prim's Algorithm <small>(graph/prim.cpp)</small></a>
-* :heavy_check_mark: <a href="library/graph/scc.cpp.html">Strongly Connected Components <small>(graph/scc.cpp)</small></a>
-* :warning: <a href="library/graph/topological_sort.cpp.html">Topological Sort <small>(graph/topological_sort.cpp)</small></a>
-* :heavy_check_mark: <a href="library/graph/twosat.cpp.html">2-SAT <small>(graph/twosat.cpp)</small></a>
-
-
-<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
-
-### math
-
-* :warning: <a href="library/math/change_base.cpp.html">math/change_base.cpp</a>
-* :warning: <a href="library/math/combination.cpp.html">math/combination.cpp</a>
-* :warning: <a href="library/math/divisor.cpp.html">math/divisor.cpp</a>
-* :heavy_check_mark: <a href="library/math/euler_totient.cpp.html">math/euler_totient.cpp</a>
-* :warning: <a href="library/math/extgcd.cpp.html">math/extgcd.cpp</a>
-* :warning: <a href="library/math/fft.cpp.html">Fast Fourier Transform <small>(math/fft.cpp)</small></a>
-* :warning: <a href="library/math/floor_sum.cpp.html">math/floor_sum.cpp</a>
-* :warning: <a href="library/math/geometry.cpp.html">math/geometry.cpp</a>
-* :heavy_check_mark: <a href="library/math/is_prime.cpp.html">math/is_prime.cpp</a>
-* :warning: <a href="library/math/matrix.cpp.html">math/matrix.cpp</a>
-* :warning: <a href="library/math/mod_log.cpp.html">math/mod_log.cpp</a>
-* :heavy_check_mark: <a href="library/math/mod_pow.cpp.html">math/mod_pow.cpp</a>
-* :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
-* :heavy_check_mark: <a href="library/math/ntt.cpp.html">Number Theoretic Transform <small>(math/ntt.cpp)</small></a>
-* :heavy_check_mark: <a href="library/math/prime_factor.cpp.html">math/prime_factor.cpp</a>
-* :warning: <a href="library/math/sieve.cpp.html">math/sieve.cpp</a>
-
-
-<div id="bc957e26ff41470c556ee5d09e96880b"></div>
-
-### misc
-
-* :warning: <a href="library/misc/compress.cpp.html">Coordinate Compression <small>(misc/compress.cpp)</small></a>
-* :warning: <a href="library/misc/counting_sort.cpp.html">misc/counting_sort.cpp</a>
-* :warning: <a href="library/misc/marathon_template.cpp.html">misc/marathon_template.cpp</a>
-* :warning: <a href="library/misc/random.cpp.html">misc/random.cpp</a>
-* :warning: <a href="library/misc/slide_min.cpp.html">misc/slide_min.cpp</a>
-* :warning: <a href="library/misc/timer.cpp.html">misc/timer.cpp</a>
-
-
-<div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
-
-### string
-
-* :warning: <a href="library/string/manacher.cpp.html">string/manacher.cpp</a>
-* :heavy_check_mark: <a href="library/string/suffix_array.cpp.html">string/suffix_array.cpp</a>
-* :warning: <a href="library/string/trie.cpp.html">string/trie.cpp</a>
-
-
-<div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
-
-### tree
-
-* :heavy_check_mark: <a href="library/tree/lca.cpp.html">Lowerst Common Ancestor <small>(tree/lca.cpp)</small></a>
-* :heavy_check_mark: <a href="library/tree/tree_diameter.cpp.html">Diameter of a Tree <small>(tree/tree_diameter.cpp)</small></a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/test/aoj/ALDS1_14_B.test.cpp.html">test/aoj/ALDS1_14_B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/ALDS1_1_C.is_prime.test.cpp.html">test/aoj/ALDS1_1_C.is_prime.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_1_A.test.cpp.html">test/aoj/DSL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_1_B.test.cpp.html">test/aoj/DSL_1_B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_A.test.cpp.html">test/aoj/DSL_2_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_B.test.cpp.html">test/aoj/DSL_2_B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_C.test.cpp.html">test/aoj/DSL_2_C.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_D.test.cpp.html">test/aoj/DSL_2_D.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_E.test.cpp.html">test/aoj/DSL_2_E.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_F.test.cpp.html">test/aoj/DSL_2_F.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_G.lazy_segment_tree.test.cpp.html">test/aoj/DSL_2_G.lazy_segment_tree.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_2_G.range_fenwick_tree.test.cpp.html">test/aoj/DSL_2_G.range_fenwick_tree.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL_3_D.test.cpp.html">test/aoj/DSL_3_D.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_1_A.test.cpp.html">test/aoj/GRL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_1_B.test.cpp.html">test/aoj/GRL_1_B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_1_C.test.cpp.html">test/aoj/GRL_1_C.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_2_A.kruskal.test.cpp.html">test/aoj/GRL_2_A.kruskal.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_2_A.prim.test.cpp.html">test/aoj/GRL_2_A.prim.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_3_C.test.cpp.html">test/aoj/GRL_3_C.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_5_A.test.cpp.html">test/aoj/GRL_5_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_5_C.test.cpp.html">test/aoj/GRL_5_C.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.dinic.test.cpp.html">test/aoj/GRL_6_A.dinic.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_6_A.ford_fulkerson.test.cpp.html">test/aoj/GRL_6_A.ford_fulkerson.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_6_B.test.cpp.html">test/aoj/GRL_6_B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/GRL_7_A.test.cpp.html">test/aoj/GRL_7_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/NTL_1_A.test.cpp.html">test/aoj/NTL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/NTL_1_B.test.cpp.html">test/aoj/NTL_1_B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/NTL_1_D.test.cpp.html">test/aoj/NTL_1_D.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.test.cpp.html">test/yosupo/point_add_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.test.cpp.html">test/yosupo/point_set_range_composite.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/range_affine_range_sum.test.cpp.html">test/yosupo/range_affine_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/range_chmin_chmax_add_range_sum.test.cpp.html">test/yosupo/range_chmin_chmax_add_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/staticrmq.test.cpp.html">test/yosupo/staticrmq.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/two_sat.test.cpp.html">test/yosupo/two_sat.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/unionfind.test.cpp.html">test/yosupo/unionfind.test.cpp</a>
-
-

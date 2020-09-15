@@ -1,0 +1,92 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/kruskal.cpp
+    title: Kruskal's Algorithm
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_1_A.test.cpp
+    title: test/aoj/DSL_1_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.kruskal.test.cpp
+    title: test/aoj/GRL_2_A.kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/unionfind.test.cpp
+    title: test/yosupo/unionfind.test.cpp
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/data-structure/union_find.md
+    document_title: Union Find
+    links: []
+  bundledCode: "#line 1 \"data-structure/union_find.cpp\"\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\n/*\n * @brief Union Find\n * @docs docs/data-structure/union_find.md\n\
+    \ */\nstruct UnionFind {\n    vector<int> par;\n\n    UnionFind(int n) : par(n,\
+    \ -1) {}\n\n    int find(int x) {\n        if (par[x] < 0) return x;\n       \
+    \ return par[x] = find(par[x]);\n    }\n\n    void unite(int x, int y) {\n   \
+    \     x = find(x);\n        y = find(y);\n        if (x == y) return;\n      \
+    \  if (par[x] > par[y]) swap(x, y);\n        par[x] += par[y];\n        par[y]\
+    \ = x;\n    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
+    \    }\n\n    int size(int x) {\n        return -par[find(x)];\n    }\n};\n"
+  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Union Find\n\
+    \ * @docs docs/data-structure/union_find.md\n */\nstruct UnionFind {\n    vector<int>\
+    \ par;\n\n    UnionFind(int n) : par(n, -1) {}\n\n    int find(int x) {\n    \
+    \    if (par[x] < 0) return x;\n        return par[x] = find(par[x]);\n    }\n\
+    \n    void unite(int x, int y) {\n        x = find(x);\n        y = find(y);\n\
+    \        if (x == y) return;\n        if (par[x] > par[y]) swap(x, y);\n     \
+    \   par[x] += par[y];\n        par[y] = x;\n    }\n\n    bool same(int x, int\
+    \ y) {\n        return find(x) == find(y);\n    }\n\n    int size(int x) {\n \
+    \       return -par[find(x)];\n    }\n};"
+  dependsOn: []
+  isVerificationFile: false
+  path: data-structure/union_find.cpp
+  requiredBy:
+  - graph/kruskal.cpp
+  timestamp: '2020-09-14 04:40:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DSL_1_A.test.cpp
+  - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/yosupo/unionfind.test.cpp
+documentation_of: data-structure/union_find.cpp
+layout: document
+redirect_from:
+- /library/data-structure/union_find.cpp
+- /library/data-structure/union_find.cpp.html
+title: Union Find
+---
+# Union Find
+
+Union find (素集合データ構造) は，素集合を管理するデータ構造である．
+
+この実装では経路圧縮と union by size を使用している．
+
+空間計算量: $O(n)$
+
+## Constructor
+
+- `UnionFind(int n)`
+    - サイズ`n`の union find を構築する．
+    - 時間計算量: $O(n)$
+
+## Member functions
+
+- `int find(int x)`
+    - $x$ が属する木の根を返す
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
+- `void unite(int x, int y)`
+    - $x$ が属する集合と $y$ が属する集合を連結する
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
+- `bool same(int x, int y)`
+    - $x$ と $y$ が同じ集合に属するかを判定する
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
+- `int size(int x)`
+    - $x$ が属する集合の大きさを返す
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
+
+## Note
+
+$\alpha(x)$ は逆アッカーマン関数である．
