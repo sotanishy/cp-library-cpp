@@ -1,7 +1,7 @@
 # Bellman-Ford Algorithm
 
-The Bellman-Ford algorithm is an algorithm for finding the shortest paths from a single source vertex to all other vertices in a weighted graph. It can also be used for negative cycle detection.
+Bellman-Ford のアルゴリズムは，重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．負閉路の検出にも用いられる．
 
 - `vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s)`
-    - Returns the shortest distance from the source vertex $s$ to all vertices in the graph $G$ with $V$ vertices, given the list of its edges. Returns an empty list if $G$ contains a negative cycle.
-    - Time complexity: $O(VE)$
+    - 頂点数 $V$ のグラフ $G$ の辺のリストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する．$G$ が負閉路を含む場合は，空のリストを返す
+    - 時間計算量: $O(VE)$

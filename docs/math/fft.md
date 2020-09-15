@@ -1,11 +1,11 @@
 # Fast Fourier Transform
 
-A fast Fourier Transform (FFT) is an algorithm for computing the discrete Fourier transform of a sequence, and it is used for efficiently calculating the convolution of two sequences.
+高速フーリエ変換 (FFT) は数列の離散フーリエ変換を計算するアルゴリズムであり，2つの数列の畳み込みを高速に計算するのに用いられる．
 
-This struct uses the Cooley-Tukey algorithm to compute the FFT of a sequence.
+この実装では Cooley-Tukey のアルゴリズムを用いている．
 
 ## Member functions
 
 - `template <typename T> static vector<double> convolution(const vector<T>& a, const vector<T>& b)`
-    - Calculates the convolution of `a` and `b`.
-    - Time complexity: $O(n\lg n)$
+    - `a` と `b` の畳み込みを計算する
+    - 時間計算量: $O(n\lg n)$

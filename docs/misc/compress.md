@@ -1,17 +1,25 @@
 # Coordinate Compression
 
-This struct compresses a list of values into a list of integers less than the size of the list.
+座標圧縮．与えられた値の大小関係が保たれるように，値を連続した非負整数に変換する．
 
-Space complexity: $O(n)$
+空間計算量: $O(n)$
 
-## Methods
+## Template parameters
+
+- `T`
+    - 要素の型
+
+## Constructor
 
 - `Compress(const vector<T>& vs)`
-    - Compresses the given list `vs`
-    - Time complexity: $O(n \lg n)$
+    - `vs`の値を座標圧縮する
+    - 時間計算量: $O(n \lg n)$
+
+## Member functions
+
 - `int compress(const T& x)`
-    - Compresses the value into an integer less than $n$
-    - Time complexity: $O(\lg n)$
+    - $x$ を圧縮した値を返す
+    - 時間計算量: $O(\lg n)$
 - `T decompress(int i)`
-    - Converts the compressed value into the original value.
-    - Time complexity: $O(1)$
+    - $i$ の圧縮前の値を返す
+    - 時間計算量: $O(1)$

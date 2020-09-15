@@ -1,15 +1,25 @@
 # Minimum Cost Flow
 
-This struct calculates the minimum cost flow of a directed graph.
+フローネットワークの最小費用流を求める．
 
-# Methods
+## Template parameters
+
+- `Cap`
+    - 容量の型
+- `Cost`
+    - コストの型
+
+## Construcor
 
 - `MinCostFlow(int V)`
-    - Initializes the graph with $V$ vertices.
-    - Time complexity: $O(V)$
+    - グラフを $V$ 頂点で初期化する
+    - 時間計算量: $O(V)$
+
+## Member functions
+
 - `void add_edge(int u, int v, Cap cap, Cost cost)`
-    - Adds an edge $(u, v)$ with a capacity $cap$ and a cost $cost$.
-    - Time complexity: $O(1)$
+    - 容量 $cap$，コスト $cost$ の辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
 - `Cost min_cost_flow(int s, int t, Cap f)`
-    - Calculates the minimum cost flow from the source $s$ to the sink $t$ with flow $f$.
-    - Time complexity: $O(fE\lg V)$
+    - 始点 $s$ から終点 $t$ への流量 $f$ の最小費用流を求める
+    - 時間計算量: $O(fE\lg V)$

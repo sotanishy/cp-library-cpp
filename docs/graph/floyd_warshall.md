@@ -1,7 +1,7 @@
 # Floyd-Warshall Algorithm
 
-The Floyd-Warshall algorithm is an algorithm for finding the shortest paths between all pairs of vertices in a weighted graph $G$ without negative cycles. If $dist(i, i) < 0$ for any $i \in V$, $G$ contains a negative cycle.
+Floyd-Warshall のアルゴリズムは，重み付きグラフの全点対最短経路問題を解くアルゴリズムである．負閉路検出にも用いられる．
 
 - `void floyd_warshall(vector<vector<T>>& dist)`
-    - Calculates the shortest distance between all pairs of vertices in the graph $G$, given its adjacency matrix.
-    - Time complexity: $O(V^3)$
+    - グラフ $G$ の隣接行列が与えられたとき，全頂点間の最短距離を計算する
+    - 時間計算量: $O(V^3)$

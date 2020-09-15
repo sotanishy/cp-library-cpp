@@ -1,15 +1,18 @@
 # Lowest Common Ancestor
 
-This struct calculates the lowest common ancestors of pairs of vertices in a tree.
+根付き木の2頂点間の最小共通祖先を計算する．
 
-## Methods
+## Constructor
 
 - `LCA(vector<vector<int>>& G, int root)`
-    - Builds a lookup table.
-    - Time complexity: $O(n\lg n)$
+    - 前計算をする
+    - 時間計算量: $O(n\lg n)$
+
+## Member functions
+
 - `int query(int u, int v)`
-    - Returns the lowest common ancestor of $u$ and $v$.
-    - Time complexity: $O(\lg n)$
+    - $u$ と $v$ の最小共通祖先を返す
+    - 時間計算量: $O(\lg n)$
 - `int dist(int u, int v)`
-    - Calculates the distance between $u$ and $v$.
-    - Time complexity: $O(\lg n)$
+    - $uv$ 間の距離を計算する
+    - 時間計算量: $O(\lg n)$

@@ -1,28 +1,28 @@
 # 2-SAT
 
-This struct solves the 2-satisfiability (2-SAT) problem in conjunctive normal form (CNF).
+2-SAT は，節内のリテラル数が高々2つであるような乗法標準形の論理式に対する充足可能性問題 (SAT) である．
 
-A 2-SAT can be solved with SCC decomposition, using the fact that a clause $(u \lor v)$ is logically equivalent to $(\lnot u \implies v) \land (\lnot v \implies u)$.
+節 $(u \lor v)$ が $(\lnot u \implies v) \land (\lnot v \implies u)$ と同値であることを利用すると，2-SAT を強連結成分分解を用いて解くことができる．
 
-Space complexity: $O(n + m)$, where $n$ is the number of variables and $m$ is the number of clauses.
+空間計算量: $O(n + m)$．$n$ は変の数，$m$ は節の数
 
 ## Constructor
 
 - `TwoSat(int n)`
-    - Initializes the struct with $n$ variables.
-    - Time complexity: $O(n)$
+    - $n$ 変数で初期化する
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `void add_clause(int u, bool a, int v, bool b)`
-    - Adds a clause $(u \lor v)$. If `a == false`, replace $u$ with $\lnot u$. Similarly, if `b == false`, replace $v$ with $\lnot v$.
-    - Time complexity: $O(1)$
+    - 節 $(u \lor v)$ を追加する．`a == false` ならば，$u$ を $\lnot u$ で置き換える．同様に`b == false` ならば，$v$ を $\lnot v$ で置き換える
+    - 時間計算量: $O(1)$
 - `void solve()`
-    - Solves the given problem.
-    - Time complexity: $O(n + m)$
+    - 問題を解く
+    - 時間計算量: $O(n + m)$
 - `bool is_satisfiable()`
-    - Returns if the problem is satisfiable.
-    - Time complexity: $O(1)$
+    - 問題が充足可能かどうか返す
+    - 時間計算量: $O(1)$
 - `bool operator[](int i)`
-    - Returns the truth value of the $i$th variable if `satisfiable == true`
-    - Time complexity: $O(1)$
+    - 充足可能ならば，$i$ 番目の変数の真偽値を返す
+    - 時間計算量: $O(1)$

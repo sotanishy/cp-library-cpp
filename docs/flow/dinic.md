@@ -1,15 +1,23 @@
 # Dinic's Algorithm
 
-Dinic's algorithm is an algorithm for findng the maximum flow. It continuously calculates the shortest distance from the source using BFS, finds an augmenting path in the residual graph using DFS, and sends flow along the path.
+Dinic のアルゴリズムは，フローネットワークの最大流を求めるアルゴリズムである．始点からの最短距離を BFS で計算し，残余グラフの増加パスを DFS で見つけ，そのパスにフローを流すことを繰り返す．
 
-# Methods
+## Template parameters
+
+- `T`
+    - 容量の型
+
+## Construcor
 
 - `Dinic(int n)`
-    - Initializes the graph with $n$ vertices.
-    - Time complexity: $O(n)$
+    - グラフを $n$ 頂点で初期化する
+    - 時間計算量: $O(n)$
+
+## Member functions
+
 - `void add_edge(int u, int v, T cap)`
-    - Adds an edge $(u, v)$ with a capacity $cap$.
-    - Time complexity: $O(1)$
+    - 容量 $cap$ の辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
 - `T max_flow(int s, int t)`
-    - Calculates the maximum flow from the source $s$ to the sink $t$.
-    - Time complexity: $O(V^2E)$
+    - 始点 $s$ から終点 $t$ への最大流を求める
+    - 時間計算量: $O(V^2E)$

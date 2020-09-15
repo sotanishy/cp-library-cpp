@@ -1,29 +1,32 @@
 # Strongly Connected Components
 
-This struct decomposes the given graph $G$ into strongly connected components (SCCs) i.e. subgraphs of $G$ that are strongly connected and maximal, using Kosaraju's algorithm.
+グラフ $G$ の強連結成分分解をする．
 
-If each SCC is contracted into a single vertex, the resulting graph will be a directed acyclic graph (DAG).
+この実装では Kosaraju のアルゴリズムを用いている．
 
-The labels of SCCs are in the topological order.
+強連結成分を一つの頂点に縮約すると，有向非巡回グラフ (DAG) が得られる．
 
-Space complexity: $O(V + E)$
+強連結成分のラベルはトポロジカル順序になっている．
+
+空間計算量: $O(V + E)$
 
 ## Constructor
 
 - `SCC(int n)`
-    - Creates a graph with $n$ vertices and no edges.
+    - グラフを $n$ 頂点で初期化する
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `void add_edge(int u, int v)`
-    - Adds an edge $(u, v)$
-    - Time complexity: $O(1)$
+    - 辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
 - `void build()`
-    - Decomposes the graph into strongly connected components.
-    - Time complexity: $O(V + E)$
+    - 強連結成分分解をする
+    - 時間計算量: $O(V + E)$
 - `int operator[](int i)`
-    - Returns the label of the strongly connected component the vertex $i$ belongs to.
-    - Time complexity: $O(1)$
+    - 頂点 $i$ が属する強連結成分のラベルを返す
+    - 時間計算量: $O(1)$
 - `int count()`
-    - Returns the number of strongly connected components.
-    - Time complexity: $O(1)$
+    - 強連結成分の数を返す
+    - 時間計算量: $O(1)$

@@ -1,15 +1,23 @@
 # Ford-Fulkerson Algorithm
 
-The Ford-Fulkerson algorithm is an algorithm for findng the maximum flow. It continuously finds an augmenting path in the residual graph using DFS and sends flow along the path.
+Ford-Fulkerson のアルゴリズムは，フローネットワークの最大流を求めるアルゴリズムである．残余グラフの増加パスを DFS で見つけ，そのパスにフローを流すことを繰り返す．
 
-# Methods
+## Template parameters
+
+- `T`
+    - 容量の型
+
+## Construcor
 
 - `FordFulkerson(int n)`
-    - Initializes the graph with $n$ vertices.
-    - Time complexity: $O(n)$
+    - グラフを $n$ 頂点で初期化する
+    - 時間計算量: $O(n)$
+
+## Member functions
+
 - `void add_edge(int u, int v, T cap)`
-    - Adds an edge $(u, v)$ with a capacity $cap$.
-    - Time complexity: $O(1)$
+    - 容量 $cap$ の辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
 - `T max_flow(int s, int t)`
-    - Calculates the maximum flow from the source $s$ to the sink $t$.
-    - Time complexity: $O(Ef)$
+    - 始点 $s$ から終点 $t$ への最大流を求める
+    - 時間計算量: $O(Ef)$

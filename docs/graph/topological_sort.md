@@ -1,7 +1,7 @@
 # Topological Sort
 
-A topological sort of a directed acyclic graph (DAG) is a linear ordering of its vertices such that for every edge $(u, v)$, $u$ comes before $v$.
+トポロジカルソートは，有向非巡回グラフ (DAG) の頂点を順序付けして，任意の辺 $(u, v)$ について $u$ が $v$ よりも前に来るように並べることである．
 
 - `vector<int> topological_sort(vector<vector<int>>& G)`
-    - Returns a topological sort of the graph $G$. If $G$ is not a DAG, returns an empty list.
-    - Time complexity: $O(V + E)$
+    - $G$ のトポロジカルソートを返す．$G$ が DAG でないならば，空のリストを返す
+    - 時間計算量: $O(V + E)$

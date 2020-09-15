@@ -1,15 +1,18 @@
 # Bipartite Matching
 
-This struct calculates the maximum matching of a bipartite graph using the Ford-Fulkerson algorithm.
+Ford-Fulkerson のアルゴリズムを用いて二部グラフの最大マッチングを計算する．
 
-# Methods
+## Constructor
 
-- `BipartiteMatching(int n)`
-    - Initializes the bipartite graph with $n$ vertices.
-    - Time complexity: $O(n)$
+- `BipartiteMatching(int n)`‘
+    - 二部グラフを $n$ 頂点で初期化する
+    - 時間計算量: $O(n)$
+
+## Member functions
+
 - `void add_edge(int u, int v)`
-    - Adds an edge $(u, v)$.
-    - Time complexity: $O(1)$
+    - 辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
 - `int bipartite_matching()`
-    - Calculates the maximum matching of the bipartite graph.
-    - Time complexity: $O(VE)$
+    - 二部グラフの最大マッチングを計算する
+    - 時間計算量: $O(VE)$
