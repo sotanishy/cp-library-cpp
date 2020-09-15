@@ -38,56 +38,56 @@ layout: default
 
 # Segment Tree with Lazy Propagation
 
-A segment tree with lazy propagation is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e_M)$ and handles actions $*$ of an operator monoid $(E, \circ, e_O)$. It offers range update and range query operations.
+遅延伝搬セグメント木は，モノイド $(T, \cdot, e_M)$ の列 $(a_0, a_1, \dots, a_{n-1})$ と，作用素モノイド $(E, \circ, e_O)$ による作用 $*$ を扱うデータ構造である．区間更新と区間クエリを処理することができる．
 
-The action $*: T \times E \rightarrow T$ satisfies the following conditions:
+作用 $*: T \times E \rightarrow T$ は $T$ の準自己同型である．すなわち，以下の性質が成り立つ．
 - $\forall a \in T, a * e_O = a$
 - $\forall a \in T, f, g \in E, a * (f \circ g) = (a * f) * g$
 - $\forall a, b \in T, f \in E, (a \cdot b) * f = (a * f) \cdot (b * f)$
 
-The third criterion makes $*$ an endomorphism of $T$.
+作用が区間の長さに比例するとき (e.g. 区間加算)，作用の分配則は成り立たないが，これはモノイドを $T \times \mathbb{N}$ に拡張して区間の長さを持たせ，適切に $*$ を定義することで対処できる．
 
-For point update and range query, use a segment tree.
+一点更新・区間クエリはセグメント木を使用する．
 
-For range update and point query, use a dual segment tree.
+区間更新・一点クエリは双対セグメント木を使用する．
 
-Space complexity: $O(n)$
+空間計算量: $O(n)$
 
 ## Template parameters
 
 - `M`
-    - A monoid $(T, \cdot, e_M)$ with the following members defined:
-        - `T`: the type of the set $T$
-        - `T id`: the identity element $e_M$
-        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+    - モノイド $(T, \cdot, e_M)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T id`: 単位元 $e_M$
+        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
 - `O`
-    - An operator monoid $(E, \circ, e_O)$. It must have the following members defined:
-        - `E`: the type of the set $E$
-        - `E id`: the identity element $e_O$
-        - `E op(E, E)`: an associative binary operation $\circ: E \times E \rightarrow E$
+    - 作用素モノイド $(E, \circ, e_O)$. 以下のメンバーが定義されている:
+        - `E`: 集合 $E$ の型
+        - `E id`: 単位元 $e_O$
+        - `E op(E, E)`: 結合的な二項演算 $\circ: E \times E \rightarrow E$
 - `T act(T, E)`
-    - An action $*: T \times E \rightarrow T$.
+    - 作用 $*: T \times E \rightarrow T$.
 
 ## Constructor
 
 - `LazySegmentTree(int n)`
-    - Constructs a segment tree with lazy propagation of size `n` with all elements set to the identity $e_M$.
-    - Time complexity: $O(n)$
+    - サイズ`n`で要素がすべて単位元 $e_M$ の遅延伝搬セグメント木を構築する
+    - 時間計算量: $O(n)$
 - `LazySegmentTree(const vector<T>& v)`
-    - Constructs a segment tree with lazy propagation of size `n = v.size()` using the values in `v`.
-    - Time complexity: $O(n)$
+    - `v`の要素からサイズ`n = v.size()`の遅延伝搬セグメント木を構築する
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `T operator[](int k)`
-    - Returns $a_k$.
-    - Time complexity: $O(\lg n)$
+    - $a_k$ を返す
+    - 時間計算量: $O(\lg n)$
 - `void update(int l, int r, const E& x)`
-    - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
-    - Time complexity: $O(\lg n)$
+    - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
+    - 時間計算量: $O(\lg n)$
 - `T fold(int l, int r)`
-    - Returns $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}\$.
-    - Time complexity: $O(\lg n)$
+    - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}\$ を計算する
+    - 時間計算量: $O(\lg n)$
 
 ## Verified with
 

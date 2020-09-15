@@ -38,36 +38,36 @@ layout: default
 
 # Dual Segment Tree
 
-A dual segment tree is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e)$ and offers range update and point query operations.
+双対セグメント木は，作用素モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，列に対する区間更新と一点クエリを処理できるデータ構造である．これは遅延伝搬セグメント木から作用素のみを取り出した構造である．
 
-For point update and range query, use a segment tree.
+一点更新・区間クエリはセグメント木を使用する．
 
-For range update and range query, use a segment tree with lazy propagation.
+区間更新・区間クエリは遅延伝搬セグメント木を使用する．
 
-Space complexity: $O(n)$
+空間計算量: $O(n)$
 
 ## Template parameters
 
 - `M`
-    - A monoid $(T, \cdot, e)$ with the following members defined:
-        - `T`: the type of the set $T$
-        - `T id`: the identity element $e$
-        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+    - モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T id`: 単位元 $e$
+        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
 - `DualSegmentTree(int n)`
-    - Constructs a dual segment tree of size `n` with all elements set to the identity $e$.
-    - Time complexity: $O(n)$
+    - サイズ`n`で要素がすべて単位元 $e$ の双対セグメント木を構築する
+    - 時間計算量: $O(n)$
 
 ## Methods
 
 - `T operator[](int k)`
-    - Returns $a_k$.
-    - Time complexity: $O(\lg n)$
+    - $a_k$ を返す
+    - 時間計算量: $O(1)$
 - `void update(int l, int r, const T& x)`
-    - Apply the operator $x$ to $a_l, a_{l+1}, \dots, a_{r-1}$.
-    - Time complexity: $O(\lg n)$
+    - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
+    - 時間計算量: $O(\lg n)$
 
 ## Verified with
 

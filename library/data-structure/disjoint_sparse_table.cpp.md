@@ -38,30 +38,30 @@ layout: default
 
 # Disjoint Sparse Table
 
-A disjoint sparse table is a data structure that can quickly answer range queries on a static sequence of a semigroup $(T, \cdot)$.
+Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ に対する区間クエリを高速に処理するデータ構造である．
 
-If the binary operation $\cdot$ is idempotent, a sparse table might be faster by a constant factor.
+二項演算 $\cdot$ が冪等であるとき，スパーステーブルの方が定数倍速いと思われる．
 
-Space complexity: $O(n \lg n)$
+空間計算量: $O(n \lg n)$
 
 ## Template parameters
 
 - `S`
-    - The idempotent semigroup $(T, \cdot)$ with the following members defined:
-        - `T`: the type of the set $T$
-        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+    - 半群 $(T, \cdot)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
 - `DisjointSparseTable(const vector<T>& v)`
-    - Constructs a disjoint sparse table from `v`
-    - Time complexity: $O(n \lg n)$
+    - `v`の要素から disjoint sparse table を構築する
+    - 時間計算量: $O(n \lg n)$
 
 ## Member functions
 
 - `T fold(int l, int r)`
-    - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
-    - Time complexity: $O(1)$
+    - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ を計算する
+    - 時間計算量: $O(1)$
 
 ## Verified with
 

@@ -38,30 +38,30 @@ layout: default
 
 # Sparse Table
 
-A sparse table is a data structure that can quickly answer range queries on a static sequence of an idempotent semigroup $(T, \cdot)$.
+スパーステーブルは，冪等半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ に対する区間クエリを高速に処理するデータ構造である．
 
-An idempotent binary operation is a mapping $\cdot: T \times T \rightarrow T$ such that $\forall a \in T, a \cdot a = a$.Idempotent binary operations include: max, min, gcd, bitwise and, and bitwise or.
+冪等な二項演算とは， $\forall a \in T, a \cdot a = a$ が成り立つような写像 $\cdot: T \times T \rightarrow T$ である．冪等何項演算には，max, min, gcd, bitwise and, bitwise or などがある．
 
-Space complexity: $O(n \lg n)$
+空間計算量: $O(n \lg n)$
 
 ## Template parameters
 
 - `S`
-    - The idempotent semigroup $(T, \cdot)$ with the following members defined:
-        - `T`: the type of the set $T$
-        - `T op(T, T)`: an associative and idempotent binary operation $\cdot: T \times T \rightarrow T$
+    - 冪等半群 $(T, \cdot)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T op(T, T)`: 結合的かつ冪等な二項演算 $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
 - `SparseTable(const vector<T>& v)`
-    - Constructs a sparse table from `v`
-    - Time complexity: $O(n \lg n)$
+    - `v`の要素からスパーステーブルを構築する
+    - 時間計算量: $O(n \lg n)$
 
 ## Member functions
 
 - `T fold(int l, int r)`
-    - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$.
-    - Time complexity: $O(1)$
+    - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ を計算する．
+    - 時間計算量: $O(1)$
 
 ## Verified with
 

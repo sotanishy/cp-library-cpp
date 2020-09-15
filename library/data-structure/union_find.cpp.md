@@ -38,36 +38,36 @@ layout: default
 
 # Union Find
 
-A union find, or a disjoint set union, is a data structure that stores a collection of disjoint sets.
+Union find (素集合データ構造) は，素集合を管理するデータ構造である．
 
-This version uses path compression and union by size.
+この実装では経路圧縮と union by size を使用している．
 
-Space complexity: $O(n)$
+空間計算量: $O(n)$
 
 ## Constructor
 
 - `UnionFind(int n)`
-    - Constructs a union find of size `n`.
-    - Time complexity: $O(n)$
+    - サイズ`n`の union find を構築する．
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `int find(int x)`
-    - Returns the root of the tree $x$ belongs to.
-    - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
+    - $x$ が属する木の根を返す
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
 - `void unite(int x, int y)`
-    - Unites the set $x$ belongs to and the set $y$ belongs to.
-    - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
+    - $x$ が属する集合と $y$ が属する集合を連結する
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
 - `bool same(int x, int y)`
-    - Checks if $x$ and $y$ are in the same set.
-    - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
+    - $x$ と $y$ が同じ集合に属するかを判定する
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
 - `int size(int x)`
-    - Returns the size of the set $x$ belongs to.
-    - Time complexity: $\mathrm{amortized}\ O(\alpha(n))$
+    - $x$ が属する集合の大きさを返す
+    - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
 
 ## Note
 
-$\alpha(x)$ is the inverse Ackermann function.
+$\alpha(x)$ は逆アッカーマン関数である．
 
 ## Required by
 

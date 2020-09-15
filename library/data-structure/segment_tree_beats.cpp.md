@@ -31,55 +31,60 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segment_tree_beats.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-15 00:50:25+09:00
+    - Last commit date: 2020-09-15 16:09:04+09:00
 
 
 
 
 # Segment Tree Beats
 
-A segment tree beats is a variant of a segment tree with lazy propagation that allows range chmin/chmax/add operations and range min/max/sum queries.
+Segment tree beats は，遅延伝搬セグメント木の亜種で，区間 chmin/chmax/add 更新と区間 min/max/sum クエリを処理できる．
 
-Space complexity: $O(n)$
+時間計算量は $O(\lg^2 n)$ ではなく $O(\lg n)$かもしれない．よくわからないのでここでは前者を使用する（表記として間違ってはいない）．
+
+空間計算量: $O(n)$
 
 ## Template parameters
 
 - `T`
-    - The type of the elements.
+    - 要素の型
 
 ## Constructor
 
 - `SegmentTreeBeats(int n)`
-    - Constructs a segment tree beats of size `n` with all elements set to 0.
-    - Time complexity: $O(n)$
+    - サイズ`n`で要素がすべて 0 の segment tree beats を構築する
+    - 時間計算量: $O(n)$
 - `SegmentTreeBeats(const vector<T>& v)`
-    - Constructs a segment tree beats of size `n = v.size()` using the values in `v`.
-    - Time complexity: $O(n)$
+    - `v`の要素からサイズ`n = v.size()`の segment tree beats を構築する
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `T operator[](int k)`
-    - Returns $a_k$.
-    - Time complexity: $O(\lg^2 n)$
+    - $a_k$ を返す
+    - 時間計算量: $O(\lg^2 n)$
 - `void chmin(int l, int r, T x)`
-    - Sets $a_i$ to $min(a_i, x)$ for $i \in [l, r)$
-    - Time complexity: $O(\lg^2 n)$
+    - $i \in [l, r)$ について $a_i$ を $min(a_i, x)$ に更新する
+    - 時間計算量: $O(\lg^2 n)$
 - `void chmax(int l, int r, T x)`
-    - Sets $a_i$ to $max(a_i, x)$ for $i \in [l, r)$
-    - Time complexity: $O(\lg^2 n)$
+    - $i \in [l, r)$ について $a_i$ を $max(a_i, x)$ に更新する
+    - 時間計算量: $O(\lg^2 n)$
 - `void add(int l, int r, T x)`
-    - Sets $a_i$ to $a_i + x$ for $i \in [l, r)$
-    - Time complexity: $O(\lg^2 n)$
+    - $i \in [l, r)$ について $a_i$ を $a_i + x$ に更新する
+    - 時間計算量: $O(\lg^2 n)$
 - `T fold_min(int l, int r)`
-    - Calculates $min(a_l, a_{l+1}, \cdots, a_{r-1})$.
-    - Time complexity: $O(\lg^2 n)$
+    - $min(a_l, a_{l+1}, \cdots, a_{r-1})$ を計算する
+    - 時間計算量: $O(\lg^2 n)$
 - `T fold_max(int l, int r)`
-    - Calculates $max(a_l, a_{l+1}, \cdots, a_{r-1})$.
-    - Time complexity: $O(\lg^2 n)$
+    - $min(a_l, a_{l+1}, \cdots, a_{r-1})$ を計算する
+    - 時間計算量: $O(\lg^2 n)$
 - `T fold_sum(int l, int r)`
-    - Calculates $a_l + a_{l+1} + \cdots + a_{r-1}$.
-    - Time complexity: $O(\lg^2 n)$
+    - $min(a_l, a_{l+1}, \cdots, a_{r-1})$ を計算する
+    - 時間計算量: $O(\lg^2 n)$
 
+## Reference
+
+[A simple introduction to "Segment tree beats"](https://codeforces.com/blog/entry/5731)
 
 ## Verified with
 
@@ -123,7 +128,7 @@ struct SegmentTreeBeats {
         for (int i = size - 1; i > 0; i--) recalc(i);
     }
 
-    T operator[](int k) const {
+    T operator[](int k) {
         return fold_sum(k, k + 1);
     }
 
@@ -308,7 +313,7 @@ struct SegmentTreeBeats {
         for (int i = size - 1; i > 0; i--) recalc(i);
     }
 
-    T operator[](int k) const {
+    T operator[](int k) {
         return fold_sum(k, k + 1);
     }
 

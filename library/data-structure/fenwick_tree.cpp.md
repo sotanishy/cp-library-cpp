@@ -38,35 +38,37 @@ layout: default
 
 # Fenwick Tree
 
-A Fenwick tree, or a binary indexed tree, is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a commutative monoid $(T, \cdot, e)$ and offers point update and prefix fold operations.
+Fenwick tree，または binary indexed tree は，可換モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，一点更新と接頭辞へのクエリを処理できるデータ構造である．
 
-Space complexity: $O(n)$
+セグメント木より制約が強く，操作が限られているが，実装が簡潔で定数倍速い．
+
+空間計算量: $O(n)$
 
 ## Template parameters
 
 - `M`
-    - A commutative monoid $(T, \cdot, e)$. It must have the following publicly accessible members:
-        - `T`: the type of the set $T$
-        - `T id`: the identity element $e$
-        - `T op(T, T)`: an associative and commutative binary operation $\cdot: T \times T \rightarrow T$
+    - 可換モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T id`: 単位元 $e$
+        - `T op(T, T)`: 結合的かつ可換な二項演算 $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
 - `FenwickTree(int n)`
-    - Constructs a Fenwick tree of size `n` with all elements set to the identity $e$.
-    - Time complexity: $O(n)$
+    - サイズ`n`で要素がすべて単位元 $e$ の Fenwick tree を構築する
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `T prefix_fold(int i)`
-    - Calculates $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$
-    - Time complexity: $O(\lg n)$
+    - $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ を計算する
+    - 時間計算量: $O(\lg n)$
 - `void update(int i, T x)`
-    - Update $a_i$ with $a_i \cdot x$
-    - Time complexity: $O(\lg n)$
+    - $a_i$ を $a_i \cdot x$ に更新する
+    - 時間計算量: $O(\lg n)$
 - `int find_first(const function<bool(T)>& cond)`
-    - Returns the first index $i$ such that $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ satisfies the condition `cond`. Returns $n$ if not found.
-    - Time complexity: $O(\lg n)$
+    - $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ が条件 `cond` を満たすような最小の $i$ を返す．列の単調性を仮定する．そのような $i$ が存在しない場合は $n$ を返す．
+    - 時間計算量: $O(\lg n)$
 
 ## Verified with
 

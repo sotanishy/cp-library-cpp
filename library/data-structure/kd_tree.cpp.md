@@ -38,23 +38,23 @@ layout: default
 
 # k-d Tree
 
-A k-d tree is a data structure that stores points in a $k$-dimensional space, which allows for efficient range searches.
+k-d 木は，$k$ 次元空間の点を保持し，効率的に範囲探索を行うデータ構造である．
 
-This k-d tree supports axis-aligned rectangular range searches in a 2-dimensional space.
+この k-d 木は2次元空間の長方形領域の探索を実現する．
 
-Space complexity: $O(n)$
+空間計算量: $O(n)$
 
 ## Member functions
 
 - `void add_point(int id, T x, T y)`
-    - Adds the point $(x, y)$ labeled `id`.
-    - Time complexity: $O(1)$
+    - ラベル `id` の点 $(x, y)$ を追加する
+    - 時間計算量: $O(1)$
 - `void build()`
-    - Builds a k-d tree.
-    - Time complexity: $O(n\lg^2 n)$
+    - k-d 木を構築する
+    - 時間計算量: $O(n\lg^2 n)$
 - `vector<int> search(T sx, T tx, T sy, T ty)`
-    - Returns the labels of points in the rectangular range from $(sx, sy)$ to $(tx, ty)$.
-    - Time complexity: $O(\sqrt{N} + m)$, where $m$ is the number of reported points
+    -  $(sx, sy)$ から $(tx, ty)$ までの長方形領域内の点のラベルを返す
+    - 時間計算量: $O(\sqrt{N} + m)$．$m$ は領域内の点の数
 
 ## Verified with
 
