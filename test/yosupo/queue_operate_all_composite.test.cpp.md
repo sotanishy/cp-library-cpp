@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/sliding_window_aggregation.cpp
     title: Sliding Window Aggregation
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -24,7 +24,7 @@ data:
     \ (back.empty()) return;\n            T x = back.top().first;\n            back.pop();\n\
     \            front.emplace(x, x);\n            while (!back.empty()) {\n     \
     \           x = back.top().first;\n                back.pop();\n             \
-    \   front.emplace(x, M::op(front.top().second, x));\n            }\n        }\n\
+    \   front.emplace(x, M::op(x, front.top().second));\n            }\n        }\n\
     \        front.pop();\n    }\n\n    T fold() {\n        T ret = M::id;\n     \
     \   if (!front.empty()) ret = M::op(ret, front.top().second);\n        if (!back.empty())\
     \ ret = M::op(ret, back.top().second);\n        return ret;\n    }\n};\n#line\
@@ -58,8 +58,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-09-16 02:03:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-16 02:22:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
 layout: document

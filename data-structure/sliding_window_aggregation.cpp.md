@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/sliding_window_aggregation.md
@@ -23,7 +23,7 @@ data:
     \ return;\n            T x = back.top().first;\n            back.pop();\n    \
     \        front.emplace(x, x);\n            while (!back.empty()) {\n         \
     \       x = back.top().first;\n                back.pop();\n                front.emplace(x,\
-    \ M::op(front.top().second, x));\n            }\n        }\n        front.pop();\n\
+    \ M::op(x, front.top().second));\n            }\n        }\n        front.pop();\n\
     \    }\n\n    T fold() {\n        T ret = M::id;\n        if (!front.empty())\
     \ ret = M::op(ret, front.top().second);\n        if (!back.empty()) ret = M::op(ret,\
     \ back.top().second);\n        return ret;\n    }\n};\n"
@@ -36,7 +36,7 @@ data:
     \ (back.empty()) return;\n            T x = back.top().first;\n            back.pop();\n\
     \            front.emplace(x, x);\n            while (!back.empty()) {\n     \
     \           x = back.top().first;\n                back.pop();\n             \
-    \   front.emplace(x, M::op(front.top().second, x));\n            }\n        }\n\
+    \   front.emplace(x, M::op(x, front.top().second));\n            }\n        }\n\
     \        front.pop();\n    }\n\n    T fold() {\n        T ret = M::id;\n     \
     \   if (!front.empty()) ret = M::op(ret, front.top().second);\n        if (!back.empty())\
     \ ret = M::op(ret, back.top().second);\n        return ret;\n    }\n};"
@@ -44,8 +44,8 @@ data:
   isVerificationFile: false
   path: data-structure/sliding_window_aggregation.cpp
   requiredBy: []
-  timestamp: '2020-09-16 02:03:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-09-16 02:22:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp
 documentation_of: data-structure/sliding_window_aggregation.cpp
