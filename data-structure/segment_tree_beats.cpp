@@ -30,7 +30,7 @@ struct SegmentTreeBeats {
         for (int i = size - 1; i > 0; i--) recalc(i);
     }
 
-    T operator[](int k) const {
+    T operator[](int k) {
         return fold_sum(k, k + 1);
     }
 

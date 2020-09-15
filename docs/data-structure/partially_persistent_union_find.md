@@ -1,29 +1,29 @@
 # Partially Persistent Union Find
 
-A partially persistent union find can access some past information about the disjoint sets. It offers the following operations:
-- merge two sets
-- check if two nodes are in the same set at time $t$
-- return the size of the set that a node belongs to at time $t$
+部分永続 union find は素集合森の過去の情報を保持する．以下の操作を実現する:
+- 2つの集合を連結する
+- 時刻 $t$ で2つの要素が同じ集合に属していたか判定する
+- 時刻 $t$ での集合の大きさを返す
 
-Space complexity: $O(n + q)$
+空間計算量: $O(n + q)$
 
 ## Constructor
 
 - `PartiallyPersistentUnionFind(int n)`
-    - Constructs a partially persistent union find of size `n`. The initial time is set to 0.
-    - Time complexity: $O(n)$
+    - サイズ`n`の部分永続 union find を構築する．時刻の初期値は 0 である．
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
-- `int find(time_type t, int x)`
-    - Returns the root of the tree $x$ belongs to at time $t$.
-    - Time complexity: $O(\lg n)$
+- `int find(int t, int x)`
+    - 時刻 $t$ で $x$ が属する木の根を返す
+    - 時間計算量: $O(\lg n)$
 - `void unite(int x, int y)`
-    - Increments the time by 1, and unites the set $x$ belongs to and the set $y$ belongs to.
-    - Time complexity: $O(\lg n)$
-- `bool same(time_type t, int x, int y)`
-    - Checks if $x$ and $y$ are in the same set at time $t$.
-    - Time complexity: $O(\lg n)$
-- `int size(time_type t, int x)`
-    - Returns the size of the set $x$ belongs to at time $t$.
-    - Time complexity: $O(\lg n)$
+    - 時刻を 1 増加させ，$x$ が属する集合と $y$ が属する集合を連結する
+    - 時間計算量: $O(\lg n)$
+- `bool same(int t, int x, int y)`
+    - 時刻 $t$ で $x$ と $y$ が同じ集合に属するかを判定する
+    - 時間計算量: $O(\lg n)$
+- `int size(int t, int x)`
+    - 時刻 $t$ で $x$ が属する集合の大きさを返す
+    - 時間計算量: $O(\lg n)$

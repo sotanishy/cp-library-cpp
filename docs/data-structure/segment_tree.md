@@ -1,44 +1,44 @@
 # Segment Tree
 
-A segment tree is a data structure that stores a sequence $(a_0, a_1, \dots, a_{n-1})$ of a monoid $(T, \cdot, e)$ and offers point update and range query operations.
+セグメント木は，モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，列に対する一点更新と区間クエリを処理できるデータ構造である．
 
-For range update and point query, use a dual segment tree.
+区間更新・一点クエリは双対セグメント木を使用する．
 
-For range update and range query, use a segment tree with lazy propagation.
+区間更新・区間クエリは遅延伝搬セグメント木を使用する．
 
-Space complexity: $O(n)$
+空間計算量: $O(n)$
 
 ## Template parameters
 
 - `M`
-    - A monoid $(T, \cdot, e)$ with the following members defined:
-        - `T`: the type of the set $T$
-        - `T id`: the identity element $e$
-        - `T op(T, T)`: an associative binary operation $\cdot: T \times T \rightarrow T$
+    - モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T id`: 単位元 $e$
+        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
 
 ## Constructor
 
 - `SegmentTree(int n)`
-    - Constructs a segment tree of size `n` with all elements set to the identity $e$.
-    - Time complexity: $O(n)$
+    - サイズ`n`で要素がすべて単位元 $e$ のセグメント木を構築する
+    - 時間計算量: $O(n)$
 - `SegmentTree(const vector<T>& v)`
-    - Constructs a segment tree of size `n = v.size()` using the values in `v`.
-    - Time complexity: $O(n)$
+    - `v`の要素からサイズ`n = v.size()`のセグメント木を構築する
+    - 時間計算量: $O(n)$
 
 ## Member functions
 
 - `T operator[](int k)`
-    - Returns $a_k$.
-    - Time complexity: $O(1)$
+    - $a_k$ を返す
+    - 時間計算量: $O(1)$
 - `void update(int k, const T& x)`
-    - Sets $a_k$ to $x$.
-    - Time complexity: $O(\lg n)$
+    - $a_k$ を $x$ に更新する
+    - 時間計算量: $O(\lg n)$
 - `T fold(int l, int r)`
-    - Calculates $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$. Returns $e$ if $l = r$.
-    - Time complexity: $O(\lg n)$
+    - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ を計算する．$l = r$ ならば $e$ を返す．
+    - 時間計算量: $O(\lg n)$
 - `int find_first(int l, const function<bool(T)>& cond)`
-    - Returns the first index $r$ after $l$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`, assuming that the sequence is monotonic. Returns `-1` if not found.
-    - Time complexity: $O(\lg n)$
+    - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ が条件 `cond` を満たすような最小の $r (> l)$ 返す．列の単調性を仮定する．そのような $r$ が存在しない場合は `-1` を返す．
+    - 時間計算量: $O(\lg n)$
 - `int find_last(int r, const function<bool(T)>& cond)`
-    - Returns the last index $l$ before $r$ such that $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ satisfies the condition `cond`, assuming that the sequence is monotonic. Returns `-1` if not found.
-    - Time complexity: $O(\lg n)$
+    - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ が条件 `cond` を満たすような最大の $l (< r)$ 返す．列の単調性を仮定する．そのような $l$ が存在しない場合は `-1` を返す．
+    - 時間計算量: $O(\lg n)$
