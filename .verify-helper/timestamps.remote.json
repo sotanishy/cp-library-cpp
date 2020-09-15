@@ -30,6 +30,7 @@
 "test/yosupo/convolution_mod.test.cpp": "2020-09-16 02:03:26 +0900",
 "test/yosupo/point_add_range_sum.test.cpp": "2020-09-14 16:31:52 +0900",
 "test/yosupo/point_set_range_composite.test.cpp": "2020-09-14 16:31:52 +0900",
+"test/yosupo/queue_operate_all_composite.test.cpp": "2020-09-16 02:22:16 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-09-15 01:38:01 +0900",
 "test/yosupo/range_chmin_chmax_add_range_sum.test.cpp": "2020-09-15 16:09:04 +0900",
 "test/yosupo/staticrmq.test.cpp": "2020-09-14 16:31:52 +0900",
