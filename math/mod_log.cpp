@@ -2,7 +2,10 @@
 #include "mod_pow.cpp"
 using namespace std;
 
-// returns x such that a^x = b (mod p)
+/*
+ * @brief Discrete Logarithm
+ * @docs docs/math/mod_log.md
+ */
 int mod_log(long long a, long long b, long long p) {
     int m = sqrt(p) + 1;
     vector<long long> baby(m);

@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Primality Test
+ * @docs docs/math/is_prime.md
+ */
 bool is_prime(long long n) {
     if (n <= 1) return false;
     if (n <= 3) return true;

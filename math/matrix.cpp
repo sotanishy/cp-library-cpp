@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Matrix
+ * @docs docs/math/matrix.md
+ */
 template <typename T, typename = typename enable_if<is_arithmetic<T>::value, T>::type>
 struct Matrix {
     vector<vector<T>> A;

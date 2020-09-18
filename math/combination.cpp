@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Combination
+ * @docs docs/math/combination.md
+ */
 struct Combination {
     long long mod;
     vector<long long> fact, fact_inv;

@@ -1,12 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long mod_pow(long long n, long long p, long long mod) {
+/*
+ * @brief Mod Exponentiation
+ * @docs docs/math/mod_pow.md
+ */
+long long mod_pow(long long a, long long p, long long mod) {
     long long ret = 1;
     while (p > 0) {
-        if (p & 1) ret = ret * n % mod;
-        n = n * n % mod;
+        if (p & 1) ret = ret * a % mod;
+        a = a * a % mod;
         p >>= 1;
     }
     return ret;
+}
+
+long long mod_inv(long long a, long long mod) {
+    return mod_pow(a, mod - 2, mod);
 }
