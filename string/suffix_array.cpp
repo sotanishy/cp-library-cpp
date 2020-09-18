@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Suffix Array
+ * @docs docs/string/suffix_array.md
+ */
 struct SuffixArray {
     vector<int> sa;
     const string s;
