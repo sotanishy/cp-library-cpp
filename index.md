@@ -48,9 +48,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sparse_table.cpp
       title: Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/treap.cpp
-      title: data-structure/treap.cpp
+      title: Treap
     - icon: ':heavy_check_mark:'
       path: data-structure/union_find.cpp
       title: Union Find
@@ -195,7 +195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_8_D.test.cpp
       title: test/aoj/ALDS1_8_D.test.cpp
     - icon: ':heavy_check_mark:'

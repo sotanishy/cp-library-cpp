@@ -3,21 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_8_D.test.cpp
     title: test/aoj/ALDS1_8_D.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/data-structure/treap.md
+    document_title: Treap
     links: []
   bundledCode: "#line 1 \"data-structure/treap.cpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\ntemplate <typename T>\nstruct Treap {\npublic:\n\n    int\
-    \ count(T key) { count(root, key); }\n\n    void insert(T key, int priority =\
-    \ -1) {\n        if (priority == -1) priority = rand() % 100000000;\n        root\
-    \ = insert(root, key, priority);\n    }\n\n    void erase(T key) {\n        root\
-    \ = erase(root, key);\n    }\n\n    void print_inorder() {\n        print_inorder(root);\n\
-    \        cout << \"\\n\";\n    }\n\n    void print_preorder() {\n        print_preorder(root);\n\
+    \ namespace std;\n\n/*\n * @brief Treap\n * @docs docs/data-structure/treap.md\n\
+    \ */\ntemplate <typename T>\nstruct Treap {\npublic:\n\n    int count(T key) {\
+    \ return count(root, key); }\n\n    void insert(T key, int priority = -1) {\n\
+    \        if (priority == -1) priority = rand() % 100000000;\n        root = insert(root,\
+    \ key, priority);\n    }\n\n    void erase(T key) {\n        root = erase(root,\
+    \ key);\n    }\n\n    void print_inorder() {\n        print_inorder(root);\n \
+    \       cout << \"\\n\";\n    }\n\n    void print_preorder() {\n        print_preorder(root);\n\
     \        cout << \"\\n\";\n    }\n\nprivate:\n    struct Node {\n        Node*\
     \ left;\n        Node* right;\n        T key;\n        int priority;\n       \
     \ Node(T key, int priority) : left(nullptr), right(nullptr), key(key), priority(priority)\
@@ -47,8 +50,9 @@ data:
     \    }\n\n    void print_preorder(Node* t) {\n        if (t == nullptr) return;\n\
     \        cout << \" \" << t->key;\n        print_preorder(t->left);\n        print_preorder(t->right);\n\
     \    }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\ntemplate <typename T>\n\
-    struct Treap {\npublic:\n\n    int count(T key) { count(root, key); }\n\n    void\
+  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Treap\n *\
+    \ @docs docs/data-structure/treap.md\n */\ntemplate <typename T>\nstruct Treap\
+    \ {\npublic:\n\n    int count(T key) { return count(root, key); }\n\n    void\
     \ insert(T key, int priority = -1) {\n        if (priority == -1) priority = rand()\
     \ % 100000000;\n        root = insert(root, key, priority);\n    }\n\n    void\
     \ erase(T key) {\n        root = erase(root, key);\n    }\n\n    void print_inorder()\
@@ -87,8 +91,8 @@ data:
   isVerificationFile: false
   path: data-structure/treap.cpp
   requiredBy: []
-  timestamp: '2020-09-18 23:45:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-09-19 00:10:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_8_D.test.cpp
 documentation_of: data-structure/treap.cpp
@@ -96,5 +100,25 @@ layout: document
 redirect_from:
 - /library/data-structure/treap.cpp
 - /library/data-structure/treap.cpp.html
-title: data-structure/treap.cpp
+title: Treap
 ---
+# Treap
+
+Treap は，平衡二分探索木の一種である．キーと別に，ランダムに割り当てられた優先度を用いてヒープ性を持たせることで，木の平衡を保つ．
+
+## Template parameters
+
+- `T`
+    - キーの型
+
+## Member functions
+
+- `int count(T key)`
+    - $key$ をキーとするノードの個数 (0 か 1) を返す
+    - 時間計算量: $\mathrm{expected}\ O(\lg n)$
+- `void insert(T key, int priority = -1)`
+    - $key$ をキー，$priority$ を優先度とするノードを追加する．$priority$ は指定しない場合ランダムに決定される
+    - 時間計算量: $\mathrm{expected}\ O(\lg n)$
+- `void erase(T key)`
+    - $key$ をキーとするノードを削除する
+    - 時間計算量: $\mathrm{expected}\ O(\lg n)$

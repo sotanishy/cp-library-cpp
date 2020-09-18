@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/treap.cpp
-    title: data-structure/treap.cpp
+    title: Treap
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D
@@ -15,15 +15,16 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D
   bundledCode: "#line 1 \"test/aoj/ALDS1_8_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D\"\
     \n\n#line 1 \"data-structure/treap.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\ntemplate <typename T>\nstruct Treap {\npublic:\n\n    int count(T key)\
-    \ { count(root, key); }\n\n    void insert(T key, int priority = -1) {\n     \
-    \   if (priority == -1) priority = rand() % 100000000;\n        root = insert(root,\
-    \ key, priority);\n    }\n\n    void erase(T key) {\n        root = erase(root,\
-    \ key);\n    }\n\n    void print_inorder() {\n        print_inorder(root);\n \
-    \       cout << \"\\n\";\n    }\n\n    void print_preorder() {\n        print_preorder(root);\n\
-    \        cout << \"\\n\";\n    }\n\nprivate:\n    struct Node {\n        Node*\
-    \ left;\n        Node* right;\n        T key;\n        int priority;\n       \
-    \ Node(T key, int priority) : left(nullptr), right(nullptr), key(key), priority(priority)\
+    \ std;\n\n/*\n * @brief Treap\n * @docs docs/data-structure/treap.md\n */\ntemplate\
+    \ <typename T>\nstruct Treap {\npublic:\n\n    int count(T key) { return count(root,\
+    \ key); }\n\n    void insert(T key, int priority = -1) {\n        if (priority\
+    \ == -1) priority = rand() % 100000000;\n        root = insert(root, key, priority);\n\
+    \    }\n\n    void erase(T key) {\n        root = erase(root, key);\n    }\n\n\
+    \    void print_inorder() {\n        print_inorder(root);\n        cout << \"\\\
+    n\";\n    }\n\n    void print_preorder() {\n        print_preorder(root);\n  \
+    \      cout << \"\\n\";\n    }\n\nprivate:\n    struct Node {\n        Node* left;\n\
+    \        Node* right;\n        T key;\n        int priority;\n        Node(T key,\
+    \ int priority) : left(nullptr), right(nullptr), key(key), priority(priority)\
     \ {}\n    } *root = nullptr;\n\n    int count(Node* t, T key) {\n        if (t\
     \ == nullptr) return 0;\n        if (key == t->key) return 1;\n        if (key\
     \ < t->key) return count(t->left, key);\n        else return count(t->right, key);\n\
@@ -75,8 +76,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_8_D.test.cpp
   requiredBy: []
-  timestamp: '2020-09-18 23:45:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-19 00:10:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_8_D.test.cpp
 layout: document
