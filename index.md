@@ -40,6 +40,9 @@ data:
       path: data-structure/segment_tree_beats.cpp
       title: Segment Tree Beats
     - icon: ':heavy_check_mark:'
+      path: data-structure/slide_min.cpp
+      title: Slide Min
+    - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -159,9 +162,6 @@ data:
       path: misc/random.cpp
       title: misc/random.cpp
     - icon: ':warning:'
-      path: misc/slide_min.cpp
-      title: misc/slide_min.cpp
-    - icon: ':warning:'
       path: misc/timer.cpp
       title: misc/timer.cpp
   - name: string
@@ -223,8 +223,11 @@ data:
       path: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
       title: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_3_D.test.cpp
-      title: test/aoj/DSL_3_D.test.cpp
+      path: test/aoj/DSL_3_D.slide_min.test.cpp
+      title: test/aoj/DSL_3_D.slide_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_3_D.sparse_table.test.cpp
+      title: test/aoj/DSL_3_D.sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_A.test.cpp
       title: test/aoj/GRL_1_A.test.cpp

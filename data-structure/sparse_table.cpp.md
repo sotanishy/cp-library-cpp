@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_3_D.test.cpp
-    title: test/aoj/DSL_3_D.test.cpp
+    path: test/aoj/DSL_3_D.sparse_table.test.cpp
+    title: test/aoj/DSL_3_D.sparse_table.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -42,7 +42,7 @@ data:
   timestamp: '2020-09-14 16:31:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_3_D.test.cpp
+  - test/aoj/DSL_3_D.sparse_table.test.cpp
 documentation_of: data-structure/sparse_table.cpp
 layout: document
 redirect_from:
