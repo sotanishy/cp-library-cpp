@@ -7,20 +7,23 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    _deprecated_at_docs: docs/math/matrix.md
+    document_title: Matrix
     links: []
   bundledCode: "#line 1 \"math/matrix.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\ntemplate <typename T, typename = typename enable_if<is_arithmetic<T>::value,\
-    \ T>::type>\nstruct Matrix {\n    vector<vector<T>> A;\n    int m, n;\n\n    const\
-    \ double EPS = 1e-8;\n\n    Matrix(int m, int n) : A(m, vector<T>(n)), m(m), n(n)\
-    \ {}\n\n    Matrix(initializer_list<initializer_list<T>> list) {\n        for\
-    \ (auto& l : list) {\n            A.push_back(vector<T>(l.begin(), l.end()));\n\
-    \        }\n        m = A.size();\n        n = A[0].size();\n    }\n\n    static\
-    \ Matrix I(int n) {\n        Matrix ret(n, n);\n        for (int i = 0; i < n;\
-    \ i++) ret[i][i] = 1;\n        return ret;\n    }\n\n    static Matrix concatenate(const\
-    \ Matrix& A, const Matrix& B) {\n        assert(A.m == B.m);\n        Matrix C(A.m,\
-    \ A.n + B.n);\n        for (int i = 0; i < A.m; i++) {\n            for (int j\
-    \ = 0; j < A.n; j++) {\n                C[i][j] = A[i][j];\n            }\n  \
-    \          for (int j = 0; j < B.n; j++) {\n                C[i][A.n + j] = B[i][j];\n\
+    \ std;\n\n/*\n * @brief Matrix\n * @docs docs/math/matrix.md\n */\ntemplate <typename\
+    \ T, typename = typename enable_if<is_arithmetic<T>::value, T>::type>\nstruct\
+    \ Matrix {\n    vector<vector<T>> A;\n    int m, n;\n\n    const double EPS =\
+    \ 1e-8;\n\n    Matrix(int m, int n) : A(m, vector<T>(n)), m(m), n(n) {}\n\n  \
+    \  Matrix(initializer_list<initializer_list<T>> list) {\n        for (auto& l\
+    \ : list) {\n            A.push_back(vector<T>(l.begin(), l.end()));\n       \
+    \ }\n        m = A.size();\n        n = A[0].size();\n    }\n\n    static Matrix\
+    \ I(int n) {\n        Matrix ret(n, n);\n        for (int i = 0; i < n; i++) ret[i][i]\
+    \ = 1;\n        return ret;\n    }\n\n    static Matrix concatenate(const Matrix&\
+    \ A, const Matrix& B) {\n        assert(A.m == B.m);\n        Matrix C(A.m, A.n\
+    \ + B.n);\n        for (int i = 0; i < A.m; i++) {\n            for (int j = 0;\
+    \ j < A.n; j++) {\n                C[i][j] = A[i][j];\n            }\n       \
+    \     for (int j = 0; j < B.n; j++) {\n                C[i][A.n + j] = B[i][j];\n\
     \            }\n        }\n        return C;\n    }\n\n    const vector<T>& operator[](int\
     \ i) const {\n        return A[i];\n    }\n\n    vector<T>& operator[](int i)\
     \ {\n        return A[i];\n    }\n\n    Matrix& operator+=(const Matrix& B) {\n\
@@ -73,10 +76,11 @@ data:
     \ i = 0; i < n; i++) {\n            for (int j = 0; j < n; j++) {\n          \
     \      B[i][j] = IB[i][n + j];\n            }\n        }\n        return B;\n\
     \    }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\ntemplate <typename T, typename\
-    \ = typename enable_if<is_arithmetic<T>::value, T>::type>\nstruct Matrix {\n \
-    \   vector<vector<T>> A;\n    int m, n;\n\n    const double EPS = 1e-8;\n\n  \
-    \  Matrix(int m, int n) : A(m, vector<T>(n)), m(m), n(n) {}\n\n    Matrix(initializer_list<initializer_list<T>>\
+  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Matrix\n\
+    \ * @docs docs/math/matrix.md\n */\ntemplate <typename T, typename = typename\
+    \ enable_if<is_arithmetic<T>::value, T>::type>\nstruct Matrix {\n    vector<vector<T>>\
+    \ A;\n    int m, n;\n\n    const double EPS = 1e-8;\n\n    Matrix(int m, int n)\
+    \ : A(m, vector<T>(n)), m(m), n(n) {}\n\n    Matrix(initializer_list<initializer_list<T>>\
     \ list) {\n        for (auto& l : list) {\n            A.push_back(vector<T>(l.begin(),\
     \ l.end()));\n        }\n        m = A.size();\n        n = A[0].size();\n   \
     \ }\n\n    static Matrix I(int n) {\n        Matrix ret(n, n);\n        for (int\
@@ -141,7 +145,7 @@ data:
   isVerificationFile: false
   path: math/matrix.cpp
   requiredBy: []
-  timestamp: '2020-09-14 16:31:52+09:00'
+  timestamp: '2020-09-18 16:59:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/matrix.cpp
@@ -149,5 +153,63 @@ layout: document
 redirect_from:
 - /library/math/matrix.cpp
 - /library/math/matrix.cpp.html
-title: math/matrix.cpp
+title: Matrix
 ---
+# Matrix
+
+行列を表す．
+
+絶対使わない機能ばかりついているので，使用するときは使う部分だけ残すとよい．また行列の積で mod を取る機能はついていないので，そこは自分でその都度実装する．
+
+## Template parameters
+
+- `T`
+    - 行列の要素の型
+
+## Constructor
+
+- `Matrix(int m, int n)`
+    - $m \times n$ 零行列を構築する
+    - 時間計算量: $O(mn)$
+
+- `Matrix(initializer_list<initializer_list<T>> list)`
+    - `list` の要素で行列を構築する
+    - 時間計算量: $O(mn)$
+
+## Member functions
+
+- `static Matrix I(int n)`
+    - $n \times n$ 単位行列を返す
+    - 時間計算量: $O(n^2)$
+
+- `static Matrix concatenate(const Matrix& A, const Matrix& B)`
+    - $A$ と $B$ を結合した行列を返す
+    - 時間計算量: $O(mn_A n_B)$
+
+- `Matrix transpose()`
+    - 転置行列を返す
+    - 時間計算量: $O(mn)$
+
+- `Matrix matmul(const Matrix& B)`
+    - 行列積 $AB$ を返す
+    - 時間計算量: $O(m_A n_A n_B)$
+
+- `Matrix pow(long long k)`
+    - $A^k$ を返す
+    - 時間計算量: $O(n^3 \lg k)$
+
+- `Matrix rref()`
+    - $A$ に対して掃き出し法を行った結果を返す
+    - 時間計算量: $O(mn^2)$
+
+- `T det()`
+    - 行列式 $|A|$ を返す
+    - 時間計算量: $O(mn^2)$
+
+- `int rank()`
+    - $A$ の階数を返す
+    - 時間計算量: $O(mn^2)$
+
+- `Matrix inverse()`
+    - 逆行列 $A^{-1}$ を返す
+    - 時間計算量: $O(mn^2)$

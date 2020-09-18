@@ -97,41 +97,41 @@ data:
   - name: math
     pages:
     - icon: ':warning:'
-      path: math/change_base.cpp
-      title: math/change_base.cpp
-    - icon: ':warning:'
       path: math/combination.cpp
-      title: math/combination.cpp
+      title: Combination
+    - icon: ':warning:'
+      path: math/convert_base.cpp
+      title: Base Conversion
     - icon: ':warning:'
       path: math/divisor.cpp
-      title: math/divisor.cpp
+      title: Divisors
     - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
-      title: math/euler_totient.cpp
+      title: Euler's Totient Function
     - icon: ':warning:'
       path: math/extgcd.cpp
-      title: math/extgcd.cpp
+      title: Extended Euclidean Algorithm
     - icon: ':warning:'
       path: math/fft.cpp
       title: Fast Fourier Transform
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
-      title: math/floor_sum.cpp
+      title: Floor Sum
     - icon: ':warning:'
       path: math/geometry.cpp
       title: math/geometry.cpp
     - icon: ':heavy_check_mark:'
       path: math/is_prime.cpp
-      title: math/is_prime.cpp
+      title: Primality Test
     - icon: ':warning:'
       path: math/matrix.cpp
-      title: math/matrix.cpp
+      title: Matrix
     - icon: ':warning:'
       path: math/mod_log.cpp
-      title: math/mod_log.cpp
+      title: Discrete Logarithm
     - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
-      title: math/mod_pow.cpp
+      title: Mod Exponentiation
     - icon: ':warning:'
       path: math/modint.cpp
       title: math/modint.cpp
@@ -140,10 +140,10 @@ data:
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
       path: math/prime_factor.cpp
-      title: math/prime_factor.cpp
+      title: Prime Factor
     - icon: ':warning:'
-      path: math/sieve.cpp
-      title: math/sieve.cpp
+      path: math/prime_table.cpp
+      title: Prime Table
   - name: misc
     pages:
     - icon: ':warning:'
@@ -293,6 +293,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/sum_of_floor_of_linear.test.cpp
+      title: test/yosupo/sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
