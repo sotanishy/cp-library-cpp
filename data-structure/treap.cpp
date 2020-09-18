@@ -1,11 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+ * @brief Treap
+ * @docs docs/data-structure/treap.md
+ */
 template <typename T>
 struct Treap {
 public:
 
-    int count(T key) { count(root, key); }
+    int count(T key) { return count(root, key); }
 
     void insert(T key, int priority = -1) {
         if (priority == -1) priority = rand() % 100000000;
