@@ -48,6 +48,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sparse_table.cpp
       title: Sparse Table
+    - icon: ':x:'
+      path: data-structure/treap.cpp
+      title: data-structure/treap.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/union_find.cpp
       title: Union Find
@@ -171,7 +174,7 @@ data:
       title: string/manacher.cpp
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.cpp
-      title: string/suffix_array.cpp
+      title: Suffix Array
     - icon: ':warning:'
       path: string/trie.cpp
       title: string/trie.cpp
@@ -192,6 +195,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
+    - icon: ':x:'
+      path: test/aoj/ALDS1_8_D.test.cpp
+      title: test/aoj/ALDS1_8_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_A.test.cpp
       title: test/aoj/DSL_1_A.test.cpp
