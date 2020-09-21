@@ -9,12 +9,12 @@ data:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/trie.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nclass Trie {\npublic:\n    Trie() : nodes(1) {}\n\n    void add(string&\
-    \ s, int id) {\n        int node = 0;\n        for (char c : s) {\n          \
-    \  if (nodes[node].child[c - 'a'] == -1) {\n                nodes[node].child[c\
+    \ std;\n\nclass Trie {\npublic:\n    Trie() : nodes(1) {}\n\n    void add(const\
+    \ string& s, int id) {\n        int node = 0;\n        for (char c : s) {\n  \
+    \          if (nodes[node].child[c - 'a'] == -1) {\n                nodes[node].child[c\
     \ - 'a'] = nodes.size();\n                nodes.emplace_back();\n            }\n\
     \            nodes[node].count++;\n            node = nodes[node].child[c - 'a'];\n\
-    \        }\n        nodes[node].is_end = true;\n    }\n\n    int query(string&\
+    \        }\n        nodes[node].is_end = true;\n    }\n\n    int query(const string&\
     \ s) const {\n        int node = 0;\n        for (char c : s) {\n            if\
     \ (nodes[node].child[c - 'a'] == -1) return 0;\n            node = nodes[node].child[c\
     \ - 'a'];\n        }\n        return nodes[node].count;\n    }\n\nprivate:\n \
@@ -22,22 +22,22 @@ data:
     \        int count = 0;\n\n        Node() : child(26, -1) {}\n    };\n\n    vector<Node>\
     \ nodes;\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Trie {\npublic:\n\
-    \    Trie() : nodes(1) {}\n\n    void add(string& s, int id) {\n        int node\
-    \ = 0;\n        for (char c : s) {\n            if (nodes[node].child[c - 'a']\
-    \ == -1) {\n                nodes[node].child[c - 'a'] = nodes.size();\n     \
-    \           nodes.emplace_back();\n            }\n            nodes[node].count++;\n\
+    \    Trie() : nodes(1) {}\n\n    void add(const string& s, int id) {\n       \
+    \ int node = 0;\n        for (char c : s) {\n            if (nodes[node].child[c\
+    \ - 'a'] == -1) {\n                nodes[node].child[c - 'a'] = nodes.size();\n\
+    \                nodes.emplace_back();\n            }\n            nodes[node].count++;\n\
     \            node = nodes[node].child[c - 'a'];\n        }\n        nodes[node].is_end\
-    \ = true;\n    }\n\n    int query(string& s) const {\n        int node = 0;\n\
-    \        for (char c : s) {\n            if (nodes[node].child[c - 'a'] == -1)\
-    \ return 0;\n            node = nodes[node].child[c - 'a'];\n        }\n     \
-    \   return nodes[node].count;\n    }\n\nprivate:\n    struct Node {\n        vector<int>\
-    \ child;\n        bool is_end = false;\n        int count = 0;\n\n        Node()\
-    \ : child(26, -1) {}\n    };\n\n    vector<Node> nodes;\n};"
+    \ = true;\n    }\n\n    int query(const string& s) const {\n        int node =\
+    \ 0;\n        for (char c : s) {\n            if (nodes[node].child[c - 'a'] ==\
+    \ -1) return 0;\n            node = nodes[node].child[c - 'a'];\n        }\n \
+    \       return nodes[node].count;\n    }\n\nprivate:\n    struct Node {\n    \
+    \    vector<int> child;\n        bool is_end = false;\n        int count = 0;\n\
+    \n        Node() : child(26, -1) {}\n    };\n\n    vector<Node> nodes;\n};"
   dependsOn: []
   isVerificationFile: false
   path: string/trie.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/trie.cpp

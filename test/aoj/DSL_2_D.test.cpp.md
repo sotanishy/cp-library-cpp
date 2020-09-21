@@ -15,7 +15,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
   bundledCode: "#line 1 \"test/aoj/DSL_2_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \n\n#line 1 \"data-structure/dual_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/dual_segment_tree.md\n\
+    \n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/dual_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    explicit DualSegmentTree(int n) {\n        size = 1;\n        height\
     \ = 1;\n        while (size < n) size <<= 1, height++;\n        lazy.resize(2\
@@ -25,35 +25,35 @@ data:
     \        propagate(r - 1);\n        for (; l < r; l >>= 1, r >>= 1) {\n      \
     \      if (l & 1) lazy[l] = M::op(lazy[l], x), l++;\n            if (r & 1) --r,\
     \ lazy[r] = M::op(lazy[r], x);\n        }\n    }\n\nprivate:\n    int size, height;\n\
-    \    vector<T> lazy;\n\n    void push(int k) {\n        if (lazy[k] == M::id)\
+    \    std::vector<T> lazy;\n\n    void push(int k) {\n        if (lazy[k] == M::id)\
     \ return;\n        lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2\
     \ * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\
     \n    void propagate(int k) {\n        for (int i = height; i > 0; i--) push(k\
-    \ >> i);\n    }\n};\n#line 4 \"test/aoj/DSL_2_D.test.cpp\"\n\nstruct Monoid {\n\
-    \    using T = int;\n    inline static const T id = (1u << 31) - 1;\n    static\
-    \ T op(T a, T b) {\n        return b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    DualSegmentTree<Monoid>\
-    \ st(n);\n    for (int i = 0; i < q; i++) {\n        int type;\n        cin >>\
-    \ type;\n        if (type == 0) {\n            int s, t, x;\n            cin >>\
-    \ s >> t >> x;\n            st.update(s, t + 1, x);\n        } else {\n      \
-    \      int i;\n            cin >> i;\n            cout << st[i] << \"\\n\";\n\
-    \        }\n    }\n}\n"
+    \ >> i);\n    }\n};\n#line 4 \"test/aoj/DSL_2_D.test.cpp\"\n\nusing namespace\
+    \ std;\n\nstruct Monoid {\n    using T = int;\n    inline static const T id =\
+    \ (1u << 31) - 1;\n    static T op(T a, T b) {\n        return b;\n    }\n};\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
+    \ int n, q;\n    cin >> n >> q;\n    DualSegmentTree<Monoid> st(n);\n    for (int\
+    \ i = 0; i < q; i++) {\n        int type;\n        cin >> type;\n        if (type\
+    \ == 0) {\n            int s, t, x;\n            cin >> s >> t >> x;\n       \
+    \     st.update(s, t + 1, x);\n        } else {\n            int i;\n        \
+    \    cin >> i;\n            cout << st[i] << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
-    \n\n#include \"../../data-structure/dual_segment_tree.cpp\"\n\nstruct Monoid {\n\
-    \    using T = int;\n    inline static const T id = (1u << 31) - 1;\n    static\
-    \ T op(T a, T b) {\n        return b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    DualSegmentTree<Monoid>\
-    \ st(n);\n    for (int i = 0; i < q; i++) {\n        int type;\n        cin >>\
-    \ type;\n        if (type == 0) {\n            int s, t, x;\n            cin >>\
-    \ s >> t >> x;\n            st.update(s, t + 1, x);\n        } else {\n      \
-    \      int i;\n            cin >> i;\n            cout << st[i] << \"\\n\";\n\
-    \        }\n    }\n}"
+    \n\n#include \"../../data-structure/dual_segment_tree.cpp\"\n\nusing namespace\
+    \ std;\n\nstruct Monoid {\n    using T = int;\n    inline static const T id =\
+    \ (1u << 31) - 1;\n    static T op(T a, T b) {\n        return b;\n    }\n};\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
+    \ int n, q;\n    cin >> n >> q;\n    DualSegmentTree<Monoid> st(n);\n    for (int\
+    \ i = 0; i < q; i++) {\n        int type;\n        cin >> type;\n        if (type\
+    \ == 0) {\n            int s, t, x;\n            cin >> s >> t >> x;\n       \
+    \     st.update(s, t + 1, x);\n        } else {\n            int i;\n        \
+    \    cin >> i;\n            cout << st[i] << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/dual_segment_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_D.test.cpp

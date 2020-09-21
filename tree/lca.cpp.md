@@ -15,10 +15,10 @@ data:
     links: []
   bundledCode: "#line 1 \"tree/lca.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\n/*\n * @brief Lowerst Common Ancestor\n * @docs docs/tree/lca.md\n */\n\
-    class LCA {\npublic:\n    LCA(vector<vector<int>>& G, int root) : G(G), LOG(32\
-    \ - __builtin_clz(G.size())), depth(G.size()) {\n        int V = G.size();\n \
-    \       table.assign(LOG, vector<int>(V, -1));\n\n        dfs(root, -1, 0);\n\n\
-    \        for (int k = 0; k < LOG - 1; k++) {\n            for (int v = 0; v <\
+    class LCA {\npublic:\n    LCA(const vector<vector<int>>& G, int root) : G(G),\
+    \ LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n        int V = G.size();\n\
+    \        table.assign(LOG, vector<int>(V, -1));\n\n        dfs(root, -1, 0);\n\
+    \n        for (int k = 0; k < LOG - 1; k++) {\n            for (int v = 0; v <\
     \ V; v++) {\n                if (table[k][v] >= 0) {\n                    table[k+1][v]\
     \ = table[k][table[k][v]];\n                }\n            }\n        }\n    }\n\
     \n    int query(int u, int v) const {\n        if (depth[u] > depth[v]) swap(u,\
@@ -34,14 +34,14 @@ data:
     \ p, int d) {\n        table[0][v] = p;\n        depth[v] = d;\n        for (int\
     \ c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n        }\n    }\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Lowerst Common\
-    \ Ancestor\n * @docs docs/tree/lca.md\n */\nclass LCA {\npublic:\n    LCA(vector<vector<int>>&\
-    \ G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n\
-    \        int V = G.size();\n        table.assign(LOG, vector<int>(V, -1));\n\n\
-    \        dfs(root, -1, 0);\n\n        for (int k = 0; k < LOG - 1; k++) {\n  \
-    \          for (int v = 0; v < V; v++) {\n                if (table[k][v] >= 0)\
-    \ {\n                    table[k+1][v] = table[k][table[k][v]];\n            \
-    \    }\n            }\n        }\n    }\n\n    int query(int u, int v) const {\n\
-    \        if (depth[u] > depth[v]) swap(u, v);\n\n        // go up to the same\
+    \ Ancestor\n * @docs docs/tree/lca.md\n */\nclass LCA {\npublic:\n    LCA(const\
+    \ vector<vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())),\
+    \ depth(G.size()) {\n        int V = G.size();\n        table.assign(LOG, vector<int>(V,\
+    \ -1));\n\n        dfs(root, -1, 0);\n\n        for (int k = 0; k < LOG - 1; k++)\
+    \ {\n            for (int v = 0; v < V; v++) {\n                if (table[k][v]\
+    \ >= 0) {\n                    table[k+1][v] = table[k][table[k][v]];\n      \
+    \          }\n            }\n        }\n    }\n\n    int query(int u, int v) const\
+    \ {\n        if (depth[u] > depth[v]) swap(u, v);\n\n        // go up to the same\
     \ depth\n        for (int k = 0; k < LOG; k++) {\n            if ((depth[v] -\
     \ depth[u]) >> k & 1) {\n                v = table[k][v];\n            }\n   \
     \     }\n        if (u == v) return u;\n\n        for (int k = LOG - 1; k >= 0;\
@@ -57,7 +57,7 @@ data:
   isVerificationFile: false
   path: tree/lca.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_C.test.cpp

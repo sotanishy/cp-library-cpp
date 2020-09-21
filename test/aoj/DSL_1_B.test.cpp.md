@@ -15,7 +15,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
   bundledCode: "#line 1 \"test/aoj/DSL_1_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \n\n#line 1 \"data-structure/weighted_union_find.cpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/weighted_union_find.md\n\
+    \n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/weighted_union_find.md\n\
     \ */\ntemplate <typename T>\nclass WeightedUnionFind {\npublic:\n    explicit\
     \ WeightedUnionFind(int n) : data(n, -1), ws(n) {}\n\n    int find(int x) {\n\
     \        if (data[x] < 0) return x;\n        int r = find(data[x]);\n        ws[x]\
@@ -23,34 +23,35 @@ data:
     \        find(x);\n        return ws[x];\n    }\n\n    bool unite(int x, int y,\
     \ T w) {\n        w += weight(x);\n        w -= weight(y);\n        x = find(x);\n\
     \        y = find(y);\n        if (x == y) return false;\n        if (data[x]\
-    \ > data[y]) {\n            swap(x, y);\n            w = -w;\n        }\n    \
-    \    data[x] += data[y];\n        data[y] = x;\n        ws[y] = w;\n        return\
-    \ true;\n    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n\n    T diff(int x, int y) {\n        return weight(y) - weight(x);\n\
-    \    }\n\n    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n\
-    \    vector<int> data;\n    vector<T> ws;\n};\n#line 4 \"test/aoj/DSL_1_B.test.cpp\"\
-    \n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n \
-    \   int n, q;\n    cin >> n >> q;\n    WeightedUnionFind<int> wuf(n);\n    for\
+    \ > data[y]) {\n            std::swap(x, y);\n            w = -w;\n        }\n\
+    \        data[x] += data[y];\n        data[y] = x;\n        ws[y] = w;\n     \
+    \   return true;\n    }\n\n    bool same(int x, int y) {\n        return find(x)\
+    \ == find(y);\n    }\n\n    T diff(int x, int y) {\n        return weight(y) -\
+    \ weight(x);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
+    \    }\n\nprivate:\n    std::vector<int> data;\n    std::vector<T> ws;\n};\n#line\
+    \ 4 \"test/aoj/DSL_1_B.test.cpp\"\n\nusing namespace std;\n\nint main() {\n  \
+    \  ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n    cin\
+    \ >> n >> q;\n    WeightedUnionFind<int> wuf(n);\n    for (int i = 0; i < q; i++)\
+    \ {\n        int t;\n        cin >> t;\n        if (t == 0) {\n            int\
+    \ x, y, z;\n            cin >> x >> y >> z;\n            wuf.unite(x, y, z);\n\
+    \        } else {\n            int x, y;\n            cin >> x >> y;\n       \
+    \     if (wuf.same(x, y)) cout << wuf.diff(x, y) << \"\\n\";\n            else\
+    \ cout << \"?\\n\";\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
+    \n\n#include \"../../data-structure/weighted_union_find.cpp\"\n\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int n, q;\n    cin >> n >> q;\n    WeightedUnionFind<int> wuf(n);\n    for\
     \ (int i = 0; i < q; i++) {\n        int t;\n        cin >> t;\n        if (t\
     \ == 0) {\n            int x, y, z;\n            cin >> x >> y >> z;\n       \
     \     wuf.unite(x, y, z);\n        } else {\n            int x, y;\n         \
     \   cin >> x >> y;\n            if (wuf.same(x, y)) cout << wuf.diff(x, y) <<\
     \ \"\\n\";\n            else cout << \"?\\n\";\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
-    \n\n#include \"../../data-structure/weighted_union_find.cpp\"\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n   \
-    \ cin >> n >> q;\n    WeightedUnionFind<int> wuf(n);\n    for (int i = 0; i <\
-    \ q; i++) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n      \
-    \      int x, y, z;\n            cin >> x >> y >> z;\n            wuf.unite(x,\
-    \ y, z);\n        } else {\n            int x, y;\n            cin >> x >> y;\n\
-    \            if (wuf.same(x, y)) cout << wuf.diff(x, y) << \"\\n\";\n        \
-    \    else cout << \"?\\n\";\n        }\n    }\n}\n"
   dependsOn:
   - data-structure/weighted_union_find.cpp
   isVerificationFile: true
   path: test/aoj/DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_B.test.cpp

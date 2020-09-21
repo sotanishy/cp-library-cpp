@@ -16,12 +16,12 @@ data:
   bundledCode: "#line 1 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
     \n\n#line 1 \"data-structure/segment_tree_beats.cpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segment_tree_beats.md\n\
+    \n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segment_tree_beats.md\n\
     \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    explicit SegmentTreeBeats(int\
-    \ n) : SegmentTreeBeats(vector<T>(n)) {}\n    explicit SegmentTreeBeats(const\
-    \ vector<T>& v) {\n        size = 1;\n        while (size < (int) v.size()) size\
-    \ <<= 1;\n        sum.resize(2 * size);\n        lazy.resize(2 * size);\n    \
-    \    max_val.resize(2 * size, NINF);\n        smax_val.resize(2 * size, NINF);\n\
+    \ n) : SegmentTreeBeats(std::vector<T>(n)) {}\n    explicit SegmentTreeBeats(const\
+    \ std::vector<T>& v) {\n        size = 1;\n        while (size < (int) v.size())\
+    \ size <<= 1;\n        sum.resize(2 * size);\n        lazy.resize(2 * size);\n\
+    \        max_val.resize(2 * size, NINF);\n        smax_val.resize(2 * size, NINF);\n\
     \        max_cnt.resize(2 * size);\n        min_val.resize(2 * size, INF);\n \
     \       smin_val.resize(2 * size, INF);\n        min_cnt.resize(2 * size);\n \
     \       len.resize(2 * size);\n        len[1] = size;\n        for (int i = 2;\
@@ -35,28 +35,29 @@ data:
     \ { update<ADD>(l, r, x, 1, 0, size); }\n\n    T fold_min(int l, int r) { return\
     \ fold<MIN>(l, r, 1, 0, size); }\n    T fold_max(int l, int r) { return fold<MAX>(l,\
     \ r, 1, 0, size); }\n    T fold_sum(int l, int r) { return fold<SUM>(l, r, 1,\
-    \ 0, size); }\n\nprivate:\n    const T INF = numeric_limits<T>::max();\n    const\
-    \ T NINF = numeric_limits<T>::min();\n\n    int size;\n    vector<T> sum, lazy;\n\
-    \    vector<T> max_val, smax_val;\n    vector<T> min_val, smin_val;\n    vector<int>\
-    \ len, max_cnt, min_cnt;\n\n    enum OpType {\n        CHMIN, CHMAX, ADD\n   \
-    \ };\n\n    enum QueryType {\n        MIN, MAX, SUM\n    };\n\n    void recalc(int\
-    \ k) {\n        sum[k] = sum[2 * k] + sum[2 * k + 1];\n\n        if (max_val[2\
-    \ * k] > max_val[2 * k + 1]) {\n            max_val[k] = max_val[2 * k];\n   \
-    \         max_cnt[k] = max_cnt[2 * k];\n            smax_val[k] = max(smax_val[2\
-    \ * k], max_val[2 * k + 1]);\n        } else if (max_val[2 * k] < max_val[2 *\
-    \ k + 1]) {\n            max_val[k] = max_val[2 * k + 1];\n            max_cnt[k]\
-    \ = max_cnt[2 * k + 1];\n            smax_val[k] = max(max_val[2 * k], smax_val[2\
-    \ * k + 1]);\n        } else {\n            max_val[k] = max_val[2 * k];\n   \
-    \         max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];\n            smax_val[k]\
-    \ = max(smax_val[2 * k], smax_val[2 * k + 1]);\n        }\n\n        if (min_val[2\
-    \ * k] < min_val[2 * k + 1]) {\n            min_val[k] = min_val[2 * k];\n   \
-    \         min_cnt[k] = min_cnt[2 * k];\n            smin_val[k] = min(smin_val[2\
-    \ * k], min_val[2 * k + 1]);\n        } else if (min_val[2 * k] > min_val[2 *\
-    \ k + 1]) {\n            min_val[k] = min_val[2 * k + 1];\n            min_cnt[k]\
-    \ = min_cnt[2 * k + 1];\n            smin_val[k] = min(min_val[2 * k], smin_val[2\
-    \ * k + 1]);\n        } else {\n            min_val[k] = min_val[2 * k];\n   \
-    \         min_cnt[k] = min_cnt[2 * k] + min_cnt[2 * k + 1];\n            smin_val[k]\
-    \ = min(smin_val[2 * k], smin_val[2 * k + 1]);\n        }\n    }\n\n    template\
+    \ 0, size); }\n\nprivate:\n    const T INF = std::numeric_limits<T>::max();\n\
+    \    const T NINF = std::numeric_limits<T>::min();\n\n    int size;\n    std::vector<T>\
+    \ sum, lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T> min_val,\
+    \ smin_val;\n    std::vector<int> len, max_cnt, min_cnt;\n\n    enum OpType {\n\
+    \        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
+    \ SUM\n    };\n\n    void recalc(int k) {\n        sum[k] = sum[2 * k] + sum[2\
+    \ * k + 1];\n\n        if (max_val[2 * k] > max_val[2 * k + 1]) {\n          \
+    \  max_val[k] = max_val[2 * k];\n            max_cnt[k] = max_cnt[2 * k];\n  \
+    \          smax_val[k] = std::max(smax_val[2 * k], max_val[2 * k + 1]);\n    \
+    \    } else if (max_val[2 * k] < max_val[2 * k + 1]) {\n            max_val[k]\
+    \ = max_val[2 * k + 1];\n            max_cnt[k] = max_cnt[2 * k + 1];\n      \
+    \      smax_val[k] = std::max(max_val[2 * k], smax_val[2 * k + 1]);\n        }\
+    \ else {\n            max_val[k] = max_val[2 * k];\n            max_cnt[k] = max_cnt[2\
+    \ * k] + max_cnt[2 * k + 1];\n            smax_val[k] = std::max(smax_val[2 *\
+    \ k], smax_val[2 * k + 1]);\n        }\n\n        if (min_val[2 * k] < min_val[2\
+    \ * k + 1]) {\n            min_val[k] = min_val[2 * k];\n            min_cnt[k]\
+    \ = min_cnt[2 * k];\n            smin_val[k] = std::min(smin_val[2 * k], min_val[2\
+    \ * k + 1]);\n        } else if (min_val[2 * k] > min_val[2 * k + 1]) {\n    \
+    \        min_val[k] = min_val[2 * k + 1];\n            min_cnt[k] = min_cnt[2\
+    \ * k + 1];\n            smin_val[k] = std::min(min_val[2 * k], smin_val[2 * k\
+    \ + 1]);\n        } else {\n            min_val[k] = min_val[2 * k];\n       \
+    \     min_cnt[k] = min_cnt[2 * k] + min_cnt[2 * k + 1];\n            smin_val[k]\
+    \ = std::min(smin_val[2 * k], smin_val[2 * k + 1]);\n        }\n    }\n\n    template\
     \ <OpType TYPE>\n    void tag(int k, T x) {\n        if (TYPE == CHMIN) {\n  \
     \          sum[k] += (x - max_val[k]) * max_cnt[k];\n            if (max_val[k]\
     \ == min_val[k]) min_val[k] = x;\n            else if (max_val[k] == smin_val[k])\
@@ -92,10 +93,10 @@ data:
     \            if (TYPE == MAX) return max_val[k];\n            if (TYPE == SUM)\
     \ return sum[k];\n        }\n        push(k);\n        int m = (l + r) / 2;\n\
     \        T vl = fold<TYPE>(a, b, 2 * k, l, m);\n        T vr = fold<TYPE>(a, b,\
-    \ 2 * k + 1, m, r);\n        if (TYPE == MIN) return min(vl, vr);\n        if\
-    \ (TYPE == MAX) return max(vl, vr);\n        if (TYPE == SUM) return vl + vr;\n\
-    \        return -1;\n    }\n};\n#line 4 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ 2 * k + 1, m, r);\n        if (TYPE == MIN) return std::min(vl, vr);\n     \
+    \   if (TYPE == MAX) return std::max(vl, vr);\n        if (TYPE == SUM) return\
+    \ vl + vr;\n        return -1;\n    }\n};\n#line 4 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\
+    \n\nusing namespace std;\n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
     \    for (int i = 0; i < N; i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n\
     \    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        ll b;\n    \
@@ -105,21 +106,22 @@ data:
     \ } else {\n            cout << st.fold_sum(l, r) << \"\\n\";\n        }\n   \
     \ }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \n\n#include \"../../data-structure/segment_tree_beats.cpp\"\n\nusing ll = long\
-    \ long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0;\
-    \ i < N; i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n    for (int i =\
-    \ 0; i < Q; i++) {\n        int t, l, r;\n        ll b;\n        cin >> t >> l\
-    \ >> r;\n        if (t != 3) cin >> b;\n        if (t == 0) {\n            st.chmin(l,\
-    \ r, b);\n        } else if (t == 1) {\n            st.chmax(l, r, b);\n     \
-    \   } else if (t == 2) {\n            st.add(l, r, b);\n        } else {\n   \
-    \         cout << st.fold_sum(l, r) << \"\\n\";\n        }\n    }\n}"
+    \n\n#include \"../../data-structure/segment_tree_beats.cpp\"\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
+    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n\
+    \    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        ll b;\n    \
+    \    cin >> t >> l >> r;\n        if (t != 3) cin >> b;\n        if (t == 0) {\n\
+    \            st.chmin(l, r, b);\n        } else if (t == 1) {\n            st.chmax(l,\
+    \ r, b);\n        } else if (t == 2) {\n            st.add(l, r, b);\n       \
+    \ } else {\n            cout << st.fold_sum(l, r) << \"\\n\";\n        }\n   \
+    \ }\n}"
   dependsOn:
   - data-structure/segment_tree_beats.cpp
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

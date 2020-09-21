@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/union_find.cpp
     title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
     links:
     - https://judge.yosupo.jp/problem/unionfind
   bundledCode: "#line 1 \"test/yosupo/unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
-    \n\n#line 1 \"data-structure/union_find.cpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\n/*\n * @brief Union Find\n * @docs docs/data-structure/union_find.md\n\
-    \ */\nclass UnionFind {\npublic:\n    explicit UnionFind(int n) : data(n, -1)\
-    \ {}\n\n    int find(int x) {\n        if (data[x] < 0) return x;\n        return\
-    \ data[x] = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n        x\
-    \ = find(x);\n        y = find(y);\n        if (x == y) return;\n        if (data[x]\
-    \ > data[y]) swap(x, y);\n        data[x] += data[y];\n        data[y] = x;\n\
-    \    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n\n    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n\
-    \    vector<int> data;\n};\n#line 4 \"test/yosupo/unionfind.test.cpp\"\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ N, Q;\n    cin >> N >> Q;\n    UnionFind uf(N);\n    for (int i = 0; i < Q;\
-    \ i++) {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if (t ==\
-    \ 0) uf.unite(u, v);\n        else cout << uf.same(u, v) << \"\\n\";\n    }\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
-    \ \"../../data-structure/union_find.cpp\"\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#line 1 \"data-structure/union_find.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
+    \ * @brief Union Find\n * @docs docs/data-structure/union_find.md\n */\nclass\
+    \ UnionFind {\npublic:\n    explicit UnionFind(int n) : data(n, -1) {}\n\n   \
+    \ int find(int x) {\n        if (data[x] < 0) return x;\n        return data[x]\
+    \ = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n        x = find(x);\n\
+    \        y = find(y);\n        if (x == y) return;\n        if (data[x] > data[y])\
+    \ std::swap(x, y);\n        data[x] += data[y];\n        data[y] = x;\n    }\n\
+    \n    bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n\n\
+    \    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n  \
+    \  std::vector<int> data;\n};\n#line 4 \"test/yosupo/unionfind.test.cpp\"\n\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind uf(N);\n\
     \    for (int i = 0; i < Q; i++) {\n        int t, u, v;\n        cin >> t >>\
     \ u >> v;\n        if (t == 0) uf.unite(u, v);\n        else cout << uf.same(u,\
-    \ v) << \"\\n\";\n    }\n}"
+    \ v) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
+    \ \"../../data-structure/union_find.cpp\"\n\nusing namespace std;\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
+    \    cin >> N >> Q;\n    UnionFind uf(N);\n    for (int i = 0; i < Q; i++) {\n\
+    \        int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) uf.unite(u,\
+    \ v);\n        else cout << uf.same(u, v) << \"\\n\";\n    }\n}"
   dependsOn:
   - data-structure/union_find.cpp
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-22 03:12:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp
 layout: document

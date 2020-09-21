@@ -14,17 +14,17 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D
   bundledCode: "#line 1 \"test/aoj/ALDS1_8_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D\"\
-    \n\n#line 1 \"data-structure/treap.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\n/*\n * @brief Treap\n * @docs docs/data-structure/treap.md\n */\ntemplate\
-    \ <typename T>\nclass Treap {\npublic:\n    int count(T key) const { return count(root,\
-    \ key); }\n\n    void insert(T key, int priority = -1) {\n        if (priority\
-    \ == -1) priority = rand() % 100000000;\n        root = insert(root, key, priority);\n\
-    \    }\n\n    void erase(T key) {\n        root = erase(root, key);\n    }\n\n\
-    \    void print_inorder() const {\n        print_inorder(root);\n        cout\
+    \n\n#line 1 \"data-structure/treap.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
+    \ Treap\n * @docs docs/data-structure/treap.md\n */\ntemplate <typename T>\nclass\
+    \ Treap {\npublic:\n    int count(T key) const { return count(root, key); }\n\n\
+    \    void insert(T key, int priority = -1) {\n        if (priority == -1) priority\
+    \ = std::rand() % 100000000;\n        root = insert(root, key, priority);\n  \
+    \  }\n\n    void erase(T key) {\n        root = erase(root, key);\n    }\n\n \
+    \   void print_inorder() const {\n        print_inorder(root);\n        std::cout\
     \ << \"\\n\";\n    }\n\n    void print_preorder() const {\n        print_preorder(root);\n\
-    \        cout << \"\\n\";\n    }\n\nprivate:\n    struct Node {\n        Node*\
-    \ left;\n        Node* right;\n        T key;\n        int priority;\n       \
-    \ Node(T key, int priority) : left(nullptr), right(nullptr), key(key), priority(priority)\
+    \        std::cout << \"\\n\";\n    }\n\nprivate:\n    struct Node {\n       \
+    \ Node* left;\n        Node* right;\n        T key;\n        int priority;\n \
+    \       Node(T key, int priority) : left(nullptr), right(nullptr), key(key), priority(priority)\
     \ {}\n    } *root = nullptr;\n\n    int count(Node* t, T key) const {\n      \
     \  if (t == nullptr) return 0;\n        if (key == t->key) return 1;\n       \
     \ if (key < t->key) return count(t->left, key);\n        else return count(t->right,\
@@ -47,37 +47,39 @@ data:
     \ key);\n        }\n        if (key < t->key) t->left = erase(t->left, key);\n\
     \        else t->right = erase(t->right, key);\n        return t;\n    }\n\n \
     \   void print_inorder(Node* t) const {\n        if (t == nullptr) return;\n \
-    \       print_inorder(t->left);\n        cout << \" \" << t->key;\n        print_inorder(t->right);\n\
-    \    }\n\n    void print_preorder(Node* t) const {\n        if (t == nullptr)\
-    \ return;\n        cout << \" \" << t->key;\n        print_preorder(t->left);\n\
-    \        print_preorder(t->right);\n    }\n};\n#line 4 \"test/aoj/ALDS1_8_D.test.cpp\"\
-    \n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n \
-    \   int m;\n    cin >> m;\n    Treap<int> treap;\n    for (int i = 0; i < m; i++)\
-    \ {\n        string op;\n        cin >> op;\n        if (op == \"insert\") {\n\
-    \            int k, p;\n            cin >> k >> p;\n            treap.insert(k,\
-    \ p);\n        } else if (op == \"find\") {\n            int k;\n            cin\
-    \ >> k;\n            if (treap.count(k)) cout << \"yes\\n\";\n            else\
-    \ cout << \"no\\n\";\n        } else if (op == \"delete\") {\n            int\
-    \ k;\n            cin >> k;\n            treap.erase(k);\n        } else {\n \
-    \           treap.print_inorder();\n            treap.print_preorder();\n    \
-    \    }\n    }\n}\n"
+    \       print_inorder(t->left);\n        std::cout << \" \" << t->key;\n     \
+    \   print_inorder(t->right);\n    }\n\n    void print_preorder(Node* t) const\
+    \ {\n        if (t == nullptr) return;\n        std::cout << \" \" << t->key;\n\
+    \        print_preorder(t->left);\n        print_preorder(t->right);\n    }\n\
+    };\n#line 4 \"test/aoj/ALDS1_8_D.test.cpp\"\n\nusing namespace std;\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int m;\n  \
+    \  cin >> m;\n    Treap<int> treap;\n    for (int i = 0; i < m; i++) {\n     \
+    \   string op;\n        cin >> op;\n        if (op == \"insert\") {\n        \
+    \    int k, p;\n            cin >> k >> p;\n            treap.insert(k, p);\n\
+    \        } else if (op == \"find\") {\n            int k;\n            cin >>\
+    \ k;\n            if (treap.count(k)) cout << \"yes\\n\";\n            else cout\
+    \ << \"no\\n\";\n        } else if (op == \"delete\") {\n            int k;\n\
+    \            cin >> k;\n            treap.erase(k);\n        } else {\n      \
+    \      treap.print_inorder();\n            treap.print_preorder();\n        }\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D\"\
-    \n\n#include \"../../data-structure/treap.cpp\"\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int m;\n    cin >> m;\n    Treap<int> treap;\n    for\
-    \ (int i = 0; i < m; i++) {\n        string op;\n        cin >> op;\n        if\
-    \ (op == \"insert\") {\n            int k, p;\n            cin >> k >> p;\n  \
-    \          treap.insert(k, p);\n        } else if (op == \"find\") {\n       \
-    \     int k;\n            cin >> k;\n            if (treap.count(k)) cout << \"\
-    yes\\n\";\n            else cout << \"no\\n\";\n        } else if (op == \"delete\"\
-    ) {\n            int k;\n            cin >> k;\n            treap.erase(k);\n\
-    \        } else {\n            treap.print_inorder();\n            treap.print_preorder();\n\
-    \        }\n    }\n}"
+    \n\n#include \"../../data-structure/treap.cpp\"\n\nusing namespace std;\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ m;\n    cin >> m;\n    Treap<int> treap;\n    for (int i = 0; i < m; i++) {\n\
+    \        string op;\n        cin >> op;\n        if (op == \"insert\") {\n   \
+    \         int k, p;\n            cin >> k >> p;\n            treap.insert(k, p);\n\
+    \        } else if (op == \"find\") {\n            int k;\n            cin >>\
+    \ k;\n            if (treap.count(k)) cout << \"yes\\n\";\n            else cout\
+    \ << \"no\\n\";\n        } else if (op == \"delete\") {\n            int k;\n\
+    \            cin >> k;\n            treap.erase(k);\n        } else {\n      \
+    \      treap.print_inorder();\n            treap.print_preorder();\n        }\n\
+    \    }\n}"
   dependsOn:
   - data-structure/treap.cpp
   isVerificationFile: true
   path: test/aoj/ALDS1_8_D.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_8_D.test.cpp

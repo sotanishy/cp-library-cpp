@@ -14,44 +14,45 @@ data:
     document_title: Disjoint Sparse Table
     links: []
   bundledCode: "#line 1 \"data-structure/disjoint_sparse_table.cpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\n/*\n * @brief Disjoint Sparse Table\n * @docs docs/data-structure/disjoint_sparse_table.md\n\
+    \n/*\n * @brief Disjoint Sparse Table\n * @docs docs/data-structure/disjoint_sparse_table.md\n\
     \ */\ntemplate <typename S>\nclass DisjointSparseTable {\n    using T = typename\
-    \ S::T;\n\npublic:\n    explicit DisjointSparseTable(const vector<T>& v) {\n \
-    \       int n = v.size(), b = 0;\n        while ((1 << b) < n) b++;\n        lookup.resize(b\
-    \ + 1, vector<T>(n));\n        copy(v.begin(), v.end(), lookup[0].begin());\n\
-    \        for (int i = 1; i <= b; i++) {\n            int len = 1 << i;\n     \
-    \       for (int l = 0; l + len / 2 < n; l += len) {\n                int m =\
-    \ l + len / 2;\n                lookup[i][m - 1] = v[m - 1];\n               \
-    \ for (int j = 1; j < len / 2; j++) {\n                    lookup[i][m - 1 - j]\
-    \ = S::op(v[m - 1 - j], lookup[i][m - j]);\n                }\n              \
-    \  lookup[i][m] = v[m];\n                for (int j = 1; m + j < min(l + len,\
-    \ n); j++) {\n                    lookup[i][m + j] = S::op(lookup[i][m + j - 1],\
-    \ v[m + j]);\n                }\n            }\n        }\n    }\n\n    T fold(int\
-    \ l, int r) const {\n        if (r - l == 1) return lookup[0][l];\n        int\
-    \ i = 32 - __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
-    \ - 1]);\n    }\n\nprivate:\n    vector<vector<T>> lookup;\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Disjoint\
-    \ Sparse Table\n * @docs docs/data-structure/disjoint_sparse_table.md\n */\ntemplate\
-    \ <typename S>\nclass DisjointSparseTable {\n    using T = typename S::T;\n\n\
-    public:\n    explicit DisjointSparseTable(const vector<T>& v) {\n        int n\
-    \ = v.size(), b = 0;\n        while ((1 << b) < n) b++;\n        lookup.resize(b\
-    \ + 1, vector<T>(n));\n        copy(v.begin(), v.end(), lookup[0].begin());\n\
-    \        for (int i = 1; i <= b; i++) {\n            int len = 1 << i;\n     \
-    \       for (int l = 0; l + len / 2 < n; l += len) {\n                int m =\
-    \ l + len / 2;\n                lookup[i][m - 1] = v[m - 1];\n               \
-    \ for (int j = 1; j < len / 2; j++) {\n                    lookup[i][m - 1 - j]\
-    \ = S::op(v[m - 1 - j], lookup[i][m - j]);\n                }\n              \
-    \  lookup[i][m] = v[m];\n                for (int j = 1; m + j < min(l + len,\
-    \ n); j++) {\n                    lookup[i][m + j] = S::op(lookup[i][m + j - 1],\
-    \ v[m + j]);\n                }\n            }\n        }\n    }\n\n    T fold(int\
-    \ l, int r) const {\n        if (r - l == 1) return lookup[0][l];\n        int\
-    \ i = 32 - __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
-    \ - 1]);\n    }\n\nprivate:\n    vector<vector<T>> lookup;\n};"
+    \ S::T;\n\npublic:\n    explicit DisjointSparseTable(const std::vector<T>& v)\
+    \ {\n        int n = v.size(), b = 0;\n        while ((1 << b) < n) b++;\n   \
+    \     lookup.resize(b + 1, std::vector<T>(n));\n        std::copy(v.begin(), v.end(),\
+    \ lookup[0].begin());\n        for (int i = 1; i <= b; i++) {\n            int\
+    \ len = 1 << i;\n            for (int l = 0; l + len / 2 < n; l += len) {\n  \
+    \              int m = l + len / 2;\n                lookup[i][m - 1] = v[m -\
+    \ 1];\n                for (int j = 1; j < len / 2; j++) {\n                 \
+    \   lookup[i][m - 1 - j] = S::op(v[m - 1 - j], lookup[i][m - j]);\n          \
+    \      }\n                lookup[i][m] = v[m];\n                for (int j = 1;\
+    \ m + j < std::min(l + len, n); j++) {\n                    lookup[i][m + j] =\
+    \ S::op(lookup[i][m + j - 1], v[m + j]);\n                }\n            }\n \
+    \       }\n    }\n\n    T fold(int l, int r) const {\n        if (r - l == 1)\
+    \ return lookup[0][l];\n        int i = 32 - __builtin_clz(l ^ (r - 1));\n   \
+    \     return S::op(lookup[i][l], lookup[i][r - 1]);\n    }\n\nprivate:\n    std::vector<std::vector<T>>\
+    \ lookup;\n};\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Disjoint Sparse Table\n * @docs\
+    \ docs/data-structure/disjoint_sparse_table.md\n */\ntemplate <typename S>\nclass\
+    \ DisjointSparseTable {\n    using T = typename S::T;\n\npublic:\n    explicit\
+    \ DisjointSparseTable(const std::vector<T>& v) {\n        int n = v.size(), b\
+    \ = 0;\n        while ((1 << b) < n) b++;\n        lookup.resize(b + 1, std::vector<T>(n));\n\
+    \        std::copy(v.begin(), v.end(), lookup[0].begin());\n        for (int i\
+    \ = 1; i <= b; i++) {\n            int len = 1 << i;\n            for (int l =\
+    \ 0; l + len / 2 < n; l += len) {\n                int m = l + len / 2;\n    \
+    \            lookup[i][m - 1] = v[m - 1];\n                for (int j = 1; j <\
+    \ len / 2; j++) {\n                    lookup[i][m - 1 - j] = S::op(v[m - 1 -\
+    \ j], lookup[i][m - j]);\n                }\n                lookup[i][m] = v[m];\n\
+    \                for (int j = 1; m + j < std::min(l + len, n); j++) {\n      \
+    \              lookup[i][m + j] = S::op(lookup[i][m + j - 1], v[m + j]);\n   \
+    \             }\n            }\n        }\n    }\n\n    T fold(int l, int r) const\
+    \ {\n        if (r - l == 1) return lookup[0][l];\n        int i = 32 - __builtin_clz(l\
+    \ ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r - 1]);\n    }\n\n\
+    private:\n    std::vector<std::vector<T>> lookup;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/disjoint_sparse_table.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq.test.cpp

@@ -22,28 +22,28 @@ data:
     \ to(to), cost(cost) {}\n    Edge(int from, int to, T cost) : from(from), to(to),\
     \ cost(cost) {}\n};\n#line 3 \"graph/bellman_ford.cpp\"\nusing namespace std;\n\
     \n/*\n * @brief Bellman-Ford Algorithm\n * @docs docs/graph/bellman_ford.md\n\
-    \ */\ntemplate <typename T>\nvector<T> bellman_ford(vector<Edge<T>>& G, int V,\
+    \ */\ntemplate <typename T>\nvector<T> bellman_ford(const vector<Edge<T>>& G,\
+    \ int V, int s) {\n    const auto INF = numeric_limits<T>::max();\n    vector<int>\
+    \ dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; i++) {\n       \
+    \ for (auto& e : G) {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from]\
+    \ + e.cost) {\n                dist[e.to] = dist[e.from] + e.cost;\n         \
+    \       if (i == V - 1) return vector<T>();\n            }\n        }\n    }\n\
+    \    return dist;\n}\n"
+  code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\nusing namespace std;\n\n\
+    /*\n * @brief Bellman-Ford Algorithm\n * @docs docs/graph/bellman_ford.md\n */\n\
+    template <typename T>\nvector<T> bellman_ford(const vector<Edge<T>>& G, int V,\
     \ int s) {\n    const auto INF = numeric_limits<T>::max();\n    vector<int> dist(V,\
     \ INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; i++) {\n        for (auto&\
     \ e : G) {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from] +\
     \ e.cost) {\n                dist[e.to] = dist[e.from] + e.cost;\n           \
     \     if (i == V - 1) return vector<T>();\n            }\n        }\n    }\n \
-    \   return dist;\n}\n"
-  code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\nusing namespace std;\n\n\
-    /*\n * @brief Bellman-Ford Algorithm\n * @docs docs/graph/bellman_ford.md\n */\n\
-    template <typename T>\nvector<T> bellman_ford(vector<Edge<T>>& G, int V, int s)\
-    \ {\n    const auto INF = numeric_limits<T>::max();\n    vector<int> dist(V, INF);\n\
-    \    dist[s] = 0;\n    for (int i = 0; i < V; i++) {\n        for (auto& e : G)\
-    \ {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.cost)\
-    \ {\n                dist[e.to] = dist[e.from] + e.cost;\n                if (i\
-    \ == V - 1) return vector<T>();\n            }\n        }\n    }\n    return dist;\n\
-    }"
+    \   return dist;\n}"
   dependsOn:
   - graph/edge.cpp
   isVerificationFile: false
   path: graph/bellman_ford.cpp
   requiredBy: []
-  timestamp: '2020-09-11 22:35:33+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp

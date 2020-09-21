@@ -23,7 +23,7 @@ data:
     \    Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}\n};\n\
     #line 3 \"graph/dijkstra.cpp\"\nusing namespace std;\n\n/*\n * @brief Dijkstra's\
     \ Algorithm\n * @docs docs/graph/dijkstra.md\n */\ntemplate <typename T>\nvector<T>\
-    \ dijkstra(vector<vector<Edge<T>>>& G, int s) {\n    const T INF = numeric_limits<T>::max();\n\
+    \ dijkstra(const vector<vector<Edge<T>>>& G, int s) {\n    const T INF = numeric_limits<T>::max();\n\
     \    vector<T> dist(G.size(), INF);\n    dist[s] = 0;\n    using P = pair<T, int>;\n\
     \    priority_queue<P, vector<P>, greater<P>> pq;\n    pq.emplace(0, s);\n\n \
     \   while (!pq.empty()) {\n        T cost;\n        int v;\n        tie(cost,\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-11 22:38:15+09:00'
+  timestamp: '2020-09-22 03:12:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_A.test.cpp
