@@ -12,53 +12,45 @@ data:
     links: []
   bundledCode: "#line 1 \"math/combination.cpp\"\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n\n/*\n * @brief Combination\n * @docs docs/math/combination.md\n\
-    \ */\nstruct Combination {\n    long long mod;\n    vector<long long> fact, fact_inv;\n\
-    \nprivate:\n    static pair<long long, long long> extgcd(long long a, long long\
-    \ b) {\n        long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;\n    \
-    \    while (t) {\n            long long q = s / t;\n            s -= t * q;\n\
-    \            swap(s, t);\n            sx -= tx * q;\n            swap(sx, tx);\n\
-    \            sy -= ty * q;\n            swap(sy, ty);\n        }\n        return\
-    \ {sx, sy};\n    }\n\n    static long long mod_inv(long long a, long long mod)\
-    \ {\n        long long inv = extgcd(a, mod).first;\n        return (inv % mod\
-    \ + mod) % mod;\n    }\n\npublic:\n    static long long C(int n, int r, long long\
-    \ mod) {\n        long long num = 1, den = 1;\n        for (int i = 1; i <= r;\
-    \ i++) {\n            num = num * (n - i + 1) % mod;\n            den = den *\
-    \ i % mod;\n        }\n        return num * mod_inv(den, mod) % mod;\n    }\n\n\
-    \    Combination(int n, long long mod) : mod(mod), fact(n+1), fact_inv(n+1) {\n\
-    \        fact[0] = fact_inv[0] = 1;\n        for (int i = 1; i <= n; i++) fact[i]\
-    \ = fact[i-1] * i % mod;\n        fact_inv[n] = mod_inv(n, mod);\n        for\
-    \ (int i = n; i > 0; i--) fact_inv[i-1] = fact_inv[i] * i % mod;\n    }\n\n  \
-    \  long long P(int n, int r) const {\n        if (r < 0 || n < r) return 0;\n\
-    \        return fact[n] * fact_inv[n - r] % mod;\n    }\n\n    long long C(int\
+    \ */\nclass Combination {\n    static long long C(int n, int r, long long mod)\
+    \ {\n        long long num = 1, den = 1;\n        for (int i = 1; i <= r; i++)\
+    \ {\n            num = num * (n - i + 1) % mod;\n            den = den * i % mod;\n\
+    \        }\n        return num * mod_inv(den, mod) % mod;\n    }\n\n    Combination(int\
+    \ n, long long mod) : mod(mod), fact(n + 1), fact_inv(n + 1) {\n        fact[0]\
+    \ = fact_inv[0] = 1;\n        for (int i = 1; i <= n; i++) fact[i] = fact[i-1]\
+    \ * i % mod;\n        fact_inv[n] = mod_inv(n, mod);\n        for (int i = n;\
+    \ i > 0; i--) fact_inv[i-1] = fact_inv[i] * i % mod;\n    }\n\n    long long P(int\
     \ n, int r) const {\n        if (r < 0 || n < r) return 0;\n        return fact[n]\
-    \ * fact_inv[r] % mod * fact_inv[n - r] % mod;\n    }\n}\n"
+    \ * fact_inv[n - r] % mod;\n    }\n\n    long long C(int n, int r) const {\n \
+    \       if (r < 0 || n < r) return 0;\n        return fact[n] * fact_inv[r] %\
+    \ mod * fact_inv[n - r] % mod;\n    }\n\nprivate:\n    long long mod;\n    vector<long\
+    \ long> fact, fact_inv;\n\n    static long long mod_inv(long long a, long long\
+    \ mod) {\n        long long b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n\
+    \            t = a / b;\n            swap(a -= t * b, b);\n            swap(u\
+    \ -= t * v, v);\n        }\n        return (u % mod + mod) % mod;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Combination\n\
-    \ * @docs docs/math/combination.md\n */\nstruct Combination {\n    long long mod;\n\
-    \    vector<long long> fact, fact_inv;\n\nprivate:\n    static pair<long long,\
-    \ long long> extgcd(long long a, long long b) {\n        long long s = a, sx =\
-    \ 1, sy = 0, t = b, tx = 0, ty = 1;\n        while (t) {\n            long long\
-    \ q = s / t;\n            s -= t * q;\n            swap(s, t);\n            sx\
-    \ -= tx * q;\n            swap(sx, tx);\n            sy -= ty * q;\n         \
-    \   swap(sy, ty);\n        }\n        return {sx, sy};\n    }\n\n    static long\
-    \ long mod_inv(long long a, long long mod) {\n        long long inv = extgcd(a,\
-    \ mod).first;\n        return (inv % mod + mod) % mod;\n    }\n\npublic:\n   \
-    \ static long long C(int n, int r, long long mod) {\n        long long num = 1,\
-    \ den = 1;\n        for (int i = 1; i <= r; i++) {\n            num = num * (n\
-    \ - i + 1) % mod;\n            den = den * i % mod;\n        }\n        return\
-    \ num * mod_inv(den, mod) % mod;\n    }\n\n    Combination(int n, long long mod)\
-    \ : mod(mod), fact(n+1), fact_inv(n+1) {\n        fact[0] = fact_inv[0] = 1;\n\
-    \        for (int i = 1; i <= n; i++) fact[i] = fact[i-1] * i % mod;\n       \
-    \ fact_inv[n] = mod_inv(n, mod);\n        for (int i = n; i > 0; i--) fact_inv[i-1]\
-    \ = fact_inv[i] * i % mod;\n    }\n\n    long long P(int n, int r) const {\n \
-    \       if (r < 0 || n < r) return 0;\n        return fact[n] * fact_inv[n - r]\
-    \ % mod;\n    }\n\n    long long C(int n, int r) const {\n        if (r < 0 ||\
-    \ n < r) return 0;\n        return fact[n] * fact_inv[r] % mod * fact_inv[n -\
-    \ r] % mod;\n    }\n}"
+    \ * @docs docs/math/combination.md\n */\nclass Combination {\n    static long\
+    \ long C(int n, int r, long long mod) {\n        long long num = 1, den = 1;\n\
+    \        for (int i = 1; i <= r; i++) {\n            num = num * (n - i + 1) %\
+    \ mod;\n            den = den * i % mod;\n        }\n        return num * mod_inv(den,\
+    \ mod) % mod;\n    }\n\n    Combination(int n, long long mod) : mod(mod), fact(n\
+    \ + 1), fact_inv(n + 1) {\n        fact[0] = fact_inv[0] = 1;\n        for (int\
+    \ i = 1; i <= n; i++) fact[i] = fact[i-1] * i % mod;\n        fact_inv[n] = mod_inv(n,\
+    \ mod);\n        for (int i = n; i > 0; i--) fact_inv[i-1] = fact_inv[i] * i %\
+    \ mod;\n    }\n\n    long long P(int n, int r) const {\n        if (r < 0 || n\
+    \ < r) return 0;\n        return fact[n] * fact_inv[n - r] % mod;\n    }\n\n \
+    \   long long C(int n, int r) const {\n        if (r < 0 || n < r) return 0;\n\
+    \        return fact[n] * fact_inv[r] % mod * fact_inv[n - r] % mod;\n    }\n\n\
+    private:\n    long long mod;\n    vector<long long> fact, fact_inv;\n\n    static\
+    \ long long mod_inv(long long a, long long mod) {\n        long long b = mod,\
+    \ u = 1, v = 0, t;\n        while (b > 0) {\n            t = a / b;\n        \
+    \    swap(a -= t * b, b);\n            swap(u -= t * v, v);\n        }\n     \
+    \   return (u % mod + mod) % mod;\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/combination.cpp
   requiredBy: []
-  timestamp: '2020-09-18 16:59:21+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/combination.cpp

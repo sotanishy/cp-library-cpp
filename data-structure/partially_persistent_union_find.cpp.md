@@ -13,37 +13,37 @@ data:
   bundledCode: "#line 1 \"data-structure/partially_persistent_union_find.cpp\"\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Partially Persistent\
     \ Union Find\n * @docs docs/data-structure/partially_persistent_union_find.md\n\
-    \ */\nstruct PartiallyPersistentUnionFind {\n    vector<int> par;\n    vector<int>\
-    \ time;\n    vector<vector<pair<int, int>>> sz;\n    int now = 0;\n    const int\
-    \ INF = numeric_limits<int>::max();\n\n    PartiallyPersistentUnionFind(int n)\
-    \ : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int x)\
-    \ {\n        if (t < time[x]) return x;\n        return find(t, par[x]);\n   \
-    \ }\n\n    void unite(int x, int y) {\n        now++;\n        x = find(now, x);\n\
-    \        y = find(now, y);\n        if (x == y) return;\n        if (par[x] >\
-    \ par[y]) swap(x, y);\n        par[x] += par[y];\n        sz[x].emplace_back(now,\
-    \ -par[x]);\n        par[y] = x;\n        time[y] = now;\n    }\n\n    bool same(int\
-    \ t, int x, int y) {\n        return find(t, x) == find(t, y);\n    }\n\n    int\
-    \ size(int t, int x) {\n        x = find(t, x);\n        return (--lower_bound(sz[x].begin(),\
-    \ sz[x].end(), make_pair(t, INF)))->second;\n    }\n};\n"
+    \ */\nclass PartiallyPersistentUnionFind {\npublic:\n    explicit PartiallyPersistentUnionFind(int\
+    \ n) : data(n, -1), time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int\
+    \ x) {\n        if (t < time[x]) return x;\n        return find(t, data[x]);\n\
+    \    }\n\n    void unite(int x, int y) {\n        now++;\n        x = find(now,\
+    \ x);\n        y = find(now, y);\n        if (x == y) return;\n        if (data[x]\
+    \ > data[y]) swap(x, y);\n        data[x] += data[y];\n        sz[x].emplace_back(now,\
+    \ -data[x]);\n        data[y] = x;\n        time[y] = now;\n    }\n\n    bool\
+    \ same(int t, int x, int y) {\n        return find(t, x) == find(t, y);\n    }\n\
+    \n    int size(int t, int x) {\n        x = find(t, x);\n        return (--lower_bound(sz[x].begin(),\
+    \ sz[x].end(), make_pair(t, INF)))->second;\n    }\n\nprivate:\n    const int\
+    \ INF = numeric_limits<int>::max();\n\n    vector<int> data;\n    vector<int>\
+    \ time;\n    vector<vector<pair<int, int>>> sz;\n    int now = 0;\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Partially\
     \ Persistent Union Find\n * @docs docs/data-structure/partially_persistent_union_find.md\n\
-    \ */\nstruct PartiallyPersistentUnionFind {\n    vector<int> par;\n    vector<int>\
-    \ time;\n    vector<vector<pair<int, int>>> sz;\n    int now = 0;\n    const int\
-    \ INF = numeric_limits<int>::max();\n\n    PartiallyPersistentUnionFind(int n)\
-    \ : par(n, -1), time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int x)\
-    \ {\n        if (t < time[x]) return x;\n        return find(t, par[x]);\n   \
-    \ }\n\n    void unite(int x, int y) {\n        now++;\n        x = find(now, x);\n\
-    \        y = find(now, y);\n        if (x == y) return;\n        if (par[x] >\
-    \ par[y]) swap(x, y);\n        par[x] += par[y];\n        sz[x].emplace_back(now,\
-    \ -par[x]);\n        par[y] = x;\n        time[y] = now;\n    }\n\n    bool same(int\
-    \ t, int x, int y) {\n        return find(t, x) == find(t, y);\n    }\n\n    int\
-    \ size(int t, int x) {\n        x = find(t, x);\n        return (--lower_bound(sz[x].begin(),\
-    \ sz[x].end(), make_pair(t, INF)))->second;\n    }\n};"
+    \ */\nclass PartiallyPersistentUnionFind {\npublic:\n    explicit PartiallyPersistentUnionFind(int\
+    \ n) : data(n, -1), time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int\
+    \ x) {\n        if (t < time[x]) return x;\n        return find(t, data[x]);\n\
+    \    }\n\n    void unite(int x, int y) {\n        now++;\n        x = find(now,\
+    \ x);\n        y = find(now, y);\n        if (x == y) return;\n        if (data[x]\
+    \ > data[y]) swap(x, y);\n        data[x] += data[y];\n        sz[x].emplace_back(now,\
+    \ -data[x]);\n        data[y] = x;\n        time[y] = now;\n    }\n\n    bool\
+    \ same(int t, int x, int y) {\n        return find(t, x) == find(t, y);\n    }\n\
+    \n    int size(int t, int x) {\n        x = find(t, x);\n        return (--lower_bound(sz[x].begin(),\
+    \ sz[x].end(), make_pair(t, INF)))->second;\n    }\n\nprivate:\n    const int\
+    \ INF = numeric_limits<int>::max();\n\n    vector<int> data;\n    vector<int>\
+    \ time;\n    vector<vector<pair<int, int>>> sz;\n    int now = 0;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/partially_persistent_union_find.cpp
   requiredBy: []
-  timestamp: '2020-09-15 16:09:04+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/partially_persistent_union_find.cpp

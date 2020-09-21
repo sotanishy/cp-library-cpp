@@ -12,11 +12,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/union_find.md
@@ -24,29 +24,30 @@ data:
     links: []
   bundledCode: "#line 1 \"data-structure/union_find.cpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n/*\n * @brief Union Find\n * @docs docs/data-structure/union_find.md\n\
-    \ */\nstruct UnionFind {\n    vector<int> par;\n\n    UnionFind(int n) : par(n,\
-    \ -1) {}\n\n    int find(int x) {\n        if (par[x] < 0) return x;\n       \
-    \ return par[x] = find(par[x]);\n    }\n\n    void unite(int x, int y) {\n   \
-    \     x = find(x);\n        y = find(y);\n        if (x == y) return;\n      \
-    \  if (par[x] > par[y]) swap(x, y);\n        par[x] += par[y];\n        par[y]\
-    \ = x;\n    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n\n    int size(int x) {\n        return -par[find(x)];\n    }\n};\n"
+    \ */\nclass UnionFind {\npublic:\n    explicit UnionFind(int n) : data(n, -1)\
+    \ {}\n\n    int find(int x) {\n        if (data[x] < 0) return x;\n        return\
+    \ data[x] = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n        x\
+    \ = find(x);\n        y = find(y);\n        if (x == y) return;\n        if (data[x]\
+    \ > data[y]) swap(x, y);\n        data[x] += data[y];\n        data[y] = x;\n\
+    \    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
+    \    }\n\n    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n\
+    \    vector<int> data;\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Union Find\n\
-    \ * @docs docs/data-structure/union_find.md\n */\nstruct UnionFind {\n    vector<int>\
-    \ par;\n\n    UnionFind(int n) : par(n, -1) {}\n\n    int find(int x) {\n    \
-    \    if (par[x] < 0) return x;\n        return par[x] = find(par[x]);\n    }\n\
-    \n    void unite(int x, int y) {\n        x = find(x);\n        y = find(y);\n\
-    \        if (x == y) return;\n        if (par[x] > par[y]) swap(x, y);\n     \
-    \   par[x] += par[y];\n        par[y] = x;\n    }\n\n    bool same(int x, int\
-    \ y) {\n        return find(x) == find(y);\n    }\n\n    int size(int x) {\n \
-    \       return -par[find(x)];\n    }\n};"
+    \ * @docs docs/data-structure/union_find.md\n */\nclass UnionFind {\npublic:\n\
+    \    explicit UnionFind(int n) : data(n, -1) {}\n\n    int find(int x) {\n   \
+    \     if (data[x] < 0) return x;\n        return data[x] = find(data[x]);\n  \
+    \  }\n\n    void unite(int x, int y) {\n        x = find(x);\n        y = find(y);\n\
+    \        if (x == y) return;\n        if (data[x] > data[y]) swap(x, y);\n   \
+    \     data[x] += data[y];\n        data[y] = x;\n    }\n\n    bool same(int x,\
+    \ int y) {\n        return find(x) == find(y);\n    }\n\n    int size(int x) {\n\
+    \        return -data[find(x)];\n    }\n\nprivate:\n    vector<int> data;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/union_find.cpp
   requiredBy:
   - graph/kruskal.cpp
-  timestamp: '2020-09-14 04:40:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-09-22 01:15:52+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp

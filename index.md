@@ -51,7 +51,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/treap.cpp
       title: Treap
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -91,13 +91,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/prim.cpp
       title: Prim's Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/scc.cpp
       title: Strongly Connected Components
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/twosat.cpp
       title: 2-SAT
   - name: math
@@ -305,10 +305,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage

@@ -15,31 +15,32 @@ data:
     links: []
   bundledCode: "#line 1 \"data-structure/sparse_table.cpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n/*\n * @brief Sparse Table\n * @docs docs/data-structure/sparse_table.md\n\
-    \ */\ntemplate <typename S>\nstruct SparseTable {\n    using T = typename S::T;\n\
-    \n    vector<vector<T>> lookup;\n\n    SparseTable(const vector<T>& v) {\n   \
-    \     int n = v.size(), b = 0;\n        while ((1 << b) <= n) b++;\n        lookup.resize(b,\
-    \ vector<T>(n));\n        copy(v.begin(), v.end(), lookup[0].begin());\n     \
-    \   for (int i = 1; i < b; i++) {\n            for (int j = 0; j + (1 << i) <=\
-    \ n; j++) {\n                lookup[i][j] = S::op(lookup[i - 1][j], lookup[i -\
-    \ 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T fold(int\
-    \ l, int r) {\n        int i = 31 - __builtin_clz(r - l);\n        return S::op(lookup[i][l],\
-    \ lookup[i][r - (1 << i)]);\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Sparse Table\n\
-    \ * @docs docs/data-structure/sparse_table.md\n */\ntemplate <typename S>\nstruct\
-    \ SparseTable {\n    using T = typename S::T;\n\n    vector<vector<T>> lookup;\n\
-    \n    SparseTable(const vector<T>& v) {\n        int n = v.size(), b = 0;\n  \
-    \      while ((1 << b) <= n) b++;\n        lookup.resize(b, vector<T>(n));\n \
-    \       copy(v.begin(), v.end(), lookup[0].begin());\n        for (int i = 1;\
+    \ */\ntemplate <typename S>\nclass SparseTable {\n    using T = typename S::T;\n\
+    \npublic:\n    explicit SparseTable(const vector<T>& v) {\n        int n = v.size(),\
+    \ b = 0;\n        while ((1 << b) <= n) b++;\n        lookup.resize(b, vector<T>(n));\n\
+    \        copy(v.begin(), v.end(), lookup[0].begin());\n        for (int i = 1;\
     \ i < b; i++) {\n            for (int j = 0; j + (1 << i) <= n; j++) {\n     \
     \           lookup[i][j] = S::op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i\
-    \ - 1))]);\n            }\n        }\n    }\n\n    T fold(int l, int r) {\n  \
-    \      int i = 31 - __builtin_clz(r - l);\n        return S::op(lookup[i][l],\
-    \ lookup[i][r - (1 << i)]);\n    }\n};"
+    \ - 1))]);\n            }\n        }\n    }\n\n    T fold(int l, int r) const\
+    \ {\n        int i = 31 - __builtin_clz(r - l);\n        return S::op(lookup[i][l],\
+    \ lookup[i][r - (1 << i)]);\n    }\n\nprivate:\n    vector<vector<T>> lookup;\n\
+    };\n"
+  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Sparse Table\n\
+    \ * @docs docs/data-structure/sparse_table.md\n */\ntemplate <typename S>\nclass\
+    \ SparseTable {\n    using T = typename S::T;\n\npublic:\n    explicit SparseTable(const\
+    \ vector<T>& v) {\n        int n = v.size(), b = 0;\n        while ((1 << b) <=\
+    \ n) b++;\n        lookup.resize(b, vector<T>(n));\n        copy(v.begin(), v.end(),\
+    \ lookup[0].begin());\n        for (int i = 1; i < b; i++) {\n            for\
+    \ (int j = 0; j + (1 << i) <= n; j++) {\n                lookup[i][j] = S::op(lookup[i\
+    \ - 1][j], lookup[i - 1][j + (1 << (i - 1))]);\n            }\n        }\n   \
+    \ }\n\n    T fold(int l, int r) const {\n        int i = 31 - __builtin_clz(r\
+    \ - l);\n        return S::op(lookup[i][l], lookup[i][r - (1 << i)]);\n    }\n\
+    \nprivate:\n    vector<vector<T>> lookup;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/sparse_table.cpp
   requiredBy: []
-  timestamp: '2020-09-14 16:31:52+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_3_D.sparse_table.test.cpp

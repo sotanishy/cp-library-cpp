@@ -16,35 +16,36 @@ data:
   bundledCode: "#line 1 \"data-structure/sliding_window_aggregation.cpp\"\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Sliding Window Aggregation\n\
     \ * @docs docs/data-structure/sliding_window_aggregation.md\n */\ntemplate <typename\
-    \ M>\nstruct SlidingWindowAggregation {\n    using T = typename M::T;\n\n    stack<pair<T,\
-    \ T>> front, back;\n\n    void push(T x) {\n        if (back.empty()) back.emplace(x,\
+    \ M>\nclass SlidingWindowAggregation {\n    using T = typename M::T;\n\npublic:\n\
+    \    void push(T x) {\n        if (back.empty()) back.emplace(x, x);\n       \
+    \ else back.emplace(x, M::op(back.top().second, x));\n    }\n\n    void pop()\
+    \ {\n        if (front.empty()) {\n            if (back.empty()) return;\n   \
+    \         T x = back.top().first;\n            back.pop();\n            front.emplace(x,\
+    \ x);\n            while (!back.empty()) {\n                x = back.top().first;\n\
+    \                back.pop();\n                front.emplace(x, M::op(x, front.top().second));\n\
+    \            }\n        }\n        front.pop();\n    }\n\n    T fold() const {\n\
+    \        T ret = M::id;\n        if (!front.empty()) ret = M::op(ret, front.top().second);\n\
+    \        if (!back.empty()) ret = M::op(ret, back.top().second);\n        return\
+    \ ret;\n    }\n\nprivate:\n    stack<pair<T, T>> front, back;\n};\n"
+  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Sliding Window\
+    \ Aggregation\n * @docs docs/data-structure/sliding_window_aggregation.md\n */\n\
+    template <typename M>\nclass SlidingWindowAggregation {\n    using T = typename\
+    \ M::T;\n\npublic:\n    void push(T x) {\n        if (back.empty()) back.emplace(x,\
     \ x);\n        else back.emplace(x, M::op(back.top().second, x));\n    }\n\n \
     \   void pop() {\n        if (front.empty()) {\n            if (back.empty())\
     \ return;\n            T x = back.top().first;\n            back.pop();\n    \
     \        front.emplace(x, x);\n            while (!back.empty()) {\n         \
     \       x = back.top().first;\n                back.pop();\n                front.emplace(x,\
     \ M::op(x, front.top().second));\n            }\n        }\n        front.pop();\n\
-    \    }\n\n    T fold() {\n        T ret = M::id;\n        if (!front.empty())\
+    \    }\n\n    T fold() const {\n        T ret = M::id;\n        if (!front.empty())\
     \ ret = M::op(ret, front.top().second);\n        if (!back.empty()) ret = M::op(ret,\
-    \ back.top().second);\n        return ret;\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Sliding Window\
-    \ Aggregation\n * @docs docs/data-structure/sliding_window_aggregation.md\n */\n\
-    template <typename M>\nstruct SlidingWindowAggregation {\n    using T = typename\
-    \ M::T;\n\n    stack<pair<T, T>> front, back;\n\n    void push(T x) {\n      \
-    \  if (back.empty()) back.emplace(x, x);\n        else back.emplace(x, M::op(back.top().second,\
-    \ x));\n    }\n\n    void pop() {\n        if (front.empty()) {\n            if\
-    \ (back.empty()) return;\n            T x = back.top().first;\n            back.pop();\n\
-    \            front.emplace(x, x);\n            while (!back.empty()) {\n     \
-    \           x = back.top().first;\n                back.pop();\n             \
-    \   front.emplace(x, M::op(x, front.top().second));\n            }\n        }\n\
-    \        front.pop();\n    }\n\n    T fold() {\n        T ret = M::id;\n     \
-    \   if (!front.empty()) ret = M::op(ret, front.top().second);\n        if (!back.empty())\
-    \ ret = M::op(ret, back.top().second);\n        return ret;\n    }\n};"
+    \ back.top().second);\n        return ret;\n    }\n\nprivate:\n    stack<pair<T,\
+    \ T>> front, back;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/sliding_window_aggregation.cpp
   requiredBy: []
-  timestamp: '2020-09-16 02:22:16+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp

@@ -22,7 +22,7 @@ data:
     \ to;\n    T cost;\n    Edge(int to, T cost) : from(-1), to(to), cost(cost) {}\n\
     \    Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}\n};\n\
     #line 3 \"tree/tree_diameter.cpp\"\nusing namespace std;\n\n/*\n * @brief Diameter\
-    \ of a Tree\n * @docs docs/tree/tree_diameter.md\n */\nstruct TreeDiameter {\n\
+    \ of a Tree\n * @docs docs/tree/tree_diameter.md\n */\nclass TreeDiameter {\n\
     public:\n    static int diameter(vector<vector<int>>& G) {\n        auto p = dfs(G,\
     \ 0, -1);\n        auto q = dfs(G, p.second, -1);\n        return q.first;\n \
     \   }\n\n    template <typename T>\n    static T diameter(vector<vector<Edge<T>>>&\
@@ -53,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-11 23:11:46+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_A.test.cpp

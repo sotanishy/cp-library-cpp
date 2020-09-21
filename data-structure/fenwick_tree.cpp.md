@@ -15,34 +15,35 @@ data:
     links: []
   bundledCode: "#line 1 \"data-structure/fenwick_tree.cpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
-    \ */\ntemplate <typename M>\nstruct FenwickTree {\n    using T = typename M::T;\n\
-    \n    int n;\n    vector<T> data;\n\n    FenwickTree(int n) : n(n), data(n+1,\
-    \ M::id) {}\n\n    T prefix_fold(int i) {\n        T ret = M::id;\n        for\
-    \ (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return ret;\n   \
-    \ }\n\n    void update(int i, T x) {\n        for (i++; i <= n; i += i & -i) data[i]\
-    \ = M::op(data[i], x);\n    }\n\n    int find_first(const function<bool(T)>& cond)\
-    \ {\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i =\
-    \ 0;\n        T x = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i\
-    \ + k <= n && !cond(M::op(x, data[i+k]))) {\n                x = M::op(x, data[i+k]);\n\
+    \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
+    \npublic:\n    explicit FenwickTree(int n) : n(n), data(n + 1, M::id) {}\n\n \
+    \   T prefix_fold(int i) const {\n        T ret = M::id;\n        for (; i > 0;\
+    \ i -= i & -i) ret = M::op(ret, data[i]);\n        return ret;\n    }\n\n    void\
+    \ update(int i, T x) {\n        for (i++; i <= n; i += i & -i) data[i] = M::op(data[i],\
+    \ x);\n    }\n\n    int find_first(const function<bool(T)>& cond) const {\n  \
+    \      int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n \
+    \       T x = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i + k\
+    \ <= n && !cond(M::op(x, data[i+k]))) {\n                x = M::op(x, data[i+k]);\n\
     \                i += k;\n            }\n        }\n        return i - 1;\n  \
-    \  }\n};\n"
+    \  }\n\nprivate:\n    int n;\n    vector<T> data;\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Fenwick Tree\n\
-    \ * @docs docs/data-structure/fenwick_tree.md\n */\ntemplate <typename M>\nstruct\
-    \ FenwickTree {\n    using T = typename M::T;\n\n    int n;\n    vector<T> data;\n\
-    \n    FenwickTree(int n) : n(n), data(n+1, M::id) {}\n\n    T prefix_fold(int\
-    \ i) {\n        T ret = M::id;\n        for (; i > 0; i -= i & -i) ret = M::op(ret,\
-    \ data[i]);\n        return ret;\n    }\n\n    void update(int i, T x) {\n   \
-    \     for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n \
-    \   int find_first(const function<bool(T)>& cond) {\n        int k = 1;\n    \
-    \    while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T x = M::id;\n \
-    \       for (; k > 0; k >>= 1) {\n            if (i + k <= n && !cond(M::op(x,\
-    \ data[i+k]))) {\n                x = M::op(x, data[i+k]);\n                i\
-    \ += k;\n            }\n        }\n        return i - 1;\n    }\n};"
+    \ * @docs docs/data-structure/fenwick_tree.md\n */\ntemplate <typename M>\nclass\
+    \ FenwickTree {\n    using T = typename M::T;\n\npublic:\n    explicit FenwickTree(int\
+    \ n) : n(n), data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n     \
+    \   T ret = M::id;\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
+    \        return ret;\n    }\n\n    void update(int i, T x) {\n        for (i++;\
+    \ i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int find_first(const\
+    \ function<bool(T)>& cond) const {\n        int k = 1;\n        while (k * 2 <=\
+    \ n) k <<= 1;\n        int i = 0;\n        T x = M::id;\n        for (; k > 0;\
+    \ k >>= 1) {\n            if (i + k <= n && !cond(M::op(x, data[i+k]))) {\n  \
+    \              x = M::op(x, data[i+k]);\n                i += k;\n           \
+    \ }\n        }\n        return i - 1;\n    }\n\nprivate:\n    int n;\n    vector<T>\
+    \ data;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/fenwick_tree.cpp
   requiredBy: []
-  timestamp: '2020-09-14 16:31:52+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_B.test.cpp

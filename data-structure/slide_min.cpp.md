@@ -15,25 +15,25 @@ data:
     links: []
   bundledCode: "#line 1 \"data-structure/slide_min.cpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n/*\n * @brief Slide Min\n * @docs docs/data-structure/slide_min.md\n\
-    \ */\ntemplate <typename T, typename Compare = less<>>\nstruct SlideMin {\n  \
-    \  int l = 0, r = 0;\n    deque<pair<T, int>> dq;\n    Compare cmp;\n\n    void\
-    \ push(T x) {\n        while (!dq.empty() && !cmp(dq.back().first, x)) dq.pop_back();\n\
-    \        dq.emplace_back(x, r++);\n    }\n\n    void pop() {\n        if (dq.front().second\
-    \ == l) dq.pop_front();\n        l++;\n    }\n\n    T get() {\n        return\
-    \ dq.front().first;\n    }\n};\n"
+    \ */\ntemplate <typename T, typename Compare = less<>>\nclass SlideMin {\npublic:\n\
+    \    void push(T x) {\n        while (!dq.empty() && !cmp(dq.back().first, x))\
+    \ dq.pop_back();\n        dq.emplace_back(x, r++);\n    }\n\n    void pop() {\n\
+    \        if (dq.front().second == l) dq.pop_front();\n        l++;\n    }\n\n\
+    \    T get() {\n        return dq.front().first;\n    }\n\nprivate:\n    int l\
+    \ = 0, r = 0;\n    deque<pair<T, int>> dq;\n    Compare cmp;\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Slide Min\n\
     \ * @docs docs/data-structure/slide_min.md\n */\ntemplate <typename T, typename\
-    \ Compare = less<>>\nstruct SlideMin {\n    int l = 0, r = 0;\n    deque<pair<T,\
-    \ int>> dq;\n    Compare cmp;\n\n    void push(T x) {\n        while (!dq.empty()\
-    \ && !cmp(dq.back().first, x)) dq.pop_back();\n        dq.emplace_back(x, r++);\n\
-    \    }\n\n    void pop() {\n        if (dq.front().second == l) dq.pop_front();\n\
+    \ Compare = less<>>\nclass SlideMin {\npublic:\n    void push(T x) {\n       \
+    \ while (!dq.empty() && !cmp(dq.back().first, x)) dq.pop_back();\n        dq.emplace_back(x,\
+    \ r++);\n    }\n\n    void pop() {\n        if (dq.front().second == l) dq.pop_front();\n\
     \        l++;\n    }\n\n    T get() {\n        return dq.front().first;\n    }\n\
+    \nprivate:\n    int l = 0, r = 0;\n    deque<pair<T, int>> dq;\n    Compare cmp;\n\
     };"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/slide_min.cpp
   requiredBy: []
-  timestamp: '2020-09-18 21:46:08+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_3_D.slide_min.test.cpp

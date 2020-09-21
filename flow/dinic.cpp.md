@@ -15,8 +15,8 @@ data:
     links: []
   bundledCode: "#line 1 \"flow/dinic.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\n/*\n * @brief Dinic's Algorithm\n * @docs docs/flow/dinic.md\n */\n\
-    template <typename T>\nstruct Dinic {\npublic:\n    Dinic(int V) : G(V), level(V),\
-    \ iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
+    template <typename T>\nclass Dinic {\npublic:\n    explicit Dinic(int V) : G(V),\
+    \ level(V), iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
     \ cap, (int) G[v].size());\n        G[v].emplace_back(u, 0, (int) G[u].size()\
     \ - 1);\n    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n      \
     \  while (bfs(s, t)) {\n            fill(iter.begin(), iter.end(), 0);\n     \
@@ -32,17 +32,17 @@ data:
     \ == -1) {\n                    level[e.to] = level[v] + 1;\n                \
     \    q.push(e.to);\n                }\n            }\n        }\n        return\
     \ level[t] != -1;\n    }\n\n    T dfs(int v, int t, T f) {\n        if (v == t)\
-    \ return f;\n        for (int& i = iter[v]; i < G[v].size(); i++) {\n        \
-    \    Edge& e = G[v][i];\n            if (e.cap > 0 && level[v] < level[e.to])\
+    \ return f;\n        for (int& i = iter[v]; i < (int) G[v].size(); i++) {\n  \
+    \          Edge& e = G[v][i];\n            if (e.cap > 0 && level[v] < level[e.to])\
     \ {\n                T d = dfs(e.to, t, min(f, e.cap));\n                if (d\
     \ > 0) {\n                    e.cap -= d;\n                    G[e.to][e.rev].cap\
     \ += d;\n                    return d;\n                }\n            }\n   \
     \     }\n        return 0;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Dinic's Algorithm\n\
-    \ * @docs docs/flow/dinic.md\n */\ntemplate <typename T>\nstruct Dinic {\npublic:\n\
-    \    Dinic(int V) : G(V), level(V), iter(V) {}\n\n    void add_edge(int u, int\
-    \ v, T cap) {\n        G[u].emplace_back(v, cap, (int) G[v].size());\n       \
-    \ G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int\
+    \ * @docs docs/flow/dinic.md\n */\ntemplate <typename T>\nclass Dinic {\npublic:\n\
+    \    explicit Dinic(int V) : G(V), level(V), iter(V) {}\n\n    void add_edge(int\
+    \ u, int v, T cap) {\n        G[u].emplace_back(v, cap, (int) G[v].size());\n\
+    \        G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int\
     \ s, int t) {\n        T flow = 0;\n        while (bfs(s, t)) {\n            fill(iter.begin(),\
     \ iter.end(), 0);\n            T f = 0;\n            while ((f = dfs(s, t, INF))\
     \ > 0) flow += f;\n        }\n        return flow;\n    }\n\nprivate:\n    struct\
@@ -56,17 +56,17 @@ data:
     \ (e.cap > 0 && level[e.to] == -1) {\n                    level[e.to] = level[v]\
     \ + 1;\n                    q.push(e.to);\n                }\n            }\n\
     \        }\n        return level[t] != -1;\n    }\n\n    T dfs(int v, int t, T\
-    \ f) {\n        if (v == t) return f;\n        for (int& i = iter[v]; i < G[v].size();\
-    \ i++) {\n            Edge& e = G[v][i];\n            if (e.cap > 0 && level[v]\
-    \ < level[e.to]) {\n                T d = dfs(e.to, t, min(f, e.cap));\n     \
-    \           if (d > 0) {\n                    e.cap -= d;\n                  \
-    \  G[e.to][e.rev].cap += d;\n                    return d;\n                }\n\
-    \            }\n        }\n        return 0;\n    }\n};"
+    \ f) {\n        if (v == t) return f;\n        for (int& i = iter[v]; i < (int)\
+    \ G[v].size(); i++) {\n            Edge& e = G[v][i];\n            if (e.cap >\
+    \ 0 && level[v] < level[e.to]) {\n                T d = dfs(e.to, t, min(f, e.cap));\n\
+    \                if (d > 0) {\n                    e.cap -= d;\n             \
+    \       G[e.to][e.rev].cap += d;\n                    return d;\n            \
+    \    }\n            }\n        }\n        return 0;\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: flow/dinic.cpp
   requiredBy: []
-  timestamp: '2020-09-12 00:51:47+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_A.dinic.test.cpp

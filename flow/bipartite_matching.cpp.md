@@ -15,37 +15,38 @@ data:
     links: []
   bundledCode: "#line 1 \"flow/bipartite_matching.cpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n/*\n * @brief Bipartite Matching\n * @docs docs/flow/bipartite_matching.md\n\
-    \ */\nstruct BipartiteMatching {\npublic:\n    BipartiteMatching(int n) : G(n),\
-    \ used(n), match(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
+    \ */\nclass BipartiteMatching {\npublic:\n    explicit BipartiteMatching(int n)\
+    \ : G(n), used(n), match(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
     \        G[v].push_back(u);\n    }\n\n    int bipartite_matching() {\n       \
     \ int res = 0;\n        fill(match.begin(), match.end(), -1);\n        for (int\
-    \ v = 0; v < G.size(); v++) {\n            if (match[v] == -1) {\n           \
-    \     fill(used.begin(), used.end(), false);\n                if (dfs(v)) res++;\n\
+    \ v = 0; v < (int) G.size(); v++) {\n            if (match[v] == -1) {\n     \
+    \           fill(used.begin(), used.end(), false);\n                if (dfs(v))\
+    \ res++;\n            }\n        }\n        return res;\n    }\n\nprivate:\n \
+    \   vector<vector<int>> G;\n    vector<bool> used;\n    vector<int> match;\n\n\
+    \    bool dfs(int u) {\n        used[u] = true;\n        for (int v : G[u]) {\n\
+    \            int w = match[v];\n            if (w < 0 || (!used[w] && dfs(w)))\
+    \ {\n                match[u] = v;\n                match[v] = u;\n          \
+    \      return true;\n            }\n        }\n        return false;\n    }\n\
+    };\n"
+  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Bipartite\
+    \ Matching\n * @docs docs/flow/bipartite_matching.md\n */\nclass BipartiteMatching\
+    \ {\npublic:\n    explicit BipartiteMatching(int n) : G(n), used(n), match(n)\
+    \ {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n      \
+    \  G[v].push_back(u);\n    }\n\n    int bipartite_matching() {\n        int res\
+    \ = 0;\n        fill(match.begin(), match.end(), -1);\n        for (int v = 0;\
+    \ v < (int) G.size(); v++) {\n            if (match[v] == -1) {\n            \
+    \    fill(used.begin(), used.end(), false);\n                if (dfs(v)) res++;\n\
     \            }\n        }\n        return res;\n    }\n\nprivate:\n    vector<vector<int>>\
     \ G;\n    vector<bool> used;\n    vector<int> match;\n\n    bool dfs(int u) {\n\
     \        used[u] = true;\n        for (int v : G[u]) {\n            int w = match[v];\n\
     \            if (w < 0 || (!used[w] && dfs(w))) {\n                match[u] =\
     \ v;\n                match[v] = u;\n                return true;\n          \
-    \  }\n        }\n        return false;\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Bipartite\
-    \ Matching\n * @docs docs/flow/bipartite_matching.md\n */\nstruct BipartiteMatching\
-    \ {\npublic:\n    BipartiteMatching(int n) : G(n), used(n), match(n) {}\n\n  \
-    \  void add_edge(int u, int v) {\n        G[u].push_back(v);\n        G[v].push_back(u);\n\
-    \    }\n\n    int bipartite_matching() {\n        int res = 0;\n        fill(match.begin(),\
-    \ match.end(), -1);\n        for (int v = 0; v < G.size(); v++) {\n          \
-    \  if (match[v] == -1) {\n                fill(used.begin(), used.end(), false);\n\
-    \                if (dfs(v)) res++;\n            }\n        }\n        return\
-    \ res;\n    }\n\nprivate:\n    vector<vector<int>> G;\n    vector<bool> used;\n\
-    \    vector<int> match;\n\n    bool dfs(int u) {\n        used[u] = true;\n  \
-    \      for (int v : G[u]) {\n            int w = match[v];\n            if (w\
-    \ < 0 || (!used[w] && dfs(w))) {\n                match[u] = v;\n            \
-    \    match[v] = u;\n                return true;\n            }\n        }\n \
-    \       return false;\n    }\n};"
+    \  }\n        }\n        return false;\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: flow/bipartite_matching.cpp
   requiredBy: []
-  timestamp: '2020-09-12 00:51:47+09:00'
+  timestamp: '2020-09-22 01:15:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_7_A.test.cpp
