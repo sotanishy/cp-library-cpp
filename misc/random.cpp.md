@@ -8,28 +8,27 @@ data:
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
-  bundledCode: "#line 1 \"misc/random.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nstruct Random {\n    unsigned int x = 123456789, y = 362436069, z =\
-    \ 521288629, w = 88675123;\n\n    unsigned int xorshift() {\n        unsigned\
-    \ int t;\n        t = x ^ (x << 11);\n        x = y; y = z; z = w;\n        return\
-    \ w = w ^ (w >> 19) ^ (t ^ (t >> 8));\n    }\n\n    // returns a random integer\
-    \ in the range [0, n)\n    int next_int(int n) {\n        return xorshift() %\
-    \ n;\n    }\n\n    // returns a random double number in the range [0, 1)\n   \
-    \ double next_double() {\n        return xorshift() * (1.0 / 0xFFFFFFFFu);\n \
-    \   }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Random {\n    unsigned\
-    \ int x = 123456789, y = 362436069, z = 521288629, w = 88675123;\n\n    unsigned\
-    \ int xorshift() {\n        unsigned int t;\n        t = x ^ (x << 11);\n    \
-    \    x = y; y = z; z = w;\n        return w = w ^ (w >> 19) ^ (t ^ (t >> 8));\n\
-    \    }\n\n    // returns a random integer in the range [0, n)\n    int next_int(int\
-    \ n) {\n        return xorshift() % n;\n    }\n\n    // returns a random double\
-    \ number in the range [0, 1)\n    double next_double() {\n        return xorshift()\
-    \ * (1.0 / 0xFFFFFFFFu);\n    }\n};"
+  bundledCode: "#line 1 \"misc/random.cpp\"\n#include <bits/stdc++.h>\n\nstruct Random\
+    \ {\n    unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;\n\
+    \n    unsigned int xorshift() {\n        unsigned int t;\n        t = x ^ (x <<\
+    \ 11);\n        x = y; y = z; z = w;\n        return w = w ^ (w >> 19) ^ (t ^\
+    \ (t >> 8));\n    }\n\n    // returns a random integer in the range [0, n)\n \
+    \   int next_int(int n) {\n        return xorshift() % n;\n    }\n\n    // returns\
+    \ a random double number in the range [0, 1)\n    double next_double() {\n   \
+    \     return xorshift() * (1.0 / 0xFFFFFFFFu);\n    }\n};\n"
+  code: "#include <bits/stdc++.h>\n\nstruct Random {\n    unsigned int x = 123456789,\
+    \ y = 362436069, z = 521288629, w = 88675123;\n\n    unsigned int xorshift() {\n\
+    \        unsigned int t;\n        t = x ^ (x << 11);\n        x = y; y = z; z\
+    \ = w;\n        return w = w ^ (w >> 19) ^ (t ^ (t >> 8));\n    }\n\n    // returns\
+    \ a random integer in the range [0, n)\n    int next_int(int n) {\n        return\
+    \ xorshift() % n;\n    }\n\n    // returns a random double number in the range\
+    \ [0, 1)\n    double next_double() {\n        return xorshift() * (1.0 / 0xFFFFFFFFu);\n\
+    \    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: misc/random.cpp
   requiredBy: []
-  timestamp: '2020-08-31 09:52:54+09:00'
+  timestamp: '2020-09-22 04:01:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/random.cpp
