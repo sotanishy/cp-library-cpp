@@ -180,7 +180,7 @@ data:
       title: string/trie.cpp
   - name: tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/lca.cpp
       title: Lowerst Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -255,7 +255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_A.test.cpp
       title: test/aoj/GRL_5_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_5_C.test.cpp
       title: test/aoj/GRL_5_C.test.cpp
     - icon: ':heavy_check_mark:'

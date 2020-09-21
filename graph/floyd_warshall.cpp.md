@@ -13,24 +13,24 @@ data:
     _deprecated_at_docs: docs/graph/floyd_warshall.md
     document_title: Floyd-Warshall Algorithm
     links: []
-  bundledCode: "#line 1 \"graph/floyd_warshall.cpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\n/*\n * @brief Floyd-Warshall Algorithm\n * @docs docs/graph/floyd_warshall.md\n\
-    \ */\ntemplate <typename T>\nvoid floyd_warshall(vector<vector<T>>& dist) {\n\
-    \    int V = dist.size();\n    for (int k = 0; k < V; k++) {\n        for (int\
-    \ i = 0; i < V; i++) {\n            for (int j = 0; j < V; j++) {\n          \
-    \      dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);\n            }\n\
-    \        }\n    }\n}\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Floyd-Warshall\
-    \ Algorithm\n * @docs docs/graph/floyd_warshall.md\n */\ntemplate <typename T>\n\
-    void floyd_warshall(vector<vector<T>>& dist) {\n    int V = dist.size();\n   \
-    \ for (int k = 0; k < V; k++) {\n        for (int i = 0; i < V; i++) {\n     \
-    \       for (int j = 0; j < V; j++) {\n                dist[i][j] = min(dist[i][j],\
-    \ dist[i][k] + dist[k][j]);\n            }\n        }\n    }\n}"
+  bundledCode: "#line 1 \"graph/floyd_warshall.cpp\"\n#include <bits/stdc++.h>\n\n\
+    /*\n * @brief Floyd-Warshall Algorithm\n * @docs docs/graph/floyd_warshall.md\n\
+    \ */\ntemplate <typename T>\nvoid floyd_warshall(std::vector<std::vector<T>>&\
+    \ dist) {\n    int V = dist.size();\n    for (int k = 0; k < V; k++) {\n     \
+    \   for (int i = 0; i < V; i++) {\n            for (int j = 0; j < V; j++) {\n\
+    \                dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \            }\n        }\n    }\n}\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Floyd-Warshall Algorithm\n * @docs\
+    \ docs/graph/floyd_warshall.md\n */\ntemplate <typename T>\nvoid floyd_warshall(std::vector<std::vector<T>>&\
+    \ dist) {\n    int V = dist.size();\n    for (int k = 0; k < V; k++) {\n     \
+    \   for (int i = 0; i < V; i++) {\n            for (int j = 0; j < V; j++) {\n\
+    \                dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \            }\n        }\n    }\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/floyd_warshall.cpp
   requiredBy: []
-  timestamp: '2020-09-11 22:35:33+09:00'
+  timestamp: '2020-09-22 03:45:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_C.test.cpp

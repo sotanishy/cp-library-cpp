@@ -10,25 +10,25 @@ data:
     _deprecated_at_docs: docs/misc/compress.md
     document_title: Coordinate Compression
     links: []
-  bundledCode: "#line 1 \"misc/compress.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\n/*\n * @brief Coordinate Compression\n * @docs docs/misc/compress.md\n\
-    \ */\ntemplate <typename T>\nclass Compress {\npublic:\n    explicit Compress(const\
-    \ vector<T>& vs) : xs(vs) {\n        sort(xs.begin(), xs.end());\n        xs.erase(unique(xs.begin(),\
+  bundledCode: "#line 1 \"misc/compress.cpp\"\n#include <bits/stdc++.h>\n\n/*\n *\
+    \ @brief Coordinate Compression\n * @docs docs/misc/compress.md\n */\ntemplate\
+    \ <typename T>\nclass Compress {\npublic:\n    explicit Compress(const std::vector<T>&\
+    \ vs) : xs(vs) {\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
     \ xs.end()), xs.end());\n    }\n\n    int compress(const T& x) {\n        return\
-    \ lower_bound(xs.begin(), xs.end(), x) - xs.begin();\n    }\n\n    T decompress(int\
-    \ i) {\n        return xs[i];\n    }\n\nprivate:\n    vector<T> xs;\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Coordinate\
-    \ Compression\n * @docs docs/misc/compress.md\n */\ntemplate <typename T>\nclass\
-    \ Compress {\npublic:\n    explicit Compress(const vector<T>& vs) : xs(vs) {\n\
-    \        sort(xs.begin(), xs.end());\n        xs.erase(unique(xs.begin(), xs.end()),\
-    \ xs.end());\n    }\n\n    int compress(const T& x) {\n        return lower_bound(xs.begin(),\
+    \ std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();\n    }\n\n    T decompress(int\
+    \ i) {\n        return xs[i];\n    }\n\nprivate:\n    std::vector<T> xs;\n};\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Coordinate Compression\n * @docs\
+    \ docs/misc/compress.md\n */\ntemplate <typename T>\nclass Compress {\npublic:\n\
+    \    explicit Compress(const std::vector<T>& vs) : xs(vs) {\n        std::sort(xs.begin(),\
+    \ xs.end());\n        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n\
+    \    }\n\n    int compress(const T& x) {\n        return std::lower_bound(xs.begin(),\
     \ xs.end(), x) - xs.begin();\n    }\n\n    T decompress(int i) {\n        return\
-    \ xs[i];\n    }\n\nprivate:\n    vector<T> xs;\n};"
+    \ xs[i];\n    }\n\nprivate:\n    std::vector<T> xs;\n};"
   dependsOn: []
   isVerificationFile: false
   path: misc/compress.cpp
   requiredBy: []
-  timestamp: '2020-09-22 01:15:52+09:00'
+  timestamp: '2020-09-22 03:45:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/compress.cpp

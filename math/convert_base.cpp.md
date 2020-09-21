@@ -10,21 +10,20 @@ data:
     _deprecated_at_docs: docs/math/convert_base.md
     document_title: Base Conversion
     links: []
-  bundledCode: "#line 1 \"math/convert_base.cpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\n/*\n * @brief Base Conversion\n * @docs docs/math/convert_base.md\n\
-    \ */\nvector<int> convert_base(int n, int base) {\n    int q = n / base, r = n\
-    \ % base;\n    if (q == 0) return {r};\n    auto ret = convert_base(q, base);\n\
-    \    ret.push_back(r);\n    return ret;\n}\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Base Conversion\n\
-    \ * @docs docs/math/convert_base.md\n */\nvector<int> convert_base(int n, int\
-    \ base) {\n    int q = n / base, r = n % base;\n    if (q == 0) return {r};\n\
-    \    auto ret = convert_base(q, base);\n    ret.push_back(r);\n    return ret;\n\
-    }"
+  bundledCode: "#line 1 \"math/convert_base.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
+    \ * @brief Base Conversion\n * @docs docs/math/convert_base.md\n */\nstd::vector<int>\
+    \ convert_base(int n, int base) {\n    int q = n / base, r = n % base;\n    if\
+    \ (q == 0) return {r};\n    auto ret = convert_base(q, base);\n    ret.push_back(r);\n\
+    \    return ret;\n}\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Base Conversion\n * @docs docs/math/convert_base.md\n\
+    \ */\nstd::vector<int> convert_base(int n, int base) {\n    int q = n / base,\
+    \ r = n % base;\n    if (q == 0) return {r};\n    auto ret = convert_base(q, base);\n\
+    \    ret.push_back(r);\n    return ret;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/convert_base.cpp
   requiredBy: []
-  timestamp: '2020-09-18 16:59:21+09:00'
+  timestamp: '2020-09-22 03:45:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/convert_base.cpp

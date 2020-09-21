@@ -38,14 +38,14 @@ data:
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
-  bundledCode: "#line 1 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T cost;\n\
-    \    Edge(int to, T cost) : from(-1), to(to), cost(cost) {}\n    Edge(int from,\
-    \ int to, T cost) : from(from), to(to), cost(cost) {}\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\ntemplate <typename T>\n\
-    struct Edge {\n    int from, to;\n    T cost;\n    Edge(int to, T cost) : from(-1),\
-    \ to(to), cost(cost) {}\n    Edge(int from, int to, T cost) : from(from), to(to),\
-    \ cost(cost) {}\n};\n"
+  bundledCode: "#line 1 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\ntemplate <typename\
+    \ T>\nstruct Edge {\n    int from, to;\n    T cost;\n    Edge(int to, T cost)\
+    \ : from(-1), to(to), cost(cost) {}\n    Edge(int from, int to, T cost) : from(from),\
+    \ to(to), cost(cost) {}\n};\n"
+  code: "#include <bits/stdc++.h>\n\ntemplate <typename T>\nstruct Edge {\n    int\
+    \ from, to;\n    T cost;\n    Edge(int to, T cost) : from(-1), to(to), cost(cost)\
+    \ {}\n    Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/edge.cpp
@@ -55,7 +55,7 @@ data:
   - graph/dijkstra.cpp
   - graph/bellman_ford.cpp
   - graph/prim.cpp
-  timestamp: '2020-08-31 15:01:14+09:00'
+  timestamp: '2020-09-22 03:45:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp
