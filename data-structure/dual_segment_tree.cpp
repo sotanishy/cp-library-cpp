@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Dual Segment Tree
@@ -36,7 +35,7 @@ public:
 
 private:
     int size, height;
-    vector<T> lazy;
+    std::vector<T> lazy;
 
     void push(int k) {
         if (lazy[k] == M::id) return;

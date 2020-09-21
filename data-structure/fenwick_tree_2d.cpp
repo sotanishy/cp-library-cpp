@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief 2D Fenwick Tree
@@ -7,7 +6,7 @@ using namespace std;
 template <typename T>
 class FenwickTree2D {
 public:
-    FenwickTree2D(int H, int W) : H(H), W(W), data(H+1, vector<T>(W+1)) {}
+    FenwickTree2D(int H, int W) : H(H), W(W), data(H+1, std::vector<T>(W+1)) {}
 
     void add(int a, int b, T x) {
         a++;
@@ -33,5 +32,5 @@ public:
 
 private:
     int H, W;
-    vector<vector<T>> data;
+    std::vector<std::vector<T>> data;
 };

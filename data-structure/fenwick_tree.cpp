@@ -22,14 +22,14 @@ public:
         for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    int find_first(const function<bool(T)>& cond) const {
+    int find_first(const std::function<bool(T)>& cond) const {
         int k = 1;
         while (k * 2 <= n) k <<= 1;
         int i = 0;
         T x = M::id;
         for (; k > 0; k >>= 1) {
-            if (i + k <= n && !cond(M::op(x, data[i+k]))) {
-                x = M::op(x, data[i+k]);
+            if (i + k <= n && !cond(M::op(x, data[i + k]))) {
+                x = M::op(x, data[i + k]);
                 i += k;
             }
         }
@@ -38,5 +38,5 @@ public:
 
 private:
     int n;
-    vector<T> data;
+    std::vector<T> data;
 };

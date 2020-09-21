@@ -5,7 +5,7 @@ using namespace std;
  * @brief Topological Sort
  * @docs docs/graph/topological_sort.md
  */
-vector<int> topological_sort(vector<vector<int>>& G) {
+vector<int> topological_sort(const vector<vector<int>>& G) {
     int V = G.size();
     vector<int> par_count(V);
     for (int u = 0; u < V; u++) {

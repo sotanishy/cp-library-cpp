@@ -2,6 +2,8 @@
 
 #include "../../data-structure/sparse_table.cpp"
 
+using namespace std;
+
 struct S {
     using T = int;
     static T op(T a, T b) {

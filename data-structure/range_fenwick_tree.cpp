@@ -23,15 +23,15 @@ public:
 
 private:
     int n;
-    vector<T> data0, data1;
+    std::vector<T> data0, data1;
 
-    T sum(const vector<T>& data, int i) const {
+    T sum(const std::vector<T>& data, int i) const {
         T ret = 0;
         for (; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 
-    void add(vector<T>& data, int i, T x) {
+    void add(std::vector<T>& data, int i, T x) {
         for (i++; i <= n; i += i & -i) data[i] += x;
     }
 };

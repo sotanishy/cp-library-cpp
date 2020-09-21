@@ -7,7 +7,7 @@ using namespace std;
  * @docs docs/graph/bellman_ford.md
  */
 template <typename T>
-vector<T> bellman_ford(vector<Edge<T>>& G, int V, int s) {
+vector<T> bellman_ford(const vector<Edge<T>>& G, int V, int s) {
     const auto INF = numeric_limits<T>::max();
     vector<int> dist(V, INF);
     dist[s] = 0;

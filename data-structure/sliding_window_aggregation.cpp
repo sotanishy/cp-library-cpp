@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Sliding Window Aggregation
@@ -38,5 +37,5 @@ public:
     }
 
 private:
-    stack<pair<T, T>> front, back;
+    std::stack<std::pair<T, T>> front, back;
 };

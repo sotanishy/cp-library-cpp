@@ -2,6 +2,8 @@
 
 #include "../../data-structure/dual_segment_tree.cpp"
 
+using namespace std;
+
 struct Monoid {
     using T = int;
     inline static const T id = 0;

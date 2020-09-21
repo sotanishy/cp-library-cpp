@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Weighted Union Find
@@ -29,7 +28,7 @@ public:
         y = find(y);
         if (x == y) return false;
         if (data[x] > data[y]) {
-            swap(x, y);
+            std::swap(x, y);
             w = -w;
         }
         data[x] += data[y];
@@ -51,6 +50,6 @@ public:
     }
 
 private:
-    vector<int> data;
-    vector<T> ws;
+    std::vector<int> data;
+    std::vector<T> ws;
 };

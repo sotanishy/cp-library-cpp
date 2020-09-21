@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Disjoint Sparse Table
@@ -10,11 +9,11 @@ class DisjointSparseTable {
     using T = typename S::T;
 
 public:
-    explicit DisjointSparseTable(const vector<T>& v) {
+    explicit DisjointSparseTable(const std::vector<T>& v) {
         int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
-        lookup.resize(b + 1, vector<T>(n));
-        copy(v.begin(), v.end(), lookup[0].begin());
+        lookup.resize(b + 1, std::vector<T>(n));
+        std::copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i <= b; i++) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {
@@ -24,7 +23,7 @@ public:
                     lookup[i][m - 1 - j] = S::op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = 1; m + j < min(l + len, n); j++) {
+                for (int j = 1; m + j < std::min(l + len, n); j++) {
                     lookup[i][m + j] = S::op(lookup[i][m + j - 1], v[m + j]);
                 }
             }
@@ -38,5 +37,5 @@ public:
     }
 
 private:
-    vector<vector<T>> lookup;
+    std::vector<std::vector<T>> lookup;
 };

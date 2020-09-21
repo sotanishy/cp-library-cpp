@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Treap
@@ -11,7 +10,7 @@ public:
     int count(T key) const { return count(root, key); }
 
     void insert(T key, int priority = -1) {
-        if (priority == -1) priority = rand() % 100000000;
+        if (priority == -1) priority = std::rand() % 100000000;
         root = insert(root, key, priority);
     }
 
@@ -21,12 +20,12 @@ public:
 
     void print_inorder() const {
         print_inorder(root);
-        cout << "\n";
+        std::cout << "\n";
     }
 
     void print_preorder() const {
         print_preorder(root);
-        cout << "\n";
+        std::cout << "\n";
     }
 
 private:
@@ -92,13 +91,13 @@ private:
     void print_inorder(Node* t) const {
         if (t == nullptr) return;
         print_inorder(t->left);
-        cout << " " << t->key;
+        std::cout << " " << t->key;
         print_inorder(t->right);
     }
 
     void print_preorder(Node* t) const {
         if (t == nullptr) return;
-        cout << " " << t->key;
+        std::cout << " " << t->key;
         print_preorder(t->left);
         print_preorder(t->right);
     }

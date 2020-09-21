@@ -88,7 +88,7 @@ struct Matrix {
         return ret;
     }
 
-    Matrix matmul(const Matrix& B) {
+    Matrix matmul(const Matrix& B) const {
         assert(n == B.m);
         Matrix C(m, B.n);
         for (int i = 0; i < m; i++) {
@@ -101,7 +101,7 @@ struct Matrix {
         return C;
     }
 
-    Matrix pow(long long k) {
+    Matrix pow(long long k) const {
         assert(m == n);
         Matrix ret = Matrix::I(n);
         Matrix B(*this);

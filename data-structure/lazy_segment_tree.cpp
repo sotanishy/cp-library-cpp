@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Segment Tree with Lazy Propagation
@@ -11,14 +10,14 @@ class LazySegmentTree {
     using E = typename O::T;
 
 public:
-    explicit LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
-    explicit LazySegmentTree(const vector<T>& v) {
+    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id)) {}
+    explicit LazySegmentTree(const std::vector<T>& v) {
         size = 1;
         height = 0;
         while (size < (int) v.size()) size <<= 1, height++;
         node.resize(2 * size, M::id);
         lazy.resize(2 * size, O::id);
-        copy(v.begin(), v.end(), node.begin() + size);
+        std::copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
@@ -32,8 +31,8 @@ public:
 
 private:
     int size, height;
-    vector<T> node;
-    vector<E> lazy;
+    std::vector<T> node;
+    std::vector<E> lazy;
 
     void push(int k) {
         if (lazy[k] == O::id) return;

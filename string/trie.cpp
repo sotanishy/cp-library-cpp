@@ -5,7 +5,7 @@ class Trie {
 public:
     Trie() : nodes(1) {}
 
-    void add(string& s, int id) {
+    void add(const string& s, int id) {
         int node = 0;
         for (char c : s) {
             if (nodes[node].child[c - 'a'] == -1) {
@@ -18,7 +18,7 @@ public:
         nodes[node].is_end = true;
     }
 
-    int query(string& s) const {
+    int query(const string& s) const {
         int node = 0;
         for (char c : s) {
             if (nodes[node].child[c - 'a'] == -1) return 0;

@@ -7,7 +7,7 @@ using namespace std;
  */
 class LCA {
 public:
-    LCA(vector<vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
+    LCA(const vector<vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
         int V = G.size();
         table.assign(LOG, vector<int>(V, -1));
 

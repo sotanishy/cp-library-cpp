@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief k-d Tree
@@ -16,10 +15,10 @@ public:
         build(0, points.size() - 1, 0);
     }
 
-    vector<int> search(T sx, T tx, T sy, T ty) const {
-        Point s(min(sx, tx), min(sy, ty));
-        Point t(max(sx, tx), max(sy, ty));
-        vector<int> res;
+    std::vector<int> search(T sx, T tx, T sy, T ty) const {
+        Point s(std::min(sx, tx), std::min(sy, ty));
+        Point t(std::max(sx, tx), std::max(sy, ty));
+        std::vector<int> res;
         search(s, t, res, 0, points.size() - 1, 0);
         return res;
     }
@@ -32,7 +31,7 @@ private:
         Point(int id, T x, T y) : id(id), x(x), y(y) {}
     };
 
-    vector<Point> points;
+    std::vector<Point> points;
 
     int check_position(const Point& point, const Point& start, const Point& end, int axis) const {
         if (axis == 0) {
@@ -50,14 +49,17 @@ private:
         if (left > right) return;
 
         int axis = depth % 2;
-        if (axis == 0) sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
-        else sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
+        if (axis == 0) {
+            std::sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
+        } else {
+            std::sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
+        }
         int mid = (left + right) / 2;
         build(left, mid - 1, depth + 1);
         build(mid + 1, right, depth + 1);
     }
 
-    void search(const Point& start, const Point& end, vector<int>& res, int left, int right, int depth) const {
+    void search(const Point& start, const Point& end, std::vector<int>& res, int left, int right, int depth) const {
         if (left > right) return;
 
         int axis = depth % 2;

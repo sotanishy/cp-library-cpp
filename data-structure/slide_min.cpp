@@ -5,7 +5,7 @@ using namespace std;
  * @brief Slide Min
  * @docs docs/data-structure/slide_min.md
  */
-template <typename T, typename Compare = less<>>
+template <typename T, typename Compare = std::less<>>
 class SlideMin {
 public:
     void push(T x) {
@@ -24,6 +24,6 @@ public:
 
 private:
     int l = 0, r = 0;
-    deque<pair<T, int>> dq;
+    std::deque<std::pair<T, int>> dq;
     Compare cmp;
 };

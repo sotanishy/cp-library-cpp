@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Segment Tree Beats
@@ -8,8 +7,8 @@ using namespace std;
 template <typename T>
 class SegmentTreeBeats {
 public:
-    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(vector<T>(n)) {}
-    explicit SegmentTreeBeats(const vector<T>& v) {
+    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}
+    explicit SegmentTreeBeats(const std::vector<T>& v) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
         sum.resize(2 * size);
@@ -43,14 +42,14 @@ public:
     T fold_sum(int l, int r) { return fold<SUM>(l, r, 1, 0, size); }
 
 private:
-    const T INF = numeric_limits<T>::max();
-    const T NINF = numeric_limits<T>::min();
+    const T INF = std::numeric_limits<T>::max();
+    const T NINF = std::numeric_limits<T>::min();
 
     int size;
-    vector<T> sum, lazy;
-    vector<T> max_val, smax_val;
-    vector<T> min_val, smin_val;
-    vector<int> len, max_cnt, min_cnt;
+    std::vector<T> sum, lazy;
+    std::vector<T> max_val, smax_val;
+    std::vector<T> min_val, smin_val;
+    std::vector<int> len, max_cnt, min_cnt;
 
     enum OpType {
         CHMIN, CHMAX, ADD
@@ -66,29 +65,29 @@ private:
         if (max_val[2 * k] > max_val[2 * k + 1]) {
             max_val[k] = max_val[2 * k];
             max_cnt[k] = max_cnt[2 * k];
-            smax_val[k] = max(smax_val[2 * k], max_val[2 * k + 1]);
+            smax_val[k] = std::max(smax_val[2 * k], max_val[2 * k + 1]);
         } else if (max_val[2 * k] < max_val[2 * k + 1]) {
             max_val[k] = max_val[2 * k + 1];
             max_cnt[k] = max_cnt[2 * k + 1];
-            smax_val[k] = max(max_val[2 * k], smax_val[2 * k + 1]);
+            smax_val[k] = std::max(max_val[2 * k], smax_val[2 * k + 1]);
         } else {
             max_val[k] = max_val[2 * k];
             max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];
-            smax_val[k] = max(smax_val[2 * k], smax_val[2 * k + 1]);
+            smax_val[k] = std::max(smax_val[2 * k], smax_val[2 * k + 1]);
         }
 
         if (min_val[2 * k] < min_val[2 * k + 1]) {
             min_val[k] = min_val[2 * k];
             min_cnt[k] = min_cnt[2 * k];
-            smin_val[k] = min(smin_val[2 * k], min_val[2 * k + 1]);
+            smin_val[k] = std::min(smin_val[2 * k], min_val[2 * k + 1]);
         } else if (min_val[2 * k] > min_val[2 * k + 1]) {
             min_val[k] = min_val[2 * k + 1];
             min_cnt[k] = min_cnt[2 * k + 1];
-            smin_val[k] = min(min_val[2 * k], smin_val[2 * k + 1]);
+            smin_val[k] = std::min(min_val[2 * k], smin_val[2 * k + 1]);
         } else {
             min_val[k] = min_val[2 * k];
             min_cnt[k] = min_cnt[2 * k] + min_cnt[2 * k + 1];
-            smin_val[k] = min(smin_val[2 * k], smin_val[2 * k + 1]);
+            smin_val[k] = std::min(smin_val[2 * k], smin_val[2 * k + 1]);
         }
     }
 
@@ -170,8 +169,8 @@ private:
         int m = (l + r) / 2;
         T vl = fold<TYPE>(a, b, 2 * k, l, m);
         T vr = fold<TYPE>(a, b, 2 * k + 1, m, r);
-        if (TYPE == MIN) return min(vl, vr);
-        if (TYPE == MAX) return max(vl, vr);
+        if (TYPE == MIN) return std::min(vl, vr);
+        if (TYPE == MAX) return std::max(vl, vr);
         if (TYPE == SUM) return vl + vr;
         return -1;
     }

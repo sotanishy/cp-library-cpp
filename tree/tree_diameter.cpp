@@ -8,21 +8,21 @@ using namespace std;
  */
 class TreeDiameter {
 public:
-    static int diameter(vector<vector<int>>& G) {
+    static int diameter(const vector<vector<int>>& G) {
         auto p = dfs(G, 0, -1);
         auto q = dfs(G, p.second, -1);
         return q.first;
     }
 
     template <typename T>
-    static T diameter(vector<vector<Edge<T>>>& G) {
+    static T diameter(const vector<vector<Edge<T>>>& G) {
         auto p = dfs(G, 0, -1);
         auto q = dfs(G, p.second, -1);
         return q.first;
     }
 
 private:
-    static pair<int, int> dfs(vector<vector<int>>& G, int v, int p) {
+    static pair<int, int> dfs(const vector<vector<int>>& G, int v, int p) {
         pair<int, int> ret(0, v);
         for (int c : G[v]) {
             if (c == p) continue;
@@ -34,7 +34,7 @@ private:
     }
 
     template <typename T>
-    static pair<T, int> dfs(vector<vector<Edge<T>>>& G, int v, int p) {
+    static pair<T, int> dfs(const vector<vector<Edge<T>>>& G, int v, int p) {
         pair<T, int> ret(0, v);
         for (auto& e : G[v]) {
             if (e.to == p) continue;

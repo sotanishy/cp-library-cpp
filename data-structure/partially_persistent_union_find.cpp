@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Partially Persistent Union Find
@@ -19,7 +18,7 @@ public:
         x = find(now, x);
         y = find(now, y);
         if (x == y) return;
-        if (data[x] > data[y]) swap(x, y);
+        if (data[x] > data[y]) std::swap(x, y);
         data[x] += data[y];
         sz[x].emplace_back(now, -data[x]);
         data[y] = x;
@@ -32,14 +31,14 @@ public:
 
     int size(int t, int x) {
         x = find(t, x);
-        return (--lower_bound(sz[x].begin(), sz[x].end(), make_pair(t, INF)))->second;
+        return (--std::lower_bound(sz[x].begin(), sz[x].end(), std::make_pair(t, INF)))->second;
     }
 
 private:
-    const int INF = numeric_limits<int>::max();
+    const int INF = std::numeric_limits<int>::max();
 
-    vector<int> data;
-    vector<int> time;
-    vector<vector<pair<int, int>>> sz;
+    std::vector<int> data;
+    std::vector<int> time;
+    std::vector<std::vector<std::pair<int, int>>> sz;
     int now = 0;
 };

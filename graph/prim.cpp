@@ -7,7 +7,7 @@ using namespace std;
  * @docs docs/graph/prim.md
  */
 template <typename T>
-T prim(vector<vector<Edge<T>>>& G) {
+T prim(const vector<vector<Edge<T>>>& G) {
     vector<bool> used(G.size());
     using P = pair<T, int>;
     priority_queue<P, vector<P>, greater<P>> pq;

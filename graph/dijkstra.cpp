@@ -7,7 +7,7 @@ using namespace std;
  * @docs docs/graph/dijkstra.md
  */
 template <typename T>
-vector<T> dijkstra(vector<vector<Edge<T>>>& G, int s) {
+vector<T> dijkstra(const vector<vector<Edge<T>>>& G, int s) {
     const T INF = numeric_limits<T>::max();
     vector<T> dist(G.size(), INF);
     dist[s] = 0;

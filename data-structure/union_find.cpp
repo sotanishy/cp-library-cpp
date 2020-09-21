@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Union Find
@@ -18,7 +17,7 @@ public:
         x = find(x);
         y = find(y);
         if (x == y) return;
-        if (data[x] > data[y]) swap(x, y);
+        if (data[x] > data[y]) std::swap(x, y);
         data[x] += data[y];
         data[y] = x;
     }
@@ -32,5 +31,5 @@ public:
     }
 
 private:
-    vector<int> data;
+    std::vector<int> data;
 };

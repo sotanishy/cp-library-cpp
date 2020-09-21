@@ -2,6 +2,8 @@
 
 #include "../../data-structure/fenwick_tree.cpp"
 
+using namespace std;
+
 struct Monoid {
     using T = int;
     static inline T id = 0;

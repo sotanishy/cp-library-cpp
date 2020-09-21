@@ -2,6 +2,8 @@
 
 #include "../../data-structure/lazy_segment_tree.cpp"
 
+using namespace std;
+
 using ll = long long;
 
 struct M {
