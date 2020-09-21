@@ -15,7 +15,7 @@ public:
         for (int k = 0; k < LOG - 1; k++) {
             for (int v = 0; v < V; v++) {
                 if (table[k][v] >= 0) {
-                    table[k+1][v] = table[k][table[k][v]];
+                    table[k + 1][v] = table[k][table[k][v]];
                 }
             }
         }

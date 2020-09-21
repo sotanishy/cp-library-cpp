@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 struct Random {
     unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
