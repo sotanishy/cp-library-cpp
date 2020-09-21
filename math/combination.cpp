@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Combination
@@ -34,14 +33,14 @@ class Combination {
 
 private:
     long long mod;
-    vector<long long> fact, fact_inv;
+    std::vector<long long> fact, fact_inv;
 
     static long long mod_inv(long long a, long long mod) {
         long long b = mod, u = 1, v = 0, t;
         while (b > 0) {
             t = a / b;
-            swap(a -= t * b, b);
-            swap(u -= t * v, v);
+            std::swap(a -= t * b, b);
+            std::swap(u -= t * v, v);
         }
         return (u % mod + mod) % mod;
     }

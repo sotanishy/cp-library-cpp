@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Bipartite Matching
@@ -16,10 +15,10 @@ public:
 
     int bipartite_matching() {
         int res = 0;
-        fill(match.begin(), match.end(), -1);
+        std::fill(match.begin(), match.end(), -1);
         for (int v = 0; v < (int) G.size(); v++) {
             if (match[v] == -1) {
-                fill(used.begin(), used.end(), false);
+                std::fill(used.begin(), used.end(), false);
                 if (dfs(v)) res++;
             }
         }
@@ -27,9 +26,9 @@ public:
     }
 
 private:
-    vector<vector<int>> G;
-    vector<bool> used;
-    vector<int> match;
+    std::vector<std::vector<int>> G;
+    std::vector<bool> used;
+    std::vector<int> match;
 
     bool dfs(int u) {
         used[u] = true;

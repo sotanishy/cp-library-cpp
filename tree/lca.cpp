@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Lowerst Common Ancestor
@@ -7,9 +6,9 @@ using namespace std;
  */
 class LCA {
 public:
-    LCA(const vector<vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
+    LCA(const std::vector<std::vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
         int V = G.size();
-        table.assign(LOG, vector<int>(V, -1));
+        table.assign(LOG, std::vector<int>(V, -1));
 
         dfs(root, -1, 0);
 
@@ -23,7 +22,7 @@ public:
     }
 
     int query(int u, int v) const {
-        if (depth[u] > depth[v]) swap(u, v);
+        if (depth[u] > depth[v]) std::swap(u, v);
 
         // go up to the same depth
         for (int k = 0; k < LOG; k++) {
@@ -47,10 +46,10 @@ public:
     }
 
 private:
-    const vector<vector<int>>& G;
+    const std::vector<std::vector<int>>& G;
     const int LOG;
-    vector<vector<int>> table;
-    vector<int> depth;
+    std::vector<std::vector<int>> table;
+    std::vector<int> depth;
 
     void dfs(int v, int p, int d) {
         table[0][v] = p;

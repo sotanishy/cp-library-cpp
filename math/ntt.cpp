@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Number Theoretic Transform
@@ -8,11 +7,11 @@ using namespace std;
 template <long long mod, long long primitive_root>
 class NTT {
 public:
-    static vector<long long> convolution(const vector<long long>& a, const vector<long long>& b) {
+    static std::vector<long long> convolution(const std::vector<long long>& a, const std::vector<long long>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
-        vector<long long> na = a, nb = b;
+        std::vector<long long> na = a, nb = b;
         na.resize(n);
         nb.resize(n);
         untt(na);
@@ -40,13 +39,13 @@ private:
         long long b = mod, u = 1, v = 0, t;
         while (b > 0) {
             t = a / b;
-            swap(a -= t * b, b);
-            swap(u -= t * v, v);
+            std::swap(a -= t * b, b);
+            std::swap(u -= t * v, v);
         }
         return (u % mod + mod) % mod;
     }
 
-    static void untt(vector<long long>& a) {
+    static void untt(std::vector<long long>& a) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
             long long omega = mod_pow(primitive_root, (mod - 1) / m);
@@ -63,7 +62,7 @@ private:
         }
     }
 
-    static void iuntt(vector<long long>& a) {
+    static void iuntt(std::vector<long long>& a) {
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
             long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));

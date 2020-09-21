@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
-using namespace std;
 
-vector<int> manacher(string& s) {
+std::vector<int> manacher(const std::string& s) {
     int n = s.size();
-    vector<int> vs(n);
+    std::vector<int> vs(n);
     int i = 0, j = 0;
     while (i < n) {
         while (0 <= i - j && i + j < n && s[i-j] == s[i+j]) j++;

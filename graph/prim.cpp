@@ -1,16 +1,15 @@
 #include <bits/stdc++.h>
 #include "edge.cpp"
-using namespace std;
 
 /*
  * @brief Prim's Algorithm
  * @docs docs/graph/prim.md
  */
 template <typename T>
-T prim(const vector<vector<Edge<T>>>& G) {
-    vector<bool> used(G.size());
-    using P = pair<T, int>;
-    priority_queue<P, vector<P>, greater<P>> pq;
+T prim(const std::vector<std::vector<Edge<T>>>& G) {
+    std::vector<bool> used(G.size());
+    using P = std::pair<T, int>;
+    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
     pq.emplace(0, 0);
     T ret = 0;
     while (!pq.empty()) {

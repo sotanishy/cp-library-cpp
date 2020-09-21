@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Dinic's Algorithm
@@ -18,7 +17,7 @@ public:
     T max_flow(int s, int t) {
         T flow = 0;
         while (bfs(s, t)) {
-            fill(iter.begin(), iter.end(), 0);
+            std::fill(iter.begin(), iter.end(), 0);
             T f = 0;
             while ((f = dfs(s, t, INF)) > 0) flow += f;
         }
@@ -33,15 +32,15 @@ private:
         Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
     };
 
-    const T INF = numeric_limits<T>::max() / 2;
+    const T INF = std::numeric_limits<T>::max() / 2;
 
-    vector<vector<Edge>> G;
-    vector<int> level, iter;
+    std::vector<std::vector<Edge>> G;
+    std::vector<int> level, iter;
 
     bool bfs(int s, int t) {
-        fill(level.begin(), level.end(), -1);
+        std::fill(level.begin(), level.end(), -1);
         level[s] = 0;
-        queue<int> q;
+        std::queue<int> q;
         q.push(s);
         while (!q.empty() && level[t] == -1) {
             int v = q.front();
@@ -61,7 +60,7 @@ private:
         for (int& i = iter[v]; i < (int) G[v].size(); i++) {
             Edge& e = G[v][i];
             if (e.cap > 0 && level[v] < level[e.to]) {
-                T d = dfs(e.to, t, min(f, e.cap));
+                T d = dfs(e.to, t, std::min(f, e.cap));
                 if (d > 0) {
                     e.cap -= d;
                     G[e.to][e.rev].cap += d;

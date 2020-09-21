@@ -2,6 +2,7 @@
 
 #include "../../graph/twosat.cpp"
 
+using namespace std;
 using ll = long long;
 
 int main() {

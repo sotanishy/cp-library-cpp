@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "scc.cpp"
-using namespace std;
 
 /*
  * @brief 2-SAT
@@ -37,6 +36,6 @@ public:
 private:
     int n;
     SCC scc;
-    vector<bool> val;
+    std::vector<bool> val;
     bool satisfiable = true;
 };

@@ -1,22 +1,21 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Matrix
  * @docs docs/math/matrix.md
  */
-template <typename T, typename = typename enable_if<is_arithmetic<T>::value, T>::type>
+template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 struct Matrix {
-    vector<vector<T>> A;
+    std::vector<std::vector<T>> A;
     int m, n;
 
     const double EPS = 1e-8;
 
-    Matrix(int m, int n) : A(m, vector<T>(n)), m(m), n(n) {}
+    Matrix(int m, int n) : A(m, std::vector<T>(n)), m(m), n(n) {}
 
     Matrix(initializer_list<initializer_list<T>> list) {
         for (auto& l : list) {
-            A.push_back(vector<T>(l.begin(), l.end()));
+            A.push_back(std::vector<T>(l.begin(), l.end()));
         }
         m = A.size();
         n = A[0].size();
@@ -29,7 +28,7 @@ struct Matrix {
     }
 
     static Matrix concatenate(const Matrix& A, const Matrix& B) {
-        assert(A.m == B.m);
+        std::assert(A.m == B.m);
         Matrix C(A.m, A.n + B.n);
         for (int i = 0; i < A.m; i++) {
             for (int j = 0; j < A.n; j++) {
@@ -42,16 +41,16 @@ struct Matrix {
         return C;
     }
 
-    const vector<T>& operator[](int i) const {
+    const std::vector<T>& operator[](int i) const {
         return A[i];
     }
 
-    vector<T>& operator[](int i) {
+    std::vector<T>& operator[](int i) {
         return A[i];
     }
 
     Matrix& operator+=(const Matrix& B) {
-        assert(m == B.m && n == B.n);
+        std::assert(m == B.m && n == B.n);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 (*this)[i][j] += B[i][j];
@@ -61,7 +60,7 @@ struct Matrix {
     }
 
     Matrix& operator-=(const Matrix& B) {
-        assert(m == B.m && n == B.n);
+        std::assert(m == B.m && n == B.n);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 (*this)[i][j] -= B[i][j];
@@ -89,7 +88,7 @@ struct Matrix {
     }
 
     Matrix matmul(const Matrix& B) const {
-        assert(n == B.m);
+        std::assert(n == B.m);
         Matrix C(m, B.n);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < B.n; j++) {
@@ -102,7 +101,7 @@ struct Matrix {
     }
 
     Matrix pow(long long k) const {
-        assert(m == n);
+        std::assert(m == n);
         Matrix ret = Matrix::I(n);
         Matrix B(*this);
         while (k > 0) {
@@ -118,11 +117,11 @@ struct Matrix {
         int pivot = 0;
         for (int col = 0; col < n; col++) {
             int row = pivot;
-            for (; row < m && abs(B[row][col]) < EPS; row++);
+            for (; row < m && std::abs(B[row][col]) < EPS; row++);
 
             if (row == m) continue;
 
-            if (row != pivot) swap(B[row], B[pivot]);
+            if (row != pivot) std::swap(B[row], B[pivot]);
 
             T p = B[pivot][col];
             for (int c = col; c < n; c++) {
@@ -144,17 +143,17 @@ struct Matrix {
     }
 
     T det() const {
-        assert(m == n);
+        std::assert(m == n);
         Matrix B(*this);
         T ret = 1;
         for (int j = 0; j < n; j++) {
             int i = j;
-            for (; i < m && abs(B[i][j]) < EPS; i++);
+            for (; i < m && std::abs(B[i][j]) < EPS; i++);
 
             if (i == m) return 0;
 
             if (i != j) {
-                swap(B[i], B[j]);
+                std::swap(B[i], B[j]);
                 ret = -ret;
             }
 
@@ -179,7 +178,7 @@ struct Matrix {
         for (int i = 0; i < m; i++) {
             bool nonzero = false;
             for (int j = 0; j < n; j++) {
-                if (abs(B[i][j]) > EPS) {
+                if (std::abs(B[i][j]) > EPS) {
                     nonzero = true;
                     break;
                 }
@@ -190,7 +189,7 @@ struct Matrix {
     }
 
     Matrix inverse() const {
-        assert(abs(det(A)) > EPS);
+        std::assert(std::abs(det(A)) > EPS);
         Matrix AI = concatenate(*this, I(n));
         Matrix Ib = rref(AI);
         Matrix B(n);

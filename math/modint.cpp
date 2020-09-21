@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 template <int mod>
 struct Modint {
@@ -27,8 +26,8 @@ struct Modint {
         int a = x, b = mod, u = 1, v = 0, t;
         while (b > 0) {
             t = a / b;
-            swap(a -= t * b, b);
-            swap(u -= t * v, v);
+            std::swap(a -= t * b, b);
+            std::swap(u -= t * v, v);
         }
         return Modint(u);
     }
@@ -43,11 +42,11 @@ struct Modint {
         return ret;
     }
 
-    friend ostream &operator<<(ostream& os, const Modint& p) {
+    friend std::ostream &operator<<(std::ostream& os, const Modint& p) {
         return os << p.x;
     }
 
-    friend istream &operator>>(istream& is, Modint& a) {
+    friend std::istream &operator>>(std::istream& is, Modint& a) {
         long long t;
         is >> t;
         a = Modint<mod>(t);

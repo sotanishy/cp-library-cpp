@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Minimum Cost Flow
@@ -17,20 +16,20 @@ public:
 
     Cost min_cost_flow(int s, int t, Cap f) {
         int ret = 0;
-        vector<Cost> dist(V), h(V);
-        vector<int> prevv(V), preve(V);
-        using P = pair<Cost, int>;
-        priority_queue<P, vector<P>, greater<P>> pq;
+        std::vector<Cost> dist(V), h(V);
+        std::vector<int> prevv(V), preve(V);
+        using P = std::pair<Cost, int>;
+        std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
 
         while (f > 0) {
             // update h using dijkstra
-            fill(dist.begin(), dist.end(), INF);
+            std::fill(dist.begin(), dist.end(), INF);
             dist[s] = 0;
             pq.emplace(0, s);
             while (!pq.empty()) {
                 Cost d;
                 int v;
-                tie(d, v) = pq.top();
+                std::tie(d, v) = pq.top();
                 pq.pop();
                 if (dist[v] < d) continue;
                 for (int i = 0; i < (int) G[v].size(); i++) {
@@ -50,7 +49,7 @@ public:
 
             Cap m = f;
             for (int v = t; v != s; v = prevv[v]) {
-                m = min(m, G[prevv[v]][preve[v]].cap);
+                m = std::min(m, G[prevv[v]][preve[v]].cap);
             }
             f -= m;
             ret += m * h[t];
@@ -72,8 +71,8 @@ private:
         Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const Cost INF = numeric_limits<Cost>::max() / 2;
+    const Cost INF = std::numeric_limits<Cost>::max() / 2;
 
     int V;
-    vector<vector<Edge>> G;
+    std::vector<std::vector<Edge>> G;
 };

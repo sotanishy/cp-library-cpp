@@ -1,12 +1,11 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Prime Factor
  * @docs docs/math/prime_factor.md
  */
-map<long long, int> prime_factor(long long n) {
-    map<long long, int> ret;
+std::map<long long, int> prime_factor(long long n) {
+    std::map<long long, int> ret;
     if (n % 2 == 0) {
         int cnt = 0;
         while (n % 2 == 0) {

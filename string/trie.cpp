@@ -1,11 +1,10 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 class Trie {
 public:
     Trie() : nodes(1) {}
 
-    void add(const string& s, int id) {
+    void add(const std::string& s, int id) {
         int node = 0;
         for (char c : s) {
             if (nodes[node].child[c - 'a'] == -1) {
@@ -18,7 +17,7 @@ public:
         nodes[node].is_end = true;
     }
 
-    int query(const string& s) const {
+    int query(const std::string& s) const {
         int node = 0;
         for (char c : s) {
             if (nodes[node].child[c - 'a'] == -1) return 0;
@@ -29,12 +28,12 @@ public:
 
 private:
     struct Node {
-        vector<int> child;
+        std::vector<int> child;
         bool is_end = false;
         int count = 0;
 
         Node() : child(26, -1) {}
     };
 
-    vector<Node> nodes;
+    std::vector<Node> nodes;
 };

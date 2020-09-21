@@ -2,6 +2,8 @@
 
 #include "../../graph/bellman_ford.cpp"
 
+using namespace std;
+
 const int INF = 1e9;
 
 int main() {

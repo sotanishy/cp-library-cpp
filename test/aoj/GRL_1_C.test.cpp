@@ -2,6 +2,7 @@
 
 #include "../../graph/floyd_warshall.cpp"
 
+using namespace std;
 using ll = long long;
 
 const ll INF = 1e18;

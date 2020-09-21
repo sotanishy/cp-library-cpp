@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Coordinate Compression
@@ -8,13 +7,13 @@ using namespace std;
 template <typename T>
 class Compress {
 public:
-    explicit Compress(const vector<T>& vs) : xs(vs) {
-        sort(xs.begin(), xs.end());
-        xs.erase(unique(xs.begin(), xs.end()), xs.end());
+    explicit Compress(const std::vector<T>& vs) : xs(vs) {
+        std::sort(xs.begin(), xs.end());
+        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
     }
 
     int compress(const T& x) {
-        return lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+        return std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();
     }
 
     T decompress(int i) {
@@ -22,5 +21,5 @@ public:
     }
 
 private:
-    vector<T> xs;
+    std::vector<T> xs;
 };

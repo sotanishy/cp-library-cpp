@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Strongly Connected Components
@@ -16,7 +15,7 @@ public:
 
     void build() {
         for (int v = 0; v < (int) G.size(); v++) dfs(v);
-        reverse(order.begin(), order.end());
+        std::reverse(order.begin(), order.end());
         cnt = 0;
         for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
     }
@@ -30,9 +29,9 @@ public:
     }
 
 private:
-    vector<vector<int>> G, G_rev;
-    vector<int> comp, order;
-    vector<bool> visited;
+    std::vector<std::vector<int>> G, G_rev;
+    std::vector<int> comp, order;
+    std::vector<bool> visited;
     int cnt;
 
     void dfs(int u) {
