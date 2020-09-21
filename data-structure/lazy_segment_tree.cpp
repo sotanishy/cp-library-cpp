@@ -6,15 +6,16 @@ using namespace std;
  * @docs docs/data-structure/lazy_segment_tree.md
  */
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
-struct LazySegmentTree {
+class LazySegmentTree {
     using T = typename M::T;
     using E = typename O::T;
 
-    LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
-    LazySegmentTree(const vector<T>& v) {
+public:
+    explicit LazySegmentTree(int n) : LazySegmentTree(vector<T>(n, M::id)) {}
+    explicit LazySegmentTree(const vector<T>& v) {
         size = 1;
         height = 0;
-        while (size < v.size()) size <<= 1, height++;
+        while (size < (int) v.size()) size <<= 1, height++;
         node.resize(2 * size, M::id);
         lazy.resize(2 * size, O::id);
         copy(v.begin(), v.end(), node.begin() + size);

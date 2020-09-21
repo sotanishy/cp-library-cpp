@@ -6,12 +6,11 @@ using namespace std;
  * @docs docs/data-structure/disjoint_sparse_table.md
  */
 template <typename S>
-struct DisjointSparseTable {
+class DisjointSparseTable {
     using T = typename S::T;
 
-    vector<vector<T>> lookup;
-
-    DisjointSparseTable(const vector<T>& v) {
+public:
+    explicit DisjointSparseTable(const vector<T>& v) {
         int n = v.size(), b = 0;
         while ((1 << b) < n) b++;
         lookup.resize(b + 1, vector<T>(n));
@@ -32,9 +31,12 @@ struct DisjointSparseTable {
         }
     }
 
-    T fold(int l, int r) {
+    T fold(int l, int r) const {
         if (r - l == 1) return lookup[0][l];
         int i = 32 - __builtin_clz(l ^ (r - 1));
         return S::op(lookup[i][l], lookup[i][r - 1]);
     }
+
+private:
+    vector<vector<T>> lookup;
 };

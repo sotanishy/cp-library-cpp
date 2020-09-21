@@ -6,9 +6,9 @@ using namespace std;
  * @docs docs/flow/ford_fulkerson.md
  */
 template <typename T>
-struct FordFulkerson {
+class FordFulkerson {
 public:
-    FordFulkerson(int n) : G(n), used(n) {}
+    explicit FordFulkerson(int n) : G(n), used(n) {}
 
     void add_edge(int u, int v, T cap) {
         G[u].emplace_back(v, cap, (int) G[v].size());

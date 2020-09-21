@@ -6,11 +6,10 @@ using namespace std;
  * @docs docs/data-structure/sliding_window_aggregation.md
  */
 template <typename M>
-struct SlidingWindowAggregation {
+class SlidingWindowAggregation {
     using T = typename M::T;
 
-    stack<pair<T, T>> front, back;
-
+public:
     void push(T x) {
         if (back.empty()) back.emplace(x, x);
         else back.emplace(x, M::op(back.top().second, x));
@@ -31,10 +30,13 @@ struct SlidingWindowAggregation {
         front.pop();
     }
 
-    T fold() {
+    T fold() const {
         T ret = M::id;
         if (!front.empty()) ret = M::op(ret, front.top().second);
         if (!back.empty()) ret = M::op(ret, back.top().second);
         return ret;
     }
+
+private:
+    stack<pair<T, T>> front, back;
 };

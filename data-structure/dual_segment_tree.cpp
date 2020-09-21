@@ -6,10 +6,11 @@ using namespace std;
  * @docs docs/data-structure/dual_segment_tree.md
  */
 template <typename M>
-struct DualSegmentTree {
+class DualSegmentTree {
     using T = typename M::T;
 
-    DualSegmentTree(int n) {
+public:
+    explicit DualSegmentTree(int n) {
         size = 1;
         height = 1;
         while (size < n) size <<= 1, height++;

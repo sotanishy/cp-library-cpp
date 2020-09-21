@@ -5,9 +5,9 @@ using namespace std;
  * @brief Strongly Connected Components
  * @docs docs/graph/scc.md
  */
-struct SCC {
+class SCC {
 public:
-    SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
+    explicit SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}
 
     void add_edge(int u, int v) {
         G[u].push_back(v);
@@ -15,7 +15,7 @@ public:
     }
 
     void build() {
-        for (int v = 0; v < G.size(); v++) dfs(v);
+        for (int v = 0; v < (int) G.size(); v++) dfs(v);
         reverse(order.begin(), order.end());
         cnt = 0;
         for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);
@@ -25,7 +25,7 @@ public:
         return comp[i];
     }
 
-    int count() {
+    int count() const {
         return cnt;
     }
 

@@ -6,8 +6,9 @@ using namespace std;
  * @brief 2-SAT
  * @docs docs/graph/twosat.md
  */
-struct TwoSat {
-    TwoSat(int n) : n(n), scc(2 * n), val(n) {}
+class TwoSat {
+public:
+    explicit TwoSat(int n) : n(n), scc(2 * n), val(n) {}
 
     void add_clause(int u, bool a, int v, bool b) {
         scc.add_edge(n * a + u, n * (!b) + v);

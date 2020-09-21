@@ -5,9 +5,9 @@ using namespace std;
  * @brief Bipartite Matching
  * @docs docs/flow/bipartite_matching.md
  */
-struct BipartiteMatching {
+class BipartiteMatching {
 public:
-    BipartiteMatching(int n) : G(n), used(n), match(n) {}
+    explicit BipartiteMatching(int n) : G(n), used(n), match(n) {}
 
     void add_edge(int u, int v) {
         G[u].push_back(v);
@@ -17,7 +17,7 @@ public:
     int bipartite_matching() {
         int res = 0;
         fill(match.begin(), match.end(), -1);
-        for (int v = 0; v < G.size(); v++) {
+        for (int v = 0; v < (int) G.size(); v++) {
             if (match[v] == -1) {
                 fill(used.begin(), used.end(), false);
                 if (dfs(v)) res++;

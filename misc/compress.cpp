@@ -6,10 +6,9 @@ using namespace std;
  * @docs docs/misc/compress.md
  */
 template <typename T>
-struct Compress {
-    vector<T> xs;
-
-    Compress(const vector<T>& vs) : xs(vs) {
+class Compress {
+public:
+    explicit Compress(const vector<T>& vs) : xs(vs) {
         sort(xs.begin(), xs.end());
         xs.erase(unique(xs.begin(), xs.end()), xs.end());
     }
@@ -21,4 +20,7 @@ struct Compress {
     T decompress(int i) {
         return xs[i];
     }
+
+private:
+    vector<T> xs;
 };

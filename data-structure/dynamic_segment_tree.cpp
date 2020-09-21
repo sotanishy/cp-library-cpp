@@ -6,10 +6,11 @@ using namespace std;
  * @docs docs/data-structure/dynamic_segment_tree.md
  */
 template <typename M>
-struct DynamicSegmentTree {
+class DynamicSegmentTree {
     using T = typename M::T;
 
-    DynamicSegmentTree(int n) {
+public:
+    explicit DynamicSegmentTree(int n) {
         size = 1;
         while (size < n) size <<= 1;
         root = new Node();
@@ -21,7 +22,7 @@ struct DynamicSegmentTree {
 
     void update(int k, const T& x) { update(k, x, root, 0, size); }
 
-    T fold(int l, int r) { return fold(l, r, root, 0, size); }
+    T fold(int l, int r) const { return fold(l, r, root, 0, size); }
 
 private:
     struct Node {
@@ -51,7 +52,7 @@ private:
         }
     }
 
-    T fold(int a, int b, Node* n, int l, int r) {
+    T fold(int a, int b, Node* n, int l, int r) const {
         if (r <= a || b <= l) return M::id;
         if (a <= l && r <= b) return n->val;
         int m = (l + r) / 2;

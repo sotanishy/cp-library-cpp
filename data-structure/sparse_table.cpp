@@ -6,12 +6,11 @@ using namespace std;
  * @docs docs/data-structure/sparse_table.md
  */
 template <typename S>
-struct SparseTable {
+class SparseTable {
     using T = typename S::T;
 
-    vector<vector<T>> lookup;
-
-    SparseTable(const vector<T>& v) {
+public:
+    explicit SparseTable(const vector<T>& v) {
         int n = v.size(), b = 0;
         while ((1 << b) <= n) b++;
         lookup.resize(b, vector<T>(n));
@@ -23,8 +22,11 @@ struct SparseTable {
         }
     }
 
-    T fold(int l, int r) {
+    T fold(int l, int r) const {
         int i = 31 - __builtin_clz(r - l);
         return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
+
+private:
+    vector<vector<T>> lookup;
 };

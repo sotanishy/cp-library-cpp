@@ -6,21 +6,21 @@ using namespace std;
  * @docs docs/data-structure/kd_tree.md
  */
 template <typename T>
-struct KDTree {
+class KDTree {
 public:
     void add_point(int id, T x, T y) {
         points.emplace_back(id, x, y);
     }
 
     void build() {
-        build_rec(0, points.size() - 1, 0);
+        build(0, points.size() - 1, 0);
     }
 
-    vector<int> search(T sx, T tx, T sy, T ty) {
+    vector<int> search(T sx, T tx, T sy, T ty) const {
         Point s(min(sx, tx), min(sy, ty));
         Point t(max(sx, tx), max(sy, ty));
         vector<int> res;
-        search_rec(s, t, res, 0, points.size() - 1, 0);
+        search(s, t, res, 0, points.size() - 1, 0);
         return res;
     }
 
@@ -34,7 +34,7 @@ private:
 
     vector<Point> points;
 
-    int check_position(Point& point, Point& start, Point& end, int axis) {
+    int check_position(const Point& point, const Point& start, const Point& end, int axis) const {
         if (axis == 0) {
             if (start.x <= point.x && point.x <= end.x) return 0;
             if (point.x < start.x) return -1;
@@ -46,18 +46,18 @@ private:
         }
     }
 
-    void build_rec(int left, int right, int depth) {
+    void build(int left, int right, int depth) {
         if (left > right) return;
 
         int axis = depth % 2;
         if (axis == 0) sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
         else sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
         int mid = (left + right) / 2;
-        build_rec(left, mid - 1, depth + 1);
-        build_rec(mid + 1, right, depth + 1);
+        build(left, mid - 1, depth + 1);
+        build(mid + 1, right, depth + 1);
     }
 
-    void search_rec(Point& start, Point& end, vector<int>& res, int left, int right, int depth) {
+    void search(const Point& start, const Point& end, vector<int>& res, int left, int right, int depth) const {
         if (left > right) return;
 
         int axis = depth % 2;
@@ -67,7 +67,7 @@ private:
         if (contained) res.push_back(points[mid].id);
         if (left == right) return;
         int pos = check_position(points[mid], start, end, axis);
-        if (pos != -1) search_rec(start, end, res, left, mid - 1, depth + 1);
-        if (pos != 1) search_rec(start, end, res, mid + 1, right, depth + 1);
+        if (pos != -1) search(start, end, res, left, mid - 1, depth + 1);
+        if (pos != 1) search(start, end, res, mid + 1, right, depth + 1);
     }
 };

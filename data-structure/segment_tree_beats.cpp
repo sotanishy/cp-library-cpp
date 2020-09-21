@@ -6,12 +6,12 @@ using namespace std;
  * @docs docs/data-structure/segment_tree_beats.md
  */
 template <typename T>
-struct SegmentTreeBeats {
-
-    SegmentTreeBeats(int n) : SegmentTreeBeats(vector<T>(n)) {}
-    SegmentTreeBeats(const vector<T>& v) {
+class SegmentTreeBeats {
+public:
+    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(vector<T>(n)) {}
+    explicit SegmentTreeBeats(const vector<T>& v) {
         size = 1;
-        while (size < v.size()) size <<= 1;
+        while (size < (int) v.size()) size <<= 1;
         sum.resize(2 * size);
         lazy.resize(2 * size);
         max_val.resize(2 * size, NINF);
@@ -23,7 +23,7 @@ struct SegmentTreeBeats {
         len.resize(2 * size);
         len[1] = size;
         for (int i = 2; i < 2 * size; i++) len[i] = len[i / 2] >> 1;
-        for (int i = 0; i < v.size(); i++) {
+        for (int i = 0; i < (int) v.size(); i++) {
             sum[size + i] = max_val[size + i] = min_val[size + i] = v[i];
             max_cnt[size + i] = min_cnt[size + i] = 1;
         }

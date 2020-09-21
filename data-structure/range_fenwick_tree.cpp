@@ -6,12 +6,12 @@ using namespace std;
  * @docs docs/data-structure/range_fenwick_tree.md
  */
 template <typename T>
-struct RangeFenwickTree {
+class RangeFenwickTree {
 public:
-    RangeFenwickTree(int n) : n(n), data0(n+1), data1(n+1) {}
+    explicit RangeFenwickTree(int n) : n(n), data0(n + 1), data1(n + 1) {}
 
-    T sum(int i) {
-        return sum(data0, i) * i + sum(data1, i);
+    T sum(int i) const {
+        return sum(data0, i) * (i - 1) + sum(data1, i);
     }
 
     void add(int l, int r, T x) {
@@ -25,9 +25,9 @@ private:
     int n;
     vector<T> data0, data1;
 
-    T sum(vector<T>& data, int i) {
+    T sum(const vector<T>& data, int i) const {
         T ret = 0;
-        for (i++; i > 0; i -= i & -i) ret += data[i];
+        for (; i > 0; i -= i & -i) ret += data[i];
         return ret;
     }
 

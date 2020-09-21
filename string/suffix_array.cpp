@@ -5,11 +5,9 @@ using namespace std;
  * @brief Suffix Array
  * @docs docs/string/suffix_array.md
  */
-struct SuffixArray {
-    vector<int> sa;
-    const string s;
-
-    SuffixArray(const string& str) : s(str) {
+class SuffixArray {
+public:
+    explicit SuffixArray(const string& str) : s(str) {
         int n = s.size();
         sa.resize(n);
         iota(sa.begin(), sa.end(), 0);
@@ -48,18 +46,7 @@ struct SuffixArray {
         return sa[k];
     }
 
-    bool lt_substr(const string& t, int si = 0, int ti = 0) {
-        int sn = s.size(), tn = t.size();
-        while (si < sn && ti < tn) {
-            if (s[si] < t[ti]) return true;
-            if (s[si] > t[ti]) return false;
-            si++;
-            ti++;
-        }
-        return si >= sn && ti < tn;
-    }
-
-    int lower_bound(const string& t) {
+    int lower_bound(const string& t) const {
         int lb = -1, ub = sa.size();
         while (ub - lb > 1) {
             int m = (lb + ub) / 2;
@@ -69,10 +56,25 @@ struct SuffixArray {
         return ub;
     }
 
-    int upper_bound(string& t) {
+    int upper_bound(string& t) const {
         t.back()++;
         int i = lower_bound(t);
         t.back()--;
         return i;
+    }
+
+private:
+    vector<int> sa;
+    const string s;
+
+    bool lt_substr(const string& t, int si = 0, int ti = 0) const {
+        int sn = s.size(), tn = t.size();
+        while (si < sn && ti < tn) {
+            if (s[si] < t[ti]) return true;
+            if (s[si] > t[ti]) return false;
+            si++;
+            ti++;
+        }
+        return si >= sn && ti < tn;
     }
 };

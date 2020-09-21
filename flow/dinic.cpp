@@ -6,9 +6,9 @@ using namespace std;
  * @docs docs/flow/dinic.md
  */
 template <typename T>
-struct Dinic {
+class Dinic {
 public:
-    Dinic(int V) : G(V), level(V), iter(V) {}
+    explicit Dinic(int V) : G(V), level(V), iter(V) {}
 
     void add_edge(int u, int v, T cap) {
         G[u].emplace_back(v, cap, (int) G[v].size());
@@ -58,7 +58,7 @@ private:
 
     T dfs(int v, int t, T f) {
         if (v == t) return f;
-        for (int& i = iter[v]; i < G[v].size(); i++) {
+        for (int& i = iter[v]; i < (int) G[v].size(); i++) {
             Edge& e = G[v][i];
             if (e.cap > 0 && level[v] < level[e.to]) {
                 T d = dfs(e.to, t, min(f, e.cap));

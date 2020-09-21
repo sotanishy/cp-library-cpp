@@ -6,10 +6,9 @@ using namespace std;
  * @docs docs/data-structure/treap.md
  */
 template <typename T>
-struct Treap {
+class Treap {
 public:
-
-    int count(T key) { return count(root, key); }
+    int count(T key) const { return count(root, key); }
 
     void insert(T key, int priority = -1) {
         if (priority == -1) priority = rand() % 100000000;
@@ -20,12 +19,12 @@ public:
         root = erase(root, key);
     }
 
-    void print_inorder() {
+    void print_inorder() const {
         print_inorder(root);
         cout << "\n";
     }
 
-    void print_preorder() {
+    void print_preorder() const {
         print_preorder(root);
         cout << "\n";
     }
@@ -39,7 +38,7 @@ private:
         Node(T key, int priority) : left(nullptr), right(nullptr), key(key), priority(priority) {}
     } *root = nullptr;
 
-    int count(Node* t, T key) {
+    int count(Node* t, T key) const {
         if (t == nullptr) return 0;
         if (key == t->key) return 1;
         if (key < t->key) return count(t->left, key);
@@ -90,14 +89,14 @@ private:
         return t;
     }
 
-    void print_inorder(Node* t) {
+    void print_inorder(Node* t) const {
         if (t == nullptr) return;
         print_inorder(t->left);
         cout << " " << t->key;
         print_inorder(t->right);
     }
 
-    void print_preorder(Node* t) {
+    void print_preorder(Node* t) const {
         if (t == nullptr) return;
         cout << " " << t->key;
         print_preorder(t->left);

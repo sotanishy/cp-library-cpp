@@ -6,7 +6,7 @@ using namespace std;
  * @brief Diameter of a Tree
  * @docs docs/tree/tree_diameter.md
  */
-struct TreeDiameter {
+class TreeDiameter {
 public:
     static int diameter(vector<vector<int>>& G) {
         auto p = dfs(G, 0, -1);

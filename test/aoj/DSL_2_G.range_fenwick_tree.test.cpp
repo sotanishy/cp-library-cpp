@@ -19,7 +19,7 @@ int main() {
         } else {
             int s, t;
             cin >> s >> t;
-            cout << ft.sum(t - 1) - ft.sum(s - 2) << "\n";
+            cout << ft.sum(t) - ft.sum(s - 1) << "\n";
         }
     }
 }

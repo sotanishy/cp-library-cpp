@@ -6,16 +6,14 @@ using namespace std;
  * @docs docs/data-structure/segment_tree.md
  */
 template <typename M>
-struct SegmentTree {
+class SegmentTree {
     using T = typename M::T;
 
-    int size;
-    vector<T> node;
-
-    SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
-    SegmentTree(const vector<T>& v) {
+public:
+    explicit SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
+    explicit SegmentTree(const vector<T>& v) {
         size = 1;
-        while (size < v.size()) size <<= 1;
+        while (size < (int) v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
@@ -31,7 +29,7 @@ struct SegmentTree {
         while (k >>= 1) node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    T fold(int l, int r) {
+    T fold(int l, int r) const {
         T vl = M::id, vr = M::id;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) vl = M::op(vl, node[l++]);
@@ -40,7 +38,7 @@ struct SegmentTree {
         return M::op(vl, vr);
     }
 
-    int find_first(int l, const function<bool(T)>& cond) {
+    int find_first(int l, const function<bool(T)>& cond) const {
         T vl = M::id;
         int r = 2 * size;
         for (l += size; l < r; l >>= 1, r >>= 1) {
@@ -61,7 +59,7 @@ struct SegmentTree {
         return -1;
     }
 
-    int find_last(int r, const function<bool(T)>& cond) {
+    int find_last(int r, const function<bool(T)>& cond) const {
         T vr = M::id;
         int l = size;
         for (r += size; l < r; l >>= 1, r >>= 1) {
@@ -81,4 +79,8 @@ struct SegmentTree {
         }
         return -1;
     }
+
+private:
+    int size;
+    vector<T> node;
 };

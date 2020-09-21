@@ -6,13 +6,13 @@ using namespace std;
  * @docs docs/flow/min_cost_flow.md
  */
 template <typename Cap, typename Cost>
-struct MinCostFlow {
+class MinCostFlow {
 public:
-    MinCostFlow(int V) : V(V), G(V) {}
+    explicit MinCostFlow(int V) : V(V), G(V) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
-        G[u].emplace_back(v, cap, cost, G[v].size());
-        G[v].emplace_back(u, 0, -cost, G[u].size() - 1);
+        G[u].emplace_back(v, cap, cost, (int) G[v].size());
+        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);
     }
 
     Cost min_cost_flow(int s, int t, Cap f) {
@@ -33,7 +33,7 @@ public:
                 tie(d, v) = pq.top();
                 pq.pop();
                 if (dist[v] < d) continue;
-                for (int i = 0; i < G[v].size(); i++) {
+                for (int i = 0; i < (int) G[v].size(); i++) {
                     Edge& e = G[v][i];
                     Cost ndist = dist[v] + e.cost + h[v] - h[e.to];
                     if (e.cap > 0 && dist[e.to] > ndist) {
@@ -49,7 +49,6 @@ public:
             for (int v = 0; v < V; v++) h[v] += dist[v];
 
             Cap m = f;
-            int v = t;
             for (int v = t; v != s; v = prevv[v]) {
                 m = min(m, G[prevv[v]][preve[v]].cap);
             }

@@ -6,17 +6,15 @@ using namespace std;
  * @docs docs/data-structure/weighted_union_find.md
  */
 template <typename T>
-struct WeightedUnionFind {
-    vector<int> par;
-    vector<T> ws;
-
-    WeightedUnionFind(int n) : par(n, -1), ws(n) {}
+class WeightedUnionFind {
+public:
+    explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}
 
     int find(int x) {
-        if (par[x] < 0) return x;
-        int r = find(par[x]);
-        ws[x] += ws[par[x]];
-        return par[x] = r;
+        if (data[x] < 0) return x;
+        int r = find(data[x]);
+        ws[x] += ws[data[x]];
+        return data[x] = r;
     }
 
     T weight(int x) {
@@ -30,12 +28,12 @@ struct WeightedUnionFind {
         x = find(x);
         y = find(y);
         if (x == y) return false;
-        if (par[x] > par[y]) {
+        if (data[x] > data[y]) {
             swap(x, y);
             w = -w;
         }
-        par[x] += par[y];
-        par[y] = x;
+        data[x] += data[y];
+        data[y] = x;
         ws[y] = w;
         return true;
     }
@@ -49,6 +47,10 @@ struct WeightedUnionFind {
     }
 
     int size(int x) {
-        return -par[find(x)];
+        return -data[find(x)];
     }
+
+private:
+    vector<int> data;
+    vector<T> ws;
 };

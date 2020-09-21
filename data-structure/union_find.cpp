@@ -5,23 +5,22 @@ using namespace std;
  * @brief Union Find
  * @docs docs/data-structure/union_find.md
  */
-struct UnionFind {
-    vector<int> par;
-
-    UnionFind(int n) : par(n, -1) {}
+class UnionFind {
+public:
+    explicit UnionFind(int n) : data(n, -1) {}
 
     int find(int x) {
-        if (par[x] < 0) return x;
-        return par[x] = find(par[x]);
+        if (data[x] < 0) return x;
+        return data[x] = find(data[x]);
     }
 
     void unite(int x, int y) {
         x = find(x);
         y = find(y);
         if (x == y) return;
-        if (par[x] > par[y]) swap(x, y);
-        par[x] += par[y];
-        par[y] = x;
+        if (data[x] > data[y]) swap(x, y);
+        data[x] += data[y];
+        data[y] = x;
     }
 
     bool same(int x, int y) {
@@ -29,6 +28,9 @@ struct UnionFind {
     }
 
     int size(int x) {
-        return -par[find(x)];
+        return -data[find(x)];
     }
+
+private:
+    vector<int> data;
 };
