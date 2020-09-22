@@ -57,6 +57,6 @@ private:
         int m = (l + r) / 2;
         T vl = n->left ? fold(a, b, n->left, l, m) : M::id;
         T vr = n->right ? fold(a, b, n->right, m, r) : M::id;
-        return vr + vr;
+        return vl + vr;
     }
 };
