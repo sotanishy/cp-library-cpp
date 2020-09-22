@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
+    title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/dynamic_segment_tree.md
@@ -33,7 +36,7 @@ data:
     \ (r <= a || b <= l) return M::id;\n        if (a <= l && r <= b) return n->val;\n\
     \        int m = (l + r) / 2;\n        T vl = n->left ? fold(a, b, n->left, l,\
     \ m) : M::id;\n        T vr = n->right ? fold(a, b, n->right, m, r) : M::id;\n\
-    \        return vr + vr;\n    }\n};\n"
+    \        return vl + vr;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Dynamic Segment Tree\n * @docs\
     \ docs/data-structure/dynamic_segment_tree.md\n */\ntemplate <typename M>\nclass\
     \ DynamicSegmentTree {\n    using T = typename M::T;\n\npublic:\n    DynamicSegmentTree()\
@@ -56,14 +59,15 @@ data:
     \ int l, int r) const {\n        if (r <= a || b <= l) return M::id;\n       \
     \ if (a <= l && r <= b) return n->val;\n        int m = (l + r) / 2;\n       \
     \ T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr = n->right\
-    \ ? fold(a, b, n->right, m, r) : M::id;\n        return vr + vr;\n    }\n};"
+    \ ? fold(a, b, n->right, m, r) : M::id;\n        return vl + vr;\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/dynamic_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-09-23 00:47:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-23 01:29:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
 documentation_of: data-structure/dynamic_segment_tree.cpp
 layout: document
 redirect_from:
