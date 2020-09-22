@@ -22,11 +22,11 @@ data:
     }\n#line 3 \"math/mod_log.cpp\"\n\n/*\n * @brief Discrete Logarithm\n * @docs\
     \ docs/math/mod_log.md\n */\nint mod_log(long long a, long long b, long long p)\
     \ {\n    int m = sqrt(p) + 1;\n    std::vector<long long> baby(m);\n    std::unordered_map<long\
-    \ long, int> baby_index;\n    long long x = 1;\n    for (int i = 0; i < m; i++)\
+    \ long, int> baby_index;\n    long long x = 1;\n    for (int i = 0; i < m; ++i)\
     \ {\n        baby[i] = x;\n        baby_index[x] = i;\n        x = x * a % p;\n\
     \    }\n\n    std::vector<long long> giant(m);\n    long long c = mod_inv(mod_pow(a,\
-    \ m, p), p);\n    x = 1;\n    for (int i = 0; i < m; i++) {\n        giant[i]\
-    \ = x;\n        x = x * c % p;\n    }\n\n    for (int i = 0; i < m; i++) {\n \
+    \ m, p), p);\n    x = 1;\n    for (int i = 0; i < m; ++i) {\n        giant[i]\
+    \ = x;\n        x = x * c % p;\n    }\n\n    for (int i = 0; i < m; ++i) {\n \
     \       long long y = b * giant[i] % p;\n        if (baby_index.count(y) > 0)\
     \ {\n            return i * m + baby_index[y];\n        }\n    }\n    return -1;\n\
     }\n"
@@ -34,11 +34,11 @@ data:
     \ Logarithm\n * @docs docs/math/mod_log.md\n */\nint mod_log(long long a, long\
     \ long b, long long p) {\n    int m = sqrt(p) + 1;\n    std::vector<long long>\
     \ baby(m);\n    std::unordered_map<long long, int> baby_index;\n    long long\
-    \ x = 1;\n    for (int i = 0; i < m; i++) {\n        baby[i] = x;\n        baby_index[x]\
+    \ x = 1;\n    for (int i = 0; i < m; ++i) {\n        baby[i] = x;\n        baby_index[x]\
     \ = i;\n        x = x * a % p;\n    }\n\n    std::vector<long long> giant(m);\n\
     \    long long c = mod_inv(mod_pow(a, m, p), p);\n    x = 1;\n    for (int i =\
-    \ 0; i < m; i++) {\n        giant[i] = x;\n        x = x * c % p;\n    }\n\n \
-    \   for (int i = 0; i < m; i++) {\n        long long y = b * giant[i] % p;\n \
+    \ 0; i < m; ++i) {\n        giant[i] = x;\n        x = x * c % p;\n    }\n\n \
+    \   for (int i = 0; i < m; ++i) {\n        long long y = b * giant[i] % p;\n \
     \       if (baby_index.count(y) > 0) {\n            return i * m + baby_index[y];\n\
     \        }\n    }\n    return -1;\n}"
   dependsOn:
@@ -46,7 +46,7 @@ data:
   isVerificationFile: false
   path: math/mod_log.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/mod_log.cpp

@@ -43,7 +43,7 @@ data:
     \        cur_state.move();\n\n        if (accept(prev_score, cur_state.score,\
     \ temperature) > rng.next_double()) {\n            if (cur_state.score > best_state.score)\
     \ {\n                best_state = cur_state;\n            }\n        } else {\n\
-    \            cur_state.move_back();\n        }\n\n        iter++;\n    }\n\n \
+    \            cur_state.move_back();\n        }\n\n        ++iter;\n    }\n\n \
     \   #ifdef DEBUG\n    cerr << \"Iterations: \" << iter << endl;\n    #endif\n\n\
     \    return best_state;\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n}\n"
@@ -81,7 +81,7 @@ data:
     \        cur_state.move();\n\n        if (accept(prev_score, cur_state.score,\
     \ temperature) > rng.next_double()) {\n            if (cur_state.score > best_state.score)\
     \ {\n                best_state = cur_state;\n            }\n        } else {\n\
-    \            cur_state.move_back();\n        }\n\n        iter++;\n    }\n\n \
+    \            cur_state.move_back();\n        }\n\n        ++iter;\n    }\n\n \
     \   #ifdef DEBUG\n    cerr << \"Iterations: \" << iter << endl;\n    #endif\n\n\
     \    return best_state;\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n}"
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: misc/marathon_template.cpp
   requiredBy: []
-  timestamp: '2020-09-14 04:40:59+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/marathon_template.cpp

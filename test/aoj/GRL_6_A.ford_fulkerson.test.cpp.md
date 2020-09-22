@@ -17,8 +17,8 @@ data:
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\n\n#line\
     \ 1 \"flow/ford_fulkerson.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief Ford-Fulkerson\
     \ Algorithm\n * @docs docs/flow/ford_fulkerson.md\n */\ntemplate <typename T>\n\
-    class FordFulkerson {\npublic:\n    explicit FordFulkerson(int n) : G(n), used(n)\
-    \ {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
+    class FordFulkerson {\npublic:\n    FordFulkerson() = default;\n    explicit FordFulkerson(int\
+    \ n) : G(n), used(n) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
     \ cap, (int) G[v].size());\n        G[v].emplace_back(u, 0, (int) G[u].size()\
     \ - 1);\n    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n      \
     \  while (true) {\n            std::fill(used.begin(), used.end(), false);\n \
@@ -50,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.ford_fulkerson.test.cpp

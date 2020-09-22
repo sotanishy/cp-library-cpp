@@ -15,15 +15,15 @@ data:
     links: []
   bundledCode: "#line 1 \"flow/dinic.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Dinic's Algorithm\n * @docs docs/flow/dinic.md\n */\ntemplate <typename T>\n\
-    class Dinic {\npublic:\n    explicit Dinic(int V) : G(V), level(V), iter(V) {}\n\
-    \n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v, cap,\
-    \ (int) G[v].size());\n        G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n\
-    \    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n        while (bfs(s,\
-    \ t)) {\n            std::fill(iter.begin(), iter.end(), 0);\n            T f\
-    \ = 0;\n            while ((f = dfs(s, t, INF)) > 0) flow += f;\n        }\n \
-    \       return flow;\n    }\n\nprivate:\n    struct Edge {\n        int to;\n\
-    \        T cap;\n        int rev;\n        Edge(int to, T cap, int rev) : to(to),\
-    \ cap(cap), rev(rev) {}\n    };\n\n    const T INF = std::numeric_limits<T>::max()\
+    class Dinic {\npublic:\n    Dinic() = default;\n    explicit Dinic(int V) : G(V),\
+    \ level(V), iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
+    \ cap, (int) G[v].size());\n        G[v].emplace_back(u, 0, (int) G[u].size()\
+    \ - 1);\n    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n      \
+    \  while (bfs(s, t)) {\n            std::fill(iter.begin(), iter.end(), 0);\n\
+    \            T f = 0;\n            while ((f = dfs(s, t, INF)) > 0) flow += f;\n\
+    \        }\n        return flow;\n    }\n\nprivate:\n    struct Edge {\n     \
+    \   int to;\n        T cap;\n        int rev;\n        Edge(int to, T cap, int\
+    \ rev) : to(to), cap(cap), rev(rev) {}\n    };\n\n    const T INF = std::numeric_limits<T>::max()\
     \ / 2;\n\n    std::vector<std::vector<Edge>> G;\n    std::vector<int> level, iter;\n\
     \n    bool bfs(int s, int t) {\n        std::fill(level.begin(), level.end(),\
     \ -1);\n        level[s] = 0;\n        std::queue<int> q;\n        q.push(s);\n\
@@ -33,17 +33,17 @@ data:
     \ + 1;\n                    q.push(e.to);\n                }\n            }\n\
     \        }\n        return level[t] != -1;\n    }\n\n    T dfs(int v, int t, T\
     \ f) {\n        if (v == t) return f;\n        for (int& i = iter[v]; i < (int)\
-    \ G[v].size(); i++) {\n            Edge& e = G[v][i];\n            if (e.cap >\
+    \ G[v].size(); ++i) {\n            Edge& e = G[v][i];\n            if (e.cap >\
     \ 0 && level[v] < level[e.to]) {\n                T d = dfs(e.to, t, std::min(f,\
     \ e.cap));\n                if (d > 0) {\n                    e.cap -= d;\n  \
     \                  G[e.to][e.rev].cap += d;\n                    return d;\n \
     \               }\n            }\n        }\n        return 0;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Dinic's Algorithm\n * @docs docs/flow/dinic.md\n\
-    \ */\ntemplate <typename T>\nclass Dinic {\npublic:\n    explicit Dinic(int V)\
-    \ : G(V), level(V), iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n \
-    \       G[u].emplace_back(v, cap, (int) G[v].size());\n        G[v].emplace_back(u,\
-    \ 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int s, int t) {\n      \
-    \  T flow = 0;\n        while (bfs(s, t)) {\n            std::fill(iter.begin(),\
+    \ */\ntemplate <typename T>\nclass Dinic {\npublic:\n    Dinic() = default;\n\
+    \    explicit Dinic(int V) : G(V), level(V), iter(V) {}\n\n    void add_edge(int\
+    \ u, int v, T cap) {\n        G[u].emplace_back(v, cap, (int) G[v].size());\n\
+    \        G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int\
+    \ s, int t) {\n        T flow = 0;\n        while (bfs(s, t)) {\n            std::fill(iter.begin(),\
     \ iter.end(), 0);\n            T f = 0;\n            while ((f = dfs(s, t, INF))\
     \ > 0) flow += f;\n        }\n        return flow;\n    }\n\nprivate:\n    struct\
     \ Edge {\n        int to;\n        T cap;\n        int rev;\n        Edge(int\
@@ -57,7 +57,7 @@ data:
     \ = level[v] + 1;\n                    q.push(e.to);\n                }\n    \
     \        }\n        }\n        return level[t] != -1;\n    }\n\n    T dfs(int\
     \ v, int t, T f) {\n        if (v == t) return f;\n        for (int& i = iter[v];\
-    \ i < (int) G[v].size(); i++) {\n            Edge& e = G[v][i];\n            if\
+    \ i < (int) G[v].size(); ++i) {\n            Edge& e = G[v][i];\n            if\
     \ (e.cap > 0 && level[v] < level[e.to]) {\n                T d = dfs(e.to, t,\
     \ std::min(f, e.cap));\n                if (d > 0) {\n                    e.cap\
     \ -= d;\n                    G[e.to][e.rev].cap += d;\n                    return\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: flow/dinic.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_A.dinic.test.cpp

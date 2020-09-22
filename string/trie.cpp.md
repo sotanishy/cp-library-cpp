@@ -12,7 +12,7 @@ data:
     \ {\npublic:\n    Trie() : nodes(1) {}\n\n    void add(const std::string& s, int\
     \ id) {\n        int node = 0;\n        for (char c : s) {\n            if (nodes[node].child[c\
     \ - 'a'] == -1) {\n                nodes[node].child[c - 'a'] = nodes.size();\n\
-    \                nodes.emplace_back();\n            }\n            nodes[node].count++;\n\
+    \                nodes.emplace_back();\n            }\n            ++nodes[node].count;\n\
     \            node = nodes[node].child[c - 'a'];\n        }\n        nodes[node].is_end\
     \ = true;\n    }\n\n    int query(const std::string& s) const {\n        int node\
     \ = 0;\n        for (char c : s) {\n            if (nodes[node].child[c - 'a']\
@@ -25,7 +25,7 @@ data:
     \ {}\n\n    void add(const std::string& s, int id) {\n        int node = 0;\n\
     \        for (char c : s) {\n            if (nodes[node].child[c - 'a'] == -1)\
     \ {\n                nodes[node].child[c - 'a'] = nodes.size();\n            \
-    \    nodes.emplace_back();\n            }\n            nodes[node].count++;\n\
+    \    nodes.emplace_back();\n            }\n            ++nodes[node].count;\n\
     \            node = nodes[node].child[c - 'a'];\n        }\n        nodes[node].is_end\
     \ = true;\n    }\n\n    int query(const std::string& s) const {\n        int node\
     \ = 0;\n        for (char c : s) {\n            if (nodes[node].child[c - 'a']\
@@ -38,7 +38,7 @@ data:
   isVerificationFile: false
   path: string/trie.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/trie.cpp

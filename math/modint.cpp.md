@@ -10,7 +10,7 @@ data:
     links: []
   bundledCode: "#line 1 \"math/modint.cpp\"\n#include <bits/stdc++.h>\n\ntemplate\
     \ <int mod>\nstruct Modint {\n    int x;\n\n    Modint() : x(0) {}\n    Modint(long\
-    \ long y) : x(y >= 0 ? y % mod : y % mod + mod) {}\n\n    Modint& operator+=(const\
+    \ long y) : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    Modint& operator+=(const\
     \ Modint& p) { if ((x += p.x) >= mod) x -= mod; return *this; }\n    Modint& operator-=(const\
     \ Modint& p) { if ((x += mod - p.x) >= mod) x -= mod; return *this; }\n    Modint&\
     \ operator*=(const Modint& p) { x = (int) (1LL * x * p.x % mod); return *this;\
@@ -33,9 +33,9 @@ data:
     \ >> t;\n        a = Modint<mod>(t);\n        return is;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\n\ntemplate <int mod>\nstruct Modint {\n    int\
     \ x;\n\n    Modint() : x(0) {}\n    Modint(long long y) : x(y >= 0 ? y % mod :\
-    \ y % mod + mod) {}\n\n    Modint& operator+=(const Modint& p) { if ((x += p.x)\
-    \ >= mod) x -= mod; return *this; }\n    Modint& operator-=(const Modint& p) {\
-    \ if ((x += mod - p.x) >= mod) x -= mod; return *this; }\n    Modint& operator*=(const\
+    \ (y % mod + mod) % mod) {}\n\n    Modint& operator+=(const Modint& p) { if ((x\
+    \ += p.x) >= mod) x -= mod; return *this; }\n    Modint& operator-=(const Modint&\
+    \ p) { if ((x += mod - p.x) >= mod) x -= mod; return *this; }\n    Modint& operator*=(const\
     \ Modint& p) { x = (int) (1LL * x * p.x % mod); return *this; }\n    Modint& operator/=(const\
     \ Modint& p) { *this *= p.inv(); return *this; }\n\n    Modint operator-() const\
     \ { return Modint(-x); }\n\n    Modint operator+(const Modint& p) const { return\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: false
   path: math/modint.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/modint.cpp

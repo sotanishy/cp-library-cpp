@@ -13,13 +13,13 @@ data:
   bundledCode: "#line 1 \"math/divisor.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Divisors\n * @docs docs/math/divisor.md\n */\nstd::vector<long long> divisor(long\
     \ long n) {\n    std::vector<long long> ret1, ret2;\n    for (long long i = 1;\
-    \ i * i <= n; i++) {\n        if (i * i == n) {\n            ret1.push_back(i);\n\
+    \ i * i <= n; ++i) {\n        if (i * i == n) {\n            ret1.push_back(i);\n\
     \        } else if (n % i == 0) {\n            ret1.push_back(i);\n          \
     \  ret2.push_back(n / i);\n        }\n    }\n    ret1.insert(ret1.end(), ret2.rbegin(),\
     \ ret2.rend());\n    return ret1;\n}\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Divisors\n * @docs docs/math/divisor.md\n\
     \ */\nstd::vector<long long> divisor(long long n) {\n    std::vector<long long>\
-    \ ret1, ret2;\n    for (long long i = 1; i * i <= n; i++) {\n        if (i * i\
+    \ ret1, ret2;\n    for (long long i = 1; i * i <= n; ++i) {\n        if (i * i\
     \ == n) {\n            ret1.push_back(i);\n        } else if (n % i == 0) {\n\
     \            ret1.push_back(i);\n            ret2.push_back(n / i);\n        }\n\
     \    }\n    ret1.insert(ret1.end(), ret2.rbegin(), ret2.rend());\n    return ret1;\n\
@@ -28,7 +28,7 @@ data:
   isVerificationFile: false
   path: math/divisor.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/divisor.cpp

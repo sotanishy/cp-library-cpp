@@ -23,12 +23,40 @@ data:
     \n/*\n * @brief Segment Tree with Lazy Propagation\n * @docs docs/data-structure/lazy_segment_tree.md\n\
     \ */\ntemplate <typename M, typename O, typename M::T (*act)(typename M::T, typename\
     \ O::T)>\nclass LazySegmentTree {\n    using T = typename M::T;\n    using E =\
-    \ typename O::T;\n\npublic:\n    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n,\
+    \ typename O::T;\n\npublic:\n    LazySegmentTree() = default;\n    explicit LazySegmentTree(int\
+    \ n) : LazySegmentTree(std::vector<T>(n, M::id)) {}\n    explicit LazySegmentTree(const\
+    \ std::vector<T>& v) {\n        size = 1;\n        height = 0;\n        while\
+    \ (size < (int) v.size()) size <<= 1, ++height;\n        node.resize(2 * size,\
+    \ M::id);\n        lazy.resize(2 * size, O::id);\n        std::copy(v.begin(),\
+    \ v.end(), node.begin() + size);\n        for (int i = size - 1; i > 0; --i) node[i]\
+    \ = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int k) {\n\
+    \        return fold(k, k + 1);\n    }\n\n    void update(int l, int r, const\
+    \ E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r) { return\
+    \ fold(l, r, 1, 0, size); }\n\nprivate:\n    int size, height;\n    std::vector<T>\
+    \ node;\n    std::vector<E> lazy;\n\n    void push(int k) {\n        if (lazy[k]\
+    \ == O::id) return;\n        if (k < size) {\n            lazy[2 * k] = O::op(lazy[2\
+    \ * k], lazy[k]);\n            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n\
+    \        }\n        node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id;\n\
+    \    }\n\n    void update(int a, int b, const E& x, int k, int l, int r) {\n \
+    \       push(k);\n        if (r <= a || b <= l) return;\n        if (a <= l &&\
+    \ r <= b) {\n            lazy[k] = O::op(lazy[k], x);\n            push(k);\n\
+    \            return;\n        }\n        int m = (l + r) / 2;\n        update(a,\
+    \ b, x, 2 * k, l, m);\n        update(a, b, x, 2 * k + 1, m, r);\n        node[k]\
+    \ = M::op(node[2 * k], node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int\
+    \ k, int l, int r) {\n        push(k);\n        if (r <= a || b <= l) return M::id;\n\
+    \        if (a <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n\
+    \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
+    \ 2 * k + 1, m, r));\n    }\n};\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Segment Tree with Lazy Propagation\n\
+    \ * @docs docs/data-structure/lazy_segment_tree.md\n */\ntemplate <typename M,\
+    \ typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazySegmentTree\
+    \ {\n    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n \
+    \   LazySegmentTree() = default;\n    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit LazySegmentTree(const std::vector<T>& v) {\n      \
     \  size = 1;\n        height = 0;\n        while (size < (int) v.size()) size\
-    \ <<= 1, height++;\n        node.resize(2 * size, M::id);\n        lazy.resize(2\
+    \ <<= 1, ++height;\n        node.resize(2 * size, M::id);\n        lazy.resize(2\
     \ * size, O::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
-    \        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2\
+    \        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
     \ * i + 1]);\n    }\n\n    T operator[](int k) {\n        return fold(k, k + 1);\n\
     \    }\n\n    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size);\
     \ }\n\n    T fold(int l, int r) { return fold(l, r, 1, 0, size); }\n\nprivate:\n\
@@ -46,40 +74,12 @@ data:
     \   push(k);\n        if (r <= a || b <= l) return M::id;\n        if (a <= l\
     \ && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return M::op(fold(a,\
     \ b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m, r));\n    }\n\
-    };\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Segment Tree with Lazy Propagation\n\
-    \ * @docs docs/data-structure/lazy_segment_tree.md\n */\ntemplate <typename M,\
-    \ typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazySegmentTree\
-    \ {\n    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n \
-    \   explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id))\
-    \ {}\n    explicit LazySegmentTree(const std::vector<T>& v) {\n        size =\
-    \ 1;\n        height = 0;\n        while (size < (int) v.size()) size <<= 1, height++;\n\
-    \        node.resize(2 * size, M::id);\n        lazy.resize(2 * size, O::id);\n\
-    \        std::copy(v.begin(), v.end(), node.begin() + size);\n        for (int\
-    \ i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);\n \
-    \   }\n\n    T operator[](int k) {\n        return fold(k, k + 1);\n    }\n\n\
-    \    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }\n\n\
-    \    T fold(int l, int r) { return fold(l, r, 1, 0, size); }\n\nprivate:\n   \
-    \ int size, height;\n    std::vector<T> node;\n    std::vector<E> lazy;\n\n  \
-    \  void push(int k) {\n        if (lazy[k] == O::id) return;\n        if (k <\
-    \ size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n          \
-    \  lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n        node[k]\
-    \ = act(node[k], lazy[k]);\n        lazy[k] = O::id;\n    }\n\n    void update(int\
-    \ a, int b, const E& x, int k, int l, int r) {\n        push(k);\n        if (r\
-    \ <= a || b <= l) return;\n        if (a <= l && r <= b) {\n            lazy[k]\
-    \ = O::op(lazy[k], x);\n            push(k);\n            return;\n        }\n\
-    \        int m = (l + r) / 2;\n        update(a, b, x, 2 * k, l, m);\n       \
-    \ update(a, b, x, 2 * k + 1, m, r);\n        node[k] = M::op(node[2 * k], node[2\
-    \ * k + 1]);\n    }\n\n    T fold(int a, int b, int k, int l, int r) {\n     \
-    \   push(k);\n        if (r <= a || b <= l) return M::id;\n        if (a <= l\
-    \ && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return M::op(fold(a,\
-    \ b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m, r));\n    }\n\
     };"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:12:06+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_F.test.cpp

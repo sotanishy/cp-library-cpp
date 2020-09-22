@@ -12,12 +12,13 @@ data:
     links: []
   bundledCode: "#line 1 \"data-structure/partially_persistent_union_find.cpp\"\n#include\
     \ <bits/stdc++.h>\n\n/*\n * @brief Partially Persistent Union Find\n * @docs docs/data-structure/partially_persistent_union_find.md\n\
-    \ */\nclass PartiallyPersistentUnionFind {\npublic:\n    explicit PartiallyPersistentUnionFind(int\
-    \ n) : data(n, -1), time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int\
-    \ x) {\n        if (t < time[x]) return x;\n        return find(t, data[x]);\n\
-    \    }\n\n    void unite(int x, int y) {\n        now++;\n        x = find(now,\
-    \ x);\n        y = find(now, y);\n        if (x == y) return;\n        if (data[x]\
-    \ > data[y]) std::swap(x, y);\n        data[x] += data[y];\n        sz[x].emplace_back(now,\
+    \ */\nclass PartiallyPersistentUnionFind {\npublic:\n    PartiallyPersistentUnionFind()\
+    \ = default;\n    explicit PartiallyPersistentUnionFind(int n) : data(n, -1),\
+    \ time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int x) {\n        if\
+    \ (t < time[x]) return x;\n        return find(t, data[x]);\n    }\n\n    void\
+    \ unite(int x, int y) {\n        ++now;\n        x = find(now, x);\n        y\
+    \ = find(now, y);\n        if (x == y) return;\n        if (data[x] > data[y])\
+    \ std::swap(x, y);\n        data[x] += data[y];\n        sz[x].emplace_back(now,\
     \ -data[x]);\n        data[y] = x;\n        time[y] = now;\n    }\n\n    bool\
     \ same(int t, int x, int y) {\n        return find(t, x) == find(t, y);\n    }\n\
     \n    int size(int t, int x) {\n        x = find(t, x);\n        return (--std::lower_bound(sz[x].begin(),\
@@ -27,12 +28,12 @@ data:
     \ sz;\n    int now = 0;\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Partially Persistent Union Find\n\
     \ * @docs docs/data-structure/partially_persistent_union_find.md\n */\nclass PartiallyPersistentUnionFind\
-    \ {\npublic:\n    explicit PartiallyPersistentUnionFind(int n) : data(n, -1),\
-    \ time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int x) {\n        if\
-    \ (t < time[x]) return x;\n        return find(t, data[x]);\n    }\n\n    void\
-    \ unite(int x, int y) {\n        now++;\n        x = find(now, x);\n        y\
-    \ = find(now, y);\n        if (x == y) return;\n        if (data[x] > data[y])\
-    \ std::swap(x, y);\n        data[x] += data[y];\n        sz[x].emplace_back(now,\
+    \ {\npublic:\n    PartiallyPersistentUnionFind() = default;\n    explicit PartiallyPersistentUnionFind(int\
+    \ n) : data(n, -1), time(n, INF), sz(n, {{0, 1}}) {}\n\n    int find(int t, int\
+    \ x) {\n        if (t < time[x]) return x;\n        return find(t, data[x]);\n\
+    \    }\n\n    void unite(int x, int y) {\n        ++now;\n        x = find(now,\
+    \ x);\n        y = find(now, y);\n        if (x == y) return;\n        if (data[x]\
+    \ > data[y]) std::swap(x, y);\n        data[x] += data[y];\n        sz[x].emplace_back(now,\
     \ -data[x]);\n        data[y] = x;\n        time[y] = now;\n    }\n\n    bool\
     \ same(int t, int x, int y) {\n        return find(t, x) == find(t, y);\n    }\n\
     \n    int size(int t, int x) {\n        x = find(t, x);\n        return (--std::lower_bound(sz[x].begin(),\
@@ -44,7 +45,7 @@ data:
   isVerificationFile: false
   path: data-structure/partially_persistent_union_find.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:12:06+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/partially_persistent_union_find.cpp

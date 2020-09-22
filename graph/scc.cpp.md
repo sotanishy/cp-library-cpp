@@ -2,18 +2,18 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.cpp
     title: 2-SAT
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_C.test.cpp
     title: test/aoj/GRL_3_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/two_sat.test.cpp
     title: test/yosupo/two_sat.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/graph/scc.md
@@ -21,9 +21,24 @@ data:
     links: []
   bundledCode: "#line 1 \"graph/scc.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Strongly Connected Components\n * @docs docs/graph/scc.md\n */\nclass SCC {\n\
-    public:\n    explicit SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}\n\
-    \n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n        G_rev[v].push_back(u);\n\
-    \    }\n\n    void build() {\n        for (int v = 0; v < (int) G.size(); v++)\
+    public:\n    SCC() = default;\n    explicit SCC(int n) : G(n), G_rev(n), comp(n,\
+    \ -1), visited(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
+    \        G_rev[v].push_back(u);\n    }\n\n    void build() {\n        for (int\
+    \ v = 0; v < (int) G.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
+    \ order.end());\n        cnt = 0;\n        for (int v : order) if (comp[v] ==\
+    \ -1) rdfs(v, cnt++);\n    }\n\n    int operator[](int i) const {\n        return\
+    \ comp[i];\n    }\n\n    int count() const {\n        return cnt;\n    }\n\nprivate:\n\
+    \    std::vector<std::vector<int>> G, G_rev;\n    std::vector<int> comp, order;\n\
+    \    std::vector<bool> visited;\n    int cnt;\n\n    void dfs(int u) {\n     \
+    \   if (visited[u]) return;\n        visited[u] = true;\n        for (int v :\
+    \ G[u]) dfs(v);\n        order.push_back(u);\n    }\n\n    void rdfs(int u, int\
+    \ c) {\n        if (comp[u] != -1) return;\n        comp[u] = c;\n        for\
+    \ (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Strongly Connected Components\n\
+    \ * @docs docs/graph/scc.md\n */\nclass SCC {\npublic:\n    SCC() = default;\n\
+    \    explicit SCC(int n) : G(n), G_rev(n), comp(n, -1), visited(n) {}\n\n    void\
+    \ add_edge(int u, int v) {\n        G[u].push_back(v);\n        G_rev[v].push_back(u);\n\
+    \    }\n\n    void build() {\n        for (int v = 0; v < (int) G.size(); ++v)\
     \ dfs(v);\n        std::reverse(order.begin(), order.end());\n        cnt = 0;\n\
     \        for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);\n    }\n\n   \
     \ int operator[](int i) const {\n        return comp[i];\n    }\n\n    int count()\
@@ -32,28 +47,14 @@ data:
     \    int cnt;\n\n    void dfs(int u) {\n        if (visited[u]) return;\n    \
     \    visited[u] = true;\n        for (int v : G[u]) dfs(v);\n        order.push_back(u);\n\
     \    }\n\n    void rdfs(int u, int c) {\n        if (comp[u] != -1) return;\n\
-    \        comp[u] = c;\n        for (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Strongly Connected Components\n\
-    \ * @docs docs/graph/scc.md\n */\nclass SCC {\npublic:\n    explicit SCC(int n)\
-    \ : G(n), G_rev(n), comp(n, -1), visited(n) {}\n\n    void add_edge(int u, int\
-    \ v) {\n        G[u].push_back(v);\n        G_rev[v].push_back(u);\n    }\n\n\
-    \    void build() {\n        for (int v = 0; v < (int) G.size(); v++) dfs(v);\n\
-    \        std::reverse(order.begin(), order.end());\n        cnt = 0;\n       \
-    \ for (int v : order) if (comp[v] == -1) rdfs(v, cnt++);\n    }\n\n    int operator[](int\
-    \ i) const {\n        return comp[i];\n    }\n\n    int count() const {\n    \
-    \    return cnt;\n    }\n\nprivate:\n    std::vector<std::vector<int>> G, G_rev;\n\
-    \    std::vector<int> comp, order;\n    std::vector<bool> visited;\n    int cnt;\n\
-    \n    void dfs(int u) {\n        if (visited[u]) return;\n        visited[u] =\
-    \ true;\n        for (int v : G[u]) dfs(v);\n        order.push_back(u);\n   \
-    \ }\n\n    void rdfs(int u, int c) {\n        if (comp[u] != -1) return;\n   \
-    \     comp[u] = c;\n        for (int v : G_rev[u]) rdfs(v, c);\n    }\n};"
+    \        comp[u] = c;\n        for (int v : G_rev[u]) rdfs(v, c);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/scc.cpp
   requiredBy:
   - graph/twosat.cpp
-  timestamp: '2020-09-22 03:45:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-09-22 15:17:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_3_C.test.cpp
   - test/yosupo/two_sat.test.cpp

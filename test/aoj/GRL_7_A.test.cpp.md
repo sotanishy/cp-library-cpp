@@ -16,24 +16,24 @@ data:
   bundledCode: "#line 1 \"test/aoj/GRL_7_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A\"\
     \n\n#line 1 \"flow/bipartite_matching.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
     \ * @brief Bipartite Matching\n * @docs docs/flow/bipartite_matching.md\n */\n\
-    class BipartiteMatching {\npublic:\n    explicit BipartiteMatching(int n) : G(n),\
-    \ used(n), match(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
-    \        G[v].push_back(u);\n    }\n\n    int bipartite_matching() {\n       \
-    \ int res = 0;\n        std::fill(match.begin(), match.end(), -1);\n        for\
-    \ (int v = 0; v < (int) G.size(); v++) {\n            if (match[v] == -1) {\n\
-    \                std::fill(used.begin(), used.end(), false);\n               \
-    \ if (dfs(v)) res++;\n            }\n        }\n        return res;\n    }\n\n\
-    private:\n    std::vector<std::vector<int>> G;\n    std::vector<bool> used;\n\
-    \    std::vector<int> match;\n\n    bool dfs(int u) {\n        used[u] = true;\n\
-    \        for (int v : G[u]) {\n            int w = match[v];\n            if (w\
-    \ < 0 || (!used[w] && dfs(w))) {\n                match[u] = v;\n            \
-    \    match[v] = u;\n                return true;\n            }\n        }\n \
-    \       return false;\n    }\n};\n#line 4 \"test/aoj/GRL_7_A.test.cpp\"\n\nusing\
-    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int X, Y, E;\n    cin >> X >> Y >> E;\n    BipartiteMatching bm(X + Y);\n\
-    \    for (int i = 0; i < E; i++) {\n        int x, y;\n        cin >> x >> y;\n\
-    \        bm.add_edge(x, X + y);\n    }\n    cout << bm.bipartite_matching() <<\
-    \ endl;\n}\n"
+    class BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n    explicit\
+    \ BipartiteMatching(int n) : G(n), used(n), match(n) {}\n\n    void add_edge(int\
+    \ u, int v) {\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n\
+    \n    int bipartite_matching() {\n        int res = 0;\n        std::fill(match.begin(),\
+    \ match.end(), -1);\n        for (int v = 0; v < (int) G.size(); ++v) {\n    \
+    \        if (match[v] == -1) {\n                std::fill(used.begin(), used.end(),\
+    \ false);\n                if (dfs(v)) ++res;\n            }\n        }\n    \
+    \    return res;\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n  \
+    \  std::vector<bool> used;\n    std::vector<int> match;\n\n    bool dfs(int u)\
+    \ {\n        used[u] = true;\n        for (int v : G[u]) {\n            int w\
+    \ = match[v];\n            if (w < 0 || (!used[w] && dfs(w))) {\n            \
+    \    match[u] = v;\n                match[v] = u;\n                return true;\n\
+    \            }\n        }\n        return false;\n    }\n};\n#line 4 \"test/aoj/GRL_7_A.test.cpp\"\
+    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int X, Y, E;\n    cin >> X >> Y >> E;\n    BipartiteMatching\
+    \ bm(X + Y);\n    for (int i = 0; i < E; i++) {\n        int x, y;\n        cin\
+    \ >> x >> y;\n        bm.add_edge(x, X + y);\n    }\n    cout << bm.bipartite_matching()\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A\"\
     \n\n#include \"../../flow/bipartite_matching.cpp\"\n\nusing namespace std;\n\n\
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_7_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-22 15:17:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_7_A.test.cpp
