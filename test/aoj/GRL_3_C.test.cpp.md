@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/scc.cpp
     title: Strongly Connected Components
   _extendedRequiredBy: []
@@ -22,13 +22,13 @@ data:
     \ v = 0; v < (int) G.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
     \ order.end());\n        cnt = 0;\n        for (int v : order) if (comp[v] ==\
     \ -1) rdfs(v, cnt++);\n    }\n\n    int operator[](int i) const {\n        return\
-    \ comp[i];\n    }\n\n    int count() const {\n        return cnt;\n    }\n\nprivate:\n\
-    \    std::vector<std::vector<int>> G, G_rev;\n    std::vector<int> comp, order;\n\
-    \    std::vector<bool> visited;\n    int cnt;\n\n    void dfs(int u) {\n     \
-    \   if (visited[u]) return;\n        visited[u] = true;\n        for (int v :\
-    \ G[u]) dfs(v);\n        order.push_back(u);\n    }\n\n    void rdfs(int u, int\
-    \ c) {\n        if (comp[u] != -1) return;\n        comp[u] = c;\n        for\
-    \ (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n#line 4 \"test/aoj/GRL_3_C.test.cpp\"\
+    \ comp[i];\n    }\n\n    int count() const noexcept {\n        return cnt;\n \
+    \   }\n\nprivate:\n    std::vector<std::vector<int>> G, G_rev;\n    std::vector<int>\
+    \ comp, order;\n    std::vector<bool> visited;\n    int cnt;\n\n    void dfs(int\
+    \ u) {\n        if (visited[u]) return;\n        visited[u] = true;\n        for\
+    \ (int v : G[u]) dfs(v);\n        order.push_back(u);\n    }\n\n    void rdfs(int\
+    \ u, int c) {\n        if (comp[u] != -1) return;\n        comp[u] = c;\n    \
+    \    for (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n#line 4 \"test/aoj/GRL_3_C.test.cpp\"\
     \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int V, E;\n    cin >> V >> E;\n    SCC scc(V);\n    for\
     \ (int i = 0; i < E; i++) {\n        int s, t;\n        cin >> s >> t;\n     \
@@ -48,7 +48,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-09-23 00:47:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_C.test.cpp

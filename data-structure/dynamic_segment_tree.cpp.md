@@ -15,51 +15,53 @@ data:
     \ */\ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename\
     \ M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(int\
     \ n) {\n        size = 1;\n        while (size < n) size <<= 1;\n        root\
-    \ = new Node();\n    }\n\n    T operator[](int k) const {\n        return fold(k,\
-    \ k + 1);\n    }\n\n    void update(int k, const T& x) { update(k, x, root, 0,\
-    \ size); }\n\n    T fold(int l, int r) const { return fold(l, r, root, 0, size);\
-    \ }\n\nprivate:\n    struct Node {\n        Node* left;\n        Node* right;\n\
-    \        T val;\n        Node() : left(nullptr), right(nullptr), val(M::id) {}\n\
-    \    };\n\n    Node* root;\n    int size;\n\n    void update(int k, const T& x,\
-    \ Node* n, int l, int r) {\n        if (r - l == 1) {\n            n->val = x;\n\
-    \            return;\n        }\n        int m = (l + r) / 2;\n        if (k <\
-    \ m) {\n            if (!n->left) n->left = new Node();\n            update(k,\
-    \ x, n->left, l, m);\n            n->val = M::op(n->left->val, n->right ? n->right->val\
-    \ : M::id);\n        } else {\n            if (!n->right) n->right = new Node();\n\
+    \ = std::make_unique<Node>();\n    }\n\n    T operator[](int k) const {\n    \
+    \    return fold(k, k + 1);\n    }\n\n    void update(int k, const T& x) { update(k,\
+    \ x, root, 0, size); }\n\n    T fold(int l, int r) const { return fold(l, r, root,\
+    \ 0, size); }\n\nprivate:\n    struct Node {\n        std::unique_ptr<Node> left,\
+    \ right;\n        T val;\n        Node() : left(nullptr), right(nullptr), val(M::id)\
+    \ {}\n    };\n\n    std::unique_ptr<Node> root;\n    int size;\n\n    void update(int\
+    \ k, const T& x, std::unique_ptr<Node> const& n, int l, int r) {\n        if (r\
+    \ - l == 1) {\n            n->val = x;\n            return;\n        }\n     \
+    \   int m = (l + r) / 2;\n        if (k < m) {\n            if (!n->left) n->left\
+    \ = std::make_unique<Node>();\n            update(k, x, n->left, l, m);\n    \
+    \        n->val = M::op(n->left->val, n->right ? n->right->val : M::id);\n   \
+    \     } else {\n            if (!n->right) n->right = std::make_unique<Node>();\n\
     \            update(k, x, n->right, m, r);\n            n->val = M::op(n->left\
     \ ? n->left->val : M::id, n->right->val);\n        }\n    }\n\n    T fold(int\
-    \ a, int b, Node* n, int l, int r) const {\n        if (r <= a || b <= l) return\
-    \ M::id;\n        if (a <= l && r <= b) return n->val;\n        int m = (l + r)\
-    \ / 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T\
-    \ vr = n->right ? fold(a, b, n->right, m, r) : M::id;\n        return vr + vr;\n\
-    \    }\n};\n"
+    \ a, int b, std::unique_ptr<Node> const& n, int l, int r) const {\n        if\
+    \ (r <= a || b <= l) return M::id;\n        if (a <= l && r <= b) return n->val;\n\
+    \        int m = (l + r) / 2;\n        T vl = n->left ? fold(a, b, n->left, l,\
+    \ m) : M::id;\n        T vr = n->right ? fold(a, b, n->right, m, r) : M::id;\n\
+    \        return vr + vr;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Dynamic Segment Tree\n * @docs\
     \ docs/data-structure/dynamic_segment_tree.md\n */\ntemplate <typename M>\nclass\
     \ DynamicSegmentTree {\n    using T = typename M::T;\n\npublic:\n    DynamicSegmentTree()\
     \ = default;\n    explicit DynamicSegmentTree(int n) {\n        size = 1;\n  \
-    \      while (size < n) size <<= 1;\n        root = new Node();\n    }\n\n   \
-    \ T operator[](int k) const {\n        return fold(k, k + 1);\n    }\n\n    void\
-    \ update(int k, const T& x) { update(k, x, root, 0, size); }\n\n    T fold(int\
-    \ l, int r) const { return fold(l, r, root, 0, size); }\n\nprivate:\n    struct\
-    \ Node {\n        Node* left;\n        Node* right;\n        T val;\n        Node()\
-    \ : left(nullptr), right(nullptr), val(M::id) {}\n    };\n\n    Node* root;\n\
-    \    int size;\n\n    void update(int k, const T& x, Node* n, int l, int r) {\n\
-    \        if (r - l == 1) {\n            n->val = x;\n            return;\n   \
-    \     }\n        int m = (l + r) / 2;\n        if (k < m) {\n            if (!n->left)\
-    \ n->left = new Node();\n            update(k, x, n->left, l, m);\n          \
-    \  n->val = M::op(n->left->val, n->right ? n->right->val : M::id);\n        }\
-    \ else {\n            if (!n->right) n->right = new Node();\n            update(k,\
-    \ x, n->right, m, r);\n            n->val = M::op(n->left ? n->left->val : M::id,\
-    \ n->right->val);\n        }\n    }\n\n    T fold(int a, int b, Node* n, int l,\
-    \ int r) const {\n        if (r <= a || b <= l) return M::id;\n        if (a <=\
-    \ l && r <= b) return n->val;\n        int m = (l + r) / 2;\n        T vl = n->left\
-    \ ? fold(a, b, n->left, l, m) : M::id;\n        T vr = n->right ? fold(a, b, n->right,\
-    \ m, r) : M::id;\n        return vr + vr;\n    }\n};"
+    \      while (size < n) size <<= 1;\n        root = std::make_unique<Node>();\n\
+    \    }\n\n    T operator[](int k) const {\n        return fold(k, k + 1);\n  \
+    \  }\n\n    void update(int k, const T& x) { update(k, x, root, 0, size); }\n\n\
+    \    T fold(int l, int r) const { return fold(l, r, root, 0, size); }\n\nprivate:\n\
+    \    struct Node {\n        std::unique_ptr<Node> left, right;\n        T val;\n\
+    \        Node() : left(nullptr), right(nullptr), val(M::id) {}\n    };\n\n   \
+    \ std::unique_ptr<Node> root;\n    int size;\n\n    void update(int k, const T&\
+    \ x, std::unique_ptr<Node> const& n, int l, int r) {\n        if (r - l == 1)\
+    \ {\n            n->val = x;\n            return;\n        }\n        int m =\
+    \ (l + r) / 2;\n        if (k < m) {\n            if (!n->left) n->left = std::make_unique<Node>();\n\
+    \            update(k, x, n->left, l, m);\n            n->val = M::op(n->left->val,\
+    \ n->right ? n->right->val : M::id);\n        } else {\n            if (!n->right)\
+    \ n->right = std::make_unique<Node>();\n            update(k, x, n->right, m,\
+    \ r);\n            n->val = M::op(n->left ? n->left->val : M::id, n->right->val);\n\
+    \        }\n    }\n\n    T fold(int a, int b, std::unique_ptr<Node> const& n,\
+    \ int l, int r) const {\n        if (r <= a || b <= l) return M::id;\n       \
+    \ if (a <= l && r <= b) return n->val;\n        int m = (l + r) / 2;\n       \
+    \ T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr = n->right\
+    \ ? fold(a, b, n->right, m, r) : M::id;\n        return vr + vr;\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/dynamic_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-09-23 00:47:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/dynamic_segment_tree.cpp

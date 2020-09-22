@@ -15,8 +15,8 @@ data:
     \ typename std::enable_if<std::is_arithmetic<T>::value, T>::type>\nstruct Matrix\
     \ {\n    std::vector<std::vector<T>> A;\n    int m, n;\n\n    const double EPS\
     \ = 1e-8;\n\n    Matrix() = default;\n    Matrix(int m, int n) : A(m, std::vector<T>(n)),\
-    \ m(m), n(n) {}\n    Matrix(initializer_list<initializer_list<T>> list) {\n  \
-    \      for (auto& l : list) {\n            A.push_back(std::vector<T>(l.begin(),\
+    \ m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>> list)\
+    \ {\n        for (auto& l : list) {\n            A.push_back(std::vector<T>(l.begin(),\
     \ l.end()));\n        }\n        m = A.size();\n        n = A[0].size();\n   \
     \ }\n\n    static Matrix I(int n) {\n        Matrix ret(n, n);\n        for (int\
     \ i = 0; i < n; ++i) ret[i][i] = 1;\n        return ret;\n    }\n\n    static\
@@ -81,7 +81,7 @@ data:
     \ */\ntemplate <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value,\
     \ T>::type>\nstruct Matrix {\n    std::vector<std::vector<T>> A;\n    int m, n;\n\
     \n    const double EPS = 1e-8;\n\n    Matrix() = default;\n    Matrix(int m, int\
-    \ n) : A(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(initializer_list<initializer_list<T>>\
+    \ n) : A(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
     \ list) {\n        for (auto& l : list) {\n            A.push_back(std::vector<T>(l.begin(),\
     \ l.end()));\n        }\n        m = A.size();\n        n = A[0].size();\n   \
     \ }\n\n    static Matrix I(int n) {\n        Matrix ret(n, n);\n        for (int\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: false
   path: math/matrix.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-09-23 00:47:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/matrix.cpp

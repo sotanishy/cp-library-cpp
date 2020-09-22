@@ -12,11 +12,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/union_find.md
@@ -47,7 +47,7 @@ data:
   requiredBy:
   - graph/kruskal.cpp
   timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
