@@ -7,6 +7,7 @@
 template <typename Cap, typename Cost>
 class MinCostFlow {
 public:
+    MinCostFlow() = default;
     explicit MinCostFlow(int V) : V(V), G(V) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
@@ -32,7 +33,7 @@ public:
                 std::tie(d, v) = pq.top();
                 pq.pop();
                 if (dist[v] < d) continue;
-                for (int i = 0; i < (int) G[v].size(); i++) {
+                for (int i = 0; i < (int) G[v].size(); ++i) {
                     Edge& e = G[v][i];
                     Cost ndist = dist[v] + e.cost + h[v] - h[e.to];
                     if (e.cap > 0 && dist[e.to] > ndist) {
@@ -45,7 +46,7 @@ public:
             }
 
             if (dist[t] == INF) return -1;
-            for (int v = 0; v < V; v++) h[v] += dist[v];
+            for (int v = 0; v < V; ++v) h[v] += dist[v];
 
             Cap m = f;
             for (int v = t; v != s; v = prevv[v]) {

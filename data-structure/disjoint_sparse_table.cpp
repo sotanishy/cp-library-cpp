@@ -9,21 +9,22 @@ class DisjointSparseTable {
     using T = typename S::T;
 
 public:
+    DisjointSparseTable() = default;
     explicit DisjointSparseTable(const std::vector<T>& v) {
         int n = v.size(), b = 0;
-        while ((1 << b) < n) b++;
+        while ((1 << b) < n) ++b;
         lookup.resize(b + 1, std::vector<T>(n));
         std::copy(v.begin(), v.end(), lookup[0].begin());
-        for (int i = 1; i <= b; i++) {
+        for (int i = 1; i <= b; ++i) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {
                 int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (int j = 1; j < len / 2; j++) {
+                for (int j = 1; j < len / 2; ++j) {
                     lookup[i][m - 1 - j] = S::op(v[m - 1 - j], lookup[i][m - j]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = 1; m + j < std::min(l + len, n); j++) {
+                for (int j = 1; m + j < std::min(l + len, n); ++j) {
                     lookup[i][m + j] = S::op(lookup[i][m + j - 1], v[m + j]);
                 }
             }

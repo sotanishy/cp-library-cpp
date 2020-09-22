@@ -7,6 +7,8 @@
 template <long long mod, long long primitive_root>
 class NTT {
 public:
+    NTT() = delete;
+    
     static std::vector<long long> convolution(const std::vector<long long>& a, const std::vector<long long>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
@@ -16,11 +18,11 @@ public:
         nb.resize(n);
         untt(na);
         untt(nb);
-        for (int i = 0; i < n; i++) na[i] = na[i] * nb[i] % mod;
+        for (int i = 0; i < n; ++i) na[i] = na[i] * nb[i] % mod;
         iuntt(na);
         na.resize(size);
         long long n_inv = mod_inv(n);
-        for (int i = 0; i < size; i++) na[i] = na[i] * n_inv % mod;
+        for (int i = 0; i < size; ++i) na[i] = na[i] * n_inv % mod;
         return na;
     }
 
@@ -49,9 +51,9 @@ private:
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
             long long omega = mod_pow(primitive_root, (mod - 1) / m);
-            for (int s = 0; s < n / m; s++) {
+            for (int s = 0; s < n / m; ++s) {
                 long long w = 1;
-                for (int i = 0; i < m / 2; i++) {
+                for (int i = 0; i < m / 2; ++i) {
                     long long l = a[s * m + i];
                     long long r = a[s * m + i + m / 2];
                     a[s * m + i] = (l + r) % mod;
@@ -66,9 +68,9 @@ private:
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
             long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
-            for (int s = 0; s < n / m; s++) {
+            for (int s = 0; s < n / m; ++s) {
                 long long w = 1;
-                for (int i = 0; i < m / 2; i++) {
+                for (int i = 0; i < m / 2; ++i) {
                     long long l = a[s * m + i];
                     long long r = a[s * m + i + m / 2] * w % mod;
                     a[s * m + i] = (l + r) % mod;

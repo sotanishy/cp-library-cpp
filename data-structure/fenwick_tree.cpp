@@ -10,6 +10,7 @@ class FenwickTree {
     using T = typename M::T;
 
 public:
+    FenwickTree() = default;
     explicit FenwickTree(int n) : n(n), data(n + 1, M::id) {}
 
     T prefix_fold(int i) const {
@@ -19,7 +20,7 @@ public:
     }
 
     void update(int i, T x) {
-        for (i++; i <= n; i += i & -i) data[i] = M::op(data[i], x);
+        for (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
     int find_first(const std::function<bool(T)>& cond) const {

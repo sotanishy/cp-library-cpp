@@ -9,7 +9,7 @@ std::map<long long, int> prime_factor(long long n) {
     if (n % 2 == 0) {
         int cnt = 0;
         while (n % 2 == 0) {
-            cnt++;
+            ++cnt;
             n /= 2;
         }
         ret[2] = cnt;
@@ -18,7 +18,7 @@ std::map<long long, int> prime_factor(long long n) {
         if (n % i == 0) {
             int cnt = 0;
             while (n % i == 0) {
-                cnt++;
+                ++cnt;
                 n /= i;
             }
             ret[i] = cnt;

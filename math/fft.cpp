@@ -6,20 +6,22 @@
  */
 class FFT {
 public:
+    FFT() = delete;
+    
     template <typename T>
     static std::vector<double> convolution(const std::vector<T>& a, const std::vector<T>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
         std::vector<C> na(n), nb(n);
-        for (int i = 0; i < (int) a.size(); i++) na[i].real = a[i];
-        for (int i = 0; i < (int) b.size(); i++) nb[i].real = b[i];
+        for (int i = 0; i < (int) a.size(); ++i) na[i].real = a[i];
+        for (int i = 0; i < (int) b.size(); ++i) nb[i].real = b[i];
         ufft(na);
         ufft(nb);
-        for (int i = 0; i < n; i++) na[i] = na[i] * nb[i];
+        for (int i = 0; i < n; ++i) na[i] = na[i] * nb[i];
         iufft(na);
         std::vector<double> ret(size);
-        for (int i = 0; i < size; i++) ret[i] = na[i].real / n;
+        for (int i = 0; i < size; ++i) ret[i] = na[i].real / n;
         return ret;
     }
 
@@ -39,9 +41,9 @@ private:
         for (int m = n; m > 1; m >>= 1) {
             double ang = 2.0 * PI / m;
             C omega(std::cos(ang), std::sin(ang));
-            for (int s = 0; s < n / m; s++) {
+            for (int s = 0; s < n / m; ++s) {
                 C w(1, 0);
-                for (int i = 0; i < m / 2; i++) {
+                for (int i = 0; i < m / 2; ++i) {
                     C l = a[s * m + i];
                     C r = a[s * m + i + m / 2];
                     a[s * m + i] = l + r;
@@ -58,9 +60,9 @@ private:
         for (int m = 2; m <= n; m <<= 1) {
             double ang = -2.0 * PI / m;
             C omega(std::cos(ang), std::sin(ang));
-            for (int s = 0; s < n / m; s++) {
+            for (int s = 0; s < n / m; ++s) {
                 C w(1, 0);
-                for (int i = 0; i < m / 2; i++) {
+                for (int i = 0; i < m / 2; ++i) {
                     C l = a[s * m + i];
                     C r = a[s * m + i + m / 2] * w;
                     a[s * m + i] = l + r;

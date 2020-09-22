@@ -7,6 +7,7 @@
 template <typename T>
 class SegmentTreeBeats {
 public:
+    SegmentTreeBeats() = default;
     explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}
     explicit SegmentTreeBeats(const std::vector<T>& v) {
         size = 1;
@@ -21,12 +22,12 @@ public:
         min_cnt.resize(2 * size);
         len.resize(2 * size);
         len[1] = size;
-        for (int i = 2; i < 2 * size; i++) len[i] = len[i / 2] >> 1;
-        for (int i = 0; i < (int) v.size(); i++) {
+        for (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;
+        for (int i = 0; i < (int) v.size(); ++i) {
             sum[size + i] = max_val[size + i] = min_val[size + i] = v[i];
             max_cnt[size + i] = min_cnt[size + i] = 1;
         }
-        for (int i = size - 1; i > 0; i--) recalc(i);
+        for (int i = size - 1; i > 0; --i) recalc(i);
     }
 
     T operator[](int k) {
@@ -42,6 +43,14 @@ public:
     T fold_sum(int l, int r) { return fold<SUM>(l, r, 1, 0, size); }
 
 private:
+    enum OpType {
+        CHMIN, CHMAX, ADD
+    };
+
+    enum QueryType {
+        MIN, MAX, SUM
+    };
+
     const T INF = std::numeric_limits<T>::max();
     const T NINF = std::numeric_limits<T>::min();
 
@@ -50,14 +59,6 @@ private:
     std::vector<T> max_val, smax_val;
     std::vector<T> min_val, smin_val;
     std::vector<int> len, max_cnt, min_cnt;
-
-    enum OpType {
-        CHMIN, CHMAX, ADD
-    };
-
-    enum QueryType {
-        MIN, MAX, SUM
-    };
 
     void recalc(int k) {
         sum[k] = sum[2 * k] + sum[2 * k + 1];
@@ -172,6 +173,5 @@ private:
         if (TYPE == MIN) return std::min(vl, vr);
         if (TYPE == MAX) return std::max(vl, vr);
         if (TYPE == SUM) return vl + vr;
-        return -1;
     }
 };

@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Fenwick Tree with Range Update
@@ -8,6 +7,7 @@ using namespace std;
 template <typename T>
 class RangeFenwickTree {
 public:
+    RangeFenwickTree() = default;
     explicit RangeFenwickTree(int n) : n(n), data0(n + 1), data1(n + 1) {}
 
     T sum(int i) const {
@@ -32,6 +32,6 @@ private:
     }
 
     void add(std::vector<T>& data, int i, T x) {
-        for (i++; i <= n; i += i & -i) data[i] += x;
+        for (++i; i <= n; i += i & -i) data[i] += x;
     }
 };

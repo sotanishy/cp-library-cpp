@@ -5,7 +5,7 @@ struct Modint {
     int x;
 
     Modint() : x(0) {}
-    Modint(long long y) : x(y >= 0 ? y % mod : y % mod + mod) {}
+    Modint(long long y) : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
 
     Modint& operator+=(const Modint& p) { if ((x += p.x) >= mod) x -= mod; return *this; }
     Modint& operator-=(const Modint& p) { if ((x += mod - p.x) >= mod) x -= mod; return *this; }

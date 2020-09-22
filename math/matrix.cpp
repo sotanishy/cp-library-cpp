@@ -11,8 +11,8 @@ struct Matrix {
 
     const double EPS = 1e-8;
 
+    Matrix() = default;
     Matrix(int m, int n) : A(m, std::vector<T>(n)), m(m), n(n) {}
-
     Matrix(initializer_list<initializer_list<T>> list) {
         for (auto& l : list) {
             A.push_back(std::vector<T>(l.begin(), l.end()));
@@ -23,18 +23,18 @@ struct Matrix {
 
     static Matrix I(int n) {
         Matrix ret(n, n);
-        for (int i = 0; i < n; i++) ret[i][i] = 1;
+        for (int i = 0; i < n; ++i) ret[i][i] = 1;
         return ret;
     }
 
     static Matrix concatenate(const Matrix& A, const Matrix& B) {
-        std::assert(A.m == B.m);
+        assert(A.m == B.m);
         Matrix C(A.m, A.n + B.n);
-        for (int i = 0; i < A.m; i++) {
-            for (int j = 0; j < A.n; j++) {
+        for (int i = 0; i < A.m; ++i) {
+            for (int j = 0; j < A.n; ++j) {
                 C[i][j] = A[i][j];
             }
-            for (int j = 0; j < B.n; j++) {
+            for (int j = 0; j < B.n; ++j) {
                 C[i][A.n + j] = B[i][j];
             }
         }
@@ -50,9 +50,9 @@ struct Matrix {
     }
 
     Matrix& operator+=(const Matrix& B) {
-        std::assert(m == B.m && n == B.n);
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        assert(m == B.m && n == B.n);
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
                 (*this)[i][j] += B[i][j];
             }
         }
@@ -60,9 +60,9 @@ struct Matrix {
     }
 
     Matrix& operator-=(const Matrix& B) {
-        std::assert(m == B.m && n == B.n);
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        assert(m == B.m && n == B.n);
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
                 (*this)[i][j] -= B[i][j];
             }
         }
@@ -79,8 +79,8 @@ struct Matrix {
 
     Matrix transpose() const {
         Matrix ret(n, m);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
                 ret[i][j] = A[j][i];
             }
         }
@@ -88,11 +88,11 @@ struct Matrix {
     }
 
     Matrix matmul(const Matrix& B) const {
-        std::assert(n == B.m);
+        assert(n == B.m);
         Matrix C(m, B.n);
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < B.n; j++) {
-                for (int k = 0; k < n; k++) {
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < B.n; ++j) {
+                for (int k = 0; k < n; ++k) {
                     C[i][j] += A[i][k] * B[k][j];
                 }
             }
@@ -101,7 +101,7 @@ struct Matrix {
     }
 
     Matrix pow(long long k) const {
-        std::assert(m == n);
+        assert(m == n);
         Matrix ret = Matrix::I(n);
         Matrix B(*this);
         while (k > 0) {
@@ -115,40 +115,40 @@ struct Matrix {
     Matrix rref() const {
         Matrix B(*this);
         int pivot = 0;
-        for (int col = 0; col < n; col++) {
+        for (int col = 0; col < n; ++col) {
             int row = pivot;
-            for (; row < m && std::abs(B[row][col]) < EPS; row++);
+            for (; row < m && std::abs(B[row][col]) < EPS; ++rol);
 
             if (row == m) continue;
 
             if (row != pivot) std::swap(B[row], B[pivot]);
 
             T p = B[pivot][col];
-            for (int c = col; c < n; c++) {
+            for (int c = col; c < n; ++c) {
                 B[pivot][c] /= p;
             }
 
-            for (int r = 0; r < m; r++) {
+            for (int r = 0; r < m; ++r) {
                 if (r == pivot) continue;
 
                 T v = B[r][col];
-                for (int c = col; c < n; c++) {
+                for (int c = col; c < n; ++c) {
                     B[r][c] -= B[pivot][c] * v;
                 }
             }
 
-            pivot++;
+            ++pivot;
         }
         return B;
     }
 
     T det() const {
-        std::assert(m == n);
+        assert(m == n);
         Matrix B(*this);
         T ret = 1;
-        for (int j = 0; j < n; j++) {
+        for (int j = 0; j < n; ++j) {
             int i = j;
-            for (; i < m && std::abs(B[i][j]) < EPS; i++);
+            for (; i < m && std::abs(B[i][j]) < EPS; ++i);
 
             if (i == m) return 0;
 
@@ -159,13 +159,13 @@ struct Matrix {
 
             T p = B[i][j];
             ret *= p;
-            for (int l = j; l < n; l++) {
+            for (int l = j; l < n; ++l) {
                 B[i][l] /= p;
             }
 
-            for (int k = i + 1; k < m; k++) {
+            for (int k = i + 1; k < m; ++k) {
                 T v = B[k][j];
-                for (int l = j; l < n; l++) {
+                for (int l = j; l < n; ++l) {
                     B[k][l] -= B[i][l] * v;
                 }
             }
@@ -175,9 +175,9 @@ struct Matrix {
 
     int rank() const {
         auto B = rref();
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < m; ++i) {
             bool nonzero = false;
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < n; ++j) {
                 if (std::abs(B[i][j]) > EPS) {
                     nonzero = true;
                     break;
@@ -189,12 +189,12 @@ struct Matrix {
     }
 
     Matrix inverse() const {
-        std::assert(std::abs(det(A)) > EPS);
+        assert(std::abs(det(A)) > EPS);
         Matrix AI = concatenate(*this, I(n));
         Matrix Ib = rref(AI);
         Matrix B(n);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
                 B[i][j] = IB[i][n + j];
             }
         }

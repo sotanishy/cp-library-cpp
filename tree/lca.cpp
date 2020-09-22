@@ -6,14 +6,15 @@
  */
 class LCA {
 public:
+    LCA() = default;
     LCA(const std::vector<std::vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
         int V = G.size();
         table.assign(LOG, std::vector<int>(V, -1));
 
         dfs(root, -1, 0);
 
-        for (int k = 0; k < LOG - 1; k++) {
-            for (int v = 0; v < V; v++) {
+        for (int k = 0; k < LOG - 1; ++k) {
+            for (int v = 0; v < V; ++v) {
                 if (table[k][v] >= 0) {
                     table[k + 1][v] = table[k][table[k][v]];
                 }
@@ -25,14 +26,14 @@ public:
         if (depth[u] > depth[v]) std::swap(u, v);
 
         // go up to the same depth
-        for (int k = 0; k < LOG; k++) {
+        for (int k = 0; k < LOG; ++k) {
             if ((depth[v] - depth[u]) >> k & 1) {
                 v = table[k][v];
             }
         }
         if (u == v) return u;
 
-        for (int k = LOG - 1; k >= 0; k--) {
+        for (int k = LOG - 1; k >= 0; --k) {
             if (table[k][u] != table[k][v]) {
                 u = table[k][u];
                 v = table[k][v];

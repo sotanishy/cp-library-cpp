@@ -4,6 +4,8 @@ const double eps = 1e-12;
 
 struct Vec {
     double x, y;
+    
+    Vec() = default;
     Vec(double x, double y) : x(x), y(y) {}
 
     Vec operator+(const Vec& other) const { return Vec(x + other.x, y + other.y); }
@@ -115,17 +117,17 @@ std::vector<Vec> convex_hull(const std::vector<Vec>& points) {
     int k = 0; // the number of vertices in the convex hull
     std::vector<Vec> ch(2 * n);
     // bottom
-    for (int i = 0; i < n; i++) {
-        while (k > 1 && (ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]) < eps) k--;
+    for (int i = 0; i < n; ++i) {
+        while (k > 1 && (ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]) < eps) --k;
         ch[k] = points[i];
-        k++;
+        ++k;
     }
     int t = k;
     // top
-    for (int i = n - 1; i >= 0; i--) {
-        while (k > t && (ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]) < eps) k--;
+    for (int i = n - 1; i >= 0; --i) {
+        while (k > t && (ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]) < eps) --k;
         ch[k] = points[i];
-        k++;
+        ++k;
     }
     return std::vector<Vec>(ch.begin(), ch.begin() + (k - 1));
 }

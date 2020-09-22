@@ -6,6 +6,7 @@
  */
 class PartiallyPersistentUnionFind {
 public:
+    PartiallyPersistentUnionFind() = default;
     explicit PartiallyPersistentUnionFind(int n) : data(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
 
     int find(int t, int x) {
@@ -14,7 +15,7 @@ public:
     }
 
     void unite(int x, int y) {
-        now++;
+        ++now;
         x = find(now, x);
         y = find(now, y);
         if (x == y) return;

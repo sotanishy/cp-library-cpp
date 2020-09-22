@@ -7,6 +7,7 @@
 template <typename T>
 class FordFulkerson {
 public:
+    FordFulkerson() = default;
     explicit FordFulkerson(int n) : G(n), used(n) {}
 
     void add_edge(int u, int v, T cap) {

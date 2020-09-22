@@ -117,7 +117,7 @@ State simulated_annealing(State& beginning_state, ll duration) {
             cur_state.move_back();
         }
 
-        iter++;
+        ++iter;
     }
 
     #ifdef DEBUG

@@ -9,6 +9,7 @@ class DynamicSegmentTree {
     using T = typename M::T;
 
 public:
+    DynamicSegmentTree() = default;
     explicit DynamicSegmentTree(int n) {
         size = 1;
         while (size < n) size <<= 1;

@@ -6,6 +6,7 @@
  */
 class BipartiteMatching {
 public:
+    BipartiteMatching() = default;
     explicit BipartiteMatching(int n) : G(n), used(n), match(n) {}
 
     void add_edge(int u, int v) {
@@ -16,10 +17,10 @@ public:
     int bipartite_matching() {
         int res = 0;
         std::fill(match.begin(), match.end(), -1);
-        for (int v = 0; v < (int) G.size(); v++) {
+        for (int v = 0; v < (int) G.size(); ++v) {
             if (match[v] == -1) {
                 std::fill(used.begin(), used.end(), false);
-                if (dfs(v)) res++;
+                if (dfs(v)) ++res;
             }
         }
         return res;

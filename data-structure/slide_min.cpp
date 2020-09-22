@@ -15,7 +15,7 @@ public:
 
     void pop() {
         if (dq.front().second == l) dq.pop_front();
-        l++;
+        ++l;
     }
 
     T get() {

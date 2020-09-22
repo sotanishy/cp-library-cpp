@@ -7,6 +7,7 @@
  */
 class TwoSat {
 public:
+    TwoSat() = default;
     explicit TwoSat(int n) : n(n), scc(2 * n), val(n) {}
 
     void add_clause(int u, bool a, int v, bool b) {
@@ -16,7 +17,7 @@ public:
 
     void solve() {
         scc.build();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; ++i) {
             if (scc[i] == scc[n + i]) {
                 satisfiable = false;
                 break;

@@ -6,6 +6,7 @@
  */
 class UnionFind {
 public:
+    UnionFind() = default;
     explicit UnionFind(int n) : data(n, -1) {}
 
     int find(int x) {

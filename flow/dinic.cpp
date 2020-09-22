@@ -7,6 +7,7 @@
 template <typename T>
 class Dinic {
 public:
+    Dinic() = default;
     explicit Dinic(int V) : G(V), level(V), iter(V) {}
 
     void add_edge(int u, int v, T cap) {
@@ -57,7 +58,7 @@ private:
 
     T dfs(int v, int t, T f) {
         if (v == t) return f;
-        for (int& i = iter[v]; i < (int) G[v].size(); i++) {
+        for (int& i = iter[v]; i < (int) G[v].size(); ++i) {
             Edge& e = G[v][i];
             if (e.cap > 0 && level[v] < level[e.to]) {
                 T d = dfs(e.to, t, std::min(f, e.cap));

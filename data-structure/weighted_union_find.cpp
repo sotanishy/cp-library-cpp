@@ -7,6 +7,7 @@
 template <typename T>
 class WeightedUnionFind {
 public:
+    WeightedUnionFind() = default;
     explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}
 
     int find(int x) {

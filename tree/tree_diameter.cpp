@@ -7,6 +7,8 @@
  */
 class TreeDiameter {
 public:
+    TreeDiameter() = delete;
+    
     static int diameter(const std::vector<std::vector<int>>& G) {
         auto p = dfs(G, 0, -1);
         auto q = dfs(G, p.second, -1);
@@ -26,7 +28,7 @@ private:
         for (int c : G[v]) {
             if (c == p) continue;
             auto cost = dfs(G, c, v);
-            cost.first++;
+            ++cost.first;
             ret = std::max(ret, cost);
         }
         return ret;

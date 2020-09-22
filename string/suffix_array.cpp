@@ -6,6 +6,7 @@
  */
 class SuffixArray {
 public:
+    SuffixArray() = default;
     explicit SuffixArray(const std::string& str) : s(str) {
         int n = s.size();
         sa.resize(n);
@@ -15,25 +16,25 @@ public:
         });
         int cl = 0;
         std::vector<int> rank(n);
-        for (int i = 1; i < n; i++) {
-            if (s[sa[i-1]] != s[sa[i]]) cl++;
+        for (int i = 1; i < n; ++i) {
+            if (s[sa[i-1]] != s[sa[i]]) ++cl;
             rank[sa[i]] = cl;
         }
         std::vector<int> tmp(n), nrank(n), cnt(n);
         for (int k = 1; k < n; k *= 2) {
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 tmp[i] = sa[i] - k;
                 if (tmp[i] < 0) tmp[i] += n;
             }
             std::fill(cnt.begin(), cnt.end(), 0);
-            for (int i = 0; i < n; i++) cnt[rank[tmp[i]]]++;
-            for (int i = 1; i < n; i++) cnt[i] += cnt[i-1];
-            for (int i = n - 1; i >= 0; i--) sa[--cnt[rank[tmp[i]]]] = tmp[i];
+            for (int i = 0; i < n; ++i) ++cnt[rank[tmp[i]]];
+            for (int i = 1; i < n; ++i) cnt[i] += cnt[i-1];
+            for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]] = tmp[i];
             nrank[sa[0]] = 0;
             cl = 0;
-            for (int i = 1; i < n; i++) {
+            for (int i = 1; i < n; ++i) {
                 if (rank[sa[i-1]] != rank[sa[i]] || rank[(sa[i-1] + k) % n] != rank[(sa[i] + k) % n]) {
-                    cl++;
+                    ++cl;
                 }
                 nrank[sa[i]] = cl;
             }
@@ -56,9 +57,9 @@ public:
     }
 
     int upper_bound(std::string& t) const {
-        t.back()++;
+        ++t.back();
         int i = lower_bound(t);
-        t.back()--;
+        --t.back();
         return i;
     }
 
@@ -71,8 +72,8 @@ private:
         while (si < sn && ti < tn) {
             if (s[si] < t[ti]) return true;
             if (s[si] > t[ti]) return false;
-            si++;
-            ti++;
+            ++si;
+            ++ti;
         }
         return si >= sn && ti < tn;
     }

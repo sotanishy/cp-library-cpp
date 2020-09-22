@@ -10,13 +10,14 @@ class SegmentTree {
     using T = typename M::T;
 
 public:
-    explicit SegmentTree(int n) : SegmentTree(vector<T>(n, M::id)) {}
+    SegmentTree() = default;
+    explicit SegmentTree(int n): SegmentTree(vector<T>(n, M::id)) {}
     explicit SegmentTree(const vector<T>& v) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; i--) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
     T operator[](int k) const {
@@ -40,8 +41,8 @@ public:
 
     int find_first(int l, const function<bool(T)>& cond) const {
         T vl = M::id;
-        int r = 2 * size;
-        for (l += size; l < r; l >>= 1, r >>= 1) {
+        int r = size;
+        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
                 T nxt = M::op(vl, node[l]);
                 if (cond(nxt)) {
@@ -53,7 +54,7 @@ public:
                     return l - size;
                 }
                 vl = nxt;
-                l++;
+                ++l;
             }
         }
         return -1;
@@ -61,10 +62,10 @@ public:
 
     int find_last(int r, const function<bool(T)>& cond) const {
         T vr = M::id;
-        int l = size;
-        for (r += size; l < r; l >>= 1, r >>= 1) {
+        int l = 0;
+        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {
-                r--;
+                --r;
                 T nxt = M::op(node[r], vr);
                 if (cond(nxt)) {
                     while (r < size) {

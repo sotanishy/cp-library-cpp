@@ -9,10 +9,11 @@ class DualSegmentTree {
     using T = typename M::T;
 
 public:
+    DualSegmentTree() = default;
     explicit DualSegmentTree(int n) {
         size = 1;
         height = 1;
-        while (size < n) size <<= 1, height++;
+        while (size < n) size <<= 1, ++height;
         lazy.resize(2 * size, M::id);
     }
 
@@ -28,7 +29,7 @@ public:
         propagate(l);
         propagate(r - 1);
         for (; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) lazy[l] = M::op(lazy[l], x), l++;
+            if (l & 1) lazy[l] = M::op(lazy[l], x), ++l;
             if (r & 1) --r, lazy[r] = M::op(lazy[r], x);
         }
     }
@@ -45,6 +46,6 @@ private:
     }
 
     void propagate(int k) {
-        for (int i = height; i > 0; i--) push(k >> i);
+        for (int i = height; i > 0; --i) push(k >> i);
     }
 };

@@ -11,7 +11,7 @@ public:
                 nodes[node].child[c - 'a'] = nodes.size();
                 nodes.emplace_back();
             }
-            nodes[node].count++;
+            ++nodes[node].count;
             node = nodes[node].child[c - 'a'];
         }
         nodes[node].is_end = true;

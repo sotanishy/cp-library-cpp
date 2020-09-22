@@ -7,10 +7,10 @@
  */
 template <typename T>
 std::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {
-    const auto INF = std::numeric_limits<T>::max();
+    const T INF = std::numeric_limits<T>::max();
     std::vector<int> dist(V, INF);
     dist[s] = 0;
-    for (int i = 0; i < V; i++) {
+    for (int i = 0; i < V; ++i) {
         for (auto& e : G) {
             if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.cost) {
                 dist[e.to] = dist[e.from] + e.cost;

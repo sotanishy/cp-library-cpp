@@ -7,11 +7,11 @@
 std::vector<int> topological_sort(const std::vector<std::vector<int>>& G) {
     int V = G.size();
     std::vector<int> par_count(V);
-    for (int u = 0; u < V; u++) {
-        for (int v : G[u]) par_count[v]++;
+    for (int u = 0; u < V; ++u) {
+        for (int v : G[u]) ++par_count[v];
     }
     std::stack<int> start;
-    for (int v = 0; v < V; v++) {
+    for (int v = 0; v < V; ++v) {
         if (par_count[v] == 0) start.push(v);
     }
 
@@ -21,7 +21,7 @@ std::vector<int> topological_sort(const std::vector<std::vector<int>>& G) {
         start.pop();
         ret.push_back(u);
         for (int v : G[u]) {
-            par_count[v]--;
+            --par_count[v];
             if (par_count[v] == 0) start.push(v);
         }
     }
