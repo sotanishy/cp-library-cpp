@@ -1,28 +1,30 @@
 #include <bits/stdc++.h>
 
 template <int mod>
-struct Modint {
-    int x;
+class Modint {
+    static_assert(mod > 0, "Modulus must be positive");
 
-    Modint() : x(0) {}
-    Modint(long long y) : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
+public:
+    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
 
-    Modint& operator+=(const Modint& p) { if ((x += p.x) >= mod) x -= mod; return *this; }
-    Modint& operator-=(const Modint& p) { if ((x += mod - p.x) >= mod) x -= mod; return *this; }
-    Modint& operator*=(const Modint& p) { x = (int) (1LL * x * p.x % mod); return *this; }
-    Modint& operator/=(const Modint& p) { *this *= p.inv(); return *this; }
+    constexpr int value() const noexcept { return x; }
 
-    Modint operator-() const { return Modint(-x); }
+    constexpr Modint& operator+=(const Modint& p) noexcept { if ((x += p.x) >= mod) x -= mod; return *this; }
+    constexpr Modint& operator-=(const Modint& p) noexcept { if ((x += mod - p.x) >= mod) x -= mod; return *this; }
+    constexpr Modint& operator*=(const Modint& p) noexcept { x = static_cast<int>(1LL * x * p.x % mod); return *this; }
+    constexpr Modint& operator/=(const Modint& p) noexcept { *this *= p.inv(); return *this; }
 
-    Modint operator+(const Modint& p) const { return Modint(*this) += p; }
-    Modint operator-(const Modint& p) const { return Modint(*this) -= p; }
-    Modint operator*(const Modint& p) const { return Modint(*this) *= p; }
-    Modint operator/(const Modint& p) const { return Modint(*this) /= p; }
+    constexpr Modint operator-() const noexcept { return Modint(-x); }
 
-    bool operator==(const Modint& p) const { return x == p.x; }
-    bool operator!=(const Modint& p) const { return x != p.x; }
+    constexpr Modint operator+(const Modint& p) const noexcept { return Modint(*this) += p; }
+    constexpr Modint operator-(const Modint& p) const noexcept { return Modint(*this) -= p; }
+    constexpr Modint operator*(const Modint& p) const noexcept { return Modint(*this) *= p; }
+    constexpr Modint operator/(const Modint& p) const noexcept { return Modint(*this) /= p; }
 
-    Modint inv() const {
+    constexpr bool operator==(const Modint& p) const noexcept { return x == p.x; }
+    constexpr bool operator!=(const Modint& p) const noexcept { return x != p.x; }
+
+    constexpr Modint inv() const noexcept {
         int a = x, b = mod, u = 1, v = 0, t;
         while (b > 0) {
             t = a / b;
@@ -32,7 +34,7 @@ struct Modint {
         return Modint(u);
     }
 
-    Modint pow(long long n) const {
+    constexpr Modint pow(long long n) const noexcept {
         Modint ret(1), mul(x);
         while (n > 0) {
             if (n & 1) ret *= mul;
@@ -52,4 +54,7 @@ struct Modint {
         a = Modint<mod>(t);
         return is;
     }
+
+private:
+    int x;
 };

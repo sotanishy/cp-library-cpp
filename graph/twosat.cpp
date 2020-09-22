@@ -26,7 +26,7 @@ public:
         }
     }
 
-    bool is_satisfiable() const {
+    bool is_satisfiable() const noexcept {
         return satisfiable;
     }
 

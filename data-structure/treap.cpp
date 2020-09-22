@@ -11,11 +11,11 @@ public:
 
     void insert(T key, int priority = -1) {
         if (priority == -1) priority = std::rand() % 100000000;
-        root = insert(root, key, priority);
+        root = insert(std::move(root), key, priority);
     }
 
     void erase(T key) {
-        root = erase(root, key);
+        root = erase(std::move(root), key);
     }
 
     void print_inorder() const {
@@ -30,72 +30,73 @@ public:
 
 private:
     struct Node {
-        Node* left;
-        Node* right;
+        std::unique_ptr<Node> left, right;
         T key;
         int priority;
         Node(T key, int priority) : left(nullptr), right(nullptr), key(key), priority(priority) {}
-    } *root = nullptr;
+    };
 
-    int count(Node* t, T key) const {
+    std::unique_ptr<Node> root = nullptr;
+
+    int count(std::unique_ptr<Node> const& t, T key) const {
         if (t == nullptr) return 0;
         if (key == t->key) return 1;
         if (key < t->key) return count(t->left, key);
         else return count(t->right, key);
     }
 
-    Node* rotate_left(Node* t) {
-        Node* s = t->right;
-        t->right = s->left;
-        s->left = t;
+    std::unique_ptr<Node> rotate_left(std::unique_ptr<Node> t) {
+        std::unique_ptr<Node> s = std::move(t->right);
+        t->right = std::move(s->left);
+        s->left = std::move(t);
         return s;
     }
 
-    Node* rotate_right(Node* t) {
-        Node* s = t->left;
-        t->left = s->right;
-        s->right = t;
+    std::unique_ptr<Node> rotate_right(std::unique_ptr<Node> t) {
+        std::unique_ptr<Node> s = std::move(t->left);
+        t->left = std::move(s->right);
+        s->right = std::move(t);
         return s;
     }
 
-    Node* insert(Node* t, T key, int priority) {
-        if (t == nullptr) return new Node(key, priority);
+    std::unique_ptr<Node> insert(std::unique_ptr<Node> t, T key, int priority) {
+        if (t == nullptr) return std::make_unique<Node>(key, priority);
         if (key == t->key) return t;
         if (key < t->key) {
-            t->left = insert(t->left, key, priority);
-            if (t->priority < t->left->priority) t = rotate_right(t);
+            t->left = insert(std::move(t->left), key, priority);
+            if (t->priority < t->left->priority) t = rotate_right(std::move(t));
         } else {
-            t->right = insert(t->right, key, priority);
-            if (t->priority < t->right->priority) t = rotate_left(t);
+            t->right = insert(std::move(t->right), key, priority);
+            if (t->priority < t->right->priority) t = rotate_left(std::move(t));
         }
         return t;
     }
 
-    Node* erase(Node* t, T key) {
+    std::unique_ptr<Node> erase(std::unique_ptr<Node> t, T key) {
         if (t == nullptr) return nullptr;
         if (key == t->key) {
             if (t->left == nullptr && t->right == nullptr) return nullptr;
-            else if (t->left == nullptr) t = rotate_left(t);
-            else if (t->right == nullptr) t = rotate_right(t);
+            else if (t->left == nullptr) t = rotate_left(std::move(t));
+            else if (t->right == nullptr) t = rotate_right(std::move(t));
             else {
-                if (t->left->priority > t->right->priority) t = rotate_right(t);
-                else t = rotate_left(t);
+                if (t->left->priority > t->right->priority) t = rotate_right(std::move(t));
+                else t = rotate_left(std::move(t));
             }
-            return erase(t, key);
+            return erase(std::move(t), key);
         }
-        if (key < t->key) t->left = erase(t->left, key);
-        else t->right = erase(t->right, key);
+        if (key < t->key) t->left = erase(std::move(t->left), key);
+        else t->right = erase(std::move(t->right), key);
         return t;
     }
 
-    void print_inorder(Node* t) const {
+    void print_inorder(std::unique_ptr<Node> const& t) const {
         if (t == nullptr) return;
         print_inorder(t->left);
         std::cout << " " << t->key;
         print_inorder(t->right);
     }
 
-    void print_preorder(Node* t) const {
+    void print_preorder(std::unique_ptr<Node> const& t) const {
         if (t == nullptr) return;
         std::cout << " " << t->key;
         print_preorder(t->left);

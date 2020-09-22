@@ -25,7 +25,7 @@ public:
         return comp[i];
     }
 
-    int count() const {
+    int count() const noexcept {
         return cnt;
     }
 

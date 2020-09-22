@@ -13,7 +13,7 @@ struct Matrix {
 
     Matrix() = default;
     Matrix(int m, int n) : A(m, std::vector<T>(n)), m(m), n(n) {}
-    Matrix(initializer_list<initializer_list<T>> list) {
+    Matrix(std::initializer_list<std::initializer_list<T>> list) {
         for (auto& l : list) {
             A.push_back(std::vector<T>(l.begin(), l.end()));
         }
