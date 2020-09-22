@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/dual_segment_tree.cpp
       title: Dual Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
     - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_A.test.cpp
       title: test/aoj/DSL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
       title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
