@@ -5,6 +5,7 @@
 "test/aoj/DSL_1_A.test.cpp": "2020-09-22 15:17:21 +0900",
 "test/aoj/DSL_1_B.test.cpp": "2020-09-22 15:17:21 +0900",
 "test/aoj/DSL_2_A.test.cpp": "2020-09-22 15:17:21 +0900",
+"test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp": "2020-09-23 01:39:04 +0900",
 "test/aoj/DSL_2_B.test.cpp": "2020-09-22 15:17:21 +0900",
 "test/aoj/DSL_2_C.test.cpp": "2020-09-22 03:12:06 +0900",
 "test/aoj/DSL_2_D.test.cpp": "2020-09-22 15:17:21 +0900",
