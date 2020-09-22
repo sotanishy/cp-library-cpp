@@ -19,10 +19,10 @@ int main() {
     int n, q;
     cin >> n >> q;
     DynamicSegmentTree<Monoid> st(n);
-    for (int i = 0; i < q; i++) {
+    for (int i = 0; i < q; ++i) {
         int com, x, y;
         cin >> com >> x >> y;
-        if (com == 0) st.update(x - 1, y);
+        if (com == 0) st.update(x - 1, st[x - 1] + y);
         else cout << st.fold(x - 1, y) << "\n";
     }
 }

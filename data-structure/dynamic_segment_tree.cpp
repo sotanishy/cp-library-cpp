@@ -20,7 +20,7 @@ public:
         return fold(k, k + 1);
     }
 
-    void update(int k, const T& x) { update(k, x, root, 0, size); }
+    void update(int k, const T& x) const { update(k, x, root, 0, size); }
 
     T fold(int l, int r) const { return fold(l, r, root, 0, size); }
 
@@ -34,7 +34,7 @@ private:
     std::unique_ptr<Node> root;
     int size;
 
-    void update(int k, const T& x, std::unique_ptr<Node> const& n, int l, int r) {
+    void update(int k, const T& x, std::unique_ptr<Node> const& n, int l, int r) const {
         if (r - l == 1) {
             n->val = x;
             return;
