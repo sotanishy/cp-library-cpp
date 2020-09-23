@@ -24,7 +24,7 @@ struct O {
 };
 
 M::T act(M::T a, O::T b) {
-    return {a.first * b.first + a.second * b.second.value(), a.second};
+    return {a.first * b.first + mint(a.second), a.second};
 }
 
 int main() {
