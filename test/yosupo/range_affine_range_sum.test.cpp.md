@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: math/modint.cpp
   _extendedRequiredBy: []
@@ -63,9 +63,9 @@ data:
     \    constexpr bool operator==(const Modint& p) const noexcept { return x == p.x;\
     \ }\n    constexpr bool operator!=(const Modint& p) const noexcept { return x\
     \ != p.x; }\n\n    constexpr Modint inv() const noexcept {\n        int a = x,\
-    \ b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n            int t = a /\
-    \ b;\n            std::swap(a -= t * b, b);\n            std::swap(u -= t * v,\
-    \ v);\n        }\n        return Modint(u);\n    }\n\n    constexpr Modint pow(long\
+    \ b = mod, u = 1, v = 0;\n        while (b > 0) {\n            int t = a / b;\n\
+    \            std::swap(a -= t * b, b);\n            std::swap(u -= t * v, v);\n\
+    \        }\n        return Modint(u);\n    }\n\n    constexpr Modint pow(long\
     \ long n) const noexcept {\n        Modint ret(1), mul(x);\n        while (n >\
     \ 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n        \
     \    n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:28:03+09:00'
+  timestamp: '2020-09-23 11:43:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/sliding_window_aggregation.cpp
     title: Sliding Window Aggregation
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: math/modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -49,15 +49,15 @@ data:
     \ Modint(*this) /= p; }\n\n    constexpr bool operator==(const Modint& p) const\
     \ noexcept { return x == p.x; }\n    constexpr bool operator!=(const Modint& p)\
     \ const noexcept { return x != p.x; }\n\n    constexpr Modint inv() const noexcept\
-    \ {\n        int a = x, b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n \
-    \           int t = a / b;\n            std::swap(a -= t * b, b);\n          \
-    \  std::swap(u -= t * v, v);\n        }\n        return Modint(u);\n    }\n\n\
-    \    constexpr Modint pow(long long n) const noexcept {\n        Modint ret(1),\
-    \ mul(x);\n        while (n > 0) {\n            if (n & 1) ret *= mul;\n     \
-    \       mul *= mul;\n            n >>= 1;\n        }\n        return ret;\n  \
-    \  }\n\n    friend std::ostream &operator<<(std::ostream& os, const Modint& p)\
-    \ {\n        return os << p.x;\n    }\n\n    friend std::istream &operator>>(std::istream&\
-    \ is, Modint& a) {\n        long long t;\n        is >> t;\n        a = Modint<mod>(t);\n\
+    \ {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0) {\n    \
+    \        int t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
+    \ -= t * v, v);\n        }\n        return Modint(u);\n    }\n\n    constexpr\
+    \ Modint pow(long long n) const noexcept {\n        Modint ret(1), mul(x);\n \
+    \       while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *=\
+    \ mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n    friend\
+    \ std::ostream &operator<<(std::ostream& os, const Modint& p) {\n        return\
+    \ os << p.x;\n    }\n\n    friend std::istream &operator>>(std::istream& is, Modint&\
+    \ a) {\n        long long t;\n        is >> t;\n        a = Modint<mod>(t);\n\
     \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 5 \"test/yosupo/queue_operate_all_composite.test.cpp\"\
     \n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nstruct M {\n  \
     \  using T = pair<mint, mint>;\n    inline static const T id = {1, 0};\n    static\
@@ -88,8 +88,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:28:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-23 11:43:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
 layout: document
