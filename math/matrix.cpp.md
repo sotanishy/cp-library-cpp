@@ -11,8 +11,7 @@ data:
     document_title: Matrix
     links: []
   bundledCode: "#line 1 \"math/matrix.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
-    \ Matrix\n * @docs docs/math/matrix.md\n */\ntemplate <typename T, typename =\
-    \ typename std::enable_if<std::is_arithmetic<T>::value, T>::type>\nstruct Matrix\
+    \ Matrix\n * @docs docs/math/matrix.md\n */\ntemplate <typename T>\nstruct Matrix\
     \ {\n    std::vector<std::vector<T>> A;\n    int m, n;\n\n    const double EPS\
     \ = 1e-8;\n\n    Matrix() = default;\n    Matrix(int m, int n) : A(m, std::vector<T>(n)),\
     \ m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>> list)\
@@ -43,7 +42,7 @@ data:
     \        Matrix C(m, B.n);\n        for (int i = 0; i < m; ++i) {\n          \
     \  for (int j = 0; j < B.n; ++j) {\n                for (int k = 0; k < n; ++k)\
     \ {\n                    C[i][j] += A[i][k] * B[k][j];\n                }\n  \
-    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(long long\
+    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(std::int64_t\
     \ k) const {\n        assert(m == n);\n        Matrix ret = Matrix::I(n);\n  \
     \      Matrix B(*this);\n        while (k > 0) {\n            if (k & 1) ret =\
     \ ret.matmul(B);\n            B = B.matmul(B);\n            k >>= 1;\n       \
@@ -78,10 +77,9 @@ data:
     \ (int j = 0; j < n; ++j) {\n                B[i][j] = IB[i][n + j];\n       \
     \     }\n        }\n        return B;\n    }\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Matrix\n * @docs docs/math/matrix.md\n\
-    \ */\ntemplate <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value,\
-    \ T>::type>\nstruct Matrix {\n    std::vector<std::vector<T>> A;\n    int m, n;\n\
-    \n    const double EPS = 1e-8;\n\n    Matrix() = default;\n    Matrix(int m, int\
-    \ n) : A(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
+    \ */\ntemplate <typename T>\nstruct Matrix {\n    std::vector<std::vector<T>>\
+    \ A;\n    int m, n;\n\n    const double EPS = 1e-8;\n\n    Matrix() = default;\n\
+    \    Matrix(int m, int n) : A(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
     \ list) {\n        for (auto& l : list) {\n            A.push_back(std::vector<T>(l.begin(),\
     \ l.end()));\n        }\n        m = A.size();\n        n = A[0].size();\n   \
     \ }\n\n    static Matrix I(int n) {\n        Matrix ret(n, n);\n        for (int\
@@ -109,7 +107,7 @@ data:
     \        Matrix C(m, B.n);\n        for (int i = 0; i < m; ++i) {\n          \
     \  for (int j = 0; j < B.n; ++j) {\n                for (int k = 0; k < n; ++k)\
     \ {\n                    C[i][j] += A[i][k] * B[k][j];\n                }\n  \
-    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(long long\
+    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(std::int64_t\
     \ k) const {\n        assert(m == n);\n        Matrix ret = Matrix::I(n);\n  \
     \      Matrix B(*this);\n        while (k > 0) {\n            if (k & 1) ret =\
     \ ret.matmul(B);\n            B = B.matmul(B);\n            k >>= 1;\n       \
@@ -147,7 +145,7 @@ data:
   isVerificationFile: false
   path: math/matrix.cpp
   requiredBy: []
-  timestamp: '2020-09-23 00:47:02+09:00'
+  timestamp: '2020-09-23 11:09:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/matrix.cpp

@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/queue_operate_all_composite.test.cpp
+    title: test/yosupo/queue_operate_all_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/range_affine_range_sum.test.cpp
+    title: test/yosupo/range_affine_range_sum.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/modint.cpp\"\n#include <bits/stdc++.h>\n\ntemplate\
     \ <int mod>\nclass Modint {\n    static_assert(mod > 0, \"Modulus must be positive\"\
-    );\n\npublic:\n    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y %\
-    \ mod : (y % mod + mod) % mod) {}\n\n    constexpr int value() const noexcept\
+    );\n\npublic:\n    constexpr Modint(std::int64_t y = 0) noexcept : x(y >= 0 ?\
+    \ y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value() const noexcept\
     \ { return x; }\n\n    constexpr Modint& operator+=(const Modint& p) noexcept\
     \ { if ((x += p.x) >= mod) x -= mod; return *this; }\n    constexpr Modint& operator-=(const\
     \ Modint& p) noexcept { if ((x += mod - p.x) >= mod) x -= mod; return *this; }\n\
@@ -29,15 +35,15 @@ data:
     \ {\n        int a = x, b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n \
     \           t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
     \ -= t * v, v);\n        }\n        return Modint(u);\n    }\n\n    constexpr\
-    \ Modint pow(long long n) const noexcept {\n        Modint ret(1), mul(x);\n \
-    \       while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *=\
-    \ mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n    friend\
-    \ std::ostream &operator<<(std::ostream& os, const Modint& p) {\n        return\
-    \ os << p.x;\n    }\n\n    friend std::istream &operator>>(std::istream& is, Modint&\
-    \ a) {\n        long long t;\n        is >> t;\n        a = Modint<mod>(t);\n\
+    \ Modint pow(std::int64_t n) const noexcept {\n        Modint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ friend std::ostream &operator<<(std::ostream& os, const Modint& p) {\n     \
+    \   return os << p.x;\n    }\n\n    friend std::istream &operator>>(std::istream&\
+    \ is, Modint& a) {\n        std::int64_t t;\n        is >> t;\n        a = Modint<mod>(t);\n\
     \        return is;\n    }\n\nprivate:\n    int x;\n};\n"
   code: "#include <bits/stdc++.h>\n\ntemplate <int mod>\nclass Modint {\n    static_assert(mod\
-    \ > 0, \"Modulus must be positive\");\n\npublic:\n    constexpr Modint(long long\
+    \ > 0, \"Modulus must be positive\");\n\npublic:\n    constexpr Modint(std::int64_t\
     \ y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr\
     \ int value() const noexcept { return x; }\n\n    constexpr Modint& operator+=(const\
     \ Modint& p) noexcept { if ((x += p.x) >= mod) x -= mod; return *this; }\n   \
@@ -56,21 +62,23 @@ data:
     \ != p.x; }\n\n    constexpr Modint inv() const noexcept {\n        int a = x,\
     \ b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n            t = a / b;\n\
     \            std::swap(a -= t * b, b);\n            std::swap(u -= t * v, v);\n\
-    \        }\n        return Modint(u);\n    }\n\n    constexpr Modint pow(long\
-    \ long n) const noexcept {\n        Modint ret(1), mul(x);\n        while (n >\
-    \ 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n        \
-    \    n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream\
-    \ &operator<<(std::ostream& os, const Modint& p) {\n        return os << p.x;\n\
-    \    }\n\n    friend std::istream &operator>>(std::istream& is, Modint& a) {\n\
-    \        long long t;\n        is >> t;\n        a = Modint<mod>(t);\n       \
-    \ return is;\n    }\n\nprivate:\n    int x;\n};"
+    \        }\n        return Modint(u);\n    }\n\n    constexpr Modint pow(std::int64_t\
+    \ n) const noexcept {\n        Modint ret(1), mul(x);\n        while (n > 0) {\n\
+    \            if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>=\
+    \ 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream &operator<<(std::ostream&\
+    \ os, const Modint& p) {\n        return os << p.x;\n    }\n\n    friend std::istream\
+    \ &operator>>(std::istream& is, Modint& a) {\n        std::int64_t t;\n      \
+    \  is >> t;\n        a = Modint<mod>(t);\n        return is;\n    }\n\nprivate:\n\
+    \    int x;\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/modint.cpp
   requiredBy: []
-  timestamp: '2020-09-23 00:47:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-09-23 11:09:57+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: math/modint.cpp
 layout: document
 redirect_from:

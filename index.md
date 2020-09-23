@@ -21,7 +21,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':warning:'
@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Slide Min
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -138,10 +138,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: Mod Exponentiation
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/modint.cpp
       title: math/modint.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -296,10 +296,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'

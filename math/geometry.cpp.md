@@ -9,8 +9,8 @@ data:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/geometry.cpp\"\n#include <bits/stdc++.h>\n\nconst double\
-    \ eps = 1e-12;\n\nstruct Vec {\n    double x, y;\n    \n    Vec() = default;\n\
-    \    Vec(double x, double y) : x(x), y(y) {}\n\n    Vec operator+(const Vec& other)\
+    \ eps = 1e-12;\n\nstruct Vec {\n    double x, y;\n\n    Vec() = default;\n   \
+    \ Vec(double x, double y) : x(x), y(y) {}\n\n    Vec operator+(const Vec& other)\
     \ const { return Vec(x + other.x, y + other.y); }\n    Vec operator-(const Vec&\
     \ other) const { return Vec(x - other.x, y - other.y); }\n    Vec operator*(double\
     \ k) const { return Vec(x * k, y * k); }\n    Vec operator/(double k) const {\
@@ -69,7 +69,7 @@ data:
     \        ++k;\n    }\n    return std::vector<Vec>(ch.begin(), ch.begin() + (k\
     \ - 1));\n}\n"
   code: "#include <bits/stdc++.h>\n\nconst double eps = 1e-12;\n\nstruct Vec {\n \
-    \   double x, y;\n    \n    Vec() = default;\n    Vec(double x, double y) : x(x),\
+    \   double x, y;\n\n    Vec() = default;\n    Vec(double x, double y) : x(x),\
     \ y(y) {}\n\n    Vec operator+(const Vec& other) const { return Vec(x + other.x,\
     \ y + other.y); }\n    Vec operator-(const Vec& other) const { return Vec(x -\
     \ other.x, y - other.y); }\n    Vec operator*(double k) const { return Vec(x *\
@@ -132,7 +132,7 @@ data:
   isVerificationFile: false
   path: math/geometry.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-09-23 11:09:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/geometry.cpp

@@ -9,11 +9,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/lazy_segment_tree.md
@@ -80,7 +80,7 @@ data:
   path: data-structure/lazy_segment_tree.cpp
   requiredBy: []
   timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_G.lazy_segment_tree.test.cpp

@@ -12,22 +12,22 @@ data:
     links: []
   bundledCode: "#line 1 \"math/prime_table.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
     \ * @brief Prime Table\n * @docs docs/math/prime_table.md\n */\nstd::vector<bool>\
-    \ prime_table(int n) {\n    vector<bool> prime(n + 1, true);\n    prime[0] = prime[1]\
-    \ = false;\n    for (int j = 4; j <= n; j += 2) prime[j] = false;\n    for (int\
-    \ i = 3; i <= n; i += 2) {\n        if (!prime[i]) continue;\n        for (int\
-    \ j = i * i; j <= n; j += 2 * i) prime[j] = false;\n    }\n    return prime;\n\
-    }\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Prime Table\n * @docs docs/math/prime_table.md\n\
-    \ */\nstd::vector<bool> prime_table(int n) {\n    vector<bool> prime(n + 1, true);\n\
-    \    prime[0] = prime[1] = false;\n    for (int j = 4; j <= n; j += 2) prime[j]\
-    \ = false;\n    for (int i = 3; i <= n; i += 2) {\n        if (!prime[i]) continue;\n\
+    \ prime_table(int n) {\n    std::vector<bool> prime(n + 1, true);\n    prime[0]\
+    \ = prime[1] = false;\n    for (int j = 4; j <= n; j += 2) prime[j] = false;\n\
+    \    for (int i = 3; i * i <= n; i += 2) {\n        if (!prime[i]) continue;\n\
     \        for (int j = i * i; j <= n; j += 2 * i) prime[j] = false;\n    }\n  \
-    \  return prime;\n}"
+    \  return prime;\n}\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Prime Table\n * @docs docs/math/prime_table.md\n\
+    \ */\nstd::vector<bool> prime_table(int n) {\n    std::vector<bool> prime(n +\
+    \ 1, true);\n    prime[0] = prime[1] = false;\n    for (int j = 4; j <= n; j +=\
+    \ 2) prime[j] = false;\n    for (int i = 3; i * i <= n; i += 2) {\n        if\
+    \ (!prime[i]) continue;\n        for (int j = i * i; j <= n; j += 2 * i) prime[j]\
+    \ = false;\n    }\n    return prime;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/prime_table.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:45:31+09:00'
+  timestamp: '2020-09-23 11:09:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/prime_table.cpp
