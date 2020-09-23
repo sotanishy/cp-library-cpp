@@ -4,16 +4,16 @@
  * @brief Number Theoretic Transform
  * @docs docs/math/ntt.md
  */
-template <long long mod, long long primitive_root>
+template <std::int64_t mod, std::int64_t primitive_root>
 class NTT {
 public:
     NTT() = delete;
-    
-    static std::vector<long long> convolution(const std::vector<long long>& a, const std::vector<long long>& b) {
+
+    static std::vector<std::int64_t> convolution(const std::vector<std::int64_t>& a, const std::vector<std::int64_t>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
-        std::vector<long long> na = a, nb = b;
+        std::vector<std::int64_t> na = a, nb = b;
         na.resize(n);
         nb.resize(n);
         untt(na);
@@ -21,14 +21,14 @@ public:
         for (int i = 0; i < n; ++i) na[i] = na[i] * nb[i] % mod;
         iuntt(na);
         na.resize(size);
-        long long n_inv = mod_inv(n);
+        std::int64_t n_inv = mod_inv(n);
         for (int i = 0; i < size; ++i) na[i] = na[i] * n_inv % mod;
         return na;
     }
 
 private:
-    static long long mod_pow(long long n, long long p) {
-        long long ret = 1;
+    static std::int64_t mod_pow(std::int64_t n, std::int64_t p) {
+        std::int64_t ret = 1;
         while (p > 0) {
             if (p & 1) ret = ret * n % mod;
             n = n * n % mod;
@@ -37,8 +37,8 @@ private:
         return ret;
     }
 
-    static long long mod_inv(long long a) {
-        long long b = mod, u = 1, v = 0, t;
+    static std::int64_t mod_inv(std::int64_t a) {
+        std::int64_t b = mod, u = 1, v = 0, t;
         while (b > 0) {
             t = a / b;
             std::swap(a -= t * b, b);
@@ -47,15 +47,15 @@ private:
         return (u % mod + mod) % mod;
     }
 
-    static void untt(std::vector<long long>& a) {
+    static void untt(std::vector<std::int64_t>& a) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
-            long long omega = mod_pow(primitive_root, (mod - 1) / m);
+            std::int64_t omega = mod_pow(primitive_root, (mod - 1) / m);
             for (int s = 0; s < n / m; ++s) {
-                long long w = 1;
+                std::int64_t w = 1;
                 for (int i = 0; i < m / 2; ++i) {
-                    long long l = a[s * m + i];
-                    long long r = a[s * m + i + m / 2];
+                    std::int64_t l = a[s * m + i];
+                    std::int64_t r = a[s * m + i + m / 2];
                     a[s * m + i] = (l + r) % mod;
                     a[s * m + i + m / 2] = (l - r + mod) * w % mod;
                     w = w * omega % mod;
@@ -64,15 +64,15 @@ private:
         }
     }
 
-    static void iuntt(std::vector<long long>& a) {
+    static void iuntt(std::vector<std::int64_t>& a) {
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
-            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
+            std::int64_t omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
             for (int s = 0; s < n / m; ++s) {
-                long long w = 1;
+                std::int64_t w = 1;
                 for (int i = 0; i < m / 2; ++i) {
-                    long long l = a[s * m + i];
-                    long long r = a[s * m + i + m / 2] * w % mod;
+                    std::int64_t l = a[s * m + i];
+                    std::int64_t r = a[s * m + i + m / 2] * w % mod;
                     a[s * m + i] = (l + r) % mod;
                     a[s * m + i + m / 2] = (l - r + mod) % mod;
                     w = w * omega % mod;

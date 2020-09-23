@@ -10,10 +10,9 @@ class DynamicSegmentTree {
 
 public:
     DynamicSegmentTree() = default;
-    explicit DynamicSegmentTree(int n) {
+    explicit DynamicSegmentTree(int n) : root(std::make_unique<Node>()) {
         size = 1;
         while (size < n) size <<= 1;
-        root = std::make_unique<Node>();
     }
 
     T operator[](int k) const {
@@ -31,7 +30,7 @@ private:
         Node() : left(nullptr), right(nullptr), val(M::id) {}
     };
 
-    std::unique_ptr<Node> root;
+    std::unique_ptr<Node> const root;
     int size;
 
     void update(int k, const T& x, std::unique_ptr<Node> const& n, int l, int r) const {

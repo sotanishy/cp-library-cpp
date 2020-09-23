@@ -4,7 +4,7 @@
  * @brief Matrix
  * @docs docs/math/matrix.md
  */
-template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+template <typename T>
 struct Matrix {
     std::vector<std::vector<T>> A;
     int m, n;
@@ -100,7 +100,7 @@ struct Matrix {
         return C;
     }
 
-    Matrix pow(long long k) const {
+    Matrix pow(std::int64_t k) const {
         assert(m == n);
         Matrix ret = Matrix::I(n);
         Matrix B(*this);

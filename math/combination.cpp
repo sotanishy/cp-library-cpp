@@ -4,45 +4,35 @@
  * @brief Combination
  * @docs docs/math/combination.md
  */
+template <typename T>
 class Combination {
-    static long long C(int n, int r, long long mod) {
-        long long num = 1, den = 1;
+    static T comb(int n, int r) {
+        T num = 1, den = 1;
         for (int i = 1; i <= r; ++i) {
-            num = num * (n - i + 1) % mod;
-            den = den * i % mod;
+            num = num * (n - i + 1);
+            den = den * i;
         }
-        return num * mod_inv(den, mod) % mod;
+        return num / den;
     }
 
     Combination() = default;
-    Combination(int n, long long mod) : mod(mod), fact(n + 1), fact_inv(n + 1) {
-        fact[0] = fact_inv[0] = 1;
-        for (int i = 1; i <= n; ++i) fact[i] = fact[i-1] * i % mod;
-        fact_inv[n] = mod_inv(n, mod);
-        for (int i = n; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i % mod;
+    Combination(int n) : fact(n + 1), fact_inv(n + 1) {
+        fact[0] = 1;
+        for (int i = 1; i <= n; ++i) fact[i] = fact[i - 1] * i;
+        fact_inv[n] = 1 / fact[n];
+        for (int i = n; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;
     }
 
-    long long P(int n, int r) const {
+    T perm(int n, int r) const {
         if (r < 0 || n < r) return 0;
-        return fact[n] * fact_inv[n - r] % mod;
+        return fact[n] * fact_inv[n - r];
     }
 
-    long long C(int n, int r) const {
+    T comb(int n, int r) const {
         if (r < 0 || n < r) return 0;
-        return fact[n] * fact_inv[r] % mod * fact_inv[n - r] % mod;
+        return fact[n] * fact_inv[r] * fact_inv[n - r];
     }
 
 private:
-    long long mod;
-    std::vector<long long> fact, fact_inv;
-
-    static long long mod_inv(long long a, long long mod) {
-        long long b = mod, u = 1, v = 0, t;
-        while (b > 0) {
-            t = a / b;
-            std::swap(a -= t * b, b);
-            std::swap(u -= t * v, v);
-        }
-        return (u % mod + mod) % mod;
-    }
+    std::vector<T> fact, fact_inv;
 };

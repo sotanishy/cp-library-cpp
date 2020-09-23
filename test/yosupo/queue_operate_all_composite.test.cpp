@@ -1,17 +1,17 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
 
 #include "../../data-structure/sliding_window_aggregation.cpp"
+#include "../../math/modint.cpp"
 
 using namespace std;
-using ll = long long;
 
-const ll mod = 998244353;
+using mint = Modint<998244353>;
 
 struct M {
-    using T = pair<ll, ll>;
+    using T = pair<mint, mint>;
     inline static const T id = {1, 0};
     static T op(T a, T b) {
-        return {a.first * b.first % mod, (a.second * b.first + b.second) % mod};
+        return {a.first * b.first, a.second * b.first + b.second};
     }
 };
 
@@ -35,7 +35,7 @@ int main() {
             int x;
             cin >> x;
             auto p = que.fold();
-            cout << (p.first * x + p.second) % mod << "\n";
+            cout << p.first * x + p.second << "\n";
         }
     }
 }

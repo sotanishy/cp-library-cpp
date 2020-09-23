@@ -4,22 +4,27 @@
 
 空間計算量: $O(n)$
 
+## Template parameter
+
+- `T`
+    - 要素の型．`Modint<mod>`を渡す
+
 ## Constructor
 
-- `Combination(int n, long long mod)`
+- `Combination(int n)`
     - $n$ 以下の整数の階乗及びその逆元を前計算する
     - 時間計算量: $O(n)$
 
 ## Member functions
 
-- `static long long C(int n, int r, long long mod)`
+- `static T comb(int n, int r)`
     - $n \choose r$ を計算する．
     - 時間計算量: $O(r)$
 
-- `long long P(int n, int r)`
+- `T perm(int n, int r)`
     - $_n P _r$ を計算する．$r < 0$ または $n < r$ のときは0を返す
     - 時間計算量: $O(1)$
 
-- `long long C(int n, int r)`
+- `T comb(int n, int r)`
     - $n \choose r$ を計算する．$r < 0$ または $n < r$ のときは0を返す
     - 時間計算量: $O(1)$

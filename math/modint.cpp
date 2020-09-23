@@ -5,7 +5,7 @@ class Modint {
     static_assert(mod > 0, "Modulus must be positive");
 
 public:
-    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
+    constexpr Modint(std::int64_t y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
 
     constexpr int value() const noexcept { return x; }
 
@@ -34,7 +34,7 @@ public:
         return Modint(u);
     }
 
-    constexpr Modint pow(long long n) const noexcept {
+    constexpr Modint pow(std::int64_t n) const noexcept {
         Modint ret(1), mul(x);
         while (n > 0) {
             if (n & 1) ret *= mul;
@@ -49,7 +49,7 @@ public:
     }
 
     friend std::istream &operator>>(std::istream& is, Modint& a) {
-        long long t;
+        std::int64_t t;
         is >> t;
         a = Modint<mod>(t);
         return is;

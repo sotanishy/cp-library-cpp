@@ -4,7 +4,7 @@ const double eps = 1e-12;
 
 struct Vec {
     double x, y;
-    
+
     Vec() = default;
     Vec(double x, double y) : x(x), y(y) {}
 
