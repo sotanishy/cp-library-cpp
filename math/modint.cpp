@@ -25,7 +25,7 @@ public:
     constexpr bool operator!=(const Modint& p) const noexcept { return x != p.x; }
 
     constexpr Modint inv() const noexcept {
-        int a = x, b = mod, u = 1, v = 0, t;
+        int a = x, b = mod, u = 1, v = 0;
         while (b > 0) {
             int t = a / b;
             std::swap(a -= t * b, b);
