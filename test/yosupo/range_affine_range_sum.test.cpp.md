@@ -46,7 +46,7 @@ data:
     \ && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return M::op(fold(a,\
     \ b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m, r));\n    }\n\
     };\n#line 2 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass Modint {\n    static_assert(mod\
-    \ > 0, \"Modulus must be positive\");\n\npublic:\n    constexpr Modint(std::int64_t\
+    \ > 0, \"Modulus must be positive\");\n\npublic:\n    constexpr Modint(long long\
     \ y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr\
     \ int value() const noexcept { return x; }\n\n    constexpr Modint& operator+=(const\
     \ Modint& p) noexcept { if ((x += p.x) >= mod) x -= mod; return *this; }\n   \
@@ -63,26 +63,26 @@ data:
     \    constexpr bool operator==(const Modint& p) const noexcept { return x == p.x;\
     \ }\n    constexpr bool operator!=(const Modint& p) const noexcept { return x\
     \ != p.x; }\n\n    constexpr Modint inv() const noexcept {\n        int a = x,\
-    \ b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n            t = a / b;\n\
-    \            std::swap(a -= t * b, b);\n            std::swap(u -= t * v, v);\n\
-    \        }\n        return Modint(u);\n    }\n\n    constexpr Modint pow(std::int64_t\
-    \ n) const noexcept {\n        Modint ret(1), mul(x);\n        while (n > 0) {\n\
-    \            if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>=\
-    \ 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream &operator<<(std::ostream&\
-    \ os, const Modint& p) {\n        return os << p.x;\n    }\n\n    friend std::istream\
-    \ &operator>>(std::istream& is, Modint& a) {\n        std::int64_t t;\n      \
-    \  is >> t;\n        a = Modint<mod>(t);\n        return is;\n    }\n\nprivate:\n\
-    \    int x;\n};\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\n\nusing\
-    \ namespace std;\n\nusing mint = Modint<998244353>;\n\nstruct M {\n    using T\
-    \ = pair<mint, int>;\n    inline static const T id = {0, 0};\n    static T op(T\
-    \ a, T b) {\n        return {a.first + b.first, a.second + b.second};\n    }\n\
-    };\n\nstruct O {\n    using T = pair<mint, mint>;\n    inline static const T id\
-    \ = {1, 0};\n    static T op(T a, T b) {\n        return {a.first * b.first, a.second\
-    \ * b.first + b.second};\n    }\n};\n\nM::T act(M::T a, O::T b) {\n    return\
-    \ {a.first * b.first + a.second * b.second.value(), a.second};\n}\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    vector<pair<mint, int>> a(N, {0, 1});\n    for (int i\
-    \ = 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O, act> st(a);\n\
+    \ b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n            int t = a /\
+    \ b;\n            std::swap(a -= t * b, b);\n            std::swap(u -= t * v,\
+    \ v);\n        }\n        return Modint(u);\n    }\n\n    constexpr Modint pow(long\
+    \ long n) const noexcept {\n        Modint ret(1), mul(x);\n        while (n >\
+    \ 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n        \
+    \    n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream\
+    \ &operator<<(std::ostream& os, const Modint& p) {\n        return os << p.x;\n\
+    \    }\n\n    friend std::istream &operator>>(std::istream& is, Modint& a) {\n\
+    \        long long t;\n        is >> t;\n        a = Modint<mod>(t);\n       \
+    \ return is;\n    }\n\nprivate:\n    int x;\n};\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\
+    \n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nstruct M {\n  \
+    \  using T = pair<mint, int>;\n    inline static const T id = {0, 0};\n    static\
+    \ T op(T a, T b) {\n        return {a.first + b.first, a.second + b.second};\n\
+    \    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n    inline static const\
+    \ T id = {1, 0};\n    static T op(T a, T b) {\n        return {a.first * b.first,\
+    \ a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T a, O::T b) {\n \
+    \   return {a.first * b.first + a.second * b.second.value(), a.second};\n}\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    vector<pair<mint, int>> a(N, {0, 1});\n    for\
+    \ (int i = 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O, act> st(a);\n\
     \    for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n      \
     \  if (t == 0) {\n            int l, r, b, c;\n            cin >> l >> r >> b\
     \ >> c;\n            st.update(l, r, {b, c});\n        } else {\n            int\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

@@ -15,23 +15,23 @@ data:
     links: []
   bundledCode: "#line 1 \"math/euler_totient.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
     \ * @brief Euler's Totient Function\n * @docs docs/math/euler_totient.md\n */\n\
-    std::int64_t euler_totient(std::int64_t n) {\n    std::int64_t ret = n;\n    if\
-    \ (n % 2 == 0) {\n        ret -= ret / 2;\n        while (n % 2 == 0) n /= 2;\n\
-    \    }\n    for (std::int64_t i = 3; i * i <= n; i += 2) {\n        if (n % i\
-    \ == 0) {\n            ret -= ret / i;\n            while (n % i == 0) n /= i;\n\
-    \        }\n    }\n    if (n != 1) ret -= ret / n;\n    return ret;\n}\n"
+    long long euler_totient(long long n) {\n    long long ret = n;\n    if (n % 2\
+    \ == 0) {\n        ret -= ret / 2;\n        while (n % 2 == 0) n /= 2;\n    }\n\
+    \    for (long long i = 3; i * i <= n; i += 2) {\n        if (n % i == 0) {\n\
+    \            ret -= ret / i;\n            while (n % i == 0) n /= i;\n       \
+    \ }\n    }\n    if (n != 1) ret -= ret / n;\n    return ret;\n}\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Euler's Totient Function\n * @docs\
-    \ docs/math/euler_totient.md\n */\nstd::int64_t euler_totient(std::int64_t n)\
-    \ {\n    std::int64_t ret = n;\n    if (n % 2 == 0) {\n        ret -= ret / 2;\n\
-    \        while (n % 2 == 0) n /= 2;\n    }\n    for (std::int64_t i = 3; i * i\
-    \ <= n; i += 2) {\n        if (n % i == 0) {\n            ret -= ret / i;\n  \
-    \          while (n % i == 0) n /= i;\n        }\n    }\n    if (n != 1) ret -=\
-    \ ret / n;\n    return ret;\n}"
+    \ docs/math/euler_totient.md\n */\nlong long euler_totient(long long n) {\n  \
+    \  long long ret = n;\n    if (n % 2 == 0) {\n        ret -= ret / 2;\n      \
+    \  while (n % 2 == 0) n /= 2;\n    }\n    for (long long i = 3; i * i <= n; i\
+    \ += 2) {\n        if (n % i == 0) {\n            ret -= ret / i;\n          \
+    \  while (n % i == 0) n /= i;\n        }\n    }\n    if (n != 1) ret -= ret /\
+    \ n;\n    return ret;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/euler_totient.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp

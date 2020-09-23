@@ -141,7 +141,7 @@ data:
     - icon: ':x:'
       path: math/modint.cpp
       title: math/modint.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'

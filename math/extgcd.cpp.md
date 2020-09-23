@@ -11,26 +11,26 @@ data:
     document_title: Extended Euclidean Algorithm
     links: []
   bundledCode: "#line 1 \"math/extgcd.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
-    \ Extended Euclidean Algorithm\n * @docs docs/math/extgcd.md\n */\nstd::pair<std::int64_t,\
-    \ std::int64_t> extgcd(std::int64_t a, std::int64_t b) {\n    std::int64_t s =\
-    \ a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;\n    while (t) {\n        std::int64_t\
-    \ q = s / t;\n        std::swap(s -= t * q, t);\n        std::swap(sx -= tx *\
-    \ q, tx);\n        std::swap(sy -= ty * q, ty);\n    }\n    return {sx, sy};\n\
-    }\n\nstd::int64_t mod_inv(std::int64_t a, std::int64_t mod) {\n    std::int64_t\
-    \ inv = extgcd(a, mod).first;\n    return (inv % mod + mod) % mod;\n}\n"
+    \ Extended Euclidean Algorithm\n * @docs docs/math/extgcd.md\n */\nstd::pair<long\
+    \ long, long long> extgcd(long long a, long long b) {\n    long long s = a, sx\
+    \ = 1, sy = 0, t = b, tx = 0, ty = 1;\n    while (t) {\n        long long q =\
+    \ s / t;\n        std::swap(s -= t * q, t);\n        std::swap(sx -= tx * q, tx);\n\
+    \        std::swap(sy -= ty * q, ty);\n    }\n    return {sx, sy};\n}\n\nlong\
+    \ long mod_inv(long long a, long long mod) {\n    long long inv = extgcd(a, mod).first;\n\
+    \    return (inv % mod + mod) % mod;\n}\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Extended Euclidean Algorithm\n\
-    \ * @docs docs/math/extgcd.md\n */\nstd::pair<std::int64_t, std::int64_t> extgcd(std::int64_t\
-    \ a, std::int64_t b) {\n    std::int64_t s = a, sx = 1, sy = 0, t = b, tx = 0,\
-    \ ty = 1;\n    while (t) {\n        std::int64_t q = s / t;\n        std::swap(s\
+    \ * @docs docs/math/extgcd.md\n */\nstd::pair<long long, long long> extgcd(long\
+    \ long a, long long b) {\n    long long s = a, sx = 1, sy = 0, t = b, tx = 0,\
+    \ ty = 1;\n    while (t) {\n        long long q = s / t;\n        std::swap(s\
     \ -= t * q, t);\n        std::swap(sx -= tx * q, tx);\n        std::swap(sy -=\
-    \ ty * q, ty);\n    }\n    return {sx, sy};\n}\n\nstd::int64_t mod_inv(std::int64_t\
-    \ a, std::int64_t mod) {\n    std::int64_t inv = extgcd(a, mod).first;\n    return\
-    \ (inv % mod + mod) % mod;\n}"
+    \ ty * q, ty);\n    }\n    return {sx, sy};\n}\n\nlong long mod_inv(long long\
+    \ a, long long mod) {\n    long long inv = extgcd(a, mod).first;\n    return (inv\
+    \ % mod + mod) % mod;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/extgcd.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/extgcd.cpp

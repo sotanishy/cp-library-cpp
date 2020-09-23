@@ -42,7 +42,7 @@ data:
     \        Matrix C(m, B.n);\n        for (int i = 0; i < m; ++i) {\n          \
     \  for (int j = 0; j < B.n; ++j) {\n                for (int k = 0; k < n; ++k)\
     \ {\n                    C[i][j] += A[i][k] * B[k][j];\n                }\n  \
-    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(std::int64_t\
+    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(long long\
     \ k) const {\n        assert(m == n);\n        Matrix ret = Matrix::I(n);\n  \
     \      Matrix B(*this);\n        while (k > 0) {\n            if (k & 1) ret =\
     \ ret.matmul(B);\n            B = B.matmul(B);\n            k >>= 1;\n       \
@@ -107,7 +107,7 @@ data:
     \        Matrix C(m, B.n);\n        for (int i = 0; i < m; ++i) {\n          \
     \  for (int j = 0; j < B.n; ++j) {\n                for (int k = 0; k < n; ++k)\
     \ {\n                    C[i][j] += A[i][k] * B[k][j];\n                }\n  \
-    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(std::int64_t\
+    \          }\n        }\n        return C;\n    }\n\n    Matrix pow(long long\
     \ k) const {\n        assert(m == n);\n        Matrix ret = Matrix::I(n);\n  \
     \      Matrix B(*this);\n        while (k > 0) {\n            if (k & 1) ret =\
     \ ret.matmul(B);\n            B = B.matmul(B);\n            k >>= 1;\n       \
@@ -145,7 +145,7 @@ data:
   isVerificationFile: false
   path: math/matrix.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/matrix.cpp

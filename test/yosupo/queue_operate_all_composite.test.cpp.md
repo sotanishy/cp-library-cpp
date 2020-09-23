@@ -33,13 +33,13 @@ data:
     \ back.top().second);\n        return ret;\n    }\n\nprivate:\n    std::stack<std::pair<T,\
     \ T>> front, back;\n};\n#line 2 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass\
     \ Modint {\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
-    \    constexpr Modint(std::int64_t y = 0) noexcept : x(y >= 0 ? y % mod : (y %\
-    \ mod + mod) % mod) {}\n\n    constexpr int value() const noexcept { return x;\
-    \ }\n\n    constexpr Modint& operator+=(const Modint& p) noexcept { if ((x +=\
-    \ p.x) >= mod) x -= mod; return *this; }\n    constexpr Modint& operator-=(const\
-    \ Modint& p) noexcept { if ((x += mod - p.x) >= mod) x -= mod; return *this; }\n\
-    \    constexpr Modint& operator*=(const Modint& p) noexcept { x = static_cast<int>(1LL\
-    \ * x * p.x % mod); return *this; }\n    constexpr Modint& operator/=(const Modint&\
+    \    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod\
+    \ + mod) % mod) {}\n\n    constexpr int value() const noexcept { return x; }\n\
+    \n    constexpr Modint& operator+=(const Modint& p) noexcept { if ((x += p.x)\
+    \ >= mod) x -= mod; return *this; }\n    constexpr Modint& operator-=(const Modint&\
+    \ p) noexcept { if ((x += mod - p.x) >= mod) x -= mod; return *this; }\n    constexpr\
+    \ Modint& operator*=(const Modint& p) noexcept { x = static_cast<int>(1LL * x\
+    \ * p.x % mod); return *this; }\n    constexpr Modint& operator/=(const Modint&\
     \ p) noexcept { *this *= p.inv(); return *this; }\n\n    constexpr Modint operator-()\
     \ const noexcept { return Modint(-x); }\n\n    constexpr Modint operator+(const\
     \ Modint& p) const noexcept { return Modint(*this) += p; }\n    constexpr Modint\
@@ -50,14 +50,14 @@ data:
     \ noexcept { return x == p.x; }\n    constexpr bool operator!=(const Modint& p)\
     \ const noexcept { return x != p.x; }\n\n    constexpr Modint inv() const noexcept\
     \ {\n        int a = x, b = mod, u = 1, v = 0, t;\n        while (b > 0) {\n \
-    \           t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
-    \ -= t * v, v);\n        }\n        return Modint(u);\n    }\n\n    constexpr\
-    \ Modint pow(std::int64_t n) const noexcept {\n        Modint ret(1), mul(x);\n\
-    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
-    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
-    \ friend std::ostream &operator<<(std::ostream& os, const Modint& p) {\n     \
-    \   return os << p.x;\n    }\n\n    friend std::istream &operator>>(std::istream&\
-    \ is, Modint& a) {\n        std::int64_t t;\n        is >> t;\n        a = Modint<mod>(t);\n\
+    \           int t = a / b;\n            std::swap(a -= t * b, b);\n          \
+    \  std::swap(u -= t * v, v);\n        }\n        return Modint(u);\n    }\n\n\
+    \    constexpr Modint pow(long long n) const noexcept {\n        Modint ret(1),\
+    \ mul(x);\n        while (n > 0) {\n            if (n & 1) ret *= mul;\n     \
+    \       mul *= mul;\n            n >>= 1;\n        }\n        return ret;\n  \
+    \  }\n\n    friend std::ostream &operator<<(std::ostream& os, const Modint& p)\
+    \ {\n        return os << p.x;\n    }\n\n    friend std::istream &operator>>(std::istream&\
+    \ is, Modint& a) {\n        long long t;\n        is >> t;\n        a = Modint<mod>(t);\n\
     \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 5 \"test/yosupo/queue_operate_all_composite.test.cpp\"\
     \n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nstruct M {\n  \
     \  using T = pair<mint, mint>;\n    inline static const T id = {1, 0};\n    static\
@@ -88,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

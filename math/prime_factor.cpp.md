@@ -14,27 +14,28 @@ data:
     document_title: Prime Factor
     links: []
   bundledCode: "#line 1 \"math/prime_factor.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
-    \ * @brief Prime Factor\n * @docs docs/math/prime_factor.md\n */\nstd::map<std::int64_t,\
-    \ int> prime_factor(std::int64_t n) {\n    std::map<std::int64_t, int> ret;\n\
+    \ * @brief Prime Factor\n * @docs docs/math/prime_factor.md\n */\nstd::map<long\
+    \ long, int> prime_factor(long long n) {\n    std::map<long long, int> ret;\n\
     \    if (n % 2 == 0) {\n        int cnt = 0;\n        while (n % 2 == 0) {\n \
     \           ++cnt;\n            n /= 2;\n        }\n        ret[2] = cnt;\n  \
-    \  }\n    for (std::int64_t i = 3; i * i <= n; i += 2) {\n        if (n % i ==\
-    \ 0) {\n            int cnt = 0;\n            while (n % i == 0) {\n         \
-    \       ++cnt;\n                n /= i;\n            }\n            ret[i] = cnt;\n\
+    \  }\n    for (long long i = 3; i * i <= n; i += 2) {\n        if (n % i == 0)\
+    \ {\n            int cnt = 0;\n            while (n % i == 0) {\n            \
+    \    ++cnt;\n                n /= i;\n            }\n            ret[i] = cnt;\n\
     \        }\n    }\n    if (n != 1) ret[n] = 1;\n    return ret;\n}\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Prime Factor\n * @docs docs/math/prime_factor.md\n\
-    \ */\nstd::map<std::int64_t, int> prime_factor(std::int64_t n) {\n    std::map<std::int64_t,\
-    \ int> ret;\n    if (n % 2 == 0) {\n        int cnt = 0;\n        while (n % 2\
-    \ == 0) {\n            ++cnt;\n            n /= 2;\n        }\n        ret[2]\
-    \ = cnt;\n    }\n    for (std::int64_t i = 3; i * i <= n; i += 2) {\n        if\
-    \ (n % i == 0) {\n            int cnt = 0;\n            while (n % i == 0) {\n\
-    \                ++cnt;\n                n /= i;\n            }\n            ret[i]\
-    \ = cnt;\n        }\n    }\n    if (n != 1) ret[n] = 1;\n    return ret;\n}"
+    \ */\nstd::map<long long, int> prime_factor(long long n) {\n    std::map<long\
+    \ long, int> ret;\n    if (n % 2 == 0) {\n        int cnt = 0;\n        while\
+    \ (n % 2 == 0) {\n            ++cnt;\n            n /= 2;\n        }\n       \
+    \ ret[2] = cnt;\n    }\n    for (long long i = 3; i * i <= n; i += 2) {\n    \
+    \    if (n % i == 0) {\n            int cnt = 0;\n            while (n % i ==\
+    \ 0) {\n                ++cnt;\n                n /= i;\n            }\n     \
+    \       ret[i] = cnt;\n        }\n    }\n    if (n != 1) ret[n] = 1;\n    return\
+    \ ret;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/prime_factor.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_A.test.cpp

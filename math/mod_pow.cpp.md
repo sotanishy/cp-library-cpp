@@ -17,23 +17,23 @@ data:
     document_title: Mod Exponentiation
     links: []
   bundledCode: "#line 1 \"math/mod_pow.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
-    \ Mod Exponentiation\n * @docs docs/math/mod_pow.md\n */\nstd::int64_t mod_pow(std::int64_t\
-    \ a, std::int64_t p, std::int64_t mod) {\n    std::int64_t ret = 1;\n    while\
-    \ (p > 0) {\n        if (p & 1) ret = ret * a % mod;\n        a = a * a % mod;\n\
-    \        p >>= 1;\n    }\n    return ret;\n}\n\nstd::int64_t mod_inv(std::int64_t\
-    \ a, std::int64_t mod) {\n    return mod_pow(a, mod - 2, mod);\n}\n"
+    \ Mod Exponentiation\n * @docs docs/math/mod_pow.md\n */\nlong long mod_pow(long\
+    \ long a, long long p, long long mod) {\n    long long ret = 1;\n    while (p\
+    \ > 0) {\n        if (p & 1) ret = ret * a % mod;\n        a = a * a % mod;\n\
+    \        p >>= 1;\n    }\n    return ret;\n}\n\nlong long mod_inv(long long a,\
+    \ long long mod) {\n    return mod_pow(a, mod - 2, mod);\n}\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Mod Exponentiation\n * @docs docs/math/mod_pow.md\n\
-    \ */\nstd::int64_t mod_pow(std::int64_t a, std::int64_t p, std::int64_t mod) {\n\
-    \    std::int64_t ret = 1;\n    while (p > 0) {\n        if (p & 1) ret = ret\
-    \ * a % mod;\n        a = a * a % mod;\n        p >>= 1;\n    }\n    return ret;\n\
-    }\n\nstd::int64_t mod_inv(std::int64_t a, std::int64_t mod) {\n    return mod_pow(a,\
-    \ mod - 2, mod);\n}"
+    \ */\nlong long mod_pow(long long a, long long p, long long mod) {\n    long long\
+    \ ret = 1;\n    while (p > 0) {\n        if (p & 1) ret = ret * a % mod;\n   \
+    \     a = a * a % mod;\n        p >>= 1;\n    }\n    return ret;\n}\n\nlong long\
+    \ mod_inv(long long a, long long mod) {\n    return mod_pow(a, mod - 2, mod);\n\
+    }"
   dependsOn: []
   isVerificationFile: false
   path: math/mod_pow.cpp
   requiredBy:
   - math/mod_log.cpp
-  timestamp: '2020-09-23 11:09:57+09:00'
+  timestamp: '2020-09-23 11:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_B.test.cpp
