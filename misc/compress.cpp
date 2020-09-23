@@ -7,7 +7,7 @@
 template <typename T>
 class Compress {
 public:
-    Comress() = default;
+    Compress() = default;
     explicit Compress(const std::vector<T>& vs) : xs(vs) {
         std::sort(xs.begin(), xs.end());
         xs.erase(std::unique(xs.begin(), xs.end()), xs.end());

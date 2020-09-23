@@ -17,23 +17,31 @@ public:
         int cl = 0;
         std::vector<int> rank(n);
         for (int i = 1; i < n; ++i) {
-            if (s[sa[i-1]] != s[sa[i]]) ++cl;
+            if (s[sa[i - 1]] != s[sa[i]]) ++cl;
             rank[sa[i]] = cl;
         }
         std::vector<int> tmp(n), nrank(n), cnt(n);
-        for (int k = 1; k < n; k *= 2) {
+        for (int k = 1; k < n; k <<= 1) {
+            // sort by second half
+            int cnt1 = 0, cnt2 = k;
             for (int i = 0; i < n; ++i) {
-                tmp[i] = sa[i] - k;
-                if (tmp[i] < 0) tmp[i] += n;
+                int j = sa[i] - k;
+                if (j >= 0) tmp[cnt2++] = j;
+                else tmp[cnt1++] = j + n;
             }
+
+            // sort by first half
             std::fill(cnt.begin(), cnt.end(), 0);
             for (int i = 0; i < n; ++i) ++cnt[rank[tmp[i]]];
-            for (int i = 1; i < n; ++i) cnt[i] += cnt[i-1];
+            for (int i = 1; i < n; ++i) cnt[i] += cnt[i - 1];
             for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]] = tmp[i];
+
+            // assign new rank
             nrank[sa[0]] = 0;
             cl = 0;
             for (int i = 1; i < n; ++i) {
-                if (rank[sa[i-1]] != rank[sa[i]] || rank[(sa[i-1] + k) % n] != rank[(sa[i] + k) % n]) {
+                if (rank[sa[i - 1]] != rank[sa[i]]
+                    || (sa[i - 1] + k < n ? rank[sa[i - 1] + k] : -1) != (sa[i] + k < n ? rank[sa[i] + k] : -1)) {
                     ++cl;
                 }
                 nrank[sa[i]] = cl;
@@ -56,24 +64,20 @@ public:
         return ub;
     }
 
-    int upper_bound(std::string& t) const {
-        ++t.back();
-        int i = lower_bound(t);
-        --t.back();
-        return i;
+    int upper_bound(const std::string& t) const {
+        return lower_bound(t + std::numeric_limits<char>::max());
     }
 
 private:
     std::vector<int> sa;
     const std::string s;
 
-    bool lt_substr(const std::string& t, int si = 0, int ti = 0) const {
+    bool lt_substr(const std::string& t, int si) const {
         int sn = s.size(), tn = t.size();
-        while (si < sn && ti < tn) {
+        int ti = 0;
+        for (; si < sn && ti < tn; ++si, ++ti) {
             if (s[si] < t[ti]) return true;
             if (s[si] > t[ti]) return false;
-            ++si;
-            ++ti;
         }
         return si >= sn && ti < tn;
     }

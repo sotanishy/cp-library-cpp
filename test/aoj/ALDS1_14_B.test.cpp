@@ -12,7 +12,7 @@ int main() {
     cin >> T;
     string P;
     cin >> P;
-    SuffixArray sa(T + '$');
+    SuffixArray sa(T);
     int lb = sa.lower_bound(P);
     int ub = sa.upper_bound(P);
     vector<int> ans;

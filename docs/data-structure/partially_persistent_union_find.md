@@ -27,3 +27,7 @@
 - `int size(int t, int x)`
     - 時刻 $t$ で $x$ が属する集合の大きさを返す
     - 時間計算量: $O(\lg n)$
+
+## Reference
+
+[部分永続Union-Find Treeについて](https://noshi91.hatenablog.com/entry/2018/02/18/161529)

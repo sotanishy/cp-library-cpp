@@ -27,6 +27,6 @@
 - `T operator[](int k)`
     - $a_k$ を返す
     - 時間計算量: $O(1)$
-- `void update(int l, int r, const T& x)`
+- `void update(int l, int r, T x)`
     - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
     - 時間計算量: $O(\lg n)$
