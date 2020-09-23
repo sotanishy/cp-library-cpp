@@ -8,7 +8,7 @@ using namespace std;
 using mint = Modint<998244353>;
 
 struct M {
-    using T = pair<mint, int>;
+    using T = pair<mint, mint>;
     inline static const T id = {0, 0};
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
@@ -24,7 +24,7 @@ struct O {
 };
 
 M::T act(M::T a, O::T b) {
-    return {a.first * b.first + mint(a.second), a.second};
+    return {a.first * b.first + a.second * b.second, a.second};
 }
 
 int main() {
@@ -33,7 +33,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    vector<pair<mint, int>> a(N, {0, 1});
+    vector<pair<mint, mint>> a(N, {0, 1});
     for (int i = 0; i < N; i++) cin >> a[i].first;
     LazySegmentTree<M, O, act> st(a);
     for (int i = 0; i < Q; i++) {
