@@ -21,7 +21,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':warning:'
@@ -138,7 +138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: Mod Exponentiation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':heavy_check_mark:'
@@ -299,7 +299,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
