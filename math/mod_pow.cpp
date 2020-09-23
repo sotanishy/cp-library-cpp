@@ -4,8 +4,8 @@
  * @brief Mod Exponentiation
  * @docs docs/math/mod_pow.md
  */
-std::int64_t mod_pow(std::int64_t a, std::int64_t p, std::int64_t mod) {
-    std::int64_t ret = 1;
+long long mod_pow(long long a, long long p, long long mod) {
+    long long ret = 1;
     while (p > 0) {
         if (p & 1) ret = ret * a % mod;
         a = a * a % mod;
@@ -14,6 +14,6 @@ std::int64_t mod_pow(std::int64_t a, std::int64_t p, std::int64_t mod) {
     return ret;
 }
 
-std::int64_t mod_inv(std::int64_t a, std::int64_t mod) {
+long long mod_inv(long long a, long long mod) {
     return mod_pow(a, mod - 2, mod);
 }

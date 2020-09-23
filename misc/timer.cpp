@@ -6,7 +6,7 @@ public:
         start_time = std::chrono::steady_clock::now();
     }
 
-    std::int64_t get_time() {
+    long long get_time() {
         auto cur_time = std::chrono::steady_clock::now();
         return std::chrono::duration_cast<std::chrono::milliseconds>(cur_time - start_time).count();
     }

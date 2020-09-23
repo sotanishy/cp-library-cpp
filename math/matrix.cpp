@@ -100,7 +100,7 @@ struct Matrix {
         return C;
     }
 
-    Matrix pow(std::int64_t k) const {
+    Matrix pow(long long k) const {
         assert(m == n);
         Matrix ret = Matrix::I(n);
         Matrix B(*this);
