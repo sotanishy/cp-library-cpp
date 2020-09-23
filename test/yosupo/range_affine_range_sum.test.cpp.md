@@ -79,13 +79,13 @@ data:
     \    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n    inline static const\
     \ T id = {1, 0};\n    static T op(T a, T b) {\n        return {a.first * b.first,\
     \ a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T a, O::T b) {\n \
-    \   return {a.first * b.first + a.second * b.second.value(), a.second};\n}\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ N, Q;\n    cin >> N >> Q;\n    vector<pair<mint, int>> a(N, {0, 1});\n    for\
-    \ (int i = 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O, act> st(a);\n\
-    \    for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n      \
-    \  if (t == 0) {\n            int l, r, b, c;\n            cin >> l >> r >> b\
-    \ >> c;\n            st.update(l, r, {b, c});\n        } else {\n            int\
+    \   return {a.first * b.first + mint(a.second), a.second};\n}\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n   \
+    \ cin >> N >> Q;\n    vector<pair<mint, int>> a(N, {0, 1});\n    for (int i =\
+    \ 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O, act> st(a);\n \
+    \   for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n       \
+    \ if (t == 0) {\n            int l, r, b, c;\n            cin >> l >> r >> b >>\
+    \ c;\n            st.update(l, r, {b, c});\n        } else {\n            int\
     \ l, r;\n            cin >> l >> r;\n            cout << st.fold(l, r).first <<\
     \ \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
@@ -96,13 +96,13 @@ data:
     \    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n    inline static const\
     \ T id = {1, 0};\n    static T op(T a, T b) {\n        return {a.first * b.first,\
     \ a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T a, O::T b) {\n \
-    \   return {a.first * b.first + a.second * b.second.value(), a.second};\n}\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ N, Q;\n    cin >> N >> Q;\n    vector<pair<mint, int>> a(N, {0, 1});\n    for\
-    \ (int i = 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O, act> st(a);\n\
-    \    for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n      \
-    \  if (t == 0) {\n            int l, r, b, c;\n            cin >> l >> r >> b\
-    \ >> c;\n            st.update(l, r, {b, c});\n        } else {\n            int\
+    \   return {a.first * b.first + mint(a.second), a.second};\n}\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n   \
+    \ cin >> N >> Q;\n    vector<pair<mint, int>> a(N, {0, 1});\n    for (int i =\
+    \ 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O, act> st(a);\n \
+    \   for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n       \
+    \ if (t == 0) {\n            int l, r, b, c;\n            cin >> l >> r >> b >>\
+    \ c;\n            st.update(l, r, {b, c});\n        } else {\n            int\
     \ l, r;\n            cin >> l >> r;\n            cout << st.fold(l, r).first <<\
     \ \"\\n\";\n        }\n    }\n}"
   dependsOn:
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:43:10+09:00'
+  timestamp: '2020-09-23 11:54:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
