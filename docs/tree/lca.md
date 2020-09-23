@@ -4,7 +4,7 @@
 
 ## Constructor
 
-- `LCA(vector<vector<int>>& G, int root)`
+- `LCA(vector<vector<int>> G, int root)`
     - 前計算をする
     - 時間計算量: $O(n\lg n)$
 

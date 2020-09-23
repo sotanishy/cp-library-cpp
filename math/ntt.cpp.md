@@ -112,7 +112,7 @@ title: Number Theoretic Transform
 
 ## Member functions
 
-- `static vector<long long> convolution(const vector<long long>& a, const vector<long long>& b)`
+- `static vector<long long> convolution(vector<long long> a, vector<long long> b)`
     - `a` と `b` の畳み込みを $\mod p$ で計算する
     - 時間計算量: $O(n\lg n)$
 

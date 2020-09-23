@@ -68,7 +68,7 @@ title: Disjoint Sparse Table
 
 Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ に対する区間クエリを高速に処理するデータ構造である．
 
-二項演算 $\cdot$ が冪等であるとき，スパーステーブルの方が定数倍速いと思われる．
+二項演算 $\cdot$ が冪等であるとき，sparse table の方が定数倍速いと思われる．
 
 空間計算量: $O(n \lg n)$
 
@@ -81,7 +81,7 @@ Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dot
 
 ## Constructor
 
-- `DisjointSparseTable(const vector<T>& v)`
+- `DisjointSparseTable(vector<T> v)`
     - `v`の要素から disjoint sparse table を構築する
     - 時間計算量: $O(n \lg n)$
 

@@ -98,6 +98,6 @@ title: Fast Fourier Transform
 
 ## Member functions
 
-- `template <typename T> static vector<double> convolution(const vector<T>& a, const vector<T>& b)`
+- `static vector<double> convolution(vector<T> a, vector<T> b)`
     - `a` と `b` の畳み込みを計算する
     - 時間計算量: $O(n\lg n)$

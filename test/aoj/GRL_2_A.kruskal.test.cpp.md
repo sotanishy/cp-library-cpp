@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/kruskal.cpp
     title: Kruskal's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   - icon: ':heavy_check_mark:'

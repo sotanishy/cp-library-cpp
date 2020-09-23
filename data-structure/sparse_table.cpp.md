@@ -53,7 +53,7 @@ title: Sparse Table
 ---
 # Sparse Table
 
-スパーステーブルは，冪等半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ に対する区間クエリを高速に処理するデータ構造である．
+Sparse table は，冪等半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ に対する区間クエリを高速に処理するデータ構造である．
 
 冪等な二項演算とは， $\forall a \in T, a \cdot a = a$ が成り立つような写像 $\cdot: T \times T \rightarrow T$ である．冪等な二項演算には，max, min, gcd, bitwise and, bitwise or などがある．
 
@@ -68,8 +68,8 @@ title: Sparse Table
 
 ## Constructor
 
-- `SparseTable(const vector<T>& v)`
-    - `v`の要素からスパーステーブルを構築する
+- `SparseTable(vector<T> v)`
+    - `v`の要素から sparse table を構築する
     - 時間計算量: $O(n \lg n)$
 
 ## Member functions

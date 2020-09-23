@@ -9,6 +9,8 @@
 
 作用が区間の長さに比例するとき (e.g. 区間加算)，作用の分配則は成り立たないが，これはモノイドを $T \times \mathbb{N}$ に拡張して区間の長さを持たせ，適切に $*$ を定義することで対処できる．
 
+また，作用素が単位元を持たない半群であるとき（e.g. 区間更新）は，適当な値を集合に添加してそれを単位元として扱うことができる．
+
 一点更新・区間クエリはセグメント木を使用する．
 
 区間更新・一点クエリは双対セグメント木を使用する．
@@ -24,9 +26,9 @@
         - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
 - `O`
     - 作用素モノイド $(E, \circ, e_O)$. 以下のメンバーが定義されている:
-        - `E`: 集合 $E$ の型
-        - `E id`: 単位元 $e_O$
-        - `E op(E, E)`: 結合的な二項演算 $\circ: E \times E \rightarrow E$
+        - `T`: 集合 $E$ の型
+        - `T id`: 単位元 $e_O$
+        - `T op(T, T)`: 結合的な二項演算 $\circ: E \times E \rightarrow E$
 - `T act(T, E)`
     - 作用 $*: T \times E \rightarrow T$.
 
@@ -35,7 +37,7 @@
 - `LazySegmentTree(int n)`
     - サイズ`n`で要素がすべて単位元 $e_M$ の遅延伝搬セグメント木を構築する
     - 時間計算量: $O(n)$
-- `LazySegmentTree(const vector<T>& v)`
+- `LazySegmentTree(vector<T> v)`
     - `v`の要素からサイズ`n = v.size()`の遅延伝搬セグメント木を構築する
     - 時間計算量: $O(n)$
 
@@ -44,7 +46,7 @@
 - `T operator[](int k)`
     - $a_k$ を返す
     - 時間計算量: $O(\lg n)$
-- `void update(int l, int r, const E& x)`
+- `void update(int l, int r, E x)`
     - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
     - 時間計算量: $O(\lg n)$
 - `T fold(int l, int r)`

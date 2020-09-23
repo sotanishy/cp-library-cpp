@@ -193,6 +193,8 @@ title: Segment Tree Beats
 
 Segment tree beats は，遅延伝搬セグメント木の亜種で，区間 chmin/chmax/add 更新と区間 min/max/sum クエリを処理できる．
 
+sum クエリがないときは遅延伝搬セグメント木で十分である．
+
 時間計算量は $O(\lg^2 n)$ ではなく $O(\lg n)$かもしれない．よくわからないのでここでは前者を使用する（表記として間違ってはいない）．
 
 空間計算量: $O(n)$
@@ -207,7 +209,7 @@ Segment tree beats は，遅延伝搬セグメント木の亜種で，区間 chm
 - `SegmentTreeBeats(int n)`
     - サイズ`n`で要素がすべて 0 の segment tree beats を構築する
     - 時間計算量: $O(n)$
-- `SegmentTreeBeats(const vector<T>& v)`
+- `SegmentTreeBeats(vector<T> v)`
     - `v`の要素からサイズ`n = v.size()`の segment tree beats を構築する
     - 時間計算量: $O(n)$
 

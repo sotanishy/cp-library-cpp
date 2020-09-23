@@ -76,10 +76,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bellman_ford.cpp
       title: Bellman-Ford Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/dijkstra.cpp
       title: Dijkstra's Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -91,6 +91,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/prim.cpp
       title: Prim's Algorithm
+    - icon: ':warning:'
+      path: graph/range_edge_graph.cpp
+      title: Range Edge Graph
     - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
@@ -173,6 +176,9 @@ data:
   - name: string
     pages:
     - icon: ':warning:'
+      path: string/lcp_array.cpp
+      title: Longest Common Prefix Array
+    - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
     - icon: ':heavy_check_mark:'
@@ -240,7 +246,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.sparse_table.test.cpp
       title: test/aoj/DSL_3_D.sparse_table.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_1_A.test.cpp
       title: test/aoj/GRL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
