@@ -7,7 +7,7 @@
  */
 template <typename T>
 std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
-    std::vector<T> dist(G.size(), std::numeric_limits<T>::max(););
+    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());
     dist[s] = 0;
     using P = std::pair<T, int>;
     std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
