@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.cpp
     title: Dijkstra's Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
@@ -23,7 +23,7 @@ data:
     \ to, T cost) : from(from), to(to), cost(cost) {}\n};\n#line 3 \"graph/dijkstra.cpp\"\
     \n\n/*\n * @brief Dijkstra's Algorithm\n * @docs docs/graph/dijkstra.md\n */\n\
     template <typename T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>&\
-    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max(););\n\
+    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
     \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
     \ {\n        T cost;\n        int v;\n        std::tie(cost, v) = pq.top();\n\
@@ -51,8 +51,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-24 01:50:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-24 11:47:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_A.test.cpp
 layout: document

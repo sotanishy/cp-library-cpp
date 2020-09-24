@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/kruskal.cpp
     title: Kruskal's Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.cpp
     title: Dijkstra's Algorithm
   - icon: ':heavy_check_mark:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
     path: test/aoj/GRL_2_A.prim.test.cpp
     title: test/aoj/GRL_2_A.prim.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -56,7 +56,7 @@ data:
   - graph/bellman_ford.cpp
   - graph/prim.cpp
   timestamp: '2020-09-22 03:45:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp

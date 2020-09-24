@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: tree/tree_diameter.cpp
     title: Diameter of a Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []

@@ -76,10 +76,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bellman_ford.cpp
       title: Bellman-Ford Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.cpp
       title: Dijkstra's Algorithm
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -246,7 +246,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.sparse_table.test.cpp
       title: test/aoj/DSL_3_D.sparse_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_A.test.cpp
       title: test/aoj/GRL_1_A.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/graph/dijkstra.md
@@ -22,7 +22,7 @@ data:
     \ Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}\n};\n#line\
     \ 3 \"graph/dijkstra.cpp\"\n\n/*\n * @brief Dijkstra's Algorithm\n * @docs docs/graph/dijkstra.md\n\
     \ */\ntemplate <typename T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>&\
-    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max(););\n\
+    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
     \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
     \ {\n        T cost;\n        int v;\n        std::tie(cost, v) = pq.top();\n\
@@ -33,7 +33,7 @@ data:
   code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\n\n/*\n * @brief Dijkstra's\
     \ Algorithm\n * @docs docs/graph/dijkstra.md\n */\ntemplate <typename T>\nstd::vector<T>\
     \ dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {\n    std::vector<T>\
-    \ dist(G.size(), std::numeric_limits<T>::max(););\n    dist[s] = 0;\n    using\
+    \ dist(G.size(), std::numeric_limits<T>::max());\n    dist[s] = 0;\n    using\
     \ P = std::pair<T, int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>>\
     \ pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T cost;\n \
     \       int v;\n        std::tie(cost, v) = pq.top();\n        pq.pop();\n   \
@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: graph/dijkstra.cpp
   requiredBy: []
-  timestamp: '2020-09-24 01:50:52+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-09-24 11:47:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A.test.cpp
 documentation_of: graph/dijkstra.cpp
