@@ -49,9 +49,9 @@ data:
     \ }\n        return ret;\n    }\n\n    Matrix rref() const {\n        Matrix B(*this);\n\
     \        int pivot = 0;\n        for (int col = 0; col < n; ++col) {\n       \
     \     int row = pivot;\n            for (; row < m && std::abs(B[row][col]) <\
-    \ EPS; ++rol);\n\n            if (row == m) continue;\n\n            if (row !=\
-    \ pivot) std::swap(B[row], B[pivot]);\n\n            T p = B[pivot][col];\n  \
-    \          for (int c = col; c < n; ++c) {\n                B[pivot][c] /= p;\n\
+    \ EPS; ++rol) {}\n\n            if (row == m) continue;\n\n            if (row\
+    \ != pivot) std::swap(B[row], B[pivot]);\n\n            T p = B[pivot][col];\n\
+    \            for (int c = col; c < n; ++c) {\n                B[pivot][c] /= p;\n\
     \            }\n\n            for (int r = 0; r < m; ++r) {\n                if\
     \ (r == pivot) continue;\n\n                T v = B[r][col];\n               \
     \ for (int c = col; c < n; ++c) {\n                    B[r][c] -= B[pivot][c]\
@@ -59,17 +59,17 @@ data:
     \        return B;\n    }\n\n    T det() const {\n        assert(m == n);\n  \
     \      Matrix B(*this);\n        T ret = 1;\n        for (int j = 0; j < n; ++j)\
     \ {\n            int i = j;\n            for (; i < m && std::abs(B[i][j]) < EPS;\
-    \ ++i);\n\n            if (i == m) return 0;\n\n            if (i != j) {\n  \
-    \              std::swap(B[i], B[j]);\n                ret = -ret;\n         \
-    \   }\n\n            T p = B[i][j];\n            ret *= p;\n            for (int\
-    \ l = j; l < n; ++l) {\n                B[i][l] /= p;\n            }\n\n     \
-    \       for (int k = i + 1; k < m; ++k) {\n                T v = B[k][j];\n  \
-    \              for (int l = j; l < n; ++l) {\n                    B[k][l] -= B[i][l]\
-    \ * v;\n                }\n            }\n        }\n        return ret;\n   \
-    \ }\n\n    int rank() const {\n        auto B = rref();\n        for (int i =\
-    \ 0; i < m; ++i) {\n            bool nonzero = false;\n            for (int j\
-    \ = 0; j < n; ++j) {\n                if (std::abs(B[i][j]) > EPS) {\n       \
-    \             nonzero = true;\n                    break;\n                }\n\
+    \ ++i) {}\n\n            if (i == m) return 0;\n\n            if (i != j) {\n\
+    \                std::swap(B[i], B[j]);\n                ret = -ret;\n       \
+    \     }\n\n            T p = B[j][j];\n            ret *= p;\n            for\
+    \ (int l = j; l < n; ++l) {\n                B[j][l] /= p;\n            }\n\n\
+    \            for (int k = j + 1; k < m; ++k) {\n                T v = B[k][j];\n\
+    \                for (int l = j; l < n; ++l) {\n                    B[k][l] -=\
+    \ B[j][l] * v;\n                }\n            }\n        }\n        return ret;\n\
+    \    }\n\n    int rank() const {\n        auto B = rref();\n        for (int i\
+    \ = 0; i < m; ++i) {\n            bool nonzero = false;\n            for (int\
+    \ j = 0; j < n; ++j) {\n                if (std::abs(B[i][j]) > EPS) {\n     \
+    \               nonzero = true;\n                    break;\n                }\n\
     \            }\n            if (!nonzero) return i;\n        }\n        return\
     \ m;\n    }\n\n    Matrix inverse() const {\n        assert(std::abs(det(A)) >\
     \ EPS);\n        Matrix AI = concatenate(*this, I(n));\n        Matrix Ib = rref(AI);\n\
@@ -114,9 +114,9 @@ data:
     \ }\n        return ret;\n    }\n\n    Matrix rref() const {\n        Matrix B(*this);\n\
     \        int pivot = 0;\n        for (int col = 0; col < n; ++col) {\n       \
     \     int row = pivot;\n            for (; row < m && std::abs(B[row][col]) <\
-    \ EPS; ++rol);\n\n            if (row == m) continue;\n\n            if (row !=\
-    \ pivot) std::swap(B[row], B[pivot]);\n\n            T p = B[pivot][col];\n  \
-    \          for (int c = col; c < n; ++c) {\n                B[pivot][c] /= p;\n\
+    \ EPS; ++rol) {}\n\n            if (row == m) continue;\n\n            if (row\
+    \ != pivot) std::swap(B[row], B[pivot]);\n\n            T p = B[pivot][col];\n\
+    \            for (int c = col; c < n; ++c) {\n                B[pivot][c] /= p;\n\
     \            }\n\n            for (int r = 0; r < m; ++r) {\n                if\
     \ (r == pivot) continue;\n\n                T v = B[r][col];\n               \
     \ for (int c = col; c < n; ++c) {\n                    B[r][c] -= B[pivot][c]\
@@ -124,17 +124,17 @@ data:
     \        return B;\n    }\n\n    T det() const {\n        assert(m == n);\n  \
     \      Matrix B(*this);\n        T ret = 1;\n        for (int j = 0; j < n; ++j)\
     \ {\n            int i = j;\n            for (; i < m && std::abs(B[i][j]) < EPS;\
-    \ ++i);\n\n            if (i == m) return 0;\n\n            if (i != j) {\n  \
-    \              std::swap(B[i], B[j]);\n                ret = -ret;\n         \
-    \   }\n\n            T p = B[i][j];\n            ret *= p;\n            for (int\
-    \ l = j; l < n; ++l) {\n                B[i][l] /= p;\n            }\n\n     \
-    \       for (int k = i + 1; k < m; ++k) {\n                T v = B[k][j];\n  \
-    \              for (int l = j; l < n; ++l) {\n                    B[k][l] -= B[i][l]\
-    \ * v;\n                }\n            }\n        }\n        return ret;\n   \
-    \ }\n\n    int rank() const {\n        auto B = rref();\n        for (int i =\
-    \ 0; i < m; ++i) {\n            bool nonzero = false;\n            for (int j\
-    \ = 0; j < n; ++j) {\n                if (std::abs(B[i][j]) > EPS) {\n       \
-    \             nonzero = true;\n                    break;\n                }\n\
+    \ ++i) {}\n\n            if (i == m) return 0;\n\n            if (i != j) {\n\
+    \                std::swap(B[i], B[j]);\n                ret = -ret;\n       \
+    \     }\n\n            T p = B[j][j];\n            ret *= p;\n            for\
+    \ (int l = j; l < n; ++l) {\n                B[j][l] /= p;\n            }\n\n\
+    \            for (int k = j + 1; k < m; ++k) {\n                T v = B[k][j];\n\
+    \                for (int l = j; l < n; ++l) {\n                    B[k][l] -=\
+    \ B[j][l] * v;\n                }\n            }\n        }\n        return ret;\n\
+    \    }\n\n    int rank() const {\n        auto B = rref();\n        for (int i\
+    \ = 0; i < m; ++i) {\n            bool nonzero = false;\n            for (int\
+    \ j = 0; j < n; ++j) {\n                if (std::abs(B[i][j]) > EPS) {\n     \
+    \               nonzero = true;\n                    break;\n                }\n\
     \            }\n            if (!nonzero) return i;\n        }\n        return\
     \ m;\n    }\n\n    Matrix inverse() const {\n        assert(std::abs(det(A)) >\
     \ EPS);\n        Matrix AI = concatenate(*this, I(n));\n        Matrix Ib = rref(AI);\n\
@@ -145,7 +145,7 @@ data:
   isVerificationFile: false
   path: math/matrix.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:28:03+09:00'
+  timestamp: '2020-09-26 16:05:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/matrix.cpp
