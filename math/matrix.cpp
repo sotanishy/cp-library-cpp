@@ -117,7 +117,7 @@ struct Matrix {
         int pivot = 0;
         for (int col = 0; col < n; ++col) {
             int row = pivot;
-            for (; row < m && std::abs(B[row][col]) < EPS; ++rol);
+            for (; row < m && std::abs(B[row][col]) < EPS; ++rol) {}
 
             if (row == m) continue;
 
@@ -148,7 +148,7 @@ struct Matrix {
         T ret = 1;
         for (int j = 0; j < n; ++j) {
             int i = j;
-            for (; i < m && std::abs(B[i][j]) < EPS; ++i);
+            for (; i < m && std::abs(B[i][j]) < EPS; ++i) {}
 
             if (i == m) return 0;
 
@@ -157,16 +157,16 @@ struct Matrix {
                 ret = -ret;
             }
 
-            T p = B[i][j];
+            T p = B[j][j];
             ret *= p;
             for (int l = j; l < n; ++l) {
-                B[i][l] /= p;
+                B[j][l] /= p;
             }
 
-            for (int k = i + 1; k < m; ++k) {
+            for (int k = j + 1; k < m; ++k) {
                 T v = B[k][j];
                 for (int l = j; l < n; ++l) {
-                    B[k][l] -= B[i][l] * v;
+                    B[k][l] -= B[j][l] * v;
                 }
             }
         }

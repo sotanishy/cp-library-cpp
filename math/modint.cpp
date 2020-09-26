@@ -5,6 +5,8 @@ class Modint {
     static_assert(mod > 0, "Modulus must be positive");
 
 public:
+    static constexpr int get_mod() noexcept { return mod; }
+
     constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
 
     constexpr int value() const noexcept { return x; }

@@ -12,7 +12,7 @@ public:
         sa.resize(n);
         std::iota(sa.begin(), sa.end(), 0);
         std::sort(sa.begin(), sa.end(), [&](int i, int j) {
-            return s[i] == s[j] ? i > j : s[i] < s[j];
+            return s[i] < s[j];
         });
         int cl = 0;
         std::vector<int> rank(n);

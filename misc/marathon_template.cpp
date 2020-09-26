@@ -1,3 +1,5 @@
+#pragma GCC optimize ("Ofast")
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -20,38 +22,42 @@
 using namespace std;
 using ll = long long;
 
-struct Random {
+class Random {
+public:
+    // returns a random integer in the range [0, n)
+    unsigned int next_int(int n) noexcept {
+        return xorshift() % n;
+    }
+
+    // returns a random double number in the range [0, 1)
+    double next_double() noexcept {
+        return xorshift() * (1.0 / 0xFFFFFFFFu);
+    }
+
+private:
     unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
 
-    unsigned int xorshift() {
+    unsigned int xorshift() noexcept {
         unsigned int t;
         t = x ^ (x << 11);
         x = y; y = z; z = w;
         return w = w ^ (w >> 19) ^ (t ^ (t >> 8));
     }
-
-    // returns a random integer in the range [0, n)
-    unsigned int next_int(unsigned int n) {
-        return xorshift() % n;
-    }
-
-    // returns a random double number in the range [0, 1)
-    double next_double() {
-        return xorshift() * (1.0 / 0xFFFFFFFFu);
-    }
 } rng;
 
-struct Timer {
-    chrono::steady_clock::time_point start_time;
-
+class Timer {
+public:
     void start() {
         start_time = chrono::steady_clock::now();
     }
 
-    long long get_time() {
+    long long get_time() const {
         auto cur_time = chrono::steady_clock::now();
         return chrono::duration_cast<chrono::milliseconds>(cur_time - start_time).count();
     }
+
+private:
+    chrono::steady_clock::time_point start_time;
 } timer;
 
 /***************************************************************
@@ -77,18 +83,17 @@ struct State {
     }
 };
 
-double accept(ll prev_score, ll cur_score, double temperature) {
+inline double accept(ll prev_score, ll cur_score, double temperature) {
     if (prev_score < cur_score) return 1.0;
     return exp((double) (cur_score - prev_score) / temperature);
 }
 
-State simulated_annealing(State& beginning_state, ll duration) {
+State simulated_annealing(State cur_state, ll duration) {
 
     double temp_start = 2e3;
     double temp_end = 6e2;
     double temperature = temp_start;
 
-    State cur_state = beginning_state;
     State best_state = cur_state;
     int iter = 0;
     ll cur_time = 0;

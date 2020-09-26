@@ -4,78 +4,60 @@
  * @brief Number Theoretic Transform
  * @docs docs/math/ntt.md
  */
-template <long long mod, long long primitive_root>
+template <typename mint, int primitive_root>
 class NTT {
+    static constexpr int mod = mint::get_mod();
+
 public:
     NTT() = delete;
 
-    static std::vector<long long> convolution(const std::vector<long long>& a, const std::vector<long long>& b) {
+    static std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
-        std::vector<long long> na = a, nb = b;
-        na.resize(n);
-        nb.resize(n);
+        std::vector<mint> na(n), nb(n);
+        for (int i = 0; i < (int) a.size(); ++i) na[i] = a[i];
+        for (int i = 0; i < (int) b.size(); ++i) nb[i] = b[i];
         untt(na);
         untt(nb);
-        for (int i = 0; i < n; ++i) na[i] = na[i] * nb[i] % mod;
+        for (int i = 0; i < n; ++i) na[i] *= nb[i];
         iuntt(na);
         na.resize(size);
-        long long n_inv = mod_inv(n);
-        for (int i = 0; i < size; ++i) na[i] = na[i] * n_inv % mod;
+        mint n_inv = mint(n).inv();
+        for (int i = 0; i < size; ++i) na[i] *= n_inv;
         return na;
     }
 
 private:
-    static long long mod_pow(long long n, long long p) {
-        long long ret = 1;
-        while (p > 0) {
-            if (p & 1) ret = ret * n % mod;
-            n = n * n % mod;
-            p >>= 1;
-        }
-        return ret;
-    }
-
-    static long long mod_inv(long long a) {
-        long long b = mod, u = 1, v = 0, t;
-        while (b > 0) {
-            t = a / b;
-            std::swap(a -= t * b, b);
-            std::swap(u -= t * v, v);
-        }
-        return (u % mod + mod) % mod;
-    }
-
-    static void untt(std::vector<long long>& a) {
+    static void untt(std::vector<mint>& a) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
-            long long omega = mod_pow(primitive_root, (mod - 1) / m);
+            mint omega = mint(primitive_root).pow((mod - 1) / m);
             for (int s = 0; s < n / m; ++s) {
-                long long w = 1;
+                mint w = 1;
                 for (int i = 0; i < m / 2; ++i) {
-                    long long l = a[s * m + i];
-                    long long r = a[s * m + i + m / 2];
-                    a[s * m + i] = (l + r) % mod;
-                    a[s * m + i + m / 2] = (l - r + mod) * w % mod;
-                    w = w * omega % mod;
+                    mint l = a[s * m + i];
+                    mint r = a[s * m + i + m / 2];
+                    a[s * m + i] = l + r;
+                    a[s * m + i + m / 2] = (l - r) * w;
+                    w *= omega;
                 }
             }
         }
     }
 
-    static void iuntt(std::vector<long long>& a) {
+    static void iuntt(std::vector<mint>& a) {
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
-            long long omega = mod_inv(mod_pow(primitive_root, (mod - 1) / m));
+            mint omega = mint(primitive_root).pow((mod - 1) / m).inv();
             for (int s = 0; s < n / m; ++s) {
-                long long w = 1;
+                mint w = 1;
                 for (int i = 0; i < m / 2; ++i) {
-                    long long l = a[s * m + i];
-                    long long r = a[s * m + i + m / 2] * w % mod;
-                    a[s * m + i] = (l + r) % mod;
-                    a[s * m + i + m / 2] = (l - r + mod) % mod;
-                    w = w * omega % mod;
+                    mint l = a[s * m + i];
+                    mint r = a[s * m + i + m / 2] * w;
+                    a[s * m + i] = l + r;
+                    a[s * m + i + m / 2] = l - r;
+                    w *= omega;
                 }
             }
         }
