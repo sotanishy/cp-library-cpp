@@ -22,7 +22,7 @@ public:
     }
 
     T operator[](int v) const {
-        return st[pos[va_copy]];
+        return st[pos[v]];
     }
 
     void update(int v, const T& x) {
