@@ -33,7 +33,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -189,7 +189,7 @@ data:
       title: string/trie.cpp
   - name: tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -326,7 +326,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
 layout: toppage

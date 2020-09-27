@@ -42,3 +42,8 @@ HL 分解は，木をいくつかのパスに分解する手法である．分�
 - `int dist(int u, int v)`
     - $uv$ 間の距離を計算する
     - 時間計算量: $O(\lg n)$
+
+
+## Reference
+
+- [Heavy-light decomposition](https://cp-algorithms.com/graph/hld.html)
