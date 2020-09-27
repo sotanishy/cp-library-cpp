@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: tree/hld.cpp
+    title: Heavy-Light Decomposition
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
     title: test/aoj/DSL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/vertex_add_path_sum.test.cpp
+    title: test/yosupo/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
@@ -13,7 +19,7 @@ data:
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/segment_tree.md
@@ -88,11 +94,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segment_tree.cpp
-  requiredBy: []
+  requiredBy:
+  - tree/hld.cpp
   timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
 documentation_of: data-structure/segment_tree.cpp
