@@ -10,10 +10,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
+    PROBLEM: https://judge.yosupo.jp/problem/suffixarray
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
-  bundledCode: "#line 1 \"test/aoj/ALDS1_14_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
+    - https://judge.yosupo.jp/problem/suffixarray
+  bundledCode: "#line 1 \"test/yosupo/suffixarray.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\
     \n\n#line 1 \"string/suffix_array.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\n\
     public:\n    SuffixArray() = default;\n    explicit SuffixArray(const std::string&\
@@ -46,32 +46,28 @@ data:
     \ si) const {\n        int sn = s.size(), tn = t.size();\n        int ti = 0;\n\
     \        for (; si < sn && ti < tn; ++si, ++ti) {\n            if (s[si] < t[ti])\
     \ return true;\n            if (s[si] > t[ti]) return false;\n        }\n    \
-    \    return si >= sn && ti < tn;\n    }\n};\n#line 4 \"test/aoj/ALDS1_14_B.test.cpp\"\
+    \    return si >= sn && ti < tn;\n    }\n};\n#line 4 \"test/yosupo/suffixarray.test.cpp\"\
     \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    string T;\n    cin >> T;\n    string P;\n    cin >> P;\n\
-    \    SuffixArray sa(T);\n    int lb = sa.lower_bound(P);\n    int ub = sa.upper_bound(P);\n\
-    \    vector<int> ans;\n    for (int i = lb; i < ub; i++) ans.push_back(sa[i]);\n\
-    \    sort(ans.begin(), ans.end());\n    for (int i : ans) cout << i << \"\\n\"\
-    ;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
-    \n\n#include \"../../string/suffix_array.cpp\"\n\nusing namespace std;\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    string\
-    \ T;\n    cin >> T;\n    string P;\n    cin >> P;\n    SuffixArray sa(T);\n  \
-    \  int lb = sa.lower_bound(P);\n    int ub = sa.upper_bound(P);\n    vector<int>\
-    \ ans;\n    for (int i = lb; i < ub; i++) ans.push_back(sa[i]);\n    sort(ans.begin(),\
-    \ ans.end());\n    for (int i : ans) cout << i << \"\\n\";\n}"
+    \    cin.tie(0);\n\n    string S;\n    cin >> S;\n    SuffixArray sa(S);\n   \
+    \ for (int i = 0; i < S.size(); ++i) cout << sa[i] << (i < S.size() - 1 ? \" \"\
+    \ : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n\n#include\
+    \ \"../../string/suffix_array.cpp\"\n\nusing namespace std;\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    string S;\n   \
+    \ cin >> S;\n    SuffixArray sa(S);\n    for (int i = 0; i < S.size(); ++i) cout\
+    \ << sa[i] << (i < S.size() - 1 ? \" \" : \"\\n\");\n}"
   dependsOn:
   - string/suffix_array.cpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_14_B.test.cpp
+  path: test/yosupo/suffixarray.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 16:05:46+09:00'
+  timestamp: '2020-09-28 15:24:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_14_B.test.cpp
+documentation_of: test/yosupo/suffixarray.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_14_B.test.cpp
-- /verify/test/aoj/ALDS1_14_B.test.cpp.html
-title: test/aoj/ALDS1_14_B.test.cpp
+- /verify/test/yosupo/suffixarray.test.cpp
+- /verify/test/yosupo/suffixarray.test.cpp.html
+title: test/yosupo/suffixarray.test.cpp
 ---

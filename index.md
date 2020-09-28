@@ -89,6 +89,9 @@ data:
       path: graph/kruskal.cpp
       title: Kruskal's Algorithm
     - icon: ':heavy_check_mark:'
+      path: graph/lowlink.cpp
+      title: Lowlink
+    - icon: ':heavy_check_mark:'
       path: graph/prim.cpp
       title: Prim's Algorithm
     - icon: ':warning:'
@@ -175,13 +178,13 @@ data:
       title: misc/timer.cpp
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/lcp_array.cpp
       title: Longest Common Prefix Array
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/suffix_array.cpp
       title: Suffix Array
     - icon: ':warning:'
@@ -265,6 +268,12 @@ data:
       path: test/aoj/GRL_2_A.prim.test.cpp
       title: test/aoj/GRL_2_A.prim.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_3_A.test.cpp
+      title: test/aoj/GRL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_3_B.test.cpp
+      title: test/aoj/GRL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_C.test.cpp
       title: test/aoj/GRL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -299,6 +308,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/number_of_substrings.test.cpp
+      title: test/yosupo/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
@@ -317,6 +329,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/suffixarray.test.cpp
+      title: test/yosupo/suffixarray.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp

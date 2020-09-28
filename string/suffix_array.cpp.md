@@ -2,15 +2,24 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: string/lcp_array.cpp
     title: Longest Common Prefix Array
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.test.cpp
     title: test/aoj/ALDS1_14_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/suffixarray.test.cpp
+    title: test/yosupo/suffixarray.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_of_substrings.test.cpp
+    title: test/yosupo/number_of_substrings.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_of_substrings.test.cpp
+    title: test/yosupo/number_of_substrings.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/string/suffix_array.md
@@ -88,9 +97,12 @@ data:
   requiredBy:
   - string/lcp_array.cpp
   timestamp: '2020-09-26 16:05:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_14_B.test.cpp
+  - test/yosupo/suffixarray.test.cpp
+  - test/yosupo/number_of_substrings.test.cpp
+  - test/yosupo/number_of_substrings.test.cpp
 documentation_of: string/suffix_array.cpp
 layout: document
 redirect_from:

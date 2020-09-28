@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.cpp
     title: Suffix Array
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/number_of_substrings.test.cpp
+    title: test/yosupo/number_of_substrings.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/string/lcp_array.md
@@ -69,8 +72,9 @@ data:
   path: string/lcp_array.cpp
   requiredBy: []
   timestamp: '2020-09-26 16:05:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/number_of_substrings.test.cpp
 documentation_of: string/lcp_array.cpp
 layout: document
 redirect_from:
