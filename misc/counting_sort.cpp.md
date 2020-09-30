@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"misc/counting_sort.cpp\"\n#include <bits/stdc++.h>\n\nstd::vector<int>\
     \ counting_sort(const std::vector<int>& v, int k) {\n    std::vector<int> cnt(k\

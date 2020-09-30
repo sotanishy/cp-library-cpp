@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/prim.cpp
-    title: Prim's Algorithm
-  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/prim.cpp
+    title: Prim's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

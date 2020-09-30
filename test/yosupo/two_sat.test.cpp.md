@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/twosat.cpp
-    title: 2-SAT
-  - icon: ':heavy_check_mark:'
     path: graph/scc.cpp
     title: Strongly Connected Components
+  - icon: ':heavy_check_mark:'
+    path: graph/twosat.cpp
+    title: 2-SAT
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

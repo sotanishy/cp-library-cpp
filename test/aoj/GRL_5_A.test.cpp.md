@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: tree/tree_diameter.cpp
-    title: Diameter of a Tree
-  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
+  - icon: ':heavy_check_mark:'
+    path: tree/tree_diameter.cpp
+    title: Diameter of a Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

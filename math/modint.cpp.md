@@ -15,7 +15,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/modint.cpp\"\n#include <bits/stdc++.h>\n\ntemplate\
     \ <int mod>\nclass Modint {\n    static_assert(mod > 0, \"Modulus must be positive\"\

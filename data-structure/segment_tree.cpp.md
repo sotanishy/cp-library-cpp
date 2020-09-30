@@ -10,18 +10,17 @@ data:
     path: test/aoj/DSL_2_A.test.cpp
     title: test/aoj/DSL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
+    path: test/yosupo/point_add_range_sum.test.cpp
+    title: test/yosupo/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_range_sum.test.cpp
-    title: test/yosupo/point_add_range_sum.test.cpp
+    path: test/yosupo/vertex_add_path_sum.test.cpp
+    title: test/yosupo/vertex_add_path_sum.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/data-structure/segment_tree.md
     document_title: Segment Tree
     links: []

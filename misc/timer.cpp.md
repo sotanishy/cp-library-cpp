@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"misc/timer.cpp\"\n#include <bits/stdc++.h>\n\nclass Timer\
     \ {\npublic:\n    void start() {\n        start_time = std::chrono::steady_clock::now();\n\

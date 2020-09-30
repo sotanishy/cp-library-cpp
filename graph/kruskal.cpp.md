@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/edge.cpp
-    title: graph/edge.cpp
-  - icon: ':heavy_check_mark:'
     path: data-structure/union_find.cpp
     title: Union Find
+  - icon: ':heavy_check_mark:'
+    path: graph/edge.cpp
+    title: graph/edge.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -15,7 +15,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/graph/kruskal.md
     document_title: Kruskal's Algorithm
     links: []

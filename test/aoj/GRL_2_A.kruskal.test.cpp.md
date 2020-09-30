@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/kruskal.cpp
-    title: Kruskal's Algorithm
+    path: data-structure/union_find.cpp
+    title: Union Find
   - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   - icon: ':heavy_check_mark:'
-    path: data-structure/union_find.cpp
-    title: Union Find
+    path: graph/kruskal.cpp
+    title: Kruskal's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

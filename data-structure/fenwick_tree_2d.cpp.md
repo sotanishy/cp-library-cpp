@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: 2D Fenwick Tree
     links: []
   bundledCode: "#line 1 \"data-structure/fenwick_tree_2d.cpp\"\n#include <bits/stdc++.h>\n\

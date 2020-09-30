@@ -12,12 +12,11 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    _deprecated_at_docs: docs/graph/lowlink.cpp
+    _deprecated_at_docs: docs/graph/lowlink.md
     document_title: Lowlink
     links: []
   bundledCode: "#line 1 \"graph/lowlink.cpp\"\n#include <bits/stdc++.h>\n\n/*\n *\
-    \ @brief Lowlink\n * @docs docs/graph/lowlink.cpp\n */\nclass Lowlink {\npublic:\n\
+    \ @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\nclass Lowlink {\npublic:\n\
     \    Lowlink() = default;\n    explicit Lowlink(const std::vector<std::vector<int>>\
     \ G) : G(G), ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int)\
     \ G.size(); ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n   \
@@ -35,7 +34,7 @@ data:
     \ (c != p) {\n                low[v] = std::min(low[v], ord[c]);\n           \
     \ }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n    \
     \    if (is_articulation) articulation.push_back(v);\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.cpp\n\
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n\
     \ */\nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
     \ std::vector<std::vector<int>> G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
     \        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i] ==\
@@ -57,7 +56,7 @@ data:
   isVerificationFile: false
   path: graph/lowlink.cpp
   requiredBy: []
-  timestamp: '2020-09-28 15:24:58+09:00'
+  timestamp: '2020-09-30 12:46:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
@@ -69,3 +68,26 @@ redirect_from:
 - /library/graph/lowlink.cpp.html
 title: Lowlink
 ---
+# Lowlink
+
+Lowlink はグラフの橋や間接点などを求める際に有効な概念である．グラフの DFS tree において，頂点 $v$ の訪問時刻を `ord[v]` としたとき，$v$ から後退辺 (DFS tree に含まれない辺) を高々1回用いて到達することができる頂点の `ord` の最小値 `low[v]` を lowlink という．
+
+辺 $(u, v)$ が橋であるとき，`ord[u] < low[v]` が成り立つ．
+
+頂点 $v$ が間接点であるとき，$v$ が DFS tree の根なら $v$ は2つ以上の子を持ち，そうでないなら $v$ ある子 $c$ について `ord[v] <= low[v]` が成り立つ．
+
+空間計算量: $O(V + E)$
+
+## Constructor
+
+- `Lowlink(vector<vector<int>> G)`
+    - グラフ $G$ の隣接リストが与えられたとき，$G$ の橋と間接点を求める
+    - 時間計算量: $O(V + E)$
+- `vector<pair<int, int>> get_bridges()`
+    - $G$ の橋を返す
+- `vector<int> get_articulation_points()`
+    - $G$ の間接点を返す
+
+## Reference
+
+- [橋と関節点, lowlink](https://kagamiz.hatenablog.com/entry/2013/10/05/005213)

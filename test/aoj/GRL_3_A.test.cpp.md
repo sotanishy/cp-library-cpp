@@ -15,7 +15,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
   bundledCode: "#line 1 \"test/aoj/GRL_3_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\
     \n\n#line 1 \"graph/lowlink.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief Lowlink\n\
-    \ * @docs docs/graph/lowlink.cpp\n */\nclass Lowlink {\npublic:\n    Lowlink()\
+    \ * @docs docs/graph/lowlink.md\n */\nclass Lowlink {\npublic:\n    Lowlink()\
     \ = default;\n    explicit Lowlink(const std::vector<std::vector<int>> G) : G(G),\
     \ ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int) G.size();\
     \ ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int,\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-28 15:24:58+09:00'
+  timestamp: '2020-09-30 12:46:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_A.test.cpp

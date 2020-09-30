@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"misc/marathon_template.cpp\"\n#pragma GCC optimize (\"Ofast\"\
     )\n\n#include <iostream>\n#include <vector>\n#include <set>\n#include <unordered_set>\n\

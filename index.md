@@ -178,13 +178,13 @@ data:
       title: misc/timer.cpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/lcp_array.cpp
       title: Longest Common Prefix Array
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_array.cpp
       title: Suffix Array
     - icon: ':warning:'
@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'

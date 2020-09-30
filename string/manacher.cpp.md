@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/manacher.cpp\"\n#include <bits/stdc++.h>\n\nstd::vector<int>\
     \ manacher(const std::string& s) {\n    int n = s.size();\n    std::vector<int>\

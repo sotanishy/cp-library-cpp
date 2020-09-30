@@ -3,21 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: tree/tree_diameter.cpp
-    title: Diameter of a Tree
-  - icon: ':heavy_check_mark:'
-    path: graph/kruskal.cpp
-    title: Kruskal's Algorithm
+    path: graph/bellman_ford.cpp
+    title: Bellman-Ford Algorithm
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.cpp
     title: Dijkstra's Algorithm
   - icon: ':heavy_check_mark:'
-    path: graph/bellman_ford.cpp
-    title: Bellman-Ford Algorithm
+    path: graph/kruskal.cpp
+    title: Kruskal's Algorithm
   - icon: ':heavy_check_mark:'
     path: graph/prim.cpp
     title: Prim's Algorithm
+  - icon: ':heavy_check_mark:'
+    path: tree/tree_diameter.cpp
+    title: Diameter of a Tree
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_1_A.test.cpp
+    title: test/aoj/GRL_1_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
@@ -25,18 +28,14 @@ data:
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_A.test.cpp
-    title: test/aoj/GRL_1_A.test.cpp
+    path: test/aoj/GRL_2_A.prim.test.cpp
+    title: test/aoj/GRL_2_A.prim.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A.prim.test.cpp
-    title: test/aoj/GRL_2_A.prim.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\ntemplate <typename\
     \ T>\nstruct Edge {\n    int from, to;\n    T cost;\n    Edge(int to, T cost)\

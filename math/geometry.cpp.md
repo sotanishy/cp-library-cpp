@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/geometry.cpp\"\n#include <bits/stdc++.h>\n\nconst double\
     \ eps = 1e-12;\n\nstruct Vec {\n    double x, y;\n\n    Vec() = default;\n   \

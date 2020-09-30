@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/trie.cpp\"\n#include <bits/stdc++.h>\n\nclass Trie\
     \ {\npublic:\n    Trie() : nodes(1) {}\n\n    void add(const std::string& s, int\
