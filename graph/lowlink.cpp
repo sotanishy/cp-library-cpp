@@ -2,7 +2,7 @@
 
 /*
  * @brief Lowlink
- * @docs docs/graph/lowlink.cpp
+ * @docs docs/graph/lowlink.md
  */
 class Lowlink {
 public:
