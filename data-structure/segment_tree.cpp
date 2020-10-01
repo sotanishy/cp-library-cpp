@@ -10,8 +10,8 @@ class SegmentTree {
 
 public:
     SegmentTree() = default;
-    explicit SegmentTree(int n): SegmentTree(vector<T>(n, M::id)) {}
-    explicit SegmentTree(const vector<T>& v) {
+    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id)) {}
+    explicit SegmentTree(const std::vector<T>& v) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
         node.resize(2 * size, M::id);
@@ -84,5 +84,5 @@ public:
 
 private:
     int size;
-    vector<T> node;
+    std::vector<T> node;
 };
