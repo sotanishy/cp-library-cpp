@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Segment Tree
@@ -39,7 +38,8 @@ public:
         return M::op(vl, vr);
     }
 
-    int find_first(int l, const function<bool(T)>& cond) const {
+    template <typename F>
+    int find_first(int l, const F& cond) const {
         T vl = M::id;
         int r = size;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
@@ -60,7 +60,8 @@ public:
         return -1;
     }
 
-    int find_last(int r, const function<bool(T)>& cond) const {
+    template <typename F>
+    int find_last(int r, const F& cond) const {
         T vr = M::id;
         int l = 0;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {

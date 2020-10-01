@@ -36,9 +36,9 @@
 - `T fold(int l, int r)`
     - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ を計算する．$l = r$ ならば $e$ を返す．
     - 時間計算量: $O(\lg n)$
-- `int find_first(int l, function<bool(T)> cond)`
+- `int find_first(int l, F cond)`
     - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ が条件 `cond` を満たすような最小の $r (> l)$ 返す．列の単調性を仮定する．そのような $r$ が存在しない場合は `-1` を返す．
     - 時間計算量: $O(\lg n)$
-- `int find_last(int r, function<bool(T)> cond)`
+- `int find_last(int r, F cond)`
     - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ が条件 `cond` を満たすような最大の $l (< r)$ 返す．列の単調性を仮定する．そのような $l$ が存在しない場合は `-1` を返す．
     - 時間計算量: $O(\lg n)$

@@ -1,3 +1,4 @@
+#pragma once
 #include <bits/stdc++.h>
 
 /*
@@ -21,6 +22,14 @@ class Combination {
         for (int i = 1; i <= n; ++i) fact[i] = fact[i - 1] * i;
         fact_inv[n] = 1 / fact[n];
         for (int i = n; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;
+    }
+
+    T fact(int n) const {
+        return fact[n];
+    }
+
+    T fact_inv(int n) const {
+        return fact_inv[n];
     }
 
     T perm(int n, int r) const {

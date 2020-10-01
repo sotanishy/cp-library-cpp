@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
  * @brief Fenwick Tree
@@ -23,7 +22,8 @@ public:
         for (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    int find_first(const std::function<bool(T)>& cond) const {
+    template <typename F>
+    int find_first(const F& cond) const {
         int k = 1;
         while (k * 2 <= n) k <<= 1;
         int i = 0;

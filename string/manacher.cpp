@@ -1,3 +1,4 @@
+#pragma once
 #include <bits/stdc++.h>
 
 std::vector<int> manacher(const std::string& s) {
