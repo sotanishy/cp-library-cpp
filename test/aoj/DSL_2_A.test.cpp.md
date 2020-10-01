@@ -20,8 +20,8 @@ data:
     \    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
-    \ * size, M::id);\n        copy(v.begin(), v.end(), node.begin() + size);\n  \
-    \      for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
+    \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
+    \        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
     \ * i + 1]);\n    }\n\n    T operator[](int k) const {\n        return node[k\
     \ + size];\n    }\n\n    void update(int k, const T& x) {\n        k += size;\n\
     \        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2 * k], node[2\
@@ -68,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:40:17+09:00'
+  timestamp: '2020-10-01 22:49:44+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp

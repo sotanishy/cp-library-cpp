@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -20,8 +20,8 @@ data:
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
-    \ * size, M::id);\n        copy(v.begin(), v.end(), node.begin() + size);\n  \
-    \      for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
+    \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
+    \        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
     \ * i + 1]);\n    }\n\n    T operator[](int k) const {\n        return node[k\
     \ + size];\n    }\n\n    void update(int k, const T& x) {\n        k += size;\n\
     \        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2 * k], node[2\
@@ -47,34 +47,34 @@ data:
     \   else vr = nxt, r = 2 * r;\n                    }\n                    return\
     \ r - size;\n                }\n                vr = nxt;\n            }\n   \
     \     }\n        return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T>\
-    \ node;\n};\n#line 4 \"test/yosupo/point_add_range_sum.test.cpp\"\n\nusing ll\
-    \ = long long;\n\nstruct Monoid {\n    using T = ll;\n    static inline T id =\
-    \ 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N; i++) cin\
-    \ >> a[i];\n    SegmentTree<Monoid> st(a);\n    for (int i = 0; i < Q; i++) {\n\
-    \        int t;\n        cin >> t;\n        if (t == 0) {\n            int p,\
-    \ x;\n            cin >> p >> x;\n            st.update(p, st[p] + x);\n     \
-    \   } else {\n            int l, r;\n            cin >> l >> r;\n            cout\
-    \ << st.fold(l, r) << \"\\n\";\n        }\n    }\n}\n"
+    \ node;\n};\n#line 4 \"test/yosupo/point_add_range_sum.test.cpp\"\n\nusing namespace\
+    \ std;\nusing ll = long long;\n\nstruct Monoid {\n    using T = ll;\n    static\
+    \ inline T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n\
+    };\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n\
+    \    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0;\
+    \ i < N; i++) cin >> a[i];\n    SegmentTree<Monoid> st(a);\n    for (int i = 0;\
+    \ i < Q; i++) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n  \
+    \          int p, x;\n            cin >> p >> x;\n            st.update(p, st[p]\
+    \ + x);\n        } else {\n            int l, r;\n            cin >> l >> r;\n\
+    \            cout << st.fold(l, r) << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include \"../../data-structure/segment_tree.cpp\"\n\nusing ll = long long;\n\
-    \nstruct Monoid {\n    using T = ll;\n    static inline T id = 0;\n    static\
-    \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
-    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SegmentTree<Monoid> st(a);\n\
-    \    for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n      \
-    \  if (t == 0) {\n            int p, x;\n            cin >> p >> x;\n        \
-    \    st.update(p, st[p] + x);\n        } else {\n            int l, r;\n     \
-    \       cin >> l >> r;\n            cout << st.fold(l, r) << \"\\n\";\n      \
-    \  }\n    }\n}"
+    \n#include \"../../data-structure/segment_tree.cpp\"\n\nusing namespace std;\n\
+    using ll = long long;\n\nstruct Monoid {\n    using T = ll;\n    static inline\
+    \ T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N;\
+    \ i++) cin >> a[i];\n    SegmentTree<Monoid> st(a);\n    for (int i = 0; i < Q;\
+    \ i++) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n         \
+    \   int p, x;\n            cin >> p >> x;\n            st.update(p, st[p] + x);\n\
+    \        } else {\n            int l, r;\n            cin >> l >> r;\n       \
+    \     cout << st.fold(l, r) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/segment_tree.cpp
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:40:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-01 22:49:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.test.cpp
 layout: document
