@@ -33,7 +33,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -147,6 +147,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: math/modint.cpp
+    - icon: ':warning:'
+      path: math/monmort.cpp
+      title: Monmort Number
     - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
@@ -156,6 +159,9 @@ data:
     - icon: ':warning:'
       path: math/prime_table.cpp
       title: Prime Table
+    - icon: ':warning:'
+      path: math/stirling_second.cpp
+      title: Stirling Number of the Second Kind
   - name: misc
     pages:
     - icon: ':warning:'
@@ -190,9 +196,12 @@ data:
     - icon: ':warning:'
       path: string/trie.cpp
       title: string/trie.cpp
+    - icon: ':warning:'
+      path: string/z_array.cpp
+      title: Z Array
   - name: tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -219,7 +228,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_A.test.cpp
       title: test/aoj/DSL_2_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -311,10 +320,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -341,7 +350,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
 layout: toppage

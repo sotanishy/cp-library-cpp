@@ -17,8 +17,8 @@ data:
     links:
     - https://judge.yosupo.jp/problem/number_of_substrings
   bundledCode: "#line 1 \"test/yosupo/number_of_substrings.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\n#line 1 \"string/lcp_array.cpp\"\
-    \n#include <bits/stdc++.h>\n#line 2 \"string/suffix_array.cpp\"\n\n/*\n * @brief\
+    \ \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\n#line 2 \"string/lcp_array.cpp\"\
+    \n#include <bits/stdc++.h>\n#line 3 \"string/suffix_array.cpp\"\n\n/*\n * @brief\
     \ Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\n\
     public:\n    SuffixArray() = default;\n    explicit SuffixArray(const std::string&\
     \ str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
@@ -50,7 +50,7 @@ data:
     \ si) const {\n        int sn = s.size(), tn = t.size();\n        int ti = 0;\n\
     \        for (; si < sn && ti < tn; ++si, ++ti) {\n            if (s[si] < t[ti])\
     \ return true;\n            if (s[si] > t[ti]) return false;\n        }\n    \
-    \    return si >= sn && ti < tn;\n    }\n};\n#line 3 \"string/lcp_array.cpp\"\n\
+    \    return si >= sn && ti < tn;\n    }\n};\n#line 4 \"string/lcp_array.cpp\"\n\
     \n/*\n * @brief Longest Common Prefix Array\n * @docs docs/string/lcp_array.md\n\
     \ */\nstd::vector<int> lcp_array(const std::string& s, const SuffixArray& sa)\
     \ {\n    int n = s.size();\n    std::vector<int> rank(n);\n    for (int i = 0;\
@@ -76,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2020-09-30 12:46:10+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_substrings.test.cpp

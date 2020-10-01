@@ -16,18 +16,18 @@
 
 ## Constructor
 
-- `DynamicSegmentTree(int n)`
+- `DynamicSegmentTree(long long n)`
     - サイズ`n`で要素がすべて単位元 $e$ の動的セグメント木を構築する
     - 時間計算量: $O(\lg n)$
 
 ## Member functions
 
-- `T operator[](int k)`
+- `T operator[](long long k)`
     - $a_k$ を返す
     - 時間計算量: $O(\lg n)$
-- `void update(int k, T x)`
+- `void update(long long k, T x)`
     - $a_k$ を $x$ に更新する
     - 時間計算量: $O(\lg n)$
-- `T fold(int l, int r)`
+- `T fold(long long l, long long r)`
     - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ を計算する．$l = r$ ならば $e$ を返す．
     - 時間計算量: $O(\lg n)$

@@ -31,7 +31,7 @@ data:
     \    }\n\n    T fold() const {\n        T ret = M::id;\n        if (!front.empty())\
     \ ret = M::op(ret, front.top().second);\n        if (!back.empty()) ret = M::op(ret,\
     \ back.top().second);\n        return ret;\n    }\n\nprivate:\n    std::stack<std::pair<T,\
-    \ T>> front, back;\n};\n#line 2 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass\
+    \ T>> front, back;\n};\n#line 3 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass\
     \ Modint {\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
     \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
     \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 16:05:46+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

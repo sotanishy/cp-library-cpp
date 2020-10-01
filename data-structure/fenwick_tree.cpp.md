@@ -13,38 +13,37 @@ data:
     document_title: Fenwick Tree
     links: []
   bundledCode: "#line 1 \"data-structure/fenwick_tree.cpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
+    \n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n */\n\
+    template <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\npublic:\n\
+    \    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n), data(n\
+    \ + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
+    \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
+    \ ret;\n    }\n\n    void update(int i, T x) {\n        for (++i; i <= n; i +=\
+    \ i & -i) data[i] = M::op(data[i], x);\n    }\n\n    template <typename F>\n \
+    \   int find_first(const F& cond) const {\n        int k = 1;\n        while (k\
+    \ * 2 <= n) k <<= 1;\n        int i = 0;\n        T x = M::id;\n        for (;\
+    \ k > 0; k >>= 1) {\n            if (i + k <= n && !cond(M::op(x, data[i + k])))\
+    \ {\n                x = M::op(x, data[i + k]);\n                i += k;\n   \
+    \         }\n        }\n        return i - 1;\n    }\n\nprivate:\n    int n;\n\
+    \    std::vector<T> data;\n};\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
     \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
     \npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
     \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, T x) {\n        for (++i; i <= n; i +=\
-    \ i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int find_first(const std::function<bool(T)>&\
-    \ cond) const {\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n   \
-    \     int i = 0;\n        T x = M::id;\n        for (; k > 0; k >>= 1) {\n   \
-    \         if (i + k <= n && !cond(M::op(x, data[i + k]))) {\n                x\
-    \ = M::op(x, data[i + k]);\n                i += k;\n            }\n        }\n\
-    \        return i - 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n\
-    };\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n/*\n * @brief Fenwick Tree\n\
-    \ * @docs docs/data-structure/fenwick_tree.md\n */\ntemplate <typename M>\nclass\
-    \ FenwickTree {\n    using T = typename M::T;\n\npublic:\n    FenwickTree() =\
-    \ default;\n    explicit FenwickTree(int n) : n(n), data(n + 1, M::id) {}\n\n\
-    \    T prefix_fold(int i) const {\n        T ret = M::id;\n        for (; i >\
-    \ 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return ret;\n    }\n\n \
-    \   void update(int i, T x) {\n        for (++i; i <= n; i += i & -i) data[i]\
-    \ = M::op(data[i], x);\n    }\n\n    int find_first(const std::function<bool(T)>&\
-    \ cond) const {\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n   \
-    \     int i = 0;\n        T x = M::id;\n        for (; k > 0; k >>= 1) {\n   \
-    \         if (i + k <= n && !cond(M::op(x, data[i + k]))) {\n                x\
-    \ = M::op(x, data[i + k]);\n                i += k;\n            }\n        }\n\
-    \        return i - 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n\
-    };"
+    \ i & -i) data[i] = M::op(data[i], x);\n    }\n\n    template <typename F>\n \
+    \   int find_first(const F& cond) const {\n        int k = 1;\n        while (k\
+    \ * 2 <= n) k <<= 1;\n        int i = 0;\n        T x = M::id;\n        for (;\
+    \ k > 0; k >>= 1) {\n            if (i + k <= n && !cond(M::op(x, data[i + k])))\
+    \ {\n                x = M::op(x, data[i + k]);\n                i += k;\n   \
+    \         }\n        }\n        return i - 1;\n    }\n\nprivate:\n    int n;\n\
+    \    std::vector<T> data;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/fenwick_tree.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_B.test.cpp
@@ -85,6 +84,6 @@ Fenwick tree，または binary indexed tree は，可換モノイド $(T, \cdot
 - `void update(int i, T x)`
     - $a_i$ を $a_i \cdot x$ に更新する
     - 時間計算量: $O(\lg n)$
-- `int find_first(function<bool(T)> cond)`
+- `int find_first(F cond)`
     - $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ が条件 `cond` を満たすような最小の $i$ を返す．列の単調性を仮定する．そのような $i$ が存在しない場合は $n$ を返す．
     - 時間計算量: $O(\lg n)$

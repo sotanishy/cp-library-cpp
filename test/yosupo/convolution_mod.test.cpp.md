@@ -17,7 +17,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/convolution_mod
   bundledCode: "#line 1 \"test/yosupo/convolution_mod.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#line 1 \"math/modint.cpp\"\
+    \ \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#line 2 \"math/modint.cpp\"\
     \n#include <bits/stdc++.h>\n\ntemplate <int mod>\nclass Modint {\n    static_assert(mod\
     \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
@@ -94,7 +94,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 16:05:46+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod.test.cpp

@@ -45,7 +45,7 @@ data:
     \   push(k);\n        if (r <= a || b <= l) return M::id;\n        if (a <= l\
     \ && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return M::op(fold(a,\
     \ b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m, r));\n    }\n\
-    };\n#line 2 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass Modint {\n    static_assert(mod\
+    };\n#line 3 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass Modint {\n    static_assert(mod\
     \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
     \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 16:05:46+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

@@ -14,7 +14,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
   bundledCode: "#line 1 \"test/aoj/ALDS1_14_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
-    \n\n#line 1 \"string/suffix_array.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
+    \n\n#line 2 \"string/suffix_array.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\n\
     public:\n    SuffixArray() = default;\n    explicit SuffixArray(const std::string&\
     \ str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
@@ -65,7 +65,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_B.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 16:05:46+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_B.test.cpp

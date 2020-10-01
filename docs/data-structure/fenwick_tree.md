@@ -28,6 +28,6 @@ Fenwick tree，または binary indexed tree は，可換モノイド $(T, \cdot
 - `void update(int i, T x)`
     - $a_i$ を $a_i \cdot x$ に更新する
     - 時間計算量: $O(\lg n)$
-- `int find_first(function<bool(T)> cond)`
+- `int find_first(F cond)`
     - $a_0 \cdot a_1 \cdot \cdots \cdot a_{i-1}$ が条件 `cond` を満たすような最小の $i$ を返す．列の単調性を仮定する．そのような $i$ が存在しない場合は $n$ を返す．
     - 時間計算量: $O(\lg n)$

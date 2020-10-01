@@ -14,7 +14,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/suffixarray
   bundledCode: "#line 1 \"test/yosupo/suffixarray.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\
-    \n\n#line 1 \"string/suffix_array.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
+    \n\n#line 2 \"string/suffix_array.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\n\
     public:\n    SuffixArray() = default;\n    explicit SuffixArray(const std::string&\
     \ str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/suffixarray.test.cpp
   requiredBy: []
-  timestamp: '2020-09-28 15:24:58+09:00'
+  timestamp: '2020-10-01 22:29:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/suffixarray.test.cpp
