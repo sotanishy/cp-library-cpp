@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
@@ -18,9 +18,9 @@ data:
     \ 1 \"data-structure/segment_tree.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Segment Tree\n * @docs docs/data-structure/segment_tree.md\n */\ntemplate <typename\
     \ M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n    SegmentTree()\
-    \ = default;\n    explicit SegmentTree(int n): SegmentTree(vector<T>(n, M::id))\
-    \ {}\n    explicit SegmentTree(const vector<T>& v) {\n        size = 1;\n    \
-    \    while (size < (int) v.size()) size <<= 1;\n        node.resize(2 * size,\
+    \ = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id))\
+    \ {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size = 1;\n\
+    \        while (size < (int) v.size()) size <<= 1;\n        node.resize(2 * size,\
     \ M::id);\n        copy(v.begin(), v.end(), node.begin() + size);\n        for\
     \ (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);\n\
     \    }\n\n    T operator[](int k) const {\n        return node[k + size];\n  \
@@ -47,20 +47,20 @@ data:
     \   if (cond(nxt)) r = 2 * r + 1;\n                        else vr = nxt, r =\
     \ 2 * r;\n                    }\n                    return r - size;\n      \
     \          }\n                vr = nxt;\n            }\n        }\n        return\
-    \ -1;\n    }\n\nprivate:\n    int size;\n    vector<T> node;\n};\n#line 4 \"test/yosupo/point_set_range_composite.test.cpp\"\
-    \n\nusing ll = long long;\n\nconst ll mod = 998244353;\n\nstruct Monoid {\n  \
-    \  using T = pair<ll, ll>;\n    static inline T id = {1, 0};\n    static T op(T\
-    \ a, T b) {\n        return {a.first * b.first % mod, (a.second * b.first + b.second)\
-    \ % mod};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<ll, ll>>\
-    \ ab(N);\n    for (int i = 0; i < N; i++) {\n        int a, b;\n        cin >>\
-    \ a >> b;\n        ab[i] = {a, b};\n    }\n    SegmentTree<Monoid> st(ab);\n \
-    \   for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n       \
-    \ if (t == 0) {\n            int p, c, d;\n            cin >> p >> c >> d;\n \
-    \           st.update(p, {c, d});\n        } else {\n            int l, r, x;\n\
-    \            cin >> l >> r >> x;\n            auto f = st.fold(l, r);\n      \
-    \      cout << (f.first * x + f.second) % mod << \"\\n\";\n        }\n    }\n\
-    }\n"
+    \ -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n#line 4\
+    \ \"test/yosupo/point_set_range_composite.test.cpp\"\n\nusing ll = long long;\n\
+    \nconst ll mod = 998244353;\n\nstruct Monoid {\n    using T = pair<ll, ll>;\n\
+    \    static inline T id = {1, 0};\n    static T op(T a, T b) {\n        return\
+    \ {a.first * b.first % mod, (a.second * b.first + b.second) % mod};\n    }\n};\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
+    \ int N, Q;\n    cin >> N >> Q;\n    vector<pair<ll, ll>> ab(N);\n    for (int\
+    \ i = 0; i < N; i++) {\n        int a, b;\n        cin >> a >> b;\n        ab[i]\
+    \ = {a, b};\n    }\n    SegmentTree<Monoid> st(ab);\n    for (int i = 0; i < Q;\
+    \ i++) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n         \
+    \   int p, c, d;\n            cin >> p >> c >> d;\n            st.update(p, {c,\
+    \ d});\n        } else {\n            int l, r, x;\n            cin >> l >> r\
+    \ >> x;\n            auto f = st.fold(l, r);\n            cout << (f.first * x\
+    \ + f.second) % mod << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n\n#include \"../../data-structure/segment_tree.cpp\"\n\nusing ll = long long;\n\
     \nconst ll mod = 998244353;\n\nstruct Monoid {\n    using T = pair<ll, ll>;\n\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:29:44+09:00'
+  timestamp: '2020-10-01 22:40:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.test.cpp
