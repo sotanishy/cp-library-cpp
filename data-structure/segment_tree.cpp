@@ -15,7 +15,7 @@ public:
         size = 1;
         while (size < (int) v.size()) size <<= 1;
         node.resize(2 * size, M::id);
-        copy(v.begin(), v.end(), node.begin() + size);
+        std::copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 

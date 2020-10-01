@@ -2,6 +2,7 @@
 
 #include "../../data-structure/segment_tree.cpp"
 
+using namespace std;
 using ll = long long;
 
 const ll mod = 998244353;
