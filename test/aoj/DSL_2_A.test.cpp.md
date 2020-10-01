@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
@@ -47,29 +47,30 @@ data:
     \   else vr = nxt, r = 2 * r;\n                    }\n                    return\
     \ r - size;\n                }\n                vr = nxt;\n            }\n   \
     \     }\n        return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T>\
-    \ node;\n};\n#line 4 \"test/aoj/DSL_2_A.test.cpp\"\n\nstruct Monoid {\n    using\
-    \ T = int;\n    inline static const T id = (1u << 31) - 1;\n    static T op(T\
-    \ a, T b) {\n        return min(a, b);\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    SegmentTree<Monoid>\
-    \ st(n);\n    for (int i = 0; i < q; i++) {\n        int com, x, y;\n        cin\
-    \ >> com >> x >> y;\n        if (com == 0) st.update(x, y);\n        else cout\
-    \ << st.fold(x, y + 1) << \"\\n\";\n    }\n}\n"
+    \ node;\n};\n#line 4 \"test/aoj/DSL_2_A.test.cpp\"\n\nusing namespace std;\n\n\
+    struct Monoid {\n    using T = int;\n    inline static const T id = (1u << 31)\
+    \ - 1;\n    static T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ n, q;\n    cin >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int i =\
+    \ 0; i < q; i++) {\n        int com, x, y;\n        cin >> com >> x >> y;\n  \
+    \      if (com == 0) st.update(x, y);\n        else cout << st.fold(x, y + 1)\
+    \ << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\
-    \n\n#include \"../../data-structure/segment_tree.cpp\"\n\nstruct Monoid {\n  \
-    \  using T = int;\n    inline static const T id = (1u << 31) - 1;\n    static\
-    \ T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\nint main() {\n   \
-    \ ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n    cin\
-    \ >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int i = 0; i < q; i++)\
-    \ {\n        int com, x, y;\n        cin >> com >> x >> y;\n        if (com ==\
-    \ 0) st.update(x, y);\n        else cout << st.fold(x, y + 1) << \"\\n\";\n  \
-    \  }\n}"
+    \n\n#include \"../../data-structure/segment_tree.cpp\"\n\nusing namespace std;\n\
+    \nstruct Monoid {\n    using T = int;\n    inline static const T id = (1u << 31)\
+    \ - 1;\n    static T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ n, q;\n    cin >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int i =\
+    \ 0; i < q; i++) {\n        int com, x, y;\n        cin >> com >> x >> y;\n  \
+    \      if (com == 0) st.update(x, y);\n        else cout << st.fold(x, y + 1)\
+    \ << \"\\n\";\n    }\n}"
   dependsOn:
   - data-structure/segment_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:49:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-01 22:57:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp
 layout: document

@@ -33,7 +33,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -228,7 +228,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_A.test.cpp
       title: test/aoj/DSL_2_A.test.cpp
     - icon: ':heavy_check_mark:'

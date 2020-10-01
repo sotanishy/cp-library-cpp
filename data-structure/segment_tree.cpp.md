@@ -6,7 +6,7 @@ data:
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
     title: test/aoj/DSL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/segment_tree.md
     document_title: Segment Tree
@@ -97,7 +97,7 @@ data:
   requiredBy:
   - tree/hld.cpp
   timestamp: '2020-10-01 22:49:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
