@@ -14,14 +14,14 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
     pq.emplace(0, s);
 
     while (!pq.empty()) {
-        T cost;
+        T weight;
         int v;
-        std::tie(cost, v) = pq.top();
+        std::tie(weight, v) = pq.top();
         pq.pop();
-        if (dist[v] < cost) continue;
+        if (dist[v] < weight) continue;
         for (auto& e : G[v]) {
-            if (dist[e.to] > dist[v] + e.cost) {
-                dist[e.to] = dist[v] + e.cost;
+            if (dist[e.to] > dist[v] + e.weight) {
+                dist[e.to] = dist[v] + e.weight;
                 pq.emplace(dist[e.to], e.to);
             }
         }

@@ -20,7 +20,7 @@ T prim(const std::vector<std::vector<Edge<T>>>& G) {
         used[v] = true;
         ret += p.first;
         for (auto& e : G[v]) {
-            pq.emplace(e.cost, e.to);
+            pq.emplace(e.weight, e.to);
         }
     }
     return ret;

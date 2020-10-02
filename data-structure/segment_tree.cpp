@@ -39,7 +39,7 @@ public:
     }
 
     template <typename F>
-    int find_first(int l, const F& cond) const {
+    int find_first(int l, F cond) const {
         T vl = M::id;
         int r = size;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
@@ -61,7 +61,7 @@ public:
     }
 
     template <typename F>
-    int find_last(int r, const F& cond) const {
+    int find_last(int r, F cond) const {
         T vr = M::id;
         int l = 0;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {

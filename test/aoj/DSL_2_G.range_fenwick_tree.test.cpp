@@ -12,16 +12,16 @@ int main() {
     cin >> n >> q;
     RangeFenwickTree<long long> ft(n+1);
     for (int i = 0; i < q; i++) {
-        int type;
-        cin >> type;
+        int type, s, t;
+        cin >> type >> s >> t;
+        --s;
+        --t;
         if (type == 0) {
-            int s, t, x;
-            cin >> s >> t >> x;
-            ft.add(s - 1, t - 1, x);
+            int x;
+            cin >> x;
+            ft.add(s, t + 1, x);
         } else {
-            int s, t;
-            cin >> s >> t;
-            cout << ft.sum(t) - ft.sum(s - 1) << "\n";
+            cout << ft.prefix_sum(t + 1) - ft.prefix_sum(s) << "\n";
         }
     }
 }

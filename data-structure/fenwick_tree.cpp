@@ -18,23 +18,28 @@ public:
         return ret;
     }
 
-    void update(int i, T x) {
+    void update(int i, const T& x) {
         for (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);
     }
 
-    template <typename F>
-    int find_first(const F& cond) const {
+    int lower_bound(const T& x) const {
+        return lower_bound(x, std::less<>());
+    }
+    
+    template <typename Compare>
+    int lower_bound(const T& x, Compare cmp) const {
         int k = 1;
         while (k * 2 <= n) k <<= 1;
         int i = 0;
-        T x = M::id;
+        T v = M::id;
         for (; k > 0; k >>= 1) {
-            if (i + k <= n && !cond(M::op(x, data[i + k]))) {
-                x = M::op(x, data[i + k]);
+            T nv = M::op(v, data[i + k]);
+            if (i + k <= n && cmp(nv, x)) {
+                std::swap(v, nv);
                 i += k;
             }
         }
-        return i - 1;
+        return i + 1;
     }
 
 private:

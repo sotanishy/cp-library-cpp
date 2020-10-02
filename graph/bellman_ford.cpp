@@ -12,8 +12,8 @@ std::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {
     dist[s] = 0;
     for (int i = 0; i < V; ++i) {
         for (auto& e : G) {
-            if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.cost) {
-                dist[e.to] = dist[e.from] + e.cost;
+            if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.weight) {
+                dist[e.to] = dist[e.from] + e.weight;
                 if (i == V - 1) return std::vector<T>();
             }
         }

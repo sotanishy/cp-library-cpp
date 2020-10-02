@@ -12,7 +12,7 @@
 
 ## Member functions
 
-- `T sum(int i)`
+- `T prefix_sum(int i)`
     - $a_0 + a_1 + \dots + a_{i-1}$ を計算する
     - 時間計算量: $O(\lg n)$
 - `void add(int l, int r, T x)`
