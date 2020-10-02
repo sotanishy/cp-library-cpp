@@ -30,55 +30,54 @@ data:
     \ vr = M::id;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
     \            if (l & 1) vl = M::op(vl, node[l++]);\n            if (r & 1) vr\
     \ = M::op(node[--r], vr);\n        }\n        return M::op(vl, vr);\n    }\n\n\
-    \    template <typename F>\n    int find_first(int l, const F& cond) const {\n\
-    \        T vl = M::id;\n        int r = size;\n        for (l += size, r += size;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt\
-    \ = M::op(vl, node[l]);\n                if (cond(nxt)) {\n                  \
-    \  while (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n\
-    \                        if (cond(nxt)) l = 2 * l;\n                        else\
-    \ vl = nxt, l = 2 * l + 1;\n                    }\n                    return\
-    \ l - size;\n                }\n                vl = nxt;\n                ++l;\n\
+    \    template <typename F>\n    int find_first(int l, F cond) const {\n      \
+    \  T vl = M::id;\n        int r = size;\n        for (l += size, r += size; l\
+    \ < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt =\
+    \ M::op(vl, node[l]);\n                if (cond(nxt)) {\n                    while\
+    \ (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n      \
+    \                  if (cond(nxt)) l = 2 * l;\n                        else vl\
+    \ = nxt, l = 2 * l + 1;\n                    }\n                    return l -\
+    \ size;\n                }\n                vl = nxt;\n                ++l;\n\
     \            }\n        }\n        return -1;\n    }\n\n    template <typename\
-    \ F>\n    int find_last(int r, const F& cond) const {\n        T vr = M::id;\n\
-    \        int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>=\
-    \ 1) {\n            if (r & 1) {\n                --r;\n                T nxt\
-    \ = M::op(node[r], vr);\n                if (cond(nxt)) {\n                  \
-    \  while (r < size) {\n                        nxt = M::op(node[2 * r + 1], vr);\n\
-    \                        if (cond(nxt)) r = 2 * r + 1;\n                     \
-    \   else vr = nxt, r = 2 * r;\n                    }\n                    return\
-    \ r - size;\n                }\n                vr = nxt;\n            }\n   \
-    \     }\n        return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T>\
-    \ node;\n};\n#line 3 \"tree/hld.cpp\"\n\n/*\n * @brief Heavy-Light Decomposition\n\
-    \ * @docs docs/tree/hld.md\n */\ntemplate <typename M>\nclass HLD {\n    using\
-    \ T = typename M::T;\n\npublic:\n    HLD() = default;\n    explicit HLD(const\
-    \ std::vector<std::vector<int>>& G) : HLD(G, std::vector<T>(G.size(), M::id))\
-    \ {}\n    HLD(const std::vector<std::vector<int>>& G, const std::vector<T>& val)\n\
-    \        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1), pos(G.size()),\
-    \ head(G.size()), heavy(G.size(), -1) {\n        dfs(0);\n        decompose(0,\
-    \ 0);\n        std::vector<T> val_ordered(val.size());\n        for (int i = 0;\
-    \ i < (int) val.size(); ++i) val_ordered[pos[i]] = val[i];\n        st = SegmentTree<M>(val_ordered);\n\
-    \    }\n\n    T operator[](int v) const {\n        return st[pos[v]];\n    }\n\
-    \n    void update(int v, const T& x) {\n        st.update(pos[v], x);\n    }\n\
-    \n    T fold(int u, int v) const {\n        T res = M::id;\n        for (; head[u]\
-    \ != head[v]; v = par[head[v]]) {\n            if (depth[head[u]] > depth[head[v]])\
-    \ std::swap(u, v);\n            T val = st.fold(pos[head[v]], pos[v] + 1);\n \
-    \           res = M::op(res, val);\n        }\n        if (depth[u] > depth[v])\
-    \ std::swap(u, v);\n        T val = st.fold(pos[u], pos[v] + 1);\n        return\
-    \ M::op(res, val);\n    }\n\n    int lca(int u, int v) const {\n        for (;;\
-    \ v = par[head[v]]) {\n            if (depth[u] > depth[v]) std::swap(u, v);\n\
-    \            if (head[u] == head[v]) return u;\n        }\n    }\n\n    int dist(int\
-    \ u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u, v)];\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
-    \ size, depth, par, pos, head, heavy;\n    int cur_pos = 0;\n    SegmentTree<M>\
-    \ st;\n\n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n\
-    \        for (int c : G[v]) {\n            if (c == par[v]) continue;\n      \
-    \      par[c] = v;\n            depth[c] = depth[v] + 1;\n            dfs(c);\n\
-    \            size[v] += size[c];\n            if (size[c] > max_size) {\n    \
-    \            max_size = size[c];\n                heavy[v] = c;\n            }\n\
-    \        }\n    }\n\n    void decompose(int v, int h) {\n        head[v] = h;\n\
-    \        pos[v] = cur_pos++;\n        if (heavy[v] != -1) decompose(heavy[v],\
-    \ h);\n        for (int c : G[v]) {\n            if (c != par[v] && c != heavy[v])\
-    \ decompose(c, c);\n        }\n    }\n};\n"
+    \ F>\n    int find_last(int r, F cond) const {\n        T vr = M::id;\n      \
+    \  int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
+    \            if (r & 1) {\n                --r;\n                T nxt = M::op(node[r],\
+    \ vr);\n                if (cond(nxt)) {\n                    while (r < size)\
+    \ {\n                        nxt = M::op(node[2 * r + 1], vr);\n             \
+    \           if (cond(nxt)) r = 2 * r + 1;\n                        else vr = nxt,\
+    \ r = 2 * r;\n                    }\n                    return r - size;\n  \
+    \              }\n                vr = nxt;\n            }\n        }\n      \
+    \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
+    #line 3 \"tree/hld.cpp\"\n\n/*\n * @brief Heavy-Light Decomposition\n * @docs\
+    \ docs/tree/hld.md\n */\ntemplate <typename M>\nclass HLD {\n    using T = typename\
+    \ M::T;\n\npublic:\n    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>&\
+    \ G) : HLD(G, std::vector<T>(G.size(), M::id)) {}\n    HLD(const std::vector<std::vector<int>>&\
+    \ G, const std::vector<T>& val)\n        : G(G), size(G.size()), depth(G.size()),\
+    \ par(G.size(), -1), pos(G.size()), head(G.size()), heavy(G.size(), -1) {\n  \
+    \      dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
+    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[pos[i]] = val[i];\n\
+    \        st = SegmentTree<M>(val_ordered);\n    }\n\n    T operator[](int v) const\
+    \ {\n        return st[pos[v]];\n    }\n\n    void update(int v, const T& x) {\n\
+    \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
+    \      T res = M::id;\n        for (; head[u] != head[v]; v = par[head[v]]) {\n\
+    \            if (depth[head[u]] > depth[head[v]]) std::swap(u, v);\n         \
+    \   T val = st.fold(pos[head[v]], pos[v] + 1);\n            res = M::op(res, val);\n\
+    \        }\n        if (depth[u] > depth[v]) std::swap(u, v);\n        T val =\
+    \ st.fold(pos[u], pos[v] + 1);\n        return M::op(res, val);\n    }\n\n   \
+    \ int lca(int u, int v) const {\n        for (;; v = par[head[v]]) {\n       \
+    \     if (depth[u] > depth[v]) std::swap(u, v);\n            if (head[u] == head[v])\
+    \ return u;\n        }\n    }\n\n    int dist(int u, int v) const {\n        return\
+    \ depth[u] + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
+    \ G;\n    std::vector<int> size, depth, par, pos, head, heavy;\n    int cur_pos\
+    \ = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v) {\n        size[v] = 1;\n\
+    \        int max_size = 0;\n        for (int c : G[v]) {\n            if (c ==\
+    \ par[v]) continue;\n            par[c] = v;\n            depth[c] = depth[v]\
+    \ + 1;\n            dfs(c);\n            size[v] += size[c];\n            if (size[c]\
+    \ > max_size) {\n                max_size = size[c];\n                heavy[v]\
+    \ = c;\n            }\n        }\n    }\n\n    void decompose(int v, int h) {\n\
+    \        head[v] = h;\n        pos[v] = cur_pos++;\n        if (heavy[v] != -1)\
+    \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
+    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n"
   code: "#include <bits/stdc++.h>\n#include \"../data-structure/segment_tree.cpp\"\
     \n\n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\n\
     template <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
@@ -115,7 +114,7 @@ data:
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:49:44+09:00'
+  timestamp: '2020-10-03 00:05:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_path_sum.test.cpp

@@ -17,35 +17,36 @@ data:
     links: []
   bundledCode: "#line 1 \"graph/dijkstra.cpp\"\n#include <bits/stdc++.h>\n#line 2\
     \ \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n\
-    \    T cost;\n    Edge(int to, T cost) : from(-1), to(to), cost(cost) {}\n   \
-    \ Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}\n};\n#line\
-    \ 3 \"graph/dijkstra.cpp\"\n\n/*\n * @brief Dijkstra's Algorithm\n * @docs docs/graph/dijkstra.md\n\
-    \ */\ntemplate <typename T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>&\
-    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
-    \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
-    \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
-    \ {\n        T cost;\n        int v;\n        std::tie(cost, v) = pq.top();\n\
-    \        pq.pop();\n        if (dist[v] < cost) continue;\n        for (auto&\
-    \ e : G[v]) {\n            if (dist[e.to] > dist[v] + e.cost) {\n            \
-    \    dist[e.to] = dist[v] + e.cost;\n                pq.emplace(dist[e.to], e.to);\n\
-    \            }\n        }\n    }\n\n    return dist;\n}\n"
+    \    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
+    \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
+    \ {}\n};\n#line 3 \"graph/dijkstra.cpp\"\n\n/*\n * @brief Dijkstra's Algorithm\n\
+    \ * @docs docs/graph/dijkstra.md\n */\ntemplate <typename T>\nstd::vector<T> dijkstra(const\
+    \ std::vector<std::vector<Edge<T>>>& G, int s) {\n    std::vector<T> dist(G.size(),\
+    \ std::numeric_limits<T>::max());\n    dist[s] = 0;\n    using P = std::pair<T,\
+    \ int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;\n   \
+    \ pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T weight;\n        int\
+    \ v;\n        std::tie(weight, v) = pq.top();\n        pq.pop();\n        if (dist[v]\
+    \ < weight) continue;\n        for (auto& e : G[v]) {\n            if (dist[e.to]\
+    \ > dist[v] + e.weight) {\n                dist[e.to] = dist[v] + e.weight;\n\
+    \                pq.emplace(dist[e.to], e.to);\n            }\n        }\n   \
+    \ }\n\n    return dist;\n}\n"
   code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\n\n/*\n * @brief Dijkstra's\
     \ Algorithm\n * @docs docs/graph/dijkstra.md\n */\ntemplate <typename T>\nstd::vector<T>\
     \ dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {\n    std::vector<T>\
     \ dist(G.size(), std::numeric_limits<T>::max());\n    dist[s] = 0;\n    using\
     \ P = std::pair<T, int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>>\
-    \ pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T cost;\n \
-    \       int v;\n        std::tie(cost, v) = pq.top();\n        pq.pop();\n   \
-    \     if (dist[v] < cost) continue;\n        for (auto& e : G[v]) {\n        \
-    \    if (dist[e.to] > dist[v] + e.cost) {\n                dist[e.to] = dist[v]\
-    \ + e.cost;\n                pq.emplace(dist[e.to], e.to);\n            }\n  \
-    \      }\n    }\n\n    return dist;\n}"
+    \ pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T weight;\n\
+    \        int v;\n        std::tie(weight, v) = pq.top();\n        pq.pop();\n\
+    \        if (dist[v] < weight) continue;\n        for (auto& e : G[v]) {\n   \
+    \         if (dist[e.to] > dist[v] + e.weight) {\n                dist[e.to] =\
+    \ dist[v] + e.weight;\n                pq.emplace(dist[e.to], e.to);\n       \
+    \     }\n        }\n    }\n\n    return dist;\n}"
   dependsOn:
   - graph/edge.cpp
   isVerificationFile: false
   path: graph/dijkstra.cpp
   requiredBy: []
-  timestamp: '2020-09-24 11:47:30+09:00'
+  timestamp: '2020-10-03 00:05:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A.test.cpp

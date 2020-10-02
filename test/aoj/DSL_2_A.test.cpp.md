@@ -29,32 +29,32 @@ data:
     \ vr = M::id;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
     \            if (l & 1) vl = M::op(vl, node[l++]);\n            if (r & 1) vr\
     \ = M::op(node[--r], vr);\n        }\n        return M::op(vl, vr);\n    }\n\n\
-    \    template <typename F>\n    int find_first(int l, const F& cond) const {\n\
-    \        T vl = M::id;\n        int r = size;\n        for (l += size, r += size;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt\
-    \ = M::op(vl, node[l]);\n                if (cond(nxt)) {\n                  \
-    \  while (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n\
-    \                        if (cond(nxt)) l = 2 * l;\n                        else\
-    \ vl = nxt, l = 2 * l + 1;\n                    }\n                    return\
-    \ l - size;\n                }\n                vl = nxt;\n                ++l;\n\
+    \    template <typename F>\n    int find_first(int l, F cond) const {\n      \
+    \  T vl = M::id;\n        int r = size;\n        for (l += size, r += size; l\
+    \ < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt =\
+    \ M::op(vl, node[l]);\n                if (cond(nxt)) {\n                    while\
+    \ (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n      \
+    \                  if (cond(nxt)) l = 2 * l;\n                        else vl\
+    \ = nxt, l = 2 * l + 1;\n                    }\n                    return l -\
+    \ size;\n                }\n                vl = nxt;\n                ++l;\n\
     \            }\n        }\n        return -1;\n    }\n\n    template <typename\
-    \ F>\n    int find_last(int r, const F& cond) const {\n        T vr = M::id;\n\
-    \        int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>=\
-    \ 1) {\n            if (r & 1) {\n                --r;\n                T nxt\
-    \ = M::op(node[r], vr);\n                if (cond(nxt)) {\n                  \
-    \  while (r < size) {\n                        nxt = M::op(node[2 * r + 1], vr);\n\
-    \                        if (cond(nxt)) r = 2 * r + 1;\n                     \
-    \   else vr = nxt, r = 2 * r;\n                    }\n                    return\
-    \ r - size;\n                }\n                vr = nxt;\n            }\n   \
-    \     }\n        return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T>\
-    \ node;\n};\n#line 4 \"test/aoj/DSL_2_A.test.cpp\"\n\nusing namespace std;\n\n\
-    struct Monoid {\n    using T = int;\n    inline static const T id = (1u << 31)\
-    \ - 1;\n    static T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ n, q;\n    cin >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int i =\
-    \ 0; i < q; i++) {\n        int com, x, y;\n        cin >> com >> x >> y;\n  \
-    \      if (com == 0) st.update(x, y);\n        else cout << st.fold(x, y + 1)\
-    \ << \"\\n\";\n    }\n}\n"
+    \ F>\n    int find_last(int r, F cond) const {\n        T vr = M::id;\n      \
+    \  int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
+    \            if (r & 1) {\n                --r;\n                T nxt = M::op(node[r],\
+    \ vr);\n                if (cond(nxt)) {\n                    while (r < size)\
+    \ {\n                        nxt = M::op(node[2 * r + 1], vr);\n             \
+    \           if (cond(nxt)) r = 2 * r + 1;\n                        else vr = nxt,\
+    \ r = 2 * r;\n                    }\n                    return r - size;\n  \
+    \              }\n                vr = nxt;\n            }\n        }\n      \
+    \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
+    #line 4 \"test/aoj/DSL_2_A.test.cpp\"\n\nusing namespace std;\n\nstruct Monoid\
+    \ {\n    using T = int;\n    inline static const T id = (1u << 31) - 1;\n    static\
+    \ T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\nint main() {\n   \
+    \ ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n    cin\
+    \ >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int i = 0; i < q; i++)\
+    \ {\n        int com, x, y;\n        cin >> com >> x >> y;\n        if (com ==\
+    \ 0) st.update(x, y);\n        else cout << st.fold(x, y + 1) << \"\\n\";\n  \
+    \  }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\
     \n\n#include \"../../data-structure/segment_tree.cpp\"\n\nusing namespace std;\n\
     \nstruct Monoid {\n    using T = int;\n    inline static const T id = (1u << 31)\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:57:47+09:00'
+  timestamp: '2020-10-03 00:05:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp

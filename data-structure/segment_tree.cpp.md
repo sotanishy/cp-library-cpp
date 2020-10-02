@@ -39,25 +39,24 @@ data:
     \ vr = M::id;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
     \            if (l & 1) vl = M::op(vl, node[l++]);\n            if (r & 1) vr\
     \ = M::op(node[--r], vr);\n        }\n        return M::op(vl, vr);\n    }\n\n\
-    \    template <typename F>\n    int find_first(int l, const F& cond) const {\n\
-    \        T vl = M::id;\n        int r = size;\n        for (l += size, r += size;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt\
-    \ = M::op(vl, node[l]);\n                if (cond(nxt)) {\n                  \
-    \  while (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n\
-    \                        if (cond(nxt)) l = 2 * l;\n                        else\
-    \ vl = nxt, l = 2 * l + 1;\n                    }\n                    return\
-    \ l - size;\n                }\n                vl = nxt;\n                ++l;\n\
+    \    template <typename F>\n    int find_first(int l, F cond) const {\n      \
+    \  T vl = M::id;\n        int r = size;\n        for (l += size, r += size; l\
+    \ < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt =\
+    \ M::op(vl, node[l]);\n                if (cond(nxt)) {\n                    while\
+    \ (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n      \
+    \                  if (cond(nxt)) l = 2 * l;\n                        else vl\
+    \ = nxt, l = 2 * l + 1;\n                    }\n                    return l -\
+    \ size;\n                }\n                vl = nxt;\n                ++l;\n\
     \            }\n        }\n        return -1;\n    }\n\n    template <typename\
-    \ F>\n    int find_last(int r, const F& cond) const {\n        T vr = M::id;\n\
-    \        int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>=\
-    \ 1) {\n            if (r & 1) {\n                --r;\n                T nxt\
-    \ = M::op(node[r], vr);\n                if (cond(nxt)) {\n                  \
-    \  while (r < size) {\n                        nxt = M::op(node[2 * r + 1], vr);\n\
-    \                        if (cond(nxt)) r = 2 * r + 1;\n                     \
-    \   else vr = nxt, r = 2 * r;\n                    }\n                    return\
-    \ r - size;\n                }\n                vr = nxt;\n            }\n   \
-    \     }\n        return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T>\
-    \ node;\n};\n"
+    \ F>\n    int find_last(int r, F cond) const {\n        T vr = M::id;\n      \
+    \  int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
+    \            if (r & 1) {\n                --r;\n                T nxt = M::op(node[r],\
+    \ vr);\n                if (cond(nxt)) {\n                    while (r < size)\
+    \ {\n                        nxt = M::op(node[2 * r + 1], vr);\n             \
+    \           if (cond(nxt)) r = 2 * r + 1;\n                        else vr = nxt,\
+    \ r = 2 * r;\n                    }\n                    return r - size;\n  \
+    \              }\n                vr = nxt;\n            }\n        }\n      \
+    \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
@@ -72,31 +71,30 @@ data:
     \ vr = M::id;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
     \            if (l & 1) vl = M::op(vl, node[l++]);\n            if (r & 1) vr\
     \ = M::op(node[--r], vr);\n        }\n        return M::op(vl, vr);\n    }\n\n\
-    \    template <typename F>\n    int find_first(int l, const F& cond) const {\n\
-    \        T vl = M::id;\n        int r = size;\n        for (l += size, r += size;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt\
-    \ = M::op(vl, node[l]);\n                if (cond(nxt)) {\n                  \
-    \  while (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n\
-    \                        if (cond(nxt)) l = 2 * l;\n                        else\
-    \ vl = nxt, l = 2 * l + 1;\n                    }\n                    return\
-    \ l - size;\n                }\n                vl = nxt;\n                ++l;\n\
+    \    template <typename F>\n    int find_first(int l, F cond) const {\n      \
+    \  T vl = M::id;\n        int r = size;\n        for (l += size, r += size; l\
+    \ < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt =\
+    \ M::op(vl, node[l]);\n                if (cond(nxt)) {\n                    while\
+    \ (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n      \
+    \                  if (cond(nxt)) l = 2 * l;\n                        else vl\
+    \ = nxt, l = 2 * l + 1;\n                    }\n                    return l -\
+    \ size;\n                }\n                vl = nxt;\n                ++l;\n\
     \            }\n        }\n        return -1;\n    }\n\n    template <typename\
-    \ F>\n    int find_last(int r, const F& cond) const {\n        T vr = M::id;\n\
-    \        int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>=\
-    \ 1) {\n            if (r & 1) {\n                --r;\n                T nxt\
-    \ = M::op(node[r], vr);\n                if (cond(nxt)) {\n                  \
-    \  while (r < size) {\n                        nxt = M::op(node[2 * r + 1], vr);\n\
-    \                        if (cond(nxt)) r = 2 * r + 1;\n                     \
-    \   else vr = nxt, r = 2 * r;\n                    }\n                    return\
-    \ r - size;\n                }\n                vr = nxt;\n            }\n   \
-    \     }\n        return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T>\
-    \ node;\n};"
+    \ F>\n    int find_last(int r, F cond) const {\n        T vr = M::id;\n      \
+    \  int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
+    \            if (r & 1) {\n                --r;\n                T nxt = M::op(node[r],\
+    \ vr);\n                if (cond(nxt)) {\n                    while (r < size)\
+    \ {\n                        nxt = M::op(node[2 * r + 1], vr);\n             \
+    \           if (cond(nxt)) r = 2 * r + 1;\n                        else vr = nxt,\
+    \ r = 2 * r;\n                    }\n                    return r - size;\n  \
+    \              }\n                vr = nxt;\n            }\n        }\n      \
+    \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segment_tree.cpp
   requiredBy:
   - tree/hld.cpp
-  timestamp: '2020-10-01 22:49:44+09:00'
+  timestamp: '2020-10-03 00:05:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
