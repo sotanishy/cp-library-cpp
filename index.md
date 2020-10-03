@@ -3,6 +3,9 @@ data:
   libraryCategories:
   - name: data-structure
     pages:
+    - icon: ':warning:'
+      path: data-structure/convex_hull_trick.cpp
+      title: Convex Hull Trick
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
@@ -24,6 +27,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
+    - icon: ':heavy_check_mark:'
+      path: data-structure/li_chao_tree.cpp
+      title: Li Chao Tree
     - icon: ':warning:'
       path: data-structure/monoids.cpp
       title: data-structure/monoids.cpp
@@ -318,6 +324,9 @@ data:
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/line_add_get_min.test.cpp
+      title: test/yosupo/line_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
@@ -335,6 +344,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/segment_add_get_min.test.cpp
+      title: test/yosupo/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
