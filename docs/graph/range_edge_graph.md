@@ -20,7 +20,7 @@
 - `void add_edge(int l1, int r1, int l2, int r2, T w)`
     - 区間 $[l_1, r_1)$ から区間 $[l_2, r_2)$ に重み $w$ の辺を張る
     - 時間計算量: $O(\lg n)$
-- `vector<T> dijkstra(int s)`
+- `vector<T> dist(int s)`
     - 始点 $s$ から各頂点への最短距離を Dijkstra 法で求める
     - 時間計算量: $O((n + m\lg n) \lg (n + m))$
 

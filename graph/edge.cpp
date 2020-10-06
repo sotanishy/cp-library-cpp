@@ -1,3 +1,4 @@
+#pragma once
 #include <bits/stdc++.h>
 
 template <typename T>

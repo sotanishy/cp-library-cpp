@@ -25,7 +25,7 @@ public:
     int lower_bound(const T& x) const {
         return lower_bound(x, std::less<>());
     }
-    
+
     template <typename Compare>
     int lower_bound(const T& x, Compare cmp) const {
         int k = 1;
@@ -33,8 +33,9 @@ public:
         int i = 0;
         T v = M::id;
         for (; k > 0; k >>= 1) {
+            if (i + k <= n) continue;
             T nv = M::op(v, data[i + k]);
-            if (i + k <= n && cmp(nv, x)) {
+            if (cmp(nv, x)) {
                 std::swap(v, nv);
                 i += k;
             }
