@@ -17,7 +17,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
   bundledCode: "#line 1 \"test/aoj/GRL_1_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
-    \n\n#line 1 \"graph/bellman_ford.cpp\"\n#include <bits/stdc++.h>\n#line 2 \"graph/edge.cpp\"\
+    \n\n#line 1 \"graph/bellman_ford.cpp\"\n#include <bits/stdc++.h>\n#line 3 \"graph/edge.cpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
     \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
     \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 3\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-06 11:51:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_B.test.cpp

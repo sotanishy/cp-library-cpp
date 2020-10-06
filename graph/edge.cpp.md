@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/prim.cpp
     title: Prim's Algorithm
+  - icon: ':warning:'
+    path: graph/range_edge_graph.cpp
+    title: Range Edge Graph
   - icon: ':heavy_check_mark:'
     path: tree/tree_diameter.cpp
     title: Diameter of a Tree
@@ -37,24 +40,25 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\ntemplate <typename\
+  bundledCode: "#line 2 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\ntemplate <typename\
     \ T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight)\
     \ : from(-1), to(to), weight(weight) {}\n    Edge(int from, int to, T weight)\
     \ : from(from), to(to), weight(weight) {}\n};\n"
-  code: "#include <bits/stdc++.h>\n\ntemplate <typename T>\nstruct Edge {\n    int\
-    \ from, to;\n    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
-    \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n"
+  code: "#pragma once\n#include <bits/stdc++.h>\n\ntemplate <typename T>\nstruct Edge\
+    \ {\n    int from, to;\n    T weight;\n    Edge(int to, T weight) : from(-1),\
+    \ to(to), weight(weight) {}\n    Edge(int from, int to, T weight) : from(from),\
+    \ to(to), weight(weight) {}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/edge.cpp
   requiredBy:
   - tree/tree_diameter.cpp
   - graph/kruskal.cpp
+  - graph/range_edge_graph.cpp
   - graph/dijkstra.cpp
   - graph/bellman_ford.cpp
   - graph/prim.cpp
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-06 11:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp

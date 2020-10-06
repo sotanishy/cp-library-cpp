@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/range_edge_graph.cpp
+    title: Range Edge Graph
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp
@@ -15,7 +18,7 @@ data:
     _deprecated_at_docs: docs/graph/dijkstra.md
     document_title: Dijkstra's Algorithm
     links: []
-  bundledCode: "#line 1 \"graph/dijkstra.cpp\"\n#include <bits/stdc++.h>\n#line 2\
+  bundledCode: "#line 1 \"graph/dijkstra.cpp\"\n#include <bits/stdc++.h>\n#line 3\
     \ \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n\
     \    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
@@ -45,8 +48,9 @@ data:
   - graph/edge.cpp
   isVerificationFile: false
   path: graph/dijkstra.cpp
-  requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  requiredBy:
+  - graph/range_edge_graph.cpp
+  timestamp: '2020-10-06 11:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A.test.cpp

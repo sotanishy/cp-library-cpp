@@ -174,9 +174,6 @@ data:
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
-      path: misc/counting_sort.cpp
-      title: misc/counting_sort.cpp
-    - icon: ':warning:'
       path: misc/debug.cpp
       title: misc/debug.cpp
     - icon: ':warning:'

@@ -20,13 +20,13 @@ data:
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
     \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n    \n\
-    \    template <typename Compare>\n    int lower_bound(const T& x, Compare cmp)\
-    \ const {\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int\
-    \ i = 0;\n        T v = M::id;\n        for (; k > 0; k >>= 1) {\n           \
-    \ T nv = M::op(v, data[i + k]);\n            if (i + k <= n && cmp(nv, x)) {\n\
-    \                std::swap(v, nv);\n                i += k;\n            }\n \
-    \       }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
+    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
+    \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
+    \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
+    \        T v = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i + k\
+    \ <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if (cmp(nv,\
+    \ x)) {\n                std::swap(v, nv);\n                i += k;\n        \
+    \    }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
     \ data;\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
     \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
@@ -35,19 +35,19 @@ data:
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
     \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n    \n\
-    \    template <typename Compare>\n    int lower_bound(const T& x, Compare cmp)\
-    \ const {\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int\
-    \ i = 0;\n        T v = M::id;\n        for (; k > 0; k >>= 1) {\n           \
-    \ T nv = M::op(v, data[i + k]);\n            if (i + k <= n && cmp(nv, x)) {\n\
-    \                std::swap(v, nv);\n                i += k;\n            }\n \
-    \       }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
+    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
+    \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
+    \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
+    \        T v = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i + k\
+    \ <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if (cmp(nv,\
+    \ x)) {\n                std::swap(v, nv);\n                i += k;\n        \
+    \    }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
     \ data;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/fenwick_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-06 11:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_B.test.cpp

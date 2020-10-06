@@ -18,7 +18,7 @@ Li Chao tree は，直線及び線分の集合をセグメント木で管理し�
 - `void add_line(T a, T b)`
     - 直線 $y = ax + b$ を追加する
     - 時間計算量: $O(\lg n)$
-- void add_segment(T a, T b, int l, int r)`
+- `void add_segment(T a, T b, int l, int r)`
     - 線分 $y = ax + b \quad (x \in [vs_l, vs_r))$ を追加する
     - 時間計算量: $O(\lg^2 n)$
 - `T get_min(int k)`

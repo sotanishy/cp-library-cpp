@@ -15,7 +15,7 @@ data:
     _deprecated_at_docs: docs/graph/prim.md
     document_title: Prim's Algorithm
     links: []
-  bundledCode: "#line 1 \"graph/prim.cpp\"\n#include <bits/stdc++.h>\n#line 2 \"graph/edge.cpp\"\
+  bundledCode: "#line 1 \"graph/prim.cpp\"\n#include <bits/stdc++.h>\n#line 3 \"graph/edge.cpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
     \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
     \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 3\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: graph/prim.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-06 11:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.prim.test.cpp
