@@ -37,6 +37,15 @@ data:
       path: data-structure/partially_persistent_union_find.cpp
       title: Partially Persistent Union Find
     - icon: ':heavy_check_mark:'
+      path: data-structure/persistent_array.cpp
+      title: Persistent Array
+    - icon: ':warning:'
+      path: data-structure/persistent_stack.cpp
+      title: Persistent Stack
+    - icon: ':heavy_check_mark:'
+      path: data-structure/persistent_union_find.cpp
+      title: Persistent Union Find
+    - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
     - icon: ':heavy_check_mark:'
@@ -326,6 +335,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/persistent_unionfind.test.cpp
+      title: test/yosupo/persistent_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
