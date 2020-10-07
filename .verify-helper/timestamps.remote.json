@@ -35,6 +35,7 @@
 "test/yosupo/convolution_mod.test.cpp": "2020-10-01 22:29:44 +0900",
 "test/yosupo/line_add_get_min.test.cpp": "2020-10-03 18:55:46 +0900",
 "test/yosupo/number_of_substrings.test.cpp": "2020-10-01 22:29:44 +0900",
+"test/yosupo/persistent_unionfind.test.cpp": "2020-10-08 02:07:30 +0900",
 "test/yosupo/point_add_range_sum.test.cpp": "2020-10-03 00:05:40 +0900",
 "test/yosupo/point_set_range_composite.test.cpp": "2020-10-03 00:05:40 +0900",
 "test/yosupo/queue_operate_all_composite.test.cpp": "2020-10-01 22:29:44 +0900",
