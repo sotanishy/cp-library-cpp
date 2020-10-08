@@ -2,7 +2,7 @@
 
 /*
  * @brief Partially Persistent Union Find
- * @docs docs/data-structure/partially_persistent_union_find.md
+ * @docs docs/data-structure/unionfind/partially_persistent_union_find.md
  */
 class PartiallyPersistentUnionFind {
 public:

@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
-#include "persistent_array.cpp"
+#include "../persistent_array.cpp"
 
 /*
  * @brief Persistent Union Find
- * @docs docs/data-structure/persistent_union_find.md
+ * @docs docs/data-structure/unionfind/persistent_union_find.md
  */
 class PersistentUnionFind {
 public:

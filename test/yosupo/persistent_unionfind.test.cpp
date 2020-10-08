@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
 
-#include "../../data-structure/persistent_union_find.cpp"
+#include "../../data-structure/unionfind/persistent_union_find.cpp"
 
 using namespace std;
 

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include "edge.cpp"
-#include "../data-structure/union_find.cpp"
+#include "../data-structure/unionfind/union_find.cpp"
 
 /*
  * @brief Kruskal's Algorithm

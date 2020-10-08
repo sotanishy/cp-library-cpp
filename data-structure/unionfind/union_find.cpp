@@ -2,7 +2,7 @@
 
 /*
  * @brief Union Find
- * @docs docs/data-structure/union_find.md
+ * @docs docs/data-structure/unionfind/union_find.md
  */
 class UnionFind {
 public:
