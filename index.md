@@ -10,12 +10,6 @@ data:
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
     - icon: ':heavy_check_mark:'
-      path: data-structure/dual_segment_tree.cpp
-      title: Dual Segment Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/dynamic_segment_tree.cpp
-      title: Dynamic Segment Tree
-    - icon: ':heavy_check_mark:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -24,9 +18,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/lazy_segment_tree.cpp
-      title: Segment Tree with Lazy Propagation
     - icon: ':heavy_check_mark:'
       path: data-structure/li_chao_tree.cpp
       title: Li Chao Tree
@@ -49,14 +40,8 @@ data:
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
     - icon: ':heavy_check_mark:'
-      path: data-structure/segment_tree.cpp
-      title: Segment Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/segment_tree_beats.cpp
-      title: Segment Tree Beats
-    - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
-      title: Slide Min
+      title: Sliding Window Minimum
     - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
@@ -72,6 +57,26 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/weighted_union_find.cpp
       title: Weighted Union Find
+  - name: data-structure/segtree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segtree/dual_segment_tree.cpp
+      title: Dual Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segtree/dynamic_segment_tree.cpp
+      title: Dynamic Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segtree/lazy_segment_tree.cpp
+      title: Segment Tree with Lazy Propagation
+    - icon: ':warning:'
+      path: data-structure/segtree/persistent_segment_tree.cpp
+      title: Persistent Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segtree/segment_tree.cpp
+      title: Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/segtree/segment_tree_beats.cpp
+      title: Segment Tree Beats
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -118,6 +123,9 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
+    - icon: ':warning:'
+      path: graph/two_edge_connected_components.cpp
+      title: Two-Edge-Connected Components
     - icon: ':heavy_check_mark:'
       path: graph/twosat.cpp
       title: 2-SAT

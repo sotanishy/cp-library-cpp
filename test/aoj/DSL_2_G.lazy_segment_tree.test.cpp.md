@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/lazy_segment_tree.cpp
+    path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -15,8 +15,8 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
   bundledCode: "#line 1 \"test/aoj/DSL_2_G.lazy_segment_tree.test.cpp\"\n#define PROBLEM\
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\n\n#line\
-    \ 1 \"data-structure/lazy_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
-    \ * @brief Segment Tree with Lazy Propagation\n * @docs docs/data-structure/lazy_segment_tree.md\n\
+    \ 1 \"data-structure/segtree/lazy_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
+    \n/*\n * @brief Segment Tree with Lazy Propagation\n * @docs docs/data-structure/segtree/lazy_segment_tree.md\n\
     \ */\ntemplate <typename M, typename O, typename M::T (*act)(typename M::T, typename\
     \ O::T)>\nclass LazySegmentTree {\n    using T = typename M::T;\n    using E =\
     \ typename O::T;\n\npublic:\n    LazySegmentTree() = default;\n    explicit LazySegmentTree(int\
@@ -56,7 +56,7 @@ data:
     \ - 1, t, x);\n        } else {\n            cout << st.fold(s - 1, t).first <<\
     \ \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\
-    \n\n#include \"../../data-structure/lazy_segment_tree.cpp\"\n\nusing namespace\
+    \n\n#include \"../../data-structure/segtree/lazy_segment_tree.cpp\"\n\nusing namespace\
     \ std;\n\nusing ll = long long;\n\nstruct M {\n    using T = pair<ll, int>;\n\
     \    inline static const T id = {0, 1};\n    static T op(T a, T b) {\n       \
     \ return {a.first + b.first, a.second + b.second};\n    }\n};\n\nstruct O {\n\
@@ -69,11 +69,11 @@ data:
     \            cin >> x;\n            st.update(s - 1, t, x);\n        } else {\n\
     \            cout << st.fold(s - 1, t).first << \"\\n\";\n        }\n    }\n}"
   dependsOn:
-  - data-structure/lazy_segment_tree.cpp
+  - data-structure/segtree/lazy_segment_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp

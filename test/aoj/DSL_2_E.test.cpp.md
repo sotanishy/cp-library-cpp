@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/dual_segment_tree.cpp
+    path: data-structure/segtree/dual_segment_tree.cpp
     title: Dual Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -14,8 +14,8 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
   bundledCode: "#line 1 \"test/aoj/DSL_2_E.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
-    \n\n#line 1 \"data-structure/dual_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/dual_segment_tree.md\n\
+    \n\n#line 1 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
+    \n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
     \ n) {\n        size = 1;\n        height = 1;\n        while (size < n) size\
@@ -40,7 +40,7 @@ data:
     \      int i;\n            cin >> i;\n            cout << st[i - 1] << \"\\n\"\
     ;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
-    \n\n#include \"../../data-structure/dual_segment_tree.cpp\"\n\nusing namespace\
+    \n\n#include \"../../data-structure/segtree/dual_segment_tree.cpp\"\n\nusing namespace\
     \ std;\n\nstruct Monoid {\n    using T = int;\n    inline static const T id =\
     \ 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main()\
     \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n\
@@ -50,11 +50,11 @@ data:
     \ - 1, t, x);\n        } else {\n            int i;\n            cin >> i;\n \
     \           cout << st[i - 1] << \"\\n\";\n        }\n    }\n}"
   dependsOn:
-  - data-structure/dual_segment_tree.cpp
+  - data-structure/segtree/dual_segment_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_E.test.cpp

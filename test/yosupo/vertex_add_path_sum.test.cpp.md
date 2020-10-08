@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/segment_tree.cpp
+    path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: tree/hld.cpp
@@ -18,10 +18,10 @@ data:
     - https://judge.yosupo.jp/problem/vertex_add_path_sum
   bundledCode: "#line 1 \"test/yosupo/vertex_add_path_sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n#line 1 \"tree/hld.cpp\"\
-    \n#include <bits/stdc++.h>\n#line 2 \"data-structure/segment_tree.cpp\"\n\n/*\n\
-    \ * @brief Segment Tree\n * @docs docs/data-structure/segment_tree.md\n */\ntemplate\
-    \ <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n\
-    \    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
+    \n#include <bits/stdc++.h>\n#line 2 \"data-structure/segtree/segment_tree.cpp\"\
+    \n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
+    \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
+    \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
     \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
@@ -108,11 +108,11 @@ data:
     \ >> v;\n            cout << hld.fold(u, v) << endl;\n        }\n    }\n}"
   dependsOn:
   - tree/hld.cpp
-  - data-structure/segment_tree.cpp
+  - data-structure/segtree/segment_tree.cpp
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp

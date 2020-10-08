@@ -21,13 +21,13 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/segment_tree.md
+    _deprecated_at_docs: docs/data-structure/segtree/segment_tree.md
     document_title: Segment Tree
     links: []
-  bundledCode: "#line 1 \"data-structure/segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segment_tree.md\n */\n\
-    template <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n\
-    \    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
+  bundledCode: "#line 1 \"data-structure/segtree/segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
+    \n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
+    \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
+    \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
     \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
@@ -57,7 +57,7 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segment_tree.md\n\
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
@@ -91,21 +91,21 @@ data:
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/segment_tree.cpp
+  path: data-structure/segtree/segment_tree.cpp
   requiredBy:
   - tree/hld.cpp
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
-documentation_of: data-structure/segment_tree.cpp
+documentation_of: data-structure/segtree/segment_tree.cpp
 layout: document
 redirect_from:
-- /library/data-structure/segment_tree.cpp
-- /library/data-structure/segment_tree.cpp.html
+- /library/data-structure/segtree/segment_tree.cpp
+- /library/data-structure/segtree/segment_tree.cpp.html
 title: Segment Tree
 ---
 # Segment Tree

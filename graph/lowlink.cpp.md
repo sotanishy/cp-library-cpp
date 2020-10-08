@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/two_edge_connected_components.cpp
+    title: Two-Edge-Connected Components
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
@@ -55,7 +58,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.cpp
-  requiredBy: []
+  requiredBy:
+  - graph/two_edge_connected_components.cpp
   timestamp: '2020-09-30 12:46:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/segment_tree.cpp
+    path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -14,10 +14,10 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
   bundledCode: "#line 1 \"test/aoj/DSL_2_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\
-    \n\n#line 1 \"data-structure/segment_tree.cpp\"\n#include <bits/stdc++.h>\n\n\
-    /*\n * @brief Segment Tree\n * @docs docs/data-structure/segment_tree.md\n */\n\
-    template <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n\
-    \    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
+    \n\n#line 1 \"data-structure/segtree/segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
+    \n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
+    \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
+    \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
     \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
@@ -56,20 +56,20 @@ data:
     \ 0) st.update(x, y);\n        else cout << st.fold(x, y + 1) << \"\\n\";\n  \
     \  }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\
-    \n\n#include \"../../data-structure/segment_tree.cpp\"\n\nusing namespace std;\n\
-    \nstruct Monoid {\n    using T = int;\n    inline static const T id = (1u << 31)\
-    \ - 1;\n    static T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ n, q;\n    cin >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int i =\
-    \ 0; i < q; i++) {\n        int com, x, y;\n        cin >> com >> x >> y;\n  \
-    \      if (com == 0) st.update(x, y);\n        else cout << st.fold(x, y + 1)\
+    \n\n#include \"../../data-structure/segtree/segment_tree.cpp\"\n\nusing namespace\
+    \ std;\n\nstruct Monoid {\n    using T = int;\n    inline static const T id =\
+    \ (1u << 31) - 1;\n    static T op(T a, T b) {\n        return min(a, b);\n  \
+    \  }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int n, q;\n    cin >> n >> q;\n    SegmentTree<Monoid> st(n);\n    for (int\
+    \ i = 0; i < q; i++) {\n        int com, x, y;\n        cin >> com >> x >> y;\n\
+    \        if (com == 0) st.update(x, y);\n        else cout << st.fold(x, y + 1)\
     \ << \"\\n\";\n    }\n}"
   dependsOn:
-  - data-structure/segment_tree.cpp
+  - data-structure/segtree/segment_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp

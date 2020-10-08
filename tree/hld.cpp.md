@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/segment_tree.cpp
+    path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
@@ -15,8 +15,8 @@ data:
     _deprecated_at_docs: docs/tree/hld.md
     document_title: Heavy-Light Decomposition
     links: []
-  bundledCode: "#line 1 \"tree/hld.cpp\"\n#include <bits/stdc++.h>\n#line 2 \"data-structure/segment_tree.cpp\"\
-    \n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segment_tree.md\n\
+  bundledCode: "#line 1 \"tree/hld.cpp\"\n#include <bits/stdc++.h>\n#line 2 \"data-structure/segtree/segment_tree.cpp\"\
+    \n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
@@ -78,7 +78,7 @@ data:
     \        head[v] = h;\n        pos[v] = cur_pos++;\n        if (heavy[v] != -1)\
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
     \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\n#include \"../data-structure/segment_tree.cpp\"\
+  code: "#include <bits/stdc++.h>\n#include \"../data-structure/segtree/segment_tree.cpp\"\
     \n\n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\n\
     template <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
     \    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>& G)\
@@ -110,11 +110,11 @@ data:
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
     \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n"
   dependsOn:
-  - data-structure/segment_tree.cpp
+  - data-structure/segtree/segment_tree.cpp
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_path_sum.test.cpp

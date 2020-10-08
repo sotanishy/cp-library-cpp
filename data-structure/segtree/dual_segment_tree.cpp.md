@@ -12,11 +12,11 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/dual_segment_tree.md
+    _deprecated_at_docs: docs/data-structure/segtree/dual_segment_tree.md
     document_title: Dual Segment Tree
     links: []
-  bundledCode: "#line 1 \"data-structure/dual_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/dual_segment_tree.md\n\
+  bundledCode: "#line 1 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include\
+    \ <bits/stdc++.h>\n\n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
     \ n) {\n        size = 1;\n        height = 1;\n        while (size < n) size\
@@ -31,7 +31,7 @@ data:
     \ k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2 *\
     \ k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\n    void propagate(int\
     \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/dual_segment_tree.md\n\
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
     \ n) {\n        size = 1;\n        height = 1;\n        while (size < n) size\
@@ -48,18 +48,18 @@ data:
     \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/dual_segment_tree.cpp
+  path: data-structure/segtree/dual_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_E.test.cpp
-documentation_of: data-structure/dual_segment_tree.cpp
+documentation_of: data-structure/segtree/dual_segment_tree.cpp
 layout: document
 redirect_from:
-- /library/data-structure/dual_segment_tree.cpp
-- /library/data-structure/dual_segment_tree.cpp.html
+- /library/data-structure/segtree/dual_segment_tree.cpp
+- /library/data-structure/segtree/dual_segment_tree.cpp.html
 title: Dual Segment Tree
 ---
 # Dual Segment Tree

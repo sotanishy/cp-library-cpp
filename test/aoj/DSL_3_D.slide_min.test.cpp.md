@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/slide_min.cpp
-    title: Slide Min
+    title: Sliding Window Minimum
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -16,9 +16,9 @@ data:
   bundledCode: "#line 1 \"test/aoj/DSL_3_D.slide_min.test.cpp\"\n#define PROBLEM \"\
     http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\n\n#line 1\
     \ \"data-structure/slide_min.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
-    \ Slide Min\n * @docs docs/data-structure/slide_min.md\n */\ntemplate <typename\
-    \ T, typename Compare = std::less<>>\nclass SlideMin {\npublic:\n    void push(T\
-    \ x) {\n        while (!dq.empty() && !cmp(dq.back().first, x)) dq.pop_back();\n\
+    \ Sliding Window Minimum\n * @docs docs/data-structure/slide_min.md\n */\ntemplate\
+    \ <typename T, typename Compare = std::less<>>\nclass SlideMin {\npublic:\n  \
+    \  void push(T x) {\n        while (!dq.empty() && !cmp(dq.back().first, x)) dq.pop_back();\n\
     \        dq.emplace_back(x, r++);\n    }\n\n    void pop() {\n        if (dq.front().second\
     \ == l) dq.pop_front();\n        ++l;\n    }\n\n    T get() {\n        return\
     \ dq.front().first;\n    }\n\nprivate:\n    int l = 0, r = 0;\n    std::deque<std::pair<T,\
@@ -41,7 +41,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_3_D.slide_min.test.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:29:44+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_3_D.slide_min.test.cpp

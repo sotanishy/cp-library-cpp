@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/segment_tree_beats.cpp
+    path: data-structure/segtree/segment_tree_beats.cpp
     title: Segment Tree Beats
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -15,8 +15,8 @@ data:
     - https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
   bundledCode: "#line 1 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \n\n#line 1 \"data-structure/segment_tree_beats.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segment_tree_beats.md\n\
+    \n\n#line 1 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include <bits/stdc++.h>\n\
+    \n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
     \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
     \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n))\
     \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size =\
@@ -106,8 +106,8 @@ data:
     \ } else {\n            cout << st.fold_sum(l, r) << \"\\n\";\n        }\n   \
     \ }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \n\n#include \"../../data-structure/segment_tree_beats.cpp\"\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include \"../../data-structure/segtree/segment_tree_beats.cpp\"\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
     \    for (int i = 0; i < N; i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n\
     \    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        ll b;\n    \
@@ -117,11 +117,11 @@ data:
     \ } else {\n            cout << st.fold_sum(l, r) << \"\\n\";\n        }\n   \
     \ }\n}"
   dependsOn:
-  - data-structure/segment_tree_beats.cpp
+  - data-structure/segtree/segment_tree_beats.cpp
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

@@ -10,28 +10,29 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/slide_min.md
-    document_title: Slide Min
+    document_title: Sliding Window Minimum
     links: []
   bundledCode: "#line 1 \"data-structure/slide_min.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Slide Min\n * @docs docs/data-structure/slide_min.md\n */\ntemplate\
-    \ <typename T, typename Compare = std::less<>>\nclass SlideMin {\npublic:\n  \
-    \  void push(T x) {\n        while (!dq.empty() && !cmp(dq.back().first, x)) dq.pop_back();\n\
-    \        dq.emplace_back(x, r++);\n    }\n\n    void pop() {\n        if (dq.front().second\
-    \ == l) dq.pop_front();\n        ++l;\n    }\n\n    T get() {\n        return\
-    \ dq.front().first;\n    }\n\nprivate:\n    int l = 0, r = 0;\n    std::deque<std::pair<T,\
-    \ int>> dq;\n    Compare cmp;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Slide Min\n * @docs docs/data-structure/slide_min.md\n\
+    \n/*\n * @brief Sliding Window Minimum\n * @docs docs/data-structure/slide_min.md\n\
     \ */\ntemplate <typename T, typename Compare = std::less<>>\nclass SlideMin {\n\
     public:\n    void push(T x) {\n        while (!dq.empty() && !cmp(dq.back().first,\
     \ x)) dq.pop_back();\n        dq.emplace_back(x, r++);\n    }\n\n    void pop()\
     \ {\n        if (dq.front().second == l) dq.pop_front();\n        ++l;\n    }\n\
     \n    T get() {\n        return dq.front().first;\n    }\n\nprivate:\n    int\
-    \ l = 0, r = 0;\n    std::deque<std::pair<T, int>> dq;\n    Compare cmp;\n};"
+    \ l = 0, r = 0;\n    std::deque<std::pair<T, int>> dq;\n    Compare cmp;\n};\n"
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Sliding Window Minimum\n * @docs\
+    \ docs/data-structure/slide_min.md\n */\ntemplate <typename T, typename Compare\
+    \ = std::less<>>\nclass SlideMin {\npublic:\n    void push(T x) {\n        while\
+    \ (!dq.empty() && !cmp(dq.back().first, x)) dq.pop_back();\n        dq.emplace_back(x,\
+    \ r++);\n    }\n\n    void pop() {\n        if (dq.front().second == l) dq.pop_front();\n\
+    \        ++l;\n    }\n\n    T get() {\n        return dq.front().first;\n    }\n\
+    \nprivate:\n    int l = 0, r = 0;\n    std::deque<std::pair<T, int>> dq;\n   \
+    \ Compare cmp;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/slide_min.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:29:44+09:00'
+  timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_3_D.slide_min.test.cpp
@@ -40,9 +41,9 @@ layout: document
 redirect_from:
 - /library/data-structure/slide_min.cpp
 - /library/data-structure/slide_min.cpp.html
-title: Slide Min
+title: Sliding Window Minimum
 ---
-# Sliding Min
+# Sliding Window Minimum
 
 スライド最小値は，全順序集合 $T$ を扱い，要素の最小値を求めることができるキューである．
 
