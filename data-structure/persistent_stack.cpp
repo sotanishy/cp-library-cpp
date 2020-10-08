@@ -12,6 +12,10 @@ public:
         return last->val;
     }
 
+    bool empty() const {
+        return last == nullptr;
+    }
+
     PersistentStack push(const T& val) const {
         return PersistentStack(std::make_shared<Node>(val, last));
     }
@@ -24,6 +28,7 @@ private:
     struct Node {
         T val;
         std::shared_ptr<Node> prev;
+        Node(T val, std::shared_ptr<Node> prev) : val(val), prev(prev) {}
     };
 
     std::shared_ptr<Node> last;

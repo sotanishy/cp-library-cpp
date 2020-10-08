@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "../data-structure/segment_tree.cpp"
+#include "../data-structure/segtree/segment_tree.cpp"
 
 /*
  * @brief Heavy-Light Decomposition

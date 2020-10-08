@@ -2,7 +2,7 @@
 
 /*
  * @brief Segment Tree with Lazy Propagation
- * @docs docs/data-structure/lazy_segment_tree.md
+ * @docs docs/data-structure/segtree/lazy_segment_tree.md
  */
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 class LazySegmentTree {

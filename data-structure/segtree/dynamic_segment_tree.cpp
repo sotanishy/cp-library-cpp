@@ -2,7 +2,7 @@
 
 /*
  * @brief Dynamic Segment Tree
- * @docs docs/data-structure/dynamic_segment_tree.md
+ * @docs docs/data-structure/segtree/dynamic_segment_tree.md
  */
 template <typename M>
 class DynamicSegmentTree {
@@ -25,15 +25,17 @@ public:
 
 private:
     struct Node {
-        std::unique_ptr<Node> left, right;
         T val;
-        Node() : left(nullptr), right(nullptr), val(M::id) {}
+        std::unique_ptr<Node> left, right;
+        Node() : val(M::id), left(nullptr), right(nullptr) {}
     };
 
-    std::unique_ptr<Node> const root;
+    using node_ptr = std::unique_ptr<Node>;
+
+    const node_ptr root;
     long long size;
 
-    void update(long long k, const T& x, std::unique_ptr<Node> const& n, long long l, long long r) const {
+    void update(long long k, const T& x, const node_ptr& n, long long l, long long r) const {
         if (r - l == 1) {
             n->val = x;
             return;
@@ -50,7 +52,7 @@ private:
         }
     }
 
-    T fold(long long a, long long b, std::unique_ptr<Node> const& n, long long l, long long r) const {
+    T fold(long long a, long long b, const node_ptr& n, long long l, long long r) const {
         if (r <= a || b <= l) return M::id;
         if (a <= l && r <= b) return n->val;
         long long m = (l + r) / 2;

@@ -2,7 +2,7 @@
 
 /*
  * @brief Segment Tree Beats
- * @docs docs/data-structure/segment_tree_beats.md
+ * @docs docs/data-structure/segtree/segment_tree_beats.md
  */
 template <typename T>
 class SegmentTreeBeats {

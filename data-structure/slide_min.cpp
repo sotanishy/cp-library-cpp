@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 /*
- * @brief Slide Min
+ * @brief Sliding Window Minimum
  * @docs docs/data-structure/slide_min.md
  */
 template <typename T, typename Compare = std::less<>>

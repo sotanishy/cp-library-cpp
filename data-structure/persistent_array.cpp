@@ -4,7 +4,7 @@
  * @brief Persistent Array
  * @docs docs/data-structure/persistent_array.md
  */
-template <typename T, int A = 2>
+template <typename T, int B = 2>
 class PersistentArray {
 public:
     PersistentArray() = default;
@@ -24,7 +24,7 @@ private:
     struct Node {
         T val;
         std::vector<std::shared_ptr<Node>> ch;
-        Node() : ch(A) {}
+        Node() : ch(B) {}
     };
 
     using node_ptr = std::shared_ptr<Node>;
@@ -35,7 +35,7 @@ private:
 
     T get(const node_ptr& t, int k) const {
         if (k == 0) return t->val;
-        return get(t->ch[k % A], k / A);
+        return get(t->ch[k % B], k / B);
     }
 
     node_ptr set(const node_ptr& t, int k, const T& x) const {
@@ -43,7 +43,7 @@ private:
         if (k == 0) {
             res->val = x;
         } else {
-            res->ch[k % A] = set(res->ch[k % A], k / A, x);
+            res->ch[k % B] = set(res->ch[k % B], k / B, x);
         }
         return res;
     }

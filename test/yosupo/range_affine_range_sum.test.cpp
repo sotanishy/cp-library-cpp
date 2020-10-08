@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
-#include "../../data-structure/lazy_segment_tree.cpp"
+#include "../../data-structure/segtree/lazy_segment_tree.cpp"
 #include "../../math/modint.cpp"
 
 using namespace std;

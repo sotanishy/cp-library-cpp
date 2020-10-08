@@ -1,4 +1,4 @@
-# Sliding Min
+# Sliding Window Minimum
 
 スライド最小値は，全順序集合 $T$ を扱い，要素の最小値を求めることができるキューである．
 

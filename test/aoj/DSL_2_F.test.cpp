@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 
-#include "../../data-structure/lazy_segment_tree.cpp"
+#include "../../data-structure/segtree/lazy_segment_tree.cpp"
 
 using namespace std;
 

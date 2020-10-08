@@ -2,7 +2,7 @@
 
 /*
  * @brief Dual Segment Tree
- * @docs docs/data-structure/dual_segment_tree.md
+ * @docs docs/data-structure/segtree/dual_segment_tree.md
  */
 template <typename M>
 class DualSegmentTree {

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum"
 
-#include "../../data-structure/segment_tree_beats.cpp"
+#include "../../data-structure/segtree/segment_tree_beats.cpp"
 
 using namespace std;
 

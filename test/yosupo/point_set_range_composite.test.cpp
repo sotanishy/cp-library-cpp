@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../../data-structure/segment_tree.cpp"
+#include "../../data-structure/segtree/segment_tree.cpp"
 
 using namespace std;
 using ll = long long;
