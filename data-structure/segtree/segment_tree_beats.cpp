@@ -51,8 +51,8 @@ private:
         MIN, MAX, SUM
     };
 
-    const T INF = std::numeric_limits<T>::max();
-    const T NINF = std::numeric_limits<T>::min();
+    static constexpr T INF = std::numeric_limits<T>::max();
+    static constexpr T NINF = std::numeric_limits<T>::min();
 
     int size;
     std::vector<T> sum, lazy;

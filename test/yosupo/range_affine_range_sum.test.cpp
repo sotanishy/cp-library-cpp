@@ -9,7 +9,7 @@ using mint = Modint<998244353>;
 
 struct M {
     using T = pair<mint, mint>;
-    inline static const T id = {0, 0};
+    static constexpr T id = {0, 0};
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
     }
@@ -17,7 +17,7 @@ struct M {
 
 struct O {
     using T = pair<mint, mint>;
-    inline static const T id = {1, 0};
+    static constexpr T id = {1, 0};
     static T op(T a, T b) {
         return {a.first * b.first, a.second * b.first + b.second};
     }

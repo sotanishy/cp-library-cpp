@@ -7,7 +7,7 @@
 class FFT {
 public:
     FFT() = delete;
-    
+
     template <typename T>
     static std::vector<double> convolution(const std::vector<T>& a, const std::vector<T>& b) {
         int size = a.size() + b.size() - 1;
@@ -35,12 +35,13 @@ private:
         C operator*(const C& c) { return C(real * c.real - imag * c.imag, real * c.imag + imag * c.real); }
     };
 
+    static constexpr double PI = 3.14159265358979323846;
+
     static void ufft(std::vector<C>& a) {
         int n = a.size();
-        const double PI = std::acos(-1);
         for (int m = n; m > 1; m >>= 1) {
             double ang = 2.0 * PI / m;
-            C omega(std::cos(ang), std::sin(ang));
+            C omega(cos(ang), sin(ang));
             for (int s = 0; s < n / m; ++s) {
                 C w(1, 0);
                 for (int i = 0; i < m / 2; ++i) {
@@ -56,10 +57,9 @@ private:
 
     static void iufft(std::vector<C>& a) {
         int n = a.size();
-        const double PI = std::acos(-1);
         for (int m = 2; m <= n; m <<= 1) {
             double ang = -2.0 * PI / m;
-            C omega(std::cos(ang), std::sin(ang));
+            C omega(cos(ang), sin(ang));
             for (int s = 0; s < n / m; ++s) {
                 C w(1, 0);
                 for (int i = 0; i < m / 2; ++i) {

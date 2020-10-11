@@ -1,6 +1,6 @@
-# Kruskal's Algorithm
+# Boruvka's Algorithm
 
-Kruskal のアルゴリズムは，無向重み付きグラフの最小全域木を求めるアルゴリズムである．
+Boruvka のアルゴリズムは，無向重み付きグラフの最小全域木を求めるアルゴリズムである．
 
 - `pair<T, vector<Edge<T>>> kruskal(vector<Edge<T>> G, int V)`
     - 頂点数 $V$ のグラフ $G$ の辺のリストが与えられたとき，最小全域木とその重みを求める

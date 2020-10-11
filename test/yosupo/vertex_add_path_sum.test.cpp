@@ -7,7 +7,7 @@ using ll = long long;
 
 struct AddMonoid {
     using T = ll;
-    inline static const T id = 0;
+    static constexpr T id = 0;
     static T op(T a, T b) {
         return a + b;
     }

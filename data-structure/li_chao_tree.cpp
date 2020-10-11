@@ -46,7 +46,7 @@ public:
     }
 
 private:
-    const T INF = std::numeric_limits<T>::max();
+    static constexpr T INF = std::numeric_limits<T>::max();
 
     int size;
     std::vector<T> xs;

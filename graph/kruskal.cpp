@@ -7,17 +7,19 @@
  * @docs docs/graph/kruskal.md
  */
 template <typename T>
-T kruskal(std::vector<Edge<T>>& G, int V) {
+std::pair<T, std::vector<Edge<T>>> kruskal(std::vector<Edge<T>> G, int V) {
     std::sort(G.begin(), G.end(), [](const auto& e1, const auto& e2) {
         return e1.weight < e2.weight;
     });
     UnionFind uf(V);
-    T ret = 0;
+    T weight = 0;
+    std::vector<Edge<T>> edges;
     for (auto& e : G) {
         if (!uf.same(e.from, e.to)) {
             uf.unite(e.from, e.to);
-            ret += e.weight;
+            weight += e.weight;
+            edges.push_back(e);
         }
     }
-    return ret;
+    return {weight, edges};
 }

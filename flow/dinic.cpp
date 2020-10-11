@@ -33,7 +33,7 @@ private:
         Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
     };
 
-    const T INF = std::numeric_limits<T>::max() / 2;
+    static constexpr T INF = std::numeric_limits<T>::max() / 2;
 
     std::vector<std::vector<Edge>> G;
     std::vector<int> level, iter;

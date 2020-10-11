@@ -6,7 +6,7 @@ using namespace std;
 
 struct M {
     using T = int;
-    inline static const T id = (1u << 31) - 1;
+    static constexpr T id = (1u << 31) - 1;
     static T op(T a, T b) {
         return min(a, b);
     }
@@ -14,7 +14,7 @@ struct M {
 
 struct O {
     using T = int;
-    inline static const T id = (1u << 31) - 1;
+    static constexpr T id = (1u << 31) - 1;
     static T op(T a, T b) {
         return b;
     }

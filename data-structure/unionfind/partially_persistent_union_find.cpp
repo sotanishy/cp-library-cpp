@@ -36,7 +36,7 @@ public:
     }
 
 private:
-    const int INF = std::numeric_limits<int>::max();
+    static constexpr int INF = std::numeric_limits<int>::max();
 
     std::vector<int> data;
     std::vector<int> time;

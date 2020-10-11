@@ -17,5 +17,5 @@ int main() {
         G[s].push_back({t, w});
         G[t].push_back({s, w});
     }
-    cout << prim(G) << endl;
+    cout << prim(G).first << endl;
 }

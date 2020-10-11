@@ -2,7 +2,7 @@
 
 constexpr double eps = 1e-12;
 
-inline bool eq(double a, double b) { return std::abs(a - b) < eps; }
+inline bool eq(double a, double b) { return abs(a - b) < eps; }
 inline bool lt(double a, double b) { return a < b - eps; }
 inline bool leq(double a, double b) { return a < b + eps; }
 
@@ -17,12 +17,12 @@ struct Vec {
     Vec operator*(double k) const { return Vec(x * k, y * k); }
     Vec operator/(double k) const { return Vec(x / k, y / k); }
 
-    double abs() const { return std::sqrt(x * x + y * y); }
+    double abs() const { return sqrt(x * x + y * y); }
     double dot(const Vec& other) const { return x * other.x + y * other.y; }
     double cross(const Vec& other) const { return x * other.y - y * other.x; }
 
     Vec rot(double ang) const {
-        double c = std::cos(ang), s = std::sin(ang);
+        double c = cos(ang), s = sin(ang);
         return Vec(c * x - s * y, s * x + c * y);
     }
 };
@@ -64,9 +64,9 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
     // if the circles are outside of each other
     if (lt(r1 + r2, d)) return {};
     // if one contains the other entirely
-    if (lt(d, std::abs(r2 - r1))) return {};
+    if (lt(d, abs(r2 - r1))) return {};
     double x = (r1*r1 - r2*r2 + d*d) / (2*d);
-    double y = std::sqrt(r1*r1 - x*x);
+    double y = sqrt(r1*r1 - x*x);
     Vec e1 = (c2 - c1) / (c2 - c1).abs();
     Vec e2 = Vec(-e1.y, e1.x);
     Vec p1 = c1 + e1 * x + e2 * y;
@@ -77,11 +77,11 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
 // returns the distance between the point q and the line p1-p2
 double point_line_dist(const Vec& p1, const Vec& p2, const Vec& q) {
     Vec p = p2 - p1;
-    return std::abs(q.cross(p) + p2.cross(p1)) / p.abs();
+    return abs(q.cross(p) + p2.cross(p1)) / p.abs();
 }
 
 double area(const Vec& A, const Vec& B, const Vec& C) {
-    return std::abs((B - A).cross(C - A)) / 2;
+    return abs((B - A).cross(C - A)) / 2;
 }
 
 Vec centroid(const Vec& A, const Vec& B, const Vec& C) {

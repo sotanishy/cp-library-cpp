@@ -9,7 +9,7 @@ struct Matrix {
     std::vector<std::vector<T>> A;
     int m, n;
 
-    const double EPS = 1e-8;
+    static constexpr double EPS = 1e-8;
 
     Matrix() = default;
     Matrix(int m, int n) : A(m, std::vector<T>(n)), m(m), n(n) {}
@@ -117,7 +117,7 @@ struct Matrix {
         int pivot = 0;
         for (int col = 0; col < n; ++col) {
             int row = pivot;
-            for (; row < m && std::abs(B[row][col]) < EPS; ++rol) {}
+            for (; row < m && abs(B[row][col]) < EPS; ++rol) {}
 
             if (row == m) continue;
 
@@ -148,7 +148,7 @@ struct Matrix {
         T ret = 1;
         for (int j = 0; j < n; ++j) {
             int i = j;
-            for (; i < m && std::abs(B[i][j]) < EPS; ++i) {}
+            for (; i < m && abs(B[i][j]) < EPS; ++i) {}
 
             if (i == m) return 0;
 
@@ -178,7 +178,7 @@ struct Matrix {
         for (int i = 0; i < m; ++i) {
             bool nonzero = false;
             for (int j = 0; j < n; ++j) {
-                if (std::abs(B[i][j]) > EPS) {
+                if (abs(B[i][j]) > EPS) {
                     nonzero = true;
                     break;
                 }
@@ -189,7 +189,7 @@ struct Matrix {
     }
 
     Matrix inverse() const {
-        assert(std::abs(det(A)) > EPS);
+        assert(abs(det(A)) > EPS);
         Matrix AI = concatenate(*this, I(n));
         Matrix Ib = rref(AI);
         Matrix B(n);

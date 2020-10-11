@@ -9,7 +9,6 @@ using mint = Modint<998244353>;
 
 struct M {
     using T = pair<mint, mint>;
-    inline static const T id = {1, 0};
     static T op(T a, T b) {
         return {a.first * b.first, a.second * b.first + b.second};
     }
@@ -34,7 +33,7 @@ int main() {
         } else {
             int x;
             cin >> x;
-            auto p = que.fold();
+            pair<mint, mint> p = que.empty() ? {1, 0} : que.fold();
             cout << p.first * x + p.second << "\n";
         }
     }

@@ -72,7 +72,7 @@ private:
         Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
-    const Cost INF = std::numeric_limits<Cost>::max() / 2;
+    static constexpr Cost INF = std::numeric_limits<Cost>::max() / 2;
 
     int V;
     std::vector<std::vector<Edge>> G;

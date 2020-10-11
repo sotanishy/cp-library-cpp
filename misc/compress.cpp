@@ -2,7 +2,6 @@
 
 /*
  * @brief Coordinate Compression
- * @docs docs/misc/compress.md
  */
 template <typename T>
 class Compress {
@@ -15,6 +14,14 @@ public:
 
     int compress(const T& x) const {
         return std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+    }
+
+    std::vector<int> compress(const std::vector<T>& vs) const {
+        std::vector<int> ret;
+        std::transform(vs.begin(), vs.end(), std::back_inserter(ret), [&](const T& x) {
+            return compress(x);
+        });
+        return ret;
     }
 
     T decompress(int i) const {

@@ -6,22 +6,23 @@
  * @docs docs/graph/prim.md
  */
 template <typename T>
-T prim(const std::vector<std::vector<Edge<T>>>& G) {
+std::pair<T, std::vector<Edge<T>>> prim(const std::vector<std::vector<Edge<T>>>& G) {
     std::vector<bool> used(G.size());
-    using P = std::pair<T, int>;
-    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
-    pq.emplace(0, 0);
-    T ret = 0;
+    auto cmp = [](const auto& e1, const auto& e2) { return e1.weight > e2.weight; };
+    std::priority_queue<Edge<T>, std::vector<Edge<T>>, decltype(cmp)> pq(cmp);
+    pq.emplace(0, 0, 0);
+    T weight = 0;
+    std::vector<Edge<T>> edges;
     while (!pq.empty()) {
-        auto p = pq.top();
+        auto e = pq.top();
         pq.pop();
-        int v = p.second;
-        if (used[v]) continue;
-        used[v] = true;
-        ret += p.first;
-        for (auto& e : G[v]) {
-            pq.emplace(e.weight, e.to);
+        if (used[e.to]) continue;
+        used[e.to] = true;
+        weight += e.weight;
+        if (e.to != 0) edges.push_back(e);
+        for (auto& f : G[e.to]) {
+            pq.emplace(e.to, f.to, f.weight);
         }
     }
-    return ret;
+    return {weight, edges};
 }

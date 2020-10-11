@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
-#include "../../graph/kruskal.cpp"
+#include "../../graph/boruvka.cpp"
 
 using namespace std;
 
@@ -10,11 +10,11 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<Edge<int>> edges;
+    vector<Edge<int>> G;
     for (int i = 0; i < E; i++) {
         int s, t, w;
         cin >> s >> t >> w;
-        edges.emplace_back(s, t, w);
+        G.emplace_back(s, t, w);
     }
-    cout << kruskal(edges, V).first << endl;
+    cout << boruvka(G, V).first << endl;
 }

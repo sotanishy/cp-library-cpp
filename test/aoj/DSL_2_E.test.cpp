@@ -6,7 +6,7 @@ using namespace std;
 
 struct Monoid {
     using T = int;
-    inline static const T id = 0;
+    static constexpr T id = 0;
     static T op(T a, T b) {
         return a + b;
     }

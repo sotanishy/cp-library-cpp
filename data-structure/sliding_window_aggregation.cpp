@@ -29,11 +29,15 @@ public:
         front.pop();
     }
 
+    bool empty() const {
+        return front.empty() && back.empty();
+    }
+
     T fold() const {
-        T ret = M::id;
-        if (!front.empty()) ret = M::op(ret, front.top().second);
-        if (!back.empty()) ret = M::op(ret, back.top().second);
-        return ret;
+        assert(!empty());
+        if (front.empty()) return back.top().second;
+        if (back.empty()) return front.top().second;
+        return M::op(front.top().second, back.top().second());
     }
 
 private:
