@@ -69,8 +69,8 @@ data:
     \        if (t == 0) {\n            int a, b;\n            cin >> a >> b;\n  \
     \          que.push({a, b});\n        } else if (t == 1) {\n            que.pop();\n\
     \        } else {\n            int x;\n            cin >> x;\n            pair<mint,\
-    \ mint> p = que.empty() ? {1, 0} : que.fold();\n            cout << p.first *\
-    \ x + p.second << \"\\n\";\n        }\n    }\n}\n"
+    \ mint> p = que.empty() ? make_pair(1, 0) : que.fold();\n            cout << p.first\
+    \ * x + p.second << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
     \n\n#include \"../../data-structure/sliding_window_aggregation.cpp\"\n#include\
     \ \"../../math/modint.cpp\"\n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
@@ -82,15 +82,15 @@ data:
     \            int a, b;\n            cin >> a >> b;\n            que.push({a, b});\n\
     \        } else if (t == 1) {\n            que.pop();\n        } else {\n    \
     \        int x;\n            cin >> x;\n            pair<mint, mint> p = que.empty()\
-    \ ? {1, 0} : que.fold();\n            cout << p.first * x + p.second << \"\\n\"\
-    ;\n        }\n    }\n}"
+    \ ? make_pair(1, 0) : que.fold();\n            cout << p.first * x + p.second\
+    \ << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/sliding_window_aggregation.cpp
   - math/modint.cpp
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
+  timestamp: '2020-10-12 03:08:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
