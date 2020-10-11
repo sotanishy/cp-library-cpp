@@ -41,6 +41,7 @@
 "test/yosupo/point_set_range_composite.test.cpp": "2020-10-08 11:27:22 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-10-12 02:39:54 +0900",
 "test/yosupo/range_chmin_chmax_add_range_sum.test.cpp": "2020-10-12 02:39:54 +0900",
+"test/yosupo/range_kth_smallest.test.cpp": "2020-10-12 03:03:58 +0900",
 "test/yosupo/segment_add_get_min.test.cpp": "2020-10-12 02:39:54 +0900",
 "test/yosupo/staticrmq.test.cpp": "2020-09-22 15:17:21 +0900",
 "test/yosupo/suffixarray.test.cpp": "2020-10-01 22:29:44 +0900",
