@@ -33,7 +33,7 @@ int main() {
         } else {
             int x;
             cin >> x;
-            pair<mint, mint> p = que.empty() ? {1, 0} : que.fold();
+            pair<mint, mint> p = que.empty() ? make_pair(1, 0) : que.fold();
             cout << p.first * x + p.second << "\n";
         }
     }
