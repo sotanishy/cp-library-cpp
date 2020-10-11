@@ -47,6 +47,18 @@ public:
         return k - start.at(x);
     }
 
+    int rank_less(int k, int x) const {
+        int ret = 0;
+        int l = 0;
+        for (int d = mat.size() - 1; d >= 0; --d) {
+            int b = x >> d & 1;
+            if (b) ret += mat[d].rank(k, 0) - mat[d].rank(l, 0);
+            l = cnt0[d] * b + mat[d].rank(l, b);
+            k = cnt0[d] * b + mat[d].rank(k, b);
+        }
+        return ret;
+    }
+
     int select(int k, int x) const {
         k += start.at(x);
         for (int d = 0; d < (int) mat.size(); ++d) {

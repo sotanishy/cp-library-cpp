@@ -12,7 +12,6 @@ public:
         int n = (v.size() + sz - 1) / sz;
         data.resize(n);
         sum.resize(n + 1);
-        int n = (int) v.size();
         for (int i = 0; i < (int) v.size(); ++i) data[i / sz] |= v[i] << (i % sz);
         for (int i = 0; i < n; ++i) sum[i + 1] = sum[i] + __builtin_popcount(data[i]);
     }
