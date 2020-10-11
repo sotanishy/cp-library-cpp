@@ -37,7 +37,7 @@ public:
         assert(!empty());
         if (front.empty()) return back.top().second;
         if (back.empty()) return front.top().second;
-        return M::op(front.top().second, back.top().second());
+        return M::op(front.top().second, back.top().second);
     }
 
 private:

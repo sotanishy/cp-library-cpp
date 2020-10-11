@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#include "../../data-structure/union_find.cpp"
+#include "../../data-structure/unionfind/union_find.cpp"
 
 using namespace std;
 

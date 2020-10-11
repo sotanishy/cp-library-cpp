@@ -17,6 +17,9 @@ Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素全体の
 - `void pop()`
     - キューの先頭要素を削除する
     - 時間計算量: $\mathrm{amortized}\ O(1)$
+- `bool empty()`
+    - キューが空かどうか判定する
+    - 時間計算量: $O(1)$
 - `T fold()`
     - キューの要素全体の演算結果を返す
     - 時間計算量: $O(1)$
