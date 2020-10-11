@@ -3,6 +3,9 @@ data:
   libraryCategories:
   - name: data-structure
     pages:
+    - icon: ':x:'
+      path: data-structure/bit_vector.cpp
+      title: Bit Vector
     - icon: ':warning:'
       path: data-structure/convex_hull_trick.cpp
       title: Convex Hull Trick
@@ -24,9 +27,6 @@ data:
     - icon: ':warning:'
       path: data-structure/monoids.cpp
       title: data-structure/monoids.cpp
-    - icon: ':warning:'
-      path: data-structure/partially_persistent_union_find.cpp
-      title: Partially Persistent Union Find
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
@@ -34,15 +34,12 @@ data:
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
     - icon: ':heavy_check_mark:'
-      path: data-structure/persistent_union_find.cpp
-      title: Persistent Union Find
-    - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -51,12 +48,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/treap.cpp
       title: Treap
-    - icon: ':heavy_check_mark:'
-      path: data-structure/union_find.cpp
-      title: Union Find
-    - icon: ':heavy_check_mark:'
-      path: data-structure/weighted_union_find.cpp
-      title: Weighted Union Find
+    - icon: ':x:'
+      path: data-structure/wavelet_matrix.cpp
+      title: Wavelet Matrix
   - name: data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -77,6 +71,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
+  - name: data-structure/unionfind
+    pages:
+    - icon: ':warning:'
+      path: data-structure/unionfind/partially_persistent_union_find.cpp
+      title: Partially Persistent Union Find
+    - icon: ':heavy_check_mark:'
+      path: data-structure/unionfind/persistent_union_find.cpp
+      title: Persistent Union Find
+    - icon: ':heavy_check_mark:'
+      path: data-structure/unionfind/union_find.cpp
+      title: Union Find
+    - icon: ':heavy_check_mark:'
+      path: data-structure/unionfind/weighted_union_find.cpp
+      title: Weighted Union Find
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -96,6 +104,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bellman_ford.cpp
       title: Bellman-Ford Algorithm
+    - icon: ':heavy_check_mark:'
+      path: graph/boruvka.cpp
+      title: Boruvka's Algorithm
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.cpp
       title: Dijkstra's Algorithm
@@ -167,7 +178,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: Mod Exponentiation
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':warning:'
@@ -291,6 +302,9 @@ data:
       path: test/aoj/GRL_1_C.test.cpp
       title: test/aoj/GRL_1_C.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_2_A.boruvka.test.cpp
+      title: test/aoj/GRL_2_A.boruvka.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A.kruskal.test.cpp
       title: test/aoj/GRL_2_A.kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -352,7 +366,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -361,6 +375,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/range_kth_smallest.test.cpp
+      title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
@@ -376,7 +393,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
     - icon: ':heavy_check_mark:'

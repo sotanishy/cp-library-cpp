@@ -1,47 +1,32 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/union_find.cpp
-    title: Union Find
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind
-    links:
-    - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/yosupo/unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
-    \n\n#line 1 \"data-structure/union_find.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
-    \ * @brief Union Find\n * @docs docs/data-structure/union_find.md\n */\nclass\
-    \ UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
-    \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
-    \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
-    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return;\n\
-    \        if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n\
-    \        data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return\
-    \ find(x) == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
-    \    }\n\nprivate:\n    std::vector<int> data;\n};\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind uf(N);\n\
-    \    for (int i = 0; i < Q; i++) {\n        int t, u, v;\n        cin >> t >>\
-    \ u >> v;\n        if (t == 0) uf.unite(u, v);\n        else cout << uf.same(u,\
-    \ v) << \"\\n\";\n    }\n}\n"
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 191, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 399, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 258, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../data-structure/union_find.cpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
     \ \"../../data-structure/union_find.cpp\"\n\nusing namespace std;\n\nint main()\
     \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
     \    cin >> N >> Q;\n    UnionFind uf(N);\n    for (int i = 0; i < Q; i++) {\n\
     \        int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) uf.unite(u,\
     \ v);\n        else cout << uf.same(u, v) << \"\\n\";\n    }\n}"
-  dependsOn:
-  - data-structure/union_find.cpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp
 layout: document

@@ -5,7 +5,7 @@ data:
     path: data-structure/persistent_array.cpp
     title: Persistent Array
   - icon: ':heavy_check_mark:'
-    path: data-structure/persistent_union_find.cpp
+    path: data-structure/unionfind/persistent_union_find.cpp
     title: Persistent Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -17,7 +17,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/persistent_unionfind
   bundledCode: "#line 1 \"test/yosupo/persistent_unionfind.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\n#line 1 \"data-structure/persistent_union_find.cpp\"\
+    \ \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\n#line 1 \"data-structure/unionfind/persistent_union_find.cpp\"\
     \n#include <bits/stdc++.h>\n#line 2 \"data-structure/persistent_array.cpp\"\n\n\
     /*\n * @brief Persistent Array\n * @docs docs/data-structure/persistent_array.md\n\
     \ */\ntemplate <typename T, int B = 2>\nclass PersistentArray {\npublic:\n   \
@@ -34,8 +34,8 @@ data:
     \  node_ptr res = t ? std::make_shared<Node>(*t) : std::make_shared<Node>();\n\
     \        if (k == 0) {\n            res->val = x;\n        } else {\n        \
     \    res->ch[k % B] = set(res->ch[k % B], k / B, x);\n        }\n        return\
-    \ res;\n    }\n};\n#line 3 \"data-structure/persistent_union_find.cpp\"\n\n/*\n\
-    \ * @brief Persistent Union Find\n * @docs docs/data-structure/persistent_union_find.md\n\
+    \ res;\n    }\n};\n#line 3 \"data-structure/unionfind/persistent_union_find.cpp\"\
+    \n\n/*\n * @brief Persistent Union Find\n * @docs docs/data-structure/unionfind/persistent_union_find.md\n\
     \ */\nclass PersistentUnionFind {\npublic:\n    PersistentUnionFind() = default;\n\
     \    explicit PersistentUnionFind(int n) : data(std::vector<int>(n, -1)) {}\n\n\
     \    int find(int x) const {\n        int p = data.get(x);\n        if (p < 0)\
@@ -57,8 +57,8 @@ data:
     \           if (k == -1) b = init.same(u, v);\n            else b = ver[k].same(u,\
     \ v);\n            cout << b << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
-    \n#include \"../../data-structure/persistent_union_find.cpp\"\n\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n#include \"../../data-structure/unionfind/persistent_union_find.cpp\"\n\nusing\
+    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, Q;\n    cin >> N >> Q;\n    PersistentUnionFind init(N);\n    vector<PersistentUnionFind>\
     \ ver(Q);\n    for (int i = 0; i < Q; ++i) {\n        int t, k, u, v;\n      \
     \  cin >> t >> k >> u >> v;\n        if (t == 0) {\n            if (k == -1) ver[i]\
@@ -67,12 +67,12 @@ data:
     \            else b = ver[k].same(u, v);\n            cout << b << \"\\n\";\n\
     \        }\n    }\n}"
   dependsOn:
-  - data-structure/persistent_union_find.cpp
+  - data-structure/unionfind/persistent_union_find.cpp
   - data-structure/persistent_array.cpp
   isVerificationFile: true
   path: test/yosupo/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-08 11:47:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_unionfind.test.cpp

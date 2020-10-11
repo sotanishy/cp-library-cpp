@@ -43,7 +43,7 @@ data:
     \    }\n        }\n        return ret;\n    }\n\nprivate:\n    struct Edge {\n\
     \        int to;\n        Cap cap;\n        Cost cost;\n        int rev;\n   \
     \     Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost),\
-    \ rev(rev) {}\n    };\n\n    const Cost INF = std::numeric_limits<Cost>::max()\
+    \ rev(rev) {}\n    };\n\n    static constexpr Cost INF = std::numeric_limits<Cost>::max()\
     \ / 2;\n\n    int V;\n    std::vector<std::vector<Edge>> G;\n};\n#line 4 \"test/aoj/GRL_6_B.test.cpp\"\
     \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int V, E, F;\n    cin >> V >> E >> F;\n    MinCostFlow<int,\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp

@@ -31,9 +31,9 @@ data:
     \ r0 + len);\n            }\n        }\n    }\n\n    T get_min(int k) const {\n\
     \        const T x = xs[k];\n        k += size;\n        T res = f(node[k], x);\n\
     \        while (k >>= 1) res = std::min(res, f(node[k], x));\n        return res;\n\
-    \    }\n\nprivate:\n    const T INF = std::numeric_limits<T>::max();\n\n    int\
-    \ size;\n    std::vector<T> xs;\n    std::vector<std::pair<T, T>> node;\n\n  \
-    \  inline T f(const std::pair<T, T>& line, T x) const {\n        return line.first\
+    \    }\n\nprivate:\n    static constexpr T INF = std::numeric_limits<T>::max();\n\
+    \n    int size;\n    std::vector<T> xs;\n    std::vector<std::pair<T, T>> node;\n\
+    \n    inline T f(const std::pair<T, T>& line, T x) const {\n        return line.first\
     \ * x + line.second;\n    }\n\n    void update(std::pair<T, T> line, int k, int\
     \ l, int r) {\n        while (true) {\n            int m = (l + r) / 2;\n    \
     \        bool left = f(line, xs[l]) < f(node[k], xs[l]);\n            bool mid\
@@ -59,9 +59,9 @@ data:
     \ r0 + len);\n            }\n        }\n    }\n\n    T get_min(int k) const {\n\
     \        const T x = xs[k];\n        k += size;\n        T res = f(node[k], x);\n\
     \        while (k >>= 1) res = std::min(res, f(node[k], x));\n        return res;\n\
-    \    }\n\nprivate:\n    const T INF = std::numeric_limits<T>::max();\n\n    int\
-    \ size;\n    std::vector<T> xs;\n    std::vector<std::pair<T, T>> node;\n\n  \
-    \  inline T f(const std::pair<T, T>& line, T x) const {\n        return line.first\
+    \    }\n\nprivate:\n    static constexpr T INF = std::numeric_limits<T>::max();\n\
+    \n    int size;\n    std::vector<T> xs;\n    std::vector<std::pair<T, T>> node;\n\
+    \n    inline T f(const std::pair<T, T>& line, T x) const {\n        return line.first\
     \ * x + line.second;\n    }\n\n    void update(std::pair<T, T> line, int k, int\
     \ l, int r) {\n        while (true) {\n            int m = (l + r) / 2;\n    \
     \        bool left = f(line, xs[l]) < f(node[k], xs[l]);\n            bool mid\
@@ -76,11 +76,11 @@ data:
   isVerificationFile: false
   path: data-structure/li_chao_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-03 18:55:46+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/segment_add_get_min.test.cpp
   - test/yosupo/line_add_get_min.test.cpp
+  - test/yosupo/segment_add_get_min.test.cpp
 documentation_of: data-structure/li_chao_tree.cpp
 layout: document
 redirect_from:

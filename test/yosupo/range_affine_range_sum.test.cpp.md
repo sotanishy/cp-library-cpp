@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: math/modint.cpp
   _extendedRequiredBy: []
@@ -75,10 +75,10 @@ data:
     \ >> t;\n        a = Modint<mod>(t);\n        return is;\n    }\n\nprivate:\n\
     \    int x;\n};\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\n\nusing\
     \ namespace std;\n\nusing mint = Modint<998244353>;\n\nstruct M {\n    using T\
-    \ = pair<mint, mint>;\n    inline static const T id = {0, 0};\n    static T op(T\
+    \ = pair<mint, mint>;\n    static constexpr T id = {0, 0};\n    static T op(T\
     \ a, T b) {\n        return {a.first + b.first, a.second + b.second};\n    }\n\
-    };\n\nstruct O {\n    using T = pair<mint, mint>;\n    inline static const T id\
-    \ = {1, 0};\n    static T op(T a, T b) {\n        return {a.first * b.first, a.second\
+    };\n\nstruct O {\n    using T = pair<mint, mint>;\n    static constexpr T id =\
+    \ {1, 0};\n    static T op(T a, T b) {\n        return {a.first * b.first, a.second\
     \ * b.first + b.second};\n    }\n};\n\nM::T act(M::T a, O::T b) {\n    return\
     \ {a.first * b.first + a.second * b.second, a.second};\n}\n\nint main() {\n  \
     \  ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n    cin\
@@ -92,10 +92,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n\n#include \"../../data-structure/segtree/lazy_segment_tree.cpp\"\n#include\
     \ \"../../math/modint.cpp\"\n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nstruct M {\n    using T = pair<mint, mint>;\n    inline static const T id =\
-    \ {0, 0};\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
+    \nstruct M {\n    using T = pair<mint, mint>;\n    static constexpr T id = {0,\
+    \ 0};\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
     \ + b.second};\n    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n   \
-    \ inline static const T id = {1, 0};\n    static T op(T a, T b) {\n        return\
+    \ static constexpr T id = {1, 0};\n    static T op(T a, T b) {\n        return\
     \ {a.first * b.first, a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T\
     \ a, O::T b) {\n    return {a.first * b.first + a.second * b.second, a.second};\n\
     }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

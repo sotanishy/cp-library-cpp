@@ -53,7 +53,7 @@ title: Sliding Window Minimum
     - 要素の型．二項関係 `<` が定義されている必要がある
 
 - `Compare`
-    - `std::less<>` (デフォルト値) を指定すると要素の最小値を，`std::greater<>` を指定すると要素の最大値を得られる
+    - 要素の比較に用いる型．デフォルトは `std::less<>`
 
 ## Member functions
 

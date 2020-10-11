@@ -34,18 +34,18 @@ data:
     \    T fold_max(int l, int r) { return fold<MAX>(l, r, 1, 0, size); }\n    T fold_sum(int\
     \ l, int r) { return fold<SUM>(l, r, 1, 0, size); }\n\nprivate:\n    enum OpType\
     \ {\n        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
-    \ SUM\n    };\n\n    const T INF = std::numeric_limits<T>::max();\n    const T\
-    \ NINF = std::numeric_limits<T>::min();\n\n    int size;\n    std::vector<T> sum,\
-    \ lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T> min_val, smin_val;\n\
-    \    std::vector<int> len, max_cnt, min_cnt;\n\n    void recalc(int k) {\n   \
-    \     sum[k] = sum[2 * k] + sum[2 * k + 1];\n\n        if (max_val[2 * k] > max_val[2\
-    \ * k + 1]) {\n            max_val[k] = max_val[2 * k];\n            max_cnt[k]\
-    \ = max_cnt[2 * k];\n            smax_val[k] = std::max(smax_val[2 * k], max_val[2\
-    \ * k + 1]);\n        } else if (max_val[2 * k] < max_val[2 * k + 1]) {\n    \
-    \        max_val[k] = max_val[2 * k + 1];\n            max_cnt[k] = max_cnt[2\
-    \ * k + 1];\n            smax_val[k] = std::max(max_val[2 * k], smax_val[2 * k\
-    \ + 1]);\n        } else {\n            max_val[k] = max_val[2 * k];\n       \
-    \     max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];\n            smax_val[k]\
+    \ SUM\n    };\n\n    static constexpr T INF = std::numeric_limits<T>::max();\n\
+    \    static constexpr T NINF = std::numeric_limits<T>::min();\n\n    int size;\n\
+    \    std::vector<T> sum, lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T>\
+    \ min_val, smin_val;\n    std::vector<int> len, max_cnt, min_cnt;\n\n    void\
+    \ recalc(int k) {\n        sum[k] = sum[2 * k] + sum[2 * k + 1];\n\n        if\
+    \ (max_val[2 * k] > max_val[2 * k + 1]) {\n            max_val[k] = max_val[2\
+    \ * k];\n            max_cnt[k] = max_cnt[2 * k];\n            smax_val[k] = std::max(smax_val[2\
+    \ * k], max_val[2 * k + 1]);\n        } else if (max_val[2 * k] < max_val[2 *\
+    \ k + 1]) {\n            max_val[k] = max_val[2 * k + 1];\n            max_cnt[k]\
+    \ = max_cnt[2 * k + 1];\n            smax_val[k] = std::max(max_val[2 * k], smax_val[2\
+    \ * k + 1]);\n        } else {\n            max_val[k] = max_val[2 * k];\n   \
+    \         max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];\n            smax_val[k]\
     \ = std::max(smax_val[2 * k], smax_val[2 * k + 1]);\n        }\n\n        if (min_val[2\
     \ * k] < min_val[2 * k + 1]) {\n            min_val[k] = min_val[2 * k];\n   \
     \         min_cnt[k] = min_cnt[2 * k];\n            smin_val[k] = std::min(smin_val[2\
@@ -114,18 +114,18 @@ data:
     \    T fold_max(int l, int r) { return fold<MAX>(l, r, 1, 0, size); }\n    T fold_sum(int\
     \ l, int r) { return fold<SUM>(l, r, 1, 0, size); }\n\nprivate:\n    enum OpType\
     \ {\n        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
-    \ SUM\n    };\n\n    const T INF = std::numeric_limits<T>::max();\n    const T\
-    \ NINF = std::numeric_limits<T>::min();\n\n    int size;\n    std::vector<T> sum,\
-    \ lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T> min_val, smin_val;\n\
-    \    std::vector<int> len, max_cnt, min_cnt;\n\n    void recalc(int k) {\n   \
-    \     sum[k] = sum[2 * k] + sum[2 * k + 1];\n\n        if (max_val[2 * k] > max_val[2\
-    \ * k + 1]) {\n            max_val[k] = max_val[2 * k];\n            max_cnt[k]\
-    \ = max_cnt[2 * k];\n            smax_val[k] = std::max(smax_val[2 * k], max_val[2\
-    \ * k + 1]);\n        } else if (max_val[2 * k] < max_val[2 * k + 1]) {\n    \
-    \        max_val[k] = max_val[2 * k + 1];\n            max_cnt[k] = max_cnt[2\
-    \ * k + 1];\n            smax_val[k] = std::max(max_val[2 * k], smax_val[2 * k\
-    \ + 1]);\n        } else {\n            max_val[k] = max_val[2 * k];\n       \
-    \     max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];\n            smax_val[k]\
+    \ SUM\n    };\n\n    static constexpr T INF = std::numeric_limits<T>::max();\n\
+    \    static constexpr T NINF = std::numeric_limits<T>::min();\n\n    int size;\n\
+    \    std::vector<T> sum, lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T>\
+    \ min_val, smin_val;\n    std::vector<int> len, max_cnt, min_cnt;\n\n    void\
+    \ recalc(int k) {\n        sum[k] = sum[2 * k] + sum[2 * k + 1];\n\n        if\
+    \ (max_val[2 * k] > max_val[2 * k + 1]) {\n            max_val[k] = max_val[2\
+    \ * k];\n            max_cnt[k] = max_cnt[2 * k];\n            smax_val[k] = std::max(smax_val[2\
+    \ * k], max_val[2 * k + 1]);\n        } else if (max_val[2 * k] < max_val[2 *\
+    \ k + 1]) {\n            max_val[k] = max_val[2 * k + 1];\n            max_cnt[k]\
+    \ = max_cnt[2 * k + 1];\n            smax_val[k] = std::max(max_val[2 * k], smax_val[2\
+    \ * k + 1]);\n        } else {\n            max_val[k] = max_val[2 * k];\n   \
+    \         max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];\n            smax_val[k]\
     \ = std::max(smax_val[2 * k], smax_val[2 * k + 1]);\n        }\n\n        if (min_val[2\
     \ * k] < min_val[2 * k + 1]) {\n            min_val[k] = min_val[2 * k];\n   \
     \         min_cnt[k] = min_cnt[2 * k];\n            smin_val[k] = std::min(smin_val[2\
@@ -177,7 +177,7 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

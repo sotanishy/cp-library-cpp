@@ -21,17 +21,17 @@ data:
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
     \ {}\n};\n#line 3 \"graph/bellman_ford.cpp\"\n\n/*\n * @brief Bellman-Ford Algorithm\n\
     \ * @docs docs/graph/bellman_ford.md\n */\ntemplate <typename T>\nstd::vector<T>\
-    \ bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {\n    const T INF\
-    \ = std::numeric_limits<T>::max();\n    std::vector<int> dist(V, INF);\n    dist[s]\
-    \ = 0;\n    for (int i = 0; i < V; ++i) {\n        for (auto& e : G) {\n     \
-    \       if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.weight) {\n \
-    \               dist[e.to] = dist[e.from] + e.weight;\n                if (i ==\
-    \ V - 1) return std::vector<T>();\n            }\n        }\n    }\n    return\
-    \ dist;\n}\n"
+    \ bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {\n    constexpr T\
+    \ INF = std::numeric_limits<T>::max();\n    std::vector<int> dist(V, INF);\n \
+    \   dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n        for (auto& e : G)\
+    \ {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.weight)\
+    \ {\n                dist[e.to] = dist[e.from] + e.weight;\n                if\
+    \ (i == V - 1) return std::vector<T>();\n            }\n        }\n    }\n   \
+    \ return dist;\n}\n"
   code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\n\n/*\n * @brief Bellman-Ford\
     \ Algorithm\n * @docs docs/graph/bellman_ford.md\n */\ntemplate <typename T>\n\
     std::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {\n \
-    \   const T INF = std::numeric_limits<T>::max();\n    std::vector<int> dist(V,\
+    \   constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<int> dist(V,\
     \ INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n        for (auto&\
     \ e : G) {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from] +\
     \ e.weight) {\n                dist[e.to] = dist[e.from] + e.weight;\n       \
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: graph/bellman_ford.cpp
   requiredBy: []
-  timestamp: '2020-10-06 11:51:56+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp

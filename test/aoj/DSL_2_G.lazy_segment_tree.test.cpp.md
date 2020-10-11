@@ -44,25 +44,24 @@ data:
     \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
     \ 2 * k + 1, m, r));\n    }\n};\n#line 4 \"test/aoj/DSL_2_G.lazy_segment_tree.test.cpp\"\
     \n\nusing namespace std;\n\nusing ll = long long;\n\nstruct M {\n    using T =\
-    \ pair<ll, int>;\n    inline static const T id = {0, 1};\n    static T op(T a,\
-    \ T b) {\n        return {a.first + b.first, a.second + b.second};\n    }\n};\n\
-    \nstruct O {\n    using T = ll;\n    inline static const T id = 0;\n    static\
-    \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nM::T act(M::T a, O::T\
-    \ b) {\n    return {a.first + a.second * b, a.second};\n}\n\nint main() {\n  \
-    \  ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n    cin\
-    \ >> n >> q;\n    LazySegmentTree<M, O, act> st(n);\n    for (int i = 0; i < q;\
-    \ i++) {\n        int type, s, t;\n        cin >> type >> s >> t;\n        if\
-    \ (type == 0) {\n            int x;\n            cin >> x;\n            st.update(s\
-    \ - 1, t, x);\n        } else {\n            cout << st.fold(s - 1, t).first <<\
-    \ \"\\n\";\n        }\n    }\n}\n"
+    \ pair<ll, int>;\n    static constexpr T id = {0, 1};\n    static T op(T a, T\
+    \ b) {\n        return {a.first + b.first, a.second + b.second};\n    }\n};\n\n\
+    struct O {\n    using T = ll;\n    static constexpr T id = 0;\n    static T op(T\
+    \ a, T b) {\n        return a + b;\n    }\n};\n\nM::T act(M::T a, O::T b) {\n\
+    \    return {a.first + a.second * b, a.second};\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    LazySegmentTree<M,\
+    \ O, act> st(n);\n    for (int i = 0; i < q; i++) {\n        int type, s, t;\n\
+    \        cin >> type >> s >> t;\n        if (type == 0) {\n            int x;\n\
+    \            cin >> x;\n            st.update(s - 1, t, x);\n        } else {\n\
+    \            cout << st.fold(s - 1, t).first << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\
     \n\n#include \"../../data-structure/segtree/lazy_segment_tree.cpp\"\n\nusing namespace\
     \ std;\n\nusing ll = long long;\n\nstruct M {\n    using T = pair<ll, int>;\n\
-    \    inline static const T id = {0, 1};\n    static T op(T a, T b) {\n       \
-    \ return {a.first + b.first, a.second + b.second};\n    }\n};\n\nstruct O {\n\
-    \    using T = ll;\n    inline static const T id = 0;\n    static T op(T a, T\
-    \ b) {\n        return a + b;\n    }\n};\n\nM::T act(M::T a, O::T b) {\n    return\
-    \ {a.first + a.second * b, a.second};\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    static constexpr T id = {0, 1};\n    static T op(T a, T b) {\n        return\
+    \ {a.first + b.first, a.second + b.second};\n    }\n};\n\nstruct O {\n    using\
+    \ T = ll;\n    static constexpr T id = 0;\n    static T op(T a, T b) {\n     \
+    \   return a + b;\n    }\n};\n\nM::T act(M::T a, O::T b) {\n    return {a.first\
+    \ + a.second * b, a.second};\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    LazySegmentTree<M,\
     \ O, act> st(n);\n    for (int i = 0; i < q; i++) {\n        int type, s, t;\n\
     \        cin >> type >> s >> t;\n        if (type == 0) {\n            int x;\n\
@@ -73,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp

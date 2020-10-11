@@ -31,8 +31,8 @@ data:
     \ k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\n    void propagate(int\
     \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};\n#line\
     \ 4 \"test/aoj/DSL_2_E.test.cpp\"\n\nusing namespace std;\n\nstruct Monoid {\n\
-    \    using T = int;\n    inline static const T id = 0;\n    static T op(T a, T\
-    \ b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    using T = int;\n    static constexpr T id = 0;\n    static T op(T a, T b)\
+    \ {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    DualSegmentTree<Monoid>\
     \ st(n);\n    for (int i = 0; i < q; i++) {\n        int type;\n        cin >>\
     \ type;\n        if (type == 0) {\n            int s, t, x;\n            cin >>\
@@ -41,12 +41,12 @@ data:
     ;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
     \n\n#include \"../../data-structure/segtree/dual_segment_tree.cpp\"\n\nusing namespace\
-    \ std;\n\nstruct Monoid {\n    using T = int;\n    inline static const T id =\
-    \ 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n\
-    \    cin >> n >> q;\n    DualSegmentTree<Monoid> st(n);\n    for (int i = 0; i\
-    \ < q; i++) {\n        int type;\n        cin >> type;\n        if (type == 0)\
-    \ {\n            int s, t, x;\n            cin >> s >> t >> x;\n            st.update(s\
+    \ std;\n\nstruct Monoid {\n    using T = int;\n    static constexpr T id = 0;\n\
+    \    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n   \
+    \ cin >> n >> q;\n    DualSegmentTree<Monoid> st(n);\n    for (int i = 0; i <\
+    \ q; i++) {\n        int type;\n        cin >> type;\n        if (type == 0) {\n\
+    \            int s, t, x;\n            cin >> s >> t >> x;\n            st.update(s\
     \ - 1, t, x);\n        } else {\n            int i;\n            cin >> i;\n \
     \           cout << st[i - 1] << \"\\n\";\n        }\n    }\n}"
   dependsOn:
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_E.test.cpp

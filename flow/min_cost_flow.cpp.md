@@ -42,7 +42,7 @@ data:
     \    }\n        }\n        return ret;\n    }\n\nprivate:\n    struct Edge {\n\
     \        int to;\n        Cap cap;\n        Cost cost;\n        int rev;\n   \
     \     Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost),\
-    \ rev(rev) {}\n    };\n\n    const Cost INF = std::numeric_limits<Cost>::max()\
+    \ rev(rev) {}\n    };\n\n    static constexpr Cost INF = std::numeric_limits<Cost>::max()\
     \ / 2;\n\n    int V;\n    std::vector<std::vector<Edge>> G;\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Minimum Cost Flow\n * @docs docs/flow/min_cost_flow.md\n\
     \ */\ntemplate <typename Cap, typename Cost>\nclass MinCostFlow {\npublic:\n \
@@ -73,13 +73,13 @@ data:
     \    }\n        }\n        return ret;\n    }\n\nprivate:\n    struct Edge {\n\
     \        int to;\n        Cap cap;\n        Cost cost;\n        int rev;\n   \
     \     Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost),\
-    \ rev(rev) {}\n    };\n\n    const Cost INF = std::numeric_limits<Cost>::max()\
+    \ rev(rev) {}\n    };\n\n    static constexpr Cost INF = std::numeric_limits<Cost>::max()\
     \ / 2;\n\n    int V;\n    std::vector<std::vector<Edge>> G;\n};"
   dependsOn: []
   isVerificationFile: false
   path: flow/min_cost_flow.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_B.test.cpp

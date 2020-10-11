@@ -11,7 +11,7 @@ data:
     links: []
   bundledCode: "#line 1 \"math/fft.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
     \ Fast Fourier Transform\n * @docs docs/math/fft.md\n */\nclass FFT {\npublic:\n\
-    \    FFT() = delete;\n    \n    template <typename T>\n    static std::vector<double>\
+    \    FFT() = delete;\n\n    template <typename T>\n    static std::vector<double>\
     \ convolution(const std::vector<T>& a, const std::vector<T>& b) {\n        int\
     \ size = a.size() + b.size() - 1;\n        int n = 1;\n        while (n < size)\
     \ n <<= 1;\n        std::vector<C> na(n), nb(n);\n        for (int i = 0; i <\
@@ -25,26 +25,26 @@ data:
     \ + c.real, imag + c.imag); }\n        C operator-(const C& c) { return C(real\
     \ - c.real, imag - c.imag); }\n        C operator*(const C& c) { return C(real\
     \ * c.real - imag * c.imag, real * c.imag + imag * c.real); }\n    };\n\n    static\
-    \ void ufft(std::vector<C>& a) {\n        int n = a.size();\n        const double\
-    \ PI = std::acos(-1);\n        for (int m = n; m > 1; m >>= 1) {\n           \
-    \ double ang = 2.0 * PI / m;\n            C omega(std::cos(ang), std::sin(ang));\n\
+    \ constexpr double PI = 3.14159265358979323846;\n\n    static void ufft(std::vector<C>&\
+    \ a) {\n        int n = a.size();\n        for (int m = n; m > 1; m >>= 1) {\n\
+    \            double ang = 2.0 * PI / m;\n            C omega(cos(ang), sin(ang));\n\
     \            for (int s = 0; s < n / m; ++s) {\n                C w(1, 0);\n \
     \               for (int i = 0; i < m / 2; ++i) {\n                    C l = a[s\
     \ * m + i];\n                    C r = a[s * m + i + m / 2];\n               \
     \     a[s * m + i] = l + r;\n                    a[s * m + i + m / 2] = (l - r)\
     \ * w;\n                    w = w * omega;\n                }\n            }\n\
     \        }\n    }\n\n    static void iufft(std::vector<C>& a) {\n        int n\
-    \ = a.size();\n        const double PI = std::acos(-1);\n        for (int m =\
-    \ 2; m <= n; m <<= 1) {\n            double ang = -2.0 * PI / m;\n           \
-    \ C omega(std::cos(ang), std::sin(ang));\n            for (int s = 0; s < n /\
-    \ m; ++s) {\n                C w(1, 0);\n                for (int i = 0; i < m\
-    \ / 2; ++i) {\n                    C l = a[s * m + i];\n                    C\
-    \ r = a[s * m + i + m / 2] * w;\n                    a[s * m + i] = l + r;\n \
-    \                   a[s * m + i + m / 2] = l - r;\n                    w = w *\
-    \ omega;\n                }\n            }\n        }\n    }\n};\n"
+    \ = a.size();\n        for (int m = 2; m <= n; m <<= 1) {\n            double\
+    \ ang = -2.0 * PI / m;\n            C omega(cos(ang), sin(ang));\n           \
+    \ for (int s = 0; s < n / m; ++s) {\n                C w(1, 0);\n            \
+    \    for (int i = 0; i < m / 2; ++i) {\n                    C l = a[s * m + i];\n\
+    \                    C r = a[s * m + i + m / 2] * w;\n                    a[s\
+    \ * m + i] = l + r;\n                    a[s * m + i + m / 2] = l - r;\n     \
+    \               w = w * omega;\n                }\n            }\n        }\n\
+    \    }\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Fast Fourier Transform\n * @docs\
-    \ docs/math/fft.md\n */\nclass FFT {\npublic:\n    FFT() = delete;\n    \n   \
-    \ template <typename T>\n    static std::vector<double> convolution(const std::vector<T>&\
+    \ docs/math/fft.md\n */\nclass FFT {\npublic:\n    FFT() = delete;\n\n    template\
+    \ <typename T>\n    static std::vector<double> convolution(const std::vector<T>&\
     \ a, const std::vector<T>& b) {\n        int size = a.size() + b.size() - 1;\n\
     \        int n = 1;\n        while (n < size) n <<= 1;\n        std::vector<C>\
     \ na(n), nb(n);\n        for (int i = 0; i < (int) a.size(); ++i) na[i].real =\
@@ -57,29 +57,29 @@ data:
     \ imag(imag) {}\n        C operator+(const C& c) { return C(real + c.real, imag\
     \ + c.imag); }\n        C operator-(const C& c) { return C(real - c.real, imag\
     \ - c.imag); }\n        C operator*(const C& c) { return C(real * c.real - imag\
-    \ * c.imag, real * c.imag + imag * c.real); }\n    };\n\n    static void ufft(std::vector<C>&\
-    \ a) {\n        int n = a.size();\n        const double PI = std::acos(-1);\n\
-    \        for (int m = n; m > 1; m >>= 1) {\n            double ang = 2.0 * PI\
-    \ / m;\n            C omega(std::cos(ang), std::sin(ang));\n            for (int\
-    \ s = 0; s < n / m; ++s) {\n                C w(1, 0);\n                for (int\
-    \ i = 0; i < m / 2; ++i) {\n                    C l = a[s * m + i];\n        \
-    \            C r = a[s * m + i + m / 2];\n                    a[s * m + i] = l\
-    \ + r;\n                    a[s * m + i + m / 2] = (l - r) * w;\n            \
-    \        w = w * omega;\n                }\n            }\n        }\n    }\n\n\
-    \    static void iufft(std::vector<C>& a) {\n        int n = a.size();\n     \
-    \   const double PI = std::acos(-1);\n        for (int m = 2; m <= n; m <<= 1)\
-    \ {\n            double ang = -2.0 * PI / m;\n            C omega(std::cos(ang),\
-    \ std::sin(ang));\n            for (int s = 0; s < n / m; ++s) {\n           \
-    \     C w(1, 0);\n                for (int i = 0; i < m / 2; ++i) {\n        \
-    \            C l = a[s * m + i];\n                    C r = a[s * m + i + m /\
-    \ 2] * w;\n                    a[s * m + i] = l + r;\n                    a[s\
-    \ * m + i + m / 2] = l - r;\n                    w = w * omega;\n            \
-    \    }\n            }\n        }\n    }\n};"
+    \ * c.imag, real * c.imag + imag * c.real); }\n    };\n\n    static constexpr\
+    \ double PI = 3.14159265358979323846;\n\n    static void ufft(std::vector<C>&\
+    \ a) {\n        int n = a.size();\n        for (int m = n; m > 1; m >>= 1) {\n\
+    \            double ang = 2.0 * PI / m;\n            C omega(cos(ang), sin(ang));\n\
+    \            for (int s = 0; s < n / m; ++s) {\n                C w(1, 0);\n \
+    \               for (int i = 0; i < m / 2; ++i) {\n                    C l = a[s\
+    \ * m + i];\n                    C r = a[s * m + i + m / 2];\n               \
+    \     a[s * m + i] = l + r;\n                    a[s * m + i + m / 2] = (l - r)\
+    \ * w;\n                    w = w * omega;\n                }\n            }\n\
+    \        }\n    }\n\n    static void iufft(std::vector<C>& a) {\n        int n\
+    \ = a.size();\n        for (int m = 2; m <= n; m <<= 1) {\n            double\
+    \ ang = -2.0 * PI / m;\n            C omega(cos(ang), sin(ang));\n           \
+    \ for (int s = 0; s < n / m; ++s) {\n                C w(1, 0);\n            \
+    \    for (int i = 0; i < m / 2; ++i) {\n                    C l = a[s * m + i];\n\
+    \                    C r = a[s * m + i + m / 2] * w;\n                    a[s\
+    \ * m + i] = l + r;\n                    a[s * m + i + m / 2] = l - r;\n     \
+    \               w = w * omega;\n                }\n            }\n        }\n\
+    \    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/fft.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/fft.cpp

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: data-structure/persistent_union_find.cpp
+    path: data-structure/unionfind/persistent_union_find.cpp
     title: Persistent Union Find
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: data-structure/persistent_array.cpp
   requiredBy:
-  - data-structure/persistent_union_find.cpp
+  - data-structure/unionfind/persistent_union_find.cpp
   timestamp: '2020-10-08 11:27:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

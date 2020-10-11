@@ -82,12 +82,12 @@ data:
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
     \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n#line 4 \"\
     test/yosupo/vertex_add_path_sum.test.cpp\"\n\nusing namespace std;\nusing ll =\
-    \ long long;\n\nstruct AddMonoid {\n    using T = ll;\n    inline static const\
-    \ T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
-    \    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0;\
-    \ i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 0;\
-    \ i < N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        G[u].push_back(v);\n\
+    \ long long;\n\nstruct AddMonoid {\n    using T = ll;\n    static constexpr T\
+    \ id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
+    \   int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i\
+    \ < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 0; i\
+    \ < N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        G[u].push_back(v);\n\
     \        G[v].push_back(u);\n    }\n    HLD<AddMonoid> hld(G, a);\n    for (int\
     \ i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0)\
     \ {\n            int p, x;\n            cin >> p >> x;\n            hld.update(p,\
@@ -95,24 +95,24 @@ data:
     \ >> v;\n            cout << hld.fold(u, v) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
     \n#include \"../../tree/hld.cpp\"\n\nusing namespace std;\nusing ll = long long;\n\
-    \nstruct AddMonoid {\n    using T = ll;\n    inline static const T id = 0;\n \
-    \   static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N; ++i) cin\
-    \ >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 0; i < N - 1; ++i)\
-    \ {\n        int u, v;\n        cin >> u >> v;\n        G[u].push_back(v);\n \
-    \       G[v].push_back(u);\n    }\n    HLD<AddMonoid> hld(G, a);\n    for (int\
-    \ i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0)\
-    \ {\n            int p, x;\n            cin >> p >> x;\n            hld.update(p,\
-    \ hld[p] + x);\n        } else {\n            int u, v;\n            cin >> u\
-    \ >> v;\n            cout << hld.fold(u, v) << endl;\n        }\n    }\n}"
+    \nstruct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
+    \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
+    \    for (int i = 0; i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n\
+    \    for (int i = 0; i < N - 1; ++i) {\n        int u, v;\n        cin >> u >>\
+    \ v;\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n    HLD<AddMonoid>\
+    \ hld(G, a);\n    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >>\
+    \ t;\n        if (t == 0) {\n            int p, x;\n            cin >> p >> x;\n\
+    \            hld.update(p, hld[p] + x);\n        } else {\n            int u,\
+    \ v;\n            cin >> u >> v;\n            cout << hld.fold(u, v) << endl;\n\
+    \        }\n    }\n}"
   dependsOn:
   - tree/hld.cpp
   - data-structure/segtree/segment_tree.cpp
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp

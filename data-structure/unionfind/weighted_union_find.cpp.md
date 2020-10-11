@@ -9,11 +9,11 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/weighted_union_find.md
+    _deprecated_at_docs: docs/data-structure/unionfind/weighted_union_find.md
     document_title: Weighted Union Find
     links: []
-  bundledCode: "#line 1 \"data-structure/weighted_union_find.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/weighted_union_find.md\n\
+  bundledCode: "#line 1 \"data-structure/unionfind/weighted_union_find.cpp\"\n#include\
+    \ <bits/stdc++.h>\n\n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/unionfind/weighted_union_find.md\n\
     \ */\ntemplate <typename T>\nclass WeightedUnionFind {\npublic:\n    WeightedUnionFind()\
     \ = default;\n    explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}\n\n\
     \    int find(int x) {\n        if (data[x] < 0) return x;\n        int r = find(data[x]);\n\
@@ -27,7 +27,7 @@ data:
     \ find(x) == find(y);\n    }\n\n    T diff(int x, int y) {\n        return weight(y)\
     \ - weight(x);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
     \    }\n\nprivate:\n    std::vector<int> data;\n    std::vector<T> ws;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/weighted_union_find.md\n\
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/unionfind/weighted_union_find.md\n\
     \ */\ntemplate <typename T>\nclass WeightedUnionFind {\npublic:\n    WeightedUnionFind()\
     \ = default;\n    explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}\n\n\
     \    int find(int x) {\n        if (data[x] < 0) return x;\n        int r = find(data[x]);\n\
@@ -43,17 +43,17 @@ data:
     \    }\n\nprivate:\n    std::vector<int> data;\n    std::vector<T> ws;\n};"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/weighted_union_find.cpp
+  path: data-structure/unionfind/weighted_union_find.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
+  timestamp: '2020-10-08 11:47:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_B.test.cpp
-documentation_of: data-structure/weighted_union_find.cpp
+documentation_of: data-structure/unionfind/weighted_union_find.cpp
 layout: document
 redirect_from:
-- /library/data-structure/weighted_union_find.cpp
-- /library/data-structure/weighted_union_find.cpp.html
+- /library/data-structure/unionfind/weighted_union_find.cpp
+- /library/data-structure/unionfind/weighted_union_find.cpp.html
 title: Weighted Union Find
 ---
 # Weighted Union Find

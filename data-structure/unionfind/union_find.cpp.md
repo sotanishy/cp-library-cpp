@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/boruvka.cpp
+    title: Boruvka's Algorithm
+  - icon: ':heavy_check_mark:'
     path: graph/kruskal.cpp
     title: Kruskal's Algorithm
   _extendedVerifiedWith:
@@ -10,20 +13,20 @@ data:
     path: test/aoj/DSL_1_A.test.cpp
     title: test/aoj/DSL_1_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.boruvka.test.cpp
+    title: test/aoj/GRL_2_A.boruvka.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/unionfind.test.cpp
-    title: test/yosupo/unionfind.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/union_find.md
+    _deprecated_at_docs: docs/data-structure/unionfind/union_find.md
     document_title: Union Find
     links: []
-  bundledCode: "#line 1 \"data-structure/union_find.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Union Find\n * @docs docs/data-structure/union_find.md\n */\n\
-    class UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
+  bundledCode: "#line 1 \"data-structure/unionfind/union_find.cpp\"\n#include <bits/stdc++.h>\n\
+    \n/*\n * @brief Union Find\n * @docs docs/data-structure/unionfind/union_find.md\n\
+    \ */\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
     \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
     \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return;\n\
@@ -31,7 +34,7 @@ data:
     \        data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return\
     \ find(x) == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
     \    }\n\nprivate:\n    std::vector<int> data;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Union Find\n * @docs docs/data-structure/union_find.md\n\
+  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Union Find\n * @docs docs/data-structure/unionfind/union_find.md\n\
     \ */\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
     \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
@@ -42,20 +45,21 @@ data:
     \    }\n\nprivate:\n    std::vector<int> data;\n};"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/union_find.cpp
+  path: data-structure/unionfind/union_find.cpp
   requiredBy:
   - graph/kruskal.cpp
-  timestamp: '2020-09-22 15:17:21+09:00'
+  - graph/boruvka.cpp
+  timestamp: '2020-10-08 11:47:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/yosupo/unionfind.test.cpp
-documentation_of: data-structure/union_find.cpp
+documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 redirect_from:
-- /library/data-structure/union_find.cpp
-- /library/data-structure/union_find.cpp.html
+- /library/data-structure/unionfind/union_find.cpp
+- /library/data-structure/unionfind/union_find.cpp.html
 title: Union Find
 ---
 # Union Find
