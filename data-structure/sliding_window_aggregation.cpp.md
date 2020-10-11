@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/sliding_window_aggregation.md
     document_title: Sliding Window Aggregation
@@ -25,7 +25,7 @@ data:
     \    }\n\n    bool empty() const {\n        return front.empty() && back.empty();\n\
     \    }\n\n    T fold() const {\n        assert(!empty());\n        if (front.empty())\
     \ return back.top().second;\n        if (back.empty()) return front.top().second;\n\
-    \        return M::op(front.top().second, back.top().second());\n    }\n\nprivate:\n\
+    \        return M::op(front.top().second, back.top().second);\n    }\n\nprivate:\n\
     \    std::stack<std::pair<T, T>> front, back;\n};\n"
   code: "#include <bits/stdc++.h>\n\n/*\n * @brief Sliding Window Aggregation\n *\
     \ @docs docs/data-structure/sliding_window_aggregation.md\n */\ntemplate <typename\
@@ -40,14 +40,14 @@ data:
     \ {\n        return front.empty() && back.empty();\n    }\n\n    T fold() const\
     \ {\n        assert(!empty());\n        if (front.empty()) return back.top().second;\n\
     \        if (back.empty()) return front.top().second;\n        return M::op(front.top().second,\
-    \ back.top().second());\n    }\n\nprivate:\n    std::stack<std::pair<T, T>> front,\
+    \ back.top().second);\n    }\n\nprivate:\n    std::stack<std::pair<T, T>> front,\
     \ back;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/sliding_window_aggregation.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-12 03:18:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp
 documentation_of: data-structure/sliding_window_aggregation.cpp
@@ -76,6 +76,9 @@ Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素全体の
 - `void pop()`
     - キューの先頭要素を削除する
     - 時間計算量: $\mathrm{amortized}\ O(1)$
+- `bool empty()`
+    - キューが空かどうか判定する
+    - 時間計算量: $O(1)$
 - `T fold()`
     - キューの要素全体の演算結果を返す
     - 時間計算量: $O(1)$

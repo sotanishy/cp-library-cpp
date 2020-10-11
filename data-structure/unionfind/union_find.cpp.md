@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/unionfind.test.cpp
+    title: test/yosupo/unionfind.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -55,6 +58,7 @@ data:
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/yosupo/unionfind.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 redirect_from:

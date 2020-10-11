@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/sliding_window_aggregation.cpp
     title: Sliding Window Aggregation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: math/modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -31,7 +31,7 @@ data:
     \    }\n\n    bool empty() const {\n        return front.empty() && back.empty();\n\
     \    }\n\n    T fold() const {\n        assert(!empty());\n        if (front.empty())\
     \ return back.top().second;\n        if (back.empty()) return front.top().second;\n\
-    \        return M::op(front.top().second, back.top().second());\n    }\n\nprivate:\n\
+    \        return M::op(front.top().second, back.top().second);\n    }\n\nprivate:\n\
     \    std::stack<std::pair<T, T>> front, back;\n};\n#line 3 \"math/modint.cpp\"\
     \n\ntemplate <int mod>\nclass Modint {\n    static_assert(mod > 0, \"Modulus must\
     \ be positive\");\n\npublic:\n    static constexpr int get_mod() noexcept { return\
@@ -90,8 +90,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-12 03:08:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-12 03:18:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
 layout: document
