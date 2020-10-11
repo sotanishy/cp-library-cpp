@@ -20,6 +20,8 @@
 - `int rank(int k, int x)`
     - $[0, k)$ での $x$ の個数を返す
     - 時間計算量: $O(\lg m)$
+- `int rank_less(int k, int x)`
+    - $[0, k)$ で $x$ より小さい要素の個数を返す
 - `int select(int k, int x)`
     - $k$ 番目の $x$ の位置を返す
     - 時間計算量: $O(\lg n \lg m)$
