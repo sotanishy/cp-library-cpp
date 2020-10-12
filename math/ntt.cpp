@@ -4,10 +4,8 @@
  * @brief Number Theoretic Transform
  * @docs docs/math/ntt.md
  */
-template <typename mint, int primitive_root>
+template <typename mint>
 class NTT {
-    static constexpr int mod = mint::get_mod();
-
 public:
     NTT() = delete;
 
@@ -29,10 +27,24 @@ public:
     }
 
 private:
+    static constexpr mint get_primitive_root(int mod) {
+        if (mod == 167772161) return 3;
+        if (mod == 469762049) return 3;
+        if (mod == 754974721) return 11;
+        if (mod == 998244353) return 3;
+        if (mod == 1224736769) return 3;
+        mint r = 2;
+        while (r.pow((mod - 1) >> 1) == 1) r += 1;
+        return r;
+    }
+
+    static constexpr int mod = mint::get_mod();
+    static constexpr mint primitive_root = get_primitive_root(mod);
+
     static void untt(std::vector<mint>& a) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
-            mint omega = mint(primitive_root).pow((mod - 1) / m);
+            mint omega = primitive_root.pow((mod - 1) / m);
             for (int s = 0; s < n / m; ++s) {
                 mint w = 1;
                 for (int i = 0; i < m / 2; ++i) {
@@ -49,7 +61,7 @@ private:
     static void iuntt(std::vector<mint>& a) {
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
-            mint omega = mint(primitive_root).pow((mod - 1) / m).inv();
+            mint omega = primitive_root.pow((mod - 1) / m).inv();
             for (int s = 0; s < n / m; ++s) {
                 mint w = 1;
                 for (int i = 0; i < m / 2; ++i) {
@@ -63,9 +75,3 @@ private:
         }
     }
 };
-
-// <167772161, 3>
-// <469762049, 3>
-// <754974721, 11>
-// <998244353, 3>
-// <1224736769, 3>
