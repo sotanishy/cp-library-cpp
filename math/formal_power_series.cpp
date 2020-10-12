@@ -10,6 +10,7 @@ class FormalPowerSeries : public std::vector<mint> {
 
 public:
     using std::vector<mint>::vector;
+    using std::vector<mint>::operator=;
 
     FPS& operator+=(const FPS& rhs) {
         if (this->size() < rhs.size()) this->resize(rhs.size());
@@ -98,7 +99,7 @@ public:
     }
 
     FPS diff() const {
-        FPS ret(max(0, (int) this->size() - 1));
+        FPS ret(std::max(0, (int) this->size() - 1));
         for (int i = 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);
         return ret;
     }
@@ -111,5 +112,5 @@ public:
     }
 
 private:
-    FPS pre(int size) const { return FPS(this->begin(), this->begin() + min((int) this->size(), size)); }
+    FPS pre(int size) const { return FPS(this->begin(), this->begin() + std::min((int) this->size(), size)); }
 };

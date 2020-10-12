@@ -24,3 +24,7 @@
     - $(f(x))^k$ を `deg - 1` 次の項まで計算する．
     - 時間計算量: $O(n \lg n)$
 
+## Reference
+
+- [【競技プログラミング】形式的冪級数の応用テクニック(前編)](https://qiita.com/hotman78/items/f0e6d2265badd84d429a)
+
