@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Formal Power Series
     links: []
@@ -58,54 +58,7 @@ data:
     \         }\n            }\n        }\n    }\n};\n#line 3 \"math/formal_power_series.cpp\"\
     \n\n/*\n * @brief Formal Power Series\n */\ntemplate <typename mint>\nclass FormalPowerSeries\
     \ : public std::vector<mint> {\n    using FPS = FormalPowerSeries;\n\npublic:\n\
-    \    using std::vector<mint>::vector;\n\n    FPS& operator+=(const FPS& rhs) {\n\
-    \        if (this->size() < rhs.size()) this->resize(rhs.size());\n        for\
-    \ (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] += rhs[i];\n        return\
-    \ *this;\n    }\n\n    FPS& operator+=(const mint& rhs) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] += rhs;\n        return *this;\n    }\n\
-    \n    FPS& operator-=(const FPS& rhs) {\n        if (this->size() < rhs.size())\
-    \ this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size(); ++i)\
-    \ (*this)[i] -= rhs[i];\n        return *this;\n    }\n\n    FPS& operator-=(const\
-    \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
-    \ -= rhs;\n        return *this;\n    }\n\n    FPS& operator*=(const FPS& rhs)\
-    \ {\n        *this = NTT<mint>::convolution(*this, rhs);\n        return *this;\n\
-    \    }\n\n    FPS& operator*=(const mint& rhs) {\n        for (int i = 0; i <\
-    \ (int) this->size(); ++i) (*this)[i] *= rhs;\n        return *this;\n    }\n\n\
-    \    FPS& operator-() const {\n        FPS ret(this->size());\n        for (int\
-    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
-    \    }\n\n    FPS operator+(const FPS& rhs) const { return FPS(*this) += rhs;\
-    \ }\n    FPS operator+(const mint& rhs) const { return FPS(*this) += rhs; }\n\
-    \    FPS operator-(const FPS& rhs) const { return FPS(*this) -= rhs; }\n    FPS\
-    \ operator-(const mint& rhs) const { return FPS(*this) -= rhs; }\n    FPS operator*(const\
-    \ FPS& rhs) const { return FPS(*this) *= rhs; }\n    FPS operator*(const mint&\
-    \ rhs) const { return FPS(*this) *= rhs; }\n\n    FPS inv(int deg = -1) const\
-    \ {\n        assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
-    \        FPS ret({mint(1) / (*this)[0]});\n        for (int i = 1; i < deg; i\
-    \ <<= 1) {\n            ret = (ret * mint(2) - ret * ret * this->pre(i << 1)).pre(i\
-    \ << 1);\n        }\n        return ret;\n    }\n\n    FPS exp(int deg = -1) const\
-    \ {\n        assert((*this)[0] == mint(0));\n        if (deg == -1) deg = this->size();\n\
-    \        FPS ret({mint(1)});\n        for (int i = 1; i < deg; i <<= 1) {\n  \
-    \          ret = (ret * (this->pre(i << 1) + mint(1) - ret.log(i << 1))).pre(i\
-    \ << 1);\n        }\n        return ret;\n    }\n\n    FPS log(int deg = -1) const\
-    \ {\n        assert((*this)[0] == mint(1));\n        if (deg == -1) deg = this->size();\n\
-    \        return (this->diff() * this->inv(deg)).pre(deg - 1).integral();\n   \
-    \ }\n\n    FPS pow(long long k, int deg = -1) const {\n        if (deg == -1)\
-    \ deg = this->size();\n        FPS ret(*this);\n        int cnt = 0;\n       \
-    \ while (cnt < (int) ret.size() && ret[cnt] == mint(0)) ++cnt;\n        if (cnt\
-    \ * k >= deg) return FPS(deg, mint(0));\n        ret.erase(ret.begin(), ret.begin()\
-    \ + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
-    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
-    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    FPS diff() const {\n \
-    \       FPS ret(max(0, (int) this->size() - 1));\n        for (int i = 1; i <=\
-    \ (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n\
-    \    }\n\n    FPS integral() const {\n        FPS ret(this->size() + 1);\n   \
-    \     ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size() - 1; ++i)\
-    \ ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n\
-    \    FPS pre(int size) const { return FPS(this->begin(), this->begin() + min((int)\
-    \ this->size(), size)); }\n};\n"
-  code: "#include <bits/stdc++.h>\n#include \"ntt.cpp\"\n\n/*\n * @brief Formal Power\
-    \ Series\n */\ntemplate <typename mint>\nclass FormalPowerSeries : public std::vector<mint>\
-    \ {\n    using FPS = FormalPowerSeries;\n\npublic:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
     \n    FPS& operator+=(const FPS& rhs) {\n        if (this->size() < rhs.size())\
     \ this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size(); ++i)\
     \ (*this)[i] += rhs[i];\n        return *this;\n    }\n\n    FPS& operator+=(const\
@@ -143,21 +96,69 @@ data:
     \        ret.erase(ret.begin(), ret.begin() + cnt);\n        deg -= cnt * k;\n\
     \        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg)\
     \ * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(), cnt * k, mint(0));\n\
-    \        return ret;\n    }\n\n    FPS diff() const {\n        FPS ret(max(0,\
+    \        return ret;\n    }\n\n    FPS diff() const {\n        FPS ret(std::max(0,\
     \ (int) this->size() - 1));\n        for (int i = 1; i <= (int) ret.size(); ++i)\
     \ ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    FPS integral()\
     \ const {\n        FPS ret(this->size() + 1);\n        ret[0] = mint(0);\n   \
     \     for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i] /\
     \ mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    FPS pre(int size)\
-    \ const { return FPS(this->begin(), this->begin() + min((int) this->size(), size));\
-    \ }\n};"
+    \ const { return FPS(this->begin(), this->begin() + std::min((int) this->size(),\
+    \ size)); }\n};\n"
+  code: "#include <bits/stdc++.h>\n#include \"ntt.cpp\"\n\n/*\n * @brief Formal Power\
+    \ Series\n */\ntemplate <typename mint>\nclass FormalPowerSeries : public std::vector<mint>\
+    \ {\n    using FPS = FormalPowerSeries;\n\npublic:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::operator=;\n\n    FPS& operator+=(const FPS& rhs)\
+    \ {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n      \
+    \  for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] += rhs[i];\n        return\
+    \ *this;\n    }\n\n    FPS& operator+=(const mint& rhs) {\n        if (this->empty())\
+    \ this->resize(1);\n        (*this)[0] += rhs;\n        return *this;\n    }\n\
+    \n    FPS& operator-=(const FPS& rhs) {\n        if (this->size() < rhs.size())\
+    \ this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size(); ++i)\
+    \ (*this)[i] -= rhs[i];\n        return *this;\n    }\n\n    FPS& operator-=(const\
+    \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
+    \ -= rhs;\n        return *this;\n    }\n\n    FPS& operator*=(const FPS& rhs)\
+    \ {\n        *this = NTT<mint>::convolution(*this, rhs);\n        return *this;\n\
+    \    }\n\n    FPS& operator*=(const mint& rhs) {\n        for (int i = 0; i <\
+    \ (int) this->size(); ++i) (*this)[i] *= rhs;\n        return *this;\n    }\n\n\
+    \    FPS& operator-() const {\n        FPS ret(this->size());\n        for (int\
+    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
+    \    }\n\n    FPS operator+(const FPS& rhs) const { return FPS(*this) += rhs;\
+    \ }\n    FPS operator+(const mint& rhs) const { return FPS(*this) += rhs; }\n\
+    \    FPS operator-(const FPS& rhs) const { return FPS(*this) -= rhs; }\n    FPS\
+    \ operator-(const mint& rhs) const { return FPS(*this) -= rhs; }\n    FPS operator*(const\
+    \ FPS& rhs) const { return FPS(*this) *= rhs; }\n    FPS operator*(const mint&\
+    \ rhs) const { return FPS(*this) *= rhs; }\n\n    FPS inv(int deg = -1) const\
+    \ {\n        assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
+    \        FPS ret({mint(1) / (*this)[0]});\n        for (int i = 1; i < deg; i\
+    \ <<= 1) {\n            ret = (ret * mint(2) - ret * ret * this->pre(i << 1)).pre(i\
+    \ << 1);\n        }\n        return ret;\n    }\n\n    FPS exp(int deg = -1) const\
+    \ {\n        assert((*this)[0] == mint(0));\n        if (deg == -1) deg = this->size();\n\
+    \        FPS ret({mint(1)});\n        for (int i = 1; i < deg; i <<= 1) {\n  \
+    \          ret = (ret * (this->pre(i << 1) + mint(1) - ret.log(i << 1))).pre(i\
+    \ << 1);\n        }\n        return ret;\n    }\n\n    FPS log(int deg = -1) const\
+    \ {\n        assert((*this)[0] == mint(1));\n        if (deg == -1) deg = this->size();\n\
+    \        return (this->diff() * this->inv(deg)).pre(deg - 1).integral();\n   \
+    \ }\n\n    FPS pow(long long k, int deg = -1) const {\n        if (deg == -1)\
+    \ deg = this->size();\n        FPS ret(*this);\n        int cnt = 0;\n       \
+    \ while (cnt < (int) ret.size() && ret[cnt] == mint(0)) ++cnt;\n        if (cnt\
+    \ * k >= deg) return FPS(deg, mint(0));\n        ret.erase(ret.begin(), ret.begin()\
+    \ + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
+    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
+    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    FPS diff() const {\n \
+    \       FPS ret(std::max(0, (int) this->size() - 1));\n        for (int i = 1;\
+    \ i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return\
+    \ ret;\n    }\n\n    FPS integral() const {\n        FPS ret(this->size() + 1);\n\
+    \        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size() - 1;\
+    \ ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\n\
+    private:\n    FPS pre(int size) const { return FPS(this->begin(), this->begin()\
+    \ + std::min((int) this->size(), size)); }\n};"
   dependsOn:
   - math/ntt.cpp
   isVerificationFile: false
   path: math/formal_power_series.cpp
   requiredBy: []
-  timestamp: '2020-10-12 18:08:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-12 18:24:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp

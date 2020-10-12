@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: math/modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []

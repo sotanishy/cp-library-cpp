@@ -160,7 +160,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Floor Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
     - icon: ':warning:'
@@ -178,13 +178,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: Mod Exponentiation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':warning:'
       path: math/monmort.cpp
       title: Monmort Number
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -351,16 +351,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -375,7 +375,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
