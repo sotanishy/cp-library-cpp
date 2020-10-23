@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#pragma once
 
 /*
  * @brief Mod Exponentiation

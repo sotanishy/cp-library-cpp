@@ -5,7 +5,7 @@
  * @brief Discrete Logarithm
  * @docs docs/math/mod_log.md
  */
-int mod_log(long long a, long long b, long long p) {
+int mod_log(long long a, long long b, int p) {
     int m = sqrt(p) + 1;
     std::vector<long long> baby(m);
     std::unordered_map<long long, int> baby_index;
