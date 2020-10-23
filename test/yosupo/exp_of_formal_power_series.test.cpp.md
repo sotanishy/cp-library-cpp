@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/formal_power_series.cpp
     title: Formal Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: math/modint.cpp
   - icon: ':heavy_check_mark:'

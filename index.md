@@ -39,7 +39,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -59,16 +59,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':warning:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
   - name: data-structure/unionfind
@@ -79,7 +79,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.cpp
       title: Persistent Union Find
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/kruskal.cpp
       title: Kruskal's Algorithm
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -128,16 +128,16 @@ data:
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/twosat.cpp
       title: 2-SAT
   - name: math
@@ -181,10 +181,13 @@ data:
     - icon: ':warning:'
       path: math/mod_log.cpp
       title: Discrete Logarithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/mod_pow.cpp
       title: Mod Exponentiation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
+      path: math/mod_sqrt.cpp
+      title: Quadratic Residue
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':heavy_check_mark:'
@@ -224,7 +227,7 @@ data:
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_array.cpp
       title: Suffix Array
     - icon: ':warning:'
@@ -235,7 +238,7 @@ data:
       title: Z Array
   - name: tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -346,7 +349,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_A.test.cpp
       title: test/aoj/NTL_1_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL_1_B.test.cpp
       title: test/aoj/NTL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -390,13 +393,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -406,24 +409,27 @@ data:
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/sqrt_mod.test.cpp
+      title: test/yosupo/sqrt_mod.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
     - icon: ':x:'
