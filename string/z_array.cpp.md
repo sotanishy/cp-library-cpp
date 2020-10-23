@@ -3,37 +3,37 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/zalgorithm.test.cpp
     title: test/yosupo/zalgorithm.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/string/z_array.md
     document_title: Z Array
     links: []
-  bundledCode: "#line 2 \"string/z_array.cpp\"\n#include <bits/stdc++.h>\n\n/*\n *\
-    \ @brief Z Array\n * @docs docs/string/z_array.md\n */\nstd::vector<int> z_array(const\
-    \ std::string& s) {\n    int n = s.size();\n    std::vector<int> z(n);\n    z[0]\
-    \ = n;\n    int l = 0, r = 0;\n    for (int i = 1; i < n; ++i) {\n        int\
-    \ k = i - l;\n        if (i <= r && z[k] < r - i + 1) {\n            z[i] = z[k];\n\
-    \        } else {\n            l = i;\n            if (i > r) r = i;\n       \
-    \     while (r < n && s[r - l] == s[r]) ++r;\n            --r;\n            z[i]\
-    \ = r - l + 1;\n        }\n    }\n    return z;\n}\n"
-  code: "#pragma once\n#include <bits/stdc++.h>\n\n/*\n * @brief Z Array\n * @docs\
-    \ docs/string/z_array.md\n */\nstd::vector<int> z_array(const std::string& s)\
-    \ {\n    int n = s.size();\n    std::vector<int> z(n);\n    z[0] = n;\n    int\
-    \ l = 0, r = 0;\n    for (int i = 1; i < n; ++i) {\n        int k = i - l;\n \
-    \       if (i <= r && z[k] < r - i + 1) {\n            z[i] = z[k];\n        }\
-    \ else {\n            l = i;\n            if (i > r) r = i;\n            while\
+  bundledCode: "#line 2 \"string/z_array.cpp\"\n#include <string>\n#include <vector>\n\
+    \n/*\n * @brief Z Array\n * @docs docs/string/z_array.md\n */\nstd::vector<int>\
+    \ z_array(const std::string& s) {\n    int n = s.size();\n    std::vector<int>\
+    \ z(n);\n    z[0] = n;\n    int l = 0, r = 0;\n    for (int i = 1; i < n; ++i)\
+    \ {\n        int k = i - l;\n        if (i <= r && z[k] < r - i + 1) {\n     \
+    \       z[i] = z[k];\n        } else {\n            l = i;\n            if (i\
+    \ > r) r = i;\n            while (r < n && s[r - l] == s[r]) ++r;\n          \
+    \  --r;\n            z[i] = r - l + 1;\n        }\n    }\n    return z;\n}\n"
+  code: "#pragma once\n#include <string>\n#include <vector>\n\n/*\n * @brief Z Array\n\
+    \ * @docs docs/string/z_array.md\n */\nstd::vector<int> z_array(const std::string&\
+    \ s) {\n    int n = s.size();\n    std::vector<int> z(n);\n    z[0] = n;\n   \
+    \ int l = 0, r = 0;\n    for (int i = 1; i < n; ++i) {\n        int k = i - l;\n\
+    \        if (i <= r && z[k] < r - i + 1) {\n            z[i] = z[k];\n       \
+    \ } else {\n            l = i;\n            if (i > r) r = i;\n            while\
     \ (r < n && s[r - l] == s[r]) ++r;\n            --r;\n            z[i] = r - l\
     \ + 1;\n        }\n    }\n    return z;\n}"
   dependsOn: []
   isVerificationFile: false
   path: string/z_array.cpp
   requiredBy: []
-  timestamp: '2020-10-01 22:40:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 00:03:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/zalgorithm.test.cpp
 documentation_of: string/z_array.cpp

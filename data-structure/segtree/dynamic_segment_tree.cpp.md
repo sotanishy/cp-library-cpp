@@ -13,7 +13,7 @@ data:
     document_title: Dynamic Segment Tree
     links: []
   bundledCode: "#line 1 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include\
-    \ <bits/stdc++.h>\n\n/*\n * @brief Dynamic Segment Tree\n * @docs docs/data-structure/segtree/dynamic_segment_tree.md\n\
+    \ <memory>\n\n/*\n * @brief Dynamic Segment Tree\n * @docs docs/data-structure/segtree/dynamic_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename\
     \ M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long\
     \ long n) : root(std::make_unique<Node>()) {\n        size = 1;\n        while\
@@ -38,36 +38,36 @@ data:
     \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr\
     \ = n->right ? fold(a, b, n->right, m, r) : M::id;\n        return M::op(vl, vr);\n\
     \    }\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Dynamic Segment Tree\n * @docs\
-    \ docs/data-structure/segtree/dynamic_segment_tree.md\n */\ntemplate <typename\
-    \ M>\nclass DynamicSegmentTree {\n    using T = typename M::T;\n\npublic:\n  \
-    \  DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long long\
-    \ n) : root(std::make_unique<Node>()) {\n        size = 1;\n        while (size\
-    \ < n) size <<= 1;\n    }\n\n    T operator[](long long k) const {\n        return\
-    \ fold(k, k + 1);\n    }\n\n    void update(long long k, const T& x) const { update(k,\
-    \ x, root, 0, size); }\n\n    T fold(long long l, long long r) const { return\
-    \ fold(l, r, root, 0, size); }\n\nprivate:\n    struct Node {\n        T val;\n\
-    \        std::unique_ptr<Node> left, right;\n        Node() : val(M::id), left(nullptr),\
-    \ right(nullptr) {}\n    };\n\n    using node_ptr = std::unique_ptr<Node>;\n\n\
-    \    const node_ptr root;\n    long long size;\n\n    void update(long long k,\
-    \ const T& x, const node_ptr& n, long long l, long long r) const {\n        if\
-    \ (r - l == 1) {\n            n->val = x;\n            return;\n        }\n  \
-    \      long long m = (l + r) / 2;\n        if (k < m) {\n            if (!n->left)\
-    \ n->left = std::make_unique<Node>();\n            update(k, x, n->left, l, m);\n\
-    \            n->val = M::op(n->left->val, n->right ? n->right->val : M::id);\n\
-    \        } else {\n            if (!n->right) n->right = std::make_unique<Node>();\n\
-    \            update(k, x, n->right, m, r);\n            n->val = M::op(n->left\
-    \ ? n->left->val : M::id, n->right->val);\n        }\n    }\n\n    T fold(long\
-    \ long a, long long b, const node_ptr& n, long long l, long long r) const {\n\
-    \        if (r <= a || b <= l) return M::id;\n        if (a <= l && r <= b) return\
-    \ n->val;\n        long long m = (l + r) / 2;\n        T vl = n->left ? fold(a,\
-    \ b, n->left, l, m) : M::id;\n        T vr = n->right ? fold(a, b, n->right, m,\
-    \ r) : M::id;\n        return M::op(vl, vr);\n    }\n};"
+  code: "#include <memory>\n\n/*\n * @brief Dynamic Segment Tree\n * @docs docs/data-structure/segtree/dynamic_segment_tree.md\n\
+    \ */\ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename\
+    \ M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long\
+    \ long n) : root(std::make_unique<Node>()) {\n        size = 1;\n        while\
+    \ (size < n) size <<= 1;\n    }\n\n    T operator[](long long k) const {\n   \
+    \     return fold(k, k + 1);\n    }\n\n    void update(long long k, const T& x)\
+    \ const { update(k, x, root, 0, size); }\n\n    T fold(long long l, long long\
+    \ r) const { return fold(l, r, root, 0, size); }\n\nprivate:\n    struct Node\
+    \ {\n        T val;\n        std::unique_ptr<Node> left, right;\n        Node()\
+    \ : val(M::id), left(nullptr), right(nullptr) {}\n    };\n\n    using node_ptr\
+    \ = std::unique_ptr<Node>;\n\n    const node_ptr root;\n    long long size;\n\n\
+    \    void update(long long k, const T& x, const node_ptr& n, long long l, long\
+    \ long r) const {\n        if (r - l == 1) {\n            n->val = x;\n      \
+    \      return;\n        }\n        long long m = (l + r) / 2;\n        if (k <\
+    \ m) {\n            if (!n->left) n->left = std::make_unique<Node>();\n      \
+    \      update(k, x, n->left, l, m);\n            n->val = M::op(n->left->val,\
+    \ n->right ? n->right->val : M::id);\n        } else {\n            if (!n->right)\
+    \ n->right = std::make_unique<Node>();\n            update(k, x, n->right, m,\
+    \ r);\n            n->val = M::op(n->left ? n->left->val : M::id, n->right->val);\n\
+    \        }\n    }\n\n    T fold(long long a, long long b, const node_ptr& n, long\
+    \ long l, long long r) const {\n        if (r <= a || b <= l) return M::id;\n\
+    \        if (a <= l && r <= b) return n->val;\n        long long m = (l + r) /\
+    \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr\
+    \ = n->right ? fold(a, b, n->right, m, r) : M::id;\n        return M::op(vl, vr);\n\
+    \    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/dynamic_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-24 00:03:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp

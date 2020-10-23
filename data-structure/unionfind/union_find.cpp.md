@@ -55,8 +55,8 @@ data:
   timestamp: '2020-10-08 11:47:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/DSL_1_A.test.cpp
+  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/yosupo/unionfind.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp

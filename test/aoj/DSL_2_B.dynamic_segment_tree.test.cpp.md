@@ -15,7 +15,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
   bundledCode: "#line 1 \"test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp\"\n#define\
     \ PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
-    \n\n#line 1 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include <bits/stdc++.h>\n\
+    \n\n#line 1 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include <memory>\n\
     \n/*\n * @brief Dynamic Segment Tree\n * @docs docs/data-structure/segtree/dynamic_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename\
     \ M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long\
@@ -40,29 +40,29 @@ data:
     \        if (a <= l && r <= b) return n->val;\n        long long m = (l + r) /\
     \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr\
     \ = n->right ? fold(a, b, n->right, m, r) : M::id;\n        return M::op(vl, vr);\n\
-    \    }\n};\n#line 4 \"test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp\"\n\nusing\
-    \ namespace std;\n\nstruct Monoid {\n    using T = int;\n    static inline T id\
-    \ = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n\
-    \    cin >> n >> q;\n    DynamicSegmentTree<Monoid> st(n);\n    for (int i = 0;\
-    \ i < q; ++i) {\n        int com, x, y;\n        cin >> com >> x >> y;\n     \
-    \   if (com == 0) st.update(x - 1, st[x - 1] + y);\n        else cout << st.fold(x\
-    \ - 1, y) << \"\\n\";\n    }\n}\n"
+    \    }\n};\n#line 4 \"test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nstruct Monoid {\n    using T = int;\n\
+    \    static inline T id = 0;\n    static T op(T a, T b) {\n        return a +\
+    \ b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int n, q;\n    cin >> n >> q;\n    DynamicSegmentTree<Monoid> st(n);\n \
+    \   for (int i = 0; i < q; ++i) {\n        int com, x, y;\n        cin >> com\
+    \ >> x >> y;\n        if (com == 0) st.update(x - 1, st[x - 1] + y);\n       \
+    \ else cout << st.fold(x - 1, y) << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
-    \n\n#include \"../../data-structure/segtree/dynamic_segment_tree.cpp\"\n\nusing\
-    \ namespace std;\n\nstruct Monoid {\n    using T = int;\n    static inline T id\
-    \ = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n, q;\n\
-    \    cin >> n >> q;\n    DynamicSegmentTree<Monoid> st(n);\n    for (int i = 0;\
-    \ i < q; ++i) {\n        int com, x, y;\n        cin >> com >> x >> y;\n     \
-    \   if (com == 0) st.update(x - 1, st[x - 1] + y);\n        else cout << st.fold(x\
-    \ - 1, y) << \"\\n\";\n    }\n}"
+    \n\n#include \"../../data-structure/segtree/dynamic_segment_tree.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nstruct Monoid {\n    using T = int;\n\
+    \    static inline T id = 0;\n    static T op(T a, T b) {\n        return a +\
+    \ b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int n, q;\n    cin >> n >> q;\n    DynamicSegmentTree<Monoid> st(n);\n \
+    \   for (int i = 0; i < q; ++i) {\n        int com, x, y;\n        cin >> com\
+    \ >> x >> y;\n        if (com == 0) st.update(x - 1, st[x - 1] + y);\n       \
+    \ else cout << st.fold(x - 1, y) << \"\\n\";\n    }\n}"
   dependsOn:
   - data-structure/segtree/dynamic_segment_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-24 00:03:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp

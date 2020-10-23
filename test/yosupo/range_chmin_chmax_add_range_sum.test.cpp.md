@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/segtree/segment_tree_beats.cpp
     title: Segment Tree Beats
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -15,28 +15,29 @@ data:
     - https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
   bundledCode: "#line 1 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \n\n#line 1 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
-    \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
-    \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n))\
-    \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size =\
-    \ 1;\n        while (size < (int) v.size()) size <<= 1;\n        sum.resize(2\
-    \ * size);\n        lazy.resize(2 * size);\n        max_val.resize(2 * size, NINF);\n\
-    \        smax_val.resize(2 * size, NINF);\n        max_cnt.resize(2 * size);\n\
-    \        min_val.resize(2 * size, INF);\n        smin_val.resize(2 * size, INF);\n\
-    \        min_cnt.resize(2 * size);\n        len.resize(2 * size);\n        len[1]\
-    \ = size;\n        for (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;\n\
-    \        for (int i = 0; i < (int) v.size(); ++i) {\n            sum[size + i]\
-    \ = max_val[size + i] = min_val[size + i] = v[i];\n            max_cnt[size +\
-    \ i] = min_cnt[size + i] = 1;\n        }\n        for (int i = size - 1; i > 0;\
-    \ --i) recalc(i);\n    }\n\n    T operator[](int k) {\n        return fold_sum(k,\
-    \ k + 1);\n    }\n\n    void chmin(int l, int r, T x) { update<CHMIN>(l, r, x,\
-    \ 1, 0, size); }\n    void chmax(int l, int r, T x) { update<CHMAX>(l, r, x, 1,\
-    \ 0, size); }\n    void add(int l, int r, T x) { update<ADD>(l, r, x, 1, 0, size);\
-    \ }\n\n    T fold_min(int l, int r) { return fold<MIN>(l, r, 1, 0, size); }\n\
-    \    T fold_max(int l, int r) { return fold<MAX>(l, r, 1, 0, size); }\n    T fold_sum(int\
-    \ l, int r) { return fold<SUM>(l, r, 1, 0, size); }\n\nprivate:\n    enum OpType\
-    \ {\n        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
+    \n\n#line 1 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include <algorithm>\n\
+    #include <limits>\n#include <vector>\n\n/*\n * @brief Segment Tree Beats\n * @docs\
+    \ docs/data-structure/segtree/segment_tree_beats.md\n */\ntemplate <typename T>\n\
+    class SegmentTreeBeats {\npublic:\n    SegmentTreeBeats() = default;\n    explicit\
+    \ SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}\n    explicit\
+    \ SegmentTreeBeats(const std::vector<T>& v) {\n        size = 1;\n        while\
+    \ (size < (int) v.size()) size <<= 1;\n        sum.resize(2 * size);\n       \
+    \ lazy.resize(2 * size);\n        max_val.resize(2 * size, NINF);\n        smax_val.resize(2\
+    \ * size, NINF);\n        max_cnt.resize(2 * size);\n        min_val.resize(2\
+    \ * size, INF);\n        smin_val.resize(2 * size, INF);\n        min_cnt.resize(2\
+    \ * size);\n        len.resize(2 * size);\n        len[1] = size;\n        for\
+    \ (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;\n        for (int i\
+    \ = 0; i < (int) v.size(); ++i) {\n            sum[size + i] = max_val[size +\
+    \ i] = min_val[size + i] = v[i];\n            max_cnt[size + i] = min_cnt[size\
+    \ + i] = 1;\n        }\n        for (int i = size - 1; i > 0; --i) recalc(i);\n\
+    \    }\n\n    T operator[](int k) {\n        return fold_sum(k, k + 1);\n    }\n\
+    \n    void chmin(int l, int r, T x) { update<CHMIN>(l, r, x, 1, 0, size); }\n\
+    \    void chmax(int l, int r, T x) { update<CHMAX>(l, r, x, 1, 0, size); }\n \
+    \   void add(int l, int r, T x) { update<ADD>(l, r, x, 1, 0, size); }\n\n    T\
+    \ fold_min(int l, int r) { return fold<MIN>(l, r, 1, 0, size); }\n    T fold_max(int\
+    \ l, int r) { return fold<MAX>(l, r, 1, 0, size); }\n    T fold_sum(int l, int\
+    \ r) { return fold<SUM>(l, r, 1, 0, size); }\n\nprivate:\n    enum OpType {\n\
+    \        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
     \ SUM\n    };\n\n    static constexpr T INF = std::numeric_limits<T>::max();\n\
     \    static constexpr T NINF = std::numeric_limits<T>::min();\n\n    int size;\n\
     \    std::vector<T> sum, lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T>\
@@ -96,33 +97,33 @@ data:
     \ 2 * k + 1, m, r);\n        if (TYPE == MIN) return std::min(vl, vr);\n     \
     \   if (TYPE == MAX) return std::max(vl, vr);\n        if (TYPE == SUM) return\
     \ vl + vr;\n    }\n};\n#line 4 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n\nusing namespace std;\n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
-    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n\
-    \    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        ll b;\n    \
-    \    cin >> t >> l >> r;\n        if (t != 3) cin >> b;\n        if (t == 0) {\n\
-    \            st.chmin(l, r, b);\n        } else if (t == 1) {\n            st.chmax(l,\
-    \ r, b);\n        } else if (t == 2) {\n            st.add(l, r, b);\n       \
-    \ } else {\n            cout << st.fold_sum(l, r) << \"\\n\";\n        }\n   \
-    \ }\n}\n"
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N;\
+    \ i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n    for (int i = 0; i <\
+    \ Q; i++) {\n        int t, l, r;\n        ll b;\n        cin >> t >> l >> r;\n\
+    \        if (t != 3) cin >> b;\n        if (t == 0) {\n            st.chmin(l,\
+    \ r, b);\n        } else if (t == 1) {\n            st.chmax(l, r, b);\n     \
+    \   } else if (t == 2) {\n            st.add(l, r, b);\n        } else {\n   \
+    \         cout << st.fold_sum(l, r) << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \n\n#include \"../../data-structure/segtree/segment_tree_beats.cpp\"\n\nusing\
-    \ namespace std;\n\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
-    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n\
-    \    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        ll b;\n    \
-    \    cin >> t >> l >> r;\n        if (t != 3) cin >> b;\n        if (t == 0) {\n\
-    \            st.chmin(l, r, b);\n        } else if (t == 1) {\n            st.chmax(l,\
-    \ r, b);\n        } else if (t == 2) {\n            st.add(l, r, b);\n       \
-    \ } else {\n            cout << st.fold_sum(l, r) << \"\\n\";\n        }\n   \
-    \ }\n}"
+    \n\n#include \"../../data-structure/segtree/segment_tree_beats.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
+    \    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N; i++) cin\
+    \ >> a[i];\n    SegmentTreeBeats<ll> st(a);\n    for (int i = 0; i < Q; i++) {\n\
+    \        int t, l, r;\n        ll b;\n        cin >> t >> l >> r;\n        if\
+    \ (t != 3) cin >> b;\n        if (t == 0) {\n            st.chmin(l, r, b);\n\
+    \        } else if (t == 1) {\n            st.chmax(l, r, b);\n        } else\
+    \ if (t == 2) {\n            st.add(l, r, b);\n        } else {\n            cout\
+    \ << st.fold_sum(l, r) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/segtree/segment_tree_beats.cpp
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 00:03:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
 layout: document

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/scc.cpp
     title: Strongly Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/two_sat.test.cpp
     title: test/yosupo/two_sat.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/twosat.md
     document_title: 2-SAT
@@ -30,16 +30,27 @@ data:
     \    visited[u] = true;\n        for (int v : G[u]) dfs(v);\n        order.push_back(u);\n\
     \    }\n\n    void rdfs(int u, int c) {\n        if (comp[u] != -1) return;\n\
     \        comp[u] = c;\n        for (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n\
-    #line 3 \"graph/twosat.cpp\"\n\n/*\n * @brief 2-SAT\n * @docs docs/graph/twosat.md\n\
-    \ */\nclass TwoSat {\npublic:\n    TwoSat() = default;\n    explicit TwoSat(int\
-    \ n) : n(n), scc(2 * n), val(n) {}\n\n    void add_clause(int u, bool a, int v,\
-    \ bool b) {\n        scc.add_edge(n * a + u, n * (!b) + v);\n        scc.add_edge(n\
-    \ * b + v, n * (!a) + u);\n    }\n\n    void solve() {\n        scc.build();\n\
-    \        for (int i = 0; i < n; ++i) {\n            if (scc[i] == scc[n + i])\
-    \ {\n                satisfiable = false;\n                break;\n          \
-    \  }\n            val[i] = scc[i] > scc[n + i];\n        }\n    }\n\n    bool\
-    \ is_satisfiable() const noexcept {\n        return satisfiable;\n    }\n\n  \
-    \  bool operator[](int i) const {\n        return val[i];\n    }\n\nprivate:\n\
+    \n/*\nstd::vector<int> scc_decomposition(const std::vector<std::vector<int>>&\
+    \ G) {\n    const int n = G.size();\n    std::vector<std::vector<int>> G_rev(n);\n\
+    \    for (int u = 0; u < n; ++u) {\n        for (int v : G[u]) G_rev[v].push_back(u);\n\
+    \    }\n    std::vector<int> comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\
+    \n    auto dfs = [&](const auto& self, int u) -> void {\n        if (visited[u])\
+    \ return;\n        visited[u] = true;\n        for (int v : G[u]) self(self, v);\n\
+    \        order.push_back(v);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs,\
+    \ v);\n    std::reverse(order.begin(), order.end());\n    int c = 0;\n\n    auto\
+    \ rdfs = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] !=\
+    \ -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self,\
+    \ v, c);\n    }\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
+    \    return comp;\n}\n*/\n#line 3 \"graph/twosat.cpp\"\n\n/*\n * @brief 2-SAT\n\
+    \ * @docs docs/graph/twosat.md\n */\nclass TwoSat {\npublic:\n    TwoSat() = default;\n\
+    \    explicit TwoSat(int n) : n(n), scc(2 * n), val(n) {}\n\n    void add_clause(int\
+    \ u, bool a, int v, bool b) {\n        scc.add_edge(n * a + u, n * (!b) + v);\n\
+    \        scc.add_edge(n * b + v, n * (!a) + u);\n    }\n\n    void solve() {\n\
+    \        scc.build();\n        for (int i = 0; i < n; ++i) {\n            if (scc[i]\
+    \ == scc[n + i]) {\n                satisfiable = false;\n                break;\n\
+    \            }\n            val[i] = scc[i] > scc[n + i];\n        }\n    }\n\n\
+    \    bool is_satisfiable() const noexcept {\n        return satisfiable;\n   \
+    \ }\n\n    bool operator[](int i) const {\n        return val[i];\n    }\n\nprivate:\n\
     \    int n;\n    SCC scc;\n    std::vector<bool> val;\n    bool satisfiable =\
     \ true;\n};\n"
   code: "#include <bits/stdc++.h>\n#include \"scc.cpp\"\n\n/*\n * @brief 2-SAT\n *\
@@ -59,8 +70,8 @@ data:
   isVerificationFile: false
   path: graph/twosat.cpp
   requiredBy: []
-  timestamp: '2020-09-23 00:47:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 00:03:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/two_sat.test.cpp
 documentation_of: graph/twosat.cpp

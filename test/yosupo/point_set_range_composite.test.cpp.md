@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -15,8 +15,8 @@ data:
     - https://judge.yosupo.jp/problem/point_set_range_composite
   bundledCode: "#line 1 \"test/yosupo/point_set_range_composite.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\n\n#line\
-    \ 1 \"data-structure/segtree/segment_tree.cpp\"\n#include <bits/stdc++.h>\n\n\
-    /*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
+    \ 1 \"data-structure/segtree/segment_tree.cpp\"\n#include <algorithm>\n#include\
+    \ <vector>\n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
@@ -48,11 +48,11 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
-    #line 4 \"test/yosupo/point_set_range_composite.test.cpp\"\n\nusing namespace\
-    \ std;\nusing ll = long long;\n\nconst ll mod = 998244353;\n\nstruct Monoid {\n\
-    \    using T = pair<ll, ll>;\n    static inline T id = {1, 0};\n    static T op(T\
-    \ a, T b) {\n        return {a.first * b.first % mod, (a.second * b.first + b.second)\
-    \ % mod};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    #line 4 \"test/yosupo/point_set_range_composite.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n\nconst ll mod = 998244353;\n\nstruct\
+    \ Monoid {\n    using T = pair<ll, ll>;\n    static inline T id = {1, 0};\n  \
+    \  static T op(T a, T b) {\n        return {a.first * b.first % mod, (a.second\
+    \ * b.first + b.second) % mod};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<ll, ll>>\
     \ ab(N);\n    for (int i = 0; i < N; i++) {\n        int a, b;\n        cin >>\
     \ a >> b;\n        ab[i] = {a, b};\n    }\n    SegmentTree<Monoid> st(ab);\n \
@@ -63,11 +63,11 @@ data:
     \      cout << (f.first * x + f.second) % mod << \"\\n\";\n        }\n    }\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n\n#include \"../../data-structure/segtree/segment_tree.cpp\"\n\nusing namespace\
-    \ std;\nusing ll = long long;\n\nconst ll mod = 998244353;\n\nstruct Monoid {\n\
-    \    using T = pair<ll, ll>;\n    static inline T id = {1, 0};\n    static T op(T\
-    \ a, T b) {\n        return {a.first * b.first % mod, (a.second * b.first + b.second)\
-    \ % mod};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include \"../../data-structure/segtree/segment_tree.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n\nconst ll mod = 998244353;\n\nstruct\
+    \ Monoid {\n    using T = pair<ll, ll>;\n    static inline T id = {1, 0};\n  \
+    \  static T op(T a, T b) {\n        return {a.first * b.first % mod, (a.second\
+    \ * b.first + b.second) % mod};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<ll, ll>>\
     \ ab(N);\n    for (int i = 0; i < N; i++) {\n        int a, b;\n        cin >>\
     \ a >> b;\n        ab[i] = {a, b};\n    }\n    SegmentTree<Monoid> st(ab);\n \
@@ -81,8 +81,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 00:03:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
@@ -20,16 +20,19 @@ data:
     \ ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int) G.size();\
     \ ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int,\
     \ int>> get_bridges() const {\n        return bridge;\n    }\n\n    std::vector<int>\
-    \ get_articulation_points() const {\n        return articulation;\n    }\n\nprivate:\n\
-    \    std::vector<std::vector<int>> G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int,\
-    \ int>> bridge;\n    std::vector<int> articulation;\n    int k = 0;\n\n    void\
-    \ dfs(int v, int p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n     \
-    \   bool is_articulation = false;\n        int cnt = 0;\n        for (int c :\
-    \ G[v]) {\n            if (ord[c] == -1) {\n                ++cnt;\n         \
-    \       dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n     \
-    \           if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n       \
-    \         if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else if (c != p) {\n                low[v] = std::min(low[v],\
+    \ get_articulation_points() const {\n        return articulation;\n    }\n\n \
+    \   bool is_bridge(int u, int v) {\n        if (ord[u] > ord[v]) std::swap(u,\
+    \ v);\n        return ord[u] < low[v];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
+    \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
+    \    std::vector<int> articulation;\n    int k = 0;\n\n    void dfs(int v, int\
+    \ p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
     \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
     \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
     #line 4 \"test/aoj/GRL_3_B.test.cpp\"\n\nusing namespace std;\n\nint main() {\n\
@@ -54,7 +57,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2020-09-30 12:46:10+09:00'
+  timestamp: '2020-10-24 00:03:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp

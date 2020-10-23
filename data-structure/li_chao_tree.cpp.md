@@ -79,8 +79,8 @@ data:
   timestamp: '2020-10-12 02:39:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/line_add_get_min.test.cpp
   - test/yosupo/segment_add_get_min.test.cpp
+  - test/yosupo/line_add_get_min.test.cpp
 documentation_of: data-structure/li_chao_tree.cpp
 layout: document
 redirect_from:

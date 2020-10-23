@@ -3,24 +3,25 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-structure/segtree/segment_tree_beats.md
     document_title: Segment Tree Beats
     links: []
   bundledCode: "#line 1 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include\
-    \ <bits/stdc++.h>\n\n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
-    \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
-    \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n))\
-    \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size =\
-    \ 1;\n        while (size < (int) v.size()) size <<= 1;\n        sum.resize(2\
-    \ * size);\n        lazy.resize(2 * size);\n        max_val.resize(2 * size, NINF);\n\
-    \        smax_val.resize(2 * size, NINF);\n        max_cnt.resize(2 * size);\n\
-    \        min_val.resize(2 * size, INF);\n        smin_val.resize(2 * size, INF);\n\
+    \ <algorithm>\n#include <limits>\n#include <vector>\n\n/*\n * @brief Segment Tree\
+    \ Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n */\ntemplate\
+    \ <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats() = default;\n\
+    \    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}\n\
+    \    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size = 1;\n\
+    \        while (size < (int) v.size()) size <<= 1;\n        sum.resize(2 * size);\n\
+    \        lazy.resize(2 * size);\n        max_val.resize(2 * size, NINF);\n   \
+    \     smax_val.resize(2 * size, NINF);\n        max_cnt.resize(2 * size);\n  \
+    \      min_val.resize(2 * size, INF);\n        smin_val.resize(2 * size, INF);\n\
     \        min_cnt.resize(2 * size);\n        len.resize(2 * size);\n        len[1]\
     \ = size;\n        for (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;\n\
     \        for (int i = 0; i < (int) v.size(); ++i) {\n            sum[size + i]\
@@ -93,7 +94,8 @@ data:
     \ 2 * k + 1, m, r);\n        if (TYPE == MIN) return std::min(vl, vr);\n     \
     \   if (TYPE == MAX) return std::max(vl, vr);\n        if (TYPE == SUM) return\
     \ vl + vr;\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
+  code: "#include <algorithm>\n#include <limits>\n#include <vector>\n\n/*\n * @brief\
+    \ Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
     \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
     \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n))\
     \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size =\
@@ -177,8 +179,8 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 00:03:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: data-structure/segtree/segment_tree_beats.cpp
