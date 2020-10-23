@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
     graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n\
     \    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n#line 2 \"data-structure/unionfind/union_find.cpp\"\n\n/*\n * @brief\
+    \ {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\n\n/*\n * @brief\
     \ Union Find\n * @docs docs/data-structure/unionfind/union_find.md\n */\nclass\
     \ UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: graph/kruskal.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
+  timestamp: '2020-10-24 00:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.kruskal.test.cpp

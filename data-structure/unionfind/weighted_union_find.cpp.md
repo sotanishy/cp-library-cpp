@@ -12,12 +12,13 @@ data:
     _deprecated_at_docs: docs/data-structure/unionfind/weighted_union_find.md
     document_title: Weighted Union Find
     links: []
-  bundledCode: "#line 1 \"data-structure/unionfind/weighted_union_find.cpp\"\n#include\
-    \ <bits/stdc++.h>\n\n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/unionfind/weighted_union_find.md\n\
-    \ */\ntemplate <typename T>\nclass WeightedUnionFind {\npublic:\n    WeightedUnionFind()\
-    \ = default;\n    explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}\n\n\
-    \    int find(int x) {\n        if (data[x] < 0) return x;\n        int r = find(data[x]);\n\
-    \        ws[x] += ws[data[x]];\n        return data[x] = r;\n    }\n\n    T weight(int\
+  bundledCode: "#line 2 \"data-structure/unionfind/weighted_union_find.cpp\"\n#include\
+    \ <algorithm>\n#include <vector>\n\n/*\n * @brief Weighted Union Find\n * @docs\
+    \ docs/data-structure/unionfind/weighted_union_find.md\n */\ntemplate <typename\
+    \ T>\nclass WeightedUnionFind {\npublic:\n    WeightedUnionFind() = default;\n\
+    \    explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}\n\n    int find(int\
+    \ x) {\n        if (data[x] < 0) return x;\n        int r = find(data[x]);\n \
+    \       ws[x] += ws[data[x]];\n        return data[x] = r;\n    }\n\n    T weight(int\
     \ x) {\n        find(x);\n        return ws[x];\n    }\n\n    bool unite(int x,\
     \ int y, T w) {\n        w += weight(x);\n        w -= weight(y);\n        x =\
     \ find(x);\n        y = find(y);\n        if (x == y) return false;\n        if\
@@ -27,7 +28,8 @@ data:
     \ find(x) == find(y);\n    }\n\n    T diff(int x, int y) {\n        return weight(y)\
     \ - weight(x);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
     \    }\n\nprivate:\n    std::vector<int> data;\n    std::vector<T> ws;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Weighted Union Find\n * @docs docs/data-structure/unionfind/weighted_union_find.md\n\
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Weighted\
+    \ Union Find\n * @docs docs/data-structure/unionfind/weighted_union_find.md\n\
     \ */\ntemplate <typename T>\nclass WeightedUnionFind {\npublic:\n    WeightedUnionFind()\
     \ = default;\n    explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}\n\n\
     \    int find(int x) {\n        if (data[x] < 0) return x;\n        int r = find(data[x]);\n\
@@ -45,7 +47,7 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/weighted_union_find.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:47:33+09:00'
+  timestamp: '2020-10-24 00:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_B.test.cpp

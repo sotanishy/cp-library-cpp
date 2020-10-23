@@ -27,7 +27,7 @@ data:
     - icon: ':warning:'
       path: data-structure/monoids.cpp
       title: data-structure/monoids.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
     - icon: ':warning:'
@@ -76,10 +76,10 @@ data:
     - icon: ':warning:'
       path: data-structure/unionfind/partially_persistent_union_find.cpp
       title: Partially Persistent Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/unionfind/persistent_union_find.cpp
       title: Persistent Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/unionfind/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -142,6 +142,9 @@ data:
       title: 2-SAT
   - name: math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: math/arbitrary_modint.cpp
+      title: math/arbitrary_modint.cpp
     - icon: ':warning:'
       path: math/combination.cpp
       title: Combination
@@ -184,8 +187,8 @@ data:
     - icon: ':question:'
       path: math/modint.cpp
       title: math/modint.cpp
-    - icon: ':warning:'
-      path: math/monmort.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/montmort.cpp
       title: Monmort Number
     - icon: ':question:'
       path: math/ntt.cpp
@@ -360,19 +363,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/montmort_number_mod.test.cpp
+      title: test/yosupo/montmort_number_mod.test.cpp
     - icon: ':x:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
     - icon: ':x:'
@@ -414,7 +420,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
     - icon: ':x:'
