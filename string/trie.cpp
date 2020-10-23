@@ -1,5 +1,10 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <string>
+#include <vector>
 
+/*
+ * @brief Trie
+ */
 class Trie {
 public:
     Trie() : nodes(1) {}

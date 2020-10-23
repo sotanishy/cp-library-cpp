@@ -3,6 +3,7 @@
 
 /*
  * @brief Formal Power Series
+ * @docs docs/math/formal_power_series.md
  */
 template <typename mint>
 class FormalPowerSeries : public std::vector<mint> {

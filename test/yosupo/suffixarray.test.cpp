@@ -2,6 +2,7 @@
 
 #include "../../string/suffix_array.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

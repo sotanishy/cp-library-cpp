@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <utility>
+#include <vector>
 #include "../graph/edge.cpp"
 
 /*
@@ -46,3 +49,37 @@ private:
         return ret;
     }
 };
+/*
+int tree_diameter(const std::vector<std::vector<int>>& G) {
+    auto dfs = [&](const auto& self, int v, int p) {
+        std::pair<int, int> ret(0, v);
+        for (int c : G[v]) {
+            if (c == p) continue;
+            auto weight = self(self, c, v);
+            ++weight.first;
+            ret = std::max(ret, weight);
+        }
+        return ret;
+    };
+    auto p = dfs(dfs, 0, -1);
+    auto q = dfs(dfs, p.second, -1);
+    return q.first;
+}
+
+template <typename T>
+T tree_diameter(const std::vector<std::vector<Edge<T>>>& G) {
+    auto dfs = [&](const auto& self, int v, int p) {
+        std::pair<int, int> ret(0, v);
+        for (auto& e : G[v]) {
+            if (e.to == p) continue;
+            auto weight = self(self, e.to, v);
+            weight.first += e.weight;
+            ret = std::max(ret, weight);
+        }
+        return ret;
+    }
+    auto p = dfs(dfs, 0, -1);
+    auto q = dfs(G, p.second, -1);
+    return q.first;
+}
+*/

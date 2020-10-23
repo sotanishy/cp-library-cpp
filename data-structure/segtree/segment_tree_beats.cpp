@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <limits>
+#include <vector>
 
 /*
  * @brief Segment Tree Beats

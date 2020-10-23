@@ -2,6 +2,7 @@
 
 #include "../../tree/tree_diameter.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

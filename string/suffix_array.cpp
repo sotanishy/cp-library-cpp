@@ -1,5 +1,8 @@
 #pragma once
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <limits>
+#include <string>
+#include <vector>
 
 /*
  * @brief Suffix Array

@@ -48,3 +48,35 @@ private:
         for (int v : G_rev[u]) rdfs(v, c);
     }
 };
+
+/*
+std::vector<int> scc_decomposition(const std::vector<std::vector<int>>& G) {
+    const int n = G.size();
+    std::vector<std::vector<int>> G_rev(n);
+    for (int u = 0; u < n; ++u) {
+        for (int v : G[u]) G_rev[v].push_back(u);
+    }
+    std::vector<int> comp(n, -1), order(n);
+    std::vector<bool> visited(n);
+
+    auto dfs = [&](const auto& self, int u) -> void {
+        if (visited[u]) return;
+        visited[u] = true;
+        for (int v : G[u]) self(self, v);
+        order.push_back(v);
+    };
+
+    for (int v = 0; v < n; ++v) dfs(dfs, v);
+    std::reverse(order.begin(), order.end());
+    int c = 0;
+
+    auto rdfs = [&](const auto& self, int u, int c) -> void {
+        if (comp[u] != -1) return;
+        comp[u] = c;
+        for (int v : G_rev[u]) self(self, v, c);
+    }
+
+    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);
+    return comp;
+}
+*/

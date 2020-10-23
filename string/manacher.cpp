@@ -1,5 +1,6 @@
 #pragma once
-#include <bits/stdc++.h>
+#include <vector>
+#include <string>
 
 std::vector<int> manacher(const std::string& s) {
     int n = s.size();

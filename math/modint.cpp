@@ -12,20 +12,20 @@ public:
 
     constexpr int value() const noexcept { return x; }
 
-    constexpr Modint& operator+=(const Modint& p) noexcept { if ((x += p.x) >= mod) x -= mod; return *this; }
-    constexpr Modint& operator-=(const Modint& p) noexcept { if ((x += mod - p.x) >= mod) x -= mod; return *this; }
-    constexpr Modint& operator*=(const Modint& p) noexcept { x = static_cast<int>(1LL * x * p.x % mod); return *this; }
-    constexpr Modint& operator/=(const Modint& p) noexcept { *this *= p.inv(); return *this; }
+    constexpr Modint& operator+=(const Modint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }
+    constexpr Modint& operator-=(const Modint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod; return *this; }
+    constexpr Modint& operator*=(const Modint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this; }
+    constexpr Modint& operator/=(const Modint& r) noexcept { *this *= r.inv(); return *this; }
 
     constexpr Modint operator-() const noexcept { return Modint(-x); }
 
-    constexpr Modint operator+(const Modint& p) const noexcept { return Modint(*this) += p; }
-    constexpr Modint operator-(const Modint& p) const noexcept { return Modint(*this) -= p; }
-    constexpr Modint operator*(const Modint& p) const noexcept { return Modint(*this) *= p; }
-    constexpr Modint operator/(const Modint& p) const noexcept { return Modint(*this) /= p; }
+    constexpr Modint operator+(const Modint& r) const noexcept { return Modint(*this) += r; }
+    constexpr Modint operator-(const Modint& r) const noexcept { return Modint(*this) -= r; }
+    constexpr Modint operator*(const Modint& r) const noexcept { return Modint(*this) *= r; }
+    constexpr Modint operator/(const Modint& r) const noexcept { return Modint(*this) /= r; }
 
-    constexpr bool operator==(const Modint& p) const noexcept { return x == p.x; }
-    constexpr bool operator!=(const Modint& p) const noexcept { return x != p.x; }
+    constexpr bool operator==(const Modint& r) const noexcept { return x == r.x; }
+    constexpr bool operator!=(const Modint& r) const noexcept { return x != r.x; }
 
     constexpr Modint inv() const noexcept {
         int a = x, b = mod, u = 1, v = 0;
@@ -47,14 +47,14 @@ public:
         return ret;
     }
 
-    friend std::ostream &operator<<(std::ostream& os, const Modint& p) {
-        return os << p.x;
+    friend std::ostream& operator<<(std::ostream& os, const Modint& r) {
+        return os << r.x;
     }
 
-    friend std::istream &operator>>(std::istream& is, Modint& a) {
+    friend std::istream& operator>>(std::istream& is, Modint& r) {
         long long t;
         is >> t;
-        a = Modint<mod>(t);
+        r = Modint(t);
         return is;
     }
 

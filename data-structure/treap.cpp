@@ -103,3 +103,99 @@ private:
         print_preorder(t->right);
     }
 };
+
+/*
+template <typename M>
+class Treap {
+    using T = typename M::T;
+
+public:
+    struct Node {
+        std::unique_ptr<Node> left, right;
+        T val, sum;
+        int pri, cnt;
+        bool rev;
+        Node(T val, int pri) : left(nullptr), right(nullptr), val(val), sum(val), pri(pri), cnt(1), rev(false) {}
+    };
+
+    using node_ptr = std::unique_ptr<Node>;
+
+    node_ptr merge(node_ptr tl, node_ptr tr) {
+        if (!tl) return tr;
+        if (!tr) return tl;
+        push(tl);
+        push(tr);
+        if (tl->pri > tr->pri) {
+            tl->right = merge(std::move(tl->right), std::move(tr));
+            return recalc(tl);
+        } else {
+            tr->left = merge(std::move(tl), std::move(tr->left));
+            return recalc(tr);
+        }
+    }
+
+    std::pair<node_ptr, node_ptr> split(node_ptr t, int k) {
+        if (!t) return {nullptr, nullptr};
+        push(t);
+        if (k <= count(t->left)) {
+            auto s = split(std::move(t->left), k);
+            t->left = std::move(s.second);
+            return {s.first, recalc(t)};
+        } else {
+            auto s = split(std::move(t->right), k - count(t->left) - 1);
+            t->right = std::move(s.first);
+            return {recalc(t), s.second};
+        }
+    }
+
+    node_ptr insert(node_ptr t, int k, T val, int pri) {
+        auto s = split(std::move(t), k);
+        return merge(merge(std::move(s.first), std::make_unique<Node>(val, pri)), std::move(s.second));
+    }
+
+    node_ptr erase(node_ptr t, int k) {
+        auto sl = split(std::move(t), k - 1);
+        auto sr = split(std::move(sl.second), 1);
+        return merge(std::move(sl.first), std::move(sr.second));
+    }
+
+    node_ptr reverse(node_ptr t, int l, int r) {
+        node_ptr a, b, c;
+        std::tie(a, b) = split(std::move(t), l);
+        std::tie(b, c) = split(std::move(b), r - l);
+        b->rev ^= true;
+        return merge(merge(std::move(a), std::move(b)), std::move(c));
+    }
+
+    T query(const node_ptr& t, int l, int r) { return query(t, l, r, 0, count(t)); }
+
+private:
+    inline int count(const node_ptr& t) { return t ? t->cnt : 0; }
+    inline T sum(const node_ptr& t) { return t ? t->sum : M::id; }
+
+    node_ptr recalc(const node_ptr& t) {
+        t->cnt = count(t->left) + count(t->right) + 1;
+        t->sum = t->val;
+        if (t->left) t->sum = M::op(t->left->sum, t->sum);
+        if (t->right) t->sum = M::op(t->sum, t->right->sum);
+        return t;
+    }
+
+    void push(const node_ptr& t) {
+        if (t->rev) {
+            std::swap(t->left, t->right);
+            if (t->left) t->left->rev ^= true;
+            if (t->right) t->right->rev ^= true;
+            t->rev = false;
+        }
+    }
+
+    T query(const node_ptr& t, int a, int b, int l, int r) {
+        if (r <= a || b <= l) return M::id;
+        if (a <= l && r <= b) return t->sum;
+        push(t);
+        return M::op(query(t->left, a, b, l, l + count(t->left)),
+                     query(t->right, a, b, r - count(t->right), r));
+    }
+};
+*/

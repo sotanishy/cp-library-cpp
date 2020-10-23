@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <vector>
 
 /*
  * @brief Segment Tree

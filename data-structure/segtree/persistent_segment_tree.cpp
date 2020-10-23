@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <vector>
+#include <memory>
 
 /*
  * @brief Persistent Segment Tree

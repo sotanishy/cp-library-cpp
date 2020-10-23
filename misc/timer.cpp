@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <chrono>
 
 class Timer {
 public:

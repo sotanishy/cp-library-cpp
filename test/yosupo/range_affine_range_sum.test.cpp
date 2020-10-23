@@ -3,6 +3,7 @@
 #include "../../data-structure/segtree/lazy_segment_tree.cpp"
 #include "../../math/modint.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 using mint = Modint<998244353>;

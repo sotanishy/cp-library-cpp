@@ -2,6 +2,7 @@
 
 #include "../../data-structure/segtree/segment_tree.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 
