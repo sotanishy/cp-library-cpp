@@ -2,6 +2,7 @@
 
 #include "../../data-structure/unionfind/weighted_union_find.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

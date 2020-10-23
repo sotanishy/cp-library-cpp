@@ -2,6 +2,7 @@
 
 #include "../../graph/kruskal.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

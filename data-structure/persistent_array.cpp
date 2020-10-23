@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <memory>
+#include <vector>
 
 /*
  * @brief Persistent Array
@@ -21,13 +23,14 @@ public:
     }
 
 private:
+    struct Node;
+    using node_ptr = std::shared_ptr<Node>;
+
     struct Node {
         T val;
-        std::vector<std::shared_ptr<Node>> ch;
+        std::vector<node_ptr> ch;
         Node() : ch(B) {}
     };
-
-    using node_ptr = std::shared_ptr<Node>;
 
     node_ptr root = nullptr;
 

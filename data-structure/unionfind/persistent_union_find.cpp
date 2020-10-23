@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <vector>
 #include "../persistent_array.cpp"
 
 /*
