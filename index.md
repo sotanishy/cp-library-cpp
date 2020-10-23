@@ -27,7 +27,7 @@ data:
     - icon: ':warning:'
       path: data-structure/monoids.cpp
       title: data-structure/monoids.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
     - icon: ':warning:'
@@ -76,7 +76,7 @@ data:
     - icon: ':warning:'
       path: data-structure/unionfind/partially_persistent_union_find.cpp
       title: Partially Persistent Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.cpp
       title: Persistent Union Find
     - icon: ':question:'
@@ -166,7 +166,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Floor Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
     - icon: ':warning:'
@@ -190,7 +190,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -218,13 +218,13 @@ data:
       title: misc/timer.cpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/lcp_array.cpp
       title: Longest Common Prefix Array
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/suffix_array.cpp
       title: Suffix Array
     - icon: ':warning:'
@@ -250,7 +250,7 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.test.cpp
       title: test/aoj/ALDS1_14_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -375,19 +375,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':x:'

@@ -2,30 +2,30 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lcp_array.cpp
     title: Longest Common Prefix Array
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.test.cpp
     title: test/aoj/ALDS1_14_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_of_substrings.test.cpp
     title: test/yosupo/number_of_substrings.test.cpp
   - icon: ':x:'
     path: test/yosupo/suffixarray.test.cpp
     title: test/yosupo/suffixarray.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/string/suffix_array.md
     document_title: Suffix Array
     links: []
   bundledCode: "#line 2 \"string/suffix_array.cpp\"\n#include <algorithm>\n#include\
-    \ <limits>\n#include <string>\n#include <vector>\n\n/*\n * @brief Suffix Array\n\
-    \ * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\npublic:\n   \
-    \ SuffixArray() = default;\n    explicit SuffixArray(const std::string& str) :\
-    \ s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
+    \ <limits>\n#include <numeric>\n#include <string>\n#include <vector>\n\n/*\n *\
+    \ @brief Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray\
+    \ {\npublic:\n    SuffixArray() = default;\n    explicit SuffixArray(const std::string&\
+    \ str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
     \ sa.end(), 0);\n        std::sort(sa.begin(), sa.end(), [&](int i, int j) {\n\
     \            return s[i] < s[j];\n        });\n        int cl = 0;\n        std::vector<int>\
     \ rank(n);\n        for (int i = 1; i < n; ++i) {\n            if (s[sa[i - 1]]\
@@ -55,8 +55,8 @@ data:
     \        for (; si < sn && ti < tn; ++si, ++ti) {\n            if (s[si] < t[ti])\
     \ return true;\n            if (s[si] > t[ti]) return false;\n        }\n    \
     \    return si >= sn && ti < tn;\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <string>\n\
-    #include <vector>\n\n/*\n * @brief Suffix Array\n * @docs docs/string/suffix_array.md\n\
+  code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <numeric>\n\
+    #include <string>\n#include <vector>\n\n/*\n * @brief Suffix Array\n * @docs docs/string/suffix_array.md\n\
     \ */\nclass SuffixArray {\npublic:\n    SuffixArray() = default;\n    explicit\
     \ SuffixArray(const std::string& str) : s(str) {\n        int n = s.size();\n\
     \        sa.resize(n);\n        std::iota(sa.begin(), sa.end(), 0);\n        std::sort(sa.begin(),\
@@ -94,8 +94,8 @@ data:
   path: string/suffix_array.cpp
   requiredBy:
   - string/lcp_array.cpp
-  timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-24 01:45:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_14_B.test.cpp
   - test/yosupo/number_of_substrings.test.cpp

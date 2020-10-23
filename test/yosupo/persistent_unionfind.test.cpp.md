@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/persistent_array.cpp
     title: Persistent Array
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/persistent_union_find.cpp
     title: Persistent Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -74,7 +74,7 @@ data:
   path: test/yosupo/persistent_unionfind.test.cpp
   requiredBy: []
   timestamp: '2020-10-24 00:37:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_unionfind.test.cpp
 layout: document

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lcp_array.cpp
     title: Longest Common Prefix Array
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffix_array.cpp
     title: Suffix Array
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -19,8 +19,8 @@ data:
   bundledCode: "#line 1 \"test/yosupo/number_of_substrings.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\n#line 2 \"string/lcp_array.cpp\"\
     \n#include <string>\n#include <vector>\n#line 2 \"string/suffix_array.cpp\"\n\
-    #include <algorithm>\n#include <limits>\n#line 6 \"string/suffix_array.cpp\"\n\
-    \n/*\n * @brief Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass\
+    #include <algorithm>\n#include <limits>\n#include <numeric>\n#line 7 \"string/suffix_array.cpp\"\
+    \n\n/*\n * @brief Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass\
     \ SuffixArray {\npublic:\n    SuffixArray() = default;\n    explicit SuffixArray(const\
     \ std::string& str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n\
     \        std::iota(sa.begin(), sa.end(), 0);\n        std::sort(sa.begin(), sa.end(),\
@@ -78,8 +78,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 01:45:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_substrings.test.cpp
 layout: document
