@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
-#include "../../graph/boruvka.cpp"
+#include "../../graph/mst.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;

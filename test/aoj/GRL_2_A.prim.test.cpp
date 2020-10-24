@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
-#include "../../graph/prim.cpp"
+#include "../../graph/mst.cpp"
 
 using namespace std;
 

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include "edge.cpp"
-#include "dijkstra.cpp"
+#include "shortest_path.cpp"
 
 /*
  * @brief Range Edge Graph

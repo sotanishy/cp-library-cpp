@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
-#include "../../graph/dijkstra.cpp"
+#include "../../graph/shortest_path.cpp"
 
 using namespace std;
 
