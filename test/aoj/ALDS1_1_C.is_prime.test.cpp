@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C"
 
-#include "../../math/is_prime.cpp"
+#include "../../math/prime.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;

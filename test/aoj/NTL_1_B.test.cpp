@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B"
 
-#include "../../math/mod_pow.cpp"
+#include "../../math/mod_arithmetic.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;

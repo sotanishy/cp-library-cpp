@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_mod"
 
-#include "../../math/mod_sqrt.cpp"
+#include "../../math/mod_arithmetic.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;

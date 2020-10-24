@@ -2,6 +2,7 @@
 
 #include "../../graph/two_edge_connected_components.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
