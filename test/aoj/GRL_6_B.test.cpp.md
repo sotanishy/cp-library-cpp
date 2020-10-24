@@ -1,22 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/min_cost_flow.cpp
     title: Minimum Cost Flow
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
   bundledCode: "#line 1 \"test/aoj/GRL_6_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
-    \n\n#line 1 \"flow/min_cost_flow.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief\
-    \ Minimum Cost Flow\n * @docs docs/flow/min_cost_flow.md\n */\ntemplate <typename\
-    \ Cap, typename Cost>\nclass MinCostFlow {\npublic:\n    MinCostFlow() = default;\n\
+    \n\n#line 2 \"flow/min_cost_flow.cpp\"\n#include <algorithm>\n#include <limits>\n\
+    #include <queue>\n#include <utility>\n#include <vector>\n\n/*\n * @brief Minimum\
+    \ Cost Flow\n * @docs docs/flow/min_cost_flow.md\n */\ntemplate <typename Cap,\
+    \ typename Cost>\nclass MinCostFlow {\npublic:\n    MinCostFlow() = default;\n\
     \    explicit MinCostFlow(int V) : V(V), G(V) {}\n\n    void add_edge(int u, int\
     \ v, Cap cap, Cost cost) {\n        G[u].emplace_back(v, cap, cost, (int) G[v].size());\n\
     \        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);\n    }\n\n   \
@@ -62,8 +63,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp
 layout: document

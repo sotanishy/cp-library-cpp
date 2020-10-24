@@ -3,35 +3,36 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_B.test.cpp
     title: test/aoj/DSL_2_B.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-structure/fenwick_tree.md
     document_title: Fenwick Tree
     links: []
-  bundledCode: "#line 1 \"data-structure/fenwick_tree.cpp\"\n#include <bits/stdc++.h>\n\
+  bundledCode: "#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <algorithm>\n\
+    #include <functional>\n#include <vector>\n\n/*\n * @brief Fenwick Tree\n * @docs\
+    \ docs/data-structure/fenwick_tree.md\n */\ntemplate <typename M>\nclass FenwickTree\
+    \ {\n    using T = typename M::T;\n\npublic:\n    FenwickTree() = default;\n \
+    \   explicit FenwickTree(int n) : n(n), data(n + 1, M::id) {}\n\n    T prefix_fold(int\
+    \ i) const {\n        T ret = M::id;\n        for (; i > 0; i -= i & -i) ret =\
+    \ M::op(ret, data[i]);\n        return ret;\n    }\n\n    void update(int i, const\
+    \ T& x) {\n        for (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n\
+    \    }\n\n    int lower_bound(const T& x) const {\n        return lower_bound(x,\
+    \ std::less<>());\n    }\n\n    template <typename Compare>\n    int lower_bound(const\
+    \ T& x, Compare cmp) const {\n        int k = 1;\n        while (k * 2 <= n) k\
+    \ <<= 1;\n        int i = 0;\n        T v = M::id;\n        for (; k > 0; k >>=\
+    \ 1) {\n            if (i + k <= n) continue;\n            T nv = M::op(v, data[i\
+    \ + k]);\n            if (cmp(nv, x)) {\n                std::swap(v, nv);\n \
+    \               i += k;\n            }\n        }\n        return i + 1;\n   \
+    \ }\n\nprivate:\n    int n;\n    std::vector<T> data;\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <functional>\n#include <vector>\n\
     \n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n */\n\
     template <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\npublic:\n\
     \    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n), data(n\
     \ + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
-    \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
-    \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
-    \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
-    \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
-    \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
-    \        T v = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i + k\
-    \ <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if (cmp(nv,\
-    \ x)) {\n                std::swap(v, nv);\n                i += k;\n        \
-    \    }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
-    \ data;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
-    \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
-    \npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
-    \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
     \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
@@ -47,8 +48,8 @@ data:
   isVerificationFile: false
   path: data-structure/fenwick_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-06 11:51:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL_2_B.test.cpp
 documentation_of: data-structure/fenwick_tree.cpp

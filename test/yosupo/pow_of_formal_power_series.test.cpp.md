@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/formal_power_series.cpp
     title: Formal Power Series
   - icon: ':question:'
     path: math/modint.cpp
     title: math/modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -50,7 +50,7 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 1 \"math/formal_power_series.cpp\"\n\
-    #include <bits/stdc++.h>\n#line 2 \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic\
+    #include <bits/stdc++.h>\n#line 3 \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic\
     \ Transform\n * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\nclass NTT\
     \ {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolution(const\
     \ std::vector<mint>& a, const std::vector<mint>& b) {\n        int size = a.size()\
@@ -149,8 +149,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:37:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/pow_of_formal_power_series.test.cpp
 layout: document

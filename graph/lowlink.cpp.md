@@ -2,49 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_connected_components.cpp
     title: 2-Edge-Connected Components
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/lowlink.md
     document_title: Lowlink
     links: []
-  bundledCode: "#line 1 \"graph/lowlink.cpp\"\n#include <bits/stdc++.h>\n\n/*\n *\
-    \ @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\nclass Lowlink {\npublic:\n\
-    \    Lowlink() = default;\n    explicit Lowlink(const std::vector<std::vector<int>>\
-    \ G) : G(G), ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int)\
-    \ G.size(); ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n   \
-    \ }\n\n    std::vector<std::pair<int, int>> get_bridges() const {\n        return\
-    \ bridge;\n    }\n\n    std::vector<int> get_articulation_points() const {\n \
-    \       return articulation;\n    }\n\n    bool is_bridge(int u, int v) {\n  \
-    \      if (ord[u] > ord[v]) std::swap(u, v);\n        return ord[u] < low[v];\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
-    \ ord, low;\n    std::vector<std::pair<int, int>> bridge;\n    std::vector<int>\
-    \ articulation;\n    int k = 0;\n\n    void dfs(int v, int p) {\n        ord[v]\
-    \ = k++;\n        low[v] = ord[v];\n        bool is_articulation = false, checked\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p && !checked) {\n                checked = true;\n                continue;\n\
-    \            }\n            if (ord[c] == -1) {\n                ++cnt;\n    \
-    \            dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n\
-    \ */\nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
+  bundledCode: "#line 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n\
+    #include <vector>\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\n\
+    class Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
     \ std::vector<std::vector<int>> G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
     \        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i] ==\
     \ -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int, int>> get_bridges()\
@@ -63,14 +42,36 @@ data:
     \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
     \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
     \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
+    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
+    \n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\nclass Lowlink {\n\
+    public:\n    Lowlink() = default;\n    explicit Lowlink(const std::vector<std::vector<int>>\
+    \ G) : G(G), ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int)\
+    \ G.size(); ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n   \
+    \ }\n\n    std::vector<std::pair<int, int>> get_bridges() const {\n        return\
+    \ bridge;\n    }\n\n    std::vector<int> get_articulation_points() const {\n \
+    \       return articulation;\n    }\n\n    bool is_bridge(int u, int v) {\n  \
+    \      if (ord[u] > ord[v]) std::swap(u, v);\n        return ord[u] < low[v];\n\
+    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ ord, low;\n    std::vector<std::pair<int, int>> bridge;\n    std::vector<int>\
+    \ articulation;\n    int k = 0;\n\n    void dfs(int v, int p) {\n        ord[v]\
+    \ = k++;\n        low[v] = ord[v];\n        bool is_articulation = false, checked\
+    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
+    \ (c == p && !checked) {\n                checked = true;\n                continue;\n\
+    \            }\n            if (ord[c] == -1) {\n                ++cnt;\n    \
+    \            dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
+    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
+    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
+    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
+    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
     \        if (is_articulation) articulation.push_back(v);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.cpp
   requiredBy:
   - graph/two_edge_connected_components.cpp
-  timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/GRL_3_B.test.cpp

@@ -9,14 +9,14 @@ data:
     path: math/mod_sqrt.cpp
     title: Quadratic Residue
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_B.test.cpp
     title: test/aoj/NTL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/sqrt_mod.test.cpp
     title: test/yosupo/sqrt_mod.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/mod_pow.md
     document_title: Mod Exponentiation
@@ -40,7 +40,7 @@ data:
   - math/mod_sqrt.cpp
   - math/mod_log.cpp
   timestamp: '2020-10-24 02:15:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_B.test.cpp
   - test/yosupo/sqrt_mod.test.cpp

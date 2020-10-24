@@ -22,21 +22,22 @@ data:
     \        } else {\n            l = i;\n            if (i > r) r = i;\n       \
     \     while (r < n && s[r - l] == s[r]) ++r;\n            --r;\n            z[i]\
     \ = r - l + 1;\n        }\n    }\n    return z;\n}\n#line 4 \"test/yosupo/zalgorithm.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    string S;\n    cin >> S;\n    vector<int> z = z_array(S);\n\
     \    for (int i = 0; i < S.size(); ++i) cout << z[i] << (i < S.size() - 1 ? \"\
     \ \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n\n#include\
-    \ \"../../string/z_array.cpp\"\n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    string S;\n    cin >> S;\n    vector<int> z = z_array(S);\n\
-    \    for (int i = 0; i < S.size(); ++i) cout << z[i] << (i < S.size() - 1 ? \"\
-    \ \" : \"\\n\");\n}"
+    \ \"../../string/z_array.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
+    \ string S;\n    cin >> S;\n    vector<int> z = z_array(S);\n    for (int i =\
+    \ 0; i < S.size(); ++i) cout << z[i] << (i < S.size() - 1 ? \" \" : \"\\n\");\n\
+    }"
   dependsOn:
   - string/z_array.cpp
   isVerificationFile: true
   path: test/yosupo/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 15:32:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/zalgorithm.test.cpp

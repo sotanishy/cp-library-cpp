@@ -1,22 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/li_chao_tree.cpp
     title: Li Chao Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
     links:
     - https://judge.yosupo.jp/problem/line_add_get_min
   bundledCode: "#line 1 \"test/yosupo/line_add_get_min.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\n\n#line 1 \"data-structure/li_chao_tree.cpp\"\
-    \n#include <bits/stdc++.h>\n\n/*\n * @brief Li Chao Tree\n * @docs docs/data-structure/li_chao_tree.md\n\
-    \ */\ntemplate <typename T>\nclass LiChaoTree {\npublic:\n    LiChaoTree() = default;\n\
+    \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\n\n#line 2 \"data-structure/li_chao_tree.cpp\"\
+    \n#include <algorithm>\n#include <limits>\n#include <utility>\n#include <vector>\n\
+    \n/*\n * @brief Li Chao Tree\n * @docs docs/data-structure/li_chao_tree.md\n */\n\
+    template <typename T>\nclass LiChaoTree {\npublic:\n    LiChaoTree() = default;\n\
     \    explicit LiChaoTree(const std::vector<T>& vs) : xs(vs) {\n        size =\
     \ 1;\n        while (size < (int) xs.size()) size <<= 1;\n        node.resize(2\
     \ * size, {0, INF});\n        while ((int) xs.size() <= size) xs.push_back(xs.back()\
@@ -81,8 +82,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/line_add_get_min.test.cpp
 layout: document

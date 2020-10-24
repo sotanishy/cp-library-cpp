@@ -19,7 +19,7 @@ data:
     #line 3 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from,\
     \ to;\n    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n#line 3 \"graph/dijkstra.cpp\"\n\n/*\n * @brief Dijkstra's Algorithm\n\
+    \ {}\n};\n#line 7 \"graph/dijkstra.cpp\"\n\n/*\n * @brief Dijkstra's Algorithm\n\
     \ * @docs docs/graph/dijkstra.md\n */\ntemplate <typename T>\nstd::vector<T> dijkstra(const\
     \ std::vector<std::vector<Edge<T>>>& G, int s) {\n    std::vector<T> dist(G.size(),\
     \ std::numeric_limits<T>::max());\n    dist[s] = 0;\n    using P = std::pair<T,\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: false
   path: graph/range_edge_graph.cpp
   requiredBy: []
-  timestamp: '2020-10-06 11:51:56+09:00'
+  timestamp: '2020-10-24 15:32:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/range_edge_graph.cpp

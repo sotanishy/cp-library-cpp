@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: Mod Exponentiation
   _extendedRequiredBy: []

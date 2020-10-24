@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bipartite_matching.cpp
     title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A
   bundledCode: "#line 1 \"test/aoj/GRL_7_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A\"\
-    \n\n#line 1 \"flow/bipartite_matching.cpp\"\n#include <bits/stdc++.h>\n\n/*\n\
-    \ * @brief Bipartite Matching\n * @docs docs/flow/bipartite_matching.md\n */\n\
-    class BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n    explicit\
-    \ BipartiteMatching(int n) : G(n), used(n), match(n) {}\n\n    void add_edge(int\
-    \ u, int v) {\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n\
-    \n    int bipartite_matching() {\n        int res = 0;\n        std::fill(match.begin(),\
+    \n\n#line 2 \"flow/bipartite_matching.cpp\"\n#include <algorithm>\n#include <vector>\n\
+    \n/*\n * @brief Bipartite Matching\n * @docs docs/flow/bipartite_matching.md\n\
+    \ */\nclass BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n\
+    \    explicit BipartiteMatching(int n) : G(n), used(n), match(n) {}\n\n    void\
+    \ add_edge(int u, int v) {\n        G[u].push_back(v);\n        G[v].push_back(u);\n\
+    \    }\n\n    int bipartite_matching() {\n        int res = 0;\n        std::fill(match.begin(),\
     \ match.end(), -1);\n        for (int v = 0; v < (int) G.size(); ++v) {\n    \
     \        if (match[v] == -1) {\n                std::fill(used.begin(), used.end(),\
     \ false);\n                if (dfs(v)) ++res;\n            }\n        }\n    \
@@ -46,8 +46,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_7_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_7_A.test.cpp
 layout: document

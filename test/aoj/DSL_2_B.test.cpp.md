@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
   bundledCode: "#line 1 \"test/aoj/DSL_2_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
-    \n\n#line 1 \"data-structure/fenwick_tree.cpp\"\n#include <bits/stdc++.h>\n\n\
-    /*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n */\n\
-    template <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\npublic:\n\
-    \    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n), data(n\
-    \ + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
+    \n\n#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <algorithm>\n#include\
+    \ <functional>\n#include <vector>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
+    \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
+    \npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
+    \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
     \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
@@ -49,8 +49,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-06 11:51:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_B.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []
@@ -12,20 +12,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/formal_power_series.md
     document_title: Formal Power Series
     links: []
   bundledCode: "#line 1 \"math/formal_power_series.cpp\"\n#include <bits/stdc++.h>\n\
-    #line 2 \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic Transform\n * @docs\
+    #line 3 \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic Transform\n * @docs\
     \ docs/math/ntt.md\n */\ntemplate <typename mint>\nclass NTT {\npublic:\n    NTT()\
     \ = delete;\n\n    static std::vector<mint> convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int size = a.size() + b.size() - 1;\n\
@@ -159,8 +159,8 @@ data:
   isVerificationFile: false
   path: math/formal_power_series.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp

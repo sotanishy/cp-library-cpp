@@ -17,12 +17,13 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
   bundledCode: "#line 1 \"test/aoj/GRL_2_A.prim.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A\"\
-    \n\n#line 1 \"graph/prim.cpp\"\n#include <bits/stdc++.h>\n#line 3 \"graph/edge.cpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
-    \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
-    \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 3\
-    \ \"graph/prim.cpp\"\n\n/*\n * @brief Prim's Algorithm\n * @docs docs/graph/prim.md\n\
-    \ */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>> prim(const std::vector<std::vector<Edge<T>>>&\
+    \n\n#line 2 \"graph/prim.cpp\"\n#include <queue>\n#include <utility>\n#include\
+    \ <vector>\n#line 2 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\ntemplate <typename\
+    \ T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight)\
+    \ : from(-1), to(to), weight(weight) {}\n    Edge(int from, int to, T weight)\
+    \ : from(from), to(to), weight(weight) {}\n};\n#line 6 \"graph/prim.cpp\"\n\n\
+    /*\n * @brief Prim's Algorithm\n * @docs docs/graph/prim.md\n */\ntemplate <typename\
+    \ T>\nstd::pair<T, std::vector<Edge<T>>> prim(const std::vector<std::vector<Edge<T>>>&\
     \ G) {\n    std::vector<bool> used(G.size());\n    auto cmp = [](const auto& e1,\
     \ const auto& e2) { return e1.weight > e2.weight; };\n    std::priority_queue<Edge<T>,\
     \ std::vector<Edge<T>>, decltype(cmp)> pq(cmp);\n    pq.emplace(0, 0, 0);\n  \
@@ -50,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A.prim.test.cpp
   requiredBy: []
-  timestamp: '2020-10-12 02:39:54+09:00'
+  timestamp: '2020-10-24 15:32:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A.prim.test.cpp

@@ -3,35 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/flow/ford_fulkerson.md
     document_title: Ford-Fulkerson Algorithm
     links: []
-  bundledCode: "#line 1 \"flow/ford_fulkerson.cpp\"\n#include <bits/stdc++.h>\n\n\
-    /*\n * @brief Ford-Fulkerson Algorithm\n * @docs docs/flow/ford_fulkerson.md\n\
-    \ */\ntemplate <typename T>\nclass FordFulkerson {\npublic:\n    FordFulkerson()\
-    \ = default;\n    explicit FordFulkerson(int n) : G(n), used(n) {}\n\n    void\
-    \ add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v, cap, (int) G[v].size());\n\
-    \        G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int\
-    \ s, int t) {\n        T flow = 0;\n        while (true) {\n            std::fill(used.begin(),\
-    \ used.end(), false);\n            T f = dfs(s, t, INF);\n            if (f ==\
-    \ 0) return flow;\n            flow += f;\n        }\n    }\n\nprivate:\n    struct\
-    \ Edge {\n        int to;\n        T cap;\n        int rev;\n        Edge(int\
-    \ to, T cap, int rev) : to(to), cap(cap), rev(rev) {}\n    };\n\n    const T INF\
-    \ = std::numeric_limits<T>::max() / 2;\n\n    std::vector<std::vector<Edge>> G;\n\
-    \    std::vector<bool> used;\n\n    T dfs(int v, int t, T f) {\n        if (v\
-    \ == t) return f;\n        used[v] = true;\n        for (auto& e : G[v]) {\n \
-    \           if (!used[e.to] && e.cap > 0) {\n                T d = dfs(e.to, t,\
-    \ std::min(f, e.cap));\n                if (d > 0) {\n                    e.cap\
-    \ -= d;\n                    G[e.to][e.rev].cap += d;\n                    return\
-    \ d;\n                }\n            }\n        }\n        return 0;\n    }\n\
-    };\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Ford-Fulkerson Algorithm\n * @docs\
+  bundledCode: "#line 2 \"flow/ford_fulkerson.cpp\"\n#include <algorithm>\n#include\
+    \ <limits>\n#include <vector>\n\n/*\n * @brief Ford-Fulkerson Algorithm\n * @docs\
     \ docs/flow/ford_fulkerson.md\n */\ntemplate <typename T>\nclass FordFulkerson\
     \ {\npublic:\n    FordFulkerson() = default;\n    explicit FordFulkerson(int n)\
     \ : G(n), used(n) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
@@ -48,13 +30,32 @@ data:
     \ > 0) {\n                T d = dfs(e.to, t, std::min(f, e.cap));\n          \
     \      if (d > 0) {\n                    e.cap -= d;\n                    G[e.to][e.rev].cap\
     \ += d;\n                    return d;\n                }\n            }\n   \
-    \     }\n        return 0;\n    }\n};"
+    \     }\n        return 0;\n    }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <vector>\n\
+    \n/*\n * @brief Ford-Fulkerson Algorithm\n * @docs docs/flow/ford_fulkerson.md\n\
+    \ */\ntemplate <typename T>\nclass FordFulkerson {\npublic:\n    FordFulkerson()\
+    \ = default;\n    explicit FordFulkerson(int n) : G(n), used(n) {}\n\n    void\
+    \ add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v, cap, (int) G[v].size());\n\
+    \        G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int\
+    \ s, int t) {\n        T flow = 0;\n        while (true) {\n            std::fill(used.begin(),\
+    \ used.end(), false);\n            T f = dfs(s, t, INF);\n            if (f ==\
+    \ 0) return flow;\n            flow += f;\n        }\n    }\n\nprivate:\n    struct\
+    \ Edge {\n        int to;\n        T cap;\n        int rev;\n        Edge(int\
+    \ to, T cap, int rev) : to(to), cap(cap), rev(rev) {}\n    };\n\n    const T INF\
+    \ = std::numeric_limits<T>::max() / 2;\n\n    std::vector<std::vector<Edge>> G;\n\
+    \    std::vector<bool> used;\n\n    T dfs(int v, int t, T f) {\n        if (v\
+    \ == t) return f;\n        used[v] = true;\n        for (auto& e : G[v]) {\n \
+    \           if (!used[e.to] && e.cap > 0) {\n                T d = dfs(e.to, t,\
+    \ std::min(f, e.cap));\n                if (d > 0) {\n                    e.cap\
+    \ -= d;\n                    G[e.to][e.rev].cap += d;\n                    return\
+    \ d;\n                }\n            }\n        }\n        return 0;\n    }\n\
+    };"
   dependsOn: []
   isVerificationFile: false
   path: flow/ford_fulkerson.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_6_A.ford_fulkerson.test.cpp
 documentation_of: flow/ford_fulkerson.cpp

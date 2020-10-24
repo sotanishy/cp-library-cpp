@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: Mod Exponentiation
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B
@@ -19,21 +19,22 @@ data:
     \ long mod) {\n    long long ret = 1;\n    while (p > 0) {\n        if (p & 1)\
     \ ret = ret * a % mod;\n        a = a * a % mod;\n        p >>= 1;\n    }\n  \
     \  return ret;\n}\n\nlong long mod_inv(long long a, long long mod) {\n    return\
-    \ mod_pow(a, mod - 2, mod);\n}\n#line 4 \"test/aoj/NTL_1_B.test.cpp\"\n\nusing\
-    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int m, n;\n    cin >> m >> n;\n    cout << mod_pow(m, n, 1e9 + 7) << endl;\n\
-    }\n"
+    \ mod_pow(a, mod - 2, mod);\n}\n#line 4 \"test/aoj/NTL_1_B.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int m, n;\n    cin >> m >> n;\n    cout << mod_pow(m,\
+    \ n, 1e9 + 7) << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
-    \n\n#include \"../../math/mod_pow.cpp\"\n\nusing namespace std;\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int m, n;\n\
-    \    cin >> m >> n;\n    cout << mod_pow(m, n, 1e9 + 7) << endl;\n}"
+    \n\n#include \"../../math/mod_pow.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int m, n;\n    cin >> m >> n;\n    cout << mod_pow(m, n, 1e9 + 7) << endl;\n\
+    }"
   dependsOn:
   - math/mod_pow.cpp
   isVerificationFile: true
   path: test/aoj/NTL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 02:15:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 15:32:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_B.test.cpp
 layout: document
