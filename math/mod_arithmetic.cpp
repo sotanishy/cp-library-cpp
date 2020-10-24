@@ -5,6 +5,11 @@
 #include <vector>
 
 /*
+ * @brief Modular Arithmetic
+ * @docs docs/math/mod_arithmetic.md
+ */
+
+/*
  * Modular Exponentiation
  */
 long long mod_pow(long long a, long long p, long long mod) {
