@@ -12,5 +12,7 @@ int main() {
     string S;
     cin >> S;
     SuffixArray sa(S);
-    for (int i = 0; i < S.size(); ++i) cout << sa[i] << (i < S.size() - 1 ? " " : "\n");
+    for (int i = 0; i < S.size(); ++i) {
+        cout << sa[i] << (i < S.size() - 1 ? " " : "\n");
+    }
 }

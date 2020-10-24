@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <stack>
+#include <utility>
 
 /*
  * @brief Sliding Window Aggregation
@@ -9,7 +11,7 @@ class SlidingWindowAggregation {
     using T = typename M::T;
 
 public:
-    void push(T x) {
+    void push(const T& x) {
         if (back.empty()) back.emplace(x, x);
         else back.emplace(x, M::op(back.top().second, x));
     }
