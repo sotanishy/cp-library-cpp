@@ -3,23 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/bellman_ford.cpp
-    title: Bellman-Ford Algorithm
-  - icon: ':heavy_check_mark:'
-    path: graph/boruvka.cpp
-    title: Boruvka's Algorithm
-  - icon: ':heavy_check_mark:'
-    path: graph/dijkstra.cpp
-    title: Dijkstra's Algorithm
-  - icon: ':heavy_check_mark:'
-    path: graph/kruskal.cpp
-    title: Kruskal's Algorithm
-  - icon: ':heavy_check_mark:'
-    path: graph/prim.cpp
-    title: Prim's Algorithm
+    path: graph/mst.cpp
+    title: Minimum Spanning Tree Algorithms
   - icon: ':warning:'
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path.cpp
+    title: Shortest Path Algorithms
   - icon: ':heavy_check_mark:'
     path: tree/tree_diameter.cpp
     title: Diameter of a Tree
@@ -30,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_1_C.test.cpp
+    title: test/aoj/GRL_1_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.boruvka.test.cpp
     title: test/aoj/GRL_2_A.boruvka.test.cpp
@@ -58,12 +52,9 @@ data:
   isVerificationFile: false
   path: graph/edge.cpp
   requiredBy:
+  - graph/mst.cpp
   - graph/range_edge_graph.cpp
-  - graph/dijkstra.cpp
-  - graph/kruskal.cpp
-  - graph/bellman_ford.cpp
-  - graph/prim.cpp
-  - graph/boruvka.cpp
+  - graph/shortest_path.cpp
   - tree/tree_diameter.cpp
   timestamp: '2020-10-06 11:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -72,6 +63,7 @@ data:
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_5_A.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
+  - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
 documentation_of: graph/edge.cpp

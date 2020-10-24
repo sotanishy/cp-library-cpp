@@ -46,24 +46,24 @@ data:
     \     Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost),\
     \ rev(rev) {}\n    };\n\n    static constexpr Cost INF = std::numeric_limits<Cost>::max()\
     \ / 2;\n\n    int V;\n    std::vector<std::vector<Edge>> G;\n};\n#line 4 \"test/aoj/GRL_6_B.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int V, E, F;\n    cin >> V >> E >> F;\n    MinCostFlow<int,\
     \ int> mcf(V);\n    for (int i = 0; i < E; i++) {\n        int u, v, c, d;\n \
     \       cin >> u >> v >> c >> d;\n        mcf.add_edge(u, v, c, d);\n    }\n \
     \   cout << mcf.min_cost_flow(0, V - 1, F) << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
-    \n\n#include \"../../flow/min_cost_flow.cpp\"\n\nusing namespace std;\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int V, E, F;\n\
-    \    cin >> V >> E >> F;\n    MinCostFlow<int, int> mcf(V);\n    for (int i =\
-    \ 0; i < E; i++) {\n        int u, v, c, d;\n        cin >> u >> v >> c >> d;\n\
-    \        mcf.add_edge(u, v, c, d);\n    }\n    cout << mcf.min_cost_flow(0, V\
-    \ - 1, F) << endl;\n}"
+    \n\n#include \"../../flow/min_cost_flow.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int V, E, F;\n    cin >> V >> E >> F;\n    MinCostFlow<int, int> mcf(V);\n\
+    \    for (int i = 0; i < E; i++) {\n        int u, v, c, d;\n        cin >> u\
+    \ >> v >> c >> d;\n        mcf.add_edge(u, v, c, d);\n    }\n    cout << mcf.min_cost_flow(0,\
+    \ V - 1, F) << endl;\n}"
   dependsOn:
   - flow/min_cost_flow.cpp
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp

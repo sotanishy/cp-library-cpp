@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/scc.cpp
     title: Strongly Connected Components
   - icon: ':x:'

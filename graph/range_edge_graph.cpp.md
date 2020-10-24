@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/dijkstra.cpp
-    title: Dijkstra's Algorithm
-  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path.cpp
+    title: Shortest Path Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -19,25 +19,37 @@ data:
     #line 3 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from,\
     \ to;\n    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n#line 7 \"graph/dijkstra.cpp\"\n\n/*\n * @brief Dijkstra's Algorithm\n\
-    \ * @docs docs/graph/dijkstra.md\n */\ntemplate <typename T>\nstd::vector<T> dijkstra(const\
-    \ std::vector<std::vector<Edge<T>>>& G, int s) {\n    std::vector<T> dist(G.size(),\
-    \ std::numeric_limits<T>::max());\n    dist[s] = 0;\n    using P = std::pair<T,\
-    \ int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;\n   \
-    \ pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T weight;\n        int\
-    \ v;\n        std::tie(weight, v) = pq.top();\n        pq.pop();\n        if (dist[v]\
-    \ < weight) continue;\n        for (auto& e : G[v]) {\n            if (dist[e.to]\
-    \ > dist[v] + e.weight) {\n                dist[e.to] = dist[v] + e.weight;\n\
-    \                pq.emplace(dist[e.to], e.to);\n            }\n        }\n   \
-    \ }\n\n    return dist;\n}\n#line 4 \"graph/range_edge_graph.cpp\"\n\n/*\n * @brief\
-    \ Range Edge Graph\n * @docs docs/graph/range_edge_graph.md\n */\ntemplate <typename\
-    \ T>\nclass RangeEdgeGraph {\npublic:\n    RangeEdgeGraph() = default;\n    explicit\
-    \ RangeEdgeGraph(int n) {\n        size = 1;\n        while (size < n) size <<=\
-    \ 1;\n        G.resize(4 * size);\n        for (int i = 1; i < size; ++i) {\n\
-    \            int l = 2 * i, r = 2 * i + 1;\n            G[i].emplace_back(l, 0);\n\
-    \            G[i].emplace_back(r, 0);\n            G[l + 2 * size].emplace_back(i\
-    \ + 2 * size, 0);\n            G[r + 2 * size].emplace_back(i + 2 * size, 0);\n\
-    \        }\n        for (int i = size; i < 2 * size; ++i) G[i].emplace_back(i\
+    \ {}\n};\n#line 7 \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n\
+    \ * @docs docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford Algorithm\n\
+    \ */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
+    \ G, int V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n \
+    \   std::vector<int> dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i <\
+    \ V; ++i) {\n        for (auto& e : G) {\n            if (dist[e.from] != INF\
+    \ && dist[e.to] > dist[e.from] + e.weight) {\n                dist[e.to] = dist[e.from]\
+    \ + e.weight;\n                if (i == V - 1) return std::vector<T>();\n    \
+    \        }\n        }\n    }\n    return dist;\n}\n\n/*\n * Floyd-Warshall Algorithm\n\
+    \ */\ntemplate <typename T>\nvoid floyd_warshall(std::vector<std::vector<T>>&\
+    \ dist) {\n    int V = dist.size();\n    for (int k = 0; k < V; ++k) {\n     \
+    \   for (int i = 0; i < V; ++i) {\n            for (int j = 0; j < V; ++j) {\n\
+    \                dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \            }\n        }\n    }\n}\n\n/*\n * Dijkstra's Algorithm\n */\ntemplate\
+    \ <typename T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>&\
+    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
+    \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
+    \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
+    \ {\n        T weight;\n        int v;\n        std::tie(weight, v) = pq.top();\n\
+    \        pq.pop();\n        if (dist[v] < weight) continue;\n        for (auto&\
+    \ e : G[v]) {\n            if (dist[e.to] > dist[v] + e.weight) {\n          \
+    \      dist[e.to] = dist[v] + e.weight;\n                pq.emplace(dist[e.to],\
+    \ e.to);\n            }\n        }\n    }\n\n    return dist;\n}\n#line 4 \"graph/range_edge_graph.cpp\"\
+    \n\n/*\n * @brief Range Edge Graph\n * @docs docs/graph/range_edge_graph.md\n\
+    \ */\ntemplate <typename T>\nclass RangeEdgeGraph {\npublic:\n    RangeEdgeGraph()\
+    \ = default;\n    explicit RangeEdgeGraph(int n) {\n        size = 1;\n      \
+    \  while (size < n) size <<= 1;\n        G.resize(4 * size);\n        for (int\
+    \ i = 1; i < size; ++i) {\n            int l = 2 * i, r = 2 * i + 1;\n       \
+    \     G[i].emplace_back(l, 0);\n            G[i].emplace_back(r, 0);\n       \
+    \     G[l + 2 * size].emplace_back(i + 2 * size, 0);\n            G[r + 2 * size].emplace_back(i\
+    \ + 2 * size, 0);\n        }\n        for (int i = size; i < 2 * size; ++i) G[i].emplace_back(i\
     \ + 2 * size, 0);\n    }\n\n    void add_edge(int l1, int r1, int l2, int r2,\
     \ T w) {\n        int idx = G.size();\n        for (l1 += size, r1 += size; l1\
     \ < r1; l1 >>= 1, r1 >>= 1) {\n            if (l1 & 1) G[l1 + 2 * size].emplace_back(idx,\
@@ -68,7 +80,7 @@ data:
     \ = dijkstra(G, s);\n        return std::vector<T>(dist.begin(), dist.begin()\
     \ + n);\n    }\n\nprivate:\n    int n, b;\n    std::vector<std::vector<Edge<T>>>\
     \ G;\n};\n\n*/\n"
-  code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\n#include \"dijkstra.cpp\"\
+  code: "#include <bits/stdc++.h>\n#include \"edge.cpp\"\n#include \"shortest_path.cpp\"\
     \n\n/*\n * @brief Range Edge Graph\n * @docs docs/graph/range_edge_graph.md\n\
     \ */\ntemplate <typename T>\nclass RangeEdgeGraph {\npublic:\n    RangeEdgeGraph()\
     \ = default;\n    explicit RangeEdgeGraph(int n) {\n        size = 1;\n      \
@@ -109,11 +121,11 @@ data:
     \ G;\n};\n\n*/\n"
   dependsOn:
   - graph/edge.cpp
-  - graph/dijkstra.cpp
+  - graph/shortest_path.cpp
   isVerificationFile: false
   path: graph/range_edge_graph.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 15:48:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/range_edge_graph.cpp

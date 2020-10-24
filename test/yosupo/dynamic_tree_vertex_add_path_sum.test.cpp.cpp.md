@@ -68,11 +68,11 @@ data:
     \ = t;\n        update(x);\n        update(t);\n        t->par = y;\n        if\
     \ (y) {\n            if (y->left == x) y->left = t;\n            if (y->right\
     \ == x) y->right = t;\n            update(y);\n        }\n    }\n};\n#line 4 \"\
-    test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp\"\n\nusing namespace\
-    \ std;\n\nstruct AddMonoid {\n    using T = long long;\n    static constexpr T\
-    \ id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
-    \   int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AddMonoid> lct;\n    vector<decltype(lct)::node_ptr>\
+    test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp\"\n\n#line 6 \"test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp\"\
+    \nusing namespace std;\n\nstruct AddMonoid {\n    using T = long long;\n    static\
+    \ constexpr T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n  \
+    \  }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AddMonoid> lct;\n    vector<decltype(lct)::node_ptr>\
     \ nodes;\n    for (int i = 0; i < N; ++i) {\n        int a;\n        cin >> a;\n\
     \        nodes.emplace_back(lct.make_node(a));\n    }\n    for (int i = 0; i <\
     \ N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        lct.link(nodes[u],\
@@ -85,28 +85,28 @@ data:
     \            int u, v;\n            cin >> u >> v;\n            cout << lct.fold(nodes[u],\
     \ nodes[v]) << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
-    \n\n#include \"../../tree/link_cut_tree.cpp\"\n\nusing namespace std;\n\nstruct\
-    \ AddMonoid {\n    using T = long long;\n    static constexpr T id = 0;\n    static\
-    \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AddMonoid>\
-    \ lct;\n    vector<decltype(lct)::node_ptr> nodes;\n    for (int i = 0; i < N;\
-    \ ++i) {\n        int a;\n        cin >> a;\n        nodes.emplace_back(lct.make_node(a));\n\
-    \    }\n    for (int i = 0; i < N - 1; ++i) {\n        int u, v;\n        cin\
-    \ >> u >> v;\n        lct.link(nodes[u], nodes[v]);\n    }\n    for (int i = 0;\
-    \ i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n  \
-    \          int u, v, w, x;\n            cin >> u >> v >> w >> x;\n           \
-    \ lct.make_root(nodes[u]);\n            lct.cut(nodes[v]);\n            lct.link(nodes[w],\
-    \ nodes[x]);\n        } else if (t == 1) {\n            int p, x;\n          \
-    \  cin >> p >> x;\n            lct.update(nodes[p], lct.fold(nodes[p], nodes[p])\
-    \ + x);\n        } else {\n            int u, v;\n            cin >> u >> v;\n\
-    \            cout << lct.fold(nodes[u], nodes[v]) << \"\\n\";\n        }\n   \
-    \ }\n}"
+    \n\n#include \"../../tree/link_cut_tree.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nstruct AddMonoid {\n    using T = long long;\n    static constexpr\
+    \ T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
+    \    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AddMonoid> lct;\n    vector<decltype(lct)::node_ptr>\
+    \ nodes;\n    for (int i = 0; i < N; ++i) {\n        int a;\n        cin >> a;\n\
+    \        nodes.emplace_back(lct.make_node(a));\n    }\n    for (int i = 0; i <\
+    \ N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        lct.link(nodes[u],\
+    \ nodes[v]);\n    }\n    for (int i = 0; i < Q; ++i) {\n        int t;\n     \
+    \   cin >> t;\n        if (t == 0) {\n            int u, v, w, x;\n          \
+    \  cin >> u >> v >> w >> x;\n            lct.make_root(nodes[u]);\n          \
+    \  lct.cut(nodes[v]);\n            lct.link(nodes[w], nodes[x]);\n        } else\
+    \ if (t == 1) {\n            int p, x;\n            cin >> p >> x;\n         \
+    \   lct.update(nodes[p], lct.fold(nodes[p], nodes[p]) + x);\n        } else {\n\
+    \            int u, v;\n            cin >> u >> v;\n            cout << lct.fold(nodes[u],\
+    \ nodes[v]) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - tree/link_cut_tree.cpp
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp

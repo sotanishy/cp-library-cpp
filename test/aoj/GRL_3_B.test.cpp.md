@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
@@ -36,18 +36,19 @@ data:
     \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
     \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
     \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
-    test/aoj/GRL_3_B.test.cpp\"\n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int V, E;\n    cin >> V >> E;\n    vector<vector<int>>\
-    \ G(V);\n    for (int i = 0; i < E; ++i) {\n        int s, t;\n        cin >>\
-    \ s >> t;\n        G[s].push_back(t);\n        G[t].push_back(s);\n    }\n   \
-    \ Lowlink lowlink(G);\n    vector<pair<int, int>> bridges = lowlink.get_bridges();\n\
-    \    sort(bridges.begin(), bridges.end());\n    for (auto& p : bridges) {\n  \
-    \      cout << p.first << \" \" << p.second << \"\\n\";\n    }\n}\n"
+    test/aoj/GRL_3_B.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
+    \ int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int i\
+    \ = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
+    \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    vector<pair<int,\
+    \ int>> bridges = lowlink.get_bridges();\n    sort(bridges.begin(), bridges.end());\n\
+    \    for (auto& p : bridges) {\n        cout << p.first << \" \" << p.second <<\
+    \ \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B\"\
-    \n\n#include \"../../graph/lowlink.cpp\"\n\nusing namespace std;\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int V, E;\n\
-    \    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int i = 0; i < E;\
-    \ ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
+    \n\n#include \"../../graph/lowlink.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int\
+    \ i = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
     \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    vector<pair<int,\
     \ int>> bridges = lowlink.get_bridges();\n    sort(bridges.begin(), bridges.end());\n\
     \    for (auto& p : bridges) {\n        cout << p.first << \" \" << p.second <<\
@@ -57,8 +58,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 15:56:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp
 layout: document

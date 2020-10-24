@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/ford_fulkerson.cpp
     title: Ford-Fulkerson Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
@@ -33,26 +33,26 @@ data:
     \ std::min(f, e.cap));\n                if (d > 0) {\n                    e.cap\
     \ -= d;\n                    G[e.to][e.rev].cap += d;\n                    return\
     \ d;\n                }\n            }\n        }\n        return 0;\n    }\n\
-    };\n#line 4 \"test/aoj/GRL_6_A.ford_fulkerson.test.cpp\"\n\nusing namespace std;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
-    \ int V, E;\n    cin >> V >> E;\n    FordFulkerson<int> flow(V);\n    for (int\
-    \ i = 0; i < E; i++) {\n        int u, v, c;\n        cin >> u >> v >> c;\n  \
-    \      flow.add_edge(u, v, c);\n    }\n    cout << flow.max_flow(0, V - 1) <<\
-    \ endl;\n}\n"
+    };\n#line 4 \"test/aoj/GRL_6_A.ford_fulkerson.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int V, E;\n    cin >> V >> E;\n    FordFulkerson<int>\
+    \ flow(V);\n    for (int i = 0; i < E; i++) {\n        int u, v, c;\n        cin\
+    \ >> u >> v >> c;\n        flow.add_edge(u, v, c);\n    }\n    cout << flow.max_flow(0,\
+    \ V - 1) << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
-    \n\n#include \"../../flow/ford_fulkerson.cpp\"\n\nusing namespace std;\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ V, E;\n    cin >> V >> E;\n    FordFulkerson<int> flow(V);\n    for (int i =\
-    \ 0; i < E; i++) {\n        int u, v, c;\n        cin >> u >> v >> c;\n      \
-    \  flow.add_edge(u, v, c);\n    }\n    cout << flow.max_flow(0, V - 1) << endl;\n\
-    }"
+    \n\n#include \"../../flow/ford_fulkerson.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int V, E;\n    cin >> V >> E;\n    FordFulkerson<int> flow(V);\n    for\
+    \ (int i = 0; i < E; i++) {\n        int u, v, c;\n        cin >> u >> v >> c;\n\
+    \        flow.add_edge(u, v, c);\n    }\n    cout << flow.max_flow(0, V - 1) <<\
+    \ endl;\n}"
   dependsOn:
   - flow/ford_fulkerson.cpp
   isVerificationFile: true
   path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 15:56:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
 layout: document

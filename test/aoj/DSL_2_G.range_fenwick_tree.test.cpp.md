@@ -27,29 +27,30 @@ data:
     \ data, int i) const {\n        T ret = 0;\n        for (; i > 0; i -= i & -i)\
     \ ret += data[i];\n        return ret;\n    }\n\n    void add(std::vector<T>&\
     \ data, int i, T x) {\n        for (++i; i <= n; i += i & -i) data[i] += x;\n\
-    \    }\n};\n#line 4 \"test/aoj/DSL_2_G.range_fenwick_tree.test.cpp\"\n\nusing\
-    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int n, q;\n    cin >> n >> q;\n    RangeFenwickTree<long long> ft(n+1);\n\
-    \    for (int i = 0; i < q; i++) {\n        int type, s, t;\n        cin >> type\
-    \ >> s >> t;\n        --s;\n        --t;\n        if (type == 0) {\n         \
-    \   int x;\n            cin >> x;\n            ft.add(s, t + 1, x);\n        }\
-    \ else {\n            cout << ft.prefix_sum(t + 1) - ft.prefix_sum(s) << \"\\\
-    n\";\n        }\n    }\n}\n"
+    \    }\n};\n#line 4 \"test/aoj/DSL_2_G.range_fenwick_tree.test.cpp\"\n\n#line\
+    \ 6 \"test/aoj/DSL_2_G.range_fenwick_tree.test.cpp\"\nusing namespace std;\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ n, q;\n    cin >> n >> q;\n    RangeFenwickTree<long long> ft(n+1);\n    for\
+    \ (int i = 0; i < q; i++) {\n        int type, s, t;\n        cin >> type >> s\
+    \ >> t;\n        --s;\n        --t;\n        if (type == 0) {\n            int\
+    \ x;\n            cin >> x;\n            ft.add(s, t + 1, x);\n        } else\
+    \ {\n            cout << ft.prefix_sum(t + 1) - ft.prefix_sum(s) << \"\\n\";\n\
+    \        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\
-    \n\n#include \"../../data-structure/range_fenwick_tree.cpp\"\n\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int n, q;\n    cin >> n >> q;\n    RangeFenwickTree<long long> ft(n+1);\n\
-    \    for (int i = 0; i < q; i++) {\n        int type, s, t;\n        cin >> type\
-    \ >> s >> t;\n        --s;\n        --t;\n        if (type == 0) {\n         \
-    \   int x;\n            cin >> x;\n            ft.add(s, t + 1, x);\n        }\
-    \ else {\n            cout << ft.prefix_sum(t + 1) - ft.prefix_sum(s) << \"\\\
-    n\";\n        }\n    }\n}"
+    \n\n#include \"../../data-structure/range_fenwick_tree.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    RangeFenwickTree<long\
+    \ long> ft(n+1);\n    for (int i = 0; i < q; i++) {\n        int type, s, t;\n\
+    \        cin >> type >> s >> t;\n        --s;\n        --t;\n        if (type\
+    \ == 0) {\n            int x;\n            cin >> x;\n            ft.add(s, t\
+    \ + 1, x);\n        } else {\n            cout << ft.prefix_sum(t + 1) - ft.prefix_sum(s)\
+    \ << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/range_fenwick_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-03 00:05:40+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp

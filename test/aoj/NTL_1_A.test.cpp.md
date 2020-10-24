@@ -23,23 +23,23 @@ data:
     \ = 0;\n            while (n % i == 0) {\n                ++cnt;\n           \
     \     n /= i;\n            }\n            ret[i] = cnt;\n        }\n    }\n  \
     \  if (n != 1) ret[n] = 1;\n    return ret;\n}\n#line 4 \"test/aoj/NTL_1_A.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int n;\n    cin >> n;\n    cout << n << \":\";\n    auto\
-    \ prime = prime_factor(n);\n    for (auto& p : prime) {\n        for (int i =\
-    \ 0; i < p.second; i++) cout << \" \" << p.first;\n    }\n    cout << endl;\n\
-    }\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\
-    \n\n#include \"../../math/prime_factor.cpp\"\n\nusing namespace std;\n\nint main()\
+    \n\n#line 6 \"test/aoj/NTL_1_A.test.cpp\"\nusing namespace std;\n\nint main()\
     \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n;\n  \
     \  cin >> n;\n    cout << n << \":\";\n    auto prime = prime_factor(n);\n   \
     \ for (auto& p : prime) {\n        for (int i = 0; i < p.second; i++) cout <<\
-    \ \" \" << p.first;\n    }\n    cout << endl;\n}"
+    \ \" \" << p.first;\n    }\n    cout << endl;\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\
+    \n\n#include \"../../math/prime_factor.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int n;\n    cin >> n;\n    cout << n << \":\";\n    auto prime = prime_factor(n);\n\
+    \    for (auto& p : prime) {\n        for (int i = 0; i < p.second; i++) cout\
+    \ << \" \" << p.first;\n    }\n    cout << endl;\n}"
   dependsOn:
   - math/prime_factor.cpp
   isVerificationFile: true
   path: test/aoj/NTL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:28:03+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_A.test.cpp

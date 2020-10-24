@@ -46,31 +46,31 @@ data:
     \        if (left == right) return;\n        int pos = check_position(points[mid],\
     \ start, end, axis);\n        if (pos != -1) search(start, end, res, left, mid\
     \ - 1, depth + 1);\n        if (pos != 1) search(start, end, res, mid + 1, right,\
-    \ depth + 1);\n    }\n};\n#line 4 \"test/aoj/DSL_2_C.test.cpp\"\n\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int n;\n    cin >> n;\n    KDTree<int> kd_tree;\n    for (int i = 0; i <\
-    \ n; i++) {\n        int x, y;\n        cin >> x >> y;\n        kd_tree.add_point(i,\
-    \ x, y);\n    }\n    kd_tree.build();\n    int q;\n    cin >> q;\n    for (int\
-    \ i = 0; i < q; i++) {\n        int sx, tx, sy, ty;\n        cin >> sx >> tx >>\
-    \ sy >> ty;\n        auto res = kd_tree.search(sx, tx, sy, ty);\n        sort(res.begin(),\
-    \ res.end());\n        for (int j : res) cout << j << \"\\n\";\n        cout <<\
-    \ \"\\n\";\n    }\n}\n"
+    \ depth + 1);\n    }\n};\n#line 4 \"test/aoj/DSL_2_C.test.cpp\"\n\n#line 6 \"\
+    test/aoj/DSL_2_C.test.cpp\"\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int n;\n    cin >> n;\n    KDTree<int> kd_tree;\n    for\
+    \ (int i = 0; i < n; i++) {\n        int x, y;\n        cin >> x >> y;\n     \
+    \   kd_tree.add_point(i, x, y);\n    }\n    kd_tree.build();\n    int q;\n   \
+    \ cin >> q;\n    for (int i = 0; i < q; i++) {\n        int sx, tx, sy, ty;\n\
+    \        cin >> sx >> tx >> sy >> ty;\n        auto res = kd_tree.search(sx, tx,\
+    \ sy, ty);\n        sort(res.begin(), res.end());\n        for (int j : res) cout\
+    \ << j << \"\\n\";\n        cout << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n\n#include \"../../data-structure/kd_tree.cpp\"\n\nusing namespace std;\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ n;\n    cin >> n;\n    KDTree<int> kd_tree;\n    for (int i = 0; i < n; i++)\
-    \ {\n        int x, y;\n        cin >> x >> y;\n        kd_tree.add_point(i, x,\
-    \ y);\n    }\n    kd_tree.build();\n    int q;\n    cin >> q;\n    for (int i\
-    \ = 0; i < q; i++) {\n        int sx, tx, sy, ty;\n        cin >> sx >> tx >>\
-    \ sy >> ty;\n        auto res = kd_tree.search(sx, tx, sy, ty);\n        sort(res.begin(),\
-    \ res.end());\n        for (int j : res) cout << j << \"\\n\";\n        cout <<\
-    \ \"\\n\";\n    }\n}"
+    \n\n#include \"../../data-structure/kd_tree.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int n;\n    cin >> n;\n    KDTree<int> kd_tree;\n    for\
+    \ (int i = 0; i < n; i++) {\n        int x, y;\n        cin >> x >> y;\n     \
+    \   kd_tree.add_point(i, x, y);\n    }\n    kd_tree.build();\n    int q;\n   \
+    \ cin >> q;\n    for (int i = 0; i < q; i++) {\n        int sx, tx, sy, ty;\n\
+    \        cin >> sx >> tx >> sy >> ty;\n        auto res = kd_tree.search(sx, tx,\
+    \ sy, ty);\n        sort(res.begin(), res.end());\n        for (int j : res) cout\
+    \ << j << \"\\n\";\n        cout << \"\\n\";\n    }\n}"
   dependsOn:
   - data-structure/kd_tree.cpp
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 03:12:06+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp

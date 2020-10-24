@@ -23,25 +23,27 @@ data:
     \ == l) dq.pop_front();\n        ++l;\n    }\n\n    T get() {\n        return\
     \ dq.front().first;\n    }\n\nprivate:\n    int l = 0, r = 0;\n    std::deque<std::pair<T,\
     \ int>> dq;\n    Compare cmp;\n};\n#line 4 \"test/aoj/DSL_3_D.slide_min.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, L;\n    cin >> N >> L;\n    vector<int> a(N);\n\
-    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SlideMin<int> sm;\n    for\
-    \ (int i = 0; i < L; i++) sm.push(a[i]);\n    for (int i = L; i < N; i++) {\n\
-    \        cout << sm.get() << \" \";\n        sm.pop();\n        sm.push(a[i]);\n\
-    \    }\n    cout << sm.get() << endl;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\
-    \n\n#include \"../../data-structure/slide_min.cpp\"\n\nusing namespace std;\n\n\
+    \n\n#line 6 \"test/aoj/DSL_3_D.slide_min.test.cpp\"\nusing namespace std;\n\n\
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
     \ N, L;\n    cin >> N >> L;\n    vector<int> a(N);\n    for (int i = 0; i < N;\
     \ i++) cin >> a[i];\n    SlideMin<int> sm;\n    for (int i = 0; i < L; i++) sm.push(a[i]);\n\
     \    for (int i = L; i < N; i++) {\n        cout << sm.get() << \" \";\n     \
-    \   sm.pop();\n        sm.push(a[i]);\n    }\n    cout << sm.get() << endl;\n}"
+    \   sm.pop();\n        sm.push(a[i]);\n    }\n    cout << sm.get() << endl;\n\
+    }\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\
+    \n\n#include \"../../data-structure/slide_min.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int N, L;\n    cin >> N >> L;\n    vector<int> a(N);\n\
+    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SlideMin<int> sm;\n    for\
+    \ (int i = 0; i < L; i++) sm.push(a[i]);\n    for (int i = L; i < N; i++) {\n\
+    \        cout << sm.get() << \" \";\n        sm.pop();\n        sm.push(a[i]);\n\
+    \    }\n    cout << sm.get() << endl;\n}"
   dependsOn:
   - data-structure/slide_min.cpp
   isVerificationFile: true
   path: test/aoj/DSL_3_D.slide_min.test.cpp
   requiredBy: []
-  timestamp: '2020-10-08 11:27:22+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_3_D.slide_min.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/scc.cpp
     title: Strongly Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
@@ -39,28 +39,28 @@ data:
     \ rdfs = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] !=\
     \ -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self,\
     \ v, c);\n    }\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
-    \    return comp;\n}\n*/\n#line 4 \"test/aoj/GRL_3_C.test.cpp\"\n\nusing namespace\
+    \    return comp;\n}\n*/\n#line 4 \"test/aoj/GRL_3_C.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int V, E;\n    cin >> V >> E;\n    SCC scc(V);\n    for\
+    \ (int i = 0; i < E; i++) {\n        int s, t;\n        cin >> s >> t;\n     \
+    \   scc.add_edge(s, t);\n    }\n    scc.build();\n    int Q;\n    cin >> Q;\n\
+    \    for (int i = 0; i < Q; i++) {\n        int u, v;\n        cin >> u >> v;\n\
+    \        cout << (scc[u] == scc[v]) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
+    \n\n#include \"../../graph/scc.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
     \n    int V, E;\n    cin >> V >> E;\n    SCC scc(V);\n    for (int i = 0; i <\
     \ E; i++) {\n        int s, t;\n        cin >> s >> t;\n        scc.add_edge(s,\
     \ t);\n    }\n    scc.build();\n    int Q;\n    cin >> Q;\n    for (int i = 0;\
     \ i < Q; i++) {\n        int u, v;\n        cin >> u >> v;\n        cout << (scc[u]\
-    \ == scc[v]) << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
-    \n\n#include \"../../graph/scc.cpp\"\n\nusing namespace std;\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int V, E;\n   \
-    \ cin >> V >> E;\n    SCC scc(V);\n    for (int i = 0; i < E; i++) {\n       \
-    \ int s, t;\n        cin >> s >> t;\n        scc.add_edge(s, t);\n    }\n    scc.build();\n\
-    \    int Q;\n    cin >> Q;\n    for (int i = 0; i < Q; i++) {\n        int u,\
-    \ v;\n        cin >> u >> v;\n        cout << (scc[u] == scc[v]) << \"\\n\";\n\
-    \    }\n}"
+    \ == scc[v]) << \"\\n\";\n    }\n}"
   dependsOn:
   - graph/scc.cpp
   isVerificationFile: true
   path: test/aoj/GRL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 14:54:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 15:48:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_C.test.cpp
 layout: document

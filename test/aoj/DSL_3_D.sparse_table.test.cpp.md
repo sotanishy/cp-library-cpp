@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/sparse_table.cpp
     title: Sparse Table
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D
@@ -27,17 +27,17 @@ data:
     \ }\n\n    T fold(int l, int r) const {\n        int i = 31 - __builtin_clz(r\
     \ - l);\n        return S::op(lookup[i][l], lookup[i][r - (1 << i)]);\n    }\n\
     \nprivate:\n    std::vector<std::vector<T>> lookup;\n};\n#line 4 \"test/aoj/DSL_3_D.sparse_table.test.cpp\"\
-    \n\nusing namespace std;\n\nstruct S {\n    using T = int;\n    static T op(T\
-    \ a, T b) {\n        return min(a, b);\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, L;\n    cin >> N >> L;\n    vector<int> a(N);\n\
-    \    for (int i = 0; i < N; i++) cin >> a[i];\n    SparseTable<S> st(a);\n   \
-    \ for (int i = 0; i < N - L + 1; i++) {\n        cout << st.fold(i, i + L);\n\
-    \        if (i < N - L) cout << \" \";\n        else cout << \"\\n\";\n    }\n\
-    }\n"
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nstruct S {\n    using T\
+    \ = int;\n    static T op(T a, T b) {\n        return min(a, b);\n    }\n};\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, L;\n    cin >> N >> L;\n    vector<int> a(N);\n    for (int i = 0; i < N;\
+    \ i++) cin >> a[i];\n    SparseTable<S> st(a);\n    for (int i = 0; i < N - L\
+    \ + 1; i++) {\n        cout << st.fold(i, i + L);\n        if (i < N - L) cout\
+    \ << \" \";\n        else cout << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\
-    \n\n#include \"../../data-structure/sparse_table.cpp\"\n\nusing namespace std;\n\
-    \nstruct S {\n    using T = int;\n    static T op(T a, T b) {\n        return\
-    \ min(a, b);\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include \"../../data-structure/sparse_table.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nstruct S {\n    using T = int;\n    static T op(T a, T\
+    \ b) {\n        return min(a, b);\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, L;\n    cin >> N >> L;\n    vector<int> a(N);\n\
     \    for (int i = 0; i < N; i++) cin >> a[i];\n    SparseTable<S> st(a);\n   \
     \ for (int i = 0; i < N - L + 1; i++) {\n        cout << st.fold(i, i + L);\n\
@@ -48,8 +48,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_3_D.sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 15:56:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_3_D.sparse_table.test.cpp
 layout: document

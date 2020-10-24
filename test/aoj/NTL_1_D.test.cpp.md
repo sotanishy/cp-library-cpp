@@ -21,19 +21,19 @@ data:
     \ long i = 3; i * i <= n; i += 2) {\n        if (n % i == 0) {\n            ret\
     \ -= ret / i;\n            while (n % i == 0) n /= i;\n        }\n    }\n    if\
     \ (n != 1) ret -= ret / n;\n    return ret;\n}\n#line 4 \"test/aoj/NTL_1_D.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int n;\n    cin >> n;\n    cout << euler_totient(n) <<\
-    \ endl;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D\"\
-    \n\n#include \"../../math/euler_totient.cpp\"\n\nusing namespace std;\n\nint main()\
+    \n\n#line 6 \"test/aoj/NTL_1_D.test.cpp\"\nusing namespace std;\n\nint main()\
     \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int n;\n  \
-    \  cin >> n;\n    cout << euler_totient(n) << endl;\n}"
+    \  cin >> n;\n    cout << euler_totient(n) << endl;\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D\"\
+    \n\n#include \"../../math/euler_totient.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int n;\n    cin >> n;\n    cout << euler_totient(n) << endl;\n}"
   dependsOn:
   - math/euler_totient.cpp
   isVerificationFile: true
   path: test/aoj/NTL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2020-09-23 11:28:03+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_D.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.cpp
     title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A
@@ -29,25 +29,25 @@ data:
     \ = match[v];\n            if (w < 0 || (!used[w] && dfs(w))) {\n            \
     \    match[u] = v;\n                match[v] = u;\n                return true;\n\
     \            }\n        }\n        return false;\n    }\n};\n#line 4 \"test/aoj/GRL_7_A.test.cpp\"\
-    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int X, Y, E;\n    cin >> X >> Y >> E;\n    BipartiteMatching\
     \ bm(X + Y);\n    for (int i = 0; i < E; i++) {\n        int x, y;\n        cin\
     \ >> x >> y;\n        bm.add_edge(x, X + y);\n    }\n    cout << bm.bipartite_matching()\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A\"\
-    \n\n#include \"../../flow/bipartite_matching.cpp\"\n\nusing namespace std;\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ X, Y, E;\n    cin >> X >> Y >> E;\n    BipartiteMatching bm(X + Y);\n    for\
-    \ (int i = 0; i < E; i++) {\n        int x, y;\n        cin >> x >> y;\n     \
-    \   bm.add_edge(x, X + y);\n    }\n    cout << bm.bipartite_matching() << endl;\n\
-    }"
+    \n\n#include \"../../flow/bipartite_matching.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int X, Y, E;\n    cin >> X >> Y >> E;\n    BipartiteMatching\
+    \ bm(X + Y);\n    for (int i = 0; i < E; i++) {\n        int x, y;\n        cin\
+    \ >> x >> y;\n        bm.add_edge(x, X + y);\n    }\n    cout << bm.bipartite_matching()\
+    \ << endl;\n}"
   dependsOn:
   - flow/bipartite_matching.cpp
   isVerificationFile: true
   path: test/aoj/GRL_7_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 15:56:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_7_A.test.cpp
 layout: document

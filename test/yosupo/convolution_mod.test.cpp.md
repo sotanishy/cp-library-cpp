@@ -77,28 +77,28 @@ data:
     \ + i];\n                    mint r = a[s * m + i + m / 2] * w;\n            \
     \        a[s * m + i] = l + r;\n                    a[s * m + i + m / 2] = l -\
     \ r;\n                    w *= omega;\n                }\n            }\n    \
-    \    }\n    }\n};\n#line 5 \"test/yosupo/convolution_mod.test.cpp\"\n\nusing namespace\
-    \ std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\nint main()\
-    \ {\n    int N, M;\n    cin >> N >> M;\n    vector<mint> a(N), b(M);\n    for\
-    \ (int i = 0; i < N; i++) cin >> a[i];\n    for (int i = 0; i < M; i++) cin >>\
-    \ b[i];\n    vector<mint> c = NTT<mint>::convolution(a, b);\n    for (int i =\
-    \ 0; i < N + M - 1; i++) cout << c[i] << (i < N + M - 2 ? \" \" : \"\\n\");\n\
-    }\n"
+    \    }\n    }\n};\n#line 5 \"test/yosupo/convolution_mod.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
+    \ Modint<998244353>;\n\nint main() {\n    int N, M;\n    cin >> N >> M;\n    vector<mint>\
+    \ a(N), b(M);\n    for (int i = 0; i < N; i++) cin >> a[i];\n    for (int i =\
+    \ 0; i < M; i++) cin >> b[i];\n    vector<mint> c = NTT<mint>::convolution(a,\
+    \ b);\n    for (int i = 0; i < N + M - 1; i++) cout << c[i] << (i < N + M - 2\
+    \ ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
-    \ \"../../math/modint.cpp\"\n#include \"../../math/ntt.cpp\"\n\nusing namespace\
-    \ std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\nint main()\
-    \ {\n    int N, M;\n    cin >> N >> M;\n    vector<mint> a(N), b(M);\n    for\
-    \ (int i = 0; i < N; i++) cin >> a[i];\n    for (int i = 0; i < M; i++) cin >>\
-    \ b[i];\n    vector<mint> c = NTT<mint>::convolution(a, b);\n    for (int i =\
-    \ 0; i < N + M - 1; i++) cout << c[i] << (i < N + M - 2 ? \" \" : \"\\n\");\n\
-    }\n"
+    \ \"../../math/modint.cpp\"\n#include \"../../math/ntt.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
+    \nint main() {\n    int N, M;\n    cin >> N >> M;\n    vector<mint> a(N), b(M);\n\
+    \    for (int i = 0; i < N; i++) cin >> a[i];\n    for (int i = 0; i < M; i++)\
+    \ cin >> b[i];\n    vector<mint> c = NTT<mint>::convolution(a, b);\n    for (int\
+    \ i = 0; i < N + M - 1; i++) cout << c[i] << (i < N + M - 2 ? \" \" : \"\\n\"\
+    );\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/ntt.cpp
   isVerificationFile: true
   path: test/yosupo/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod.test.cpp

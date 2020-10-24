@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/flow/ford_fulkerson.md
     document_title: Ford-Fulkerson Algorithm
@@ -55,7 +55,7 @@ data:
   path: flow/ford_fulkerson.cpp
   requiredBy: []
   timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_A.ford_fulkerson.test.cpp
 documentation_of: flow/ford_fulkerson.cpp

@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -45,7 +45,7 @@ data:
     - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sparse_table.cpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -90,13 +90,13 @@ data:
       title: Weighted Union Find
   - name: flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/bipartite_matching.cpp
       title: Bipartite Matching
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
     - icon: ':x:'
@@ -105,35 +105,23 @@ data:
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
-      path: graph/bellman_ford.cpp
-      title: Bellman-Ford Algorithm
-    - icon: ':heavy_check_mark:'
-      path: graph/boruvka.cpp
-      title: Boruvka's Algorithm
-    - icon: ':heavy_check_mark:'
-      path: graph/dijkstra.cpp
-      title: Dijkstra's Algorithm
-    - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
-    - icon: ':heavy_check_mark:'
-      path: graph/floyd_warshall.cpp
-      title: Floyd-Warshall Algorithm
-    - icon: ':heavy_check_mark:'
-      path: graph/kruskal.cpp
-      title: Kruskal's Algorithm
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
-      path: graph/prim.cpp
-      title: Prim's Algorithm
+      path: graph/mst.cpp
+      title: Minimum Spanning Tree Algorithms
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/scc.cpp
       title: Strongly Connected Components
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest_path.cpp
+      title: Shortest Path Algorithms
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
@@ -277,7 +265,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
       title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.test.cpp
       title: test/aoj/DSL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -301,7 +289,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.slide_min.test.cpp
       title: test/aoj/DSL_3_D.slide_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.sparse_table.test.cpp
       title: test/aoj/DSL_3_D.sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
@@ -322,13 +310,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A.prim.test.cpp
       title: test/aoj/GRL_2_A.prim.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_A.test.cpp
       title: test/aoj/GRL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_C.test.cpp
       title: test/aoj/GRL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -337,16 +325,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_C.test.cpp
       title: test/aoj/GRL_5_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     - icon: ':x:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_7_A.test.cpp
       title: test/aoj/GRL_7_A.test.cpp
     - icon: ':heavy_check_mark:'

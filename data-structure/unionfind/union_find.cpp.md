@@ -3,11 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/boruvka.cpp
-    title: Boruvka's Algorithm
-  - icon: ':heavy_check_mark:'
-    path: graph/kruskal.cpp
-    title: Kruskal's Algorithm
+    path: graph/mst.cpp
+    title: Minimum Spanning Tree Algorithms
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_A.test.cpp
@@ -18,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.kruskal.test.cpp
     title: test/aoj/GRL_2_A.kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.prim.test.cpp
+    title: test/aoj/GRL_2_A.prim.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
@@ -51,11 +51,11 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.cpp
   requiredBy:
-  - graph/kruskal.cpp
-  - graph/boruvka.cpp
+  - graph/mst.cpp
   timestamp: '2020-10-24 00:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_2_A.prim.test.cpp
   - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp

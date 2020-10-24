@@ -95,34 +95,35 @@ data:
     \ M::id;\n        if (a <= l && r <= b) return t->sum;\n        push(t);\n   \
     \     return M::op(query(t->left, a, b, l, l + count(t->left)),\n            \
     \         query(t->right, a, b, r - count(t->right), r));\n    }\n};\n*/\n#line\
-    \ 4 \"test/aoj/ALDS1_8_D.test.cpp\"\n\nusing namespace std;\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int m;\n    cin\
-    \ >> m;\n    Treap<int> treap;\n    for (int i = 0; i < m; i++) {\n        string\
-    \ op;\n        cin >> op;\n        if (op == \"insert\") {\n            int k,\
-    \ p;\n            cin >> k >> p;\n            treap.insert(k, p);\n        } else\
-    \ if (op == \"find\") {\n            int k;\n            cin >> k;\n         \
-    \   if (treap.count(k)) cout << \"yes\\n\";\n            else cout << \"no\\n\"\
-    ;\n        } else if (op == \"delete\") {\n            int k;\n            cin\
-    \ >> k;\n            treap.erase(k);\n        } else {\n            treap.print_inorder();\n\
-    \            treap.print_preorder();\n        }\n    }\n}\n"
+    \ 4 \"test/aoj/ALDS1_8_D.test.cpp\"\n\n#line 6 \"test/aoj/ALDS1_8_D.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int m;\n    cin >> m;\n    Treap<int> treap;\n    for\
+    \ (int i = 0; i < m; i++) {\n        string op;\n        cin >> op;\n        if\
+    \ (op == \"insert\") {\n            int k, p;\n            cin >> k >> p;\n  \
+    \          treap.insert(k, p);\n        } else if (op == \"find\") {\n       \
+    \     int k;\n            cin >> k;\n            if (treap.count(k)) cout << \"\
+    yes\\n\";\n            else cout << \"no\\n\";\n        } else if (op == \"delete\"\
+    ) {\n            int k;\n            cin >> k;\n            treap.erase(k);\n\
+    \        } else {\n            treap.print_inorder();\n            treap.print_preorder();\n\
+    \        }\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_8_D\"\
-    \n\n#include \"../../data-structure/treap.cpp\"\n\nusing namespace std;\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ m;\n    cin >> m;\n    Treap<int> treap;\n    for (int i = 0; i < m; i++) {\n\
-    \        string op;\n        cin >> op;\n        if (op == \"insert\") {\n   \
-    \         int k, p;\n            cin >> k >> p;\n            treap.insert(k, p);\n\
-    \        } else if (op == \"find\") {\n            int k;\n            cin >>\
-    \ k;\n            if (treap.count(k)) cout << \"yes\\n\";\n            else cout\
-    \ << \"no\\n\";\n        } else if (op == \"delete\") {\n            int k;\n\
-    \            cin >> k;\n            treap.erase(k);\n        } else {\n      \
-    \      treap.print_inorder();\n            treap.print_preorder();\n        }\n\
-    \    }\n}"
+    \n\n#include \"../../data-structure/treap.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int m;\n    cin >> m;\n    Treap<int> treap;\n    for\
+    \ (int i = 0; i < m; i++) {\n        string op;\n        cin >> op;\n        if\
+    \ (op == \"insert\") {\n            int k, p;\n            cin >> k >> p;\n  \
+    \          treap.insert(k, p);\n        } else if (op == \"find\") {\n       \
+    \     int k;\n            cin >> k;\n            if (treap.count(k)) cout << \"\
+    yes\\n\";\n            else cout << \"no\\n\";\n        } else if (op == \"delete\"\
+    ) {\n            int k;\n            cin >> k;\n            treap.erase(k);\n\
+    \        } else {\n            treap.print_inorder();\n            treap.print_preorder();\n\
+    \        }\n    }\n}"
   dependsOn:
   - data-structure/treap.cpp
   isVerificationFile: true
   path: test/aoj/ALDS1_8_D.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 15:56:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_8_D.test.cpp

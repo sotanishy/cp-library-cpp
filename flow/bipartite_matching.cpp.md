@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_7_A.test.cpp
     title: test/aoj/GRL_7_A.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/flow/bipartite_matching.md
     document_title: Bipartite Matching
@@ -47,7 +47,7 @@ data:
   path: flow/bipartite_matching.cpp
   requiredBy: []
   timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_7_A.test.cpp
 documentation_of: flow/bipartite_matching.cpp
