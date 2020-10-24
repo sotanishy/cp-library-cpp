@@ -3,7 +3,6 @@
 #include <numeric>
 #include <unordered_map>
 #include <vector>
-#include "mod_pow.cpp"
 
 /*
  * Modular Exponentiation
