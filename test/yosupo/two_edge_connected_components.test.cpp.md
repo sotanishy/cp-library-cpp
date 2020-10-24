@@ -52,32 +52,32 @@ data:
     \ comp;\n    Lowlink lowlink;\n    int cnt = 0;\n\n    void dfs(int u, int c)\
     \ {\n        comp[u] = c;\n        for (int v : G[u]) {\n            if (comp[v]\
     \ == -1 && !lowlink.is_bridge(u, v)) dfs(v, c);\n        }\n    }\n};\n#line 4\
-    \ \"test/yosupo/two_edge_connected_components.test.cpp\"\n\nusing namespace std;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, M;\n    cin >> N >> M;\n    vector<vector<int>> G(N);\n    for (int\
-    \ i = 0; i < M; ++i) {\n        int a, b;\n        cin >> a >> b;\n        G[a].push_back(b);\n\
-    \        G[b].push_back(a);\n    }\n    TwoEdgeConnectedComponents comp(G);\n\
-    \    vector<vector<int>> ans(comp.count());\n    for (int i = 0; i < N; ++i) ans[comp[i]].push_back(i);\n\
-    \    cout << ans.size() << \"\\n\";\n    for (auto& v : ans) {\n        cout <<\
-    \ v.size();\n        for (int u : v) cout << \" \" << u;\n        cout << \"\\\
-    n\";\n    }\n}\n"
+    \ \"test/yosupo/two_edge_connected_components.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    vector<vector<int>>\
+    \ G(N);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin >>\
+    \ a >> b;\n        G[a].push_back(b);\n        G[b].push_back(a);\n    }\n   \
+    \ TwoEdgeConnectedComponents comp(G);\n    vector<vector<int>> ans(comp.count());\n\
+    \    for (int i = 0; i < N; ++i) ans[comp[i]].push_back(i);\n    cout << ans.size()\
+    \ << \"\\n\";\n    for (auto& v : ans) {\n        cout << v.size();\n        for\
+    \ (int u : v) cout << \" \" << u;\n        cout << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \n\n#include \"../../graph/two_edge_connected_components.cpp\"\n\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, M;\n    cin >> N >> M;\n    vector<vector<int>> G(N);\n    for (int\
-    \ i = 0; i < M; ++i) {\n        int a, b;\n        cin >> a >> b;\n        G[a].push_back(b);\n\
-    \        G[b].push_back(a);\n    }\n    TwoEdgeConnectedComponents comp(G);\n\
-    \    vector<vector<int>> ans(comp.count());\n    for (int i = 0; i < N; ++i) ans[comp[i]].push_back(i);\n\
-    \    cout << ans.size() << \"\\n\";\n    for (auto& v : ans) {\n        cout <<\
-    \ v.size();\n        for (int u : v) cout << \" \" << u;\n        cout << \"\\\
-    n\";\n    }\n}"
+    \n\n#include \"../../graph/two_edge_connected_components.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    vector<vector<int>>\
+    \ G(N);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin >>\
+    \ a >> b;\n        G[a].push_back(b);\n        G[b].push_back(a);\n    }\n   \
+    \ TwoEdgeConnectedComponents comp(G);\n    vector<vector<int>> ans(comp.count());\n\
+    \    for (int i = 0; i < N; ++i) ans[comp[i]].push_back(i);\n    cout << ans.size()\
+    \ << \"\\n\";\n    for (auto& v : ans) {\n        cout << v.size();\n        for\
+    \ (int u : v) cout << \" \" << u;\n        cout << \"\\n\";\n    }\n}"
   dependsOn:
   - graph/two_edge_connected_components.cpp
   - graph/lowlink.cpp
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 16:23:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp

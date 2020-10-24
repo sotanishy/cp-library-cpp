@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/formal_power_series.cpp
     title: Formal Power Series
   - icon: ':question:'
     path: math/modint.cpp
     title: math/modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -130,18 +130,19 @@ data:
     \ ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\n\
     private:\n    FPS pre(int size) const { return FPS(this->begin(), this->begin()\
     \ + std::min((int) this->size(), size)); }\n};\n#line 5 \"test/yosupo/pow_of_formal_power_series.test.cpp\"\
-    \n\nusing namespace std;\nusing mint = Modint<998244353>;\n\nint main() {\n  \
-    \  ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, M;\n\
-    \    cin >> N >> M;\n    FormalPowerSeries<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \n\n#line 7 \"test/yosupo/pow_of_formal_power_series.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    FormalPowerSeries<mint>\
+    \ f(N);\n    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n\
+    \    for (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/formal_power_series.cpp\"\
-    \n\nusing namespace std;\nusing mint = Modint<998244353>;\n\nint main() {\n  \
-    \  ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, M;\n\
-    \    cin >> N >> M;\n    FormalPowerSeries<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing mint = Modint<998244353>;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, M;\n    cin >> N >> M;\n    FormalPowerSeries<mint> f(N);\n    for\
+    \ (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n    for (int i\
+    \ = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/formal_power_series.cpp
@@ -149,8 +150,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-24 16:23:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/pow_of_formal_power_series.test.cpp
 layout: document

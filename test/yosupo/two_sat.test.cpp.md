@@ -54,21 +54,21 @@ data:
     \    bool is_satisfiable() const noexcept {\n        return satisfiable;\n   \
     \ }\n\n    bool operator[](int i) const {\n        return val[i];\n    }\n\nprivate:\n\
     \    int n;\n    SCC scc;\n    std::vector<bool> val;\n    bool satisfiable =\
-    \ true;\n};\n#line 4 \"test/yosupo/two_sat.test.cpp\"\n\nusing namespace std;\n\
-    using ll = long long;\n\nint main() {\n    string _p, _cnf;\n    int N, M;\n \
-    \   cin >> _p >> _cnf >> N >> M;\n    TwoSat sat(N);\n    for (int i = 0; i <\
-    \ M; i++) {\n        int a, b, _c;\n        cin >> a >> b >> _c;\n        sat.add_clause(abs(a)\
-    \ - 1, (a > 0), abs(b) - 1, (b > 0));\n    }\n    sat.solve();\n    if (sat.is_satisfiable())\
-    \ {\n        cout << \"s SATISFIABLE\\nv\";\n        for (int i = 0; i < N; i++)\
-    \ {\n            cout << \" \" << (sat[i] ? 1 : -1) * (i + 1);\n        }\n  \
-    \      cout << \" 0\\n\";\n    } else {\n        cout << \"s UNSATISFIABLE\\n\"\
-    ;\n    }\n}\n"
+    \ true;\n};\n#line 4 \"test/yosupo/two_sat.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n\nint main() {\n    string _p, _cnf;\n\
+    \    int N, M;\n    cin >> _p >> _cnf >> N >> M;\n    TwoSat sat(N);\n    for\
+    \ (int i = 0; i < M; i++) {\n        int a, b, _c;\n        cin >> a >> b >> _c;\n\
+    \        sat.add_clause(abs(a) - 1, (a > 0), abs(b) - 1, (b > 0));\n    }\n  \
+    \  sat.solve();\n    if (sat.is_satisfiable()) {\n        cout << \"s SATISFIABLE\\\
+    nv\";\n        for (int i = 0; i < N; i++) {\n            cout << \" \" << (sat[i]\
+    \ ? 1 : -1) * (i + 1);\n        }\n        cout << \" 0\\n\";\n    } else {\n\
+    \        cout << \"s UNSATISFIABLE\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\n\n#include \"\
-    ../../graph/twosat.cpp\"\n\nusing namespace std;\nusing ll = long long;\n\nint\
-    \ main() {\n    string _p, _cnf;\n    int N, M;\n    cin >> _p >> _cnf >> N >>\
-    \ M;\n    TwoSat sat(N);\n    for (int i = 0; i < M; i++) {\n        int a, b,\
-    \ _c;\n        cin >> a >> b >> _c;\n        sat.add_clause(abs(a) - 1, (a > 0),\
-    \ abs(b) - 1, (b > 0));\n    }\n    sat.solve();\n    if (sat.is_satisfiable())\
+    ../../graph/twosat.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing\
+    \ ll = long long;\n\nint main() {\n    string _p, _cnf;\n    int N, M;\n    cin\
+    \ >> _p >> _cnf >> N >> M;\n    TwoSat sat(N);\n    for (int i = 0; i < M; i++)\
+    \ {\n        int a, b, _c;\n        cin >> a >> b >> _c;\n        sat.add_clause(abs(a)\
+    \ - 1, (a > 0), abs(b) - 1, (b > 0));\n    }\n    sat.solve();\n    if (sat.is_satisfiable())\
     \ {\n        cout << \"s SATISFIABLE\\nv\";\n        for (int i = 0; i < N; i++)\
     \ {\n            cout << \" \" << (sat[i] ? 1 : -1) * (i + 1);\n        }\n  \
     \      cout << \" 0\\n\";\n    } else {\n        cout << \"s UNSATISFIABLE\\n\"\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 16:23:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/two_sat.test.cpp

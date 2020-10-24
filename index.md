@@ -21,7 +21,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/li_chao_tree.cpp
       title: Li Chao Tree
     - icon: ':warning:'
@@ -99,7 +99,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
   - name: graph
@@ -157,42 +157,30 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Floor Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
     - icon: ':warning:'
       path: math/geometry.cpp
       title: math/geometry.cpp
-    - icon: ':heavy_check_mark:'
-      path: math/is_prime.cpp
-      title: Primality Test
     - icon: ':warning:'
       path: math/matrix.cpp
       title: Matrix
     - icon: ':warning:'
-      path: math/mod_log.cpp
-      title: Discrete Logarithm
-    - icon: ':heavy_check_mark:'
-      path: math/mod_pow.cpp
-      title: Mod Exponentiation
-    - icon: ':heavy_check_mark:'
-      path: math/mod_sqrt.cpp
-      title: Quadratic Residue
+      path: math/mod_arithmetic.cpp
+      title: math/mod_arithmetic.cpp
     - icon: ':question:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
-      path: math/prime_factor.cpp
-      title: Prime Factor
-    - icon: ':warning:'
-      path: math/prime_table.cpp
-      title: Prime Table
+      path: math/prime.cpp
+      title: Prime Number Algorithms
     - icon: ':warning:'
       path: math/stirling_second.cpp
       title: Stirling Number of the Second Kind
@@ -331,7 +319,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -340,7 +328,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_A.test.cpp
       title: test/aoj/NTL_1_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL_1_B.test.cpp
       title: test/aoj/NTL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -360,10 +348,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -384,7 +372,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':x:'
@@ -402,7 +390,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'

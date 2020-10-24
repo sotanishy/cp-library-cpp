@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/li_chao_tree.cpp
     title: Li Chao Tree
   _extendedRequiredBy: []
@@ -44,22 +44,22 @@ data:
     \ (r - l == 1) break;\n            if (left != mid) {\n                k = 2 *\
     \ k;\n                r = m;\n            } else {\n                k = 2 * k\
     \ + 1;\n                l = m;\n            }\n        }\n    }\n};\n#line 4 \"\
-    test/yosupo/segment_add_get_min.test.cpp\"\n\nusing namespace std;\nusing ll =\
-    \ long long;\n\nstruct Segment {\n    ll l, r, a, b;\n    Segment() = default;\n\
-    \    Segment(ll l, ll r, ll a, ll b) : l(l), r(r), a(a), b(b) {}\n};\n\nstruct\
-    \ Query {\n    int t;\n    Segment seg;\n    ll p;\n    Query(int t, ll l, ll\
-    \ r, ll a, ll b) : t(t), seg(l, r, a, b) {}\n    Query(int t, ll p) : t(t), p(p)\
-    \ {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> xs;\n    vector<Segment> seg(N);\n\
-    \    for (int i = 0; i < N; ++i) {\n        cin >> seg[i].l >> seg[i].r >> seg[i].a\
-    \ >> seg[i].b;\n        xs.push_back(seg[i].l);\n        xs.push_back(seg[i].r);\n\
-    \    }\n    vector<Query> query;\n    for (int i = 0; i < Q; ++i) {\n        int\
-    \ t;\n        cin >> t;\n        if (t == 0) {\n            ll l, r, a, b;\n \
-    \           cin >> l >> r >> a >> b;\n            query.emplace_back(t, l, r,\
-    \ a, b);\n        } else {\n            ll p;\n            cin >> p;\n       \
-    \     query.emplace_back(t, p);\n            xs.push_back(p);\n        }\n   \
-    \ }\n    sort(xs.begin(), xs.end());\n    xs.erase(unique(xs.begin(), xs.end()),\
-    \ xs.end());\n    auto compress = [&](int x) {\n        return lower_bound(xs.begin(),\
+    test/yosupo/segment_add_get_min.test.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\nusing ll = long long;\n\nstruct Segment {\n    ll l, r, a, b;\n\
+    \    Segment() = default;\n    Segment(ll l, ll r, ll a, ll b) : l(l), r(r), a(a),\
+    \ b(b) {}\n};\n\nstruct Query {\n    int t;\n    Segment seg;\n    ll p;\n   \
+    \ Query(int t, ll l, ll r, ll a, ll b) : t(t), seg(l, r, a, b) {}\n    Query(int\
+    \ t, ll p) : t(t), p(p) {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> xs;\n\
+    \    vector<Segment> seg(N);\n    for (int i = 0; i < N; ++i) {\n        cin >>\
+    \ seg[i].l >> seg[i].r >> seg[i].a >> seg[i].b;\n        xs.push_back(seg[i].l);\n\
+    \        xs.push_back(seg[i].r);\n    }\n    vector<Query> query;\n    for (int\
+    \ i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0)\
+    \ {\n            ll l, r, a, b;\n            cin >> l >> r >> a >> b;\n      \
+    \      query.emplace_back(t, l, r, a, b);\n        } else {\n            ll p;\n\
+    \            cin >> p;\n            query.emplace_back(t, p);\n            xs.push_back(p);\n\
+    \        }\n    }\n    sort(xs.begin(), xs.end());\n    xs.erase(unique(xs.begin(),\
+    \ xs.end()), xs.end());\n    auto compress = [&](int x) {\n        return lower_bound(xs.begin(),\
     \ xs.end(), x) - xs.begin();\n    };\n    LiChaoTree<ll> lct(xs);\n    for (auto&\
     \ s : seg) {\n        lct.add_segment(s.a, s.b, compress(s.l), compress(s.r));\n\
     \    }\n    for (auto& q : query) {\n        if (q.t == 0) {\n            lct.add_segment(q.seg.a,\
@@ -68,13 +68,13 @@ data:
     \ \"INFINITY\\n\";\n            else cout << ans << \"\\n\";\n        }\n    }\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
-    \n#include \"../../data-structure/li_chao_tree.cpp\"\n\nusing namespace std;\n\
-    using ll = long long;\n\nstruct Segment {\n    ll l, r, a, b;\n    Segment() =\
-    \ default;\n    Segment(ll l, ll r, ll a, ll b) : l(l), r(r), a(a), b(b) {}\n\
-    };\n\nstruct Query {\n    int t;\n    Segment seg;\n    ll p;\n    Query(int t,\
-    \ ll l, ll r, ll a, ll b) : t(t), seg(l, r, a, b) {}\n    Query(int t, ll p) :\
-    \ t(t), p(p) {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n \
-    \   cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> xs;\n\
+    \n#include \"../../data-structure/li_chao_tree.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n\nstruct Segment {\n    ll l, r,\
+    \ a, b;\n    Segment() = default;\n    Segment(ll l, ll r, ll a, ll b) : l(l),\
+    \ r(r), a(a), b(b) {}\n};\n\nstruct Query {\n    int t;\n    Segment seg;\n  \
+    \  ll p;\n    Query(int t, ll l, ll r, ll a, ll b) : t(t), seg(l, r, a, b) {}\n\
+    \    Query(int t, ll p) : t(t), p(p) {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> xs;\n\
     \    vector<Segment> seg(N);\n    for (int i = 0; i < N; ++i) {\n        cin >>\
     \ seg[i].l >> seg[i].r >> seg[i].a >> seg[i].b;\n        xs.push_back(seg[i].l);\n\
     \        xs.push_back(seg[i].r);\n    }\n    vector<Query> query;\n    for (int\
@@ -96,7 +96,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 16:23:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/segment_add_get_min.test.cpp
