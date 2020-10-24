@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/mod_arithmetic.cpp
-    title: math/mod_arithmetic.cpp
+    title: Modular Arithmetic
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -15,7 +15,8 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B
   bundledCode: "#line 1 \"test/aoj/NTL_1_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
     \n\n#line 2 \"math/mod_arithmetic.cpp\"\n#include <cmath>\n#include <numeric>\n\
-    #include <unordered_map>\n#include <vector>\n\n/*\n * Modular Exponentiation\n\
+    #include <unordered_map>\n#include <vector>\n\n/*\n * @brief Modular Arithmetic\n\
+    \ * @docs docs/math/mod_arithmetic.md\n */\n\n/*\n * Modular Exponentiation\n\
     \ */\nlong long mod_pow(long long a, long long p, long long mod) {\n    long long\
     \ ret = 1;\n    while (p > 0) {\n        if (p & 1) ret = ret * a % mod;\n   \
     \     a = a * a % mod;\n        p >>= 1;\n    }\n    return ret;\n}\n\nlong long\
@@ -54,7 +55,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:36:59+09:00'
+  timestamp: '2020-10-24 16:47:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_B.test.cpp
