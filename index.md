@@ -4,9 +4,6 @@ data:
   - name: data-structure
     pages:
     - icon: ':warning:'
-      path: data-structure/bit_vector.cpp
-      title: Bit Vector
-    - icon: ':warning:'
       path: data-structure/convex_hull_trick.cpp
       title: Convex Hull Trick
     - icon: ':heavy_check_mark:'
@@ -54,7 +51,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/treap.cpp
       title: Treap
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/segtree
@@ -387,7 +384,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
