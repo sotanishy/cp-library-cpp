@@ -21,7 +21,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/li_chao_tree.cpp
       title: Li Chao Tree
     - icon: ':warning:'
@@ -39,10 +39,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
+    - icon: ':warning:'
+      path: data-structure/red_black_tree.cpp
+      title: data-structure/red_black_tree.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -107,7 +110,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -116,7 +119,7 @@ data:
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
     - icon: ':heavy_check_mark:'
@@ -125,10 +128,10 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/twosat.cpp
       title: 2-SAT
   - name: math
@@ -166,10 +169,10 @@ data:
     - icon: ':warning:'
       path: math/matrix.cpp
       title: Matrix
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: math/mod_arithmetic.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':heavy_check_mark:'
@@ -212,7 +215,7 @@ data:
     - icon: ':warning:'
       path: string/trie.cpp
       title: Trie
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/z_array.cpp
       title: Z Array
   - name: tree
@@ -328,7 +331,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_A.test.cpp
       title: test/aoj/NTL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_B.test.cpp
       title: test/aoj/NTL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -375,7 +378,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -387,10 +390,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -402,10 +405,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
     - icon: ':heavy_check_mark:'
@@ -414,7 +417,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp
 layout: toppage

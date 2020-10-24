@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_connected_components.cpp
     title: 2-Edge-Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -78,7 +78,7 @@ data:
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
   timestamp: '2020-10-24 16:23:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp
 layout: document
