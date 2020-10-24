@@ -104,7 +104,7 @@ data:
       title: Minimum Cost Flow
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path.cpp
       title: Shortest Path Algorithms
     - icon: ':warning:'
@@ -280,13 +280,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.sparse_table.test.cpp
       title: test/aoj/DSL_3_D.sparse_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_A.test.cpp
       title: test/aoj/GRL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_B.test.cpp
       title: test/aoj/GRL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C.test.cpp
       title: test/aoj/GRL_1_C.test.cpp
     - icon: ':heavy_check_mark:'

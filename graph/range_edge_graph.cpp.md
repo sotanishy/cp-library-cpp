@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path.cpp
     title: Shortest Path Algorithms
   _extendedRequiredBy: []
@@ -19,7 +19,7 @@ data:
     #line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from,\
     \ to;\n    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n#line 7 \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n\
+    \ {}\n};\n#line 8 \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n\
     \ * @docs docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford Algorithm\n\
     \ */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
     \ G, int V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n \
@@ -125,7 +125,7 @@ data:
   isVerificationFile: false
   path: graph/range_edge_graph.cpp
   requiredBy: []
-  timestamp: '2020-10-24 20:53:04+09:00'
+  timestamp: '2020-10-24 23:19:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/range_edge_graph.cpp

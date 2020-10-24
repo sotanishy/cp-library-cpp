@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy:
@@ -9,52 +9,53 @@ data:
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/shortest_path.md
     document_title: Shortest Path Algorithms
     links: []
   bundledCode: "#line 2 \"graph/shortest_path.cpp\"\n#include <limits>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int\
-    \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
-    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 7 \"graph/shortest_path.cpp\"\
-    \n\n/*\n * @brief Shortest Path Algorithms\n * @docs docs/graph/shortest_path.md\n\
-    \ */\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate <typename T>\nstd::vector<T>\
-    \ bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {\n    constexpr T\
-    \ INF = std::numeric_limits<T>::max();\n    std::vector<int> dist(V, INF);\n \
-    \   dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n        for (auto& e : G)\
-    \ {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.weight)\
-    \ {\n                dist[e.to] = dist[e.from] + e.weight;\n                if\
-    \ (i == V - 1) return std::vector<T>();\n            }\n        }\n    }\n   \
-    \ return dist;\n}\n\n/*\n * Floyd-Warshall Algorithm\n */\ntemplate <typename\
-    \ T>\nvoid floyd_warshall(std::vector<std::vector<T>>& dist) {\n    int V = dist.size();\n\
-    \    for (int k = 0; k < V; ++k) {\n        for (int i = 0; i < V; ++i) {\n  \
-    \          for (int j = 0; j < V; ++j) {\n                dist[i][j] = std::min(dist[i][j],\
-    \ dist[i][k] + dist[k][j]);\n            }\n        }\n    }\n}\n\n/*\n * Dijkstra's\
-    \ Algorithm\n */\ntemplate <typename T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>&\
-    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
-    \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
+    #include <tuple>\n#include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
+    \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
+    \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 8\
+    \ \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n * @docs\
+    \ docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate\
+    \ <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int\
+    \ V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<int>\
+    \ dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n       \
+    \ for (auto& e : G) {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from]\
+    \ + e.weight) {\n                dist[e.to] = dist[e.from] + e.weight;\n     \
+    \           if (i == V - 1) return std::vector<T>();\n            }\n        }\n\
+    \    }\n    return dist;\n}\n\n/*\n * Floyd-Warshall Algorithm\n */\ntemplate\
+    \ <typename T>\nvoid floyd_warshall(std::vector<std::vector<T>>& dist) {\n   \
+    \ int V = dist.size();\n    for (int k = 0; k < V; ++k) {\n        for (int i\
+    \ = 0; i < V; ++i) {\n            for (int j = 0; j < V; ++j) {\n            \
+    \    dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);\n           \
+    \ }\n        }\n    }\n}\n\n/*\n * Dijkstra's Algorithm\n */\ntemplate <typename\
+    \ T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int\
+    \ s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n  \
+    \  dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
     \ {\n        T weight;\n        int v;\n        std::tie(weight, v) = pq.top();\n\
     \        pq.pop();\n        if (dist[v] < weight) continue;\n        for (auto&\
     \ e : G[v]) {\n            if (dist[e.to] > dist[v] + e.weight) {\n          \
     \      dist[e.to] = dist[v] + e.weight;\n                pq.emplace(dist[e.to],\
     \ e.to);\n            }\n        }\n    }\n\n    return dist;\n}\n"
-  code: "#pragma once\n#include <limits>\n#include <queue>\n#include <utility>\n#include\
-    \ <vector>\n#include \"edge.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n\
-    \ * @docs docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford Algorithm\n\
-    \ */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
+  code: "#pragma once\n#include <limits>\n#include <queue>\n#include <tuple>\n#include\
+    \ <utility>\n#include <vector>\n#include \"edge.cpp\"\n\n/*\n * @brief Shortest\
+    \ Path Algorithms\n * @docs docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford\
+    \ Algorithm\n */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
     \ G, int V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n \
     \   std::vector<int> dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i <\
     \ V; ++i) {\n        for (auto& e : G) {\n            if (dist[e.from] != INF\
@@ -81,8 +82,8 @@ data:
   path: graph/shortest_path.cpp
   requiredBy:
   - graph/range_edge_graph.cpp
-  timestamp: '2020-10-24 20:53:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-24 23:19:51+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_1_C.test.cpp
