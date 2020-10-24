@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/scc.cpp
     title: Strongly Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
   bundledCode: "#line 1 \"test/aoj/GRL_3_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
-    \n\n#line 1 \"graph/scc.cpp\"\n#include <bits/stdc++.h>\n\n/*\n * @brief Strongly\
-    \ Connected Components\n * @docs docs/graph/scc.md\n */\nclass SCC {\npublic:\n\
-    \    SCC() = default;\n    explicit SCC(int n) : G(n), G_rev(n), comp(n, -1),\
-    \ visited(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
+    \n\n#line 2 \"graph/scc.cpp\"\n#include <algorithm>\n#include <vector>\n\n/*\n\
+    \ * @brief Strongly Connected Components\n * @docs docs/graph/scc.md\n */\nclass\
+    \ SCC {\npublic:\n    SCC() = default;\n    explicit SCC(int n) : G(n), G_rev(n),\
+    \ comp(n, -1), visited(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
     \        G_rev[v].push_back(u);\n    }\n\n    void build() {\n        for (int\
     \ v = 0; v < (int) G.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
     \ order.end());\n        cnt = 0;\n        for (int v : order) if (comp[v] ==\
@@ -59,8 +59,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-24 14:54:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_C.test.cpp
 layout: document

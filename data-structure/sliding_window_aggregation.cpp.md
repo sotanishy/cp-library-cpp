@@ -3,19 +3,35 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-structure/sliding_window_aggregation.md
     document_title: Sliding Window Aggregation
     links: []
-  bundledCode: "#line 1 \"data-structure/sliding_window_aggregation.cpp\"\n#include\
-    \ <bits/stdc++.h>\n\n/*\n * @brief Sliding Window Aggregation\n * @docs docs/data-structure/sliding_window_aggregation.md\n\
+  bundledCode: "#line 2 \"data-structure/sliding_window_aggregation.cpp\"\n#include\
+    \ <stack>\n#include <utility>\n\n/*\n * @brief Sliding Window Aggregation\n *\
+    \ @docs docs/data-structure/sliding_window_aggregation.md\n */\ntemplate <typename\
+    \ M>\nclass SlidingWindowAggregation {\n    using T = typename M::T;\n\npublic:\n\
+    \    void push(const T& x) {\n        if (back.empty()) back.emplace(x, x);\n\
+    \        else back.emplace(x, M::op(back.top().second, x));\n    }\n\n    void\
+    \ pop() {\n        if (front.empty()) {\n            if (back.empty()) return;\n\
+    \            T x = back.top().first;\n            back.pop();\n            front.emplace(x,\
+    \ x);\n            while (!back.empty()) {\n                x = back.top().first;\n\
+    \                back.pop();\n                front.emplace(x, M::op(x, front.top().second));\n\
+    \            }\n        }\n        front.pop();\n    }\n\n    bool empty() const\
+    \ {\n        return front.empty() && back.empty();\n    }\n\n    T fold() const\
+    \ {\n        assert(!empty());\n        if (front.empty()) return back.top().second;\n\
+    \        if (back.empty()) return front.top().second;\n        return M::op(front.top().second,\
+    \ back.top().second);\n    }\n\nprivate:\n    std::stack<std::pair<T, T>> front,\
+    \ back;\n};\n"
+  code: "#pragma once\n#include <stack>\n#include <utility>\n\n/*\n * @brief Sliding\
+    \ Window Aggregation\n * @docs docs/data-structure/sliding_window_aggregation.md\n\
     \ */\ntemplate <typename M>\nclass SlidingWindowAggregation {\n    using T = typename\
-    \ M::T;\n\npublic:\n    void push(T x) {\n        if (back.empty()) back.emplace(x,\
+    \ M::T;\n\npublic:\n    void push(const T& x) {\n        if (back.empty()) back.emplace(x,\
     \ x);\n        else back.emplace(x, M::op(back.top().second, x));\n    }\n\n \
     \   void pop() {\n        if (front.empty()) {\n            if (back.empty())\
     \ return;\n            T x = back.top().first;\n            back.pop();\n    \
@@ -26,28 +42,13 @@ data:
     \    }\n\n    T fold() const {\n        assert(!empty());\n        if (front.empty())\
     \ return back.top().second;\n        if (back.empty()) return front.top().second;\n\
     \        return M::op(front.top().second, back.top().second);\n    }\n\nprivate:\n\
-    \    std::stack<std::pair<T, T>> front, back;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief Sliding Window Aggregation\n *\
-    \ @docs docs/data-structure/sliding_window_aggregation.md\n */\ntemplate <typename\
-    \ M>\nclass SlidingWindowAggregation {\n    using T = typename M::T;\n\npublic:\n\
-    \    void push(T x) {\n        if (back.empty()) back.emplace(x, x);\n       \
-    \ else back.emplace(x, M::op(back.top().second, x));\n    }\n\n    void pop()\
-    \ {\n        if (front.empty()) {\n            if (back.empty()) return;\n   \
-    \         T x = back.top().first;\n            back.pop();\n            front.emplace(x,\
-    \ x);\n            while (!back.empty()) {\n                x = back.top().first;\n\
-    \                back.pop();\n                front.emplace(x, M::op(x, front.top().second));\n\
-    \            }\n        }\n        front.pop();\n    }\n\n    bool empty() const\
-    \ {\n        return front.empty() && back.empty();\n    }\n\n    T fold() const\
-    \ {\n        assert(!empty());\n        if (front.empty()) return back.top().second;\n\
-    \        if (back.empty()) return front.top().second;\n        return M::op(front.top().second,\
-    \ back.top().second);\n    }\n\nprivate:\n    std::stack<std::pair<T, T>> front,\
-    \ back;\n};"
+    \    std::stack<std::pair<T, T>> front, back;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/sliding_window_aggregation.cpp
   requiredBy: []
-  timestamp: '2020-10-12 03:18:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 14:54:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp
 documentation_of: data-structure/sliding_window_aggregation.cpp

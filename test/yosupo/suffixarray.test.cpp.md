@@ -50,19 +50,20 @@ data:
     \    return si >= sn && ti < tn;\n    }\n};\n#line 4 \"test/yosupo/suffixarray.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    string S;\n    cin >> S;\n    SuffixArray sa(S);\n   \
-    \ for (int i = 0; i < S.size(); ++i) cout << sa[i] << (i < S.size() - 1 ? \" \"\
-    \ : \"\\n\");\n}\n"
+    \ for (int i = 0; i < S.size(); ++i) {\n        cout << sa[i] << (i < S.size()\
+    \ - 1 ? \" \" : \"\\n\");\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n\n#include\
     \ \"../../string/suffix_array.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
     \n    string S;\n    cin >> S;\n    SuffixArray sa(S);\n    for (int i = 0; i\
-    \ < S.size(); ++i) cout << sa[i] << (i < S.size() - 1 ? \" \" : \"\\n\");\n}"
+    \ < S.size(); ++i) {\n        cout << sa[i] << (i < S.size() - 1 ? \" \" : \"\\\
+    n\");\n    }\n}"
   dependsOn:
   - string/suffix_array.cpp
   isVerificationFile: true
   path: test/yosupo/suffixarray.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 01:45:41+09:00'
+  timestamp: '2020-10-24 14:54:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/suffixarray.test.cpp

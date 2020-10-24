@@ -12,7 +12,7 @@ data:
     _deprecated_at_docs: docs/data-structure/segtree/segment_tree_beats.md
     document_title: Segment Tree Beats
     links: []
-  bundledCode: "#line 1 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include\
+  bundledCode: "#line 2 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include\
     \ <algorithm>\n#include <limits>\n#include <vector>\n\n/*\n * @brief Segment Tree\
     \ Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n */\ntemplate\
     \ <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats() = default;\n\
@@ -94,8 +94,8 @@ data:
     \ 2 * k + 1, m, r);\n        if (TYPE == MIN) return std::min(vl, vr);\n     \
     \   if (TYPE == MAX) return std::max(vl, vr);\n        if (TYPE == SUM) return\
     \ vl + vr;\n    }\n};\n"
-  code: "#include <algorithm>\n#include <limits>\n#include <vector>\n\n/*\n * @brief\
-    \ Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
+  code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <vector>\n\
+    \n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
     \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
     \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n))\
     \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size =\
@@ -179,7 +179,7 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 14:54:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

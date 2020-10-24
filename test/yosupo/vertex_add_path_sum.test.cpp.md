@@ -92,8 +92,8 @@ data:
     \ hld(G, a);\n    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >>\
     \ t;\n        if (t == 0) {\n            int p, x;\n            cin >> p >> x;\n\
     \            hld.update(p, hld[p] + x);\n        } else {\n            int u,\
-    \ v;\n            cin >> u >> v;\n            cout << hld.fold(u, v) << endl;\n\
-    \        }\n    }\n}\n"
+    \ v;\n            cin >> u >> v;\n            cout << hld.fold(u, v) << \"\\n\"\
+    ;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
     \n#include \"../../tree/hld.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = ll;\n    static\
@@ -106,14 +106,14 @@ data:
     \ i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0)\
     \ {\n            int p, x;\n            cin >> p >> x;\n            hld.update(p,\
     \ hld[p] + x);\n        } else {\n            int u, v;\n            cin >> u\
-    \ >> v;\n            cout << hld.fold(u, v) << endl;\n        }\n    }\n}"
+    \ >> v;\n            cout << hld.fold(u, v) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - tree/hld.cpp
   - data-structure/segtree/segment_tree.cpp
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 14:54:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp

@@ -15,7 +15,7 @@ data:
     - https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
   bundledCode: "#line 1 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \n\n#line 1 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include <algorithm>\n\
+    \n\n#line 2 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include <algorithm>\n\
     #include <limits>\n#include <vector>\n\n/*\n * @brief Segment Tree Beats\n * @docs\
     \ docs/data-structure/segtree/segment_tree_beats.md\n */\ntemplate <typename T>\n\
     class SegmentTreeBeats {\npublic:\n    SegmentTreeBeats() = default;\n    explicit\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 14:54:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

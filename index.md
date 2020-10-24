@@ -30,6 +30,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
+    - icon: ':heavy_check_mark:'
+      path: data-structure/persistent_queue.cpp
+      title: data-structure/persistent_queue.cpp
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
@@ -39,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -128,7 +131,7 @@ data:
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/scc.cpp
       title: Strongly Connected Components
     - icon: ':warning:'
@@ -187,7 +190,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_sqrt.cpp
       title: Quadratic Residue
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: math/modint.cpp
     - icon: ':heavy_check_mark:'
@@ -325,7 +328,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_C.test.cpp
       title: test/aoj/GRL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -382,6 +385,9 @@ data:
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/persistent_queue.test.cpp
+      title: test/yosupo/persistent_queue.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
@@ -393,7 +399,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
