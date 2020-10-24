@@ -2,6 +2,7 @@
 
 #include "../../data-structure/range_fenwick_tree.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

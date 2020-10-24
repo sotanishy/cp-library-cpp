@@ -2,6 +2,7 @@
 
 #include "../../data-structure/treap.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

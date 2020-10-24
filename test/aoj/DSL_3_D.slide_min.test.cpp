@@ -2,6 +2,7 @@
 
 #include "../../data-structure/slide_min.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

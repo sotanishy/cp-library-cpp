@@ -2,6 +2,7 @@
 
 #include "../../data-structure/fenwick_tree.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 struct Monoid {

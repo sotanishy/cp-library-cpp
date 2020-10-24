@@ -2,6 +2,7 @@
 
 #include "../../math/prime_factor.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

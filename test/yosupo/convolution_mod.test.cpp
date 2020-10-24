@@ -3,6 +3,7 @@
 #include "../../math/modint.cpp"
 #include "../../math/ntt.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 

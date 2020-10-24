@@ -2,6 +2,7 @@
 
 #include "../../math/euler_totient.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

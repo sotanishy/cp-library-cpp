@@ -2,6 +2,7 @@
 
 #include "../../flow/ford_fulkerson.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

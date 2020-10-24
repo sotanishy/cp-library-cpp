@@ -2,6 +2,7 @@
 
 #include "../../tree/link_cut_tree.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 struct AddMonoid {
