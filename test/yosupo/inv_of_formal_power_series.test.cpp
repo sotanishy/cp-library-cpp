@@ -3,6 +3,7 @@
 #include "../../math/modint.cpp"
 #include "../../math/formal_power_series.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 using mint = Modint<998244353>;

@@ -2,7 +2,6 @@
 #include <cmath>
 #include <numeric>
 #include <unordered_map>
-#include <vector>
 
 /*
  * @brief Modular Arithmetic
@@ -30,28 +29,32 @@ long long mod_inv(long long a, long long mod) {
  * Discrete Logarithm
  */
 int mod_log(long long a, long long b, int p) {
-    int m = sqrt(p) + 1;
-    std::vector<long long> baby(m);
+    a %= p;
+    b %= p;
+    long long k = 1, add = 0, g;
+    while ((g = std::gcd(a, p)) > 1) {
+        if (b == k) return add;
+        if (b % g) return -1;
+        b /= g;
+        p /= g;
+        ++add;
+        k = k * a / g % p;
+    }
+
+    const int m = sqrt(p) + 1;
     std::unordered_map<long long, int> baby_index;
-    long long x = 1;
-    for (int i = 0; i < m; ++i) {
-        baby[i] = x;
-        baby_index[x] = i;
-        x = x * a % p;
+    long long baby = b;
+    for (int i = 0; i <= m; ++i) {
+        baby_index[baby] = i;
+        baby = baby * a % p;
     }
-
-    std::vector<long long> giant(m);
-    long long c = mod_inv(mod_pow(a, m, p), p);
-    x = 1;
-    for (int i = 0; i < m; ++i) {
-        giant[i] = x;
-        x = x * c % p;
-    }
-
-    for (int i = 0; i < m; ++i) {
-        long long y = b * giant[i] % p;
-        if (baby_index.count(y) > 0) {
-            return i * m + baby_index[y];
+    long long am = 1;
+    for (int i = 0; i < m; ++i) am = am * a % p;
+    long long giant = k;
+    for (int i = 1; i <= m; ++i) {
+        giant = giant * am % p;
+        if (baby_index.count(giant)) {
+            return i * m - baby_index[giant] + add;
         }
     }
     return -1;
