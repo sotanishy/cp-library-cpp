@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy:
@@ -9,26 +9,26 @@ data:
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/shortest_path.md
     document_title: Shortest Path Algorithms
     links: []
   bundledCode: "#line 2 \"graph/shortest_path.cpp\"\n#include <limits>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\
-    \ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n   \
-    \ Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from,\
-    \ int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 7 \"graph/shortest_path.cpp\"\
+    #include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate\
+    \ <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int\
+    \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
+    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 7 \"graph/shortest_path.cpp\"\
     \n\n/*\n * @brief Shortest Path Algorithms\n * @docs docs/graph/shortest_path.md\n\
     \ */\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate <typename T>\nstd::vector<T>\
     \ bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {\n    constexpr T\
@@ -81,8 +81,8 @@ data:
   path: graph/shortest_path.cpp
   requiredBy:
   - graph/range_edge_graph.cpp
-  timestamp: '2020-10-24 15:48:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-24 20:53:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_1_C.test.cpp

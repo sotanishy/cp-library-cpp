@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_C.test.cpp
     title: test/aoj/GRL_5_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/lca.test.cpp
+    title: test/yosupo/lca.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -62,6 +65,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_C.test.cpp
+  - test/yosupo/lca.test.cpp
 documentation_of: tree/lca.cpp
 layout: document
 redirect_from:

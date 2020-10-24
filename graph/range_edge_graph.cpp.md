@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path.cpp
     title: Shortest Path Algorithms
   _extendedRequiredBy: []
@@ -16,7 +16,7 @@ data:
     document_title: Range Edge Graph
     links: []
   bundledCode: "#line 1 \"graph/range_edge_graph.cpp\"\n#include <bits/stdc++.h>\n\
-    #line 3 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from,\
+    #line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from,\
     \ to;\n    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
     \ {}\n};\n#line 7 \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n\
@@ -125,7 +125,7 @@ data:
   isVerificationFile: false
   path: graph/range_edge_graph.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:48:17+09:00'
+  timestamp: '2020-10-24 20:53:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/range_edge_graph.cpp

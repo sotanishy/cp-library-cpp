@@ -130,18 +130,19 @@ data:
     \ ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\n\
     private:\n    FPS pre(int size) const { return FPS(this->begin(), this->begin()\
     \ + std::min((int) this->size(), size)); }\n};\n#line 5 \"test/yosupo/inv_of_formal_power_series.test.cpp\"\
-    \n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n\
-    \    cin >> N;\n    FormalPowerSeries<mint> f(N);\n    for (int i = 0; i < N;\
-    \ ++i) cin >> f[i];\n    auto g = f.inv();\n    for (int i = 0; i < N; ++i) cout\
-    \ << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \n\n#line 7 \"test/yosupo/inv_of_formal_power_series.test.cpp\"\nusing namespace\
+    \ std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    FormalPowerSeries<mint>\
+    \ f(N);\n    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.inv();\n\
+    \    for (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/formal_power_series.cpp\"\
-    \n\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n\
-    \    cin >> N;\n    FormalPowerSeries<mint> f(N);\n    for (int i = 0; i < N;\
-    \ ++i) cin >> f[i];\n    auto g = f.inv();\n    for (int i = 0; i < N; ++i) cout\
-    \ << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N;\n    cin >> N;\n    FormalPowerSeries<mint> f(N);\n    for (int i\
+    \ = 0; i < N; ++i) cin >> f[i];\n    auto g = f.inv();\n    for (int i = 0; i\
+    \ < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/formal_power_series.cpp
@@ -149,7 +150,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/inv_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-10-24 20:53:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/inv_of_formal_power_series.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []
@@ -16,10 +16,10 @@ data:
     document_title: Diameter of a Tree
     links: []
   bundledCode: "#line 2 \"tree/tree_diameter.cpp\"\n#include <algorithm>\n#include\
-    \ <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\
-    \ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n   \
-    \ Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from,\
-    \ int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\
+    \ <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename\
+    \ T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight)\
+    \ : from(-1), to(to), weight(weight) {}\n    Edge(int from, int to, T weight)\
+    \ : from(from), to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\
     \n\n/*\n * @brief Diameter of a Tree\n * @docs docs/tree/tree_diameter.md\n */\n\
     class TreeDiameter {\npublic:\n    TreeDiameter() = delete;\n\n    static int\
     \ diameter(const std::vector<std::vector<int>>& G) {\n        auto p = dfs(G,\
@@ -35,7 +35,7 @@ data:
     \ G, int v, int p) {\n        std::pair<T, int> ret(0, v);\n        for (auto&\
     \ e : G[v]) {\n            if (e.to == p) continue;\n            auto weight =\
     \ dfs(G, e.to, v);\n            weight.first += e.weight;\n            ret = std::max(ret,\
-    \ weight);\n        }\n        return ret;\n    }\n};\n/*\nint tree_diameter(const\
+    \ weight);\n        }\n        return ret;\n    }\n};\n\n/*\nint tree_diameter(const\
     \ std::vector<std::vector<int>>& G) {\n    auto dfs = [&](const auto& self, int\
     \ v, int p) {\n        std::pair<int, int> ret(0, v);\n        for (int c : G[v])\
     \ {\n            if (c == p) continue;\n            auto weight = self(self, c,\
@@ -65,7 +65,7 @@ data:
     \ G, int v, int p) {\n        std::pair<T, int> ret(0, v);\n        for (auto&\
     \ e : G[v]) {\n            if (e.to == p) continue;\n            auto weight =\
     \ dfs(G, e.to, v);\n            weight.first += e.weight;\n            ret = std::max(ret,\
-    \ weight);\n        }\n        return ret;\n    }\n};\n/*\nint tree_diameter(const\
+    \ weight);\n        }\n        return ret;\n    }\n};\n\n/*\nint tree_diameter(const\
     \ std::vector<std::vector<int>>& G) {\n    auto dfs = [&](const auto& self, int\
     \ v, int p) {\n        std::pair<int, int> ret(0, v);\n        for (int c : G[v])\
     \ {\n            if (c == p) continue;\n            auto weight = self(self, c,\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: false
   path: tree/tree_diameter.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-24 20:53:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_A.test.cpp

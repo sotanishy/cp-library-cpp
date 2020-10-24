@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []
@@ -25,10 +25,10 @@ data:
     document_title: Minimum Spanning Tree Algorithms
     links: []
   bundledCode: "#line 2 \"graph/mst.cpp\"\n#include <algorithm>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n#include <bits/stdc++.h>\n\
-    \ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n   \
-    \ Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from,\
-    \ int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
+    #include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate\
+    \ <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int\
+    \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
+    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
     \n\n/*\n * @brief Union Find\n * @docs docs/data-structure/unionfind/union_find.md\n\
     \ */\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: graph/mst.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:48:17+09:00'
+  timestamp: '2020-10-24 20:53:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.prim.test.cpp
