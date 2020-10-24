@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <cmath>
+#include <unordered_map>
+#include <vector>
 #include "mod_pow.cpp"
 
 /*

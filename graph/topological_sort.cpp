@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <stack>
+#include <vector>
 
 /*
  * @brief Topological Sort

@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <limits>
+#include <vector>
 #include "edge.cpp"
 
 /*

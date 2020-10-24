@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <utility>
+#include <vector>
 
 /*
  * @brief Lowlink

@@ -2,6 +2,7 @@
 
 #include "../../math/mod_pow.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {

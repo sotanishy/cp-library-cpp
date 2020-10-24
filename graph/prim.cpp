@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <queue>
+#include <utility>
+#include <vector>
 #include "edge.cpp"
 
 /*

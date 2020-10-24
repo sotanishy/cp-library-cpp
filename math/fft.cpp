@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <cmath>
+#include <vector>
 
 /*
  * @brief Fast Fourier Transform

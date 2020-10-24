@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <limits>
+#include <utility>
+#include <vector>
 
 /*
  * @brief Li Chao Tree

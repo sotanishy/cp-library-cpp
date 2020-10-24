@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <limits>
+#include <queue>
+#include <utility>
+#include <vector>
 
 /*
  * @brief Minimum Cost Flow

@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <limits>
+#include <vector>
 
 /*
  * @brief Ford-Fulkerson Algorithm

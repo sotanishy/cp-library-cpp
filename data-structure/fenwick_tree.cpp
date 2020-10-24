@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <functional>
+#include <vector>
 
 /*
  * @brief Fenwick Tree
