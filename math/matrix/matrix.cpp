@@ -121,7 +121,7 @@ public:
         return m;
     }
 
-    std::vector<vector<T>> solve_system(const std::vector<T>& b) {
+    std::vector<std::vector<T>> solve_system(const std::vector<T>& b) {
         assert(m == (int) b.size());
         Matrix bb(m, 1);
         for (int i = 0; i < m; ++i) bb[i][0] = b[i];

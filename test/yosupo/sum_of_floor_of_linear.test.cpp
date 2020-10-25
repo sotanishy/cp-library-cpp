@@ -2,6 +2,7 @@
 
 #include "../../math/floor_sum.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
