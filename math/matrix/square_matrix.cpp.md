@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/matrix/matrix.cpp
     title: Matrix
   _extendedRequiredBy: []
@@ -59,7 +59,7 @@ data:
     \ false;\n            for (int j = 0; j < n; ++j) {\n                if (!eq(A[i][j],\
     \ T(0))) {\n                    nonzero = true;\n                    break;\n\
     \                }\n            }\n            if (!nonzero) return i;\n     \
-    \   }\n        return m;\n    }\n\n    std::vector<vector<T>> solve_system(const\
+    \   }\n        return m;\n    }\n\n    std::vector<std::vector<T>> solve_system(const\
     \ std::vector<T>& b) {\n        assert(m == (int) b.size());\n        Matrix bb(m,\
     \ 1);\n        for (int i = 0; i < m; ++i) bb[i][0] = b[i];\n        auto sol\
     \ = concat((*this), bb).rref();\n\n        std::vector<bool> independent(n);\n\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: math/matrix/square_matrix.cpp
   requiredBy: []
-  timestamp: '2020-10-26 01:27:49+09:00'
+  timestamp: '2020-10-26 01:47:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix_det.test.cpp

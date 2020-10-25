@@ -157,7 +157,7 @@ data:
     - icon: ':warning:'
       path: math/fft.cpp
       title: Fast Fourier Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Floor Sum
     - icon: ':heavy_check_mark:'
@@ -186,7 +186,7 @@ data:
       title: Stirling Number of the Second Kind
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/matrix.cpp
       title: Matrix
     - icon: ':x:'
@@ -422,10 +422,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'

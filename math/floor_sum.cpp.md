@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/sum_of_floor_of_linear.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/floor_sum.md
     document_title: Floor Sum
@@ -32,7 +32,7 @@ data:
   path: math/floor_sum.cpp
   requiredBy: []
   timestamp: '2020-10-26 00:14:34+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/sum_of_floor_of_linear.test.cpp
 documentation_of: math/floor_sum.cpp

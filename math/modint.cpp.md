@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
   _pathExtension: cpp
