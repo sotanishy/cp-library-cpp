@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/maxtrix_det
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
     links:
-    - https://judge.yosupo.jp/problem/maxtrix_det
-  bundledCode: "#line 1 \"test/yosupo/matrix_det.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/maxtrix_det\"\
+    - https://judge.yosupo.jp/problem/matrix_det
+  bundledCode: "#line 1 \"test/yosupo/matrix_det.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\
     \n\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\
     /*\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
     \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
@@ -141,7 +141,7 @@ data:
     \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    SquareMatrix<mint> a(N);\n\
     \    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) cin >>\
     \ a[i][j];\n    }\n    cout << a.det() << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/maxtrix_det\"\n\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\
     \ \"../../math/modint.cpp\"\n#include \"../../math/matrix/square_matrix.cpp\"\n\
     \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
@@ -155,8 +155,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 01:47:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-26 01:56:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix_det.test.cpp
 layout: document

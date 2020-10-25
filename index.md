@@ -169,7 +169,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -186,10 +186,10 @@ data:
       title: Stirling Number of the Second Kind
   - name: math/matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.cpp
       title: Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/square_matrix.cpp
       title: Square Matrix
   - name: misc
@@ -371,7 +371,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
