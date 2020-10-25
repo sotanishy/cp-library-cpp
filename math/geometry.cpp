@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <optional>
+#include <vector>
 
 constexpr double eps = 1e-12;
 

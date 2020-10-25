@@ -2,6 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
+/*
+ * @brief Mod int
+ */
 template <int mod>
 class Modint {
     using mint = Modint;
