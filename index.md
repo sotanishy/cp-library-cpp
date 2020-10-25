@@ -151,6 +151,9 @@ data:
     - icon: ':warning:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
+    - icon: ':heavy_check_mark:'
+      path: math/fast_prime.cpp
+      title: Fast Prime Number Algorithms
     - icon: ':warning:'
       path: math/fft.cpp
       title: Fast Fourier Transform
@@ -348,6 +351,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/factorize.test.cpp
+      title: test/yosupo/factorize.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
