@@ -8,23 +8,23 @@ $a^p \mod mod$ を二分累乗法で計算する．
 
 また，$mod$ が素数であるとき，フェルマーの小定理を利用して $n$ の $\mod mod$ での逆元を計算することができる．(拡張ユークリッド互除法を用いた逆元の計算では $mod$ が素数である必要がなく，定数倍速いため，基本的にはそちらを用いる)
 
-- `long long mod_pow(long long a, long long p, long long mod)`
+- `long long mod_pow(long long a, long long p, int mod)`
     - $a^p \mod mod$ を計算する
     - 時間計算量: $O(\lg p)$
 
-- `long long mod_inv(long long a, long long mod)`
+- `long long mod_inv(long long a, int mod)`
     - $a$ の $\mod mod$ での逆元を計算する
     - 時間計算量: $O(\lg mod)$
 
 ## Discrete Logarithm
 
-離散対数を計算する．すなわち，$a^x = b (\mod p)$ を満たす $x$ を求める．
+離散対数を計算する．すなわち，$a^x = b (\mod mod)$ を満たす $x$ を求める．
 
 Baby-step giant-step 法を用いている．
 
-- `int mod_log(long long a, long long b, long long p)`
-    - $a^x = b (\mod p)$ を満たす $x$ を求める．存在しない場合は $-1$ を返す．
-    - 時間計算量: $O(\sqrt{p})$
+- `int mod_log(long long a, long long b, int mod)`
+    - $a^x = b (\mod mod)$ を満たす $x$ を求める．存在しない場合は $-1$ を返す．
+    - 時間計算量: $O(\sqrt{mod})$
 
 ## Quadratic Residue
 
