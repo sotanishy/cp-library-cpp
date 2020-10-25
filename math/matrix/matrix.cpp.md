@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/system_of_linear_equations.test.cpp
+    title: test/yosupo/system_of_linear_equations.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
@@ -58,12 +61,25 @@ data:
     \ false;\n            for (int j = 0; j < n; ++j) {\n                if (!eq(A[i][j],\
     \ T(0))) {\n                    nonzero = true;\n                    break;\n\
     \                }\n            }\n            if (!nonzero) return i;\n     \
-    \   }\n        return m;\n    }\n\nprotected:\n    template <typename U, typename\
-    \ std::enable_if<std::is_floating_point<U>::value>::type* = nullptr>\n    static\
-    \ constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8; }\n\n    template <typename\
-    \ U, typename std::enable_if<!std::is_floating_point<U>::value>::type* = nullptr>\n\
-    \    static constexpr bool eq(U a, U b) { return a == b; }\n\n    std::vector<std::vector<T>>\
-    \ mat;\n    int m, n;\n};\n"
+    \   }\n        return m;\n    }\n\n    std::vector<vector<T>> solve_system(const\
+    \ std::vector<T>& b) {\n        assert(m == (int) b.size());\n        Matrix bb(m,\
+    \ 1);\n        for (int i = 0; i < m; ++i) bb[i][0] = b[i];\n        auto sol\
+    \ = concat((*this), bb).rref();\n\n        std::vector<bool> independent(n);\n\
+    \        std::vector<std::vector<T>> ret(1, std::vector<T>(n));\n        std::vector<std::vector<T>>\
+    \ bases(n, std::vector<T>(n));\n        for (int j = 0; j < n; ++j) bases[j][j]\
+    \ = 1;\n        int j = 0;\n        for (int i = 0; i < m; ++i) {\n          \
+    \  for (; j < n; ++j) {\n                if (eq(sol[i][j], T(1))) {\n        \
+    \            independent[j] = true;\n                    for (int k = j + 1; k\
+    \ < n; ++k) {\n                        bases[k][j] = -sol[i][k];\n           \
+    \         }\n                    ret[0][j] = sol[i][n];\n                    break;\n\
+    \                }\n            }\n            if (j == n && !eq(sol[i][n], T(0)))\
+    \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
+    \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
+    \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
+    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
+    \  std::vector<std::vector<T>> mat;\n    int m, n;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
     #include <initializer_list>\n#include <type_traits>\n#include <vector>\n\n/*\n\
     \ * @brief Matrix\n * @docs docs/math/matrix/matrix.md\n */\ntemplate <typename\
@@ -107,21 +123,35 @@ data:
     \ false;\n            for (int j = 0; j < n; ++j) {\n                if (!eq(A[i][j],\
     \ T(0))) {\n                    nonzero = true;\n                    break;\n\
     \                }\n            }\n            if (!nonzero) return i;\n     \
-    \   }\n        return m;\n    }\n\nprotected:\n    template <typename U, typename\
-    \ std::enable_if<std::is_floating_point<U>::value>::type* = nullptr>\n    static\
-    \ constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8; }\n\n    template <typename\
-    \ U, typename std::enable_if<!std::is_floating_point<U>::value>::type* = nullptr>\n\
-    \    static constexpr bool eq(U a, U b) { return a == b; }\n\n    std::vector<std::vector<T>>\
-    \ mat;\n    int m, n;\n};"
+    \   }\n        return m;\n    }\n\n    std::vector<vector<T>> solve_system(const\
+    \ std::vector<T>& b) {\n        assert(m == (int) b.size());\n        Matrix bb(m,\
+    \ 1);\n        for (int i = 0; i < m; ++i) bb[i][0] = b[i];\n        auto sol\
+    \ = concat((*this), bb).rref();\n\n        std::vector<bool> independent(n);\n\
+    \        std::vector<std::vector<T>> ret(1, std::vector<T>(n));\n        std::vector<std::vector<T>>\
+    \ bases(n, std::vector<T>(n));\n        for (int j = 0; j < n; ++j) bases[j][j]\
+    \ = 1;\n        int j = 0;\n        for (int i = 0; i < m; ++i) {\n          \
+    \  for (; j < n; ++j) {\n                if (eq(sol[i][j], T(1))) {\n        \
+    \            independent[j] = true;\n                    for (int k = j + 1; k\
+    \ < n; ++k) {\n                        bases[k][j] = -sol[i][k];\n           \
+    \         }\n                    ret[0][j] = sol[i][n];\n                    break;\n\
+    \                }\n            }\n            if (j == n && !eq(sol[i][n], T(0)))\
+    \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
+    \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
+    \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
+    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
+    \  std::vector<std::vector<T>> mat;\n    int m, n;\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/matrix/matrix.cpp
   requiredBy:
   - math/matrix/square_matrix.cpp
-  timestamp: '2020-10-26 00:14:34+09:00'
+  timestamp: '2020-10-26 01:27:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/system_of_linear_equations.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 redirect_from:
@@ -168,4 +198,8 @@ title: Matrix
 
 - `int rank()`
     - $A$ の階数を返す
+    - 時間計算量: $O(mn^2)$
+
+- `vector<vector<T>> solve_system(vector<T> b)`
+    - $Ax = b$ の解を返す．返り値を `sol` としたとき，`sol[0]` は解の1つ，`sol[1:]` は解空間の基底である．解がないときは空リストを返す．
     - 時間計算量: $O(mn^2)$

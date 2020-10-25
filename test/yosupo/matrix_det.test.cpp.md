@@ -92,18 +92,31 @@ data:
     \ false;\n            for (int j = 0; j < n; ++j) {\n                if (!eq(A[i][j],\
     \ T(0))) {\n                    nonzero = true;\n                    break;\n\
     \                }\n            }\n            if (!nonzero) return i;\n     \
-    \   }\n        return m;\n    }\n\nprotected:\n    template <typename U, typename\
-    \ std::enable_if<std::is_floating_point<U>::value>::type* = nullptr>\n    static\
-    \ constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8; }\n\n    template <typename\
-    \ U, typename std::enable_if<!std::is_floating_point<U>::value>::type* = nullptr>\n\
-    \    static constexpr bool eq(U a, U b) { return a == b; }\n\n    std::vector<std::vector<T>>\
-    \ mat;\n    int m, n;\n};\n#line 6 \"math/matrix/square_matrix.cpp\"\n\n/*\n *\
-    \ @brief Square Matrix\n * @docs docs/math/matrix/square_matrix.md\n */\ntemplate\
-    \ <typename T>\nclass SquareMatrix : public Matrix<T> {\n    using Matrix<T>::Matrix;\n\
-    \    using Matrix<T>::eq;\n    using Matrix<T>::n;\n\npublic:\n    static SquareMatrix\
-    \ I(int n) {\n        SquareMatrix ret(n);\n        for (int i = 0; i < n; ++i)\
-    \ ret[i][i] = 1;\n        return ret;\n    }\n\n    SquareMatrix() = default;\n\
-    \    explicit SquareMatrix(int n) : Matrix<T>(n, n) {}\n    SquareMatrix(const\
+    \   }\n        return m;\n    }\n\n    std::vector<vector<T>> solve_system(const\
+    \ std::vector<T>& b) {\n        assert(m == (int) b.size());\n        Matrix bb(m,\
+    \ 1);\n        for (int i = 0; i < m; ++i) bb[i][0] = b[i];\n        auto sol\
+    \ = concat((*this), bb).rref();\n\n        std::vector<bool> independent(n);\n\
+    \        std::vector<std::vector<T>> ret(1, std::vector<T>(n));\n        std::vector<std::vector<T>>\
+    \ bases(n, std::vector<T>(n));\n        for (int j = 0; j < n; ++j) bases[j][j]\
+    \ = 1;\n        int j = 0;\n        for (int i = 0; i < m; ++i) {\n          \
+    \  for (; j < n; ++j) {\n                if (eq(sol[i][j], T(1))) {\n        \
+    \            independent[j] = true;\n                    for (int k = j + 1; k\
+    \ < n; ++k) {\n                        bases[k][j] = -sol[i][k];\n           \
+    \         }\n                    ret[0][j] = sol[i][n];\n                    break;\n\
+    \                }\n            }\n            if (j == n && !eq(sol[i][n], T(0)))\
+    \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
+    \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
+    \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
+    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
+    \  std::vector<std::vector<T>> mat;\n    int m, n;\n};\n#line 6 \"math/matrix/square_matrix.cpp\"\
+    \n\n/*\n * @brief Square Matrix\n * @docs docs/math/matrix/square_matrix.md\n\
+    \ */\ntemplate <typename T>\nclass SquareMatrix : public Matrix<T> {\n    using\
+    \ Matrix<T>::Matrix;\n    using Matrix<T>::eq;\n    using Matrix<T>::n;\n\npublic:\n\
+    \    static SquareMatrix I(int n) {\n        SquareMatrix ret(n);\n        for\
+    \ (int i = 0; i < n; ++i) ret[i][i] = 1;\n        return ret;\n    }\n\n    SquareMatrix()\
+    \ = default;\n    explicit SquareMatrix(int n) : Matrix<T>(n, n) {}\n    SquareMatrix(const\
     \ Matrix<T>& mat) : Matrix<T>(mat) {\n        assert(Matrix<T>::m == n);\n   \
     \ }\n    SquareMatrix(std::initializer_list<std::initializer_list<T>> list) :\
     \ Matrix<T>(list) {\n        assert(Matrix<T>::m == n);\n    }\n\n    SquareMatrix\
@@ -142,7 +155,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 00:14:34+09:00'
+  timestamp: '2020-10-26 01:27:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix_det.test.cpp

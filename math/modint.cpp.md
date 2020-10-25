@@ -18,15 +18,18 @@ data:
   - icon: ':x:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/system_of_linear_equations.test.cpp
+    title: test/yosupo/system_of_linear_equations.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':question:'
   attributes:
@@ -102,6 +105,7 @@ data:
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/system_of_linear_equations.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
