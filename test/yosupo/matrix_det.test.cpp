@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/maxtrix_det"
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
 #include "../../math/modint.cpp"
 #include "../../math/matrix/square_matrix.cpp"
