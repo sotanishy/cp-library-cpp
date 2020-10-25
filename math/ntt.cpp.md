@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/formal_power_series.cpp
     title: Formal Power Series
   _extendedVerifiedWith:
@@ -18,11 +18,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/ntt.md
     document_title: Number Theoretic Transform
@@ -97,7 +97,7 @@ data:
   requiredBy:
   - math/formal_power_series.cpp
   timestamp: '2020-10-24 15:32:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp

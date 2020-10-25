@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
-    title: math/modint.cpp
+    title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -46,22 +46,22 @@ data:
     \        if (a <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n\
     \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
     \ 2 * k + 1, m, r));\n    }\n};\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n\
-    #line 4 \"math/modint.cpp\"\n\ntemplate <int mod>\nclass Modint {\n    using mint\
-    \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
-    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
-    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
-    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
-    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
-    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
-    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
-    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
-    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
-    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
-    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
-    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
-    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
-    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
-    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
+    #line 4 \"math/modint.cpp\"\n\n/*\n * @brief Mod int\n */\ntemplate <int mod>\n\
+    class Modint {\n    using mint = Modint;\n    static_assert(mod > 0, \"Modulus\
+    \ must be positive\");\n\npublic:\n    static constexpr int get_mod() noexcept\
+    \ { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept : x(y >= 0\
+    \ ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value() const noexcept\
+    \ { return x; }\n\n    constexpr mint& operator+=(const mint& r) noexcept { if\
+    \ ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator-=(const\
+    \ mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod; return *this; }\n\
+    \    constexpr mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL\
+    \ * x * r.x % mod); return *this; }\n    constexpr mint& operator/=(const mint&\
+    \ r) noexcept { *this *= r.inv(); return *this; }\n\n    constexpr mint operator-()\
+    \ const noexcept { return mint(-x); }\n\n    constexpr mint operator+(const mint&\
+    \ r) const noexcept { return mint(*this) += r; }\n    constexpr mint operator-(const\
+    \ mint& r) const noexcept { return mint(*this) -= r; }\n    constexpr mint operator*(const\
+    \ mint& r) const noexcept { return mint(*this) *= r; }\n    constexpr mint operator/(const\
+    \ mint& r) const noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
     \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
     \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
     \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
@@ -112,8 +112,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:37:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-26 00:14:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document

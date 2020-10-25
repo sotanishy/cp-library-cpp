@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':warning:'
@@ -157,28 +157,25 @@ data:
     - icon: ':warning:'
       path: math/fft.cpp
       title: Fast Fourier Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/floor_sum.cpp
       title: Floor Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
     - icon: ':warning:'
       path: math/geometry.cpp
       title: math/geometry.cpp
-    - icon: ':warning:'
-      path: math/matrix.cpp
-      title: Matrix
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
-      title: math/modint.cpp
+      title: Mod int
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -187,6 +184,14 @@ data:
     - icon: ':warning:'
       path: math/stirling_second.cpp
       title: Stirling Number of the Second Kind
+  - name: math/matrix
+    pages:
+    - icon: ':x:'
+      path: math/matrix/matrix.cpp
+      title: Matrix
+    - icon: ':x:'
+      path: math/matrix/square_matrix.cpp
+      title: Square Matrix
   - name: misc
     pages:
     - icon: ':warning:'
@@ -366,6 +371,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/matrix_det.test.cpp
+      title: test/yosupo/matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
@@ -384,13 +392,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -414,7 +422,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
