@@ -60,6 +60,7 @@
 "test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp": "2020-10-26 15:47:58 +0900",
 "test/yosupo/scc.test.cpp": "2020-10-24 20:53:04 +0900",
 "test/yosupo/segment_add_get_min.test.cpp": "2020-10-24 16:23:12 +0900",
+"test/yosupo/set_xor_min.test.cpp": "2020-10-26 22:28:07 +0900",
 "test/yosupo/sqrt_mod.test.cpp": "2020-10-25 21:55:28 +0900",
 "test/yosupo/staticrmq.test.cpp": "2020-09-22 15:17:21 +0900",
 "test/yosupo/suffixarray.test.cpp": "2020-10-24 14:54:33 +0900",
