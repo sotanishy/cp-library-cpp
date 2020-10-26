@@ -10,7 +10,8 @@
 class RollingHash {
 public:
     static long long generate_base() {
-        std::mt19937_64 rng(std::random_device());
+        std::random_device rd;
+        std::mt19937_64 rng(rd());
         std::uniform_int_distribution<long long> rand(1, mod - 1);
         return rand(rng);
     }

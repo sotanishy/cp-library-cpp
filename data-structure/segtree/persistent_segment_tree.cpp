@@ -79,8 +79,7 @@ private:
         if (r <= a || b <= l) return M::id;
         if (a <= l && r <= b) return n->val;
         int m = (l + r) / 2;
-        T vl = fold(a, b, n->left, l, m);
-        T vr = fold(a, b, n->right, m, r);
-        return M::op(vl, vr);
+        return M::op(fold(a, b, n->left, l, m),
+                     fold(a, b, n->right, m, r));
     }
 };
