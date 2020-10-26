@@ -83,10 +83,11 @@ bool is_prime(long long n) {
     return true;
 }
 
-unsigned long long next_ull(long long n) {
+unsigned long long randll(long long lb, long long ub) {
     static std::random_device rd;
     static std::mt19937_64 rng(rd());
-    return rng() % n;
+    std::uniform_int_distribution<long long> rand(lb, ub - 1);
+    return rand(rng);
 }
 
 long long pollards_rho(long long n) {
@@ -95,9 +96,9 @@ long long pollards_rho(long long n) {
 
     mint::set_mod(n);
     while (true) {
-        mint x = next_ull(n - 2) + 2;
+        mint x = randll(2, n);
         mint y = x;
-        mint c = next_ull(n - 1) + 1;
+        mint c = randll(1, n);
         long long d = 1;
         while (d == 1) {
             x = x * x + c;

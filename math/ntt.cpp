@@ -34,9 +34,6 @@ private:
         if (mod == 754974721) return 11;
         if (mod == 998244353) return 3;
         if (mod == 1224736769) return 3;
-        mint r = 2;
-        while (r.pow((mod - 1) >> 1) == 1) r += 1;
-        return r;
     }
 
     static constexpr int mod = mint::get_mod();
