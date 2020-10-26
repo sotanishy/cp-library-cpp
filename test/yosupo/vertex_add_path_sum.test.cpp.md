@@ -18,7 +18,7 @@ data:
     - https://judge.yosupo.jp/problem/vertex_add_path_sum
   bundledCode: "#line 1 \"test/yosupo/vertex_add_path_sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n#line 2 \"tree/hld.cpp\"\
-    \n#include <algorithm>\n#include <vector>\n#line 3 \"data-structure/segtree/segment_tree.cpp\"\
+    \n#include <algorithm>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 14:54:33+09:00'
+  timestamp: '2020-10-26 19:52:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp

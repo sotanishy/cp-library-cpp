@@ -14,7 +14,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
   bundledCode: "#line 1 \"test/yosupo/point_add_range_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n#line 1 \"data-structure/segtree/segment_tree.cpp\"\
+    \ \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n#line 2 \"data-structure/segtree/segment_tree.cpp\"\
     \n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Segment Tree\n * @docs\
     \ docs/data-structure/segtree/segment_tree.md\n */\ntemplate <typename M>\nclass\
     \ SegmentTree {\n    using T = typename M::T;\n\npublic:\n    SegmentTree() =\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-26 19:52:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.test.cpp

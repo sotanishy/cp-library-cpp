@@ -12,6 +12,7 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: Persistent Queue
     links: []
   bundledCode: "#line 2 \"data-structure/persistent_queue.cpp\"\n#include <cassert>\n\
     #line 2 \"data-structure/persistent_array.cpp\"\n#include <memory>\n#include <vector>\n\
@@ -30,25 +31,26 @@ data:
     \ x) const {\n        node_ptr res = t ? std::make_shared<Node>(*t) : std::make_shared<Node>();\n\
     \        if (k == 0) {\n            res->val = x;\n        } else {\n        \
     \    res->ch[k % B] = set(res->ch[k % B], k / B, x);\n        }\n        return\
-    \ res;\n    }\n};\n#line 4 \"data-structure/persistent_queue.cpp\"\n\ntemplate\
-    \ <typename T, int Cap = (int) 1e7>\nclass PersistentQueue {\npublic:\n    PersistentQueue()\
-    \ : first(0), last(0) {}\n\n    int size() const {\n        return (last - first\
-    \ + Cap) % Cap;\n    }\n\n    bool empty() const {\n        return size() == 0;\n\
-    \    }\n\n    T front() const {\n        assert(!empty());\n        return pa.get(first);\n\
-    \    }\n\n    T back() const {\n        assert(!empty());\n        return pa.get((last\
-    \ + Cap - 1) % Cap);\n    }\n\n    PersistentQueue push(const T& val) const {\n\
-    \        assert(size() < Cap);\n        return PersistentQueue(pa.set(last, val),\
-    \ first, (last + 1) % Cap);\n    }\n\n    PersistentQueue pop() const {\n    \
-    \    assert(!empty());\n        return PersistentQueue(pa, (first + 1) % Cap,\
+    \ res;\n    }\n};\n#line 4 \"data-structure/persistent_queue.cpp\"\n\n/*\n * @brief\
+    \ Persistent Queue\n */\ntemplate <typename T, int Cap = (int) 1e7>\nclass PersistentQueue\
+    \ {\npublic:\n    PersistentQueue() : first(0), last(0) {}\n\n    int size() const\
+    \ {\n        return (last - first + Cap) % Cap;\n    }\n\n    bool empty() const\
+    \ {\n        return size() == 0;\n    }\n\n    T front() const {\n        assert(!empty());\n\
+    \        return pa.get(first);\n    }\n\n    T back() const {\n        assert(!empty());\n\
+    \        return pa.get((last + Cap - 1) % Cap);\n    }\n\n    PersistentQueue\
+    \ push(const T& val) const {\n        assert(size() < Cap);\n        return PersistentQueue(pa.set(last,\
+    \ val), first, (last + 1) % Cap);\n    }\n\n    PersistentQueue pop() const {\n\
+    \        assert(!empty());\n        return PersistentQueue(pa, (first + 1) % Cap,\
     \ last);\n    }\n\nprivate:\n    PersistentArray<T> pa;\n    int first, last;\n\
     \n    PersistentQueue(const PersistentArray<T>& pa, int first, int last)\n   \
     \     : pa(pa), first(first), last(last) {}\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include \"persistent_array.cpp\"\n\ntemplate\
-    \ <typename T, int Cap = (int) 1e7>\nclass PersistentQueue {\npublic:\n    PersistentQueue()\
-    \ : first(0), last(0) {}\n\n    int size() const {\n        return (last - first\
-    \ + Cap) % Cap;\n    }\n\n    bool empty() const {\n        return size() == 0;\n\
-    \    }\n\n    T front() const {\n        assert(!empty());\n        return pa.get(first);\n\
-    \    }\n\n    T back() const {\n        assert(!empty());\n        return pa.get((last\
+  code: "#pragma once\n#include <cassert>\n#include \"persistent_array.cpp\"\n\n/*\n\
+    \ * @brief Persistent Queue\n */\ntemplate <typename T, int Cap = (int) 1e7>\n\
+    class PersistentQueue {\npublic:\n    PersistentQueue() : first(0), last(0) {}\n\
+    \n    int size() const {\n        return (last - first + Cap) % Cap;\n    }\n\n\
+    \    bool empty() const {\n        return size() == 0;\n    }\n\n    T front()\
+    \ const {\n        assert(!empty());\n        return pa.get(first);\n    }\n\n\
+    \    T back() const {\n        assert(!empty());\n        return pa.get((last\
     \ + Cap - 1) % Cap);\n    }\n\n    PersistentQueue push(const T& val) const {\n\
     \        assert(size() < Cap);\n        return PersistentQueue(pa.set(last, val),\
     \ first, (last + 1) % Cap);\n    }\n\n    PersistentQueue pop() const {\n    \
@@ -61,7 +63,7 @@ data:
   isVerificationFile: false
   path: data-structure/persistent_queue.cpp
   requiredBy: []
-  timestamp: '2020-10-24 14:54:33+09:00'
+  timestamp: '2020-10-26 19:52:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/persistent_queue.test.cpp
@@ -70,5 +72,5 @@ layout: document
 redirect_from:
 - /library/data-structure/persistent_queue.cpp
 - /library/data-structure/persistent_queue.cpp.html
-title: data-structure/persistent_queue.cpp
+title: Persistent Queue
 ---

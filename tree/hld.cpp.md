@@ -16,7 +16,7 @@ data:
     document_title: Heavy-Light Decomposition
     links: []
   bundledCode: "#line 2 \"tree/hld.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    #line 3 \"data-structure/segtree/segment_tree.cpp\"\n\n/*\n * @brief Segment Tree\n\
+    #line 4 \"data-structure/segtree/segment_tree.cpp\"\n\n/*\n * @brief Segment Tree\n\
     \ * @docs docs/data-structure/segtree/segment_tree.md\n */\ntemplate <typename\
     \ M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n    SegmentTree()\
     \ = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id))\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-26 19:52:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_path_sum.test.cpp

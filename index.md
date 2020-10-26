@@ -29,7 +29,7 @@ data:
       title: Persistent Array
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_queue.cpp
-      title: data-structure/persistent_queue.cpp
+      title: Persistent Queue
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
@@ -38,7 +38,7 @@ data:
       title: Fenwick Tree with Range Update
     - icon: ':warning:'
       path: data-structure/red_black_tree.cpp
-      title: data-structure/red_black_tree.cpp
+      title: Red Black Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
@@ -83,6 +83,9 @@ data:
       path: data-structure/unionfind/persistent_union_find.cpp
       title: Persistent Union Find
     - icon: ':heavy_check_mark:'
+      path: data-structure/unionfind/undoable_union_find.cpp
+      title: Undoable Union Find
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -116,6 +119,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
+    - icon: ':heavy_check_mark:'
+      path: graph/offline_dynamic_connectivity.cpp
+      title: Offline Dynamic Connectivity
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph
@@ -168,7 +174,7 @@ data:
       title: Formal Power Series
     - icon: ':warning:'
       path: math/geometry.cpp
-      title: math/geometry.cpp
+      title: Geometry
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
@@ -216,7 +222,7 @@ data:
       title: Longest Common Prefix Array
     - icon: ':warning:'
       path: string/manacher.cpp
-      title: string/manacher.cpp
+      title: Manacher's Algorithm
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
@@ -359,6 +365,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
+      title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp

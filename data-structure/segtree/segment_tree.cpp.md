@@ -24,7 +24,7 @@ data:
     _deprecated_at_docs: docs/data-structure/segtree/segment_tree.md
     document_title: Segment Tree
     links: []
-  bundledCode: "#line 1 \"data-structure/segtree/segment_tree.cpp\"\n#include <algorithm>\n\
+  bundledCode: "#line 2 \"data-structure/segtree/segment_tree.cpp\"\n#include <algorithm>\n\
     #include <vector>\n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
@@ -57,9 +57,9 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n"
-  code: "#include <algorithm>\n#include <vector>\n\n/*\n * @brief Segment Tree\n *\
-    \ @docs docs/data-structure/segtree/segment_tree.md\n */\ntemplate <typename M>\n\
-    class SegmentTree {\n    using T = typename M::T;\n\npublic:\n    SegmentTree()\
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Segment\
+    \ Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n */\ntemplate <typename\
+    \ M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n    SegmentTree()\
     \ = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id))\
     \ {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size = 1;\n\
     \        while (size < (int) v.size()) size <<= 1;\n        node.resize(2 * size,\
@@ -95,7 +95,7 @@ data:
   path: data-structure/segtree/segment_tree.cpp
   requiredBy:
   - tree/hld.cpp
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-26 19:52:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp

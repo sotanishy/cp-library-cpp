@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: data-structure/persistent_queue.cpp
-    title: data-structure/persistent_queue.cpp
+    title: Persistent Queue
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/persistent_union_find.cpp
     title: Persistent Union Find
