@@ -50,12 +50,12 @@ data:
     \ std::make_shared<Node>(val, n->left, right);\n        }\n    }\n\n    T fold(int\
     \ a, int b, const node_ptr& n, int l, int r) const {\n        if (r <= a || b\
     \ <= l) return M::id;\n        if (a <= l && r <= b) return n->val;\n        int\
-    \ m = (l + r) / 2;\n        T vl = fold(a, b, n->left, l, m);\n        T vr =\
-    \ fold(a, b, n->right, m, r);\n        return M::op(vl, vr);\n    }\n};\n#line\
-    \ 2 \"misc/compress.cpp\"\n#include <algorithm>\n#line 4 \"misc/compress.cpp\"\
-    \n\n/*\n * @brief Coordinate Compression\n */\ntemplate <typename T>\nclass Compress\
-    \ {\npublic:\n    Compress() = default;\n    explicit Compress(const std::vector<T>&\
-    \ vs) : xs(vs) {\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
+    \ m = (l + r) / 2;\n        return M::op(fold(a, b, n->left, l, m),\n        \
+    \             fold(a, b, n->right, m, r));\n    }\n};\n#line 2 \"misc/compress.cpp\"\
+    \n#include <algorithm>\n#line 4 \"misc/compress.cpp\"\n\n/*\n * @brief Coordinate\
+    \ Compression\n */\ntemplate <typename T>\nclass Compress {\npublic:\n    Compress()\
+    \ = default;\n    explicit Compress(const std::vector<T>& vs) : xs(vs) {\n   \
+    \     std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
     \ xs.end()), xs.end());\n    }\n\n    int compress(const T& x) const {\n     \
     \   return std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();\n    }\n\n\
     \    std::vector<int> compress(const std::vector<T>& vs) const {\n        std::vector<int>\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 15:26:00+09:00'
+  timestamp: '2020-10-26 15:47:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp

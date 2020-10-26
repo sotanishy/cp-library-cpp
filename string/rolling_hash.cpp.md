@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/string/rolling_hash.md
     document_title: Rolling Hash
@@ -15,7 +15,7 @@ data:
   bundledCode: "#line 2 \"string/rolling_hash.cpp\"\n#include <random>\n#include <string>\n\
     #include <vector>\n\n/*\n * @brief Rolling Hash\n * @docs docs/string/rolling_hash.md\n\
     \ */\nclass RollingHash {\npublic:\n    static long long generate_base() {\n \
-    \       std::mt19937_64 rng(std::random_device());\n        std::uniform_int_distribution<long\
+    \       std::random_device rd;\n        std::mt19937_64 rng(rd());\n        std::uniform_int_distribution<long\
     \ long> rand(1, mod - 1);\n        return rand(rng);\n    }\n\n    RollingHash()\
     \ = default;\n    RollingHash(const std::string& s, long long base) : RollingHash(std::vector<char>(s.begin(),\
     \ s.end()), base) {}\n    template <typename T>\n    RollingHash(const std::vector<T>&\
@@ -34,10 +34,10 @@ data:
     \ hashed, power;\n};\n"
   code: "#pragma once\n#include <random>\n#include <string>\n#include <vector>\n\n\
     /*\n * @brief Rolling Hash\n * @docs docs/string/rolling_hash.md\n */\nclass RollingHash\
-    \ {\npublic:\n    static long long generate_base() {\n        std::mt19937_64\
-    \ rng(std::random_device());\n        std::uniform_int_distribution<long long>\
-    \ rand(1, mod - 1);\n        return rand(rng);\n    }\n\n    RollingHash() = default;\n\
-    \    RollingHash(const std::string& s, long long base) : RollingHash(std::vector<char>(s.begin(),\
+    \ {\npublic:\n    static long long generate_base() {\n        std::random_device\
+    \ rd;\n        std::mt19937_64 rng(rd());\n        std::uniform_int_distribution<long\
+    \ long> rand(1, mod - 1);\n        return rand(rng);\n    }\n\n    RollingHash()\
+    \ = default;\n    RollingHash(const std::string& s, long long base) : RollingHash(std::vector<char>(s.begin(),\
     \ s.end()), base) {}\n    template <typename T>\n    RollingHash(const std::vector<T>&\
     \ s, long long base)\n        : base(base), hashed(s.size() + 1), power(s.size()\
     \ + 1) {\n        power[0] = 1;\n        for (int i = 0; i < (int) s.size(); ++i)\
@@ -56,8 +56,8 @@ data:
   isVerificationFile: false
   path: string/rolling_hash.cpp
   requiredBy: []
-  timestamp: '2020-10-26 13:50:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-26 15:47:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 documentation_of: string/rolling_hash.cpp

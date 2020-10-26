@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.cpp
     title: Rolling Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
@@ -18,7 +18,7 @@ data:
     #line 2 \"string/rolling_hash.cpp\"\n#include <random>\n#include <string>\n#include\
     \ <vector>\n\n/*\n * @brief Rolling Hash\n * @docs docs/string/rolling_hash.md\n\
     \ */\nclass RollingHash {\npublic:\n    static long long generate_base() {\n \
-    \       std::mt19937_64 rng(std::random_device());\n        std::uniform_int_distribution<long\
+    \       std::random_device rd;\n        std::mt19937_64 rng(rd());\n        std::uniform_int_distribution<long\
     \ long> rand(1, mod - 1);\n        return rand(rng);\n    }\n\n    RollingHash()\
     \ = default;\n    RollingHash(const std::string& s, long long base) : RollingHash(std::vector<char>(s.begin(),\
     \ s.end()), base) {}\n    template <typename T>\n    RollingHash(const std::vector<T>&\
@@ -54,8 +54,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 13:50:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-26 15:47:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 layout: document

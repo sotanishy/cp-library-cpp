@@ -217,7 +217,7 @@ data:
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
     - icon: ':heavy_check_mark:'
@@ -246,7 +246,7 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
       title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     - icon: ':heavy_check_mark:'

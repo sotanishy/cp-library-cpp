@@ -43,8 +43,8 @@ data:
     \ std::make_shared<Node>(val, n->left, right);\n        }\n    }\n\n    T fold(int\
     \ a, int b, const node_ptr& n, int l, int r) const {\n        if (r <= a || b\
     \ <= l) return M::id;\n        if (a <= l && r <= b) return n->val;\n        int\
-    \ m = (l + r) / 2;\n        T vl = fold(a, b, n->left, l, m);\n        T vr =\
-    \ fold(a, b, n->right, m, r);\n        return M::op(vl, vr);\n    }\n};\n"
+    \ m = (l + r) / 2;\n        return M::op(fold(a, b, n->left, l, m),\n        \
+    \             fold(a, b, n->right, m, r));\n    }\n};\n"
   code: "#pragma once\n#include <vector>\n#include <memory>\n\n/*\n * @brief Persistent\
     \ Segment Tree\n */\ntemplate <typename M>\nclass PersistentSegmentTree {\n  \
     \  using T = typename M::T;\n\npublic:\n    PersistentSegmentTree() = default;\n\
@@ -77,13 +77,13 @@ data:
     \ n->left, right);\n        }\n    }\n\n    T fold(int a, int b, const node_ptr&\
     \ n, int l, int r) const {\n        if (r <= a || b <= l) return M::id;\n    \
     \    if (a <= l && r <= b) return n->val;\n        int m = (l + r) / 2;\n    \
-    \    T vl = fold(a, b, n->left, l, m);\n        T vr = fold(a, b, n->right, m,\
-    \ r);\n        return M::op(vl, vr);\n    }\n};"
+    \    return M::op(fold(a, b, n->left, l, m),\n                     fold(a, b,\
+    \ n->right, m, r));\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/persistent_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-26 15:26:00+09:00'
+  timestamp: '2020-10-26 15:47:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
