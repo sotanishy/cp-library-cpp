@@ -1,4 +1,5 @@
 {
+"test/aoj/ALDS1_14_B.rolling_hash.test.cpp": "2020-10-26 15:47:58 +0900",
 "test/aoj/ALDS1_14_B.suffix_array.test.cpp": "2020-10-26 13:50:55 +0900",
 "test/aoj/ALDS1_1_C.is_prime.test.cpp": "2020-10-24 16:23:12 +0900",
 "test/aoj/ALDS1_8_D.test.cpp": "2020-10-24 15:56:56 +0900",
@@ -55,7 +56,7 @@
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-10-26 00:14:34 +0900",
 "test/yosupo/range_chmin_chmax_add_range_sum.test.cpp": "2020-10-24 14:54:33 +0900",
 "test/yosupo/range_kth_smallest.test.cpp": "2020-10-24 16:53:29 +0900",
-"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp": "2020-10-26 15:26:00 +0900",
+"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp": "2020-10-26 15:47:58 +0900",
 "test/yosupo/scc.test.cpp": "2020-10-24 20:53:04 +0900",
 "test/yosupo/segment_add_get_min.test.cpp": "2020-10-24 16:23:12 +0900",
 "test/yosupo/sqrt_mod.test.cpp": "2020-10-25 21:55:28 +0900",
