@@ -7,8 +7,8 @@ data:
     title: Longest Common Prefix Array
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_14_B.test.cpp
-    title: test/aoj/ALDS1_14_B.test.cpp
+    path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
+    title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_of_substrings.test.cpp
     title: test/yosupo/number_of_substrings.test.cpp
@@ -97,7 +97,7 @@ data:
   timestamp: '2020-10-24 01:45:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_14_B.test.cpp
+  - test/aoj/ALDS1_14_B.suffix_array.test.cpp
   - test/yosupo/number_of_substrings.test.cpp
   - test/yosupo/suffixarray.test.cpp
 documentation_of: string/suffix_array.cpp

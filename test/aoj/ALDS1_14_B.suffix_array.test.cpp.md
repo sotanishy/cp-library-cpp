@@ -13,8 +13,9 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
-  bundledCode: "#line 1 \"test/aoj/ALDS1_14_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\
-    \n\n#line 2 \"string/suffix_array.cpp\"\n#include <algorithm>\n#include <limits>\n\
+  bundledCode: "#line 1 \"test/aoj/ALDS1_14_B.suffix_array.test.cpp\"\n#define PROBLEM\
+    \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\n\n\
+    #line 2 \"string/suffix_array.cpp\"\n#include <algorithm>\n#include <limits>\n\
     #include <numeric>\n#include <string>\n#include <vector>\n\n/*\n * @brief Suffix\
     \ Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\npublic:\n\
     \    SuffixArray() = default;\n    explicit SuffixArray(const std::string& str)\
@@ -47,7 +48,7 @@ data:
     \ si) const {\n        int sn = s.size(), tn = t.size();\n        int ti = 0;\n\
     \        for (; si < sn && ti < tn; ++si, ++ti) {\n            if (s[si] < t[ti])\
     \ return true;\n            if (s[si] > t[ti]) return false;\n        }\n    \
-    \    return si >= sn && ti < tn;\n    }\n};\n#line 4 \"test/aoj/ALDS1_14_B.test.cpp\"\
+    \    return si >= sn && ti < tn;\n    }\n};\n#line 4 \"test/aoj/ALDS1_14_B.suffix_array.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    string T;\n    cin >> T;\n    string P;\n    cin >> P;\n\
     \    SuffixArray sa(T);\n    int lb = sa.lower_bound(P);\n    int ub = sa.upper_bound(P);\n\
@@ -65,15 +66,15 @@ data:
   dependsOn:
   - string/suffix_array.cpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_14_B.test.cpp
+  path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 01:45:41+09:00'
+  timestamp: '2020-10-26 13:50:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_14_B.test.cpp
+documentation_of: test/aoj/ALDS1_14_B.suffix_array.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_14_B.test.cpp
-- /verify/test/aoj/ALDS1_14_B.test.cpp.html
-title: test/aoj/ALDS1_14_B.test.cpp
+- /verify/test/aoj/ALDS1_14_B.suffix_array.test.cpp
+- /verify/test/aoj/ALDS1_14_B.suffix_array.test.cpp.html
+title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
 ---

@@ -44,17 +44,18 @@ data:
     \   bool probably_prime = false;\n        for (int r = 0; r < s; ++r) {\n    \
     \        if (y == n - 1) {\n                probably_prime = true;\n         \
     \       break;\n            }\n            y *= y;\n        }\n        if (!probably_prime)\
-    \ return false;\n    }\n    return true;\n}\n\nunsigned long long next_ull(long\
-    \ long n) {\n    static std::random_device rd;\n    static std::mt19937_64 rng(rd());\n\
-    \    return rng() % n;\n}\n\nlong long pollards_rho(long long n) {\n    if (n\
+    \ return false;\n    }\n    return true;\n}\n\nunsigned long long randll(long\
+    \ long lb, long long ub) {\n    static std::random_device rd;\n    static std::mt19937_64\
+    \ rng(rd());\n    std::uniform_int_distribution<long long> rand(lb, ub - 1);\n\
+    \    return rand(rng);\n}\n\nlong long pollards_rho(long long n) {\n    if (n\
     \ % 2 == 0) return 2;\n    if (is_prime(n)) return n;\n\n    mint::set_mod(n);\n\
-    \    while (true) {\n        mint x = next_ull(n - 2) + 2;\n        mint y = x;\n\
-    \        mint c = next_ull(n - 1) + 1;\n        long long d = 1;\n        while\
-    \ (d == 1) {\n            x = x * x + c;\n            y = y * y + c;\n       \
-    \     y = y * y + c;\n            d = std::gcd((x - y).value(), n);\n        }\n\
-    \        if (d < n) return d;\n    }\n}\n\nstd::vector<long long> prime_factor(long\
-    \ long n) {\n    if (n <= 1) return {};\n    long long p = pollards_rho(n);\n\
-    \    if (p == n) return {p};\n    auto l = prime_factor(p);\n    auto r = prime_factor(n\
+    \    while (true) {\n        mint x = randll(2, n);\n        mint y = x;\n   \
+    \     mint c = randll(1, n);\n        long long d = 1;\n        while (d == 1)\
+    \ {\n            x = x * x + c;\n            y = y * y + c;\n            y = y\
+    \ * y + c;\n            d = std::gcd((x - y).value(), n);\n        }\n       \
+    \ if (d < n) return d;\n    }\n}\n\nstd::vector<long long> prime_factor(long long\
+    \ n) {\n    if (n <= 1) return {};\n    long long p = pollards_rho(n);\n    if\
+    \ (p == n) return {p};\n    auto l = prime_factor(p);\n    auto r = prime_factor(n\
     \ / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n    return\
     \ l;\n}\n\n} // namespace fast_prime\n#line 4 \"test/yosupo/factorize.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
@@ -75,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/factorize.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 21:55:28+09:00'
+  timestamp: '2020-10-26 13:50:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/factorize.test.cpp

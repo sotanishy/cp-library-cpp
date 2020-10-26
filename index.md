@@ -110,6 +110,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
+    - icon: ':x:'
+      path: graph/maximum_independent_set.cpp
+      title: Maximum Independent Set
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
@@ -160,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Floor Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
     - icon: ':warning:'
@@ -169,13 +172,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -214,6 +217,9 @@ data:
     - icon: ':warning:'
       path: string/manacher.cpp
       title: string/manacher.cpp
+    - icon: ':x:'
+      path: string/rolling_hash.cpp
+      title: Rolling Hash
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.cpp
       title: Suffix Array
@@ -240,9 +246,12 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':x:'
+      path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
+      title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_14_B.test.cpp
-      title: test/aoj/ALDS1_14_B.test.cpp
+      path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
+      title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
@@ -374,6 +383,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/maximum_independent_set.test.cpp
+      title: test/yosupo/maximum_independent_set.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
@@ -392,7 +404,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
