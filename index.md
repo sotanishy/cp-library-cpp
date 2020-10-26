@@ -65,7 +65,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
     - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.cpp
       title: Maximum Independent Set
     - icon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Floor Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
     - icon: ':warning:'
@@ -172,13 +172,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -197,7 +197,7 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -383,7 +383,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -404,7 +404,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -419,6 +419,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+      title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp

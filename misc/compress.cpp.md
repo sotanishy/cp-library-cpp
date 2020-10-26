@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+    title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Coordinate Compression
     links: []
@@ -35,8 +38,9 @@ data:
   path: misc/compress.cpp
   requiredBy: []
   timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
 documentation_of: misc/compress.cpp
 layout: document
 redirect_from:

@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/maximum_independent_set.test.cpp
     title: test/yosupo/maximum_independent_set.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/maximum_independent_set.md
     document_title: Maximum Independent Set
@@ -60,7 +60,7 @@ data:
   path: graph/maximum_independent_set.cpp
   requiredBy: []
   timestamp: '2020-10-26 12:58:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/maximum_independent_set.test.cpp
 documentation_of: graph/maximum_independent_set.cpp
