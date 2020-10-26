@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <memory>
 
@@ -22,7 +23,7 @@ public:
     }
 
     PersistentSegmentTree update(int k, const T& x) const {
-        return PersistentSegmentTree(update(k, x, root, 0, size));
+        return PersistentSegmentTree(update(k, x, root, 0, size), size);
     }
 
     T fold(int l, int r) const {
@@ -40,14 +41,15 @@ private:
         Node(const T& val, const node_ptr& left, const node_ptr& right) : val(val), left(left), right(right) {}
     };
 
-    const node_ptr root;
+    node_ptr root;
     int size;
 
-    explicit PersistentSegmentTree(const node_ptr& root) : root(root) {}
+    PersistentSegmentTree(const node_ptr& root, int size) : root(root), size(size) {}
 
     void build(const std::vector<T>& v, const node_ptr& n, int l, int r) const {
         if (r - l == 1) {
             n->val = l < (int) v.size() ? v[l] : M::id;
+            return;
         }
         int m = (l + r) / 2;
         n->left = std::make_shared<Node>();
@@ -63,11 +65,11 @@ private:
         }
         int m = (l + r) / 2;
         if (k < m) {
-            node_ptr left = update(k, x, n->left, l, m);
+            auto left = update(k, x, n->left, l, m);
             T val = M::op(left->val, n->right->val);
             return std::make_shared<Node>(val, left, n->right);
         } else {
-            node_ptr right = update(k, x, n->right, m, r);
+            auto right = update(k, x, n->right, m, r);
             T val = M::op(n->left->val, right->val);
             return std::make_shared<Node>(val, n->left, right);
         }
