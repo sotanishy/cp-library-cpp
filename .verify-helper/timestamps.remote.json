@@ -42,6 +42,7 @@
 "test/yosupo/lca.test.cpp": "2020-10-24 20:53:04 +0900",
 "test/yosupo/line_add_get_min.test.cpp": "2020-10-24 16:23:12 +0900",
 "test/yosupo/log_of_formal_power_series.test.cpp": "2020-10-26 00:14:34 +0900",
+"test/yosupo/matrix_det.test.cpp": "2020-10-26 01:56:13 +0900",
 "test/yosupo/montmort_number_mod.test.cpp": "2020-10-24 00:37:28 +0900",
 "test/yosupo/number_of_substrings.test.cpp": "2020-10-24 01:45:41 +0900",
 "test/yosupo/persistent_queue.test.cpp": "2020-10-24 14:54:33 +0900",
