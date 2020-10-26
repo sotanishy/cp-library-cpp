@@ -2,6 +2,9 @@
 #include <iostream>
 #include <memory>
 
+/*
+ * @brief Red Black Tree
+ */
 template <typename T>
 class RedBlackTree {
 public:

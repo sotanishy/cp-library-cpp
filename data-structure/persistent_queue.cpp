@@ -2,6 +2,9 @@
 #include <cassert>
 #include "persistent_array.cpp"
 
+/*
+ * @brief Persistent Queue
+ */
 template <typename T, int Cap = (int) 1e7>
 class PersistentQueue {
 public:

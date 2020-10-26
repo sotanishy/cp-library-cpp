@@ -1,4 +1,38 @@
 # Link/Cut Tree
 
-Link/cut 木は，森を管理するデータ構造である．辺の追加，辺の削除，パスに関するクエリ，根の変更などが高速に行える．
+Link/cut 木は，森を管理するデータ構造である．以下のクエリを処理できる:
+- 辺の追加
+- 辺の削除
+- 根の変更
+- 頂点の値の更新
+- パス上の頂点の値の fold
 
+木をパスに分解し，それぞれのパスに splay 木を用いることでこれらの操作を実現する．
+
+空間計算量: $O(n)$
+
+## Template parameters
+
+- `M`
+    - 可換モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
+        - `T`: 集合 $T$ の型
+        - `T id`: 単位元 $e$
+        - `T op(T, T)`: 結合的かつ可換な二項演算 $\cdot: T \times T \rightarrow T$
+
+## Member functions
+
+- `void link(node_ptr u, node_ptr v)`
+    - 木 $u$ と木 $v$ を連結する
+    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+- `void cut(node_ptr v)`
+    - 木 $v$ を親から切る
+    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+- `void make_root(node_ptr v)`
+    - $v$ を木の根にする
+    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+- `void update(node_ptr v, T x)`
+    - 頂点 $v$ の値を $x$ に変更する
+    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+- `T fold(node_ptr u, node_ptr v)`
+    - $uv$ パス上の頂点の値を fold する
+    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$

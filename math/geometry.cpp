@@ -5,6 +5,10 @@
 #include <optional>
 #include <vector>
 
+/*
+ * @brief Geometry
+ */
+
 constexpr double eps = 1e-12;
 
 inline bool eq(double a, double b) { return abs(a - b) < eps; }

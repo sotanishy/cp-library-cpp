@@ -13,7 +13,7 @@ public:
     PartiallyPersistentUnionFind() = default;
     explicit PartiallyPersistentUnionFind(int n) : data(n, -1), time(n, INF), sz(n, {{0, 1}}) {}
 
-    int find(int t, int x) {
+    int find(int t, int x) const {
         if (t < time[x]) return x;
         return find(t, data[x]);
     }
@@ -30,11 +30,11 @@ public:
         time[y] = now;
     }
 
-    bool same(int t, int x, int y) {
+    bool same(int t, int x, int y) const {
         return find(t, x) == find(t, y);
     }
 
-    int size(int t, int x) {
+    int size(int t, int x) const {
         x = find(t, x);
         return (--std::lower_bound(sz[x].begin(), sz[x].end(), std::make_pair(t, INF)))->second;
     }
