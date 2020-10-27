@@ -35,26 +35,25 @@ data:
     \        if (k == 0) {\n            res->val = x;\n        } else {\n        \
     \    res->ch[k % B] = set(res->ch[k % B], k / B, x);\n        }\n        return\
     \ res;\n    }\n};\n#line 4 \"data-structure/persistent_queue.cpp\"\n\n/*\n * @brief\
-    \ Persistent Queue\n */\ntemplate <typename T, int Cap = (int) 1e7>\nclass PersistentQueue\
-    \ {\npublic:\n    PersistentQueue() : first(0), last(0) {}\n\n    int size() const\
-    \ {\n        return (last - first + Cap) % Cap;\n    }\n\n    bool empty() const\
-    \ {\n        return size() == 0;\n    }\n\n    T front() const {\n        assert(!empty());\n\
-    \        return pa.get(first);\n    }\n\n    T back() const {\n        assert(!empty());\n\
-    \        return pa.get((last + Cap - 1) % Cap);\n    }\n\n    PersistentQueue\
-    \ push(const T& val) const {\n        assert(size() < Cap);\n        return PersistentQueue(pa.set(last,\
-    \ val), first, (last + 1) % Cap);\n    }\n\n    PersistentQueue pop() const {\n\
-    \        assert(!empty());\n        return PersistentQueue(pa, (first + 1) % Cap,\
-    \ last);\n    }\n\nprivate:\n    PersistentArray<T> pa;\n    int first, last;\n\
-    \n    PersistentQueue(const PersistentArray<T>& pa, int first, int last)\n   \
-    \     : pa(pa), first(first), last(last) {}\n};\n#line 4 \"test/yosupo/persistent_queue.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int Q;\n    cin >> Q;\n    PersistentQueue<int>\
-    \ init;\n    vector<PersistentQueue<int>> ver(Q);\n    for (int i = 0; i < Q;\
-    \ ++i) {\n        int q, t;\n        cin >> q >> t;\n        if (q == 0) {\n \
-    \           int x;\n            cin >> x;\n            if (t == -1) ver[i] = init.push(x);\n\
-    \            else ver[i] = ver[t].push(x);\n        } else {\n            cout\
-    \ << ver[t].front() << \"\\n\";\n            ver[i] = ver[t].pop();\n        }\n\
-    \    }\n}\n"
+    \ Persistent Queue\n */\ntemplate <typename T>\nclass PersistentQueue {\npublic:\n\
+    \    PersistentQueue() : first(0), last(0) {}\n\n    int size() const {\n    \
+    \    return last - first;\n    }\n\n    bool empty() const {\n        return size()\
+    \ == 0;\n    }\n\n    T front() const {\n        assert(!empty());\n        return\
+    \ pa.get(first);\n    }\n\n    T back() const {\n        assert(!empty());\n \
+    \       return pa.get(last - 1);\n    }\n\n    PersistentQueue push(const T& val)\
+    \ const {\n        return PersistentQueue(pa.set(last, val), first, last + 1);\n\
+    \    }\n\n    PersistentQueue pop() const {\n        assert(!empty());\n     \
+    \   return PersistentQueue(pa, first + 1, last);\n    }\n\nprivate:\n    PersistentArray<T>\
+    \ pa;\n    int first, last;\n\n    PersistentQueue(const PersistentArray<T>& pa,\
+    \ int first, int last)\n        : pa(pa), first(first), last(last) {}\n};\n#line\
+    \ 4 \"test/yosupo/persistent_queue.test.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int Q;\n    cin >> Q;\n    PersistentQueue<int> init;\n    vector<PersistentQueue<int>>\
+    \ ver(Q);\n    for (int i = 0; i < Q; ++i) {\n        int q, t;\n        cin >>\
+    \ q >> t;\n        if (q == 0) {\n            int x;\n            cin >> x;\n\
+    \            if (t == -1) ver[i] = init.push(x);\n            else ver[i] = ver[t].push(x);\n\
+    \        } else {\n            cout << ver[t].front() << \"\\n\";\n          \
+    \  ver[i] = ver[t].pop();\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\n\n\
     #include \"../../data-structure/persistent_queue.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -71,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 19:52:55+09:00'
+  timestamp: '2020-10-27 14:13:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_queue.test.cpp

@@ -6,6 +6,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
+    - icon: ':heavy_check_mark:'
+      path: data-structure/bit_vector.cpp
+      title: Bit Vector
     - icon: ':warning:'
       path: data-structure/convex_hull_trick.cpp
       title: Convex Hull Trick
@@ -71,7 +74,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -181,7 +184,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -212,6 +215,9 @@ data:
     - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
+    - icon: ':heavy_check_mark:'
+      path: misc/mo.cpp
+      title: Mo's Algorithm
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp
@@ -241,6 +247,9 @@ data:
   - name: tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: tree/euler_tour.cpp
+      title: tree/euler_tour.cpp
+    - icon: ':x:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -447,6 +456,9 @@ data:
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/static_range_inversions_query.test.cpp
+      title: test/yosupo/static_range_inversions_query.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -467,9 +479,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_add_subtree_sum.test.cpp
+      title: test/yosupo/vertex_add_subtree_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/vertex_set_path_composite.test.cpp
+      title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp

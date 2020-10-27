@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static_range_inversions_query.test.cpp
+    title: test/yosupo/static_range_inversions_query.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -41,6 +44,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+  - test/yosupo/static_range_inversions_query.test.cpp
 documentation_of: misc/compress.cpp
 layout: document
 redirect_from:
