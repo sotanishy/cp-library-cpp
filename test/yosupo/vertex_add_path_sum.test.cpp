@@ -40,7 +40,7 @@ int main() {
         } else {
             int u, v;
             cin >> u >> v;
-            cout << hld.fold(u, v) << "\n";
+            cout << hld.path_fold(u, v) << "\n";
         }
     }
 }

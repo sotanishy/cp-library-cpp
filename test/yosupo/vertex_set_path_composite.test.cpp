@@ -51,8 +51,8 @@ int main() {
             int u, v, x;
             cin >> u >> v >> x;
             int p = hld.lca(u, v);
-            auto up = hld.fold(u, p).second;
-            auto pv = hld.fold(v, p).first;
+            auto up = hld.path_fold(u, p).second;
+            auto pv = hld.path_fold(v, p).first;
             auto pp = hld[p].first;
 
             // inv
