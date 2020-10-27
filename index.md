@@ -74,7 +74,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -184,7 +184,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -249,7 +249,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour.cpp
       title: tree/euler_tour.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -479,13 +479,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

@@ -30,11 +30,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Mod int
     links: []
@@ -101,7 +101,7 @@ data:
   path: math/modint.cpp
   requiredBy: []
   timestamp: '2020-10-26 00:14:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp

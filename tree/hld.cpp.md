@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/tree/hld.md
     document_title: Heavy-Light Decomposition
@@ -65,7 +65,7 @@ data:
     \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
     \      T res = M::id;\n        while (head[u] != head[v]) {\n            if (pos[head[u]]\
     \ > pos[head[v]]) std::swap(u, v);\n            T val = st.fold(pos[head[v]],\
-    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]]\n\
+    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
     \        }\n        if (pos[u] > pos[v]) std::swap(u, v);\n        T val = st.fold(pos[u],\
     \ pos[v] + 1);\n        return M::op(val, res);\n    }\n\n    int lca(int u, int\
     \ v) const {\n        while (true) {\n            if (pos[u] > pos[v]) std::swap(u,\
@@ -96,7 +96,7 @@ data:
     \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
     \      T res = M::id;\n        while (head[u] != head[v]) {\n            if (pos[head[u]]\
     \ > pos[head[v]]) std::swap(u, v);\n            T val = st.fold(pos[head[v]],\
-    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]]\n\
+    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
     \        }\n        if (pos[u] > pos[v]) std::swap(u, v);\n        T val = st.fold(pos[u],\
     \ pos[v] + 1);\n        return M::op(val, res);\n    }\n\n    int lca(int u, int\
     \ v) const {\n        while (true) {\n            if (pos[u] > pos[v]) std::swap(u,\
@@ -118,8 +118,8 @@ data:
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2020-10-27 14:13:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-27 14:54:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
@@ -136,7 +136,11 @@ HL 分解は，木をいくつかのパスに分解する手法である．分�
 
 この実装ではクエリの処理にセグメント木を用いている．よって，一点更新と区間クエリが可能である．遅延伝搬セグメント木を使えば区間更新も可能だが面倒なので後でやる．
 
-木に乗せられる代数的構造は可換モノイド $(T, \cdot, e)$ である．非可換にすることもできると思うが面倒なので後でやる．
+木に乗せられる代数的構造は可換モノイド $(T, \cdot, e)$ である．非可換モノイドを載せたいときは，以下のような方法が使える．
+- $uv$ パス上で fold したいとする．上から下に下る分には非可換で fold できるので，$u$ と $v$ の LCA $p$ を求めて，$pu$ パスと $pv$ パスを fold する．
+- $pu$ パスの結果を反転する．これは，モノイドに2方向から fold した結果を持たせておけばよい．
+- $a_{up} \cdot a_p^{-1} \cdot a_{pv}$ を計算する．
+以上の方法は自己流であるうえ，逆元の存在を仮定するのであまりよくない．天才をすればもっと楽にできそうである．
 
 空間計算量: $O(n)$
 

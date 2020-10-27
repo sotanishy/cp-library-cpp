@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -96,7 +96,7 @@ data:
     \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
     \      T res = M::id;\n        while (head[u] != head[v]) {\n            if (pos[head[u]]\
     \ > pos[head[v]]) std::swap(u, v);\n            T val = st.fold(pos[head[v]],\
-    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]]\n\
+    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
     \        }\n        if (pos[u] > pos[v]) std::swap(u, v);\n        T val = st.fold(pos[u],\
     \ pos[v] + 1);\n        return M::op(val, res);\n    }\n\n    int lca(int u, int\
     \ v) const {\n        while (true) {\n            if (pos[u] > pos[v]) std::swap(u,\
@@ -168,8 +168,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-27 14:13:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-27 14:54:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
 layout: document
