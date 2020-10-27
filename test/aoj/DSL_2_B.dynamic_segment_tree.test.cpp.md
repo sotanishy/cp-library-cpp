@@ -15,7 +15,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
   bundledCode: "#line 1 \"test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp\"\n#define\
     \ PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
-    \n\n#line 1 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include <memory>\n\
+    \n\n#line 2 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include <memory>\n\
     \n/*\n * @brief Dynamic Segment Tree\n * @docs docs/data-structure/segtree/dynamic_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename\
     \ M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-10-27 21:10:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp

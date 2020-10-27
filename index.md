@@ -39,6 +39,9 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
+    - icon: ':x:'
+      path: data-structure/quadtree.cpp
+      title: Quadtree
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
@@ -209,7 +212,7 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -422,6 +425,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/point_add_rectangle_sum.test.cpp
+      title: test/yosupo/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
