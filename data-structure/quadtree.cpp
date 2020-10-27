@@ -4,7 +4,7 @@
 
 /*
  * @brief Quadtree
- * @docs docs/data-structure/quadtree.cpp
+ * @docs docs/data-structure/quadtree.md
  */
 template <typename M>
 class Quadtree {
