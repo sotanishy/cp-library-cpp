@@ -37,7 +37,7 @@ public:
             if (pos[head[u]] > pos[head[v]]) std::swap(u, v);
             T val = st.fold(pos[head[v]], pos[v] + 1);
             res = M::op(val, res);
-            v = par[head[v]]
+            v = par[head[v]];
         }
         if (pos[u] > pos[v]) std::swap(u, v);
         T val = st.fold(pos[u], pos[v] + 1);
