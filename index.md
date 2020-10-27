@@ -489,8 +489,11 @@ data:
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_add_subtree_sum.test.cpp
-      title: test/yosupo/vertex_add_subtree_sum.test.cpp
+      path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+      title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+      title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp

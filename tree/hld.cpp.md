@@ -10,6 +10,9 @@ data:
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _pathExtension: cpp
@@ -57,71 +60,76 @@ data:
     \    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>& G)\
     \ : HLD(G, std::vector<T>(G.size(), M::id)) {}\n    HLD(const std::vector<std::vector<int>>&\
     \ G, const std::vector<T>& val)\n        : G(G), size(G.size()), depth(G.size()),\
-    \ par(G.size(), -1), pos(G.size()), head(G.size()), heavy(G.size(), -1) {\n  \
-    \      dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
-    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[pos[i]] = val[i];\n\
+    \ par(G.size(), -1), in(G.size()), out(G.size()), head(G.size()), heavy(G.size(),\
+    \ -1) {\n        dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
+    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[in[i]] = val[i];\n\
     \        st = SegmentTree<M>(val_ordered);\n    }\n\n    T operator[](int v) const\
-    \ {\n        return st[pos[v]];\n    }\n\n    void update(int v, const T& x) {\n\
-    \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
-    \      T res = M::id;\n        while (head[u] != head[v]) {\n            if (pos[head[u]]\
-    \ > pos[head[v]]) std::swap(u, v);\n            T val = st.fold(pos[head[v]],\
-    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
-    \        }\n        if (pos[u] > pos[v]) std::swap(u, v);\n        T val = st.fold(pos[u],\
-    \ pos[v] + 1);\n        return M::op(val, res);\n    }\n\n    int lca(int u, int\
-    \ v) const {\n        while (true) {\n            if (pos[u] > pos[v]) std::swap(u,\
+    \ {\n        return st[in[v]];\n    }\n\n    void update(int v, const T& x) {\n\
+    \        st.update(in[v], x);\n    }\n\n    T path_fold(int u, int v) const {\n\
+    \        T res = M::id;\n        while (head[u] != head[v]) {\n            if\
+    \ (in[head[u]] > in[head[v]]) std::swap(u, v);\n            T val = st.fold(in[head[v]],\
+    \ in[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
+    \        }\n        if (in[u] > in[v]) std::swap(u, v);\n        T val = st.fold(in[u],\
+    \ in[v] + 1);\n        return M::op(val, res);\n    }\n\n    T subtree_fold(int\
+    \ v) const {\n        return st.fold(in[v], out[v]);\n    }\n\n    int lca(int\
+    \ u, int v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
     \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
     \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
     \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
-    \ G;\n    std::vector<int> size, depth, par, pos, head, heavy;\n    int cur_pos\
+    \ G;\n    std::vector<int> size, depth, par, in, out, head, heavy;\n    int cur_pos\
     \ = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v) {\n        size[v] = 1;\n\
     \        int max_size = 0;\n        for (int c : G[v]) {\n            if (c ==\
     \ par[v]) continue;\n            par[c] = v;\n            depth[c] = depth[v]\
     \ + 1;\n            dfs(c);\n            size[v] += size[c];\n            if (size[c]\
     \ > max_size) {\n                max_size = size[c];\n                heavy[v]\
     \ = c;\n            }\n        }\n    }\n\n    void decompose(int v, int h) {\n\
-    \        head[v] = h;\n        pos[v] = cur_pos++;\n        if (heavy[v] != -1)\
+    \        head[v] = h;\n        in[v] = cur_pos++;\n        if (heavy[v] != -1)\
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
-    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n"
+    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
+    \    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"../data-structure/segtree/segment_tree.cpp\"\
     \n\n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\n\
     template <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
     \    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>& G)\
     \ : HLD(G, std::vector<T>(G.size(), M::id)) {}\n    HLD(const std::vector<std::vector<int>>&\
     \ G, const std::vector<T>& val)\n        : G(G), size(G.size()), depth(G.size()),\
-    \ par(G.size(), -1), pos(G.size()), head(G.size()), heavy(G.size(), -1) {\n  \
-    \      dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
-    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[pos[i]] = val[i];\n\
+    \ par(G.size(), -1), in(G.size()), out(G.size()), head(G.size()), heavy(G.size(),\
+    \ -1) {\n        dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
+    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[in[i]] = val[i];\n\
     \        st = SegmentTree<M>(val_ordered);\n    }\n\n    T operator[](int v) const\
-    \ {\n        return st[pos[v]];\n    }\n\n    void update(int v, const T& x) {\n\
-    \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
-    \      T res = M::id;\n        while (head[u] != head[v]) {\n            if (pos[head[u]]\
-    \ > pos[head[v]]) std::swap(u, v);\n            T val = st.fold(pos[head[v]],\
-    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
-    \        }\n        if (pos[u] > pos[v]) std::swap(u, v);\n        T val = st.fold(pos[u],\
-    \ pos[v] + 1);\n        return M::op(val, res);\n    }\n\n    int lca(int u, int\
-    \ v) const {\n        while (true) {\n            if (pos[u] > pos[v]) std::swap(u,\
+    \ {\n        return st[in[v]];\n    }\n\n    void update(int v, const T& x) {\n\
+    \        st.update(in[v], x);\n    }\n\n    T path_fold(int u, int v) const {\n\
+    \        T res = M::id;\n        while (head[u] != head[v]) {\n            if\
+    \ (in[head[u]] > in[head[v]]) std::swap(u, v);\n            T val = st.fold(in[head[v]],\
+    \ in[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
+    \        }\n        if (in[u] > in[v]) std::swap(u, v);\n        T val = st.fold(in[u],\
+    \ in[v] + 1);\n        return M::op(val, res);\n    }\n\n    T subtree_fold(int\
+    \ v) const {\n        return st.fold(in[v], out[v]);\n    }\n\n    int lca(int\
+    \ u, int v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
     \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
     \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
     \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
-    \ G;\n    std::vector<int> size, depth, par, pos, head, heavy;\n    int cur_pos\
+    \ G;\n    std::vector<int> size, depth, par, in, out, head, heavy;\n    int cur_pos\
     \ = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v) {\n        size[v] = 1;\n\
     \        int max_size = 0;\n        for (int c : G[v]) {\n            if (c ==\
     \ par[v]) continue;\n            par[c] = v;\n            depth[c] = depth[v]\
     \ + 1;\n            dfs(c);\n            size[v] += size[c];\n            if (size[c]\
     \ > max_size) {\n                max_size = size[c];\n                heavy[v]\
     \ = c;\n            }\n        }\n    }\n\n    void decompose(int v, int h) {\n\
-    \        head[v] = h;\n        pos[v] = cur_pos++;\n        if (heavy[v] != -1)\
+    \        head[v] = h;\n        in[v] = cur_pos++;\n        if (heavy[v] != -1)\
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
-    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n"
+    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
+    \    }\n};\n"
   dependsOn:
   - data-structure/segtree/segment_tree.cpp
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2020-10-27 14:54:20+09:00'
+  timestamp: '2020-10-27 22:43:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
 documentation_of: tree/hld.cpp
 layout: document
@@ -169,9 +177,12 @@ HL 分解は，木をいくつかのパスに分解する手法である．分�
 - `void update(int v, T x)`
     - 頂点 $v$ の値を $x$ に更新する
     - 時間計算量: $O(\lg n)$
-- `T fold(int u, int v)`
+- `T path_fold(int u, int v)`
     - $uv$ パス上の頂点の値を $\cdot$ で fold する．
     - 時間計算量: $O(\lg^2 n)$
+- `T subtree_fold(int u, int v)`
+    - $u$ を頂点とする部分木の頂点の値を $\cdot$ で fold する．
+    - 時間計算量: $O(\lg n)$
 - `int lca(int u, int v)`
     - $u$ と $v$ の最小共通祖先を返す
     - 時間計算量: $O(\lg n)$

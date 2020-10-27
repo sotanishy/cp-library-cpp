@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum.test.cpp
+    path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -76,7 +76,7 @@ data:
   timestamp: '2020-10-27 14:13:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
 documentation_of: tree/euler_tour.cpp
 layout: document
 redirect_from:

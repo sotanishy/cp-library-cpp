@@ -88,54 +88,56 @@ data:
     \    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>& G)\
     \ : HLD(G, std::vector<T>(G.size(), M::id)) {}\n    HLD(const std::vector<std::vector<int>>&\
     \ G, const std::vector<T>& val)\n        : G(G), size(G.size()), depth(G.size()),\
-    \ par(G.size(), -1), pos(G.size()), head(G.size()), heavy(G.size(), -1) {\n  \
-    \      dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
-    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[pos[i]] = val[i];\n\
+    \ par(G.size(), -1), in(G.size()), out(G.size()), head(G.size()), heavy(G.size(),\
+    \ -1) {\n        dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
+    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[in[i]] = val[i];\n\
     \        st = SegmentTree<M>(val_ordered);\n    }\n\n    T operator[](int v) const\
-    \ {\n        return st[pos[v]];\n    }\n\n    void update(int v, const T& x) {\n\
-    \        st.update(pos[v], x);\n    }\n\n    T fold(int u, int v) const {\n  \
-    \      T res = M::id;\n        while (head[u] != head[v]) {\n            if (pos[head[u]]\
-    \ > pos[head[v]]) std::swap(u, v);\n            T val = st.fold(pos[head[v]],\
-    \ pos[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
-    \        }\n        if (pos[u] > pos[v]) std::swap(u, v);\n        T val = st.fold(pos[u],\
-    \ pos[v] + 1);\n        return M::op(val, res);\n    }\n\n    int lca(int u, int\
-    \ v) const {\n        while (true) {\n            if (pos[u] > pos[v]) std::swap(u,\
+    \ {\n        return st[in[v]];\n    }\n\n    void update(int v, const T& x) {\n\
+    \        st.update(in[v], x);\n    }\n\n    T path_fold(int u, int v) const {\n\
+    \        T res = M::id;\n        while (head[u] != head[v]) {\n            if\
+    \ (in[head[u]] > in[head[v]]) std::swap(u, v);\n            T val = st.fold(in[head[v]],\
+    \ in[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
+    \        }\n        if (in[u] > in[v]) std::swap(u, v);\n        T val = st.fold(in[u],\
+    \ in[v] + 1);\n        return M::op(val, res);\n    }\n\n    T subtree_fold(int\
+    \ v) const {\n        return st.fold(in[v], out[v]);\n    }\n\n    int lca(int\
+    \ u, int v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
     \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
     \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
     \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
-    \ G;\n    std::vector<int> size, depth, par, pos, head, heavy;\n    int cur_pos\
+    \ G;\n    std::vector<int> size, depth, par, in, out, head, heavy;\n    int cur_pos\
     \ = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v) {\n        size[v] = 1;\n\
     \        int max_size = 0;\n        for (int c : G[v]) {\n            if (c ==\
     \ par[v]) continue;\n            par[c] = v;\n            depth[c] = depth[v]\
     \ + 1;\n            dfs(c);\n            size[v] += size[c];\n            if (size[c]\
     \ > max_size) {\n                max_size = size[c];\n                heavy[v]\
     \ = c;\n            }\n        }\n    }\n\n    void decompose(int v, int h) {\n\
-    \        head[v] = h;\n        pos[v] = cur_pos++;\n        if (heavy[v] != -1)\
+    \        head[v] = h;\n        in[v] = cur_pos++;\n        if (heavy[v] != -1)\
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
-    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n    }\n};\n#line 5 \"\
-    test/yosupo/vertex_set_path_composite.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
-    \nstruct AffineMonoid {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n\
-    \    static constexpr T id = {{1, 0}, {1, 0}};\n    static T op(T a, T b) {\n\
-    \        return {\n            {a.first.first * b.first.first, a.first.second\
-    \ * b.first.first + b.first.second},\n            {b.second.first * a.second.first,\
-    \ b.second.second * a.second.first + a.second.second},\n        };\n    }\n};\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<pair<mint, mint>, pair<mint,\
-    \ mint>>> ab(N);\n    for (int i = 0; i < N; ++i) {\n        mint a, b;\n    \
-    \    cin >> a >> b;\n        ab[i] = {{a, b}, {a, b}};\n    }\n    vector<vector<int>>\
-    \ G(N);\n    for (int i = 0; i < N - 1; ++i) {\n        int u, v;\n        cin\
-    \ >> u >> v;\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n\
-    \    HLD<AffineMonoid> hld(G, ab);\n    for (int i = 0; i < Q; ++i) {\n      \
-    \  int t;\n        cin >> t;\n        if (t == 0) {\n            int p, c, d;\n\
-    \            cin >> p >> c >> d;\n            hld.update(p, {{c, d}, {c, d}});\n\
-    \        } else {\n            int u, v, x;\n            cin >> u >> v >> x;\n\
-    \            int p = hld.lca(u, v);\n            auto up = hld.fold(u, p).second;\n\
-    \            auto pv = hld.fold(v, p).first;\n            auto pp = hld[p].first;\n\
-    \n            // inv\n            up.first /= pp.first;\n            up.second\
-    \ = (up.second - pp.second) / pp.first;\n\n            pair<mint, mint> ans =\
-    \ {up.first * pv.first, up.second * pv.first + pv.second};\n            cout <<\
-    \ ans.first * x + ans.second << \"\\n\";\n        }\n    }\n}\n"
+    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
+    \    }\n};\n#line 5 \"test/yosupo/vertex_set_path_composite.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
+    \ Modint<998244353>;\n\nstruct AffineMonoid {\n    using T = pair<pair<mint, mint>,\
+    \ pair<mint, mint>>;\n    static constexpr T id = {{1, 0}, {1, 0}};\n    static\
+    \ T op(T a, T b) {\n        return {\n            {a.first.first * b.first.first,\
+    \ a.first.second * b.first.first + b.first.second},\n            {b.second.first\
+    \ * a.second.first, b.second.second * a.second.first + a.second.second},\n   \
+    \     };\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n \
+    \   cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<pair<mint,\
+    \ mint>, pair<mint, mint>>> ab(N);\n    for (int i = 0; i < N; ++i) {\n      \
+    \  mint a, b;\n        cin >> a >> b;\n        ab[i] = {{a, b}, {a, b}};\n   \
+    \ }\n    vector<vector<int>> G(N);\n    for (int i = 0; i < N - 1; ++i) {\n  \
+    \      int u, v;\n        cin >> u >> v;\n        G[u].push_back(v);\n       \
+    \ G[v].push_back(u);\n    }\n    HLD<AffineMonoid> hld(G, ab);\n    for (int i\
+    \ = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n\
+    \            int p, c, d;\n            cin >> p >> c >> d;\n            hld.update(p,\
+    \ {{c, d}, {c, d}});\n        } else {\n            int u, v, x;\n           \
+    \ cin >> u >> v >> x;\n            int p = hld.lca(u, v);\n            auto up\
+    \ = hld.path_fold(u, p).second;\n            auto pv = hld.path_fold(v, p).first;\n\
+    \            auto pp = hld[p].first;\n\n            // inv\n            up.first\
+    \ /= pp.first;\n            up.second = (up.second - pp.second) / pp.first;\n\n\
+    \            pair<mint, mint> ans = {up.first * pv.first, up.second * pv.first\
+    \ + pv.second};\n            cout << ans.first * x + ans.second << \"\\n\";\n\
+    \        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../tree/hld.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
@@ -155,10 +157,10 @@ data:
     \            int p, c, d;\n            cin >> p >> c >> d;\n            hld.update(p,\
     \ {{c, d}, {c, d}});\n        } else {\n            int u, v, x;\n           \
     \ cin >> u >> v >> x;\n            int p = hld.lca(u, v);\n            auto up\
-    \ = hld.fold(u, p).second;\n            auto pv = hld.fold(v, p).first;\n    \
-    \        auto pp = hld[p].first;\n\n            // inv\n            up.first /=\
-    \ pp.first;\n            up.second = (up.second - pp.second) / pp.first;\n\n \
-    \           pair<mint, mint> ans = {up.first * pv.first, up.second * pv.first\
+    \ = hld.path_fold(u, p).second;\n            auto pv = hld.path_fold(v, p).first;\n\
+    \            auto pp = hld[p].first;\n\n            // inv\n            up.first\
+    \ /= pp.first;\n            up.second = (up.second - pp.second) / pp.first;\n\n\
+    \            pair<mint, mint> ans = {up.first * pv.first, up.second * pv.first\
     \ + pv.second};\n            cout << ans.first * x + ans.second << \"\\n\";\n\
     \        }\n    }\n}\n"
   dependsOn:
@@ -168,7 +170,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-27 14:54:20+09:00'
+  timestamp: '2020-10-27 22:43:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp

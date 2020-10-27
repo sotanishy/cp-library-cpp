@@ -22,8 +22,11 @@ data:
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum.test.cpp
+    path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
@@ -112,8 +115,9 @@ data:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
 documentation_of: data-structure/segtree/segment_tree.cpp
 layout: document
 redirect_from:

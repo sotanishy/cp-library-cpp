@@ -13,12 +13,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
     links:
-    - https://judge.yosupo.jp/problem/vertex_add_path_sum
-  bundledCode: "#line 1 \"test/yosupo/vertex_add_path_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n#line 2 \"tree/hld.cpp\"\
-    \n#include <algorithm>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
+    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+  bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum.hld.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#line\
+    \ 2 \"tree/hld.cpp\"\n#include <algorithm>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\n/*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
@@ -82,46 +82,44 @@ data:
     \        head[v] = h;\n        in[v] = cur_pos++;\n        if (heavy[v] != -1)\
     \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
     \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
-    \    }\n};\n#line 4 \"test/yosupo/vertex_add_path_sum.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T\
-    \ = ll;\n    static constexpr T id = 0;\n    static T op(T a, T b) {\n       \
-    \ return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
+    \    }\n};\n#line 4 \"test/yosupo/vertex_add_subtree_sum.hld.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid\
+    \ {\n    using T = ll;\n    static constexpr T id = 0;\n    static T op(T a, T\
+    \ b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
     \    for (int i = 0; i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n\
-    \    for (int i = 0; i < N - 1; ++i) {\n        int u, v;\n        cin >> u >>\
-    \ v;\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n    HLD<AddMonoid>\
-    \ hld(G, a);\n    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >>\
-    \ t;\n        if (t == 0) {\n            int p, x;\n            cin >> p >> x;\n\
-    \            hld.update(p, hld[p] + x);\n        } else {\n            int u,\
-    \ v;\n            cin >> u >> v;\n            cout << hld.path_fold(u, v) << \"\
-    \\n\";\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
-    \n#include \"../../tree/hld.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
+    \  G[p].push_back(i);\n    }\n    HLD<AddMonoid> hld(G);\n    for (int i = 0;\
+    \ i < N; ++i) hld.update(i, a[i]);\n    for (int i = 0; i < Q; ++i) {\n      \
+    \  int t, u;\n        cin >> t >> u;\n        if (t == 0) {\n            int x;\n\
+    \            cin >> x;\n            hld.update(u, hld[u] + x);\n        } else\
+    \ {\n            cout << hld.subtree_fold(u) << \"\\n\";\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
+    \n\n#include \"../../tree/hld.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = ll;\n    static\
-    \ constexpr T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n  \
-    \  }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0;\
-    \ i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 0;\
-    \ i < N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        G[u].push_back(v);\n\
-    \        G[v].push_back(u);\n    }\n    HLD<AddMonoid> hld(G, a);\n    for (int\
-    \ i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n        if (t == 0)\
-    \ {\n            int p, x;\n            cin >> p >> x;\n            hld.update(p,\
-    \ hld[p] + x);\n        } else {\n            int u, v;\n            cin >> u\
-    \ >> v;\n            cout << hld.path_fold(u, v) << \"\\n\";\n        }\n    }\n\
-    }"
+    \ constexpr T id = 0;\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
+    \   int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n    for (int i = 0;\
+    \ i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 1;\
+    \ i < N; ++i) {\n        int p;\n        cin >> p;\n        G[p].push_back(i);\n\
+    \    }\n    HLD<AddMonoid> hld(G);\n    for (int i = 0; i < N; ++i) hld.update(i,\
+    \ a[i]);\n    for (int i = 0; i < Q; ++i) {\n        int t, u;\n        cin >>\
+    \ t >> u;\n        if (t == 0) {\n            int x;\n            cin >> x;\n\
+    \            hld.update(u, hld[u] + x);\n        } else {\n            cout <<\
+    \ hld.subtree_fold(u) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - tree/hld.cpp
   - data-structure/segtree/segment_tree.cpp
   isVerificationFile: true
-  path: test/yosupo/vertex_add_path_sum.test.cpp
+  path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   requiredBy: []
   timestamp: '2020-10-27 22:43:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/vertex_add_path_sum.test.cpp
+documentation_of: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/vertex_add_path_sum.test.cpp
-- /verify/test/yosupo/vertex_add_path_sum.test.cpp.html
-title: test/yosupo/vertex_add_path_sum.test.cpp
+- /verify/test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+- /verify/test/yosupo/vertex_add_subtree_sum.hld.test.cpp.html
+title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
 ---

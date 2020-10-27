@@ -16,13 +16,13 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
     links:
     - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
-  bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#line 2 \"tree/euler_tour.cpp\"\
-    \n#include <vector>\n#line 2 \"data-structure/segtree/segment_tree.cpp\"\n#include\
-    \ <algorithm>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\n\n/*\n * @brief\
-    \ Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n */\ntemplate\
-    \ <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n\
-    \    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
+  bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\
+    \n#line 2 \"tree/euler_tour.cpp\"\n#include <vector>\n#line 2 \"data-structure/segtree/segment_tree.cpp\"\
+    \n#include <algorithm>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\n\n\
+    /*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
+    \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
+    \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
     \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
@@ -61,7 +61,7 @@ data:
     \ st.fold(in[v], out[v]);\n    }\n\nprivate:\n    int n, root;\n    std::vector<std::vector<int>>\
     \ G;\n    std::vector<int> in, out;\n    int k = 0;\n    SegmentTree<M> st;\n\n\
     \    void dfs(int v, int p) {\n        in[v] = k++;\n        for (int c : G[v])\
-    \ if (c != p) dfs(c, v);\n        out[v] = k++;\n    }\n};\n#line 4 \"test/yosupo/vertex_add_subtree_sum.test.cpp\"\
+    \ if (c != p) dfs(c, v);\n        out[v] = k++;\n    }\n};\n#line 4 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -91,15 +91,15 @@ data:
   - tree/euler_tour.cpp
   - data-structure/segtree/segment_tree.cpp
   isVerificationFile: true
-  path: test/yosupo/vertex_add_subtree_sum.test.cpp
+  path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
   requiredBy: []
-  timestamp: '2020-10-27 14:13:32+09:00'
+  timestamp: '2020-10-27 22:43:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/vertex_add_subtree_sum.test.cpp
+documentation_of: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/vertex_add_subtree_sum.test.cpp
-- /verify/test/yosupo/vertex_add_subtree_sum.test.cpp.html
-title: test/yosupo/vertex_add_subtree_sum.test.cpp
+- /verify/test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+- /verify/test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp.html
+title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
 ---
