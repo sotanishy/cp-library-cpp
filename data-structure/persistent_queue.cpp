@@ -5,13 +5,13 @@
 /*
  * @brief Persistent Queue
  */
-template <typename T, int Cap = (int) 1e7>
+template <typename T>
 class PersistentQueue {
 public:
     PersistentQueue() : first(0), last(0) {}
 
     int size() const {
-        return (last - first + Cap) % Cap;
+        return last - first;
     }
 
     bool empty() const {
@@ -25,17 +25,16 @@ public:
 
     T back() const {
         assert(!empty());
-        return pa.get((last + Cap - 1) % Cap);
+        return pa.get(last - 1);
     }
 
     PersistentQueue push(const T& val) const {
-        assert(size() < Cap);
-        return PersistentQueue(pa.set(last, val), first, (last + 1) % Cap);
+        return PersistentQueue(pa.set(last, val), first, last + 1);
     }
 
     PersistentQueue pop() const {
         assert(!empty());
-        return PersistentQueue(pa, (first + 1) % Cap, last);
+        return PersistentQueue(pa, first + 1, last);
     }
 
 private:

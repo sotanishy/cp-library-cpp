@@ -33,20 +33,22 @@ public:
 
     T fold(int u, int v) const {
         T res = M::id;
-        for (; head[u] != head[v]; v = par[head[v]]) {
-            if (depth[head[u]] > depth[head[v]]) std::swap(u, v);
+        while (head[u] != head[v]) {
+            if (pos[head[u]] > pos[head[v]]) std::swap(u, v);
             T val = st.fold(pos[head[v]], pos[v] + 1);
-            res = M::op(res, val);
+            res = M::op(val, res);
+            v = par[head[v]]
         }
-        if (depth[u] > depth[v]) std::swap(u, v);
+        if (pos[u] > pos[v]) std::swap(u, v);
         T val = st.fold(pos[u], pos[v] + 1);
-        return M::op(res, val);
+        return M::op(val, res);
     }
 
     int lca(int u, int v) const {
-        for (;; v = par[head[v]]) {
-            if (depth[u] > depth[v]) std::swap(u, v);
+        while (true) {
+            if (pos[u] > pos[v]) std::swap(u, v);
             if (head[u] == head[v]) return u;
+            v = par[head[v]];
         }
     }
 
