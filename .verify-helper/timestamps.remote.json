@@ -71,8 +71,9 @@
 "test/yosupo/two_edge_connected_components.test.cpp": "2020-10-24 16:23:12 +0900",
 "test/yosupo/two_sat.test.cpp": "2020-10-24 16:23:12 +0900",
 "test/yosupo/unionfind.test.cpp": "2020-10-24 00:37:28 +0900",
-"test/yosupo/vertex_add_path_sum.test.cpp": "2020-10-27 14:54:20 +0900",
-"test/yosupo/vertex_add_subtree_sum.test.cpp": "2020-10-27 14:13:32 +0900",
-"test/yosupo/vertex_set_path_composite.test.cpp": "2020-10-27 14:54:20 +0900",
+"test/yosupo/vertex_add_path_sum.test.cpp": "2020-10-27 22:43:27 +0900",
+"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp": "2020-10-27 22:43:27 +0900",
+"test/yosupo/vertex_add_subtree_sum.hld.test.cpp": "2020-10-27 22:43:27 +0900",
+"test/yosupo/vertex_set_path_composite.test.cpp": "2020-10-27 22:43:27 +0900",
 "test/yosupo/zalgorithm.test.cpp": "2020-10-24 15:32:41 +0900"
 }
