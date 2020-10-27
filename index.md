@@ -39,7 +39,7 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/quadtree.cpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
@@ -212,7 +212,7 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -425,7 +425,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.test.cpp
       title: test/yosupo/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'

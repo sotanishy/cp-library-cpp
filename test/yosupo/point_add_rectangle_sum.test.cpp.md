@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/quadtree.cpp
     title: Quadtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/rectangle_sum
+    - https://judge.yosupo.jp/problem/point_add_rectangle_sum
   bundledCode: "#line 1 \"test/yosupo/point_add_rectangle_sum.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#line 2 \"data-structure/quadtree.cpp\"\
-    \n#include <memory>\n#include <vector>\n\n/*\n * @brief Quadtree\n * @docs docs/data-structure/quadtree.cpp\n\
-    \ */\ntemplate <typename M>\nclass Quadtree {\n    using T = typename M::T;\n\n\
-    public:\n    Quadtree() = default;\n    Quadtree(int n) : root(std::make_unique<Node>())\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\n#line\
+    \ 2 \"data-structure/quadtree.cpp\"\n#include <memory>\n#include <vector>\n\n\
+    /*\n * @brief Quadtree\n * @docs docs/data-structure/quadtree.md\n */\ntemplate\
+    \ <typename M>\nclass Quadtree {\n    using T = typename M::T;\n\npublic:\n  \
+    \  Quadtree() = default;\n    Quadtree(int n) : root(std::make_unique<Node>())\
     \ {\n        size = 1;\n        while (size < n) size <<= 1;\n    }\n\n    T get(int\
     \ x, int y) const { return fold(x, x + 1, y, y + 1); }\n\n    void update(int\
     \ x, int y, const T& val) const { update(x, y, val, root, 0, 0, size); }\n\n \
@@ -79,14 +80,14 @@ data:
     \ qt.get(a, b) + q.w);\n        } else {\n            int l = cx.compress(q.l),\
     \ r = cx.compress(q.r);\n            int d = cy.compress(q.d), u = cy.compress(q.u);\n\
     \            cout << qt.fold(l, r, d, u) << \"\\n\";\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"../../data-structure/quadtree.cpp\"\n#include \"../../misc/compress.cpp\"\n\
-    \n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nstruct\
-    \ AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static T\
-    \ op(T a, T b) { return a + b; }\n};\n\nstruct Query {\n    int t, x, y, w, l,\
-    \ d, r, u;\n    Query(int t, int x, int y, int w) : t(t), x(x), y(y), w(w) {}\n\
-    \    Query(int t, int l, int d, int r, int u) : t(t), l(l), d(d), r(r), u(u) {}\n\
-    };\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
+    \n\n#include \"../../data-structure/quadtree.cpp\"\n#include \"../../misc/compress.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
+    \ T op(T a, T b) { return a + b; }\n};\n\nstruct Query {\n    int t, x, y, w,\
+    \ l, d, r, u;\n    Query(int t, int x, int y, int w) : t(t), x(x), y(y), w(w)\
+    \ {}\n    Query(int t, int l, int d, int r, int u) : t(t), l(l), d(d), r(r), u(u)\
+    \ {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs, ys;\n    vector<int>\
     \ x(N), y(N), w(N);\n    for (int i = 0; i < N; ++i) {\n        cin >> x[i] >>\
     \ y[i] >> w[i];\n    }\n    xs.insert(xs.end(), x.begin(), x.end());\n    ys.insert(ys.end(),\
@@ -111,8 +112,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-27 21:10:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-27 21:47:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.test.cpp
 layout: document
