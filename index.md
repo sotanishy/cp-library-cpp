@@ -49,6 +49,9 @@ data:
       path: data-structure/red_black_tree.cpp
       title: Red Black Tree
     - icon: ':heavy_check_mark:'
+      path: data-structure/reversible_splay_tree.cpp
+      title: Reversible Splay Tree
+    - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
     - icon: ':heavy_check_mark:'
@@ -251,7 +254,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour.cpp
-      title: tree/euler_tour.cpp
+      title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
@@ -384,8 +387,11 @@ data:
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp
-      title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp.cpp
+      path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
+      title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
+      title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp

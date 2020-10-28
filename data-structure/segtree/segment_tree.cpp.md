@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: tree/euler_tour.cpp
-    title: tree/euler_tour.cpp
+    title: Euler Tour
   - icon: ':heavy_check_mark:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition

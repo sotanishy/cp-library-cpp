@@ -6,7 +6,7 @@ data:
     title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: tree/euler_tour.cpp
-    title: tree/euler_tour.cpp
+    title: Euler Tour
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -52,16 +52,17 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
-    #line 4 \"tree/euler_tour.cpp\"\n\ntemplate <typename M>\nclass EulerTour {\n\
-    \    using T = typename M::T;\n\npublic:\n    EulerTour() = default;\n    EulerTour(const\
-    \ std::vector<std::vector<int>>& G, int root) : n(G.size()), root(root), G(G),\
-    \ in(n), out(n), st(2 * n) {\n        dfs(root, -1);\n    }\n\n    T get(int v)\
-    \ {\n        return st[in[v]];\n    }\n\n    void update(int v, const T& x) {\n\
-    \        st.update(in[v], x);\n    }\n\n    T subtree_fold(int v) {\n        return\
-    \ st.fold(in[v], out[v]);\n    }\n\nprivate:\n    int n, root;\n    std::vector<std::vector<int>>\
-    \ G;\n    std::vector<int> in, out;\n    int k = 0;\n    SegmentTree<M> st;\n\n\
-    \    void dfs(int v, int p) {\n        in[v] = k++;\n        for (int c : G[v])\
-    \ if (c != p) dfs(c, v);\n        out[v] = k++;\n    }\n};\n#line 4 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
+    #line 4 \"tree/euler_tour.cpp\"\n\n/*\n * @brief Euler Tour\n */\ntemplate <typename\
+    \ M>\nclass EulerTour {\n    using T = typename M::T;\n\npublic:\n    EulerTour()\
+    \ = default;\n    EulerTour(const std::vector<std::vector<int>>& G, int root)\
+    \ : n(G.size()), root(root), G(G), in(n), out(n), st(2 * n) {\n        dfs(root,\
+    \ -1);\n    }\n\n    T get(int v) {\n        return st[in[v]];\n    }\n\n    void\
+    \ update(int v, const T& x) {\n        st.update(in[v], x);\n    }\n\n    T subtree_fold(int\
+    \ v) {\n        return st.fold(in[v], out[v]);\n    }\n\nprivate:\n    int n,\
+    \ root;\n    std::vector<std::vector<int>> G;\n    std::vector<int> in, out;\n\
+    \    int k = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v, int p) {\n    \
+    \    in[v] = k++;\n        for (int c : G[v]) if (c != p) dfs(c, v);\n       \
+    \ out[v] = k++;\n    }\n};\n#line 4 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -93,7 +94,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
   requiredBy: []
-  timestamp: '2020-10-27 22:43:27+09:00'
+  timestamp: '2020-10-28 12:21:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
