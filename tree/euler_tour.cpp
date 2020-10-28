@@ -2,6 +2,9 @@
 #include <vector>
 #include "../data-structure/segtree/segment_tree.cpp"
 
+/*
+ * @brief Euler Tour
+ */
 template <typename M>
 class EulerTour {
     using T = typename M::T;

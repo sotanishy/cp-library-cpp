@@ -5,13 +5,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+using ll = long long;
+
 struct AddMonoid {
-    using T = long long;
+    using T = ll;
     static constexpr T id = 0;
     static T op(T a, T b) {
         return a + b;
     }
 };
+
+ll flip(ll a) { return a; }
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -19,7 +23,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    LinkCutTree<AddMonoid> lct;
+    LinkCutTree<AddMonoid, flip> lct;
     vector<decltype(lct)::node_ptr> nodes;
     for (int i = 0; i < N; ++i) {
         int a;
@@ -37,7 +41,7 @@ int main() {
         if (t == 0) {
             int u, v, w, x;
             cin >> u >> v >> w >> x;
-            lct.make_root(nodes[u]);
+            lct.evert(nodes[u]);
             lct.cut(nodes[v]);
             lct.link(nodes[w], nodes[x]);
         } else if (t == 1) {

@@ -27,7 +27,7 @@ Link/cut 木は，森を管理するデータ構造である．以下のクエ�
 - `void cut(node_ptr v)`
     - 木 $v$ を親から切る
     - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
-- `void make_root(node_ptr v)`
+- `void evert(node_ptr v)`
     - $v$ を木の根にする
     - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
 - `void update(node_ptr v, T x)`
