@@ -8,13 +8,13 @@ data:
   attributes:
     document_title: Red Black Tree
     links: []
-  bundledCode: "#line 2 \"data-structure/red_black_tree.cpp\"\n#include <iostream>\n\
+  bundledCode: "#line 2 \"data-structure/bst/red_black_tree.cpp\"\n#include <iostream>\n\
     #include <memory>\n\n/*\n * @brief Red Black Tree\n */\ntemplate <typename T>\n\
     class RedBlackTree {\npublic:\n    int count(T key) {\n        if (find(root,\
     \ key)) return 1;\n        return 0;\n    }\n\n    void insert(T key) {\n    \
     \    insert(std::make_shared<Node>(key));\n    }\n\n    void erase(T key) {\n\
     \        erase(find(root, key));\n    }\n\nprivate:\n    enum Color {\n      \
-    \  BLACK, RED\n    };\n\n    struct Node;\n\n    using node_ptr = std::shared_ptr<Node>;\n\
+    \  BLACK, RED\n    };\n\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
     \n    struct Node {\n        node_ptr par, left, right;\n        Color color =\
     \ BLACK;\n        T key;\n\n        Node() = default;\n        Node(T key) : key(key)\
     \ {}\n    };\n\n    const node_ptr nil = std::make_shared<Node>();\n    node_ptr\
@@ -104,16 +104,14 @@ data:
     \                y->right->par = y;\n            }\n            transplant(z,\
     \ y);\n            y->left = z->left;\n            y->left->par = y;\n       \
     \     y->color = z->color;\n        }\n        if (y_original_color == BLACK)\
-    \ {\n            erase_fixup(x);\n        }\n    }\n\n    void print_inorder(node_ptr\
-    \ x) {\n        if (x == nil) return;\n        print_inorder(x->left);\n     \
-    \   std::cout << x->key << \" \";\n        print_inorder(x->right);\n    }\n};\n"
+    \ {\n            erase_fixup(x);\n        }\n    }\n};\n"
   code: "#pragma once\n#include <iostream>\n#include <memory>\n\n/*\n * @brief Red\
     \ Black Tree\n */\ntemplate <typename T>\nclass RedBlackTree {\npublic:\n    int\
     \ count(T key) {\n        if (find(root, key)) return 1;\n        return 0;\n\
     \    }\n\n    void insert(T key) {\n        insert(std::make_shared<Node>(key));\n\
     \    }\n\n    void erase(T key) {\n        erase(find(root, key));\n    }\n\n\
-    private:\n    enum Color {\n        BLACK, RED\n    };\n\n    struct Node;\n\n\
-    \    using node_ptr = std::shared_ptr<Node>;\n\n    struct Node {\n        node_ptr\
+    private:\n    enum Color {\n        BLACK, RED\n    };\n\n    struct Node;\n \
+    \   using node_ptr = std::shared_ptr<Node>;\n\n    struct Node {\n        node_ptr\
     \ par, left, right;\n        Color color = BLACK;\n        T key;\n\n        Node()\
     \ = default;\n        Node(T key) : key(key) {}\n    };\n\n    const node_ptr\
     \ nil = std::make_shared<Node>();\n    node_ptr root = nil;\n\n    node_ptr find(const\
@@ -202,20 +200,18 @@ data:
     \                y->right->par = y;\n            }\n            transplant(z,\
     \ y);\n            y->left = z->left;\n            y->left->par = y;\n       \
     \     y->color = z->color;\n        }\n        if (y_original_color == BLACK)\
-    \ {\n            erase_fixup(x);\n        }\n    }\n\n    void print_inorder(node_ptr\
-    \ x) {\n        if (x == nil) return;\n        print_inorder(x->left);\n     \
-    \   std::cout << x->key << \" \";\n        print_inorder(x->right);\n    }\n};\n"
+    \ {\n            erase_fixup(x);\n        }\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/red_black_tree.cpp
+  path: data-structure/bst/red_black_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-26 19:52:55+09:00'
+  timestamp: '2020-10-29 10:57:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: data-structure/red_black_tree.cpp
+documentation_of: data-structure/bst/red_black_tree.cpp
 layout: document
 redirect_from:
-- /library/data-structure/red_black_tree.cpp
-- /library/data-structure/red_black_tree.cpp.html
+- /library/data-structure/bst/red_black_tree.cpp
+- /library/data-structure/bst/red_black_tree.cpp.html
 title: Red Black Tree
 ---

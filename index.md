@@ -45,12 +45,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
-    - icon: ':warning:'
-      path: data-structure/red_black_tree.cpp
-      title: Red Black Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/reversible_splay_tree.cpp
-      title: Reversible Splay Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
@@ -61,11 +55,22 @@ data:
       path: data-structure/sparse_table.cpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
-      path: data-structure/treap.cpp
-      title: Treap
-    - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
+  - name: data-structure/bst
+    pages:
+    - icon: ':warning:'
+      path: data-structure/bst/red_black_tree.cpp
+      title: Red Black Tree
+    - icon: ':heavy_check_mark:'
+      path: data-structure/bst/reversible_splay_tree.cpp
+      title: (deprecated) Reversible Splay Tree
+    - icon: ':warning:'
+      path: data-structure/bst/splay_tree.cpp
+      title: Splay Tree
+    - icon: ':warning:'
+      path: data-structure/bst/treap.cpp
+      title: Treap
   - name: data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -250,6 +255,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/z_array.cpp
       title: Z Array
+  - name: test/aoj
+    pages:
+    - icon: ':warning:'
+      path: test/aoj/1508.splay_tree.cpp
+      title: test/aoj/1508.splay_tree.cpp
+    - icon: ':warning:'
+      path: test/aoj/1508.treap.cpp
+      title: test/aoj/1508.treap.cpp
   - name: tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -279,9 +292,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_8_D.test.cpp
-      title: test/aoj/ALDS1_8_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_A.test.cpp
       title: test/aoj/DSL_1_A.test.cpp
@@ -389,7 +399,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

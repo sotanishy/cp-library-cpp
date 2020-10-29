@@ -7,6 +7,9 @@ data:
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
+    title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -104,6 +107,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
