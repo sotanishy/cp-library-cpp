@@ -59,16 +59,19 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
+    - icon: ':heavy_check_mark:'
+      path: data-structure/bst/rbst.cpp
+      title: Randomized Binary Search Tree
     - icon: ':warning:'
       path: data-structure/bst/red_black_tree.cpp
       title: Red Black Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/reversible_splay_tree.cpp
       title: (deprecated) Reversible Splay Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.cpp
       title: Splay Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/treap.cpp
       title: Treap
   - name: data-structure/segtree
@@ -255,14 +258,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/z_array.cpp
       title: Z Array
-  - name: test/aoj
-    pages:
-    - icon: ':warning:'
-      path: test/aoj/1508.splay_tree.cpp
-      title: test/aoj/1508.splay_tree.cpp
-    - icon: ':warning:'
-      path: test/aoj/1508.treap.cpp
-      title: test/aoj/1508.treap.cpp
   - name: tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -283,6 +278,15 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1508.rbst.test.cpp
+      title: test/aoj/1508.rbst.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1508.splay_tree.test.cpp
+      title: test/aoj/1508.splay_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1508.treap.test.cpp
+      title: test/aoj/1508.treap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
       title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp

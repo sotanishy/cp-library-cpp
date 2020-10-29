@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/aoj/1508.splay_tree.cpp
-    title: test/aoj/1508.splay_tree.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.splay_tree.test.cpp
+    title: test/aoj/1508.splay_tree.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/bst/splay_tree.md
     document_title: Splay Tree
@@ -155,11 +155,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/bst/splay_tree.cpp
-  requiredBy:
-  - test/aoj/1508.splay_tree.cpp
+  requiredBy: []
   timestamp: '2020-10-29 10:57:35+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/1508.splay_tree.test.cpp
 documentation_of: data-structure/bst/splay_tree.cpp
 layout: document
 redirect_from:
