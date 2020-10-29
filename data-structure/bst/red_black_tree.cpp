@@ -27,7 +27,6 @@ private:
     };
 
     struct Node;
-
     using node_ptr = std::shared_ptr<Node>;
 
     struct Node {
@@ -268,12 +267,5 @@ private:
         if (y_original_color == BLACK) {
             erase_fixup(x);
         }
-    }
-
-    void print_inorder(node_ptr x) {
-        if (x == nil) return;
-        print_inorder(x->left);
-        std::cout << x->key << " ";
-        print_inorder(x->right);
     }
 };

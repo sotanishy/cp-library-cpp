@@ -3,7 +3,7 @@
 #include <memory>
 
 /*
- * @brief Reversible Splay Tree
+ * @brief (deprecated) Reversible Splay Tree
  */
 template <typename M, typename M::T (*flip)(typename M::T)>
 class ReversibleSplayTree {

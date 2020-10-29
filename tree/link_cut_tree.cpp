@@ -1,9 +1,9 @@
 #pragma once
-#include "../data-structure/reversible_splay_tree.cpp"
+#include "../data-structure/bst/reversible_splay_tree.cpp"
 
 /*
  * @brief Link/Cut Tree
- * @docs docs/tree/link_cut_tree.cpp
+ * @docs docs/tree/link_cut_tree.md
  */
 template <typename M, typename M::T (*flip)(typename M::T)>
 class LinkCutTree : ReversibleSplayTree<M, flip> {
