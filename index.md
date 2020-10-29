@@ -66,9 +66,6 @@ data:
       path: data-structure/bst/red_black_tree.cpp
       title: Red Black Tree
     - icon: ':heavy_check_mark:'
-      path: data-structure/bst/reversible_splay_tree.cpp
-      title: (deprecated) Reversible Splay Tree
-    - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.cpp
       title: Splay Tree
     - icon: ':heavy_check_mark:'
@@ -263,6 +260,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour.cpp
       title: Euler Tour
+    - icon: ':warning:'
+      path: tree/euler_tour_tree.cpp
+      title: Euler Tour Tree
     - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition

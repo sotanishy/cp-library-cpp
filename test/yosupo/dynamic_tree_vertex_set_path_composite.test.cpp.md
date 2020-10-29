@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/bst/reversible_splay_tree.cpp
-    title: (deprecated) Reversible Splay Tree
-  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
   - icon: ':heavy_check_mark:'
@@ -49,67 +46,66 @@ data:
     \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
     \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
-    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 3 \"data-structure/bst/reversible_splay_tree.cpp\"\
-    \n#include <memory>\n\n/*\n * @brief (deprecated) Reversible Splay Tree\n */\n\
-    template <typename M, typename M::T (*flip)(typename M::T)>\nclass ReversibleSplayTree\
-    \ {\n    using T = typename M::T;\n\nprotected:\n    struct Node;\n\npublic:\n\
-    \    using node_ptr = std::shared_ptr<Node>;\n\n    node_ptr make_node(const T&\
-    \ x) const {\n        return std::make_shared<Node>(x);\n    }\n\n    void reverse(const\
-    \ node_ptr& t) const {\n        std::swap(t->left, t->right);\n        t->sum\
-    \ = flip(t->sum);\n        t->rev ^= true;\n    }\n\nprotected:\n    struct Node\
-    \ {\n        node_ptr left, right, par;\n        T val, sum;\n        int sz;\n\
-    \        bool rev;\n\n        Node() : left(nullptr), right(nullptr), par(nullptr),\
-    \ sz(1), rev(false) {}\n        Node(const T& x) : Node() {\n            val =\
-    \ sum = x;\n        }\n    };\n\n    bool is_root(const node_ptr& t) const {\n\
-    \        return !t->par || (t->par->left != t && t->par->right != t);\n    }\n\
-    \n    void recalc(const node_ptr& t) const {\n        t->sz = 1;\n        t->sum\
-    \ = t->val;\n        if (t->left) {\n            t->sz += t->left->sz;\n     \
-    \       t->sum = M::op(t->left->sum, t->sum);\n        }\n        if (t->right)\
-    \ {\n            t->sz += t->right->sz;\n            t->sum = M::op(t->sum, t->right->sum);\n\
-    \        }\n    }\n\n    void rotate_left(node_ptr t) const {\n        auto x\
-    \ = t->par, y = x->par;\n        x->right = t->left;\n        if (x->right) x->right->par\
-    \ = x;\n        t->left = x;\n        x->par = t;\n        recalc(x);\n      \
-    \  recalc(t);\n        t->par = y;\n        if (y) {\n            if (y->left\
-    \ == x) y->left = t;\n            if (y->right == x) y->right = t;\n         \
-    \   recalc(y);\n        }\n    }\n\n    void rotate_right(node_ptr t) const {\n\
-    \        auto x = t->par, y = x->par;\n        x->left = t->right;\n        if\
-    \ (x->left) x->left->par = x;\n        t->right = x;\n        x->par = t;\n  \
-    \      recalc(x);\n        recalc(t);\n        t->par = y;\n        if (y) {\n\
-    \            if (y->left == x) y->left = t;\n            if (y->right == x) y->right\
-    \ = t;\n            recalc(y);\n        }\n    }\n\n    void push(const node_ptr&\
-    \ t) const {\n        if (t->rev) {\n            if (t->left) reverse(t->left);\n\
-    \            if (t->right) reverse(t->right);\n            t->rev = false;\n \
-    \       }\n    }\n\n    void splay(node_ptr t) const {\n        push(t);\n   \
-    \     while (!is_root(t)) {\n            auto x = t->par;\n            if (is_root(x))\
-    \ {\n                push(x);\n                push(t);\n                if (x->left\
-    \ == t) rotate_right(t);\n                else rotate_left(t);\n            }\
-    \ else {\n                auto y = x->par;\n                push(y);\n       \
-    \         push(x);\n                push(t);\n                if (y->left == x)\
-    \ {\n                    if (x->left == t) {\n                        rotate_right(x);\n\
-    \                        rotate_right(t);\n                    } else {\n    \
-    \                    rotate_left(t);\n                        rotate_right(t);\n\
-    \                    }\n                } else {\n                    if (x->right\
-    \ == t) {\n                        rotate_left(x);\n                        rotate_left(t);\n\
-    \                    } else {\n                        rotate_right(t);\n    \
-    \                    rotate_left(t);\n                    }\n                }\n\
-    \            }\n        }\n    }\n};\n#line 3 \"tree/link_cut_tree.cpp\"\n\n/*\n\
-    \ * @brief Link/Cut Tree\n * @docs docs/tree/link_cut_tree.md\n */\ntemplate <typename\
-    \ M, typename M::T (*flip)(typename M::T)>\nclass LinkCutTree : ReversibleSplayTree<M,\
-    \ flip> {\n    using T = typename M::T;\n    using RST = ReversibleSplayTree<M,\
-    \ flip>;\n\npublic:\n    using node_ptr = typename RST::node_ptr;\n\n    using\
-    \ RST::make_node;\n\n    void link(node_ptr v, node_ptr p) const {\n        evert(v);\n\
-    \        access(p);\n        v->par = p;\n        p->right = v;\n        recalc(p);\n\
-    \    }\n\n    void cut(node_ptr v) const {\n        access(v);\n        auto p\
-    \ = v->left;\n        v->left = p->par = nullptr;\n        recalc(v);\n    }\n\
-    \n    void evert(node_ptr v) const {\n        access(v);\n        reverse(v);\n\
-    \    }\n\n    void update(node_ptr v, const T& x) const {\n        access(v);\n\
-    \        v->val = x;\n        recalc(v);\n    }\n\n    T fold(node_ptr u, node_ptr\
-    \ v) const {\n        evert(u);\n        access(v);\n        return v->sum;\n\
-    \    }\n\nprivate:\n    using RST::reverse;\n    using RST::recalc;\n    using\
-    \ RST::splay;\n\n    void access(node_ptr v) const {\n        node_ptr prev =\
-    \ nullptr;\n        for (auto cur = v; cur; cur = cur->par) {\n            splay(cur);\n\
-    \            cur->right = prev;\n            recalc(cur);\n            prev =\
-    \ cur;\n        }\n        splay(v);\n    }\n};\n#line 5 \"test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 3 \"tree/link_cut_tree.cpp\"\
+    \n#include <memory>\n#include <vector>\n\n/*\n * @brief Link/Cut Tree\n * @docs\
+    \ docs/tree/link_cut_tree.md\n */\ntemplate <typename M, typename M::T (*flip)(typename\
+    \ M::T)>\nclass LinkCutTree {\n    using T = typename M::T;\n\npublic:\n    LinkCutTree()\
+    \ = default;\n    explicit LinkCutTree(int n) {\n        for (int i = 0; i < n;\
+    \ ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id));\n     \
+    \   }\n    }\n\n    void link(int v, int p) {\n        evert(v);\n        expose(vertex[p]);\n\
+    \        vertex[v]->par = vertex[p];\n        vertex[p]->right = vertex[v];\n\
+    \        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n        expose(vertex[v]);\n\
+    \        auto p = vertex[v]->left;\n        vertex[v]->left = p->par = nullptr;\n\
+    \        recalc(vertex[v]);\n    }\n\n    void evert(int v) {\n        expose(vertex[v]);\n\
+    \        reverse(vertex[v]);\n    }\n\n    T get(int v) {\n        return vertex[v]->val;\n\
+    \    }\n\n    void set(int v, const T& x) {\n        expose(vertex[v]);\n    \
+    \    vertex[v]->val = x;\n        recalc(vertex[v]);\n    }\n\n    T fold(int\
+    \ u, int v) {\n        evert(u);\n        expose(vertex[v]);\n        return vertex[v]->sum;\n\
+    \    }\n\nprivate:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
+    \n    struct Node {\n        node_ptr left, right, par;\n        T val, sum;\n\
+    \        int sz;\n        bool rev;\n\n        Node(const T& x)\n            :\
+    \ left(nullptr), right(nullptr), par(nullptr),\n              val(x), sum(x),\
+    \ sz(1), rev(false) {}\n    };\n\n    std::vector<node_ptr> vertex;\n\n    static\
+    \ void expose(node_ptr v) {\n        node_ptr prev = nullptr;\n        for (auto\
+    \ cur = v; cur; cur = cur->par) {\n            splay(cur);\n            cur->right\
+    \ = prev;\n            recalc(cur);\n            prev = cur;\n        }\n    \
+    \    splay(v);\n    }\n\n    // splay tree\n\n    static int size(const node_ptr&\
+    \ t) {\n        return t ? t->sz : 0;\n    }\n\n    static void recalc(const node_ptr&\
+    \ t) {\n        if (!t) return;\n        t->sz = size(t->left) + 1 + size(t->right);\n\
+    \        t->sum = t->val;\n        if (t->left) t->sum = M::op(t->left->sum, t->sum);\n\
+    \        if (t->right) t->sum = M::op(t->sum, t->right->sum);\n    }\n\n    static\
+    \ void push(const node_ptr& t) {\n        if (t->rev) {\n            if (t->left)\
+    \ reverse(t->left);\n            if (t->right) reverse(t->right);\n          \
+    \  t->rev = false;\n        }\n    }\n\n    static void reverse(const node_ptr&\
+    \ t) {\n        std::swap(t->left, t->right);\n        t->sum = flip(t->sum);\n\
+    \        t->rev ^= true;\n    }\n\n    static void rotate_left(node_ptr t) {\n\
+    \        node_ptr s = t->right;\n        t->right = s->left;\n        if (s->left)\
+    \ s->left->par = t;\n        s->par = t->par;\n        if (t->par) {\n       \
+    \     if (t->par->left == t) {\n                t->par->left = s;\n          \
+    \  }\n            if (t->par->right == t) {\n                t->par->right = s;\n\
+    \            }\n        }\n        s->left = t;\n        t->par = s;\n       \
+    \ recalc(t);\n        recalc(s);\n    }\n\n    static void rotate_right(node_ptr\
+    \ t) {\n        node_ptr s = t->left;\n        t->left = s->right;\n        if\
+    \ (s->right) s->right->par = t;\n        s->par = t->par;\n        if (t->par)\
+    \ {\n            if (t->par->left == t) {\n                t->par->left = s;\n\
+    \            }\n            if (t->par->right == t) {\n                t->par->right\
+    \ = s;\n            }\n        }\n        s->right = t;\n        t->par = s;\n\
+    \        recalc(t);\n        recalc(s);\n    }\n\n    static bool is_root(const\
+    \ node_ptr& t) {\n        return !t->par || (t->par->left != t && t->par->right\
+    \ != t);\n    }\n\n    static void splay(node_ptr t) {\n        push(t);\n   \
+    \     while (!is_root(t)) {\n            auto p = t->par;\n            if (is_root(p))\
+    \ {\n                push(p);\n                push(t);\n                if (t\
+    \ == p->left) rotate_right(p);\n                else rotate_left(p);\n       \
+    \     } else {\n                auto g = p->par;\n                push(g);\n \
+    \               push(p);\n                push(t);\n                if (t == p->left)\
+    \ {\n                    if (p == g->left) {\n                        rotate_right(g);\n\
+    \                        rotate_right(p);\n                    } else {\n    \
+    \                    rotate_right(p);\n                        rotate_left(g);\n\
+    \                    }\n                } else {\n                    if (p ==\
+    \ g->left) {\n                        rotate_left(p);\n                      \
+    \  rotate_right(g);\n                    } else {\n                        rotate_left(g);\n\
+    \                        rotate_left(p);\n                    }\n            \
+    \    }\n            }\n        }\n    }\n};\n#line 5 \"test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nstruct AffineMonoid {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n\
     \    static constexpr T id = {{1, 0}, {1, 0}};\n    static T op(T a, T b) {\n\
@@ -118,20 +114,18 @@ data:
     \ b.second.second * a.second.first + a.second.second},\n        };\n    }\n};\n\
     \nAffineMonoid::T flip(AffineMonoid::T a) { swap(a.first, a.second); return a;\
     \ }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AffineMonoid, flip> lct;\n\
-    \    vector<decltype(lct)::node_ptr> nodes;\n    for (int i = 0; i < N; ++i) {\n\
-    \        int a, b;\n        cin >> a >> b;\n        nodes.emplace_back(lct.make_node({{a,\
-    \ b}, {a, b}}));\n    }\n    for (int i = 0; i < N - 1; ++i) {\n        int u,\
-    \ v;\n        cin >> u >> v;\n        lct.link(nodes[u], nodes[v]);\n    }\n \
-    \   for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n       \
-    \ if (t == 0) {\n            int u, v, w, x;\n            cin >> u >> v >> w >>\
-    \ x;\n            lct.evert(nodes[u]);\n            lct.cut(nodes[v]);\n     \
-    \       lct.link(nodes[w], nodes[x]);\n        } else if (t == 1) {\n        \
-    \    int p, c, d;\n            cin >> p >> c >> d;\n            lct.update(nodes[p],\
-    \ {{c, d}, {c, d}});\n        } else {\n            int u, v, x;\n           \
-    \ cin >> u >> v >> x;\n            auto f = lct.fold(nodes[u], nodes[v]);\n  \
-    \          cout << f.first.first * x + f.first.second << \"\\n\";\n        }\n\
-    \    }\n}\n"
+    \n    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AffineMonoid, flip> lct(N);\n\
+    \    for (int i = 0; i < N; ++i) {\n        int a, b;\n        cin >> a >> b;\n\
+    \        lct.set(i, {{a, b}, {a, b}});\n    }\n    for (int i = 0; i < N - 1;\
+    \ ++i) {\n        int u, v;\n        cin >> u >> v;\n        lct.link(u, v);\n\
+    \    }\n    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n\
+    \        if (t == 0) {\n            int u, v, w, x;\n            cin >> u >> v\
+    \ >> w >> x;\n            lct.evert(u);\n            lct.cut(v);\n           \
+    \ lct.link(w, x);\n        } else if (t == 1) {\n            int p, c, d;\n  \
+    \          cin >> p >> c >> d;\n            lct.set(p, {{c, d}, {c, d}});\n  \
+    \      } else {\n            int u, v, x;\n            cin >> u >> v >> x;\n \
+    \           auto f = lct.fold(u, v);\n            cout << f.first.first * x +\
+    \ f.first.second << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../tree/link_cut_tree.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
@@ -142,28 +136,25 @@ data:
     \ b.second.second * a.second.first + a.second.second},\n        };\n    }\n};\n\
     \nAffineMonoid::T flip(AffineMonoid::T a) { swap(a.first, a.second); return a;\
     \ }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AffineMonoid, flip> lct;\n\
-    \    vector<decltype(lct)::node_ptr> nodes;\n    for (int i = 0; i < N; ++i) {\n\
-    \        int a, b;\n        cin >> a >> b;\n        nodes.emplace_back(lct.make_node({{a,\
-    \ b}, {a, b}}));\n    }\n    for (int i = 0; i < N - 1; ++i) {\n        int u,\
-    \ v;\n        cin >> u >> v;\n        lct.link(nodes[u], nodes[v]);\n    }\n \
-    \   for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n       \
-    \ if (t == 0) {\n            int u, v, w, x;\n            cin >> u >> v >> w >>\
-    \ x;\n            lct.evert(nodes[u]);\n            lct.cut(nodes[v]);\n     \
-    \       lct.link(nodes[w], nodes[x]);\n        } else if (t == 1) {\n        \
-    \    int p, c, d;\n            cin >> p >> c >> d;\n            lct.update(nodes[p],\
-    \ {{c, d}, {c, d}});\n        } else {\n            int u, v, x;\n           \
-    \ cin >> u >> v >> x;\n            auto f = lct.fold(nodes[u], nodes[v]);\n  \
-    \          cout << f.first.first * x + f.first.second << \"\\n\";\n        }\n\
-    \    }\n}"
+    \n    int N, Q;\n    cin >> N >> Q;\n    LinkCutTree<AffineMonoid, flip> lct(N);\n\
+    \    for (int i = 0; i < N; ++i) {\n        int a, b;\n        cin >> a >> b;\n\
+    \        lct.set(i, {{a, b}, {a, b}});\n    }\n    for (int i = 0; i < N - 1;\
+    \ ++i) {\n        int u, v;\n        cin >> u >> v;\n        lct.link(u, v);\n\
+    \    }\n    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n\
+    \        if (t == 0) {\n            int u, v, w, x;\n            cin >> u >> v\
+    \ >> w >> x;\n            lct.evert(u);\n            lct.cut(v);\n           \
+    \ lct.link(w, x);\n        } else if (t == 1) {\n            int p, c, d;\n  \
+    \          cin >> p >> c >> d;\n            lct.set(p, {{c, d}, {c, d}});\n  \
+    \      } else {\n            int u, v, x;\n            cin >> u >> v >> x;\n \
+    \           auto f = lct.fold(u, v);\n            cout << f.first.first * x +\
+    \ f.first.second << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - math/modint.cpp
   - tree/link_cut_tree.cpp
-  - data-structure/bst/reversible_splay_tree.cpp
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-29 10:57:35+09:00'
+  timestamp: '2020-10-30 00:16:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
