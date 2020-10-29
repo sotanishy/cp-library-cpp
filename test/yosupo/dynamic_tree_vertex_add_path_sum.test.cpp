@@ -23,17 +23,16 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    LinkCutTree<AddMonoid, flip> lct;
-    vector<decltype(lct)::node_ptr> nodes;
+    LinkCutTree<AddMonoid, flip> lct(N);
     for (int i = 0; i < N; ++i) {
         int a;
         cin >> a;
-        nodes.emplace_back(lct.make_node(a));
+        lct.set(i, a);
     }
     for (int i = 0; i < N - 1; ++i) {
         int u, v;
         cin >> u >> v;
-        lct.link(nodes[u], nodes[v]);
+        lct.link(u, v);
     }
     for (int i = 0; i < Q; ++i) {
         int t;
@@ -41,17 +40,17 @@ int main() {
         if (t == 0) {
             int u, v, w, x;
             cin >> u >> v >> w >> x;
-            lct.evert(nodes[u]);
-            lct.cut(nodes[v]);
-            lct.link(nodes[w], nodes[x]);
+            lct.evert(u);
+            lct.cut(v);
+            lct.link(w, x);
         } else if (t == 1) {
             int p, x;
             cin >> p >> x;
-            lct.update(nodes[p], lct.fold(nodes[p], nodes[p]) + x);
+            lct.set(p, lct.get(p) + x);
         } else {
             int u, v;
             cin >> u >> v;
-            cout << lct.fold(nodes[u], nodes[v]) << "\n";
+            cout << lct.fold(u, v) << "\n";
         }
     }
 }

@@ -27,17 +27,16 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    LinkCutTree<AffineMonoid, flip> lct;
-    vector<decltype(lct)::node_ptr> nodes;
+    LinkCutTree<AffineMonoid, flip> lct(N);
     for (int i = 0; i < N; ++i) {
         int a, b;
         cin >> a >> b;
-        nodes.emplace_back(lct.make_node({{a, b}, {a, b}}));
+        lct.set(i, {{a, b}, {a, b}});
     }
     for (int i = 0; i < N - 1; ++i) {
         int u, v;
         cin >> u >> v;
-        lct.link(nodes[u], nodes[v]);
+        lct.link(u, v);
     }
     for (int i = 0; i < Q; ++i) {
         int t;
@@ -45,17 +44,17 @@ int main() {
         if (t == 0) {
             int u, v, w, x;
             cin >> u >> v >> w >> x;
-            lct.evert(nodes[u]);
-            lct.cut(nodes[v]);
-            lct.link(nodes[w], nodes[x]);
+            lct.evert(u);
+            lct.cut(v);
+            lct.link(w, x);
         } else if (t == 1) {
             int p, c, d;
             cin >> p >> c >> d;
-            lct.update(nodes[p], {{c, d}, {c, d}});
+            lct.set(p, {{c, d}, {c, d}});
         } else {
             int u, v, x;
             cin >> u >> v >> x;
-            auto f = lct.fold(nodes[u], nodes[v]);
+            auto f = lct.fold(u, v);
             cout << f.first.first * x + f.first.second << "\n";
         }
     }

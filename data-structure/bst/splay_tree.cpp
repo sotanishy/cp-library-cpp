@@ -79,7 +79,7 @@ public:
         return size() == 0;
     }
 
-protected:
+private:
     struct Node;
     using node_ptr = std::unique_ptr<Node>;
 
@@ -115,9 +115,6 @@ protected:
             if (t->left) t->left->rev ^= true;
             if (t->right) t->right->rev ^= true;
             t->rev = false;
-            // if (t->left) reverse(t->left);
-            // if (t->right) reverse(t->right);
-            // t->rev = false;
         }
     }
 
