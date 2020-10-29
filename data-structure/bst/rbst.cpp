@@ -5,23 +5,23 @@
 #include <utility>
 
 /*
- * @brief Treap
- * @docs docs/data-structure/bst/treap.md
+ * @brief Randomized Binary Search Tree
+ * @docs docs/data-structure/bst/rbst.md
  */
 template <typename M>
-class Treap {
+class RBST {
     using T = typename M::T;
 
 public:
-    Treap() = default;
+    RBST() = default;
 
-    static Treap join(Treap l, Treap r) {
-        return Treap(join(std::move(l.root), std::move(r.root)));
+    static RBST join(RBST l, RBST r) {
+        return RBST(join(std::move(l.root), std::move(r.root)));
     }
 
-    std::pair<Treap, Treap> split(int k) {
+    std::pair<RBST, RBST> split(int k) {
         auto p = split(std::move(root), k);
-        return {Treap(std::move(p.first)), Treap(std::move(p.second))};
+        return {RBST(std::move(p.first)), RBST(std::move(p.second))};
     }
 
     void set(int k, const T& x) const {
@@ -90,17 +90,16 @@ private:
     struct Node {
         node_ptr left, right;
         T val, sum;
-        unsigned int pri;
         int sz;
         bool rev;
 
         Node() : Node(M::id) {}
-        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), pri(rand()), sz(1), rev(false) {}
+        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), sz(1), rev(false) {}
     };
 
     node_ptr root;
 
-    explicit Treap(node_ptr root) : root(std::move(root)) {}
+    explicit RBST(node_ptr root) : root(std::move(root)) {}
 
     static int size(const node_ptr& t) {
         return t ? t->sz : 0;
@@ -128,7 +127,7 @@ private:
         if (!r) return l;
         push(l);
         push(r);
-        if (l->pri > r->pri) {
+        if ((int) (rand() % (size(l) + size(r))) < size(l)) {
             l->right = join(std::move(l->right), std::move(r));
             recalc(l);
             return l;

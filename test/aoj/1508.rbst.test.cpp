@@ -1,0 +1,41 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508"
+
+#include "../../data-structure/bst/rbst.cpp"
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct MinMonoid {
+    using T = int;
+    static constexpr T id = (1u << 31) - 1;
+    static T op(T a, T b) {
+        return min(a, b);
+    }
+};
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n, q;
+    cin >> n >> q;
+    using ST = RBST<MinMonoid>;
+    ST st;
+    for (int i = 0; i < n; ++i) {
+        int a;
+        cin >> a;
+        st.push_back(a);
+    }
+    while (q--) {
+        int x, y, z;
+        cin >> x >> y >> z;
+        if (x == 0) {
+            st.reverse(y, z + 1);
+            st.reverse(y + 1, z + 1);
+        } else if (x == 1) {
+            cout << st.fold(y, z + 1) << "\n";
+        } else {
+            st.set(y, z);
+        }
+    }
+}
