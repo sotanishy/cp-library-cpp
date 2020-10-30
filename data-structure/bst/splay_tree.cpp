@@ -23,21 +23,24 @@ public:
         return {SplayTree(std::move(p.first)), SplayTree(std::move(p.second))};
     }
 
-    void set(int k, const T& x) {
+    void update(int k, const T& x) {
         root = splay(std::move(root), k);
         root->val = x;
         recalc(root);
     }
 
     T fold(int l, int r) {
-        auto a = split(std::move(root), l);
-        auto b = split(std::move(a.second), r - l);
-        auto ret = b.first ? b.first->sum : M::id;
-        root = join(std::move(a.first), join(std::move(b.first), std::move(b.second)));
+        assert(0 <= l && l < r && r <= size());
+        node_ptr a, b, c;
+        std::tie(a, b) = split(std::move(root), l);
+        std::tie(b, c) = split(std::move(b), r - l);
+        auto ret = b->sum;
+        root = join(join(std::move(a), std::move(b)), std::move(c));
         return ret;
     }
 
     void reverse(int l, int r) {
+        assert(0 <= l && l < r && r <= size());
         node_ptr a, b, c;
         std::tie(a, b) = split(std::move(root), l);
         std::tie(b, c) = split(std::move(b), r - l);

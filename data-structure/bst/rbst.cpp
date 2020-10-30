@@ -24,13 +24,18 @@ public:
         return {RBST(std::move(p.first)), RBST(std::move(p.second))};
     }
 
-    void set(int k, const T& x) const {
-        set(root, k, x);
+    void update(int k, const T& x) const {
+        update(root, k, x);
     }
 
-    T fold(int l, int r) const {
+    T fold(int l, int r) {
         assert(0 <= l && l < r && r <= size());
-        return fold(root, l, r);
+        node_ptr a, b, c;
+        std::tie(a, b) = split(std::move(root), l);
+        std::tie(b, c) = split(std::move(b), r - l);
+        auto ret = b->sum;
+        root = join(join(std::move(a), std::move(b)), std::move(c));
+        return ret;
     }
 
     void reverse(int l, int r) {
@@ -156,26 +161,16 @@ private:
         }
     }
 
-    static void set(const node_ptr& t, int k, const T& x) {
+    static void update(const node_ptr& t, int k, const T& x) {
         push(t);
         int lsize = size(t->left);
         if (k < lsize) {
-            set(t->left, k, x);
+            update(t->left, k, x);
         } else if (lsize < k) {
-            set(t->right, k - lsize - 1, x);
+            update(t->right, k - lsize - 1, x);
         } else {
             t->val = x;
         }
         recalc(t);
-    }
-
-    static T fold(const node_ptr& t, int l, int r) {
-        if (!t) return M::id;
-        push(t);
-        if (l == 0 && r == size(t)) return t->sum;
-        int lsize = size(t->left);
-        if (r <= lsize) return fold(t->left, l, r);
-        if (lsize + 1 <= l) return fold(t->right, l - lsize - 1, r - lsize - 1);
-        return M::op(M::op(fold(t->left, l, lsize), t->val), fold(t->right, 0, r - lsize - 1));
     }
 };

@@ -20,7 +20,7 @@ Randomized binary search tree は，平衡二分探索木の一種である．Tr
 - `pair<RBST, RBST> split(int k)`
     - RBST を $[0, k)$ と $[k, n)$ に分割する
     - 時間計算量: $\mathrm{expected}\ O(\lg n)$
-- `void set(int k, T x)`
+- `void update(int k, T x)`
     - $k$ 番目の要素の値を $x$ に変更する
     - 時間計算量: $\mathrm{expected}\ O(\lg n)$
 - `T fold(int l, int r)`

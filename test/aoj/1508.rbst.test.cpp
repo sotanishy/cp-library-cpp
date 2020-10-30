@@ -35,7 +35,7 @@ int main() {
         } else if (x == 1) {
             cout << st.fold(y, z + 1) << "\n";
         } else {
-            st.set(y, z);
+            st.update(y, z);
         }
     }
 }

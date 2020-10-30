@@ -3,7 +3,7 @@
 #include <vector>
 
 /*
- * @brief Lowerst Common Ancestor
+ * @brief Lowest Common Ancestor
  * @docs docs/tree/lca.md
  */
 class LCA {

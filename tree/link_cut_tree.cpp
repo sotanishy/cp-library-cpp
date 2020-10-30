@@ -39,7 +39,7 @@ public:
         reverse(vertex[v]);
     }
 
-    T get(int v) {
+    T get(int v) const {
         return vertex[v]->val;
     }
 
