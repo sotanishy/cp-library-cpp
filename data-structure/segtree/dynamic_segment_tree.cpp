@@ -25,13 +25,14 @@ public:
     T fold(long long l, long long r) const { return fold(l, r, root, 0, size); }
 
 private:
+    struct Node;
+    using node_ptr = std::unique_ptr<Node>;
+
     struct Node {
         T val;
-        std::unique_ptr<Node> left, right;
+        node_ptr left, right;
         Node() : val(M::id), left(nullptr), right(nullptr) {}
     };
-
-    using node_ptr = std::unique_ptr<Node>;
 
     const node_ptr root;
     long long size;
