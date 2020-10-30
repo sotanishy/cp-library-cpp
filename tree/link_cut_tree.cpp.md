@@ -3,14 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/tree/link_cut_tree.md
     document_title: Link/Cut Tree
@@ -140,7 +140,7 @@ data:
   path: tree/link_cut_tree.cpp
   requiredBy: []
   timestamp: '2020-10-30 15:38:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
