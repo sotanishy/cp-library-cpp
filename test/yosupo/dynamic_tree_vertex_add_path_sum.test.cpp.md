@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/link_cut_tree.cpp
     title: Link/Cut Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
@@ -26,9 +26,9 @@ data:
     \        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n        expose(vertex[v]);\n\
     \        auto p = vertex[v]->left;\n        vertex[v]->left = p->par = nullptr;\n\
     \        recalc(vertex[v]);\n    }\n\n    void evert(int v) {\n        expose(vertex[v]);\n\
-    \        reverse(vertex[v]);\n    }\n\n    T get(int v) {\n        return vertex[v]->val;\n\
-    \    }\n\n    void set(int v, const T& x) {\n        expose(vertex[v]);\n    \
-    \    vertex[v]->val = x;\n        recalc(vertex[v]);\n    }\n\n    T fold(int\
+    \        reverse(vertex[v]);\n    }\n\n    T get(int v) const {\n        return\
+    \ vertex[v]->val;\n    }\n\n    void set(int v, const T& x) {\n        expose(vertex[v]);\n\
+    \        vertex[v]->val = x;\n        recalc(vertex[v]);\n    }\n\n    T fold(int\
     \ u, int v) {\n        evert(u);\n        expose(vertex[v]);\n        return vertex[v]->sum;\n\
     \    }\n\nprivate:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
     \n    struct Node {\n        node_ptr left, right, par;\n        T val, sum;\n\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-30 00:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-30 15:38:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
 layout: document

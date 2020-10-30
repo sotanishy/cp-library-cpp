@@ -3,20 +3,20 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_5_C.test.cpp
     title: test/aoj/GRL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/lca.test.cpp
     title: test/yosupo/lca.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/tree/lca.md
-    document_title: Lowerst Common Ancestor
+    document_title: Lowest Common Ancestor
     links: []
   bundledCode: "#line 2 \"tree/lca.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    \n/*\n * @brief Lowerst Common Ancestor\n * @docs docs/tree/lca.md\n */\nclass\
+    \n/*\n * @brief Lowest Common Ancestor\n * @docs docs/tree/lca.md\n */\nclass\
     \ LCA {\npublic:\n    LCA() = default;\n    LCA(const std::vector<std::vector<int>>&\
     \ G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n\
     \        int V = G.size();\n        table.assign(LOG, std::vector<int>(V, -1));\n\
@@ -36,7 +36,7 @@ data:
     \ table;\n    std::vector<int> depth;\n\n    void dfs(int v, int p, int d) {\n\
     \        table[0][v] = p;\n        depth[v] = d;\n        for (int c : G[v]) {\n\
     \            if (c != p) dfs(c, v, d + 1);\n        }\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Lowerst\
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Lowest\
     \ Common Ancestor\n * @docs docs/tree/lca.md\n */\nclass LCA {\npublic:\n    LCA()\
     \ = default;\n    LCA(const std::vector<std::vector<int>>& G, int root) : G(G),\
     \ LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n        int V = G.size();\n\
@@ -61,8 +61,8 @@ data:
   isVerificationFile: false
   path: tree/lca.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-30 15:38:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_5_C.test.cpp
   - test/yosupo/lca.test.cpp
@@ -71,7 +71,7 @@ layout: document
 redirect_from:
 - /library/tree/lca.cpp
 - /library/tree/lca.cpp.html
-title: Lowerst Common Ancestor
+title: Lowest Common Ancestor
 ---
 # Lowest Common Ancestor
 

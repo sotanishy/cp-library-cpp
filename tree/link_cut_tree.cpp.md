@@ -3,14 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/tree/link_cut_tree.md
     document_title: Link/Cut Tree
@@ -26,9 +26,9 @@ data:
     \        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n        expose(vertex[v]);\n\
     \        auto p = vertex[v]->left;\n        vertex[v]->left = p->par = nullptr;\n\
     \        recalc(vertex[v]);\n    }\n\n    void evert(int v) {\n        expose(vertex[v]);\n\
-    \        reverse(vertex[v]);\n    }\n\n    T get(int v) {\n        return vertex[v]->val;\n\
-    \    }\n\n    void set(int v, const T& x) {\n        expose(vertex[v]);\n    \
-    \    vertex[v]->val = x;\n        recalc(vertex[v]);\n    }\n\n    T fold(int\
+    \        reverse(vertex[v]);\n    }\n\n    T get(int v) const {\n        return\
+    \ vertex[v]->val;\n    }\n\n    void set(int v, const T& x) {\n        expose(vertex[v]);\n\
+    \        vertex[v]->val = x;\n        recalc(vertex[v]);\n    }\n\n    T fold(int\
     \ u, int v) {\n        evert(u);\n        expose(vertex[v]);\n        return vertex[v]->sum;\n\
     \    }\n\nprivate:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
     \n    struct Node {\n        node_ptr left, right, par;\n        T val, sum;\n\
@@ -86,9 +86,9 @@ data:
     \       expose(vertex[v]);\n        auto p = vertex[v]->left;\n        vertex[v]->left\
     \ = p->par = nullptr;\n        recalc(vertex[v]);\n    }\n\n    void evert(int\
     \ v) {\n        expose(vertex[v]);\n        reverse(vertex[v]);\n    }\n\n   \
-    \ T get(int v) {\n        return vertex[v]->val;\n    }\n\n    void set(int v,\
-    \ const T& x) {\n        expose(vertex[v]);\n        vertex[v]->val = x;\n   \
-    \     recalc(vertex[v]);\n    }\n\n    T fold(int u, int v) {\n        evert(u);\n\
+    \ T get(int v) const {\n        return vertex[v]->val;\n    }\n\n    void set(int\
+    \ v, const T& x) {\n        expose(vertex[v]);\n        vertex[v]->val = x;\n\
+    \        recalc(vertex[v]);\n    }\n\n    T fold(int u, int v) {\n        evert(u);\n\
     \        expose(vertex[v]);\n        return vertex[v]->sum;\n    }\n\nprivate:\n\
     \    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\n    struct Node\
     \ {\n        node_ptr left, right, par;\n        T val, sum;\n        int sz;\n\
@@ -139,8 +139,8 @@ data:
   isVerificationFile: false
   path: tree/link_cut_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-30 00:16:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-10-30 15:38:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp

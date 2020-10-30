@@ -68,7 +68,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.cpp
       title: Splay Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/bst/treap.cpp
       title: Treap
   - name: data-structure/segtree
@@ -195,7 +195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -266,10 +266,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/lca.cpp
-      title: Lowerst Common Ancestor
-    - icon: ':heavy_check_mark:'
+      title: Lowest Common Ancestor
+    - icon: ':x:'
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
     - icon: ':heavy_check_mark:'
@@ -284,7 +284,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.splay_tree.test.cpp
       title: test/aoj/1508.splay_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -365,7 +365,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_A.test.cpp
       title: test/aoj/GRL_5_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_5_C.test.cpp
       title: test/aoj/GRL_5_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -400,10 +400,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -415,7 +415,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
     - icon: ':heavy_check_mark:'

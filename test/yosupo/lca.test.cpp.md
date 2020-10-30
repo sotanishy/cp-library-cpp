@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/lca.cpp
-    title: Lowerst Common Ancestor
+    title: Lowest Common Ancestor
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -15,10 +15,10 @@ data:
     - https://judge.yosupo.jp/problem/lca
   bundledCode: "#line 1 \"test/yosupo/lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
     \n\n#line 2 \"tree/lca.cpp\"\n#include <algorithm>\n#include <vector>\n\n/*\n\
-    \ * @brief Lowerst Common Ancestor\n * @docs docs/tree/lca.md\n */\nclass LCA\
-    \ {\npublic:\n    LCA() = default;\n    LCA(const std::vector<std::vector<int>>&\
-    \ G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n\
-    \        int V = G.size();\n        table.assign(LOG, std::vector<int>(V, -1));\n\
+    \ * @brief Lowest Common Ancestor\n * @docs docs/tree/lca.md\n */\nclass LCA {\n\
+    public:\n    LCA() = default;\n    LCA(const std::vector<std::vector<int>>& G,\
+    \ int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n   \
+    \     int V = G.size();\n        table.assign(LOG, std::vector<int>(V, -1));\n\
     \n        dfs(root, -1, 0);\n\n        for (int k = 0; k < LOG - 1; ++k) {\n \
     \           for (int v = 0; v < V; ++v) {\n                if (table[k][v] >=\
     \ 0) {\n                    table[k + 1][v] = table[k][table[k][v]];\n       \
@@ -55,8 +55,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/lca.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 20:53:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-30 15:38:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/lca.test.cpp
 layout: document

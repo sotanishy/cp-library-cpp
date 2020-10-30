@@ -20,7 +20,7 @@ Splay tree は，平衡二分探索木の一種である．ノードを根に持
 - `pair<SplayTree, SplayTree> split(int k)`
     - splay tree を $[0, k)$ と $[k, n)$ に分割する
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `void set(int k, T x)`
+- `void update(int k, T x)`
     - $k$ 番目の要素の値を $x$ に変更する
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `T fold(int l, int r)`
