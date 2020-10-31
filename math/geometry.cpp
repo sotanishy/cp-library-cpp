@@ -7,6 +7,7 @@
 
 /*
  * @brief Geometry
+ * @docs docs/math/geometry.md
  */
 
 constexpr double eps = 1e-12;
@@ -34,6 +35,10 @@ struct Vec {
         double c = cos(ang), s = sin(ang);
         return Vec(c * x - s * y, s * x + c * y);
     }
+
+    friend std::ostream& operator<<(std::ostream& os, const Vec v) {
+        return os << "(" << v.x << ", " << v.y << ")";
+    }
 };
 
 // checks if the three points are on the same line
@@ -41,13 +46,14 @@ bool are_colinear(const Vec& p1, const Vec& p2, const Vec& p3) {
     return eq((p2 - p1).cross(p3 - p1), 0);
 }
 
-// returns true if the segment ab intersects with the segment cd
+// checks if a -> b -> c is counter clockwise
+bool ccw(const Vec& a, const Vec& b, const Vec& c) {
+    return lt((b.y - a.y) * (c.x - a.x), (c.y - a.y) * (b.x - a.x));
+}
+
+// checks if the segment ab intersects with the segment cd
 bool intersect(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
-    double ta = (c - d).cross(a - c);
-    double tb = (c - d).cross(b - a);
-    double tc = (a - b).cross(c - a);
-    double td = (a - b).cross(d - a);
-    return lt(ta * tb, 0) && lt(tc * td, 0);
+    return ccw(a, c, d) != ccw(b, c, d) && ccw(a, b, c) != ccw(a, b, d);
 }
 
 // checks if q is on the segment p1-p2
