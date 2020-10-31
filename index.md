@@ -195,7 +195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/formal_power_series.cpp
       title: Formal Power Series
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/geometry.cpp
       title: Geometry
     - icon: ':heavy_check_mark:'
@@ -284,6 +284,9 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':x:'
+      path: test/aoj/1157.test.cpp
+      title: test/aoj/1157.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.rbst.test.cpp
       title: test/aoj/1508.rbst.test.cpp
