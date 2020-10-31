@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <iostream>
 #include <optional>
 #include <vector>
 
@@ -36,7 +37,7 @@ struct Vec {
         return Vec(c * x - s * y, s * x + c * y);
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Vec v) {
+    friend std::ostream& operator<<(std::ostream& os, const Vec& v) {
         return os << "(" << v.x << ", " << v.y << ")";
     }
 };
@@ -123,7 +124,7 @@ Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
     return (A*a + B*b + C*c) / (a + b + c);
 }
 
-std::vector<Vec> convex_hull(const std::vector<Vec>& points) {
+std::vector<Vec> convex_hull(std::vector<Vec>& points) {
     int n = points.size();
     std::sort(points.begin(), points.end(), [](const Vec& v1, const Vec& v2) {
         return std::make_pair(v1.x, v1.y) < std::make_pair(v2.x, v2.y);
