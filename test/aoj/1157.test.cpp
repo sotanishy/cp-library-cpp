@@ -1,4 +1,5 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1157"
+#define ERROR 0.001
 
 #include "../../math/geometry.cpp"
 
