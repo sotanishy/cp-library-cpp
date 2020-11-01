@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1157.test.cpp
     title: test/aoj/1157.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/geometry.md
     document_title: Geometry
@@ -143,7 +143,7 @@ data:
   path: math/geometry.cpp
   requiredBy: []
   timestamp: '2020-11-01 01:30:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1157.test.cpp
 documentation_of: math/geometry.cpp
@@ -173,7 +173,7 @@ title: Geometry
 
 - `bool are_colinear(Vec p1, Vec p2, Vec p3)`
     - 3点が共線か判定する
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `bool ccw(Vec a, Vec b, Vec c)`
     - $a \rightarrow b \rightarrow c$ が反時計回りか判定する
@@ -183,36 +183,36 @@ title: Geometry
 
 - `bool on_segment(Vec p1, Vec p2, Vec q)`
     - 点 $q$ が線分 $p_1 p_2$ 上にあるか判定する
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `optional<Vec> intersection(Vec p1, Vec p2, Vec q1, Vec q2)`
     - 直線 $p_1 p_2$ と直線 $q_1 q_2$ の交点を返す．平行なら `nullopt` を返す
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `vector<Vec> intersection_circles(Vec c1, double r1, Vec c2, double r2)`
     - 中心 $c_1$，半径 $r_1$ の円と中心 $c_2$，半径 $r_2$ の円の交点を返す
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
  - `double point_line_dist(Vec p1, Vec p2, Vec q)`
     - 点 $q$ と直線 $p_1 p_2$ の距離を返す
 
 - `double area(Vec A, Vec B, Vec C)`
     - 三角形 $ABC$ の面積を返す
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `Vec centroid(Vec A, Vec B, Vec C)`
     - 三角形 $ABC$ の重心を返す
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `Vec circumcenter(Vec A, Vec B, Vec C)`
     - 三角形 $ABC$ の外心を返す
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `Vec incenter(Vec A, Vec B, Vec C)`
     - 三角形 $ABC$ の内心を返す
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
 
 - `vector<Vec> convex_hull(vector<Vec> points)`
     - 与えられた点の凸包を返す
     - 時間計算量: $O(n)$
-    - _*NOT VERIFIED*_
+    - _**NOT VERIFIED**_
