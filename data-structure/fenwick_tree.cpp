@@ -1,5 +1,4 @@
 #pragma once
-#include <algorithm>
 #include <functional>
 #include <vector>
 
@@ -39,7 +38,7 @@ public:
             if (i + k <= n) continue;
             T nv = M::op(v, data[i + k]);
             if (cmp(nv, x)) {
-                std::swap(v, nv);
+                v = nv;
                 i += k;
             }
         }

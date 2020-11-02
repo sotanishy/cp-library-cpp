@@ -3,11 +3,10 @@
 #include <vector>
 
 /*
- * @brief Bit Vector
+ * @brief Rank/Select Dictionary
+ * @docs docs/data-structure/bit_vector.md
  */
 class BitVector {
-    using u32 = uint32_t;
-
 public:
     BitVector() = default;
     explicit BitVector(const std::vector<bool>& v) {
@@ -18,7 +17,7 @@ public:
         for (int i = 0; i < n; ++i) sum[i + 1] = sum[i] + __builtin_popcount(data[i]);
     }
 
-    int access(int k) const {
+    bool access(int k) const {
         return data[k / sz] >> (k % sz) & 1;
     }
 
@@ -41,6 +40,6 @@ public:
 private:
     static constexpr int sz = 32;
 
-    std::vector<u32> data;
+    std::vector<uint32_t> data;
     std::vector<int> sum;
 };

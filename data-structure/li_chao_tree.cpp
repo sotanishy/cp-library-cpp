@@ -10,6 +10,8 @@
  */
 template <typename T>
 class LiChaoTree {
+    using Line = std::pair<T, T>;
+
 public:
     LiChaoTree() = default;
     explicit LiChaoTree(const std::vector<T>& vs) : xs(vs) {
@@ -24,7 +26,7 @@ public:
     }
 
     void add_segment(T a, T b, int l, int r) {
-        std::pair<T, T> line(a, b);
+        Line line(a, b);
         int len = 1;
         int l0 = l, r0 = r;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1, len <<= 1) {
@@ -54,13 +56,13 @@ private:
 
     int size;
     std::vector<T> xs;
-    std::vector<std::pair<T, T>> node;
+    std::vector<Line> node;
 
-    inline T f(const std::pair<T, T>& line, T x) const {
+    inline T f(const Line& line, T x) const {
         return line.first * x + line.second;
     }
 
-    void update(std::pair<T, T> line, int k, int l, int r) {
+    void update(Line line, int k, int l, int r) {
         while (true) {
             int m = (l + r) / 2;
             bool left = f(line, xs[l]) < f(node[k], xs[l]);

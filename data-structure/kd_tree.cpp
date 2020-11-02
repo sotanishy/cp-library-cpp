@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <algorithm>
+#include <vector>
 
 /*
  * @brief k-d Tree
@@ -33,43 +35,37 @@ private:
 
     std::vector<Point> points;
 
-    int check_position(const Point& point, const Point& start, const Point& end, int axis) const {
+    int check_position(const Point& p, const Point& s, const Point& t, int axis) const {
         if (axis == 0) {
-            if (start.x <= point.x && point.x <= end.x) return 0;
-            if (point.x < start.x) return -1;
-            return 1;
+            if (p.x < s.x) return -1;
+            if (t.x < p.x) return 1;
+            return 0;
         } else {
-            if (start.y <= point.y && point.y <= end.y) return 0;
-            if (point.y < start.y) return -1;
-            return 1;
+            if (p.y < s.y) return -1;
+            if (t.y < p.y) return 1;
+            return 0;
         }
     }
 
-    void build(int left, int right, int depth) {
-        if (left > right) return;
-
-        int axis = depth % 2;
-        if (axis == 0) {
-            std::sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.x < p2.x; });
-        } else {
-            std::sort(points.begin() + left, points.begin() + right + 1, [](const auto& p1, const auto& p2) { return p1.y < p2.y; });
-        }
-        int mid = (left + right) / 2;
-        build(left, mid - 1, depth + 1);
-        build(mid + 1, right, depth + 1);
+    void build(int l, int r, int axis) {
+        if (l > r) return;
+        std::sort(points.begin() + l, points.begin() + r + 1, [](const auto& p1, const auto& p2) {
+            return axis == 0 ? p1.x < p2.x : p1.y < p2.y;
+        });
+        int m = (l + r) / 2;
+        build(l, m - 1, 1 - axis);
+        build(m + 1, r, 1 - axis);
     }
 
-    void search(const Point& start, const Point& end, std::vector<int>& res, int left, int right, int depth) const {
-        if (left > right) return;
-
-        int axis = depth % 2;
-        int mid = (left + right) / 2;
+    void search(const Point& s, const Point& t, std::vector<int>& res, int l, int r, int axis) const {
+        if (l > r) return;
+        int m = (l + r) / 2;
         bool contained = true;
-        for (int i = 0; i < 2; i++) contained &= check_position(points[mid], start, end, i) == 0;
-        if (contained) res.push_back(points[mid].id);
-        if (left == right) return;
-        int pos = check_position(points[mid], start, end, axis);
-        if (pos != -1) search(start, end, res, left, mid - 1, depth + 1);
-        if (pos != 1) search(start, end, res, mid + 1, right, depth + 1);
+        for (int i = 0; i < 2; i++) contained &= check_position(points[m], s, t, i) == 0;
+        if (contained) res.push_back(points[m].id);
+        if (l == r) return;
+        int pos = check_position(points[m], s, t, axis);
+        if (pos != -1) search(s, t, res, l, m - 1, 1 - axis);
+        if (pos != 1) search(s, t, res, m + 1, r, 1 - axis);
     }
 };
