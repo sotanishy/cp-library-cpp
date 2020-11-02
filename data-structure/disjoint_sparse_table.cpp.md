@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq.test.cpp
     title: test/yosupo/staticrmq.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/disjoint_sparse_table.md
     document_title: Disjoint Sparse Table
@@ -22,12 +22,12 @@ data:
     \       int len = 1 << i;\n            for (int l = 0; l + len / 2 < n; l += len)\
     \ {\n                int m = l + len / 2;\n                lookup[i][m - 1] =\
     \ v[m - 1];\n                for (int j = m - 2; j >= l; j--) {\n            \
-    \        lookup[i][j] = op(lookup[i][j + 1], v[j]);\n                }\n     \
-    \           lookup[i][m] = v[m];\n                for (int j = m + 1; j < std::min(l\
-    \ + len, n); j++) {\n                    lookup[i][j] = op(lookup[i][j - 1], v[j]);\n\
-    \                }\n            }\n        }\n    }\n\n    T fold(int l, int r)\
-    \ const {\n        if (r - l == 1) return lookup[0][l];\n        int i = 32 -\
-    \ __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
+    \        lookup[i][j] = S::op(lookup[i][j + 1], v[j]);\n                }\n  \
+    \              lookup[i][m] = v[m];\n                for (int j = m + 1; j < std::min(l\
+    \ + len, n); j++) {\n                    lookup[i][j] = S::op(lookup[i][j - 1],\
+    \ v[j]);\n                }\n            }\n        }\n    }\n\n    T fold(int\
+    \ l, int r) const {\n        if (r - l == 1) return lookup[0][l];\n        int\
+    \ i = 32 - __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
     \ - 1]);\n    }\n\nprivate:\n    std::vector<std::vector<T>> lookup;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Disjoint\
     \ Sparse Table\n * @docs docs/data-structure/disjoint_sparse_table.md\n */\ntemplate\
@@ -39,19 +39,19 @@ data:
     \       int len = 1 << i;\n            for (int l = 0; l + len / 2 < n; l += len)\
     \ {\n                int m = l + len / 2;\n                lookup[i][m - 1] =\
     \ v[m - 1];\n                for (int j = m - 2; j >= l; j--) {\n            \
-    \        lookup[i][j] = op(lookup[i][j + 1], v[j]);\n                }\n     \
-    \           lookup[i][m] = v[m];\n                for (int j = m + 1; j < std::min(l\
-    \ + len, n); j++) {\n                    lookup[i][j] = op(lookup[i][j - 1], v[j]);\n\
-    \                }\n            }\n        }\n    }\n\n    T fold(int l, int r)\
-    \ const {\n        if (r - l == 1) return lookup[0][l];\n        int i = 32 -\
-    \ __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
+    \        lookup[i][j] = S::op(lookup[i][j + 1], v[j]);\n                }\n  \
+    \              lookup[i][m] = v[m];\n                for (int j = m + 1; j < std::min(l\
+    \ + len, n); j++) {\n                    lookup[i][j] = S::op(lookup[i][j - 1],\
+    \ v[j]);\n                }\n            }\n        }\n    }\n\n    T fold(int\
+    \ l, int r) const {\n        if (r - l == 1) return lookup[0][l];\n        int\
+    \ i = 32 - __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
     \ - 1]);\n    }\n\nprivate:\n    std::vector<std::vector<T>> lookup;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/disjoint_sparse_table.cpp
   requiredBy: []
-  timestamp: '2020-11-02 20:03:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-11-02 21:16:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq.test.cpp
 documentation_of: data-structure/disjoint_sparse_table.cpp
