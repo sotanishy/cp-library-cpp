@@ -59,7 +59,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/lazy_treap.cpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -261,11 +261,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/z_array.cpp
       title: Z Array
-  - name: test/aoj
-    pages:
-    - icon: ':warning:'
-      path: test/aoj/DSL_2_F.lazy_treap.cpp
-      title: test/aoj/DSL_2_F.lazy_treap.cpp
   - name: tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -337,6 +332,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_F.lazy_treap.test.cpp
+      title: test/aoj/DSL_2_F.lazy_treap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp

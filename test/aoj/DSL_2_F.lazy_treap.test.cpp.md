@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/bst/lazy_treap.cpp
     title: Treap with Lazy Propagation
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
-  bundledCode: "#line 1 \"test/aoj/DSL_2_F.lazy_treap.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
-    \n\n#line 2 \"data-structure/bst/lazy_treap.cpp\"\n#include <cassert>\n#include\
-    \ <memory>\n#include <random>\n#include <utility>\n\n/*\n * @brief Treap with\
-    \ Lazy Propagation\n * @docs docs/data-structure/bst/lazy_treap.md\n */\ntemplate\
-    \ <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>\n\
-    class LazyTreap {\n    using T = typename M::T;\n    using E = typename O::T;\n\
-    \npublic:\n    LazyTreap() = default;\n\n    static LazyTreap join(LazyTreap l,\
-    \ LazyTreap r) {\n        return LazyTreap(join(std::move(l.root), std::move(r.root)));\n\
-    \    }\n\n    std::pair<LazyTreap, LazyTreap> split(int k) {\n        auto p =\
-    \ split(std::move(root), k);\n        return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};\n\
+  bundledCode: "#line 1 \"test/aoj/DSL_2_F.lazy_treap.test.cpp\"\n#define PROBLEM\
+    \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\n\n#line\
+    \ 2 \"data-structure/bst/lazy_treap.cpp\"\n#include <cassert>\n#include <memory>\n\
+    #include <random>\n#include <utility>\n\n/*\n * @brief Treap with Lazy Propagation\n\
+    \ * @docs docs/data-structure/bst/lazy_treap.md\n */\ntemplate <typename M, typename\
+    \ O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazyTreap {\n\
+    \    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n    LazyTreap()\
+    \ = default;\n\n    static LazyTreap join(LazyTreap l, LazyTreap r) {\n      \
+    \  return LazyTreap(join(std::move(l.root), std::move(r.root)));\n    }\n\n  \
+    \  std::pair<LazyTreap, LazyTreap> split(int k) {\n        auto p = split(std::move(root),\
+    \ k);\n        return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};\n\
     \    }\n\n    void update(int l, int r, const T& x) {\n        assert(0 <= l &&\
     \ l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a, b) =\
     \ split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b), r -\
@@ -80,7 +83,7 @@ data:
     \ std::move(t)};\n        } else {\n            auto s = split(std::move(t->right),\
     \ k - size(t->left) - 1);\n            t->right = std::move(s.first);\n      \
     \      recalc(t);\n            return {std::move(t), std::move(s.second)};\n \
-    \       }\n    }\n};\n#line 4 \"test/aoj/DSL_2_F.lazy_treap.cpp\"\n\n#include\
+    \       }\n    }\n};\n#line 4 \"test/aoj/DSL_2_F.lazy_treap.test.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nstruct M {\n    using T = int;\n  \
     \  static constexpr T id = (1u << 31) - 1;\n    static T op(T a, T b) {\n    \
     \    return min(a, b);\n    }\n};\n\nstruct O {\n    using T = int;\n    static\
@@ -108,16 +111,16 @@ data:
     \ t + 1) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/bst/lazy_treap.cpp
-  isVerificationFile: false
-  path: test/aoj/DSL_2_F.lazy_treap.cpp
+  isVerificationFile: true
+  path: test/aoj/DSL_2_F.lazy_treap.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:47:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2020-11-03 02:54:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_2_F.lazy_treap.cpp
+documentation_of: test/aoj/DSL_2_F.lazy_treap.test.cpp
 layout: document
 redirect_from:
-- /library/test/aoj/DSL_2_F.lazy_treap.cpp
-- /library/test/aoj/DSL_2_F.lazy_treap.cpp.html
-title: test/aoj/DSL_2_F.lazy_treap.cpp
+- /verify/test/aoj/DSL_2_F.lazy_treap.test.cpp
+- /verify/test/aoj/DSL_2_F.lazy_treap.test.cpp.html
+title: test/aoj/DSL_2_F.lazy_treap.test.cpp
 ---

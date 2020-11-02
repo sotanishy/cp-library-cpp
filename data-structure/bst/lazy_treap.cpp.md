@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/aoj/DSL_2_F.lazy_treap.cpp
-    title: test/aoj/DSL_2_F.lazy_treap.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_F.lazy_treap.test.cpp
+    title: test/aoj/DSL_2_F.lazy_treap.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/bst/lazy_treap.md
     document_title: Treap with Lazy Propagation
@@ -152,11 +152,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/bst/lazy_treap.cpp
-  requiredBy:
-  - test/aoj/DSL_2_F.lazy_treap.cpp
+  requiredBy: []
   timestamp: '2020-11-03 02:47:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DSL_2_F.lazy_treap.test.cpp
 documentation_of: data-structure/bst/lazy_treap.cpp
 layout: document
 redirect_from:
