@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/kd_tree.md
     document_title: k-d Tree
@@ -28,7 +28,7 @@ data:
     \ 1;\n            return 0;\n        } else {\n            if (p.y < s.y) return\
     \ -1;\n            if (t.y < p.y) return 1;\n            return 0;\n        }\n\
     \    }\n\n    void build(int l, int r, int axis) {\n        if (l > r) return;\n\
-    \        std::sort(points.begin() + l, points.begin() + r + 1, [](const auto&\
+    \        std::sort(points.begin() + l, points.begin() + r + 1, [&](const auto&\
     \ p1, const auto& p2) {\n            return axis == 0 ? p1.x < p2.x : p1.y < p2.y;\n\
     \        });\n        int m = (l + r) / 2;\n        build(l, m - 1, 1 - axis);\n\
     \        build(m + 1, r, 1 - axis);\n    }\n\n    void search(const Point& s,\
@@ -55,7 +55,7 @@ data:
     \ 1;\n            return 0;\n        } else {\n            if (p.y < s.y) return\
     \ -1;\n            if (t.y < p.y) return 1;\n            return 0;\n        }\n\
     \    }\n\n    void build(int l, int r, int axis) {\n        if (l > r) return;\n\
-    \        std::sort(points.begin() + l, points.begin() + r + 1, [](const auto&\
+    \        std::sort(points.begin() + l, points.begin() + r + 1, [&](const auto&\
     \ p1, const auto& p2) {\n            return axis == 0 ? p1.x < p2.x : p1.y < p2.y;\n\
     \        });\n        int m = (l + r) / 2;\n        build(l, m - 1, 1 - axis);\n\
     \        build(m + 1, r, 1 - axis);\n    }\n\n    void search(const Point& s,\
@@ -70,8 +70,8 @@ data:
   isVerificationFile: false
   path: data-structure/kd_tree.cpp
   requiredBy: []
-  timestamp: '2020-11-02 19:09:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-11-02 20:03:26+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_C.test.cpp
 documentation_of: data-structure/kd_tree.cpp

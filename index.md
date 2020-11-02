@@ -21,7 +21,7 @@ data:
     - icon: ':warning:'
       path: data-structure/fenwick_tree_2d.cpp
       title: 2D Fenwick Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
     - icon: ':heavy_check_mark:'
@@ -317,7 +317,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.test.cpp
       title: test/aoj/DSL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
