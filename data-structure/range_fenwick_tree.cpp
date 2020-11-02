@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <vector>
 
 /*
  * @brief Fenwick Tree with Range Update

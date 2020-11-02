@@ -1,20 +1,21 @@
-# Fenwick Tree with Range Update
+## Description
 
 接頭辞和を扱う Fenwick tree を2つ使うことで，区間加算を実現できる．
 
 空間計算量: $O(n)$
 
-## Template parameters
+## Operations
 
 - `RangeFenwickTree(int n)`
     - サイズ`n`で要素がすべて $0$ の区間更新 Fenwick tree を構築する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `T prefix_sum(int i)`
-    - $a_0 + a_1 + \dots + a_{i-1}$ を計算する
+    - $[0, i)$ の総和を計算する
     - 時間計算量: $O(\lg n)$
 - `void add(int l, int r, T x)`
-    - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
+    - 区間 $[l, r)$ に $x$ を加える
     - 時間計算量: $O(\lg n)$
+
+## Reference
+
+- [Binary Indexed Tree のはなし](http://hos.ac/slides/20140319_bit.pdf)

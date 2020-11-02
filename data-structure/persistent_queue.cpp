@@ -4,6 +4,7 @@
 
 /*
  * @brief Persistent Queue
+ * @docs docs/data-structure/persistent_queue.md
  */
 template <typename T>
 class PersistentQueue {

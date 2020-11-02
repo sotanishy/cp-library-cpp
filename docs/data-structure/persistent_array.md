@@ -1,27 +1,25 @@
-# Persistent Array
+## Description
 
-永続配列は，過去のバージョンを保持する配列である．永続配列の要素を変更したとき，変更された値を保持する新しい配列を生成する．これによって非破壊的な操作を提供する．
+永続配列は，過去のバージョンを保持する配列である．永続配列の要素を変更したとき，変更された値を保持する新しい配列を生成する．
 
-空間計算量: $O(n + m B \log_B n)$, $m$ は変更の数
+空間計算量: $O(m b \log_b n)$, $m$ は変更の数
 
-## Template parameter
-
-- `T`
-    - 要素の型
-- `B`
-    - 子ノードの数．デフォルトは `2`
-
-## Constructor
+## Operations
 
 - `PersistentArray(vector<T> v)`
     - `v` の要素から永続配列を構築する
-    - 時間計算量: $O(nB \log_B n)$
-
-## Member functions
-
+    - 時間計算量: $O(nb \log_b n)$
 - `T get(int k)`
     - $k$ 番目の要素を返す
-    - 時間計算量: $O(\log_B n)$
+    - 時間計算量: $O(\log_b n)$
 - `PersistentArray set(int k, T x)`
     - $k$ 番目の要素を $x$ に変更した永続配列を返す
-    - 時間計算量: $O(B \log_B n)$
+    - 時間計算量: $O(b \log_b n)$
+
+## Reference
+
+- [ゼロから作る永続データ構造](https://qiita.com/wotsushi/items/72e7f8cdd674741ffd61)
+
+## TODO
+
+- $O(\log \log n)$ 時間の永続配列の実装 [http://web.mit.edu/andersk/Public/6.851-presentation.pdf]()

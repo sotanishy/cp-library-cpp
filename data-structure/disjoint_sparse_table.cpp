@@ -22,11 +22,11 @@ public:
             for (int l = 0; l + len / 2 < n; l += len) {
                 int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (int j = m - 2; j >= l; j--) {
+                for (int j = m - 2; j >= l; --j) {
                     lookup[i][j] = S::op(lookup[i][j + 1], v[j]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = m + 1; j < std::min(l + len, n); j++) {
+                for (int j = m + 1; j < std::min(l + len, n); ++j) {
                     lookup[i][j] = S::op(lookup[i][j - 1], v[j]);
                 }
             }

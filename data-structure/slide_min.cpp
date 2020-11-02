@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <deque>
+#include <functional>
+#include <utility>
 
 /*
  * @brief Sliding Window Minimum
@@ -17,7 +20,7 @@ public:
         ++l;
     }
 
-    T get() {
+    T get() const {
         return dq.front().first;
     }
 

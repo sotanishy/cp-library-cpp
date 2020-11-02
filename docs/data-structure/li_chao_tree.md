@@ -2,19 +2,11 @@
 
 Li Chao tree は，直線及び線分の集合をセグメント木で管理し，与えられた $x$ 座標での最小値を取得するデータ構造である．
 
-## Template parameter
-
-- `T`
-    - 値の型
-
-## Constructor
+## Operations
 
 - `LiChaoTree(vector<T> vs)`
     - クエリに用いる $x$ 座標を受け取り，Li Chao tree を構築する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `void add_line(T a, T b)`
     - 直線 $y = ax + b$ を追加する
     - 時間計算量: $O(\lg n)$

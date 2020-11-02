@@ -28,8 +28,7 @@ private:
 
     struct Node {
         T val;
-        std::vector<node_ptr> ch;
-        Node() : ch(B) {}
+        node_ptr ch[B];
     };
 
     node_ptr root = nullptr;

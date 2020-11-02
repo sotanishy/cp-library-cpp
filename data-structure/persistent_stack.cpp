@@ -1,7 +1,9 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <memory>
 
 /*
  * @brief Persistent Stack
+ * @docs docs/data-structure/persistent_stack.md
  */
 template <typename T>
 class PersistentStack {
@@ -25,13 +27,16 @@ public:
     }
 
 private:
+    struct Node;
+    using node_ptr = std::shared_ptr<Node>;
+
     struct Node {
         T val;
-        std::shared_ptr<Node> prev;
-        Node(T val, std::shared_ptr<Node> prev) : val(val), prev(prev) {}
+        node_ptr prev;
+        Node(T val, node_ptr prev) : val(val), prev(prev) {}
     };
 
-    std::shared_ptr<Node> last;
+    node_ptr last;
 
-    explicit PersistentStack(std::shared_ptr<Node> last) : last(last) {}
+    explicit PersistentStack(node_ptr last) : last(last) {}
 };

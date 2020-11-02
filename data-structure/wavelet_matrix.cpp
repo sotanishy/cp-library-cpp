@@ -6,15 +6,17 @@
 
 /*
  * @brief Wavelet Matrix
- * @docs docs/data-strucutre/wavelet_matrix.md
+ * @docs docs/data-structure/wavelet_matrix.md
  */
+template <typename T>
 class WaveletMatrix {
 public:
     WaveletMatrix() = default;
-    explicit WaveletMatrix(std::vector<int> v) {
+    explicit WaveletMatrix(std::vector<T> v) {
         int n = v.size() ;
-        int m = *std::max_element(v.begin(), v.end());
-        int d = 32 - __builtin_clz(m);
+        T m = *std::max_element(v.begin(), v.end());
+        int d = 0;
+        while ((1 << d) <= m) ++d;
         mat.resize(d);
         cnt0.resize(d);
         for (d -= 1; d >= 0; --d) {
@@ -25,36 +27,36 @@ public:
             for (int i = 0; i < n; ++i) if (!bit[i]) cnt[0]++;
             cnt0[d] = cnt[0];
             cnt[1] = n;
-            std::vector<int> nv(n);
+            std::vector<T> nv(n);
             for (int i = n - 1; i >= 0; --i) nv[--cnt[bit[i]]] = v[i];
             v.swap(nv);
         }
         for (int i = 0; i < n; ++i) if (!start.count(v[i])) start[v[i]] = i;
     }
 
-    int access(int k) const {
-        int ret = 0;
+    T access(int k) const {
+        T ret = 0;
         for (int d = mat.size() - 1; d >= 0; --d) {
-            int b = mat[d].access(k);
-            ret |= b << d;
+            bool b = mat[d].access(k);
+            ret |= T(b) << d;
             k = cnt0[d] * b + mat[d].rank(k, b);
         }
         return ret;
     }
 
-    int rank(int k, int x) const {
+    int rank(int k, T x) const {
         for (int d = mat.size() - 1; d >= 0; --d) {
-            int b = x >> d & 1;
+            bool b = x >> d & 1;
             k = cnt0[d] * b + mat[d].rank(k, b);
         }
         return k - start.at(x);
     }
 
-    int rank_less(int k, int x) const {
+    int rank_less(int k, T x) const {
         int ret = 0;
         int l = 0;
         for (int d = mat.size() - 1; d >= 0; --d) {
-            int b = x >> d & 1;
+            bool b = x >> d & 1;
             if (b) ret += mat[d].rank(k, 0) - mat[d].rank(l, 0);
             l = cnt0[d] * b + mat[d].rank(l, b);
             k = cnt0[d] * b + mat[d].rank(k, b);
@@ -62,24 +64,24 @@ public:
         return ret;
     }
 
-    int select(int k, int x) const {
+    int select(int k, T x) const {
         k += start.at(x);
         for (int d = 0; d < (int) mat.size(); ++d) {
-            int b = x >> d & 1;
+            bool b = x >> d & 1;
             k = mat[d].select(k - cnt0[d] * b, b);
         }
         return k;
     }
 
-    int quantile(int l, int r, int k) const {
-        int ret = 0;
+    T quantile(int l, int r, int k) const {
+        T ret = 0;
         for (int d = (int) mat.size() - 1; d >= 0; --d) {
             int cnt = mat[d].rank(r, 0) - mat[d].rank(l, 0);
-            int b = k < cnt ? 0 : 1;
+            bool b = k < cnt ? 0 : 1;
             l = cnt0[d] * b + mat[d].rank(l, b);
             r = cnt0[d] * b + mat[d].rank(r, b);
             if (b) {
-                ret |= 1 << d;
+                ret |= T(1) << d;
                 k -= cnt;
             }
         }
@@ -89,5 +91,5 @@ public:
 private:
     std::vector<BitVector> mat;
     std::vector<int> cnt0;
-    std::unordered_map<int, int> start;
+    std::unordered_map<T, int> start;
 };

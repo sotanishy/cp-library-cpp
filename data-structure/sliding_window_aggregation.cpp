@@ -7,14 +7,14 @@
  * @brief Sliding Window Aggregation
  * @docs docs/data-structure/sliding_window_aggregation.md
  */
-template <typename M>
+template <typename S>
 class SlidingWindowAggregation {
-    using T = typename M::T;
+    using T = typename S::T;
 
 public:
     void push(const T& x) {
         if (back.empty()) back.emplace(x, x);
-        else back.emplace(x, M::op(back.top().second, x));
+        else back.emplace(x, S::op(back.top().second, x));
     }
 
     void pop() {
@@ -26,7 +26,7 @@ public:
             while (!back.empty()) {
                 x = back.top().first;
                 back.pop();
-                front.emplace(x, M::op(x, front.top().second));
+                front.emplace(x, S::op(x, front.top().second));
             }
         }
         front.pop();
@@ -40,7 +40,7 @@ public:
         assert(!empty());
         if (front.empty()) return back.top().second;
         if (back.empty()) return front.top().second;
-        return M::op(front.top().second, back.top().second);
+        return S::op(front.top().second, back.top().second);
     }
 
 private:
