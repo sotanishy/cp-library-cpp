@@ -22,12 +22,12 @@ public:
             for (int l = 0; l + len / 2 < n; l += len) {
                 int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
-                for (int j = 1; j < len / 2; ++j) {
-                    lookup[i][m - 1 - j] = S::op(v[m - 1 - j], lookup[i][m - j]);
+                for (int j = m - 2; j >= l; j--) {
+                    lookup[i][j] = op(lookup[i][j + 1], v[j]);
                 }
                 lookup[i][m] = v[m];
-                for (int j = 1; m + j < std::min(l + len, n); ++j) {
-                    lookup[i][m + j] = S::op(lookup[i][m + j - 1], v[m + j]);
+                for (int j = m + 1; j < std::min(l + len, n); j++) {
+                    lookup[i][j] = op(lookup[i][j - 1], v[j]);
                 }
             }
         }

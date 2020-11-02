@@ -2,6 +2,7 @@
 
 #include "../../data-structure/disjoint_sparse_table.cpp"
 
+#include <bits/stdc++.h>
 using namespace std;
 
 struct S {

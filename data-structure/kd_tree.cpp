@@ -49,7 +49,7 @@ private:
 
     void build(int l, int r, int axis) {
         if (l > r) return;
-        std::sort(points.begin() + l, points.begin() + r + 1, [](const auto& p1, const auto& p2) {
+        std::sort(points.begin() + l, points.begin() + r + 1, [&](const auto& p1, const auto& p2) {
             return axis == 0 ? p1.x < p2.x : p1.y < p2.y;
         });
         int m = (l + r) / 2;
