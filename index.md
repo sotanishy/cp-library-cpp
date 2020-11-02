@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: data-structure/convex_hull_trick.cpp
       title: Convex Hull Trick
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
     - icon: ':heavy_check_mark:'
@@ -59,6 +59,9 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
+    - icon: ':x:'
+      path: data-structure/bst/lazy_treap.cpp
+      title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/rbst.cpp
       title: Randomized Binary Search Tree
@@ -198,7 +201,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -466,6 +469,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/range_affine_range_sum.lazy_treap.test.cpp
+      title: test/yosupo/range_affine_range_sum.lazy_treap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
@@ -493,7 +499,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'

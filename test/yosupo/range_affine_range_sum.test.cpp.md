@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
@@ -17,7 +17,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#line 1 \"test/yosupo/range_affine_range_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\n#line 1 \"data-structure/segtree/lazy_segment_tree.cpp\"\
+    \ \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\n#line 2 \"data-structure/segtree/lazy_segment_tree.cpp\"\
     \n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Segment Tree with Lazy\
     \ Propagation\n * @docs docs/data-structure/segtree/lazy_segment_tree.md\n */\n\
     template <typename M, typename O, typename M::T (*act)(typename M::T, typename\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 00:14:34+09:00'
+  timestamp: '2020-11-03 02:25:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

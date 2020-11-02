@@ -149,27 +149,19 @@ redirect_from:
 - /library/data-structure/bst/treap.cpp.html
 title: Treap
 ---
-# Treap
+## Description
 
-Treap は，平衡二分探索木の一種である．キーと別に，ランダムに割り当てられた優先度を用いてヒープ性を持たせることで，木の平衡を保つ．
+ツリープは，平衡二分探索木の一種である．キーと別に，ランダムに割り当てられた優先度を用いてヒープ性を持たせることで，木の平衡を保つ．モノイドを扱い，セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．
 
 空間計算量: $O(n)$
 
-## Template parameters
-
-- `M`
-    - モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
-        - `T`: 集合 $T$ の型
-        - `T id`: 単位元 $e$
-        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
-
-## Member functions
+## Operations
 
 - `static Treap join(Treap l, Treap r)`
-    - `l` と `r` を融合させた treap を返す
+    - `l` と `r` を併合する
     - 時間計算量: $\mathrm{expected}\ O(\lg n)$
 - `pair<Treap, Treap> split(int k)`
-    - Treap を $[0, k)$ と $[k, n)$ に分割する
+    -  $[0, k)$ と $[k, n)$ に分割する
     - 時間計算量: $\mathrm{expected}\ O(\lg n)$
 - `void update(int k, T x)`
     - $k$ 番目の要素の値を $x$ に変更する
@@ -190,11 +182,20 @@ Treap は，平衡二分探索木の一種である．キーと別に，ラン�
 - `void push_back(T x)`
 - `void pop_front()`
 - `void pop_back()`
-    - 先頭/末尾に $x$ を追加する/の要素を削除する
+    - 先頭/末尾への要素の追加/削除
     - 時間計算量: $\mathrm{expected}\ O(\lg n)$
 - `int size()`
     - 要素数を返す
     - 時間計算量: $O(1)$
 - `bool empty()`
-    - treap が空か判定する
+    - 空か判定する
     - 時間計算量: $O(1)$
+
+## Reference
+
+- [プログラミングコンテストでのデータ構造 2　～平衡二分探索木編～](https://www.slideshare.net/iwiwi/2-12188757)
+- [Treap](https://en.wikipedia.org/wiki/Treap#Randomized_binary_search_tree)
+
+## TODO
+
+- 永続化

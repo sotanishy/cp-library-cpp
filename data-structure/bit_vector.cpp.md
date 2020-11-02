@@ -66,14 +66,11 @@ title: Rank/Select Dictionary
 
 完備辞書 (fully indexable dictionary)，または rank/select 辞書は，ビット列を扱うデータ構造である．`rank` 操作 ($k$ 番目までの1の個数) と `select` 操作 ($k$ 番目の1の位置) を提供する．
 
-## Constructor
+## Operations
 
 - `BitVector(vector<bool> v)`
     - ビット列 `v` の完備辞書を構築する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `bool access(int k)`
     - $k$ 番目の要素を取得する
     - 時間計算量: $O(1)$

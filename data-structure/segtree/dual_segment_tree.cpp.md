@@ -15,7 +15,7 @@ data:
     _deprecated_at_docs: docs/data-structure/segtree/dual_segment_tree.md
     document_title: Dual Segment Tree
     links: []
-  bundledCode: "#line 1 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include\
+  bundledCode: "#line 2 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include\
     \ <vector>\n\n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
@@ -31,26 +31,27 @@ data:
     \ k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2 *\
     \ k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\n    void propagate(int\
     \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};\n"
-  code: "#include <vector>\n\n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
-    \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
-    \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
-    \ n) {\n        size = 1;\n        height = 1;\n        while (size < n) size\
-    \ <<= 1, ++height;\n        lazy.resize(2 * size, M::id);\n    }\n\n    T operator[](int\
-    \ k) {\n        k += size;\n        propagate(k);\n        return lazy[k];\n \
-    \   }\n\n    void update(int l, int r, const T& x) {\n        l += size;\n   \
-    \     r += size;\n        propagate(l);\n        propagate(r - 1);\n        for\
-    \ (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) lazy[l] = M::op(lazy[l],\
-    \ x), ++l;\n            if (r & 1) --r, lazy[r] = M::op(lazy[r], x);\n       \
-    \ }\n    }\n\nprivate:\n    int size, height;\n    std::vector<T> lazy;\n\n  \
-    \  void push(int k) {\n        if (lazy[k] == M::id) return;\n        lazy[2 *\
-    \ k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2 *\
-    \ k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\n    void propagate(int\
-    \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};"
+  code: "#pragma once\n#include <vector>\n\n/*\n * @brief Dual Segment Tree\n * @docs\
+    \ docs/data-structure/segtree/dual_segment_tree.md\n */\ntemplate <typename M>\n\
+    class DualSegmentTree {\n    using T = typename M::T;\n\npublic:\n    DualSegmentTree()\
+    \ = default;\n    explicit DualSegmentTree(int n) {\n        size = 1;\n     \
+    \   height = 1;\n        while (size < n) size <<= 1, ++height;\n        lazy.resize(2\
+    \ * size, M::id);\n    }\n\n    T operator[](int k) {\n        k += size;\n  \
+    \      propagate(k);\n        return lazy[k];\n    }\n\n    void update(int l,\
+    \ int r, const T& x) {\n        l += size;\n        r += size;\n        propagate(l);\n\
+    \        propagate(r - 1);\n        for (; l < r; l >>= 1, r >>= 1) {\n      \
+    \      if (l & 1) lazy[l] = M::op(lazy[l], x), ++l;\n            if (r & 1) --r,\
+    \ lazy[r] = M::op(lazy[r], x);\n        }\n    }\n\nprivate:\n    int size, height;\n\
+    \    std::vector<T> lazy;\n\n    void push(int k) {\n        if (lazy[k] == M::id)\
+    \ return;\n        lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2\
+    \ * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\
+    \n    void propagate(int k) {\n        for (int i = height; i > 0; --i) push(k\
+    \ >> i);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/dual_segment_tree.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-11-03 02:25:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_E.test.cpp
@@ -62,35 +63,29 @@ redirect_from:
 - /library/data-structure/segtree/dual_segment_tree.cpp.html
 title: Dual Segment Tree
 ---
-# Dual Segment Tree
+## Description
 
-双対セグメント木は，作用素モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，列に対する区間更新と一点クエリを処理できるデータ構造である．これは遅延伝搬セグメント木から作用素のみを取り出した構造である．
-
-一点更新・区間クエリはセグメント木を使用する．
-
-区間更新・区間クエリは遅延伝搬セグメント木を使用する．
+双対セグメント木は，作用素モノイド $(T, \cdot, e)$ の列に対する区間更新と一点取得を提供するデータ構造である．
 
 空間計算量: $O(n)$
 
-## Template parameters
-
-- `M`
-    - モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
-        - `T`: 集合 $T$ の型
-        - `T id`: 単位元 $e$
-        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
-
-## Constructor
+## Operations
 
 - `DualSegmentTree(int n)`
     - サイズ`n`で要素がすべて単位元 $e$ の双対セグメント木を構築する
     - 時間計算量: $O(n)$
-
-## Methods
-
 - `T operator[](int k)`
-    - $a_k$ を返す
-    - 時間計算量: $O(1)$
-- `void update(int l, int r, T x)`
-    - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
+    - $k$ 番目の要素を返す
     - 時間計算量: $O(\lg n)$
+- `void update(int l, int r, T x)`
+    - 区間 $[l, r)$ の値に $x$ を作用させる
+    - 時間計算量: $O(\lg n)$
+
+## Note
+
+この実装は正しくは双対セグメント木ではなく，遅延伝搬セグメント木を半分にしたものである．本来の双対セグメント木では遅延伝搬をせずに，一点取得クエリの際に上に取りに行く．しかしこれは作用素モノイドに可換則を要求するため使い勝手が悪いので，ここでは便宜上遅延伝搬セグメント木を半分にしたものを双対セグメント木と呼んでいる．
+
+## Reference
+
+- [双対セグメント木という概念について](https://kimiyuki.net/blog/2019/02/22/dual-segment-tree/)
+- [双対セグメント木](https://hackmd.io/@tatyam-prime/DualSegmentTree)

@@ -14,7 +14,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
   bundledCode: "#line 1 \"test/aoj/DSL_2_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
-    \n\n#line 1 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include <vector>\n\
+    \n\n#line 2 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include <vector>\n\
     \n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
     \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
@@ -55,7 +55,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-11-03 02:25:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_D.test.cpp

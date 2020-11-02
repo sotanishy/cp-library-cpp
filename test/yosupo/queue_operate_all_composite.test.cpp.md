@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/sliding_window_aggregation.cpp
     title: Sliding Window Aggregation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
@@ -21,17 +21,17 @@ data:
     #line 2 \"data-structure/sliding_window_aggregation.cpp\"\n#include <cassert>\n\
     #include <stack>\n#include <utility>\n\n/*\n * @brief Sliding Window Aggregation\n\
     \ * @docs docs/data-structure/sliding_window_aggregation.md\n */\ntemplate <typename\
-    \ M>\nclass SlidingWindowAggregation {\n    using T = typename M::T;\n\npublic:\n\
+    \ S>\nclass SlidingWindowAggregation {\n    using T = typename S::T;\n\npublic:\n\
     \    void push(const T& x) {\n        if (back.empty()) back.emplace(x, x);\n\
-    \        else back.emplace(x, M::op(back.top().second, x));\n    }\n\n    void\
+    \        else back.emplace(x, S::op(back.top().second, x));\n    }\n\n    void\
     \ pop() {\n        if (front.empty()) {\n            if (back.empty()) return;\n\
     \            T x = back.top().first;\n            back.pop();\n            front.emplace(x,\
     \ x);\n            while (!back.empty()) {\n                x = back.top().first;\n\
-    \                back.pop();\n                front.emplace(x, M::op(x, front.top().second));\n\
+    \                back.pop();\n                front.emplace(x, S::op(x, front.top().second));\n\
     \            }\n        }\n        front.pop();\n    }\n\n    bool empty() const\
     \ {\n        return front.empty() && back.empty();\n    }\n\n    T fold() const\
     \ {\n        assert(!empty());\n        if (front.empty()) return back.top().second;\n\
-    \        if (back.empty()) return front.top().second;\n        return M::op(front.top().second,\
+    \        if (back.empty()) return front.top().second;\n        return S::op(front.top().second,\
     \ back.top().second);\n    }\n\nprivate:\n    std::stack<std::pair<T, T>> front,\
     \ back;\n};\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\
     \n/*\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 00:14:34+09:00'
+  timestamp: '2020-11-03 02:25:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

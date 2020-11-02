@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/disjoint_sparse_table.cpp
     title: Disjoint Sparse Table
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -23,10 +23,10 @@ data:
     \ v.end(), lookup[0].begin());\n        for (int i = 1; i <= b; ++i) {\n     \
     \       int len = 1 << i;\n            for (int l = 0; l + len / 2 < n; l += len)\
     \ {\n                int m = l + len / 2;\n                lookup[i][m - 1] =\
-    \ v[m - 1];\n                for (int j = m - 2; j >= l; j--) {\n            \
+    \ v[m - 1];\n                for (int j = m - 2; j >= l; --j) {\n            \
     \        lookup[i][j] = S::op(lookup[i][j + 1], v[j]);\n                }\n  \
     \              lookup[i][m] = v[m];\n                for (int j = m + 1; j < std::min(l\
-    \ + len, n); j++) {\n                    lookup[i][j] = S::op(lookup[i][j - 1],\
+    \ + len, n); ++j) {\n                    lookup[i][j] = S::op(lookup[i][j - 1],\
     \ v[j]);\n                }\n            }\n        }\n    }\n\n    T fold(int\
     \ l, int r) const {\n        if (r - l == 1) return lookup[0][l];\n        int\
     \ i = 32 - __builtin_clz(l ^ (r - 1));\n        return S::op(lookup[i][l], lookup[i][r\
@@ -51,8 +51,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2020-11-02 21:16:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-03 02:25:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq.test.cpp
 layout: document

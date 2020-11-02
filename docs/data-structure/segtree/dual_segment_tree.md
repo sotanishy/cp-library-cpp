@@ -1,32 +1,26 @@
-# Dual Segment Tree
+## Description
 
-双対セグメント木は，作用素モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，列に対する区間更新と一点クエリを処理できるデータ構造である．これは遅延伝搬セグメント木から作用素のみを取り出した構造である．
-
-一点更新・区間クエリはセグメント木を使用する．
-
-区間更新・区間クエリは遅延伝搬セグメント木を使用する．
+双対セグメント木は，作用素モノイド $(T, \cdot, e)$ の列に対する区間更新と一点取得を提供するデータ構造である．
 
 空間計算量: $O(n)$
 
-## Template parameters
-
-- `M`
-    - モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
-        - `T`: 集合 $T$ の型
-        - `T id`: 単位元 $e$
-        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
-
-## Constructor
+## Operations
 
 - `DualSegmentTree(int n)`
     - サイズ`n`で要素がすべて単位元 $e$ の双対セグメント木を構築する
     - 時間計算量: $O(n)$
-
-## Methods
-
 - `T operator[](int k)`
-    - $a_k$ を返す
-    - 時間計算量: $O(1)$
-- `void update(int l, int r, T x)`
-    - $i \in [l, r)$ について $a_i$ を $a_i \cdot x$ に更新する
+    - $k$ 番目の要素を返す
     - 時間計算量: $O(\lg n)$
+- `void update(int l, int r, T x)`
+    - 区間 $[l, r)$ の値に $x$ を作用させる
+    - 時間計算量: $O(\lg n)$
+
+## Note
+
+この実装は正しくは双対セグメント木ではなく，遅延伝搬セグメント木を半分にしたものである．本来の双対セグメント木では遅延伝搬をせずに，一点取得クエリの際に上に取りに行く．しかしこれは作用素モノイドに可換則を要求するため使い勝手が悪いので，ここでは便宜上遅延伝搬セグメント木を半分にしたものを双対セグメント木と呼んでいる．
+
+## Reference
+
+- [双対セグメント木という概念について](https://kimiyuki.net/blog/2019/02/22/dual-segment-tree/)
+- [双対セグメント木](https://hackmd.io/@tatyam-prime/DualSegmentTree)

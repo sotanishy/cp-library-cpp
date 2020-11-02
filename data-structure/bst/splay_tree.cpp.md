@@ -167,27 +167,19 @@ redirect_from:
 - /library/data-structure/bst/splay_tree.cpp.html
 title: Splay Tree
 ---
-# Splay Tree
+## Descriptions
 
-Splay tree は，平衡二分探索木の一種である．ノードを根に持ってくるスプレーという操作を利用して様々な操作を実現している．同じ要素への連続アクセスが高速であるという特徴がある．
+スプレー木は，平衡二分探索木の一種である．ノードを根に持ってくるスプレーという操作を利用して様々な操作を実現している．同じ要素への連続アクセスが高速であるという特徴がある．モノイドを扱い，セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．
 
 空間計算量: $O(n)$
 
-## Template parameters
-
-- `M`
-    - モノイド $(T, \cdot, e)$．以下のメンバーが定義されている:
-        - `T`: 集合 $T$ の型
-        - `T id`: 単位元 $e$
-        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
-
-## Member functions
+## Operations
 
 - `static SplayTree join(SplayTree l, SplayTree r)`
-    - `l` と `r` を融合させた splay tree を返す
+    - `l` と `r` を併合する
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `pair<SplayTree, SplayTree> split(int k)`
-    - splay tree を $[0, k)$ と $[k, n)$ に分割する
+    - $[0, k)$ と $[k, n)$ に分割する
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `void update(int k, T x)`
     - $k$ 番目の要素の値を $x$ に変更する
@@ -208,11 +200,22 @@ Splay tree は，平衡二分探索木の一種である．ノードを根に持
 - `void push_back(T x)`
 - `void pop_front()`
 - `void pop_back()`
-    - 先頭/末尾に $x$ を追加する/の要素を削除する
+    - 先頭/末尾への要素の追加/削除
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `int size()`
     - 要素数を返す
     - 時間計算量: $O(1)$
 - `bool empty()`
-    - treap が空か判定する
+    - 空か判定する
     - 時間計算量: $O(1)$
+
+## Reference
+
+- [プログラミングコンテストでのデータ構造 2　～平衡二分探索木編～](https://www.slideshare.net/iwiwi/2-12188757)
+- [Self-adjusting Binary Search Trees](https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf)
+
+## TODO
+
+- 遅延評価
+- 永続化
+- オリジナル論文読む

@@ -14,7 +14,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
   bundledCode: "#line 1 \"test/aoj/DSL_2_F.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
-    \n\n#line 1 \"data-structure/segtree/lazy_segment_tree.cpp\"\n#include <algorithm>\n\
+    \n\n#line 2 \"data-structure/segtree/lazy_segment_tree.cpp\"\n#include <algorithm>\n\
     #include <vector>\n\n/*\n * @brief Segment Tree with Lazy Propagation\n * @docs\
     \ docs/data-structure/segtree/lazy_segment_tree.md\n */\ntemplate <typename M,\
     \ typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazySegmentTree\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 00:03:03+09:00'
+  timestamp: '2020-11-03 02:25:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F.test.cpp

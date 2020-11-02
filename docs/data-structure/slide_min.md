@@ -1,16 +1,8 @@
-# Sliding Window Minimum
+## Description
 
 スライド最小値は，全順序集合 $T$ を扱い，要素の最小値を求めることができるキューである．
 
-## Template parameters
-
-- `T`
-    - 要素の型．二項関係 `<` が定義されている必要がある
-
-- `Compare`
-    - 要素の比較に用いる型．デフォルトは `std::less<>`
-
-## Member functions
+## Operations
 
 - `void push(T x)`
     - $x$ をキューの末尾に追加する

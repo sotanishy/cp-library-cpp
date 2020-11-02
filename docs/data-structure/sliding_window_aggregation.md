@@ -1,15 +1,8 @@
-# Sliding Window Aggregation
+## Description
 
-Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素全体の演算が可能なキューである．スタックを2つ用いてキューをシミュレートする．
+Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素の総和の計算が可能なキューである．スタックを2つ用いてキューをシミュレートする．
 
-## Template parameters
-
-- `M`
-    - 半群 $(T, \cdot)$．以下のメンバーが定義されている:
-        - `T`: 集合 $T$ の型
-        - `T op(T, T)`: 結合的な二項演算 $\cdot: T \times T \rightarrow T$
-
-## Member functions
+## Operations
 
 - `void push(T x)`
     - $x$ をキューの末尾に追加する
@@ -23,3 +16,13 @@ Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素全体の
 - `T fold()`
     - キューの要素全体の演算結果を返す
     - 時間計算量: $O(1)$
+
+## Reference
+
+- [Sliding Window Aggregation](https://scrapbox.io/data-structures/Sliding_Window_Aggregation)
+- [Constant-Time Sliding Window Aggregation](http://hirzels.com/martin/papers/tr15-rc25574-daba.pdf)
+
+## TODO
+
+- deque の実装
+- オリジナル論文読む
