@@ -31,7 +31,6 @@ public:
         std::tie(a, b) = split(std::move(root), l);
         std::tie(b, c) = split(std::move(b), r - l);
         b->lazy = O::op(b->lazy, x);
-        push(b);
         root = join(join(std::move(a), std::move(b)), std::move(c));
     }
 
