@@ -8,7 +8,7 @@ data:
   attributes:
     document_title: 2D Fenwick Tree
     links: []
-  bundledCode: "#line 1 \"data-structure/fenwick_tree_2d.cpp\"\n#include <bits/stdc++.h>\n\
+  bundledCode: "#line 2 \"data-structure/fenwick_tree_2d.cpp\"\n#include <vector>\n\
     \n/*\n * @brief 2D Fenwick Tree\n */\ntemplate <typename T>\nclass FenwickTree2D\
     \ {\npublic:\n    FenwickTree2D() = default;\n    FenwickTree2D(int H, int W)\
     \ : H(H), W(W), data(H + 1, std::vector<T>(W + 1)) {}\n\n    void add(int a, int\
@@ -19,7 +19,7 @@ data:
     \ {\n            for (int j = b; j > 0; j -= j & -j) {\n                ret +=\
     \ data[i][j];\n            }\n        }\n        return ret;\n    }\n\nprivate:\n\
     \    int H, W;\n    std::vector<std::vector<T>> data;\n};\n"
-  code: "#include <bits/stdc++.h>\n\n/*\n * @brief 2D Fenwick Tree\n */\ntemplate\
+  code: "#pragma once\n#include <vector>\n\n/*\n * @brief 2D Fenwick Tree\n */\ntemplate\
     \ <typename T>\nclass FenwickTree2D {\npublic:\n    FenwickTree2D() = default;\n\
     \    FenwickTree2D(int H, int W) : H(H), W(W), data(H + 1, std::vector<T>(W +\
     \ 1)) {}\n\n    void add(int a, int b, T x) {\n        ++a;\n        ++b;\n  \
@@ -34,7 +34,7 @@ data:
   isVerificationFile: false
   path: data-structure/fenwick_tree_2d.cpp
   requiredBy: []
-  timestamp: '2020-09-24 01:50:52+09:00'
+  timestamp: '2020-11-02 19:09:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/fenwick_tree_2d.cpp

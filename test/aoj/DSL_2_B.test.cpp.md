@@ -14,8 +14,8 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
   bundledCode: "#line 1 \"test/aoj/DSL_2_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
-    \n\n#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <algorithm>\n#include\
-    \ <functional>\n#include <vector>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
+    \n\n#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n#include\
+    \ <vector>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
     \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
     \npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
     \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
@@ -27,8 +27,8 @@ data:
     \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
     \        T v = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i + k\
     \ <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if (cmp(nv,\
-    \ x)) {\n                std::swap(v, nv);\n                i += k;\n        \
-    \    }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
+    \ x)) {\n                v = nv;\n                i += k;\n            }\n   \
+    \     }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
     \ data;\n};\n#line 4 \"test/aoj/DSL_2_B.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nstruct Monoid {\n    using T = int;\n    static inline\
     \ T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\n\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:56:56+09:00'
+  timestamp: '2020-11-02 19:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_B.test.cpp

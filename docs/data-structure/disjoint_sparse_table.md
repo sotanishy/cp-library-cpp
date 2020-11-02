@@ -1,8 +1,6 @@
-# Disjoint Sparse Table
+## Description
 
-Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ に対する区間クエリを高速に処理するデータ構造である．
-
-二項演算 $\cdot$ が冪等であるとき，sparse table の方が定数倍速いと思われる．
+Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dots, a_{n-1})$ の区間和を高速に計算するデータ構造である．スパーステーブルと違って二項演算 $\cdot$ に冪等性を要求しない．
 
 空間計算量: $O(n \lg n)$
 
@@ -24,3 +22,8 @@ Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列 $(a_0, a_1, \dot
 - `T fold(int l, int r)`
     - $a_l \cdot a_{l+1} \cdot \cdots \cdot a_{r-1}$ を計算する
     - 時間計算量: $O(1)$
+
+## Reference
+
+- [[Tutorial] Disjoint Sparse Table](https://discuss.codechef.com/t/tutorial-disjoint-sparse-table/17404)
+- [Disjoint Sparse Table と セグ木に関するポエム](https://noshi91.hatenablog.com/entry/2018/05/08/183946)

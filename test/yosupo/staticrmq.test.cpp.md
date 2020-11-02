@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/disjoint_sparse_table.cpp
     title: Disjoint Sparse Table
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/yosupo/staticrmq.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
-    \n\n#line 1 \"data-structure/disjoint_sparse_table.cpp\"\n#include <bits/stdc++.h>\n\
-    \n/*\n * @brief Disjoint Sparse Table\n * @docs docs/data-structure/disjoint_sparse_table.md\n\
+    \n\n#line 2 \"data-structure/disjoint_sparse_table.cpp\"\n#include <algorithm>\n\
+    #include <vector>\n\n/*\n * @brief Disjoint Sparse Table\n * @docs docs/data-structure/disjoint_sparse_table.md\n\
     \ */\ntemplate <typename S>\nclass DisjointSparseTable {\n    using T = typename\
     \ S::T;\n\npublic:\n    DisjointSparseTable() = default;\n    explicit DisjointSparseTable(const\
     \ std::vector<T>& v) {\n        int n = v.size(), b = 0;\n        while ((1 <<\
@@ -51,8 +51,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 15:17:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-02 19:09:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq.test.cpp
 layout: document

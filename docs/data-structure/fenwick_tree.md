@@ -1,6 +1,6 @@
-# Fenwick Tree
+## Description
 
-Fenwick tree，または binary indexed tree は，可換モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，一点更新と接頭辞へのクエリを処理できるデータ構造である．
+Fenwick tree，または binary indexed tree (BIT) は，可換モノイド $(T, \cdot, e)$ の列 $(a_0, a_1, \dots, a_{n-1})$ を管理し，一点更新と接頭辞和の計算を処理できるデータ構造である．
 
 セグメント木より制約が強く，操作が限られているが，実装が簡潔で定数倍速い．浮動小数点の演算をするときは，セグメント木よりも誤差が大きくなる傾向があるので注意が必要である．
 
@@ -32,3 +32,7 @@ Fenwick tree，または binary indexed tree は，可換モノイド $(T, \cdot
 - `int lower_bound(T x, Compare cmp)`
     - `cmp(prefix_fold(i), x) == false` となる最初の $i$ を返す．そのような $i$ が存在しない場合は $n$ を返す．`cmp` を指定しない場合は `<` で比較される．列の単調性を仮定する．
     - 時間計算量: $O(\lg n)$
+
+## Reference
+
+- [Binary Indexed Tree のはなし](http://hos.ac/slides/20140319_bit.pdf)

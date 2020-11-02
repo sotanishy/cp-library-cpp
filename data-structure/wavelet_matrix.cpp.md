@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/bit_vector.cpp
-    title: Bit Vector
+    title: Rank/Select Dictionary
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -18,24 +18,24 @@ data:
   bundledCode: "#line 2 \"data-structure/wavelet_matrix.cpp\"\n#include <algorithm>\n\
     #include <unordered_map>\n#include <vector>\n#line 2 \"data-structure/bit_vector.cpp\"\
     \n#include <cstdint>\n#line 4 \"data-structure/bit_vector.cpp\"\n\n/*\n * @brief\
-    \ Bit Vector\n */\nclass BitVector {\n    using u32 = uint32_t;\n\npublic:\n \
-    \   BitVector() = default;\n    explicit BitVector(const std::vector<bool>& v)\
-    \ {\n        int n = (v.size() + sz - 1) / sz;\n        data.resize(n);\n    \
-    \    sum.resize(n + 1);\n        for (int i = 0; i < (int) v.size(); ++i) data[i\
-    \ / sz] |= v[i] << (i % sz);\n        for (int i = 0; i < n; ++i) sum[i + 1] =\
-    \ sum[i] + __builtin_popcount(data[i]);\n    }\n\n    int access(int k) const\
-    \ {\n        return data[k / sz] >> (k % sz) & 1;\n    }\n\n    int rank(int k,\
-    \ bool b) const {\n        int mask = (1 << (k % sz)) - 1;\n        int r = sum[k\
-    \ / sz] + __builtin_popcount(data[k / sz] & mask);\n        return b ? r : k -\
-    \ r;\n    }\n\n    int select(int k, bool b) const {\n        int lb = 0, ub =\
-    \ data.size();\n        while (ub - lb > 1) {\n            int m = (lb + ub) /\
-    \ 2;\n            if (rank(m, b) <= k) lb = m;\n            else ub = m;\n   \
-    \     }\n        return lb;\n    }\n\nprivate:\n    static constexpr int sz =\
-    \ 32;\n\n    std::vector<u32> data;\n    std::vector<int> sum;\n};\n#line 6 \"\
-    data-structure/wavelet_matrix.cpp\"\n\n/*\n * @brief Wavelet Matrix\n * @docs\
-    \ docs/data-strucutre/wavelet_matrix.md\n */\nclass WaveletMatrix {\npublic:\n\
-    \    WaveletMatrix() = default;\n    explicit WaveletMatrix(std::vector<int> v)\
-    \ {\n        int n = v.size() ;\n        int m = *std::max_element(v.begin(),\
+    \ Rank/Select Dictionary\n * @docs docs/data-structure/bit_vector.md\n */\nclass\
+    \ BitVector {\npublic:\n    BitVector() = default;\n    explicit BitVector(const\
+    \ std::vector<bool>& v) {\n        int n = (v.size() + sz - 1) / sz;\n       \
+    \ data.resize(n);\n        sum.resize(n + 1);\n        for (int i = 0; i < (int)\
+    \ v.size(); ++i) data[i / sz] |= v[i] << (i % sz);\n        for (int i = 0; i\
+    \ < n; ++i) sum[i + 1] = sum[i] + __builtin_popcount(data[i]);\n    }\n\n    bool\
+    \ access(int k) const {\n        return data[k / sz] >> (k % sz) & 1;\n    }\n\
+    \n    int rank(int k, bool b) const {\n        int mask = (1 << (k % sz)) - 1;\n\
+    \        int r = sum[k / sz] + __builtin_popcount(data[k / sz] & mask);\n    \
+    \    return b ? r : k - r;\n    }\n\n    int select(int k, bool b) const {\n \
+    \       int lb = 0, ub = data.size();\n        while (ub - lb > 1) {\n       \
+    \     int m = (lb + ub) / 2;\n            if (rank(m, b) <= k) lb = m;\n     \
+    \       else ub = m;\n        }\n        return lb;\n    }\n\nprivate:\n    static\
+    \ constexpr int sz = 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int>\
+    \ sum;\n};\n#line 6 \"data-structure/wavelet_matrix.cpp\"\n\n/*\n * @brief Wavelet\
+    \ Matrix\n * @docs docs/data-strucutre/wavelet_matrix.md\n */\nclass WaveletMatrix\
+    \ {\npublic:\n    WaveletMatrix() = default;\n    explicit WaveletMatrix(std::vector<int>\
+    \ v) {\n        int n = v.size() ;\n        int m = *std::max_element(v.begin(),\
     \ v.end());\n        int d = 32 - __builtin_clz(m);\n        mat.resize(d);\n\
     \        cnt0.resize(d);\n        for (d -= 1; d >= 0; --d) {\n            std::vector<bool>\
     \ bit(n);\n            for (int i = 0; i < n; ++i) bit[i] = v[i] >> d & 1;\n \
@@ -105,7 +105,7 @@ data:
   isVerificationFile: false
   path: data-structure/wavelet_matrix.cpp
   requiredBy: []
-  timestamp: '2020-10-27 14:13:32+09:00'
+  timestamp: '2020-11-02 19:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_kth_smallest.test.cpp
