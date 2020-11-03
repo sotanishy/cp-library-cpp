@@ -2,6 +2,10 @@
 #include <algorithm>
 #include <vector>
 
+/*
+ * @brief Sqrt Tree
+ * @docs docs/data-structure/sqrt_tree.md
+ */
 template <typename M>
 class SqrtTree {
     using T = typename M::T;

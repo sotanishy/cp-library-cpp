@@ -43,6 +43,7 @@
 ## Reference
 
 - [プログラミングコンテストでのデータ構造 2　～平衡二分探索木編～](https://www.slideshare.net/iwiwi/2-12188757)
+- [Splay tree](https://en.wikipedia.org/wiki/Splay_tree)
 - [Self-adjusting Binary Search Trees](https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf)
 
 ## TODO
@@ -50,3 +51,4 @@
 - 遅延評価
 - 永続化
 - オリジナル論文読む
+- 計算量理解
