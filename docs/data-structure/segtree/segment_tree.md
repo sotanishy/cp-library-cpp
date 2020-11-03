@@ -33,3 +33,4 @@
 - [セグメント木について](https://beet-aizu.hatenablog.com/entry/2017/09/10/132258)
 - [セグメント木をソラで書きたいあなたに](https://tsutaj.hatenablog.com/entry/2017/03/29/204841)
 - [競技プログラマのための抽象セグメント木実装のすすめ](https://beet-aizu.hatenablog.com/entry/2019/11/27/124437)
+- [Segment Tree](https://cp-algorithms.com/data_structures/segment_tree.html)

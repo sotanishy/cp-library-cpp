@@ -14,3 +14,7 @@
 - `T fold(int l, int r)`
     - 区間 $[l, r)$ の値を fold する
     - 時間計算量: $O(1)$
+
+## Reference
+
+- [Sparse Table](https://cp-algorithms.com/data_structures/sparse-table.html)

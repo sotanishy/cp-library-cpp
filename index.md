@@ -55,6 +55,9 @@ data:
       path: data-structure/sparse_table.cpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
+      path: data-structure/sqrt_tree.cpp
+      title: data-structure/sqrt_tree.cpp
+    - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -499,6 +502,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/staticrmq.sqrt_tree.test.cpp
+      title: test/yosupo/staticrmq.sqrt_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
