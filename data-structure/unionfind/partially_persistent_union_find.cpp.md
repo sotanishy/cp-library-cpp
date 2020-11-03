@@ -56,23 +56,20 @@ redirect_from:
 - /library/data-structure/unionfind/partially_persistent_union_find.cpp.html
 title: Partially Persistent Union Find
 ---
-# Partially Persistent Union Find
+## Description
 
-部分永続 union find は素集合森の過去の情報を保持する．以下の操作を実現する:
+部分永続 union find は素集合森の過去の連結性に関する情報を保持する．以下の操作を提供する:
 - 2つの集合を連結する
 - 時刻 $t$ で2つの要素が同じ集合に属していたか判定する
 - 時刻 $t$ での集合の大きさを返す
 
 空間計算量: $O(n + q)$
 
-## Constructor
+## Operations
 
 - `PartiallyPersistentUnionFind(int n)`
     - サイズ`n`の部分永続 union find を構築する．時刻の初期値は 0 である．
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `int find(int t, int x)`
     - 時刻 $t$ で $x$ が属する木の根を返す
     - 時間計算量: $O(\lg n)$
@@ -88,4 +85,4 @@ title: Partially Persistent Union Find
 
 ## Reference
 
-[部分永続Union-Find Treeについて](https://noshi91.hatenablog.com/entry/2018/02/18/161529)
+- [部分永続Union-Find Treeについて](https://noshi91.hatenablog.com/entry/2018/02/18/161529)

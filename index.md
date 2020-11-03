@@ -56,7 +56,7 @@ data:
       title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
-      title: data-structure/sqrt_tree.cpp
+      title: Sqrt Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix

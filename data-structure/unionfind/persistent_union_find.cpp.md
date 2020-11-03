@@ -76,20 +76,17 @@ redirect_from:
 - /library/data-structure/unionfind/persistent_union_find.cpp.html
 title: Persistent Union Find
 ---
-# Persistent Union Find
+## Description
 
-永続 union find を使うと，union find の過去のバージョンに対して操作ができる．
+永続 union find は，過去のバージョンを保持する union find である．
 
 空間計算量: $O(n + m \log n)$, $m$ は変更の数
 
-## Constructor
+## Operations
 
 - `PersistentUnionFind(int n)`
     - サイズ`n` の永続 union find を構築する
     - 時間計算量: $O(n \log n)$
-
-## Member functions
-
 - `int find(int x)`
     - $x$ が属する木の根を返す
     - 時間計算量: $O(\log^2 n)$
@@ -102,3 +99,11 @@ title: Persistent Union Find
 - `int size(int x)`
     - $x$ が属する集合の大きさを返す
     - 時間計算量: $O(\log^2 n)$
+
+## Reference
+
+- [A Persistent Union-Find Data Structure](https://www.lri.fr/~filliatr/ftp/publis/puf-wml07.pdf)
+
+## TODO
+
+- 論文 読む

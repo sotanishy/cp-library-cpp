@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/sqrt_tree.cpp
-    title: data-structure/sqrt_tree.cpp
+    title: Sqrt Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -15,7 +15,8 @@ data:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/yosupo/staticrmq.sqrt_tree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#line 2 \"data-structure/sqrt_tree.cpp\"\
-    \n#include <algorithm>\n#include <vector>\n\ntemplate <typename M>\nclass SqrtTree\
+    \n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Sqrt Tree\n * @docs\
+    \ docs/data-structure/sqrt_tree.md\n */\ntemplate <typename M>\nclass SqrtTree\
     \ {\n    using T = typename M::T;\n\npublic:\n    SqrtTree() = default;\n    explicit\
     \ SqrtTree(const std::vector<T>& vs) : n(vs.size()), v(vs) {\n        int size\
     \ = 1;\n        lg = 0;\n        while (size < (int) v.size()) size <<= 1, ++lg;\n\
@@ -71,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq.sqrt_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 21:06:51+09:00'
+  timestamp: '2020-11-04 00:40:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq.sqrt_tree.test.cpp

@@ -58,27 +58,17 @@ redirect_from:
 - /library/data-structure/unionfind/weighted_union_find.cpp.html
 title: Weighted Union Find
 ---
-# Weighted Union Find
+## Description
 
 重み付き union find は，union find の操作に加えて，同じ集合に属する他の要素に対する要素の相対的な重みを管理する．
 
-この実装では経路圧縮と union by size を使用している．
-
 空間計算量: $O(n)$
 
-## Template parameters
-
-- `T`
-    - 重みの型
-
-## Constructor
+## Operations
 
 - `WeightedUnionFind(int n)`
     - サイズ`n`の重み付き union find を構築する．
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `int find(int x)`
     - $x$ が属する木の根を返す
     - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
@@ -98,6 +88,6 @@ title: Weighted Union Find
     - $x$ が属する集合の大きさを返す
     - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
 
-## Note
+## TODO
 
-$\alpha(x)$ は逆アッカーマン関数である．
+- 抽象化

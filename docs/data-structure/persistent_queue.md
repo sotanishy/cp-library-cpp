@@ -26,4 +26,5 @@
 
 ## TODO
 
+- ダブリングによる実装
 - [これ](https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf) 読む

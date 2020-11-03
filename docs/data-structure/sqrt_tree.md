@@ -26,3 +26,4 @@ ANSWERING ON-LINE PRODUCT QUERIES](https://citeseerx.ist.psu.edu/viewdoc/downloa
 
 - update 実装
 - 遅延伝搬
+- 論文 読む
