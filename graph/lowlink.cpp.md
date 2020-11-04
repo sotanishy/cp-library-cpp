@@ -24,7 +24,7 @@ data:
   bundledCode: "#line 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n\
     #include <vector>\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\n\
     class Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
-    \ std::vector<std::vector<int>> G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
+    \ std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
     \        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i] ==\
     \ -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int, int>> get_bridges()\
     \ const {\n        return bridge;\n    }\n\n    std::vector<int> get_articulation_points()\
@@ -45,7 +45,7 @@ data:
     \        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
     \n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\nclass Lowlink {\n\
-    public:\n    Lowlink() = default;\n    explicit Lowlink(const std::vector<std::vector<int>>\
+    public:\n    Lowlink() = default;\n    explicit Lowlink(const std::vector<std::vector<int>>&\
     \ G) : G(G), ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int)\
     \ G.size(); ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n   \
     \ }\n\n    std::vector<std::pair<int, int>> get_bridges() const {\n        return\
@@ -70,7 +70,7 @@ data:
   path: graph/lowlink.cpp
   requiredBy:
   - graph/two_edge_connected_components.cpp
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2020-11-05 00:29:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp

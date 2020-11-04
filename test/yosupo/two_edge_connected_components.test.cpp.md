@@ -22,7 +22,7 @@ data:
     \ 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n#line 5 \"\
     graph/lowlink.cpp\"\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n\
     \ */\nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
-    \ std::vector<std::vector<int>> G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
+    \ std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
     \        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i] ==\
     \ -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int, int>> get_bridges()\
     \ const {\n        return bridge;\n    }\n\n    std::vector<int> get_articulation_points()\
@@ -77,7 +77,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:23:12+09:00'
+  timestamp: '2020-11-05 00:29:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp
