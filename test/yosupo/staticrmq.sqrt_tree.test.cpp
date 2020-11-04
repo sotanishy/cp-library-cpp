@@ -5,12 +5,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct MinMonoid {
+struct MinSemigroup {
     using T = int;
-    static constexpr T id = 1e9;
-    static T op(T a, T b) {
-        return min(a, b);
-    }
+    static T op(T a, T b) { return min(a, b); }
 };
 
 int main() {
@@ -20,9 +17,9 @@ int main() {
     int N, Q;
     cin >> N >> Q;
     vector<int> a(N);
-    for (int i = 0; i < N; i++) cin >> a[i];
-    SqrtTree<MinMonoid> st(a);
-    for (int i = 0; i < Q; i++) {
+    for (auto& x : a) cin >> x;
+    SqrtTree<MinSemigroup> st(a);
+    while (Q--) {
         int l, r;
         cin >> l >> r;
         cout << st.fold(l, r) << "\n";

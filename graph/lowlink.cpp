@@ -10,7 +10,7 @@
 class Lowlink {
 public:
     Lowlink() = default;
-    explicit Lowlink(const std::vector<std::vector<int>> G) : G(G), ord(G.size(), -1), low(G.size()) {
+    explicit Lowlink(const std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {
         for (int i = 0; i < (int) G.size(); ++i) {
             if (ord[i] == -1) dfs(i, -1);
         }
