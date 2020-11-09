@@ -1,7 +1,6 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-#include "../data-structure/segtree/segment_tree.cpp"
 
 /*
  * @brief Heavy-Light Decomposition
@@ -13,39 +12,46 @@ class HLD {
 
 public:
     HLD() = default;
-    explicit HLD(const std::vector<std::vector<int>>& G) : HLD(G, std::vector<T>(G.size(), M::id)) {}
-    HLD(const std::vector<std::vector<int>>& G, const std::vector<T>& val)
-        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1), in(G.size()), out(G.size()), head(G.size()), heavy(G.size(), -1) {
+    HLD(const std::vector<std::vector<int>>& G, bool edge)
+        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),
+          in(G.size()), out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {
         dfs(0);
         decompose(0, 0);
-        std::vector<T> val_ordered(val.size());
-        for (int i = 0; i < (int) val.size(); ++i) val_ordered[in[i]] = val[i];
-        st = SegmentTree<M>(val_ordered);
     }
 
-    T operator[](int v) const {
-        return st[in[v]];
+    template <typename F>
+    void update(int v, const T& x, const F& f) const {
+        f(in[v], x);
     }
 
-    void update(int v, const T& x) {
-        st.update(in[v], x);
+    template <typename E, typename F>
+    void update(int u, int v, const E& x, const F& f) const {
+        while (head[u] != head[v]) {
+            if (in[head[u]] > in[head[v]]) std::swap(u, v);
+            f(in[head[v]], in[v] + 1, x);
+            v = par[head[v]];
+        }
+        if (in[u] > in[v]) std::swap(u, v);
+        f(in[u] + edge, in[v] + 1, x);
     }
 
-    T path_fold(int u, int v) const {
+    template <typename F>
+    T path_fold(int u, int v, const F& f) const {
         T res = M::id;
         while (head[u] != head[v]) {
             if (in[head[u]] > in[head[v]]) std::swap(u, v);
-            T val = st.fold(in[head[v]], in[v] + 1);
+            T val = f(in[head[v]], in[v] + 1);
             res = M::op(val, res);
             v = par[head[v]];
         }
         if (in[u] > in[v]) std::swap(u, v);
-        T val = st.fold(in[u], in[v] + 1);
+        T val = f(in[u] + edge, in[v] + 1);
         return M::op(val, res);
     }
 
-    T subtree_fold(int v) const {
-        return st.fold(in[v], out[v]);
+    template <typename F>
+    T subtree_fold(int v, const F& f) const {
+        return f(in[v] + edge, out[v]);
     }
 
     int lca(int u, int v) const {
@@ -63,8 +69,8 @@ public:
 private:
     std::vector<std::vector<int>> G;
     std::vector<int> size, depth, par, in, out, head, heavy;
+    bool edge;
     int cur_pos = 0;
-    SegmentTree<M> st;
 
     void dfs(int v) {
         size[v] = 1;

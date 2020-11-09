@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 
 #include "../../math/modint.cpp"
+#include "../../data-structure/segtree/segment_tree.cpp"
 #include "../../tree/hld.cpp"
 
 #include <bits/stdc++.h>
@@ -39,21 +40,29 @@ int main() {
         G[u].push_back(v);
         G[v].push_back(u);
     }
-    HLD<AffineMonoid> hld(G, ab);
+    HLD<AffineMonoid> hld(G, false);
+    SegmentTree<AffineMonoid> st(N);
+    auto update = [&](int k, const AffineMonoid::T& p) {
+        st.update(k, p);
+    };
+    auto fold = [&](int l, int r) {
+        return st.fold(l, r);
+    };
+    for (int i = 0; i < N; ++i) hld.update(i, ab[i], update);
     for (int i = 0; i < Q; ++i) {
         int t;
         cin >> t;
         if (t == 0) {
             int p, c, d;
             cin >> p >> c >> d;
-            hld.update(p, {{c, d}, {c, d}});
+            hld.update(p, {{c, d}, {c, d}}, update);
         } else {
             int u, v, x;
             cin >> u >> v >> x;
             int p = hld.lca(u, v);
-            auto up = hld.path_fold(u, p).second;
-            auto pv = hld.path_fold(v, p).first;
-            auto pp = hld[p].first;
+            auto up = hld.path_fold(u, p, fold).second;
+            auto pv = hld.path_fold(v, p, fold).first;
+            auto pp = hld.path_fold(p, p, fold).first;
 
             // inv
             up.first /= pp.first;

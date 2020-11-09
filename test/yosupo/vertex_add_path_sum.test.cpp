@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
+#include "../../data-structure/segtree/segment_tree.cpp"
 #include "../../tree/hld.cpp"
 
 #include <bits/stdc++.h>
@@ -29,18 +30,26 @@ int main() {
         G[u].push_back(v);
         G[v].push_back(u);
     }
-    HLD<AddMonoid> hld(G, a);
+    HLD<AddMonoid> hld(G, false);
+    SegmentTree<AddMonoid> st(N);
+    auto update = [&](int k, ll x) {
+        st.update(k, st[k] + x);
+    };
+    auto fold = [&](int l, int r) {
+        return st.fold(l, r);
+    };
+    for (int i = 0; i < N; ++i) hld.update(i, a[i], update);
     for (int i = 0; i < Q; ++i) {
         int t;
         cin >> t;
         if (t == 0) {
             int p, x;
             cin >> p >> x;
-            hld.update(p, hld[p] + x);
+            hld.update(p, x, update);
         } else {
             int u, v;
             cin >> u >> v;
-            cout << hld.path_fold(u, v) << "\n";
+            cout << hld.path_fold(u, v, fold) << "\n";
         }
     }
 }
