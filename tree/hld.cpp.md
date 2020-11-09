@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/segtree/segment_tree.cpp
-    title: Segment Tree
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -22,110 +19,80 @@ data:
     document_title: Heavy-Light Decomposition
     links: []
   bundledCode: "#line 2 \"tree/hld.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    #line 4 \"data-structure/segtree/segment_tree.cpp\"\n\n/*\n * @brief Segment Tree\n\
-    \ * @docs docs/data-structure/segtree/segment_tree.md\n */\ntemplate <typename\
-    \ M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n    SegmentTree()\
-    \ = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id))\
-    \ {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size = 1;\n\
-    \        while (size < (int) v.size()) size <<= 1;\n        node.resize(2 * size,\
-    \ M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n     \
-    \   for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i\
-    \ + 1]);\n    }\n\n    T operator[](int k) const {\n        return node[k + size];\n\
-    \    }\n\n    void update(int k, const T& x) {\n        k += size;\n        node[k]\
-    \ = x;\n        while (k >>= 1) node[k] = M::op(node[2 * k], node[2 * k + 1]);\n\
-    \    }\n\n    T fold(int l, int r) const {\n        T vl = M::id, vr = M::id;\n\
-    \        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n            if\
-    \ (l & 1) vl = M::op(vl, node[l++]);\n            if (r & 1) vr = M::op(node[--r],\
-    \ vr);\n        }\n        return M::op(vl, vr);\n    }\n\n    template <typename\
-    \ F>\n    int find_first(int l, F cond) const {\n        T vl = M::id;\n     \
-    \   int r = size;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1)\
-    \ {\n            if (l & 1) {\n                T nxt = M::op(vl, node[l]);\n \
-    \               if (cond(nxt)) {\n                    while (l < size) {\n   \
-    \                     nxt = M::op(vl, node[2 * l]);\n                        if\
-    \ (cond(nxt)) l = 2 * l;\n                        else vl = nxt, l = 2 * l + 1;\n\
-    \                    }\n                    return l - size;\n               \
-    \ }\n                vl = nxt;\n                ++l;\n            }\n        }\n\
-    \        return -1;\n    }\n\n    template <typename F>\n    int find_last(int\
-    \ r, F cond) const {\n        T vr = M::id;\n        int l = 0;\n        for (l\
-    \ += size, r += size; l < r; l >>= 1, r >>= 1) {\n            if (r & 1) {\n \
-    \               --r;\n                T nxt = M::op(node[r], vr);\n          \
-    \      if (cond(nxt)) {\n                    while (r < size) {\n            \
-    \            nxt = M::op(node[2 * r + 1], vr);\n                        if (cond(nxt))\
-    \ r = 2 * r + 1;\n                        else vr = nxt, r = 2 * r;\n        \
-    \            }\n                    return r - size;\n                }\n    \
-    \            vr = nxt;\n            }\n        }\n        return -1;\n    }\n\n\
-    private:\n    int size;\n    std::vector<T> node;\n};\n#line 5 \"tree/hld.cpp\"\
-    \n\n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\n\
-    template <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
-    \    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>& G)\
-    \ : HLD(G, std::vector<T>(G.size(), M::id)) {}\n    HLD(const std::vector<std::vector<int>>&\
-    \ G, const std::vector<T>& val)\n        : G(G), size(G.size()), depth(G.size()),\
-    \ par(G.size(), -1), in(G.size()), out(G.size()), head(G.size()), heavy(G.size(),\
-    \ -1) {\n        dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
-    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[in[i]] = val[i];\n\
-    \        st = SegmentTree<M>(val_ordered);\n    }\n\n    T operator[](int v) const\
-    \ {\n        return st[in[v]];\n    }\n\n    void update(int v, const T& x) {\n\
-    \        st.update(in[v], x);\n    }\n\n    T path_fold(int u, int v) const {\n\
-    \        T res = M::id;\n        while (head[u] != head[v]) {\n            if\
-    \ (in[head[u]] > in[head[v]]) std::swap(u, v);\n            T val = st.fold(in[head[v]],\
-    \ in[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
-    \        }\n        if (in[u] > in[v]) std::swap(u, v);\n        T val = st.fold(in[u],\
-    \ in[v] + 1);\n        return M::op(val, res);\n    }\n\n    T subtree_fold(int\
-    \ v) const {\n        return st.fold(in[v], out[v]);\n    }\n\n    int lca(int\
-    \ u, int v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
-    \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
-    \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
-    \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
-    \ G;\n    std::vector<int> size, depth, par, in, out, head, heavy;\n    int cur_pos\
-    \ = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v) {\n        size[v] = 1;\n\
-    \        int max_size = 0;\n        for (int c : G[v]) {\n            if (c ==\
-    \ par[v]) continue;\n            par[c] = v;\n            depth[c] = depth[v]\
-    \ + 1;\n            dfs(c);\n            size[v] += size[c];\n            if (size[c]\
-    \ > max_size) {\n                max_size = size[c];\n                heavy[v]\
-    \ = c;\n            }\n        }\n    }\n\n    void decompose(int v, int h) {\n\
-    \        head[v] = h;\n        in[v] = cur_pos++;\n        if (heavy[v] != -1)\
-    \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
-    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
-    \    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"../data-structure/segtree/segment_tree.cpp\"\
-    \n\n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\n\
-    template <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
-    \    HLD() = default;\n    explicit HLD(const std::vector<std::vector<int>>& G)\
-    \ : HLD(G, std::vector<T>(G.size(), M::id)) {}\n    HLD(const std::vector<std::vector<int>>&\
-    \ G, const std::vector<T>& val)\n        : G(G), size(G.size()), depth(G.size()),\
-    \ par(G.size(), -1), in(G.size()), out(G.size()), head(G.size()), heavy(G.size(),\
-    \ -1) {\n        dfs(0);\n        decompose(0, 0);\n        std::vector<T> val_ordered(val.size());\n\
-    \        for (int i = 0; i < (int) val.size(); ++i) val_ordered[in[i]] = val[i];\n\
-    \        st = SegmentTree<M>(val_ordered);\n    }\n\n    T operator[](int v) const\
-    \ {\n        return st[in[v]];\n    }\n\n    void update(int v, const T& x) {\n\
-    \        st.update(in[v], x);\n    }\n\n    T path_fold(int u, int v) const {\n\
-    \        T res = M::id;\n        while (head[u] != head[v]) {\n            if\
-    \ (in[head[u]] > in[head[v]]) std::swap(u, v);\n            T val = st.fold(in[head[v]],\
-    \ in[v] + 1);\n            res = M::op(val, res);\n            v = par[head[v]];\n\
-    \        }\n        if (in[u] > in[v]) std::swap(u, v);\n        T val = st.fold(in[u],\
-    \ in[v] + 1);\n        return M::op(val, res);\n    }\n\n    T subtree_fold(int\
-    \ v) const {\n        return st.fold(in[v], out[v]);\n    }\n\n    int lca(int\
-    \ u, int v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
-    \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
-    \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
-    \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
-    \ G;\n    std::vector<int> size, depth, par, in, out, head, heavy;\n    int cur_pos\
-    \ = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v) {\n        size[v] = 1;\n\
-    \        int max_size = 0;\n        for (int c : G[v]) {\n            if (c ==\
-    \ par[v]) continue;\n            par[c] = v;\n            depth[c] = depth[v]\
-    \ + 1;\n            dfs(c);\n            size[v] += size[c];\n            if (size[c]\
-    \ > max_size) {\n                max_size = size[c];\n                heavy[v]\
-    \ = c;\n            }\n        }\n    }\n\n    void decompose(int v, int h) {\n\
-    \        head[v] = h;\n        in[v] = cur_pos++;\n        if (heavy[v] != -1)\
-    \ decompose(heavy[v], h);\n        for (int c : G[v]) {\n            if (c !=\
-    \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
-    \    }\n};\n"
-  dependsOn:
-  - data-structure/segtree/segment_tree.cpp
+    \n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\ntemplate\
+    \ <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD()\
+    \ = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n   \
+    \     : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),\n          in(G.size()),\
+    \ out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n\
+    \        decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int\
+    \ v, const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \ <typename E, typename F>\n    void update(int u, int v, const E& x, const F&\
+    \ f) const {\n        while (head[u] != head[v]) {\n            if (in[head[u]]\
+    \ > in[head[v]]) std::swap(u, v);\n            f(in[head[v]], in[v] + 1, x);\n\
+    \            v = par[head[v]];\n        }\n        if (in[u] > in[v]) std::swap(u,\
+    \ v);\n        f(in[u] + edge, in[v] + 1, x);\n    }\n\n    template <typename\
+    \ F>\n    T path_fold(int u, int v, const F& f) const {\n        T res = M::id;\n\
+    \        while (head[u] != head[v]) {\n            if (in[head[u]] > in[head[v]])\
+    \ std::swap(u, v);\n            T val = f(in[head[v]], in[v] + 1);\n         \
+    \   res = M::op(val, res);\n            v = par[head[v]];\n        }\n       \
+    \ if (in[u] > in[v]) std::swap(u, v);\n        T val = f(in[u] + edge, in[v] +\
+    \ 1);\n        return M::op(val, res);\n    }\n\n    template <typename F>\n \
+    \   T subtree_fold(int v, const F& f) const {\n        return f(in[v] + edge,\
+    \ out[v]);\n    }\n\n    int lca(int u, int v) const {\n        while (true) {\n\
+    \            if (in[u] > in[v]) std::swap(u, v);\n            if (head[u] == head[v])\
+    \ return u;\n            v = par[head[v]];\n        }\n    }\n\n    int dist(int\
+    \ u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u, v)];\n\
+    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ size, depth, par, in, out, head, heavy;\n    bool edge;\n    int cur_pos = 0;\n\
+    \n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n   \
+    \     for (int c : G[v]) {\n            if (c == par[v]) continue;\n         \
+    \   par[c] = v;\n            depth[c] = depth[v] + 1;\n            dfs(c);\n \
+    \           size[v] += size[c];\n            if (size[c] > max_size) {\n     \
+    \           max_size = size[c];\n                heavy[v] = c;\n            }\n\
+    \        }\n    }\n\n    void decompose(int v, int h) {\n        head[v] = h;\n\
+    \        in[v] = cur_pos++;\n        if (heavy[v] != -1) decompose(heavy[v], h);\n\
+    \        for (int c : G[v]) {\n            if (c != par[v] && c != heavy[v]) decompose(c,\
+    \ c);\n        }\n        out[v] = cur_pos;\n    }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Heavy-Light\
+    \ Decomposition\n * @docs docs/tree/hld.md\n */\ntemplate <typename M>\nclass\
+    \ HLD {\n    using T = typename M::T;\n\npublic:\n    HLD() = default;\n    HLD(const\
+    \ std::vector<std::vector<int>>& G, bool edge)\n        : G(G), size(G.size()),\
+    \ depth(G.size()), par(G.size(), -1),\n          in(G.size()), out(G.size()),\
+    \ head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n       \
+    \ decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int v,\
+    \ const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \ <typename E, typename F>\n    void update(int u, int v, const E& x, const F&\
+    \ f) const {\n        while (head[u] != head[v]) {\n            if (in[head[u]]\
+    \ > in[head[v]]) std::swap(u, v);\n            f(in[head[v]], in[v] + 1, x);\n\
+    \            v = par[head[v]];\n        }\n        if (in[u] > in[v]) std::swap(u,\
+    \ v);\n        f(in[u] + edge, in[v] + 1, x);\n    }\n\n    template <typename\
+    \ F>\n    T path_fold(int u, int v, const F& f) const {\n        T res = M::id;\n\
+    \        while (head[u] != head[v]) {\n            if (in[head[u]] > in[head[v]])\
+    \ std::swap(u, v);\n            T val = f(in[head[v]], in[v] + 1);\n         \
+    \   res = M::op(val, res);\n            v = par[head[v]];\n        }\n       \
+    \ if (in[u] > in[v]) std::swap(u, v);\n        T val = f(in[u] + edge, in[v] +\
+    \ 1);\n        return M::op(val, res);\n    }\n\n    template <typename F>\n \
+    \   T subtree_fold(int v, const F& f) const {\n        return f(in[v] + edge,\
+    \ out[v]);\n    }\n\n    int lca(int u, int v) const {\n        while (true) {\n\
+    \            if (in[u] > in[v]) std::swap(u, v);\n            if (head[u] == head[v])\
+    \ return u;\n            v = par[head[v]];\n        }\n    }\n\n    int dist(int\
+    \ u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u, v)];\n\
+    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ size, depth, par, in, out, head, heavy;\n    bool edge;\n    int cur_pos = 0;\n\
+    \n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n   \
+    \     for (int c : G[v]) {\n            if (c == par[v]) continue;\n         \
+    \   par[c] = v;\n            depth[c] = depth[v] + 1;\n            dfs(c);\n \
+    \           size[v] += size[c];\n            if (size[c] > max_size) {\n     \
+    \           max_size = size[c];\n                heavy[v] = c;\n            }\n\
+    \        }\n    }\n\n    void decompose(int v, int h) {\n        head[v] = h;\n\
+    \        in[v] = cur_pos++;\n        if (heavy[v] != -1) decompose(heavy[v], h);\n\
+    \        for (int c : G[v]) {\n            if (c != par[v] && c != heavy[v]) decompose(c,\
+    \ c);\n        }\n        out[v] = cur_pos;\n    }\n};\n"
+  dependsOn: []
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2020-10-27 22:43:27+09:00'
+  timestamp: '2020-11-09 16:11:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
@@ -140,32 +107,27 @@ title: Heavy-Light Decomposition
 ---
 ## Description
 
-HL 分解 (重軽分解) は，木をいくつかのパスに分解する手法である．分解されたパスからなる木は高さが高々 $O(\lg n)$ になる．これにより，木上のクエリを高速に処理することができる．ここで，木に乗せられる代数的構造は可換モノイド $(T, \cdot, e)$ である．本来 HL 分解はパスクエリを処理する手法だが，部分木クエリを処理するように簡単に拡張できる．
-
-この実装ではクエリの処理にセグメント木を用いている．よって，一点更新と区間取得が可能である．遅延伝搬セグメント木を使えば区間更新も可能である (と思う)．
+HL 分解 (重軽分解) は，木をいくつかのパスに分解する手法である．分解されたパスからなる木は高さが高々 $O(\lg n)$ になる．これにより，木上のクエリを高速に処理することができる．木に乗せられる代数的構造は可換モノイド $(T, \cdot, e)$ である．
 
 空間計算量: $O(n)$
 
 ## Operations
 
-- `HLD(vector<vector<int>> G)`
-    - 木 `G` を HL 分解する．頂点の値は $e$ で初期化される．
+- `HLD(vector<vector<int>> G, bool edge)`
+    - 木 `G` を HL 分解する．`edge == true` ならクエリは辺に対して実行される．
     - 時間計算量: $O(n)$
-- `HLD(vector<vector<int>> G, vector<T> val)`
-    - 木 `G` を HL 分解する．頂点の値は `val` の値で初期化される．
-    - 時間計算量: $O(n)$
-- `T operator[](int v)`
-    - 頂点 $v$ の値を返す
-    - 時間計算量: $O(1)$
-- `void update(int v, T x)`
-    - 頂点 $v$ の値を $x$ に更新する
-    - 時間計算量: $O(\lg n)$
-- `T path_fold(int u, int v)`
-    - $uv$ パス上の頂点の値を fold する．
-    - 時間計算量: $O(\lg^2 n)$
-- `T subtree_fold(int u)`
-    - $u$ を根とする部分木の頂点の値を fold する．
-    - 時間計算量: $O(\lg n)$
+- `void update(int v, T x, F update)`
+    - 頂点 $v$ に対して $update(x)$ を実行する
+    - 時間計算量: $O(f(n) \lg n)$
+- `void update(int u, int v, T x, F update)`
+    - $uv$ パス上の頂点/辺に対して $update(x)$ を実行する．
+    - 時間計算量: $O(f(n) \lg n)$
+- `T path_fold(int u, int v, F fold)`
+    - $uv$ パス上の頂点/辺に対して $fold()$ を実行する．
+    - 時間計算量: $O(f(n) \lg n)$
+- `T subtree_fold(int v, F fold)`
+    - $v$ を根とする部分木の頂点/辺に対して $fold()$ を実行する．
+    - 時間計算量: $O(f(n))$
 - `int lca(int u, int v)`
     - $u$ と $v$ の最小共通祖先を返す
     - 時間計算量: $O(\lg n)$
@@ -190,4 +152,3 @@ HL 分解 (重軽分解) は，木をいくつかのパスに分解する手法�
 ## TODO
 
 - 非可換 fold ましなやり方
-- 遅延セグ木

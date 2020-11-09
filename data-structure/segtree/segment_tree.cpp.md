@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: tree/euler_tour.cpp
     title: Euler Tour
-  - icon: ':heavy_check_mark:'
-    path: tree/hld.cpp
-    title: Heavy-Light Decomposition
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
@@ -24,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
@@ -107,7 +101,6 @@ data:
   path: data-structure/segtree/segment_tree.cpp
   requiredBy:
   - tree/euler_tour.cpp
-  - tree/hld.cpp
   timestamp: '2020-10-26 19:52:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -116,7 +109,6 @@ data:
   - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
 documentation_of: data-structure/segtree/segment_tree.cpp
 layout: document

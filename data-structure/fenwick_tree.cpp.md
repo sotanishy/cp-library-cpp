@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -54,6 +57,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_B.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - test/yosupo/static_range_inversions_query.test.cpp
 documentation_of: data-structure/fenwick_tree.cpp
 layout: document
