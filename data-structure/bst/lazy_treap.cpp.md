@@ -21,7 +21,7 @@ data:
     \ l, LazyTreap r) {\n        return LazyTreap(join(std::move(l.root), std::move(r.root)));\n\
     \    }\n\n    std::pair<LazyTreap, LazyTreap> split(int k) {\n        auto p =\
     \ split(std::move(root), k);\n        return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};\n\
-    \    }\n\n    void update(int l, int r, const T& x) {\n        assert(0 <= l &&\
+    \    }\n\n    void update(int l, int r, const E& x) {\n        assert(0 <= l &&\
     \ l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a, b) =\
     \ split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b), r -\
     \ l);\n        b->lazy = O::op(b->lazy, x);\n        root = join(join(std::move(a),\
@@ -89,7 +89,7 @@ data:
     \ l, LazyTreap r) {\n        return LazyTreap(join(std::move(l.root), std::move(r.root)));\n\
     \    }\n\n    std::pair<LazyTreap, LazyTreap> split(int k) {\n        auto p =\
     \ split(std::move(root), k);\n        return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};\n\
-    \    }\n\n    void update(int l, int r, const T& x) {\n        assert(0 <= l &&\
+    \    }\n\n    void update(int l, int r, const E& x) {\n        assert(0 <= l &&\
     \ l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a, b) =\
     \ split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b), r -\
     \ l);\n        b->lazy = O::op(b->lazy, x);\n        root = join(join(std::move(a),\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: false
   path: data-structure/bst/lazy_treap.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:47:02+09:00'
+  timestamp: '2020-11-11 19:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_F.lazy_treap.test.cpp

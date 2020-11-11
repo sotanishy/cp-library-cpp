@@ -269,7 +269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour.cpp
       title: Euler Tour
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
       title: Euler Tour Tree
     - icon: ':heavy_check_mark:'
@@ -421,6 +421,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
+      title: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp

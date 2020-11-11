@@ -58,7 +58,7 @@ data:
     \ root;\n    std::vector<std::vector<int>> G;\n    std::vector<int> in, out;\n\
     \    int k = 0;\n    SegmentTree<M> st;\n\n    void dfs(int v, int p) {\n    \
     \    in[v] = k++;\n        for (int c : G[v]) if (c != p) dfs(c, v);\n       \
-    \ out[v] = k++;\n    }\n};\n"
+    \ out[v] = k;\n    }\n};\n"
   code: "#pragma once\n#include <vector>\n#include \"../data-structure/segtree/segment_tree.cpp\"\
     \n\n/*\n * @brief Euler Tour\n */\ntemplate <typename M>\nclass EulerTour {\n\
     \    using T = typename M::T;\n\npublic:\n    EulerTour() = default;\n    EulerTour(const\
@@ -69,13 +69,13 @@ data:
     \ st.fold(in[v], out[v]);\n    }\n\nprivate:\n    int n, root;\n    std::vector<std::vector<int>>\
     \ G;\n    std::vector<int> in, out;\n    int k = 0;\n    SegmentTree<M> st;\n\n\
     \    void dfs(int v, int p) {\n        in[v] = k++;\n        for (int c : G[v])\
-    \ if (c != p) dfs(c, v);\n        out[v] = k++;\n    }\n};"
+    \ if (c != p) dfs(c, v);\n        out[v] = k;\n    }\n};"
   dependsOn:
   - data-structure/segtree/segment_tree.cpp
   isVerificationFile: false
   path: tree/euler_tour.cpp
   requiredBy: []
-  timestamp: '2020-10-28 12:21:53+09:00'
+  timestamp: '2020-11-11 19:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
