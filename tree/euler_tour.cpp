@@ -37,6 +37,6 @@ private:
     void dfs(int v, int p) {
         in[v] = k++;
         for (int c : G[v]) if (c != p) dfs(c, v);
-        out[v] = k++;
+        out[v] = k;
     }
 };

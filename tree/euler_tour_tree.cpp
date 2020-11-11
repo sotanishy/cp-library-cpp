@@ -1,18 +1,204 @@
 #pragma once
 #include <cassert>
-#include <map>
 #include <memory>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
-// TODO: implement subtree fold in O(log n) (is it even possible?)
-// there are two approaches that may work
-// 1: find the parent of the node, cut, fold, and link again
-// 2: retain the first and the last occurrence of the vertex, split and fold
-
 /*
  * @brief Euler Tour Tree
+ * @docs docs/tree/euler_tour_tree.md
  */
+template <typename M>
+class EulerTourTree {
+    using T = typename M::T;
+
+public:
+    EulerTourTree() = default;
+    explicit EulerTourTree(int n) {
+        ptr.resize(n);
+        for (int i = 0; i < n; ++i) {
+            ptr[i][i] = std::make_shared<Node>(i, i);
+        }
+    }
+
+    void link(int u, int v) {
+        assert(!same(u, v));
+        auto tu = reroot(get_node(u, u));
+        auto tv = reroot(get_node(v, v));
+        join(join(tu, get_node(u, v)), join(tv, get_node(v, u)));
+    }
+
+    void cut(int u, int v) {
+        assert(ptr[u].find(v) != ptr[u].end());
+        node_ptr a, b, c;
+        std::tie(a, b, c) = split(get_node(u, v), get_node(v, u));
+        join(a, c);
+        ptr[u].erase(v);
+        ptr[v].erase(u);
+    }
+
+    bool same(int u, int v) {
+        return same(get_node(u, u), get_node(v, v));
+    }
+
+    T get(int v) {
+        return get_node(v, v)->val;
+    }
+
+    void update(int v, const T& x) {
+        auto t = get_node(v, v);
+        splay(t);
+        t->val = x;
+        recalc(t);
+    }
+
+    T fold(int v, int p = -1) {
+        if (p != -1) cut(p, v);
+        auto t = get_node(v, v);
+        splay(t);
+        T ret = t->sum;
+        if (p != -1) link(p, v);
+        return ret;
+    }
+
+private:
+    struct Node;
+    using node_ptr = std::shared_ptr<Node>;
+
+    struct Node {
+        node_ptr ch[2] = {nullptr, nullptr};
+        node_ptr par = nullptr;
+        int from, to, sz;
+        T val = M::id, sum = M::id;
+        Node(int from, int to) : from(from), to(to), sz(from == to) {}
+    };
+
+    std::vector<std::unordered_map<int, node_ptr>> ptr;
+
+    node_ptr get_node(int u, int v) {
+        if (ptr[u].find(v) == ptr[u].end()) ptr[u][v] = std::make_shared<Node>(u, v);
+        return ptr[u][v];
+    }
+
+    static node_ptr root(node_ptr t) {
+        if (!t) return nullptr;
+        while (t->par) t = t->par;
+        return t;
+    }
+
+    static bool same(node_ptr s, node_ptr t) {
+        if (s) splay(s);
+        if (t) splay(t);
+        return root(s) == root(t);
+    }
+
+    static node_ptr reroot(node_ptr t) {
+        auto s = split(t);
+        return join(s.second, s.first);
+    }
+
+    // splay tree
+
+    static int size(const node_ptr& t) {
+        return t ? t->sz : 0;
+    }
+
+    static node_ptr recalc(const node_ptr& t) {
+        if (!t) return t;
+        t->sz = size(t->ch[0]) + (t->from == t->to) + size(t->ch[1]);
+        t->sum = t->val;
+        if (t->ch[0]) t->sum = M::op(t->ch[0]->sum, t->sum);
+        if (t->ch[1]) t->sum = M::op(t->sum, t->ch[1]->sum);
+        return t;
+    }
+
+    static node_ptr join(node_ptr l, node_ptr r) {
+        if (!l) return r;
+        if (!r) return l;
+        while (l->ch[1]) l = l->ch[1];
+        splay(l);
+        l->ch[1] = r;
+        r->par = l;
+        return recalc(l);
+    }
+
+    static std::pair<node_ptr, node_ptr> split(node_ptr t) {
+        splay(t);
+        auto s = t->ch[0];
+        t->ch[0] = nullptr;
+        if (s) s->par = nullptr;
+        return {s, recalc(t)};
+    }
+
+    static std::pair<node_ptr,node_ptr> split2(node_ptr t) {
+        splay(t);
+        auto l = t->ch[0];
+        auto r = t->ch[1];
+        t->ch[0] = nullptr;
+        if (l) l->par = nullptr;
+        t->ch[1] = nullptr;
+        if (r) r->par = nullptr;
+        return {l, r};
+    }
+
+    static std::tuple<node_ptr, node_ptr, node_ptr> split(node_ptr s, node_ptr t) {
+        node_ptr a, b, c, d;
+        std::tie(a, b) = split2(s);
+        if (same(a, t)) {
+            std::tie(c, d) = split2(t);
+            return {c, d, b};
+        } else {
+            std::tie(c, d) = split2(t);
+            return {a, c, d};
+        }
+    }
+
+    static void rotate(node_ptr t, bool b) {
+        node_ptr s = t->ch[1 - b], p = t->par;
+        t->ch[1 - b] = s->ch[b];
+        if (t->ch[1 - b]) t->ch[1 - b]->par = t;
+        s->ch[b] = t;
+        t->par = s;
+        recalc(t);
+        recalc(s);
+        s->par = p;
+        if (p) {
+            if (p->ch[0] == t) p->ch[0] = s;
+            else p->ch[1] = s;
+        }
+    }
+
+    static void splay(node_ptr t) {
+        if (!t) return;
+        while (t->par) {
+            auto p = t->par, g = p->par;
+            if (!g) {
+                rotate(p, t == p->ch[0]);
+            } else {
+                if (t == p->ch[0]) {
+                    if (p == g->ch[0]) {
+                        rotate(g, 1);
+                        rotate(p, 1);
+                    } else {
+                        rotate(p, 1);
+                        rotate(g, 0);
+                    }
+                } else {
+                    if (p == g->ch[0]) {
+                        rotate(p, 0);
+                        rotate(g, 1);
+                    } else {
+                        rotate(g, 0);
+                        rotate(p, 0);
+                    }
+                }
+            }
+        }
+    }
+};
+
+/*
 template <typename M>
 class EulerTourTree {
     using T = typename M::T;
@@ -74,23 +260,28 @@ public:
         recalc(vertex[v]);
     }
 
-    // T fold(int v) {
-    //     int p = parent(v);
-    //     if (p != -1) cut(p, v);
-    //     splay(vertex[v]);
-    //     auto ret = vertex[v]->sum;
-    //     if (p != -1) link(p, v);
-    //     return ret;
-    // }
-
-    // int parent(int v) {
-    //     auto t = vertex[v];
-    //     splay(t);
-    //     if (!t->left) return -1;
-    //     t = t->left;
-    //     while (t->right) t = t->right;
-    //     return t->from == v ? t->to : t->from;
-    // }
+    T fold(int v, int p) {
+        if (p == -1) {
+            splay(vertex[v]);
+            return vertex[v]->sum;
+        }
+        auto e = edge[std::minmax(v, p)];
+        node_ptr a, b, c, d;
+        std::tie(a, b) = split(e.first);
+        auto r = e.second;
+        while (r->par) r = r->par;
+        T ret;
+        if (r == a) {
+            std::tie(c, d) = split(e.second);
+            ret = d->sum;
+            join(join(c, d), b);
+        } else {
+            std::tie(c, d) = split(e.second);
+            ret = c->sum;
+            join(a, join(c, d));
+        }
+        return ret;
+    }
 
     // void print(int v) {
     //     auto r = vertex[v];
@@ -240,50 +431,4 @@ private:
         }
     }
 };
-
-// using ll = long long;
-
-// struct AddMonoid {
-//     using T = ll;
-//     static constexpr T id = 0;
-//     static T op(T a, T b) {
-//         return a + b;
-//     }
-// };
-
-// int main() {
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(nullptr);
-
-//     int N, Q;
-//     cin >> N >> Q;
-//     EulerTourTree<AddMonoid> ett(N);
-//     for (int i = 0; i < N; ++i) {
-//         int a;
-//         cin >> a;
-//         ett.set(i, a);
-//     }
-//     for (int i = 0; i < N - 1; ++i) {
-//         int u, v;
-//         cin >> u >> v;
-//         ett.link(u, v);
-//     }
-//     while (Q--) {
-//         int t;
-//         cin >> t;
-//         if (t == 0) {
-//             int u, v, w, x;
-//             cin >> u >> v >> w >> x;
-//             ett.cut(u, v);
-//             ett.link(w, x);
-//         } else if (t == 1) {
-//             int p, x;
-//             cin >> p >> x;
-//             ett.set(p, ett.get(p) + x);
-//         } else {
-//             int v, p;
-//             cin >> v >> p;
-//             cout << ett.fold(v) << endl;
-//         }
-//     }
-}
+*/

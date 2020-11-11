@@ -25,7 +25,7 @@ public:
         return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};
     }
 
-    void update(int l, int r, const T& x) {
+    void update(int l, int r, const E& x) {
         assert(0 <= l && l < r && r <= size());
         node_ptr a, b, c;
         std::tie(a, b) = split(std::move(root), l);
