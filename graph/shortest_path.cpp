@@ -57,18 +57,43 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
     pq.emplace(0, s);
 
     while (!pq.empty()) {
-        T weight;
+        T d;
         int v;
-        std::tie(weight, v) = pq.top();
+        std::tie(d, v) = pq.top();
         pq.pop();
-        if (dist[v] < weight) continue;
+        if (dist[v] < d) continue;
         for (auto& e : G[v]) {
-            if (dist[e.to] > dist[v] + e.weight) {
-                dist[e.to] = dist[v] + e.weight;
+            if (dist[e.to] > d + e.weight) {
+                dist[e.to] = d + e.weight;
                 pq.emplace(dist[e.to], e.to);
             }
         }
     }
 
+    return dist;
+}
+
+/*
+ * Dial's Algorithm
+ */
+std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int w) {
+    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());
+    dist[s] = 0;
+    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());
+    buckets[0].push_back(s);
+
+    for (int d = 0; d < (int) buckets.size(); ++d) {
+        while (!buckets[d].empty()) {
+            int v = buckets[d].back();
+            buckets[d].pop_back();
+            if (dist[v] < d) continue;
+            for (auto& e : G[v]) {
+                if (dist[e.to] > d + e.weight) {
+                    dist[e.to] = d + e.weight;
+                    buckets[dist[e.to]].push_back(e.to);
+                }
+            }
+        }
+    }
     return dist;
 }

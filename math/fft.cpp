@@ -1,5 +1,7 @@
 #pragma once
+#include <algorithm>
 #include <cmath>
+#include <complex>
 #include <vector>
 
 /*
@@ -7,39 +9,29 @@
  * @docs docs/math/fft.md
  */
 class FFT {
+    using C = std::complex<double>;
+
 public:
     FFT() = delete;
 
     template <typename T>
-    static std::vector<double> convolution(const std::vector<T>& a, const std::vector<T>& b) {
+    static std::vector<double> convolve(const std::vector<T>& a, const std::vector<T>& b) {
         int size = a.size() + b.size() - 1;
         int n = 1;
         while (n < size) n <<= 1;
-        std::vector<C> na(n), nb(n);
-        for (int i = 0; i < (int) a.size(); ++i) na[i].real = a[i];
-        for (int i = 0; i < (int) b.size(); ++i) nb[i].real = b[i];
-        ufft(na);
-        ufft(nb);
+        std::vector<C> na(a.begin(), a.end()), nb(b.begin(), b.end());
+        na.resize(n);
+        nb.resize(n);
+        fft(na, false);
+        fft(nb, false);
         for (int i = 0; i < n; ++i) na[i] = na[i] * nb[i];
-        iufft(na);
+        ifft(na, false);
         std::vector<double> ret(size);
-        for (int i = 0; i < size; ++i) ret[i] = na[i].real / n;
+        for (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;
         return ret;
     }
 
-private:
-    struct C {
-        double real, imag;
-        C() : real(0), imag(0) {}
-        C(double real, double imag) : real(real), imag(imag) {}
-        C operator+(const C& c) { return C(real + c.real, imag + c.imag); }
-        C operator-(const C& c) { return C(real - c.real, imag - c.imag); }
-        C operator*(const C& c) { return C(real * c.real - imag * c.imag, real * c.imag + imag * c.real); }
-    };
-
-    static constexpr double PI = 3.14159265358979323846;
-
-    static void ufft(std::vector<C>& a) {
+    static void fft(std::vector<C>& a, bool ordered = true) {
         int n = a.size();
         for (int m = n; m > 1; m >>= 1) {
             double ang = 2.0 * PI / m;
@@ -55,9 +47,11 @@ private:
                 }
             }
         }
+        if (ordered) bit_reverse(a);
     }
 
-    static void iufft(std::vector<C>& a) {
+    static void ifft(std::vector<C>& a, bool ordered = true) {
+        if (ordered) bit_reverse(a);
         int n = a.size();
         for (int m = 2; m <= n; m <<= 1) {
             double ang = -2.0 * PI / m;
@@ -72,6 +66,17 @@ private:
                     w = w * omega;
                 }
             }
+        }
+    }
+
+private:
+    static constexpr double PI = 3.14159265358979323846;
+
+    static void bit_reverse(std::vector<C>& a) {
+        int n = a.size();
+        for (int i = 0, j = 1; j < n - 1; ++j) {
+            for (int k = n >> 1; k > (i ^= k); k >>= 1);
+            if (i < j) std::swap(a[i], a[j]);
         }
     }
 };

@@ -31,26 +31,27 @@ int main() {
     }
 
     FenwickTree<AddMonoid> fw(N);
-    auto exl = [&](ll res, int i) {
+    ll res = 0;
+    vector<ll> ans(Q);
+    auto exl = [&](int i) {
         res += fw.prefix_fold(A[i]);
         fw.update(A[i], 1);
-        return res;
     };
-    auto shl = [&](ll res, int i) {
+    auto shl = [&](int i) {
         res -= fw.prefix_fold(A[i]);
         fw.update(A[i], -1);
-        return res;
     };
-    auto exr = [&](ll res, int i) {
+    auto exr = [&](int i) {
         res += fw.prefix_fold(N) - fw.prefix_fold(A[i] + 1);
         fw.update(A[i], 1);
-        return res;
     };
-    auto shr = [&](ll res, int i) {
+    auto shr = [&](int i) {
         res -= fw.prefix_fold(N) - fw.prefix_fold(A[i] + 1);
         fw.update(A[i], -1);
-        return res;
     };
-    auto ans = mo.run(0LL, exl, shl, exr, shr);
+    auto out = [&](int i) {
+        ans[i] = res;
+    };
+    mo.run(exl, shl, exr, shr, out);
     for (auto& x : ans) cout << x << "\n";
 }

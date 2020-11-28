@@ -1,15 +1,10 @@
-# Formal Power Series
+## Description
 
 形式的べき級数を扱う．
 
 空間計算量: $O(n)$
 
-## Template parameter
-
-- `mint`
-    - `Modint`
-
-## Member functions
+## Operations
 
 - `FPS inv(int deg)`
     - $\frac{1}{f(x)}$ を `deg - 1` 次の項まで計算する．

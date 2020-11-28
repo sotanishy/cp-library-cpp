@@ -59,9 +59,9 @@ public:
     }
 
     void erase(int k) {
-        auto p = split(std::move(root), k - 1);
+        auto p = split(std::move(root), k);
         auto q = split(std::move(p.second), 1);
-        return join(std::move(p.first), std::move(q.second));
+        root = join(std::move(p.first), std::move(q.second));
     }
 
     void push_front(const T& x) {

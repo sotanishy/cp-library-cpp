@@ -1,4 +1,4 @@
-# Modular Arithmetic
+## Description
 
 モジュラ計算アルゴリズム詰め合わせ
 
