@@ -43,7 +43,7 @@ public:
                     C r = a[s * m + i + m / 2];
                     a[s * m + i] = l + r;
                     a[s * m + i + m / 2] = (l - r) * w;
-                    w = w * omega;
+                    w *= omega;
                 }
             }
         }
@@ -63,7 +63,7 @@ public:
                     C r = a[s * m + i + m / 2] * w;
                     a[s * m + i] = l + r;
                     a[s * m + i + m / 2] = l - r;
-                    w = w * omega;
+                    w *= omega;
                 }
             }
         }
