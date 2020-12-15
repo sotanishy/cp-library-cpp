@@ -13,7 +13,7 @@
 
 constexpr double eps = 1e-12;
 
-inline bool eq(double a, double b) { return abs(a - b) < eps; }
+inline bool eq(double a, double b) { return std::abs(a - b) < eps; }
 inline bool lt(double a, double b) { return a < b - eps; }
 inline bool leq(double a, double b) { return a < b + eps; }
 
@@ -80,7 +80,7 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
     // if the circles are outside of each other
     if (lt(r1 + r2, d)) return {};
     // if one contains the other entirely
-    if (lt(d, abs(r2 - r1))) return {};
+    if (lt(d, std::abs(r2 - r1))) return {};
     double x = (r1*r1 - r2*r2 + d*d) / (2*d);
     double y = sqrt(r1*r1 - x*x);
     Vec e1 = (c2 - c1) / (c2 - c1).abs();
@@ -93,11 +93,11 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
 // returns the distance between the point q and the line p1-p2
 double point_line_dist(const Vec& p1, const Vec& p2, const Vec& q) {
     Vec p = p2 - p1;
-    return abs(q.cross(p) + p2.cross(p1)) / p.abs();
+    return std::abs(q.cross(p) + p2.cross(p1)) / p.abs();
 }
 
 double area(const Vec& A, const Vec& B, const Vec& C) {
-    return abs((B - A).cross(C - A)) / 2;
+    return std::abs((B - A).cross(C - A)) / 2;
 }
 
 Vec centroid(const Vec& A, const Vec& B, const Vec& C) {

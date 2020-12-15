@@ -153,7 +153,7 @@ public:
 
 protected:
     template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type* = nullptr>
-    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8; }
+    static constexpr bool eq(U a, U b) { return std::abs(a - b) < 1e-8; }
 
     template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type* = nullptr>
     static constexpr bool eq(U a, U b) { return a == b; }

@@ -1,6 +1,10 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
+#pragma once
+#include <vector>
+
+/*
+ * @brief Transform
+ * @docs docs/math/transform.md
+ */
 
 template <typename T>
 void fzt(std::vector<T>& a, bool subset) {
@@ -17,7 +21,7 @@ void fmt(std::vector<T>& a, bool subset) {
     int k = 31 - __builtin_clz(a.size());
     for (int i = 0; i < k; ++i) {
         for (int j = 0; j < (1 << k); ++j) {
-            if ((j >> i & 1) == subset) a[j] -= a[j ^ (1 << i)]
+            if ((j >> i & 1) == subset) a[j] -= a[j ^ (1 << i)];
         }
     }
 }
@@ -90,11 +94,4 @@ void ifht(std::vector<T>& a) {
             }
         }
     }
-}
-
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-
 }
