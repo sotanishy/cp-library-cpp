@@ -13,11 +13,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
     links:
-    - https://judge.yosupo.jp/problem/bitwise_and_convolution
-  bundledCode: "#line 1 \"test/yosupo/bitwise_and_convolution.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n\n#line\
+    - https://judge.yosupo.jp/problem/bitwise_xor_convolution
+  bundledCode: "#line 1 \"test/yosupo/bitwise_xor_convolution.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\n\n#line\
     \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
     \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
@@ -79,35 +79,34 @@ data:
     \            for (int j = i; j < i + h; ++j) {\n                T x = a[j];\n\
     \                T y = a[j | h];\n                a[j] = (x + y) / 2;\n      \
     \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n#line\
-    \ 5 \"test/yosupo/bitwise_and_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    \ 5 \"test/yosupo/bitwise_xor_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 <<\
     \ N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto& x : b) cin >>\
-    \ x;\n    fzt(a, false);\n    fzt(b, false);\n    for (int i = 0; i < (1 << N);\
-    \ ++i) c[i] = a[i] * b[i];\n    fmt(c, false);\n    for (int i = 0; i < (1 <<\
-    \ N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
+    \ x;\n    fht(a);\n    fht(b);\n    for (int i = 0; i < (1 << N); ++i) c[i] =\
+    \ a[i] * b[i];\n    ifht(c);\n    for (int i = 0; i < (1 << N); ++i) cout << c[i]\
+    \ << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/transform.cpp\"\n\
     \n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing\
     \ mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<mint>\
     \ a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto&\
-    \ x : b) cin >> x;\n    fzt(a, false);\n    fzt(b, false);\n    for (int i = 0;\
-    \ i < (1 << N); ++i) c[i] = a[i] * b[i];\n    fmt(c, false);\n    for (int i =\
-    \ 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n\
-    }\n"
+    \ x : b) cin >> x;\n    fht(a);\n    fht(b);\n    for (int i = 0; i < (1 << N);\
+    \ ++i) c[i] = a[i] * b[i];\n    ifht(c);\n    for (int i = 0; i < (1 << N); ++i)\
+    \ cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/transform.cpp
   isVerificationFile: true
-  path: test/yosupo/bitwise_and_convolution.test.cpp
+  path: test/yosupo/bitwise_xor_convolution.test.cpp
   requiredBy: []
   timestamp: '2020-12-18 00:29:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/bitwise_and_convolution.test.cpp
+documentation_of: test/yosupo/bitwise_xor_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/bitwise_and_convolution.test.cpp
-- /verify/test/yosupo/bitwise_and_convolution.test.cpp.html
-title: test/yosupo/bitwise_and_convolution.test.cpp
+- /verify/test/yosupo/bitwise_xor_convolution.test.cpp
+- /verify/test/yosupo/bitwise_xor_convolution.test.cpp.html
+title: test/yosupo/bitwise_xor_convolution.test.cpp
 ---

@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/bitwise_xor_convolution.test.cpp
+    title: test/yosupo/bitwise_xor_convolution.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -37,14 +40,14 @@ data:
     \ false;\n                a[k] -= a[k * p];\n            }\n        }\n    }\n\
     }\n\ntemplate <typename T>\nvoid fht(std::vector<T>& a) {\n    int n = a.size();\n\
     \    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h\
-    \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                int\
-    \ x = a[j];\n                int y = a[j | h];\n                a[j] = x + y;\n\
-    \                a[j | h] = x - y;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                T x\
+    \ = a[j];\n                T y = a[j | h];\n                a[j] = x + y;\n  \
+    \              a[j | h] = x - y;\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename T>\nvoid ifht(std::vector<T>& a) {\n    int n = a.size();\n    for\
     \ (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h << 1) {\n\
-    \            for (int j = i; j < i + h; ++j) {\n                int x = a[j];\n\
-    \                int y = a[j | h];\n                a[j] = (x + y) / 2;\n    \
-    \            a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n"
+    \            for (int j = i; j < i + h; ++j) {\n                T x = a[j];\n\
+    \                T y = a[j | h];\n                a[j] = (x + y) / 2;\n      \
+    \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n"
   code: "#pragma once\n#include <vector>\n\n/*\n * @brief Transform\n * @docs docs/math/transform.md\n\
     \ */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>& a, bool subset) {\n  \
     \  int k = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i) {\n\
@@ -70,22 +73,22 @@ data:
     \   }\n}\n\ntemplate <typename T>\nvoid fht(std::vector<T>& a) {\n    int n =\
     \ a.size();\n    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i\
     \ < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j) {\n       \
-    \         int x = a[j];\n                int y = a[j | h];\n                a[j]\
-    \ = x + y;\n                a[j | h] = x - y;\n            }\n        }\n    }\n\
+    \         T x = a[j];\n                T y = a[j | h];\n                a[j] =\
+    \ x + y;\n                a[j | h] = x - y;\n            }\n        }\n    }\n\
     }\n\ntemplate <typename T>\nvoid ifht(std::vector<T>& a) {\n    int n = a.size();\n\
     \    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h\
-    \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                int\
-    \ x = a[j];\n                int y = a[j | h];\n                a[j] = (x + y)\
-    \ / 2;\n                a[j | h] = (x - y) / 2;\n            }\n        }\n  \
-    \  }\n}"
+    \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                T x\
+    \ = a[j];\n                T y = a[j | h];\n                a[j] = (x + y) / 2;\n\
+    \                a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/transform.cpp
   requiredBy: []
-  timestamp: '2020-12-15 21:43:20+09:00'
+  timestamp: '2020-12-18 00:29:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/bitwise_xor_convolution.test.cpp
 documentation_of: math/transform.cpp
 layout: document
 redirect_from:
@@ -144,11 +147,9 @@ $$
 - `void fht(vector<T> a)`
     - $a$ を高速アダマール変換する
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 - `void ifht(vector<T> a)`
     - $a$ を逆高速アダマール変換する．
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 
 
 ## Note

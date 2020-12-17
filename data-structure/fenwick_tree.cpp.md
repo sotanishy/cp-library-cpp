@@ -6,14 +6,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_B.test.cpp
     title: test/aoj/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-structure/fenwick_tree.md
     document_title: Fenwick Tree
@@ -54,7 +54,7 @@ data:
   path: data-structure/fenwick_tree.cpp
   requiredBy: []
   timestamp: '2020-11-02 19:09:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp

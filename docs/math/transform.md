@@ -49,11 +49,9 @@ $$
 - `void fht(vector<T> a)`
     - $a$ を高速アダマール変換する
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 - `void ifht(vector<T> a)`
     - $a$ を逆高速アダマール変換する．
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 
 
 ## Note
