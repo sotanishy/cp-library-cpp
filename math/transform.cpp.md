@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/transform.md
     document_title: Transform
@@ -83,7 +83,7 @@ data:
   path: math/transform.cpp
   requiredBy: []
   timestamp: '2020-12-15 21:43:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bitwise_and_convolution.test.cpp
 documentation_of: math/transform.cpp

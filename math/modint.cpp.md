@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'

@@ -22,7 +22,7 @@ data:
     #include <cassert>\n#include <map>\n#include <tuple>\n#include <utility>\n#include\
     \ <vector>\n#line 4 \"data-structure/unionfind/undoable_union_find.cpp\"\n#include\
     \ <stack>\n#line 7 \"data-structure/unionfind/undoable_union_find.cpp\"\n\n/*\n\
-    \ * @brief Undoable Union Find\n * @docs docs/data-structures/unionfind/undoable_union_find.md\n\
+    \ * @brief Undoable Union Find\n * @docs docs/data-structure/unionfind/undoable_union_find.md\n\
     \ */\ntemplate <typename M>\nclass UndoableUnionFind {\n    using T = typename\
     \ M::T;\n\npublic:\n    UndoableUnionFind() = default;\n    explicit UndoableUnionFind(int\
     \ n) : UndoableUnionFind(std::vector<T>(n, M::id)) {}\n    explicit UndoableUnionFind(const\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 19:52:55+09:00'
+  timestamp: '2020-12-17 23:41:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp

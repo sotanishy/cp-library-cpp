@@ -4,21 +4,21 @@ data:
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/transform.cpp
     title: Transform
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bitwise_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
     links:
-    - https://judge.yosupo.jp/problem/bitwise_convolution
+    - https://judge.yosupo.jp/problem/bitwise_and_convolution
   bundledCode: "#line 1 \"test/yosupo/bitwise_and_convolution.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_convolution\"\n\n#line 2 \"\
-    math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n\n#line\
+    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
     \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
     \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
@@ -86,9 +86,9 @@ data:
     \ x;\n    fzt(a, false);\n    fzt(b, false);\n    for (int i = 0; i < (1 << N);\
     \ ++i) c[i] = a[i] * b[i];\n    fmt(c, false);\n    for (int i = 0; i < (1 <<\
     \ N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_convolution\"\n\
-    \n#include \"../../math/modint.cpp\"\n#include \"../../math/transform.cpp\"\n\n\
-    #include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
+    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/transform.cpp\"\n\
+    \n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing\
     \ mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<mint>\
     \ a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto&\
     \ x : b) cin >> x;\n    fzt(a, false);\n    fzt(b, false);\n    for (int i = 0;\
@@ -101,8 +101,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 21:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-12-17 23:41:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_and_convolution.test.cpp
 layout: document

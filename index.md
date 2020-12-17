@@ -219,7 +219,7 @@ data:
     - icon: ':warning:'
       path: math/stirling_second.cpp
       title: Stirling Number of the Second Kind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/transform.cpp
       title: Transform
   - name: math/matrix
@@ -409,7 +409,7 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
     - icon: ':heavy_check_mark:'
