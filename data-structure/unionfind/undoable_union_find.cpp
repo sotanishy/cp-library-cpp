@@ -7,7 +7,7 @@
 
 /*
  * @brief Undoable Union Find
- * @docs docs/data-structures/unionfind/undoable_union_find.md
+ * @docs docs/data-structure/unionfind/undoable_union_find.md
  */
 template <typename M>
 class UndoableUnionFind {
