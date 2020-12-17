@@ -34,9 +34,11 @@ $$
 - `void divisor_fzt(vector<T> a, bool subset)`
     - $a$ を約数に関して高速ゼータ変換する．`subset == true`なら下位集合，`false`なら上位集合をみる
     - 時間計算量: $n\lg n$
+    - ***NOT VERIFIED***
 - `void divisor_fmt(vector<T> a, bool subset)`
     - $a$ を約数に関して高速メビウス変換する．`subset == true`なら下位集合，`false`なら上位集合をみる
     - 時間計算量: $n\lg n$
+    - ***NOT VERIFIED***
 
 ## Fast Hadamard Transform
 
@@ -47,9 +49,11 @@ $$
 - `void fht(vector<T> a)`
     - $a$ を高速アダマール変換する
     - 時間計算量: $n\lg n$
+    - ***NOT VERIFIED***
 - `void ifht(vector<T> a)`
     - $a$ を逆高速アダマール変換する．
     - 時間計算量: $n\lg n$
+    - ***NOT VERIFIED***
 
 
 ## Note
@@ -58,10 +62,10 @@ $$
 | $\max$ | ゼータ変換 (累積和，下位) | メビウス変換 (累積和，下位) |
 | $\min$ | ゼータ変換 (累積和，上位) | メビウス変換 (累積和，上位) |
 | $\gcd$ | ゼータ変換 (約数，上位) | メビウス変換 (約数，上位) |
-| $\lcm$ | ゼータ変換 (約数，下位) | メビウス変換 (約数，下位) |
-| $\mathrm{bitwise or}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
-| $\mathrm{bitwise and}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
-| $\mathrm{bitwise xor}$ | アダマール変換 | 逆アダマール変換 |
+| $\mathrm{lcm}$ | ゼータ変換 (約数，下位) | メビウス変換 (約数，下位) |
+| $\mathrm{bitwise\ or}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
+| $\mathrm{bitwise\ and}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
+| $\mathrm{bitwise\ xor}$ | アダマール変換 | 逆アダマール変換 |
 | $+$ | フーリエ変換，数論変換 | 逆フーリエ変換，逆数論変換 |
 
 
