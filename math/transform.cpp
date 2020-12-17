@@ -72,8 +72,8 @@ void fht(std::vector<T>& a) {
     for (int h = 1; h < n; h <<= 1) {
         for (int i = 0; i < n; i += h << 1) {
             for (int j = i; j < i + h; ++j) {
-                int x = a[j];
-                int y = a[j | h];
+                T x = a[j];
+                T y = a[j | h];
                 a[j] = x + y;
                 a[j | h] = x - y;
             }
@@ -87,8 +87,8 @@ void ifht(std::vector<T>& a) {
     for (int h = 1; h < n; h <<= 1) {
         for (int i = 0; i < n; i += h << 1) {
             for (int j = i; j < i + h; ++j) {
-                int x = a[j];
-                int y = a[j | h];
+                T x = a[j];
+                T y = a[j | h];
                 a[j] = (x + y) / 2;
                 a[j | h] = (x - y) / 2;
             }
