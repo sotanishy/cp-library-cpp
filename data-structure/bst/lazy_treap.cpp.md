@@ -2,12 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-    title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+  _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/data-structure/bst/lazy_treap.md
     document_title: Treap with Lazy Propagation
@@ -154,9 +151,8 @@ data:
   path: data-structure/bst/lazy_treap.cpp
   requiredBy: []
   timestamp: '2020-11-28 19:10:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-structure/bst/lazy_treap.cpp
 layout: document
 redirect_from:
