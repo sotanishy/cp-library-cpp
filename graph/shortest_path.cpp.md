@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy:
@@ -9,17 +9,17 @@ data:
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/shortest_path.md
     document_title: Shortest Path Algorithms
@@ -101,7 +101,7 @@ data:
   requiredBy:
   - graph/range_edge_graph.cpp
   timestamp: '2020-11-28 19:10:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_1_B.test.cpp

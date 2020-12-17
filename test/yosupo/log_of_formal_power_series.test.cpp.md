@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   - icon: ':x:'

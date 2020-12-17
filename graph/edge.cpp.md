@@ -8,20 +8,20 @@ data:
   - icon: ':warning:'
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path.cpp
     title: Shortest Path Algorithms
   - icon: ':heavy_check_mark:'
     path: tree/tree_diameter.cpp
     title: Diameter of a Tree
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -37,7 +37,7 @@ data:
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -57,7 +57,7 @@ data:
   - graph/shortest_path.cpp
   - tree/tree_diameter.cpp
   timestamp: '2020-10-24 20:53:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp

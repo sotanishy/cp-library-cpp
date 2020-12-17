@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/string/rolling_hash.md
     document_title: Rolling Hash
@@ -59,7 +59,7 @@ data:
   path: string/rolling_hash.cpp
   requiredBy: []
   timestamp: '2020-12-17 22:11:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 documentation_of: string/rolling_hash.cpp
