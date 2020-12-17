@@ -36,6 +36,11 @@ public:
         return add(mul(h1, power[len2]), h2);
     }
 
+    void push_back(char c) {
+        power.push_back(mul(power.back(), base));
+        hashed.push_back(add(mul(hashed.back(), base), c));
+    }
+
 private:
     static constexpr long long mod = (1LL << 61) - 1;
 
