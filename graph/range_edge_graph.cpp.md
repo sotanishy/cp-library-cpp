@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path.cpp
     title: Shortest Path Algorithms
   _extendedRequiredBy: []
@@ -38,29 +38,39 @@ data:
     \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
     \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
-    \ {\n        T weight;\n        int v;\n        std::tie(weight, v) = pq.top();\n\
-    \        pq.pop();\n        if (dist[v] < weight) continue;\n        for (auto&\
-    \ e : G[v]) {\n            if (dist[e.to] > dist[v] + e.weight) {\n          \
-    \      dist[e.to] = dist[v] + e.weight;\n                pq.emplace(dist[e.to],\
-    \ e.to);\n            }\n        }\n    }\n\n    return dist;\n}\n#line 5 \"graph/range_edge_graph.cpp\"\
-    \n\n/*\n * @brief Range Edge Graph\n * @docs docs/graph/range_edge_graph.md\n\
-    \ */\ntemplate <typename T>\nclass RangeEdgeGraph {\npublic:\n    RangeEdgeGraph()\
-    \ = default;\n    explicit RangeEdgeGraph(int n) {\n        size = 1;\n      \
-    \  while (size < n) size <<= 1;\n        G.resize(4 * size);\n        for (int\
-    \ i = 1; i < size; ++i) {\n            int l = 2 * i, r = 2 * i + 1;\n       \
-    \     G[i].emplace_back(l, 0);\n            G[i].emplace_back(r, 0);\n       \
-    \     G[l + 2 * size].emplace_back(i + 2 * size, 0);\n            G[r + 2 * size].emplace_back(i\
-    \ + 2 * size, 0);\n        }\n        for (int i = size; i < 2 * size; ++i) G[i].emplace_back(i\
-    \ + 2 * size, 0);\n    }\n\n    void add_edge(int l1, int r1, int l2, int r2,\
-    \ T w) {\n        int idx = G.size();\n        for (l1 += size, r1 += size; l1\
-    \ < r1; l1 >>= 1, r1 >>= 1) {\n            if (l1 & 1) G[l1 + 2 * size].emplace_back(idx,\
-    \ 0), ++l1;\n            if (r1 & 1) --r1, G[r1 + 2 * size].emplace_back(idx,\
-    \ 0);\n        }\n        std::vector<Edge<T>> node;\n        for (l2 += size,\
-    \ r2 += size; l2 < r2; l2 >>= 1, r2 >>= 1) {\n            if (l2 & 1) node.emplace_back(l2++,\
-    \ w);\n            if (r2 & 1) node.emplace_back(--r2, w);\n        }\n      \
-    \  G.push_back(node);\n    }\n\n    std::vector<T> dist(int s) const {\n     \
-    \   std::vector<T> dist = dijkstra(G, s + size);\n        return std::vector<T>(dist.begin()\
-    \ + size, dist.begin() + 2 * size);\n    }\n\nprivate:\n    int size;\n    std::vector<std::vector<Edge<T>>>\
+    \ {\n        T d;\n        int v;\n        std::tie(d, v) = pq.top();\n      \
+    \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
+    \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
+    \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
+    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\n\
+    std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int\
+    \ w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
+    \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int) buckets.size();\
+    \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
+    \            buckets[d].pop_back();\n            if (dist[v] < d) continue;\n\
+    \            for (auto& e : G[v]) {\n                if (dist[e.to] > d + e.weight)\
+    \ {\n                    dist[e.to] = d + e.weight;\n                    buckets[dist[e.to]].push_back(e.to);\n\
+    \                }\n            }\n        }\n    }\n    return dist;\n}\n#line\
+    \ 5 \"graph/range_edge_graph.cpp\"\n\n/*\n * @brief Range Edge Graph\n * @docs\
+    \ docs/graph/range_edge_graph.md\n */\ntemplate <typename T>\nclass RangeEdgeGraph\
+    \ {\npublic:\n    RangeEdgeGraph() = default;\n    explicit RangeEdgeGraph(int\
+    \ n) {\n        size = 1;\n        while (size < n) size <<= 1;\n        G.resize(4\
+    \ * size);\n        for (int i = 1; i < size; ++i) {\n            int l = 2 *\
+    \ i, r = 2 * i + 1;\n            G[i].emplace_back(l, 0);\n            G[i].emplace_back(r,\
+    \ 0);\n            G[l + 2 * size].emplace_back(i + 2 * size, 0);\n          \
+    \  G[r + 2 * size].emplace_back(i + 2 * size, 0);\n        }\n        for (int\
+    \ i = size; i < 2 * size; ++i) G[i].emplace_back(i + 2 * size, 0);\n    }\n\n\
+    \    void add_edge(int l1, int r1, int l2, int r2, T w) {\n        int idx = G.size();\n\
+    \        for (l1 += size, r1 += size; l1 < r1; l1 >>= 1, r1 >>= 1) {\n       \
+    \     if (l1 & 1) G[l1 + 2 * size].emplace_back(idx, 0), ++l1;\n            if\
+    \ (r1 & 1) --r1, G[r1 + 2 * size].emplace_back(idx, 0);\n        }\n        std::vector<Edge<T>>\
+    \ node;\n        for (l2 += size, r2 += size; l2 < r2; l2 >>= 1, r2 >>= 1) {\n\
+    \            if (l2 & 1) node.emplace_back(l2++, w);\n            if (r2 & 1)\
+    \ node.emplace_back(--r2, w);\n        }\n        G.push_back(node);\n    }\n\n\
+    \    std::vector<T> dist(int s) const {\n        std::vector<T> dist = dijkstra(G,\
+    \ s + size);\n        return std::vector<T>(dist.begin() + size, dist.begin()\
+    \ + 2 * size);\n    }\n\nprivate:\n    int size;\n    std::vector<std::vector<Edge<T>>>\
     \ G;\n};\n\n\n/*\nImplementation with a sparse table\n\ntemplate <typename T>\n\
     class RangeEdgeGraph {\npublic:\n    RangeEdgeGraph() = default;\n    explicit\
     \ RangeEdgeGraph(int n) : n(n) {\n        b = 0;\n        while ((1 << b) <= n)\
@@ -126,7 +136,7 @@ data:
   isVerificationFile: false
   path: graph/range_edge_graph.cpp
   requiredBy: []
-  timestamp: '2020-11-09 16:11:14+09:00'
+  timestamp: '2020-11-28 19:10:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/range_edge_graph.cpp

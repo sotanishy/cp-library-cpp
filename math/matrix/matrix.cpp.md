@@ -2,18 +2,18 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/matrix.md
     document_title: Matrix
@@ -76,8 +76,8 @@ data:
     \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
     \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
     \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
-    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
-    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return std::abs(a - b)\
+    \ < 1e-8; }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
     \  std::vector<std::vector<T>> mat;\n    int m, n;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
@@ -138,8 +138,8 @@ data:
     \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
     \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
     \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
-    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
-    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return std::abs(a - b)\
+    \ < 1e-8; }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
     \  std::vector<std::vector<T>> mat;\n    int m, n;\n};"
   dependsOn: []
@@ -147,11 +147,11 @@ data:
   path: math/matrix/matrix.cpp
   requiredBy:
   - math/matrix/square_matrix.cpp
-  timestamp: '2020-10-26 01:47:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-12-15 21:43:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/matrix_det.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix_det.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 redirect_from:
@@ -159,47 +159,33 @@ redirect_from:
 - /library/math/matrix/matrix.cpp.html
 title: Matrix
 ---
-# Matrix
+## Description
 
 行列を表す．
 
-## Template parameters
-
-- `T`
-    - 行列の要素の型
-
-## Constructor
+## Operations
 
 - `Matrix(int m, int n)`
     - $m \times n$ 零行列を構築する
     - 時間計算量: $O(mn)$
-
 - `Matrix(initializer_list<initializer_list<T>> list)`
     - `list` の要素で行列を構築する
     - 時間計算量: $O(mn)$
-
-## Member functions
-
 - `static Matrix concatenate(const Matrix& A, const Matrix& B)`
     - $A$ と $B$ を結合した行列を返す
     - 時間計算量: $O(m(n_A + n_B))$
-
 - `Matrix transpose()`
     - 転置行列を返す
     - 時間計算量: $O(mn)$
-
 - `Matrix matmul(const Matrix& B)`
     - 行列積 $AB$ を返す
     - 時間計算量: $O(m_A n_A n_B)$
-
 - `Matrix rref()`
     - $A$ に対して掃き出し法を行った結果を返す
     - 時間計算量: $O(mn^2)$
-
 - `int rank()`
     - $A$ の階数を返す
     - 時間計算量: $O(mn^2)$
-
 - `vector<vector<T>> solve_system(vector<T> b)`
     - $Ax = b$ の解を返す．返り値を `sol` としたとき，`sol[0]` は解の1つ，`sol[1:]` は解空間の基底である．解がないときは空リストを返す．
     - 時間計算量: $O(mn^2)$

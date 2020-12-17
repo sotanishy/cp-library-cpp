@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_det
@@ -107,8 +107,8 @@ data:
     \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
     \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
     \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
-    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
-    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return std::abs(a - b)\
+    \ < 1e-8; }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
     \  std::vector<std::vector<T>> mat;\n    int m, n;\n};\n#line 6 \"math/matrix/square_matrix.cpp\"\
     \n\n/*\n * @brief Square Matrix\n * @docs docs/math/matrix/square_matrix.md\n\
@@ -155,8 +155,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 01:56:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-12-15 21:43:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix_det.test.cpp
 layout: document

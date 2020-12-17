@@ -3,25 +3,31 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yosupo/bitwise_and_convolution.test.cpp
+    title: test/yosupo/bitwise_and_convolution.test.cpp
+  - icon: ':x:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+    title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,14 +36,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Mod int
     links: []
@@ -104,19 +110,21 @@ data:
   path: math/modint.cpp
   requiredBy: []
   timestamp: '2020-10-26 00:14:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/log_of_formal_power_series.test.cpp
-  - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
-  - test/yosupo/pow_of_formal_power_series.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/system_of_linear_equations.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/matrix_det.test.cpp
-  - test/yosupo/system_of_linear_equations.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/convolution_mod.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/log_of_formal_power_series.test.cpp
 documentation_of: math/modint.cpp
 layout: document
 redirect_from:

@@ -55,11 +55,11 @@ data:
   timestamp: '2020-10-24 00:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_2_A.prim.test.cpp
-  - test/aoj/DSL_1_A.test.cpp
+  - test/yosupo/unionfind.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/yosupo/unionfind.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
+  - test/aoj/DSL_1_A.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 redirect_from:

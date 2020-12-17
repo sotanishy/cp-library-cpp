@@ -59,8 +59,8 @@ data:
   timestamp: '2020-10-24 16:23:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_1_C.is_prime.test.cpp
   - test/aoj/NTL_1_A.test.cpp
+  - test/aoj/ALDS1_1_C.is_prime.test.cpp
 documentation_of: math/prime.cpp
 layout: document
 redirect_from:
@@ -68,7 +68,7 @@ redirect_from:
 - /library/math/prime.cpp.html
 title: Prime Number Algorithms
 ---
-# Prime Number Algorithms
+## Description
 
 素数に関するアルゴリズム詰め合わせ
 
@@ -82,7 +82,7 @@ $n$ を試し割り法で素数判定する．
 
 ## Prime Table
 
-_**NOT VERIFIED**_
+***NOT VERIFIED***
 
 エラトステネスの篩を用いて，$n$ 以下の整数の素数表を構築する．
 

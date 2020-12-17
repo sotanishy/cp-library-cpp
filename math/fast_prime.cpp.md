@@ -116,7 +116,7 @@ redirect_from:
 - /library/math/fast_prime.cpp.html
 title: Fast Prime Number Algorithms
 ---
-# Fast Prime Number Algorithms
+## Description
 
 素数に関する高速なアルゴリズム
 

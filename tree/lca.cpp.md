@@ -64,8 +64,8 @@ data:
   timestamp: '2020-10-30 15:38:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_5_C.test.cpp
   - test/yosupo/lca.test.cpp
+  - test/aoj/GRL_5_C.test.cpp
 documentation_of: tree/lca.cpp
 layout: document
 redirect_from:

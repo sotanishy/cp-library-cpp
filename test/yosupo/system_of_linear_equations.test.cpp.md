@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -104,8 +104,8 @@ data:
     \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
     \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
     \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
-    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
-    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return std::abs(a - b)\
+    \ < 1e-8; }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
     \  std::vector<std::vector<T>> mat;\n    int m, n;\n};\n#line 5 \"test/yosupo/system_of_linear_equations.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
@@ -134,8 +134,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 01:47:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-12-15 21:43:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/system_of_linear_equations.test.cpp
 layout: document

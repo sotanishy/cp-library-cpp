@@ -37,7 +37,7 @@ redirect_from:
 - /library/math/divisor.cpp.html
 title: Divisors
 ---
-# Divisor
+## Description
 
 $n$ の約数を試し割り法で全て求める．
 

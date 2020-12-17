@@ -25,4 +25,3 @@ Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素の総和
 ## TODO
 
 - deque の実装
-- オリジナル論文読む

@@ -1,16 +1,17 @@
-# Number Theoretic Transform
+## Description
 
 数論変換 (NTT) は，剰余環 $\mathbb{Z}/p\mathbb{Z}$ 上の高速フーリエ変換である．
 
-## Template parameters
+## Operations
 
-- `mint`
-    - `Modint` $mod p$
-
-## Member functions
-
-- `static vector<mint> convolution(vector<mint> a, vector<mint> b)`
-    - `a` と `b` の畳み込みを $\mod p$ で計算する
+- `static vector<double> convolve(vector<T> a, vector<T> b)`
+    - $a$ と $b$ の畳み込みを計算する
+    - 時間計算量: $O(n\lg n)$
+- `static void ntt(vector<mint> a, bool ordered)`
+    - $a$ を数論変換する．`ordered = false` なら並べ替えは行われない．
+    - 時間計算量: $O(n\lg n)$
+- `static void intt(vector<mint> a, bool ordered)`
+    - $a$ を逆数論変換する．`ordered = false` なら並べ替えは行われない．
     - 時間計算量: $O(n\lg n)$
 
 ## Note

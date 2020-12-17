@@ -31,7 +31,7 @@ data:
     \ std::move(b)), std::move(c));\n    }\n\n    void insert(int k, const T& x) {\n\
     \        auto s = split(std::move(root), k);\n        root = join(join(std::move(s.first),\
     \ std::make_unique<Node>(x)), std::move(s.second));\n    }\n\n    void erase(int\
-    \ k) {\n        auto p = split(std::move(root), k - 1);\n        auto q = split(std::move(p.second),\
+    \ k) {\n        auto p = split(std::move(root), k);\n        auto q = split(std::move(p.second),\
     \ 1);\n        return join(std::move(p.first), std::move(q.second));\n    }\n\n\
     \    void push_front(const T& x) {\n        root = join(std::make_unique<Node>(x),\
     \ std::move(root));\n    }\n\n    void push_back(const T& x) {\n        root =\
@@ -92,7 +92,7 @@ data:
     \ std::move(c));\n    }\n\n    void insert(int k, const T& x) {\n        auto\
     \ s = split(std::move(root), k);\n        root = join(join(std::move(s.first),\
     \ std::make_unique<Node>(x)), std::move(s.second));\n    }\n\n    void erase(int\
-    \ k) {\n        auto p = split(std::move(root), k - 1);\n        auto q = split(std::move(p.second),\
+    \ k) {\n        auto p = split(std::move(root), k);\n        auto q = split(std::move(p.second),\
     \ 1);\n        return join(std::move(p.first), std::move(q.second));\n    }\n\n\
     \    void push_front(const T& x) {\n        root = join(std::make_unique<Node>(x),\
     \ std::move(root));\n    }\n\n    void push_back(const T& x) {\n        root =\
@@ -138,7 +138,7 @@ data:
   isVerificationFile: false
   path: data-structure/bst/treap.cpp
   requiredBy: []
-  timestamp: '2020-10-30 15:38:28+09:00'
+  timestamp: '2020-11-28 19:10:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508.treap.test.cpp

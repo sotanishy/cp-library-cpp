@@ -85,9 +85,9 @@ data:
   timestamp: '2020-10-25 21:55:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_B.test.cpp
   - test/yosupo/discrete_logarithm_mod.test.cpp
   - test/yosupo/sqrt_mod.test.cpp
+  - test/aoj/NTL_1_B.test.cpp
 documentation_of: math/mod_arithmetic.cpp
 layout: document
 redirect_from:
@@ -95,7 +95,7 @@ redirect_from:
 - /library/math/mod_arithmetic.cpp.html
 title: Modular Arithmetic
 ---
-# Modular Arithmetic
+## Description
 
 モジュラ計算アルゴリズム詰め合わせ
 

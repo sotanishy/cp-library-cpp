@@ -25,3 +25,13 @@ Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単�
 - `vector<T> dijkstra(vector<vector<Edge<T>>> G, int s)`
     - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
     - 時間計算量: $O(E \lg V)$
+
+## Dial's Algorithm
+
+***NOT VERIFIED***
+
+Dial のアルゴリズムは，負辺のない重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．辺の重みが整数であり，上限が小さいときに Dijkstra のアルゴリズムより高速に動作する．
+
+- `vector<int> dial(vector<vector<Edge<int>>> G, int s, int w)`
+    - グラフ $G$ の隣接リストと辺の重みの上限 $w$ が与えられたとき，始点 $s$ から各頂点への最短経路を計算する
+    - 時間計算量: $O(E + wV)$

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rolling_hash.cpp
     title: Rolling Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
@@ -28,14 +28,15 @@ data:
     \ = add(mul(hashed[i], base), s[i]);\n        }\n    }\n\n    long long query(int\
     \ l, int r) const {\n        return add(hashed[r], mod - mul(hashed[l], power[r\
     \ - l]));\n    }\n\n    long long combine(long long h1, long long h2, int len2)\
-    \ const {\n        return add(mul(h1, power[len2]), h2);\n    }\n\nprivate:\n\
-    \    static constexpr long long mod = (1LL << 61) - 1;\n\n    static inline long\
-    \ long add(long long a, long long b) {\n        if ((a += b) >= mod) a -= mod;\n\
-    \        return a;\n    }\n\n    static inline long long mul(long long a, long\
-    \ long b) {\n        __int128_t c = (__int128_t) a * b;\n        return add(c\
-    \ >> 61, c & mod);\n    }\n\n    const long long base;\n    std::vector<long long>\
-    \ hashed, power;\n};\n#line 4 \"test/aoj/ALDS1_14_B.rolling_hash.test.cpp\"\n\n\
-    #include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ const {\n        return add(mul(h1, power[len2]), h2);\n    }\n\n    void push_back(char\
+    \ c) {\n        power.push_back(mul(power.back(), base));\n        hashed.push_back(add(mul(hashed.back(),\
+    \ base), c));\n    }\n\nprivate:\n    static constexpr long long mod = (1LL <<\
+    \ 61) - 1;\n\n    static inline long long add(long long a, long long b) {\n  \
+    \      if ((a += b) >= mod) a -= mod;\n        return a;\n    }\n\n    static\
+    \ inline long long mul(long long a, long long b) {\n        __int128_t c = (__int128_t)\
+    \ a * b;\n        return add(c >> 61, c & mod);\n    }\n\n    const long long\
+    \ base;\n    std::vector<long long> hashed, power;\n};\n#line 4 \"test/aoj/ALDS1_14_B.rolling_hash.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    string T;\n    cin >> T;\n    string P;\n    cin >> P;\n\
     \    long long base = RollingHash::generate_base();\n    RollingHash rht(T, base);\n\
     \    RollingHash rhp(P, base);\n    for (int i = 0; i + P.size() <= T.size();\
@@ -54,8 +55,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 15:47:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-12-17 22:11:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy:
@@ -9,17 +9,17 @@ data:
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_A.test.cpp
     title: test/aoj/GRL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/shortest_path.md
     document_title: Shortest Path Algorithms
@@ -47,11 +47,20 @@ data:
     \ s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n  \
     \  dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
-    \ {\n        T weight;\n        int v;\n        std::tie(weight, v) = pq.top();\n\
-    \        pq.pop();\n        if (dist[v] < weight) continue;\n        for (auto&\
-    \ e : G[v]) {\n            if (dist[e.to] > dist[v] + e.weight) {\n          \
-    \      dist[e.to] = dist[v] + e.weight;\n                pq.emplace(dist[e.to],\
-    \ e.to);\n            }\n        }\n    }\n\n    return dist;\n}\n"
+    \ {\n        T d;\n        int v;\n        std::tie(d, v) = pq.top();\n      \
+    \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
+    \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
+    \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
+    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\n\
+    std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int\
+    \ w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
+    \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int) buckets.size();\
+    \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
+    \            buckets[d].pop_back();\n            if (dist[v] < d) continue;\n\
+    \            for (auto& e : G[v]) {\n                if (dist[e.to] > d + e.weight)\
+    \ {\n                    dist[e.to] = d + e.weight;\n                    buckets[dist[e.to]].push_back(e.to);\n\
+    \                }\n            }\n        }\n    }\n    return dist;\n}\n"
   code: "#pragma once\n#include <limits>\n#include <queue>\n#include <tuple>\n#include\
     \ <utility>\n#include <vector>\n#include \"edge.cpp\"\n\n/*\n * @brief Shortest\
     \ Path Algorithms\n * @docs docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford\
@@ -71,23 +80,32 @@ data:
     \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
     \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
-    \ {\n        T weight;\n        int v;\n        std::tie(weight, v) = pq.top();\n\
-    \        pq.pop();\n        if (dist[v] < weight) continue;\n        for (auto&\
-    \ e : G[v]) {\n            if (dist[e.to] > dist[v] + e.weight) {\n          \
-    \      dist[e.to] = dist[v] + e.weight;\n                pq.emplace(dist[e.to],\
-    \ e.to);\n            }\n        }\n    }\n\n    return dist;\n}"
+    \ {\n        T d;\n        int v;\n        std::tie(d, v) = pq.top();\n      \
+    \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
+    \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
+    \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
+    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\n\
+    std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int\
+    \ w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
+    \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int) buckets.size();\
+    \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
+    \            buckets[d].pop_back();\n            if (dist[v] < d) continue;\n\
+    \            for (auto& e : G[v]) {\n                if (dist[e.to] > d + e.weight)\
+    \ {\n                    dist[e.to] = d + e.weight;\n                    buckets[dist[e.to]].push_back(e.to);\n\
+    \                }\n            }\n        }\n    }\n    return dist;\n}"
   dependsOn:
   - graph/edge.cpp
   isVerificationFile: false
   path: graph/shortest_path.cpp
   requiredBy:
   - graph/range_edge_graph.cpp
-  timestamp: '2020-10-24 23:19:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-11-28 19:10:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_1_C.test.cpp
-  - test/aoj/GRL_1_A.test.cpp
 documentation_of: graph/shortest_path.cpp
 layout: document
 redirect_from:
@@ -122,3 +140,13 @@ Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単�
 - `vector<T> dijkstra(vector<vector<Edge<T>>> G, int s)`
     - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
     - 時間計算量: $O(E \lg V)$
+
+## Dial's Algorithm
+
+***NOT VERIFIED***
+
+Dial のアルゴリズムは，負辺のない重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．辺の重みが整数であり，上限が小さいときに Dijkstra のアルゴリズムより高速に動作する．
+
+- `vector<int> dial(vector<vector<Edge<int>>> G, int s, int w)`
+    - グラフ $G$ の隣接リストと辺の重みの上限 $w$ が与えられたとき，始点 $s$ から各頂点への最短経路を計算する
+    - 時間計算量: $O(E + wV)$

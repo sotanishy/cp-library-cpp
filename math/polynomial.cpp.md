@@ -1,58 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: math/modint.cpp
-    title: Mod int
   - icon: ':x:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':x:'
-    path: math/polynomial.cpp
-    title: Polynomial
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/exp_of_formal_power_series.test.cpp
+    title: test/yosupo/exp_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/inv_of_formal_power_series.test.cpp
+    title: test/yosupo/inv_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/log_of_formal_power_series.test.cpp
+    title: test/yosupo/log_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/pow_of_formal_power_series.test.cpp
+    title: test/yosupo/pow_of_formal_power_series.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
-    links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
-    \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
-    \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
-    \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
-    \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
-    \  constexpr int value() const noexcept { return x; }\n\n    constexpr mint& operator+=(const\
-    \ mint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr\
-    \ mint& operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -=\
-    \ mod; return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept\
-    \ { x = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr\
-    \ mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\
-    \n    constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
-    \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
-    \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
-    \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
-    \ mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const noexcept\
-    \ { return mint(*this) /= r; }\n\n    constexpr bool operator==(const mint& r)\
-    \ const noexcept { return x == r.x; }\n    constexpr bool operator!=(const mint&\
-    \ r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const noexcept\
-    \ {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0) {\n    \
-    \        int t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
-    \ -= t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
-    \ pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n        while\
-    \ (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n   \
-    \         n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
-    \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
-    \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\nprivate:\n    int x;\n};\n#line 3 \"math/polynomial.cpp\"\n#include\
-    \ <cassert>\n#include <vector>\n#line 3 \"math/ntt.cpp\"\n\n/*\n * @brief Number\
-    \ Theoretic Transform\n * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\n\
-    class NTT {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const\
+    _deprecated_at_docs: docs/math/polynomial.md
+    document_title: Polynomial
+    links: []
+  bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
+    #include <vector>\n#line 3 \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic\
+    \ Transform\n * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\nclass NTT\
+    \ {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const\
     \ std::vector<mint>& a, const std::vector<mint>& b) {\n        int size = a.size()\
     \ + b.size() - 1;\n        int n = 1;\n        while (n < size) n <<= 1;\n   \
     \     std::vector<mint> na(a.begin(), a.end()), nb(b.begin(), b.end());\n    \
@@ -132,33 +107,97 @@ data:
     \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
     \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
     \nprivate:\n    Poly pre(int size) const { return Poly(this->begin(), this->begin()\
-    \ + std::min((int) this->size(), size)); }\n};\n#line 5 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \ + std::min((int) this->size(), size)); }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
+    #include \"ntt.cpp\"\n\n/*\n * @brief Polynomial\n * @docs docs/math/polynomial.md\n\
+    \ */\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
+    \    using Poly = Polynomial;\n\npublic:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::operator=;\n\n    Poly& operator+=(const Poly& rhs)\
+    \ {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n      \
+    \  for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] += rhs[i];\n        return\
+    \ *this;\n    }\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty())\
+    \ this->resize(1);\n        (*this)[0] += rhs;\n        return *this;\n    }\n\
+    \n    Poly& operator-=(const Poly& rhs) {\n        if (this->size() < rhs.size())\
+    \ this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size(); ++i)\
+    \ (*this)[i] -= rhs[i];\n        return *this;\n    }\n\n    Poly& operator-=(const\
+    \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
+    \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const Poly& rhs)\
+    \ {\n        *this = NTT<mint>::convolve(*this, rhs);\n        return *this;\n\
+    \    }\n\n    Poly& operator*=(const mint& rhs) {\n        for (int i = 0; i <\
+    \ (int) this->size(); ++i) (*this)[i] *= rhs;\n        return *this;\n    }\n\n\
+    \    Poly& operator-() const {\n        Poly ret(this->size());\n        for (int\
+    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
+    \    }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
+    \ }\n    Poly operator+(const mint& rhs) const { return Poly(*this) += rhs; }\n\
+    \    Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n  \
+    \  Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
+    \ operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n    Poly operator*(const\
+    \ mint& rhs) const { return Poly(*this) *= rhs; }\n\n    Poly inv(int deg = -1)\
+    \ const {\n        assert((*this)[0] != mint(0));\n        if (deg == -1) deg\
+    \ = this->size();\n        Poly ret({mint(1) / (*this)[0]});\n        for (int\
+    \ i = 1; i < deg; i <<= 1) {\n            ret = (ret * mint(2) - ret * ret * this->pre(i\
+    \ << 1)).pre(i << 1);\n        }\n        return ret;\n    }\n\n    Poly exp(int\
+    \ deg = -1) const {\n        assert((*this)[0] == mint(0));\n        if (deg ==\
+    \ -1) deg = this->size();\n        Poly ret({mint(1)});\n        for (int i =\
+    \ 1; i < deg; i <<= 1) {\n            ret = (ret * (this->pre(i << 1) + mint(1)\
+    \ - ret.log(i << 1))).pre(i << 1);\n        }\n        return ret;\n    }\n\n\
+    \    Poly log(int deg = -1) const {\n        assert((*this)[0] == mint(1));\n\
+    \        if (deg == -1) deg = this->size();\n        return (this->diff() * this->inv(deg)).pre(deg\
+    \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
+    \        if (deg == -1) deg = this->size();\n        Poly ret(*this);\n      \
+    \  int cnt = 0;\n        while (cnt < (int) ret.size() && ret[cnt] == mint(0))\
+    \ ++cnt;\n        if (cnt * k >= deg) return Poly(deg, mint(0));\n        ret.erase(ret.begin(),\
+    \ ret.begin() + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
+    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
+    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    Poly diff() const {\n\
+    \        Poly ret(std::max(0, (int) this->size() - 1));\n        for (int i =\
+    \ 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return\
+    \ ret;\n    }\n\n    Poly integral() const {\n        Poly ret(this->size() +\
+    \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
+    \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
+    \nprivate:\n    Poly pre(int size) const { return Poly(this->begin(), this->begin()\
+    \ + std::min((int) this->size(), size)); }\n};"
   dependsOn:
-  - math/modint.cpp
-  - math/polynomial.cpp
   - math/ntt.cpp
-  isVerificationFile: true
-  path: test/yosupo/exp_of_formal_power_series.test.cpp
+  isVerificationFile: false
+  path: math/polynomial.cpp
   requiredBy: []
   timestamp: '2020-12-06 15:01:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: test/yosupo/exp_of_formal_power_series.test.cpp
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/inv_of_formal_power_series.test.cpp
+  - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/log_of_formal_power_series.test.cpp
+documentation_of: math/polynomial.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp.html
-title: test/yosupo/exp_of_formal_power_series.test.cpp
+- /library/math/polynomial.cpp
+- /library/math/polynomial.cpp.html
+title: Polynomial
 ---
+## Description
+
+係数が`Modint`である多項式を扱う．
+
+空間計算量: $O(n)$
+
+## Operations
+
+- `Polynomial inv(int deg)`
+    - $\frac{1}{f(x)}$ を $deg - 1$ 次の項まで計算する．
+    - 時間計算量: $O(n \lg n)$
+- `Polynomial exp(int deg)`
+    - $\exp(f(x))$ を $deg - 1$ 次の項まで計算する．
+    - 時間計算量: $O(n \lg n)$
+- `Polynomial log(int deg)`
+    - $\log(f(x))$ を $deg - 1$ 次の項まで計算する．
+    - 時間計算量: $O(n \lg n)$
+- `Polynomial pow(long long k, int deg)`
+    - $(f(x))^k$ を $deg - 1$ 次の項まで計算する．
+    - 時間計算量: $O(n \lg n)$
+
+## Reference
+
+- [【競技プログラミング】形式的冪級数の応用テクニック(前編)](https://qiita.com/hotman78/items/f0e6d2265badd84d429a)
+

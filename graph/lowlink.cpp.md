@@ -73,9 +73,9 @@ data:
   timestamp: '2020-11-05 00:29:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_3_A.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document
 redirect_from:

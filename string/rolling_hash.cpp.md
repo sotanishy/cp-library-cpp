@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/string/rolling_hash.md
     document_title: Rolling Hash
@@ -25,13 +25,14 @@ data:
     \ = add(mul(hashed[i], base), s[i]);\n        }\n    }\n\n    long long query(int\
     \ l, int r) const {\n        return add(hashed[r], mod - mul(hashed[l], power[r\
     \ - l]));\n    }\n\n    long long combine(long long h1, long long h2, int len2)\
-    \ const {\n        return add(mul(h1, power[len2]), h2);\n    }\n\nprivate:\n\
-    \    static constexpr long long mod = (1LL << 61) - 1;\n\n    static inline long\
-    \ long add(long long a, long long b) {\n        if ((a += b) >= mod) a -= mod;\n\
-    \        return a;\n    }\n\n    static inline long long mul(long long a, long\
-    \ long b) {\n        __int128_t c = (__int128_t) a * b;\n        return add(c\
-    \ >> 61, c & mod);\n    }\n\n    const long long base;\n    std::vector<long long>\
-    \ hashed, power;\n};\n"
+    \ const {\n        return add(mul(h1, power[len2]), h2);\n    }\n\n    void push_back(char\
+    \ c) {\n        power.push_back(mul(power.back(), base));\n        hashed.push_back(add(mul(hashed.back(),\
+    \ base), c));\n    }\n\nprivate:\n    static constexpr long long mod = (1LL <<\
+    \ 61) - 1;\n\n    static inline long long add(long long a, long long b) {\n  \
+    \      if ((a += b) >= mod) a -= mod;\n        return a;\n    }\n\n    static\
+    \ inline long long mul(long long a, long long b) {\n        __int128_t c = (__int128_t)\
+    \ a * b;\n        return add(c >> 61, c & mod);\n    }\n\n    const long long\
+    \ base;\n    std::vector<long long> hashed, power;\n};\n"
   code: "#pragma once\n#include <random>\n#include <string>\n#include <vector>\n\n\
     /*\n * @brief Rolling Hash\n * @docs docs/string/rolling_hash.md\n */\nclass RollingHash\
     \ {\npublic:\n    static long long generate_base() {\n        std::random_device\
@@ -45,19 +46,20 @@ data:
     \ = add(mul(hashed[i], base), s[i]);\n        }\n    }\n\n    long long query(int\
     \ l, int r) const {\n        return add(hashed[r], mod - mul(hashed[l], power[r\
     \ - l]));\n    }\n\n    long long combine(long long h1, long long h2, int len2)\
-    \ const {\n        return add(mul(h1, power[len2]), h2);\n    }\n\nprivate:\n\
-    \    static constexpr long long mod = (1LL << 61) - 1;\n\n    static inline long\
-    \ long add(long long a, long long b) {\n        if ((a += b) >= mod) a -= mod;\n\
-    \        return a;\n    }\n\n    static inline long long mul(long long a, long\
-    \ long b) {\n        __int128_t c = (__int128_t) a * b;\n        return add(c\
-    \ >> 61, c & mod);\n    }\n\n    const long long base;\n    std::vector<long long>\
-    \ hashed, power;\n};"
+    \ const {\n        return add(mul(h1, power[len2]), h2);\n    }\n\n    void push_back(char\
+    \ c) {\n        power.push_back(mul(power.back(), base));\n        hashed.push_back(add(mul(hashed.back(),\
+    \ base), c));\n    }\n\nprivate:\n    static constexpr long long mod = (1LL <<\
+    \ 61) - 1;\n\n    static inline long long add(long long a, long long b) {\n  \
+    \      if ((a += b) >= mod) a -= mod;\n        return a;\n    }\n\n    static\
+    \ inline long long mul(long long a, long long b) {\n        __int128_t c = (__int128_t)\
+    \ a * b;\n        return add(c >> 61, c & mod);\n    }\n\n    const long long\
+    \ base;\n    std::vector<long long> hashed, power;\n};"
   dependsOn: []
   isVerificationFile: false
   path: string/rolling_hash.cpp
   requiredBy: []
-  timestamp: '2020-10-26 15:47:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-12-17 22:11:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 documentation_of: string/rolling_hash.cpp
@@ -91,6 +93,13 @@ title: Rolling Hash
 - `long long combine(long long h1, long long h2, int len2)`
     - ハッシュ値 $h1$ と $h2$ を結合する．$h2$ の長さを $len2$ である．
     - 時間計算量: $O(1)$
+- `void push_back(char c)`
+    - 文字 $c$ を末尾に結合する
+    - 時間計算量: $O(1)$
+
+## Note
+
+この実装は内部で `__int128_t` を用いているが，Codeforces ではそれが使用できないので注意．Codeforces でローリングハッシュを行いたいときは，`mod` を 32 bit 以下の適当な整数 (素数?) に設定し，`long long` で乗算を行えばよい．
 
 ## Reference
 

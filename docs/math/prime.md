@@ -1,4 +1,4 @@
-# Prime Number Algorithms
+## Description
 
 素数に関するアルゴリズム詰め合わせ
 
@@ -12,7 +12,7 @@ $n$ を試し割り法で素数判定する．
 
 ## Prime Table
 
-_**NOT VERIFIED**_
+***NOT VERIFIED***
 
 エラトステネスの篩を用いて，$n$ 以下の整数の素数表を構築する．
 

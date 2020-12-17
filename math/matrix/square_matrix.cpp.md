@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/square_matrix.md
     document_title: Square Matrix
@@ -74,8 +74,8 @@ data:
     \ return {};\n        }\n        for (int j = 0; j < n; ++j) {\n            if\
     \ (!independent[j]) ret.push_back(bases[j]);\n        }\n        return ret;\n\
     \    }\n\nprotected:\n    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type*\
-    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return abs(a - b) < 1e-8;\
-    \ }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) { return std::abs(a - b)\
+    \ < 1e-8; }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\n  \
     \  std::vector<std::vector<T>> mat;\n    int m, n;\n};\n#line 6 \"math/matrix/square_matrix.cpp\"\
     \n\n/*\n * @brief Square Matrix\n * @docs docs/math/matrix/square_matrix.md\n\
@@ -134,8 +134,8 @@ data:
   isVerificationFile: false
   path: math/matrix/square_matrix.cpp
   requiredBy: []
-  timestamp: '2020-10-26 01:47:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-12-15 21:43:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix_det.test.cpp
 documentation_of: math/matrix/square_matrix.cpp
@@ -145,39 +145,27 @@ redirect_from:
 - /library/math/matrix/square_matrix.cpp.html
 title: Square Matrix
 ---
-# Square Matrix
+## Description
 
 正方行列を表す．
 
-## Template parameters
-
-- `T`
-    - 行列の要素の型
-
-## Constructor
+## Operations
 
 - `SquareMatrix(int n)`
     - $n \times n$ 零行列を構築する
     - 時間計算量: $O(n^2)$
-
 - `SquareMatrix(initializer_list<initializer_list<T>> list)`
     - `list` の要素で正方行列を構築する
     - 時間計算量: $O(n^2)$
-
-## Member functions
-
 - `static SquareMatrix I(int n)`
     - $n \times n$ 単位行列を返す
     - 時間計算量: $O(n^2)$
-
 - `SquareMatrix pow(long long k)`
     - $A^k$ を返す
     - 時間計算量: $O(n^3 \lg k)$
-
 - `T det()`
     - 行列式 $|A|$ を返す
     - 時間計算量: $O(n^3)$
-
 - `SquareMatrix inv()`
     - 逆行列 $A^{-1}$ を返す
     - 時間計算量: $O(n^3)$

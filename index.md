@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -62,7 +62,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/bst/lazy_treap.cpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -133,7 +133,7 @@ data:
       title: Minimum Cost Flow
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -154,7 +154,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest_path.cpp
       title: Shortest Path Algorithms
     - icon: ':warning:'
@@ -196,46 +196,49 @@ data:
       path: math/floor_sum.cpp
       title: Floor Sum
     - icon: ':heavy_check_mark:'
-      path: math/formal_power_series.cpp
-      title: Formal Power Series
-    - icon: ':heavy_check_mark:'
       path: math/geometry.cpp
       title: Geometry
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
+    - icon: ':x:'
+      path: math/polynomial.cpp
+      title: Polynomial
     - icon: ':heavy_check_mark:'
       path: math/prime.cpp
       title: Prime Number Algorithms
     - icon: ':warning:'
       path: math/stirling_second.cpp
       title: Stirling Number of the Second Kind
+    - icon: ':x:'
+      path: math/transform.cpp
+      title: Transform
   - name: math/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/matrix/matrix.cpp
       title: Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/matrix/square_matrix.cpp
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: misc/mo.cpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -252,7 +255,7 @@ data:
     - icon: ':warning:'
       path: string/manacher.cpp
       title: Manacher's Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
     - icon: ':heavy_check_mark:'
@@ -299,7 +302,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
       title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     - icon: ':heavy_check_mark:'
@@ -336,9 +339,6 @@ data:
       path: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_2_F.lazy_treap.test.cpp
-      title: test/aoj/DSL_2_F.lazy_treap.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp
     - icon: ':heavy_check_mark:'
@@ -353,13 +353,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.sparse_table.test.cpp
       title: test/aoj/DSL_3_D.sparse_table.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_1_A.test.cpp
       title: test/aoj/GRL_1_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_1_B.test.cpp
       title: test/aoj/GRL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_1_C.test.cpp
       title: test/aoj/GRL_1_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -409,7 +409,10 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: test/yosupo/bitwise_and_convolution.test.cpp
+      title: test/yosupo/bitwise_and_convolution.test.cpp
+    - icon: ':x:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -418,6 +421,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+      title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
+      title: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
@@ -427,13 +436,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/factorize.test.cpp
       title: test/yosupo/factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -442,10 +451,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
@@ -472,7 +481,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -502,7 +511,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -517,7 +526,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
