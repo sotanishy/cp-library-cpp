@@ -15,9 +15,9 @@ int main() {
     vector<mint> a(1 << N), b(1 << N), c(1 << N);
     for (auto& x : a) cin >> x;
     for (auto& x : b) cin >> x;
-    fht(a);
-    fht(b);
+    fwht(a);
+    fwht(b);
     for (int i = 0; i < (1 << N); ++i) c[i] = a[i] * b[i];
-    ifht(c);
+    ifwht(c);
     for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? " " : "\n");
 }

@@ -40,17 +40,17 @@ $$
     - 時間計算量: $n\lg n$
     - ***NOT VERIFIED***
 
-## Fast Hadamard Transform
+## Fast Walsh-Hadamard Transform
 
-高速アダマール変換を使うと，添え字 xor の畳み込みができる．
+高速ウォルシュ・アダマール変換を使うと，添え字 xor の畳み込みができる．
 
 以下の関数はすべて $a$ が2冪であることを必要とする．
 
-- `void fht(vector<T> a)`
-    - $a$ を高速アダマール変換する
+- `void fwht(vector<T> a)`
+    - $a$ を高速ウォルシュ・アダマール変換する
     - 時間計算量: $n\lg n$
-- `void ifht(vector<T> a)`
-    - $a$ を逆高速アダマール変換する．
+- `void ifwht(vector<T> a)`
+    - $a$ を逆高速ウォルシュ・アダマール変換する
     - 時間計算量: $n\lg n$
 
 
@@ -63,7 +63,7 @@ $$
 | $\mathrm{lcm}$ | ゼータ変換 (約数，下位) | メビウス変換 (約数，下位) |
 | $\mathrm{bitwise\ or}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
 | $\mathrm{bitwise\ and}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
-| $\mathrm{bitwise\ xor}$ | アダマール変換 | 逆アダマール変換 |
+| $\mathrm{bitwise\ xor}$ | ウォルシュ・アダマール変換 | 逆ウォルシュ・アダマール変換 |
 | $+$ | フーリエ変換，数論変換 | 逆フーリエ変換，逆数論変換 |
 
 

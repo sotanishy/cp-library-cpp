@@ -6,6 +6,10 @@
  * @docs docs/math/transform.md
  */
 
+/*
+ * Fast Zeta/Mobius Transform
+ */
+
 template <typename T>
 void fzt(std::vector<T>& a, bool subset) {
     int k = 31 - __builtin_clz(a.size());
@@ -25,6 +29,10 @@ void fmt(std::vector<T>& a, bool subset) {
         }
     }
 }
+
+/*
+ * Divisor Fast Zeta/Mobius Transform
+ */
 
 template <typename T>
 void divisor_fzt(std::vector<T>& a, bool subset) {
@@ -66,8 +74,12 @@ void divisor_fmt(std::vector<T>& a, bool subset) {
     }
 }
 
+/*
+ * Fast Walsh-Hadamard Transform
+ */
+
 template <typename T>
-void fht(std::vector<T>& a) {
+void fwht(std::vector<T>& a) {
     int n = a.size();
     for (int h = 1; h < n; h <<= 1) {
         for (int i = 0; i < n; i += h << 1) {
@@ -82,7 +94,7 @@ void fht(std::vector<T>& a) {
 }
 
 template <typename T>
-void ifht(std::vector<T>& a) {
+void ifwht(std::vector<T>& a) {
     int n = a.size();
     for (int h = 1; h < n; h <<= 1) {
         for (int i = 0; i < n; i += h << 1) {
