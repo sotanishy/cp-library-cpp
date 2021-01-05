@@ -16,14 +16,15 @@ data:
     document_title: Transform
     links: []
   bundledCode: "#line 2 \"math/transform.cpp\"\n#include <vector>\n\n/*\n * @brief\
-    \ Transform\n * @docs docs/math/transform.md\n */\n\ntemplate <typename T>\nvoid\
-    \ fzt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
+    \ Transform\n * @docs docs/math/transform.md\n */\n\n/*\n * Fast Zeta/Mobius Transform\n\
+    \ */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>& a, bool subset) {\n  \
+    \  int k = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i) {\n\
+    \        for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1) ==\
+    \ subset) a[j] += a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename\
+    \ T>\nvoid fmt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
     \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
-    \ {\n            if ((j >> i & 1) == subset) a[j] += a[j ^ (1 << i)];\n      \
-    \  }\n    }\n}\n\ntemplate <typename T>\nvoid fmt(std::vector<T>& a, bool subset)\
-    \ {\n    int k = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i)\
-    \ {\n        for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1)\
-    \ == subset) a[j] -= a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename\
+    \ {\n            if ((j >> i & 1) == subset) a[j] -= a[j ^ (1 << i)];\n      \
+    \  }\n    }\n}\n\n/*\n * Divisor Fast Zeta/Mobius Transform\n */\n\ntemplate <typename\
     \ T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n    int n = a.size();\n\
     \    std::vector<bool> sieve(n, true);\n    for (int p = 2; p < n; ++p) {\n  \
     \      if (!sieve[p]) continue;\n        if (subset) {\n            for (int k\
@@ -38,53 +39,56 @@ data:
     \ false;\n                a[k * p] -= a[k];\n            }\n        } else {\n\
     \            for (int k = 1; k * p < n; ++k) {\n                sieve[k * p] =\
     \ false;\n                a[k] -= a[k * p];\n            }\n        }\n    }\n\
-    }\n\ntemplate <typename T>\nvoid fht(std::vector<T>& a) {\n    int n = a.size();\n\
+    }\n\n/*\n * Fast Walsh-Hadamard Transform\n */\n\ntemplate <typename T>\nvoid\
+    \ fwht(std::vector<T>& a) {\n    int n = a.size();\n    for (int h = 1; h < n;\
+    \ h <<= 1) {\n        for (int i = 0; i < n; i += h << 1) {\n            for (int\
+    \ j = i; j < i + h; ++j) {\n                T x = a[j];\n                T y =\
+    \ a[j | h];\n                a[j] = x + y;\n                a[j | h] = x - y;\n\
+    \            }\n        }\n    }\n}\n\ntemplate <typename T>\nvoid ifwht(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    for (int h = 1; h < n; h <<= 1) {\n       \
+    \ for (int i = 0; i < n; i += h << 1) {\n            for (int j = i; j < i + h;\
+    \ ++j) {\n                T x = a[j];\n                T y = a[j | h];\n     \
+    \           a[j] = (x + y) / 2;\n                a[j | h] = (x - y) / 2;\n   \
+    \         }\n        }\n    }\n}\n"
+  code: "#pragma once\n#include <vector>\n\n/*\n * @brief Transform\n * @docs docs/math/transform.md\n\
+    \ */\n\n/*\n * Fast Zeta/Mobius Transform\n */\n\ntemplate <typename T>\nvoid\
+    \ fzt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
+    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
+    \ {\n            if ((j >> i & 1) == subset) a[j] += a[j ^ (1 << i)];\n      \
+    \  }\n    }\n}\n\ntemplate <typename T>\nvoid fmt(std::vector<T>& a, bool subset)\
+    \ {\n    int k = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i)\
+    \ {\n        for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1)\
+    \ == subset) a[j] -= a[j ^ (1 << i)];\n        }\n    }\n}\n\n/*\n * Divisor Fast\
+    \ Zeta/Mobius Transform\n */\n\ntemplate <typename T>\nvoid divisor_fzt(std::vector<T>&\
+    \ a, bool subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n\
+    \    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n       \
+    \ if (subset) {\n            for (int k = 1; k * p < n; ++k) {\n             \
+    \   sieve[k * p] = false;\n                a[k * p] += a[k];\n            }\n\
+    \        } else {\n            for (int k = (n - 1) / p; k > 0; --k) {\n     \
+    \           sieve[k * p] = false;\n                a[k] += a[k * p];\n       \
+    \     }\n        }\n    }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>&\
+    \ a, bool subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n\
+    \    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n       \
+    \ if (subset) {\n            for (int k = (n - 1) / p; k > 0; --k) {\n       \
+    \         sieve[k * p] = false;\n                a[k * p] -= a[k];\n         \
+    \   }\n        } else {\n            for (int k = 1; k * p < n; ++k) {\n     \
+    \           sieve[k * p] = false;\n                a[k] -= a[k * p];\n       \
+    \     }\n        }\n    }\n}\n\n/*\n * Fast Walsh-Hadamard Transform\n */\n\n\
+    template <typename T>\nvoid fwht(std::vector<T>& a) {\n    int n = a.size();\n\
     \    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h\
     \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                T x\
     \ = a[j];\n                T y = a[j | h];\n                a[j] = x + y;\n  \
     \              a[j | h] = x - y;\n            }\n        }\n    }\n}\n\ntemplate\
-    \ <typename T>\nvoid ifht(std::vector<T>& a) {\n    int n = a.size();\n    for\
+    \ <typename T>\nvoid ifwht(std::vector<T>& a) {\n    int n = a.size();\n    for\
     \ (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h << 1) {\n\
     \            for (int j = i; j < i + h; ++j) {\n                T x = a[j];\n\
     \                T y = a[j | h];\n                a[j] = (x + y) / 2;\n      \
-    \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n"
-  code: "#pragma once\n#include <vector>\n\n/*\n * @brief Transform\n * @docs docs/math/transform.md\n\
-    \ */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>& a, bool subset) {\n  \
-    \  int k = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i) {\n\
-    \        for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1) ==\
-    \ subset) a[j] += a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename\
-    \ T>\nvoid fmt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
-    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
-    \ {\n            if ((j >> i & 1) == subset) a[j] -= a[j ^ (1 << i)];\n      \
-    \  }\n    }\n}\n\ntemplate <typename T>\nvoid divisor_fzt(std::vector<T>& a, bool\
-    \ subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n  \
-    \  for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        if\
-    \ (subset) {\n            for (int k = 1; k * p < n; ++k) {\n                sieve[k\
-    \ * p] = false;\n                a[k * p] += a[k];\n            }\n        } else\
-    \ {\n            for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k\
-    \ * p] = false;\n                a[k] += a[k * p];\n            }\n        }\n\
-    \    }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>& a, bool subset)\
-    \ {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int\
-    \ p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset)\
-    \ {\n            for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k\
-    \ * p] = false;\n                a[k * p] -= a[k];\n            }\n        } else\
-    \ {\n            for (int k = 1; k * p < n; ++k) {\n                sieve[k *\
-    \ p] = false;\n                a[k] -= a[k * p];\n            }\n        }\n \
-    \   }\n}\n\ntemplate <typename T>\nvoid fht(std::vector<T>& a) {\n    int n =\
-    \ a.size();\n    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i\
-    \ < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j) {\n       \
-    \         T x = a[j];\n                T y = a[j | h];\n                a[j] =\
-    \ x + y;\n                a[j | h] = x - y;\n            }\n        }\n    }\n\
-    }\n\ntemplate <typename T>\nvoid ifht(std::vector<T>& a) {\n    int n = a.size();\n\
-    \    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h\
-    \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                T x\
-    \ = a[j];\n                T y = a[j | h];\n                a[j] = (x + y) / 2;\n\
-    \                a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}"
+    \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/transform.cpp
   requiredBy: []
-  timestamp: '2020-12-18 00:29:28+09:00'
+  timestamp: '2021-01-05 13:51:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bitwise_and_convolution.test.cpp
@@ -138,17 +142,17 @@ $$
     - 時間計算量: $n\lg n$
     - ***NOT VERIFIED***
 
-## Fast Hadamard Transform
+## Fast Walsh-Hadamard Transform
 
-高速アダマール変換を使うと，添え字 xor の畳み込みができる．
+高速ウォルシュ・アダマール変換を使うと，添え字 xor の畳み込みができる．
 
 以下の関数はすべて $a$ が2冪であることを必要とする．
 
-- `void fht(vector<T> a)`
-    - $a$ を高速アダマール変換する
+- `void fwht(vector<T> a)`
+    - $a$ を高速ウォルシュ・アダマール変換する
     - 時間計算量: $n\lg n$
-- `void ifht(vector<T> a)`
-    - $a$ を逆高速アダマール変換する．
+- `void ifwht(vector<T> a)`
+    - $a$ を逆高速ウォルシュ・アダマール変換する
     - 時間計算量: $n\lg n$
 
 
@@ -161,7 +165,7 @@ $$
 | $\mathrm{lcm}$ | ゼータ変換 (約数，下位) | メビウス変換 (約数，下位) |
 | $\mathrm{bitwise\ or}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
 | $\mathrm{bitwise\ and}$ | ゼータ変換 (bit，下位) | メビウス変換 (bit，下位) |
-| $\mathrm{bitwise\ xor}$ | アダマール変換 | 逆アダマール変換 |
+| $\mathrm{bitwise\ xor}$ | ウォルシュ・アダマール変換 | 逆ウォルシュ・アダマール変換 |
 | $+$ | フーリエ変換，数論変換 | 逆フーリエ変換，逆数論変換 |
 
 

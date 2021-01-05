@@ -118,7 +118,7 @@ redirect_from:
 - /library/data-structure/wavelet_matrix.cpp.html
 title: Wavelet Matrix
 ---
-# Wavelet Matrix
+## Description
 
 ウェーブレット行列は，静的な整数列に対する様々なクエリが処理できるデータ構造である．整数列を上位ビットからソートして完備辞書を構築する．
 

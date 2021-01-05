@@ -245,6 +245,9 @@ data:
       path: misc/random.cpp
       title: misc/random.cpp
     - icon: ':warning:'
+      path: misc/range_set.cpp
+      title: Range Set
+    - icon: ':warning:'
       path: misc/timer.cpp
       title: misc/timer.cpp
   - name: string
