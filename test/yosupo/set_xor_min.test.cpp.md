@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/binary_trie.cpp
     title: Binary Trie
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -17,32 +17,43 @@ data:
     \n\n#line 2 \"data-structure/binary_trie.cpp\"\n#include <cassert>\n#include <vector>\n\
     \n/*\n * @brief Binary Trie\n * @docs docs/data-structure/binary_trie.md\n */\n\
     template <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie()\
-    \ : node(1) {}\n\n    int size() const {\n        return node[0].count;\n    }\n\
-    \n    bool empty() const {\n        return size() == 0;\n    }\n\n    int count(T\
-    \ x) const {\n        int t = 0;\n        for (int i = B - 1; i >= 0; --i) {\n\
-    \            bool b = x >> i & 1;\n            if (node[t].ch[b] == -1) return\
-    \ 0;\n            t = node[t].ch[b];\n        }\n        return node[t].count;\n\
-    \    }\n\n    void insert(T x) {\n        int t = 0;\n        for (int i = B -\
-    \ 1; i >= 0; --i) {\n            bool b = x >> i & 1;\n            if (node[t].ch[b]\
-    \ == -1) {\n                node[t].ch[b] = node.size();\n                node.emplace_back();\n\
-    \            }\n            ++node[t].count;\n            t = node[t].ch[b];\n\
-    \        }\n        ++node[t].count;\n    }\n\n    void erase(T x) {\n       \
-    \ if (!count(x)) return;\n        int t = 0;\n        for (int i = B - 1; i >=\
-    \ 0; --i) {\n            --node[t].count;\n            t = node[t].ch[x >> i &\
-    \ 1];\n        }\n        --node[t].count;\n    }\n\n    T min_element(T x = 0)\
-    \ const {\n        assert(size());\n        int t = 0;\n        T ret = 0;\n \
-    \       for (int i = B - 1; i >= 0; --i) {\n            bool b = x >> i & 1;\n\
-    \            int c = node[t].ch[b];\n            if (c != -1 && node[c].count\
-    \ > 0) {\n                t = c;\n            } else {\n                t = node[t].ch[1\
-    \ - b];\n                ret |= T(1) << i;\n            }\n        }\n       \
-    \ return ret;\n    }\n\n    T max_element(T x = 0) const {\n        assert(size());\n\
-    \        int t = 0;\n        T ret = 0;\n        for (int i = B - 1; i >= 0; --i)\
-    \ {\n            bool b = x >> i & 1;\n            int c = node[t].ch[1 - b];\n\
-    \            if (c != -1 && node[c].count > 0) {\n                t = c;\n   \
-    \             ret |= T(1) << i;\n            } else {\n                t = node[t].ch[b];\n\
-    \            }\n        }\n        return ret;\n    }\n\nprivate:\n    struct\
-    \ Node {\n        std::vector<int> ch;\n        int count;\n        Node() : ch(2,\
-    \ -1), count(0) {}\n    };\n\n    std::vector<Node> node;\n};\n#line 4 \"test/yosupo/set_xor_min.test.cpp\"\
+    \ : root(std::make_unique<Node>()) {}\n\n    int size() const {\n        return\
+    \ root->count;\n    }\n\n    bool empty() const {\n        return size() == 0;\n\
+    \    }\n\n    int count(T x) const {\n        return count(root, x, B - 1);\n\
+    \    }\n\n    int count_less(T x, T xor_val = 0) const {\n        return count_less(root,\
+    \ x, xor_val, B - 1);\n    }\n\n    void insert(T x) {\n        insert(root, x,\
+    \ B - 1);\n    }\n\n    void erase(T x) {\n        erase(root, x, B - 1);\n  \
+    \  }\n\n    T min_element(T xor_val = 0) const {\n        assert(!empty());\n\
+    \        return min_element(root, xor_val, B - 1);\n    }\n\n    T max_element(T\
+    \ xor_val = 0) const {\n        assert(!empty());\n        return max_element(root,\
+    \ xor_val, B - 1);\n    }\n\nprivate:\n    struct Node;\n    using node_ptr =\
+    \ std::unique_ptr<Node>;\n\n    struct Node {\n        node_ptr ch[2];\n     \
+    \   int count = 0;\n    };\n\n    const node_ptr root;\n\n    int count(const\
+    \ node_ptr& t, T x, int k) const {\n        if (k == -1) return t->count;\n  \
+    \      bool b = x >> k & 1;\n        return t->ch[b] ? count(t->ch[b], x, k -\
+    \ 1) : 0;\n    }\n\n    int count_less(const node_ptr& t, T x, T xor_val, int\
+    \ k) const {\n        if (k == -1) return 0;\n        bool b = x >> k & 1;\n \
+    \       bool f = xor_val >> k & 1;\n        int ret = 0;\n        if (f ^ b) {\n\
+    \            if (t->ch[f]) ret += t->ch[f]->count;\n            if (t->ch[1 -\
+    \ f]) ret += count_less(t->ch[1 - f], x, xor_val, k - 1);\n        } else {\n\
+    \            if (t->ch[f]) ret += count_less(t->ch[f], x, xor_val, k - 1);\n \
+    \       }\n        return ret;\n    }\n\n    void insert(const node_ptr& t, T\
+    \ x, int k) {\n        if (k == -1) {\n            ++t->count;\n            return;\n\
+    \        }\n        bool b = x >> k & 1;\n        if (!t->ch[b]) t->ch[b] = std::make_unique<Node>();\n\
+    \        ++t->count;\n        insert(t->ch[b], x, k - 1);\n    }\n\n    void erase(const\
+    \ node_ptr& t, T x, int k) {\n        if (k == -1) {\n            --t->count;\n\
+    \            return;\n        }\n        --t->count;\n        erase(t->ch[x >>\
+    \ k & 1]);\n    }\n\n    T min_element(const node_ptr& t, T xor_val, int k) const\
+    \ {\n        if (k == -1) return 0;\n        bool b = xor_val >> k & 1;\n    \
+    \    T ret = 0;\n        if (t->ch[b] && t->ch[b].count > 0) {\n            ret\
+    \ += min_element(t->ch[b], xor_val, k - 1);\n        } else {\n            ret\
+    \ += T(1) << k;\n            ret += min_element(t->ch[1 - b], xor_val, k - 1);\n\
+    \        }\n        return ret;\n    }\n\n    T max_element(const node_ptr& t,\
+    \ T xor_val, int k) const {\n        if (k == -1) return 0;\n        bool b =\
+    \ xor_val >> k & 1;\n        T ret = 0;\n        if (t->ch[1 - b] && t->ch[1 -\
+    \ b].count > 0) {\n            ret += T(1) << k;\n            ret += max_element(t->ch[1\
+    \ - b], xor_val, k - 1);\n        } else {\n            ret += max_element(t->ch[b],\
+    \ xor_val, k - 1);\n        }\n        return ret;\n    }\n};\n#line 4 \"test/yosupo/set_xor_min.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
     \    BinaryTrie<int> bt;\n    int Q;\n    cin >> Q;\n    while (Q--) {\n     \
@@ -63,8 +74,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 22:28:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-11 02:35:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/set_xor_min.test.cpp
 layout: document
