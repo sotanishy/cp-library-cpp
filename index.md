@@ -610,6 +610,7 @@ window.addEventListener('load', function(){
     let section = sections[i];
     section.textContent = '- ' + section.textContent;
     let list = section.nextElementSibling;
+    list.style.display = 'block';
     section.addEventListener('click', function () {
       if (list.style.display == 'none') {
         section.textContent = '- ' + section.textContent.substr(2);
