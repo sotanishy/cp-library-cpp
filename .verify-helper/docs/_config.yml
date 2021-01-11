@@ -1,13 +1,4 @@
-docs:
-  categorize_library: true
-  categorize_verify: false
-  html: false
-  toc: false
-plugins:
-- jemoji
-- jekyll-remote-theme
-remote_theme: jekyll/minima
-theme: jekyll-theme-minimal
+theme: minima
 
 title: sotanishy's competitive programming library
 author: sotanishy
