@@ -1,7 +1,9 @@
 author: sotanishy
 description: sotanishy's code snippets for competitive programming
+header_pages:
+- null
 plugins:
-- jemoji
-- jekyll-redirect-from
+- jekyll-remote-theme
+remote_theme: jekyll/minima
 theme: jekyll-theme-minimal
 title: sotanishy's competitive programming library
