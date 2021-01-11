@@ -43,15 +43,15 @@ data:
     \        ++t->count;\n        insert(t->ch[b], x, k - 1);\n    }\n\n    void erase(const\
     \ node_ptr& t, T x, int k) {\n        if (k == -1) {\n            --t->count;\n\
     \            return;\n        }\n        --t->count;\n        erase(t->ch[x >>\
-    \ k & 1]);\n    }\n\n    T min_element(const node_ptr& t, T xor_val, int k) const\
-    \ {\n        if (k == -1) return 0;\n        bool b = xor_val >> k & 1;\n    \
-    \    T ret = 0;\n        if (t->ch[b] && t->ch[b].count > 0) {\n            ret\
-    \ += min_element(t->ch[b], xor_val, k - 1);\n        } else {\n            ret\
-    \ += T(1) << k;\n            ret += min_element(t->ch[1 - b], xor_val, k - 1);\n\
-    \        }\n        return ret;\n    }\n\n    T max_element(const node_ptr& t,\
-    \ T xor_val, int k) const {\n        if (k == -1) return 0;\n        bool b =\
-    \ xor_val >> k & 1;\n        T ret = 0;\n        if (t->ch[1 - b] && t->ch[1 -\
-    \ b].count > 0) {\n            ret += T(1) << k;\n            ret += max_element(t->ch[1\
+    \ k & 1], x, k - 1);\n    }\n\n    T min_element(const node_ptr& t, T xor_val,\
+    \ int k) const {\n        if (k == -1) return 0;\n        bool b = xor_val >>\
+    \ k & 1;\n        T ret = 0;\n        if (t->ch[b] && t->ch[b]->count > 0) {\n\
+    \            ret += min_element(t->ch[b], xor_val, k - 1);\n        } else {\n\
+    \            ret += T(1) << k;\n            ret += min_element(t->ch[1 - b], xor_val,\
+    \ k - 1);\n        }\n        return ret;\n    }\n\n    T max_element(const node_ptr&\
+    \ t, T xor_val, int k) const {\n        if (k == -1) return 0;\n        bool b\
+    \ = xor_val >> k & 1;\n        T ret = 0;\n        if (t->ch[1 - b] && t->ch[1\
+    \ - b].count > 0) {\n            ret += T(1) << k;\n            ret += max_element(t->ch[1\
     \ - b], xor_val, k - 1);\n        } else {\n            ret += max_element(t->ch[b],\
     \ xor_val, k - 1);\n        }\n        return ret;\n    }\n};\n#line 4 \"test/yosupo/set_xor_min.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2021-01-11 09:17:59+09:00'
+  timestamp: '2021-01-11 09:27:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/set_xor_min.test.cpp
