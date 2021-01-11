@@ -1,4 +1,10 @@
+plugins:
+  - jekyll-remote-theme
+remote_theme: jekyll/minima
+
 title: sotanishy's competitive programming library
 author: sotanishy
 description: sotanishy's code snippets for competitive programming
 
+header_pages:
+  -
