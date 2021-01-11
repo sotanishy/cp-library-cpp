@@ -1,7 +1,13 @@
 author: sotanishy
-description: sotanishy's snippets for competitive programming
+description: sotanishy's code snippets for competitive programming
+docs:
+  categorize_library: true
+  categorize_verify: false
+  html: false
+  toc: false
 plugins:
 - jemoji
-- jekyll-redirect-from
-theme: minima
+- jekyll-remote-theme
+remote_theme: jekyll/minima
+theme: jekyll-theme-minimal
 title: sotanishy's competitive programming library

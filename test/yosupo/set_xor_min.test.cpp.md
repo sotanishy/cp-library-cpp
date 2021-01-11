@@ -14,7 +14,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/set_xor_min
   bundledCode: "#line 1 \"test/yosupo/set_xor_min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
-    \n\n#line 2 \"data-structure/binary_trie.cpp\"\n#include <cassert>\n#include <vector>\n\
+    \n\n#line 2 \"data-structure/binary_trie.cpp\"\n#include <cassert>\n#include <memory>\n\
     \n/*\n * @brief Binary Trie\n * @docs docs/data-structure/binary_trie.md\n */\n\
     template <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie()\
     \ : root(std::make_unique<Node>()) {}\n\n    int size() const {\n        return\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2021-01-11 02:35:25+09:00'
+  timestamp: '2021-01-11 09:17:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/set_xor_min.test.cpp

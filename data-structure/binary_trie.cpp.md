@@ -13,7 +13,7 @@ data:
     document_title: Binary Trie
     links: []
   bundledCode: "#line 2 \"data-structure/binary_trie.cpp\"\n#include <cassert>\n#include\
-    \ <vector>\n\n/*\n * @brief Binary Trie\n * @docs docs/data-structure/binary_trie.md\n\
+    \ <memory>\n\n/*\n * @brief Binary Trie\n * @docs docs/data-structure/binary_trie.md\n\
     \ */\ntemplate <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie()\
     \ : root(std::make_unique<Node>()) {}\n\n    int size() const {\n        return\
     \ root->count;\n    }\n\n    bool empty() const {\n        return size() == 0;\n\
@@ -52,7 +52,7 @@ data:
     \ b].count > 0) {\n            ret += T(1) << k;\n            ret += max_element(t->ch[1\
     \ - b], xor_val, k - 1);\n        } else {\n            ret += max_element(t->ch[b],\
     \ xor_val, k - 1);\n        }\n        return ret;\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n/*\n * @brief Binary\
+  code: "#pragma once\n#include <cassert>\n#include <memory>\n\n/*\n * @brief Binary\
     \ Trie\n * @docs docs/data-structure/binary_trie.md\n */\ntemplate <typename T,\
     \ int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie() : root(std::make_unique<Node>())\
     \ {}\n\n    int size() const {\n        return root->count;\n    }\n\n    bool\
@@ -96,7 +96,7 @@ data:
   isVerificationFile: false
   path: data-structure/binary_trie.cpp
   requiredBy: []
-  timestamp: '2021-01-11 02:35:25+09:00'
+  timestamp: '2021-01-11 09:17:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/set_xor_min.test.cpp
