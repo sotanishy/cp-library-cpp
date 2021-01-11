@@ -1,6 +1,7 @@
 author: sotanishy
 description: sotanishy's code snippets for competitive programming
-header_pages: []
+header_pages:
+- null
 plugins:
 - jemoji
 - jekyll-remote-theme
