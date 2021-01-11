@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/binary_trie.cpp
     title: Binary Trie
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -58,24 +58,25 @@ data:
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
     \    BinaryTrie<int> bt;\n    int Q;\n    cin >> Q;\n    while (Q--) {\n     \
     \   int t, x;\n        cin >> t >> x;\n        if (t == 0) {\n            if (!bt.count(x))\
-    \ bt.insert(x);\n        }\n        if (t == 1) {\n            bt.erase(x);\n\
-    \        }\n        if (t == 2) {\n            cout << bt.min_element(x) << \"\
-    \\n\";\n        }\n    }\n}\n"
+    \ bt.insert(x);\n        }\n        if (t == 1) {\n            if (bt.count(x))\
+    \ bt.erase(x);\n        }\n        if (t == 2) {\n            cout << bt.min_element(x)\
+    \ << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
     \ \"../../data-structure/binary_trie.cpp\"\n\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    BinaryTrie<int> bt;\n    int Q;\n    cin >> Q;\n\
     \    while (Q--) {\n        int t, x;\n        cin >> t >> x;\n        if (t ==\
     \ 0) {\n            if (!bt.count(x)) bt.insert(x);\n        }\n        if (t\
-    \ == 1) {\n            bt.erase(x);\n        }\n        if (t == 2) {\n      \
-    \      cout << bt.min_element(x) << \"\\n\";\n        }\n    }\n}"
+    \ == 1) {\n            if (bt.count(x)) bt.erase(x);\n        }\n        if (t\
+    \ == 2) {\n            cout << bt.min_element(x) << \"\\n\";\n        }\n    }\n\
+    }"
   dependsOn:
   - data-structure/binary_trie.cpp
   isVerificationFile: true
   path: test/yosupo/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2021-01-11 09:27:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-01-11 09:41:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/set_xor_min.test.cpp
 layout: document
