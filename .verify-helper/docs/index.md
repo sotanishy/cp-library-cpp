@@ -13,5 +13,23 @@ window.addEventListener('load', function(){
 
   // remove footer
   document.getElementsByTagName('footer')[0].style.display = 'none';
+
+  // toggle sections
+  let sections = document.getElementsByTagName('h3');
+  for (let i = 0; i < sections.length; i++) {
+    let section = sections[i];
+    console.log(section.textContent);
+    section.textContent = '- ' + section.textContent;
+    let list = section.nextElementSibling;
+    section.addEventListener('click', function () {
+      if (list.style.display == 'none') {
+        section.textContent = '- ' + section.textContent.substr(2);
+        list.style.display = 'block';
+      } else {
+        section.textContent = '+ ' + section.textContent.substr(2);
+        list.style.display = 'none';
+      }
+    });
+  }
 });
 </script>
