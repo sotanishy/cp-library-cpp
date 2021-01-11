@@ -38,7 +38,7 @@ window.addEventListener('load', function(){
         window.getSelection().selectAllChildren(textElem[0]);
         document.execCommand("copy");
         window.getSelection().removeAllRanges();
-        
+
         // コピー完了した後の処理
         // トースト通知とかすると親切かも...
         $(this).showBalloon();
@@ -57,4 +57,12 @@ window.addEventListener('load', function(){
         }
         is_bundled = ! is_bundled;
     });
+
+    // add a link to GitHub in the header
+    let link = document.getElementsByClassName('page-link')[0];
+    link.href = 'https://github.com/sotanishy/competitive-programming-library';
+    link.textContent = 'GitHub';
+
+    // remove footer
+    document.getElementsByTagName('footer')[0].style.display = 'none';
 });
