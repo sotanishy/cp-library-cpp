@@ -1,6 +1,6 @@
 #pragma once
 #include <cassert>
-#include <vector>
+#include <memory>
 
 /*
  * @brief Binary Trie
