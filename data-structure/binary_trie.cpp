@@ -93,14 +93,14 @@ private:
             return;
         }
         --t->count;
-        erase(t->ch[x >> k & 1]);
+        erase(t->ch[x >> k & 1], x, k - 1);
     }
 
     T min_element(const node_ptr& t, T xor_val, int k) const {
         if (k == -1) return 0;
         bool b = xor_val >> k & 1;
         T ret = 0;
-        if (t->ch[b] && t->ch[b].count > 0) {
+        if (t->ch[b] && t->ch[b]->count > 0) {
             ret += min_element(t->ch[b], xor_val, k - 1);
         } else {
             ret += T(1) << k;
