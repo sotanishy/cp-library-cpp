@@ -4,10 +4,6 @@
 #include <queue>
 #include <vector>
 
-/*
- * @brief Dinic's Algorithm
- * @docs docs/flow/dinic.md
- */
 template <typename T>
 class Dinic {
 public:

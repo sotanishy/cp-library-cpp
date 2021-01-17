@@ -1,3 +1,8 @@
+---
+title: Undoable Union Find
+documentation_of: ../../data-structure/unionfind/undoable_union_find.cpp
+---
+
 ## Description
 
 Undo 可能 union find は，直前の変更の破棄が可能な union find である．変更前の値を保存しておき，経路圧縮をしないことによって操作前の状態の復元が可能となる．また，連結成分の頂点の値 (可換モノイド) の総和の取得も可能である．

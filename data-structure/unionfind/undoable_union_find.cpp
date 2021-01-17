@@ -5,10 +5,6 @@
 #include <utility>
 #include <vector>
 
-/*
- * @brief Undoable Union Find
- * @docs docs/data-structure/unionfind/undoable_union_find.md
- */
 template <typename M>
 class UndoableUnionFind {
     using T = typename M::T;

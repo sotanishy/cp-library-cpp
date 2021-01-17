@@ -1,20 +1,17 @@
-# Dinic's Algorithm
+---
+title: Dinic's Algorithm
+documentation_of: ../../flow/dinic.cpp
+---
+
+## Description
 
 Dinic のアルゴリズムは，フローネットワークの最大流を求めるアルゴリズムである．始点からの最短距離を BFS で計算し，残余グラフの増加パスを DFS で見つけ，そのパスにフローを流すことを繰り返す．
 
-## Template parameters
-
-- `T`
-    - 容量の型
-
-## Construcor
+## Operations
 
 - `Dinic(int n)`
     - グラフを $n$ 頂点で初期化する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `void add_edge(int u, int v, T cap)`
     - 容量 $cap$ の辺 $(u, v)$ を追加する
     - 時間計算量: $O(1)$

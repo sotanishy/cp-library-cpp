@@ -3,10 +3,6 @@
 #include <limits>
 #include <vector>
 
-/*
- * @brief Ford-Fulkerson Algorithm
- * @docs docs/flow/ford_fulkerson.md
- */
 template <typename T>
 class FordFulkerson {
 public:

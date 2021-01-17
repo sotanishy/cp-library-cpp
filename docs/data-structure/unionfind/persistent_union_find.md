@@ -1,3 +1,8 @@
+---
+title: Persistent Union Find
+documentation_of: ../../data-structure/unionfind/persistent_union_find.cpp
+---
+
 ## Description
 
 永続 union find は，過去のバージョンを保持する union find である．

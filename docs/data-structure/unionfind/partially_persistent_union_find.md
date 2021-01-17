@@ -1,3 +1,8 @@
+---
+title: Partially Persistent Union Find
+documentation_of: ../../data-structure/unionfind/partially_persistent_union_find.cpp
+---
+
 ## Description
 
 部分永続 union find は素集合森の過去の連結性に関する情報を保持する．以下の操作を提供する:

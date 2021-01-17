@@ -1,3 +1,8 @@
+---
+title: Square Matrix
+documentation_of: ../../math/matrix/square_matrix.cpp
+---
+
 ## Description
 
 正方行列を表す．
@@ -17,7 +22,7 @@
     - $A^k$ を返す
     - 時間計算量: $O(n^3 \lg k)$
 - `T det()`
-    - 行列式 $|A|$ を返す
+    - 行列式 $\det(A)$ を返す
     - 時間計算量: $O(n^3)$
 - `SquareMatrix inv()`
     - 逆行列 $A^{-1}$ を返す

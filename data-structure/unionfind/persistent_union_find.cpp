@@ -3,10 +3,6 @@
 #include <vector>
 #include "../persistent_array.cpp"
 
-/*
- * @brief Persistent Union Find
- * @docs docs/data-structure/unionfind/persistent_union_find.md
- */
 class PersistentUnionFind {
 public:
     PersistentUnionFind() = default;

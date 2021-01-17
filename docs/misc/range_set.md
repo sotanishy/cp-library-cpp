@@ -15,7 +15,7 @@ documentation_of: ../../misc/range_set.cpp
     - 時間計算量: $O(\lg n)$
 - `pair<T, T> covered_by(T x)`
 - `pair<T, T> covered_by(T l, T r)`
-    - 区間 $[l, r]$ を含む区間を返す．そのような区間がない場合は `(-\infty, -\infty)` を返す
+    - 区間 $[l, r]$ を含む区間を返す．そのような区間がない場合は $(-\infty, -\infty)$ を返す
     - 時間計算量: $O(\lg n)$
 - `void insert(T x)`
 - `void insert(T l, T r)`

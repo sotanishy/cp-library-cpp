@@ -6,10 +6,6 @@
 #include <utility>
 #include <vector>
 
-/*
- * @brief Minimum Cost Flow
- * @docs docs/flow/min_cost_flow.md
- */
 template <typename Cap, typename Cost>
 class MinCostFlow {
 public:

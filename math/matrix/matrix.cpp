@@ -6,10 +6,6 @@
 #include <type_traits>
 #include <vector>
 
-/*
- * @brief Matrix
- * @docs docs/math/matrix/matrix.md
- */
 template <typename T>
 class Matrix {
 public:

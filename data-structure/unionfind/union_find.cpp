@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Union Find
- * @docs docs/data-structure/unionfind/union_find.md
- */
 class UnionFind {
 public:
     UnionFind() = default;

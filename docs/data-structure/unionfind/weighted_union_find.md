@@ -1,3 +1,8 @@
+---
+title: Weighted Union Find
+documentation_of: ../../data-structure/unionfind/weighted_union_find.cpp
+---
+
 ## Description
 
 重み付き union find は，union find の操作に加えて，同じ集合に属する他の要素に対する要素の相対的な重みを管理する．

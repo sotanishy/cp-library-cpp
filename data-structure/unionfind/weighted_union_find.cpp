@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Weighted Union Find
- * @docs docs/data-structure/unionfind/weighted_union_find.md
- */
 template <typename T>
 class WeightedUnionFind {
 public:

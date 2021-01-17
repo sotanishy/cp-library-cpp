@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Bipartite Matching
- * @docs docs/flow/bipartite_matching.md
- */
 class BipartiteMatching {
 public:
     BipartiteMatching() = default;

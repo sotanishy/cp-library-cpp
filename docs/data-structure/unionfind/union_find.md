@@ -1,3 +1,8 @@
+---
+title: Union Find
+documentation_of: ../../data-structure/unionfind/union_find.cpp
+---
+
 ## Description
 
 Union find (disjoint set union, 素集合データ構造) は，素集合を管理するデータ構造である．

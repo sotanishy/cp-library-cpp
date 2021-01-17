@@ -4,10 +4,6 @@
 #include <utility>
 #include <vector>
 
-/*
- * @brief Partially Persistent Union Find
- * @docs docs/data-structure/unionfind/partially_persistent_union_find.md
- */
 class PartiallyPersistentUnionFind {
 public:
     PartiallyPersistentUnionFind() = default;

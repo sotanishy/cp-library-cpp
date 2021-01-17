@@ -4,10 +4,6 @@
 #include <initializer_list>
 #include "matrix.cpp"
 
-/*
- * @brief Square Matrix
- * @docs docs/math/matrix/square_matrix.md
- */
 template <typename T>
 class SquareMatrix : public Matrix<T> {
     using Matrix<T>::Matrix;

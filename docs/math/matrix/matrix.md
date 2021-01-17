@@ -1,3 +1,8 @@
+---
+title: Matrix
+documentation_of: ../../math/matrix/matrix.cpp
+---
+
 ## Description
 
 行列を表す．
