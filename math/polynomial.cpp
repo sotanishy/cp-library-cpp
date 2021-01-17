@@ -4,10 +4,6 @@
 #include <vector>
 #include "ntt.cpp"
 
-/*
- * @brief Polynomial
- * @docs docs/math/polynomial.md
- */
 template <typename mint>
 class Polynomial : public std::vector<mint> {
     using Poly = Polynomial;
@@ -62,6 +58,15 @@ public:
     Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }
     Poly operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }
     Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }
+
+    mint operator()(const mint& x) {
+        mint y = 0, powx = 1;
+        for (int i = 0; i < (int) this->size(); ++i) {
+            y += (*this)[i] * powx;
+            powx *= x;
+        }
+        return y;
+    }
 
     Poly inv(int deg = -1) const {
         assert((*this)[0] != mint(0));
