@@ -20,8 +20,7 @@ data:
     \ \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\n#line 2 \"string/lcp_array.cpp\"\
     \n#include <string>\n#include <vector>\n#line 2 \"string/suffix_array.cpp\"\n\
     #include <algorithm>\n#include <limits>\n#include <numeric>\n#line 7 \"string/suffix_array.cpp\"\
-    \n\n/*\n * @brief Suffix Array\n * @docs docs/string/suffix_array.md\n */\nclass\
-    \ SuffixArray {\npublic:\n    SuffixArray() = default;\n    explicit SuffixArray(const\
+    \n\nclass SuffixArray {\npublic:\n    SuffixArray() = default;\n    explicit SuffixArray(const\
     \ std::string& str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n\
     \        std::iota(sa.begin(), sa.end(), 0);\n        std::sort(sa.begin(), sa.end(),\
     \ [&](int i, int j) {\n            return s[i] < s[j];\n        });\n        int\
@@ -52,8 +51,7 @@ data:
     \ tn = t.size();\n        int ti = 0;\n        for (; si < sn && ti < tn; ++si,\
     \ ++ti) {\n            if (s[si] < t[ti]) return true;\n            if (s[si]\
     \ > t[ti]) return false;\n        }\n        return si >= sn && ti < tn;\n   \
-    \ }\n};\n#line 5 \"string/lcp_array.cpp\"\n\n/*\n * @brief Longest Common Prefix\
-    \ Array\n * @docs docs/string/lcp_array.md\n */\nstd::vector<int> lcp_array(const\
+    \ }\n};\n#line 5 \"string/lcp_array.cpp\"\n\nstd::vector<int> lcp_array(const\
     \ std::string& s, const SuffixArray& sa) {\n    int n = s.size();\n    std::vector<int>\
     \ rank(n);\n    for (int i = 0; i < n; ++i) rank[sa[i]] = i;\n    int h = 0;\n\
     \    std::vector<int> lcp(n - 1);\n    for (int i = 0; i < n; ++i) {\n       \
@@ -78,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 01:45:41+09:00'
+  timestamp: '2021-01-17 18:23:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_substrings.test.cpp

@@ -16,10 +16,9 @@ data:
   bundledCode: "#line 1 \"test/aoj/ALDS1_14_B.suffix_array.test.cpp\"\n#define PROBLEM\
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\n\n\
     #line 2 \"string/suffix_array.cpp\"\n#include <algorithm>\n#include <limits>\n\
-    #include <numeric>\n#include <string>\n#include <vector>\n\n/*\n * @brief Suffix\
-    \ Array\n * @docs docs/string/suffix_array.md\n */\nclass SuffixArray {\npublic:\n\
-    \    SuffixArray() = default;\n    explicit SuffixArray(const std::string& str)\
-    \ : s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
+    #include <numeric>\n#include <string>\n#include <vector>\n\nclass SuffixArray\
+    \ {\npublic:\n    SuffixArray() = default;\n    explicit SuffixArray(const std::string&\
+    \ str) : s(str) {\n        int n = s.size();\n        sa.resize(n);\n        std::iota(sa.begin(),\
     \ sa.end(), 0);\n        std::sort(sa.begin(), sa.end(), [&](int i, int j) {\n\
     \            return s[i] < s[j];\n        });\n        int cl = 0;\n        std::vector<int>\
     \ rank(n);\n        for (int i = 1; i < n; ++i) {\n            if (s[sa[i - 1]]\
@@ -68,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 13:50:55+09:00'
+  timestamp: '2021-01-17 18:23:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_B.suffix_array.test.cpp

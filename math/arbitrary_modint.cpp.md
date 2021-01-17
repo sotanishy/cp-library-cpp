@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/montmort_number_mod.test.cpp
     title: test/yosupo/montmort_number_mod.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Arbitrary Mod int
     links: []
@@ -75,7 +75,7 @@ data:
   path: math/arbitrary_modint.cpp
   requiredBy: []
   timestamp: '2021-01-17 17:56:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/montmort_number_mod.test.cpp
 documentation_of: math/arbitrary_modint.cpp

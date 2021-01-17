@@ -64,34 +64,29 @@ data:
   - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 documentation_of: string/rolling_hash.cpp
 layout: document
-redirect_from:
-- /library/string/rolling_hash.cpp
-- /library/string/rolling_hash.cpp.html
 title: Rolling Hash
 ---
-# Rolling Hash
+
+## Description
 
 文字列または数列のハッシュ値を計算する．Rabin-Karp 法に用いる．
 
 この実装では $\mod 2^{61} - 1$ を用いている．
 
-## Constructor
+## Operations
 
 - `RollingHash(string s, long long base)`
 - `RollingHash(vector<T> s, long long base)`
-    - `s` のハッシュ値を計算する．
+    - `s` のハッシュ値を計算する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `static long long generate_base()`
-    - ランダムな基数を返す．
+    - ランダムな基数を返す
     - 時間計算量: $O(1)$
 - `long long query(int l, int r)`
-    - 区間 $[l, r)$ のハッシュ値を返す．
+    - 区間 $[l, r)$ のハッシュ値を返す
     - 時間計算量: $O(1)$
 - `long long combine(long long h1, long long h2, int len2)`
-    - ハッシュ値 $h1$ と $h2$ を結合する．$h2$ の長さを $len2$ である．
+    - ハッシュ値 $h1$ と $h2$ を結合する．$h2$ の長さを $len2$ である
     - 時間計算量: $O(1)$
 - `void push_back(char c)`
     - 文字 $c$ を末尾に結合する

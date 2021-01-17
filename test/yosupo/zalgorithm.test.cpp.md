@@ -14,18 +14,18 @@ data:
     links:
     - https://judge.yosupo.jp/problem/zalgorithm
   bundledCode: "#line 1 \"test/yosupo/zalgorithm.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\
-    \n\n#line 2 \"string/z_array.cpp\"\n#include <string>\n#include <vector>\n\n/*\n\
-    \ * @brief Z Array\n * @docs docs/string/z_array.md\n */\nstd::vector<int> z_array(const\
-    \ std::string& s) {\n    int n = s.size();\n    std::vector<int> z(n);\n    z[0]\
-    \ = n;\n    int l = 0, r = 0;\n    for (int i = 1; i < n; ++i) {\n        int\
-    \ k = i - l;\n        if (i <= r && z[k] < r - i + 1) {\n            z[i] = z[k];\n\
-    \        } else {\n            l = i;\n            if (i > r) r = i;\n       \
-    \     while (r < n && s[r - l] == s[r]) ++r;\n            --r;\n            z[i]\
-    \ = r - l + 1;\n        }\n    }\n    return z;\n}\n#line 4 \"test/yosupo/zalgorithm.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    string S;\n    cin >> S;\n    vector<int> z = z_array(S);\n\
-    \    for (int i = 0; i < S.size(); ++i) cout << z[i] << (i < S.size() - 1 ? \"\
-    \ \" : \"\\n\");\n}\n"
+    \n\n#line 2 \"string/z_array.cpp\"\n#include <string>\n#include <vector>\n\nstd::vector<int>\
+    \ z_array(const std::string& s) {\n    int n = s.size();\n    std::vector<int>\
+    \ z(n);\n    z[0] = n;\n    int l = 0, r = 0;\n    for (int i = 1; i < n; ++i)\
+    \ {\n        int k = i - l;\n        if (i <= r && z[k] < r - i + 1) {\n     \
+    \       z[i] = z[k];\n        } else {\n            l = i;\n            if (i\
+    \ > r) r = i;\n            while (r < n && s[r - l] == s[r]) ++r;\n          \
+    \  --r;\n            z[i] = r - l + 1;\n        }\n    }\n    return z;\n}\n#line\
+    \ 4 \"test/yosupo/zalgorithm.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    string S;\n    cin >> S;\n    vector<int> z = z_array(S);\n    for (int\
+    \ i = 0; i < S.size(); ++i) cout << z[i] << (i < S.size() - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n\n#include\
     \ \"../../string/z_array.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
@@ -37,7 +37,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:32:41+09:00'
+  timestamp: '2021-01-17 18:23:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/zalgorithm.test.cpp

@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -94,7 +94,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
       title: 2-SAT
   - name: math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/arbitrary_modint.cpp
       title: Arbitrary Mod int
     - icon: ':warning:'
@@ -204,10 +204,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
     - icon: ':heavy_check_mark:'
@@ -280,10 +280,10 @@ data:
       title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
-      title: tree/euler_tour_tree.cpp
-    - icon: ':x:'
+      title: Euler Tour Tree
+    - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
-      title: tree/hld.cpp
+      title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
       path: tree/lca.cpp
       title: Lowest Common Ancestor
@@ -463,7 +463,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -541,16 +541,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
