@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: tree/euler_tour_tree.cpp
-    title: Euler Tour Tree
+    title: tree/euler_tour_tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -16,8 +16,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\"\
     \n\n#line 2 \"tree/euler_tour_tree.cpp\"\n#include <cassert>\n#include <memory>\n\
-    #include <unordered_map>\n#include <utility>\n#include <vector>\n\n/*\n * @brief\
-    \ Euler Tour Tree\n * @docs docs/tree/euler_tour_tree.md\n */\ntemplate <typename\
+    #include <unordered_map>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
     \ M>\nclass EulerTourTree {\n    using T = typename M::T;\n\npublic:\n    EulerTourTree()\
     \ = default;\n    explicit EulerTourTree(int n) {\n        ptr.resize(n);\n  \
     \      for (int i = 0; i < n; ++i) {\n            ptr[i][i] = std::make_shared<Node>(i,\
@@ -196,7 +195,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-11-11 19:45:48+09:00'
+  timestamp: '2021-01-17 17:56:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp

@@ -16,12 +16,11 @@ data:
   bundledCode: "#line 1 \"test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
     \n\n#line 2 \"tree/link_cut_tree.cpp\"\n#include <algorithm>\n#include <memory>\n\
-    #include <vector>\n\n/*\n * @brief Link/Cut Tree\n * @docs docs/tree/link_cut_tree.md\n\
-    \ */\ntemplate <typename M, typename M::T (*flip)(typename M::T)>\nclass LinkCutTree\
-    \ {\n    using T = typename M::T;\n\npublic:\n    LinkCutTree() = default;\n \
-    \   explicit LinkCutTree(int n) {\n        for (int i = 0; i < n; ++i) {\n   \
-    \         vertex.push_back(std::make_shared<Node>(M::id));\n        }\n    }\n\
-    \n    void link(int v, int p) {\n        evert(v);\n        expose(vertex[p]);\n\
+    #include <vector>\n\ntemplate <typename M, typename M::T (*flip)(typename M::T)>\n\
+    class LinkCutTree {\n    using T = typename M::T;\n\npublic:\n    LinkCutTree()\
+    \ = default;\n    explicit LinkCutTree(int n) {\n        for (int i = 0; i < n;\
+    \ ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id));\n     \
+    \   }\n    }\n\n    void link(int v, int p) {\n        evert(v);\n        expose(vertex[p]);\n\
     \        vertex[v]->par = vertex[p];\n        vertex[p]->right = vertex[v];\n\
     \        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n        expose(vertex[v]);\n\
     \        auto p = vertex[v]->left;\n        vertex[v]->left = p->par = nullptr;\n\
@@ -111,7 +110,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-30 15:38:28+09:00'
+  timestamp: '2021-01-17 17:56:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp

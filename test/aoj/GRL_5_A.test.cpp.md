@@ -21,8 +21,7 @@ data:
     #include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct\
     \ Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight) : from(-1),\
     \ to(to), weight(weight) {}\n    Edge(int from, int to, T weight) : from(from),\
-    \ to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\n\n/*\n *\
-    \ @brief Diameter of a Tree\n * @docs docs/tree/tree_diameter.md\n */\nclass TreeDiameter\
+    \ to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\n\nclass TreeDiameter\
     \ {\npublic:\n    TreeDiameter() = delete;\n\n    static int diameter(const std::vector<std::vector<int>>&\
     \ G) {\n        auto p = dfs(G, 0, -1);\n        auto q = dfs(G, p.second, -1);\n\
     \        return q.first;\n    }\n\n    template <typename T>\n    static T diameter(const\
@@ -68,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 20:53:04+09:00'
+  timestamp: '2021-01-17 17:56:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_A.test.cpp

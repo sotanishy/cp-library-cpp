@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/hld.cpp
-    title: Heavy-Light Decomposition
+    title: tree/hld.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -34,8 +34,7 @@ data:
     \ x)) {\n                v = nv;\n                i += k;\n            }\n   \
     \     }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
     \ data;\n};\n#line 2 \"tree/hld.cpp\"\n#include <algorithm>\n#line 4 \"tree/hld.cpp\"\
-    \n\n/*\n * @brief Heavy-Light Decomposition\n * @docs docs/tree/hld.md\n */\n\
-    template <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
+    \n\ntemplate <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
     \    HLD() = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n\
     \        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),\n       \
     \   in(G.size()), out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge)\
@@ -105,8 +104,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   requiredBy: []
-  timestamp: '2020-11-09 16:11:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-17 17:56:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
 layout: document
