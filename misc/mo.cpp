@@ -3,9 +3,6 @@
 #include <cmath>
 #include <vector>
 
-/*
- * @brief Mo's Algorithm
- */
 class Mo {
 public:
     Mo() = default;

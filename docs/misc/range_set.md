@@ -1,3 +1,8 @@
+---
+title: Range Set
+documentation_of: ../../misc/range_set.cpp
+---
+
 ## Description
 
 整数の閉区間の集合を管理する．

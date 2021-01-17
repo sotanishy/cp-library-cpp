@@ -5,10 +5,6 @@
 #include <string>
 #include <vector>
 
-/*
- * @brief Suffix Array
- * @docs docs/string/suffix_array.md
- */
 class SuffixArray {
 public:
     SuffixArray() = default;

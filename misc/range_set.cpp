@@ -4,10 +4,6 @@
 #include <set>
 #include <utility>
 
-/*
- * @brief Range Set
- * @docs docs/misc/range_set.md
- */
 template <typename T>
 class RangeSet {
 public:

@@ -1,3 +1,8 @@
+---
+title: Mo's Algorithm
+documentation_of: ../../misc/mo.cpp
+---
+
 ## Description
 
 Mo のアルゴリズム，またはクエリ平方分割は，静的な列に対するクエリをオフラインで高速に処理するアルゴリズムである．

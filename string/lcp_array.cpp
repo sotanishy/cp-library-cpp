@@ -3,10 +3,6 @@
 #include <vector>
 #include "suffix_array.cpp"
 
-/*
- * @brief Longest Common Prefix Array
- * @docs docs/string/lcp_array.md
- */
 std::vector<int> lcp_array(const std::string& s, const SuffixArray& sa) {
     int n = s.size();
     std::vector<int> rank(n);

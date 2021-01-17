@@ -1,6 +1,6 @@
 ---
 title: Heavy-Light Decomposition
-documentation_of: ../../tree/hld.md
+documentation_of: ../../tree/hld.cpp
 ---
 
 ## Description

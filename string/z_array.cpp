@@ -2,10 +2,6 @@
 #include <string>
 #include <vector>
 
-/*
- * @brief Z Array
- * @docs docs/string/z_array.md
- */
 std::vector<int> z_array(const std::string& s) {
     int n = s.size();
     std::vector<int> z(n);
