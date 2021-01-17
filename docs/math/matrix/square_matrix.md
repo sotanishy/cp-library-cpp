@@ -1,6 +1,6 @@
 ---
 title: Square Matrix
-documentation_of: ../../math/matrix/square_matrix.cpp
+documentation_of: ../../../math/matrix/square_matrix.cpp
 ---
 
 ## Description

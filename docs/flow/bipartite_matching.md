@@ -1,6 +1,6 @@
 ---
 title: Bipartite Matching
-documentation_of: ../../flow/bipartite_matching.md
+documentation_of: ../../flow/bipartite_matching.cpp
 ---
 
 ## Description

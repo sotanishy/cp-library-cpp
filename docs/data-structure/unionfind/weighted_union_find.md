@@ -1,6 +1,6 @@
 ---
 title: Weighted Union Find
-documentation_of: ../../data-structure/unionfind/weighted_union_find.cpp
+documentation_of: ../../../data-structure/unionfind/weighted_union_find.cpp
 ---
 
 ## Description

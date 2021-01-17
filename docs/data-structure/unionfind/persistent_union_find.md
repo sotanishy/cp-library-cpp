@@ -1,6 +1,6 @@
 ---
 title: Persistent Union Find
-documentation_of: ../../data-structure/unionfind/persistent_union_find.cpp
+documentation_of: ../../../data-structure/unionfind/persistent_union_find.cpp
 ---
 
 ## Description

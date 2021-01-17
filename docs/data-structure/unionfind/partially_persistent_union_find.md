@@ -1,6 +1,6 @@
 ---
 title: Partially Persistent Union Find
-documentation_of: ../../data-structure/unionfind/partially_persistent_union_find.cpp
+documentation_of: ../../../data-structure/unionfind/partially_persistent_union_find.cpp
 ---
 
 ## Description

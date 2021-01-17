@@ -1,6 +1,6 @@
 ---
 title: Undoable Union Find
-documentation_of: ../../data-structure/unionfind/undoable_union_find.cpp
+documentation_of: ../../../data-structure/unionfind/undoable_union_find.cpp
 ---
 
 ## Description

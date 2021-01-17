@@ -1,6 +1,6 @@
 ---
 title: Matrix
-documentation_of: ../../math/matrix/matrix.cpp
+documentation_of: ../../../math/matrix/matrix.cpp
 ---
 
 ## Description
