@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Lowest Common Ancestor
- * @docs docs/tree/lca.md
- */
 class LCA {
 public:
     LCA() = default;

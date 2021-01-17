@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Heavy-Light Decomposition
- * @docs docs/tree/hld.md
- */
 template <typename M>
 class HLD {
     using T = typename M::T;

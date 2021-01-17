@@ -1,3 +1,8 @@
+---
+title: Euler Tour Tree
+documentation_of: ../../tree/euler_tour_tree.md
+---
+
 ## Description
 
 Euler tour 木は，森を管理するデータ構造である．以下の機能を提供する:
@@ -13,17 +18,16 @@ Euler tour 木は，森を管理するデータ構造である．以下の機能
 ## Operations
 
 - `EulerTourTree(int n)`
-    - 頂点数 $n$ の森を構築する
+    - 頂点数 $n$ で初期化する
     - 時間計算量: $O(n)$
 - `void link(int u, int v)`
     - 辺 $uv$ を追加する
     - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
 - `void cut(int u, int v)`
-    - 辺 $uv$
-    - 木 $v$ を親から切る
+    - 辺 $uv$ を削除する
     - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
 - `void get(int v)`
-    - $v$ の値を取得する
+    - 頂点 $v$ の値を取得する
     - 時間計算量: $O(1)$
 - `void update(int v, T x)`
     - 頂点 $v$ の値を $x$ に変更する

@@ -1,3 +1,8 @@
+---
+title: Diameter of a Tree
+documentation_of: ../../tree/tree_diameter.cpp
+---
+
 ## Description
 
 DFSを用いて木の直径を求める．

@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <cassert>
 
+/*
+ * @brief Arbitrary Mod int
+ */
 class ArbitraryModint {
     using mint = ArbitraryModint;
 

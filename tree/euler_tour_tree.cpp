@@ -5,10 +5,6 @@
 #include <utility>
 #include <vector>
 
-/*
- * @brief Euler Tour Tree
- * @docs docs/tree/euler_tour_tree.md
- */
 template <typename M>
 class EulerTourTree {
     using T = typename M::T;

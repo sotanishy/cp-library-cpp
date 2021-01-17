@@ -4,10 +4,6 @@
 #include <vector>
 #include "../graph/edge.cpp"
 
-/*
- * @brief Diameter of a Tree
- * @docs docs/tree/tree_diameter.md
- */
 class TreeDiameter {
 public:
     TreeDiameter() = delete;
