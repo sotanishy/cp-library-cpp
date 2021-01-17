@@ -20,29 +20,27 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\n\n\
     #line 2 \"graph/two_edge_connected_components.cpp\"\n#include <vector>\n#line\
     \ 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n#line 5 \"\
-    graph/lowlink.cpp\"\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n\
-    \ */\nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
-    \ std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
-    \        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i] ==\
-    \ -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int, int>> get_bridges()\
-    \ const {\n        return bridge;\n    }\n\n    std::vector<int> get_articulation_points()\
-    \ const {\n        return articulation;\n    }\n\n    bool is_bridge(int u, int\
-    \ v) {\n        if (ord[u] > ord[v]) std::swap(u, v);\n        return ord[u] <\
-    \ low[v];\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
-    \ ord, low;\n    std::vector<std::pair<int, int>> bridge;\n    std::vector<int>\
-    \ articulation;\n    int k = 0;\n\n    void dfs(int v, int p) {\n        ord[v]\
-    \ = k++;\n        low[v] = ord[v];\n        bool is_articulation = false, checked\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p && !checked) {\n                checked = true;\n                continue;\n\
-    \            }\n            if (ord[c] == -1) {\n                ++cnt;\n    \
-    \            dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
-    graph/two_edge_connected_components.cpp\"\n\n/*\n * @brief 2-Edge-Connected Components\n\
-    \ * @docs docs/graph/two_edge_connected_components.md\n */\nclass TwoEdgeConnectedComponents\
+    graph/lowlink.cpp\"\n\nclass Lowlink {\npublic:\n    Lowlink() = default;\n  \
+    \  explicit Lowlink(const std::vector<std::vector<int>>& G) : G(G), ord(G.size(),\
+    \ -1), low(G.size()) {\n        for (int i = 0; i < (int) G.size(); ++i) {\n \
+    \           if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int,\
+    \ int>> get_bridges() const {\n        return bridge;\n    }\n\n    std::vector<int>\
+    \ get_articulation_points() const {\n        return articulation;\n    }\n\n \
+    \   bool is_bridge(int u, int v) {\n        if (ord[u] > ord[v]) std::swap(u,\
+    \ v);\n        return ord[u] < low[v];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
+    \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
+    \    std::vector<int> articulation;\n    int k = 0;\n\n    void dfs(int v, int\
+    \ p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
+    #line 4 \"graph/two_edge_connected_components.cpp\"\n\nclass TwoEdgeConnectedComponents\
     \ {\npublic:\n    TwoEdgeConnectedComponents() = default;\n    explicit TwoEdgeConnectedComponents(const\
     \ std::vector<std::vector<int>>& G)\n        : G(G), comp(G.size(), -1), lowlink(G)\
     \ {\n        for (int v = 0; v < (int) G.size(); ++v) {\n            if (comp[v]\
@@ -77,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2020-11-05 00:29:49+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp

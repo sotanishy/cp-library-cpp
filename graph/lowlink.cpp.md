@@ -18,12 +18,30 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/lowlink.md
-    document_title: Lowlink
     links: []
   bundledCode: "#line 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n\
-    #include <vector>\n\n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\n\
-    class Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
+    #include <vector>\n\nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit\
+    \ Lowlink(const std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size())\
+    \ {\n        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i]\
+    \ == -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int, int>>\
+    \ get_bridges() const {\n        return bridge;\n    }\n\n    std::vector<int>\
+    \ get_articulation_points() const {\n        return articulation;\n    }\n\n \
+    \   bool is_bridge(int u, int v) {\n        if (ord[u] > ord[v]) std::swap(u,\
+    \ v);\n        return ord[u] < low[v];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
+    \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
+    \    std::vector<int> articulation;\n    int k = 0;\n\n    void dfs(int v, int\
+    \ p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
+    \nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
     \ std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
     \        for (int i = 0; i < (int) G.size(); ++i) {\n            if (ord[i] ==\
     \ -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int, int>> get_bridges()\
@@ -42,35 +60,13 @@ data:
     \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
     \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
     \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
-    \n/*\n * @brief Lowlink\n * @docs docs/graph/lowlink.md\n */\nclass Lowlink {\n\
-    public:\n    Lowlink() = default;\n    explicit Lowlink(const std::vector<std::vector<int>>&\
-    \ G) : G(G), ord(G.size(), -1), low(G.size()) {\n        for (int i = 0; i < (int)\
-    \ G.size(); ++i) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n   \
-    \ }\n\n    std::vector<std::pair<int, int>> get_bridges() const {\n        return\
-    \ bridge;\n    }\n\n    std::vector<int> get_articulation_points() const {\n \
-    \       return articulation;\n    }\n\n    bool is_bridge(int u, int v) {\n  \
-    \      if (ord[u] > ord[v]) std::swap(u, v);\n        return ord[u] < low[v];\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
-    \ ord, low;\n    std::vector<std::pair<int, int>> bridge;\n    std::vector<int>\
-    \ articulation;\n    int k = 0;\n\n    void dfs(int v, int p) {\n        ord[v]\
-    \ = k++;\n        low[v] = ord[v];\n        bool is_articulation = false, checked\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p && !checked) {\n                checked = true;\n                continue;\n\
-    \            }\n            if (ord[c] == -1) {\n                ++cnt;\n    \
-    \            dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
     \        if (is_articulation) articulation.push_back(v);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.cpp
   requiredBy:
   - graph/two_edge_connected_components.cpp
-  timestamp: '2020-11-05 00:29:49+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
@@ -78,12 +74,10 @@ data:
   - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document
-redirect_from:
-- /library/graph/lowlink.cpp
-- /library/graph/lowlink.cpp.html
 title: Lowlink
 ---
-# Lowlink
+
+## Description
 
 Lowlink はグラフの橋や間接点などを求める際に有効な概念である．グラフの DFS tree において，頂点 $v$ の訪問時刻を `ord[v]` としたとき，$v$ から後退辺 (DFS tree に含まれない辺) を高々1回用いて到達することができる頂点の `ord` の最小値 `low[v]` を lowlink という．
 
@@ -93,14 +87,11 @@ Lowlink はグラフの橋や間接点などを求める際に有効な概念で
 
 空間計算量: $O(V + E)$
 
-## Constructor
+## Operations
 
 - `Lowlink(vector<vector<int>> G)`
     - グラフ $G$ の隣接リストが与えられたとき，$G$ の橋と間接点を求める
     - 時間計算量: $O(V + E)$
-
-## Member functions
-
 - `vector<pair<int, int>> get_bridges()`
     - $G$ の橋を返す
 - `vector<int> get_articulation_points()`

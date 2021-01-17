@@ -6,7 +6,7 @@ data:
     title: Persistent Array
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/persistent_union_find.cpp
-    title: data-structure/unionfind/persistent_union_find.cpp
+    title: Persistent Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

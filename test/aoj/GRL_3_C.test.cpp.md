@@ -14,8 +14,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
   bundledCode: "#line 1 \"test/aoj/GRL_3_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
-    \n\n#line 2 \"graph/scc.cpp\"\n#include <algorithm>\n#include <vector>\n\n/*\n\
-    \ * @brief Strongly Connected Components\n * @docs docs/graph/scc.md\n */\nclass\
+    \n\n#line 2 \"graph/scc.cpp\"\n#include <algorithm>\n#include <vector>\n\nclass\
     \ SCC {\npublic:\n    SCC() = default;\n    explicit SCC(int n) : G(n), G_rev(n),\
     \ comp(n, -1), visited(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
     \        G_rev[v].push_back(u);\n    }\n\n    void build() {\n        for (int\
@@ -59,7 +58,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:48:17+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_C.test.cpp

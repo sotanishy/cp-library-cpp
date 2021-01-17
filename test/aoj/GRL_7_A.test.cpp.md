@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.cpp
-    title: flow/bipartite_matching.cpp
+    title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

@@ -27,9 +27,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/li_chao_tree.cpp
       title: Li Chao Tree
-    - icon: ':warning:'
-      path: data-structure/monoids.cpp
-      title: data-structure/monoids.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
@@ -104,24 +101,24 @@ data:
     pages:
     - icon: ':warning:'
       path: data-structure/unionfind/partially_persistent_union_find.cpp
-      title: data-structure/unionfind/partially_persistent_union_find.cpp
+      title: Partially Persistent Union Find
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.cpp
-      title: data-structure/unionfind/persistent_union_find.cpp
+      title: Persistent Union Find
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.cpp
-      title: data-structure/unionfind/undoable_union_find.cpp
+      title: Undoable Union Find
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/union_find.cpp
-      title: data-structure/unionfind/union_find.cpp
+      title: Union Find
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/weighted_union_find.cpp
-      title: data-structure/unionfind/weighted_union_find.cpp
+      title: Weighted Union Find
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
       path: flow/bipartite_matching.cpp
-      title: flow/bipartite_matching.cpp
+      title: Bipartite Matching
     - icon: ':heavy_check_mark:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
@@ -229,10 +226,10 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.cpp
-      title: math/matrix/matrix.cpp
+      title: Matrix
     - icon: ':heavy_check_mark:'
       path: math/matrix/square_matrix.cpp
-      title: math/matrix/square_matrix.cpp
+      title: Square Matrix
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'
@@ -244,6 +241,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/mo.cpp
       title: Mo's Algorithm
+    - icon: ':warning:'
+      path: misc/monoids.cpp
+      title: misc/monoids.cpp
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp

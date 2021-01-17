@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.cpp
-    title: data-structure/unionfind/union_find.cpp
+    title: Union Find
   - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
@@ -21,8 +21,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/mst.md
-    document_title: Minimum Spanning Tree Algorithms
     links: []
   bundledCode: "#line 2 \"graph/mst.cpp\"\n#include <algorithm>\n#include <queue>\n\
     #include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate\
@@ -37,8 +35,7 @@ data:
     \        data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return\
     \ find(x) == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
     \    }\n\nprivate:\n    std::vector<int> data;\n};\n#line 8 \"graph/mst.cpp\"\n\
-    \n/*\n * @brief Minimum Spanning Tree Algorithms\n * @docs docs/graph/mst.md\n\
-    \ */\n\n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
+    \n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
     \ kruskal(std::vector<Edge<T>> G, int V) {\n    std::sort(G.begin(), G.end(),\
     \ [](const auto& e1, const auto& e2) {\n        return e1.weight < e2.weight;\n\
     \    });\n    UnionFind uf(V);\n    T weight = 0;\n    std::vector<Edge<T>> edges;\n\
@@ -68,8 +65,7 @@ data:
     \   }\n        }\n    }\n    return {weight, edges};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <queue>\n#include <utility>\n\
     #include <vector>\n#include \"edge.cpp\"\n#include \"../data-structure/unionfind/union_find.cpp\"\
-    \n\n/*\n * @brief Minimum Spanning Tree Algorithms\n * @docs docs/graph/mst.md\n\
-    \ */\n\n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
+    \n\n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
     \ kruskal(std::vector<Edge<T>> G, int V) {\n    std::sort(G.begin(), G.end(),\
     \ [](const auto& e1, const auto& e2) {\n        return e1.weight < e2.weight;\n\
     \    });\n    UnionFind uf(V);\n    T weight = 0;\n    std::vector<Edge<T>> edges;\n\
@@ -103,7 +99,7 @@ data:
   isVerificationFile: false
   path: graph/mst.cpp
   requiredBy: []
-  timestamp: '2021-01-17 18:47:10+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.prim.test.cpp
@@ -111,12 +107,10 @@ data:
   - test/aoj/GRL_2_A.kruskal.test.cpp
 documentation_of: graph/mst.cpp
 layout: document
-redirect_from:
-- /library/graph/mst.cpp
-- /library/graph/mst.cpp.html
 title: Minimum Spanning Tree Algorithms
 ---
-# Minimum Spanning Tree Algorithms
+
+## Description
 
 最小全域木を求めるアルゴリズム詰め合わせ
 

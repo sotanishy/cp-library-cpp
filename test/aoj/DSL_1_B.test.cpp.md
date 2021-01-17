@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/weighted_union_find.cpp
-    title: data-structure/unionfind/weighted_union_find.cpp
+    title: Weighted Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

@@ -9,12 +9,9 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/maximum_independent_set.md
-    document_title: Maximum Independent Set
     links: []
   bundledCode: "#line 2 \"graph/maximum_independent_set.cpp\"\n#include <vector>\n\
-    \n/*\n * @brief Maximum Independent Set\n * @docs docs/graph/maximum_independent_set.md\n\
-    \ */\nstd::vector<int> maximum_independent_set(const std::vector<std::vector<int>>&\
+    \nstd::vector<int> maximum_independent_set(const std::vector<std::vector<int>>&\
     \ G) {\n    int n = G.size();\n    std::vector<bool> used(n), ans(n);\n    std::vector<int>\
     \ deg(n), dead(n);\n    for (int i = 0; i < n; ++i) deg[i] = G[i].size();\n  \
     \  int res = 0, cnt = 0, alive = n;\n\n    auto dfs = [&](const auto& self) {\n\
@@ -34,8 +31,7 @@ data:
     \        if (!dead[u]) ++alive;\n        }\n        --cnt;\n    };\n\n    dfs(dfs);\n\
     \n    std::vector<int> ret;\n    for (int i = 0; i < n; ++i) {\n        if (ans[i])\
     \ ret.push_back(i);\n    }\n    return ret;\n}\n"
-  code: "#pragma once\n#include <vector>\n\n/*\n * @brief Maximum Independent Set\n\
-    \ * @docs docs/graph/maximum_independent_set.md\n */\nstd::vector<int> maximum_independent_set(const\
+  code: "#pragma once\n#include <vector>\n\nstd::vector<int> maximum_independent_set(const\
     \ std::vector<std::vector<int>>& G) {\n    int n = G.size();\n    std::vector<bool>\
     \ used(n), ans(n);\n    std::vector<int> deg(n), dead(n);\n    for (int i = 0;\
     \ i < n; ++i) deg[i] = G[i].size();\n    int res = 0, cnt = 0, alive = n;\n\n\
@@ -59,18 +55,16 @@ data:
   isVerificationFile: false
   path: graph/maximum_independent_set.cpp
   requiredBy: []
-  timestamp: '2020-10-26 12:58:49+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/maximum_independent_set.test.cpp
 documentation_of: graph/maximum_independent_set.cpp
 layout: document
-redirect_from:
-- /library/graph/maximum_independent_set.cpp
-- /library/graph/maximum_independent_set.cpp.html
 title: Maximum Independent Set
 ---
-# Maximum Independent Set
+
+## Description
 
 最大独立集合を求める．
 

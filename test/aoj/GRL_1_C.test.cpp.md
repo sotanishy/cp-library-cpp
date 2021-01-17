@@ -22,8 +22,7 @@ data:
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
     \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
     \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 8\
-    \ \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n * @docs\
-    \ docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate\
+    \ \"graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate\
     \ <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int\
     \ V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<int>\
     \ dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n       \
@@ -85,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_C.test.cpp
   requiredBy: []
-  timestamp: '2020-11-28 19:10:59+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_C.test.cpp

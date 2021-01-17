@@ -21,16 +21,13 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/shortest_path.md
-    document_title: Shortest Path Algorithms
     links: []
   bundledCode: "#line 2 \"graph/shortest_path.cpp\"\n#include <limits>\n#include <queue>\n\
     #include <tuple>\n#include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
     \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
     \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 8\
-    \ \"graph/shortest_path.cpp\"\n\n/*\n * @brief Shortest Path Algorithms\n * @docs\
-    \ docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate\
+    \ \"graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate\
     \ <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int\
     \ V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<int>\
     \ dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n       \
@@ -62,9 +59,8 @@ data:
     \ {\n                    dist[e.to] = d + e.weight;\n                    buckets[dist[e.to]].push_back(e.to);\n\
     \                }\n            }\n        }\n    }\n    return dist;\n}\n"
   code: "#pragma once\n#include <limits>\n#include <queue>\n#include <tuple>\n#include\
-    \ <utility>\n#include <vector>\n#include \"edge.cpp\"\n\n/*\n * @brief Shortest\
-    \ Path Algorithms\n * @docs docs/graph/shortest_path.md\n */\n\n/*\n * Bellman-Ford\
-    \ Algorithm\n */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
+    \ <utility>\n#include <vector>\n#include \"edge.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n\
+    \ */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
     \ G, int V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n \
     \   std::vector<int> dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i <\
     \ V; ++i) {\n        for (auto& e : G) {\n            if (dist[e.from] != INF\
@@ -100,7 +96,7 @@ data:
   path: graph/shortest_path.cpp
   requiredBy:
   - graph/range_edge_graph.cpp
-  timestamp: '2020-11-28 19:10:59+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp
@@ -108,18 +104,16 @@ data:
   - test/aoj/GRL_1_A.test.cpp
 documentation_of: graph/shortest_path.cpp
 layout: document
-redirect_from:
-- /library/graph/shortest_path.cpp
-- /library/graph/shortest_path.cpp.html
 title: Shortest Path Algorithms
 ---
-# Shortest Path Algorithms
+
+## Description
 
 最短経路問題を解くアルゴリズム詰め合わせ
 
 ## Bellman-Ford Algorithm
 
-Bellman-Ford のアルゴリズムは，重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．負閉路の検出にも用いられる．
+Bellman-Ford のアルゴリズムは，重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．負閉路検出にも用いられる．
 
 - `vector<T> bellman_ford(vector<Edge<T>> G, int V, int s)`
     - 頂点数 $V$ のグラフ $G$ の辺のリストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する．$G$ が負閉路を含む場合は，空のリストを返す

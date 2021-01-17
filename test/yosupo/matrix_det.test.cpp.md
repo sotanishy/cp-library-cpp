@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.cpp
-    title: math/matrix/matrix.cpp
+    title: Matrix
   - icon: ':heavy_check_mark:'
     path: math/matrix/square_matrix.cpp
-    title: math/matrix/square_matrix.cpp
+    title: Square Matrix
   - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int

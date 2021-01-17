@@ -15,18 +15,17 @@ data:
     - https://judge.yosupo.jp/problem/maximum_independent_set
   bundledCode: "#line 1 \"test/yosupo/maximum_independent_set.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\n\n#line\
-    \ 2 \"graph/maximum_independent_set.cpp\"\n#include <vector>\n\n/*\n * @brief\
-    \ Maximum Independent Set\n * @docs docs/graph/maximum_independent_set.md\n */\n\
-    std::vector<int> maximum_independent_set(const std::vector<std::vector<int>>&\
-    \ G) {\n    int n = G.size();\n    std::vector<bool> used(n), ans(n);\n    std::vector<int>\
-    \ deg(n), dead(n);\n    for (int i = 0; i < n; ++i) deg[i] = G[i].size();\n  \
-    \  int res = 0, cnt = 0, alive = n;\n\n    auto dfs = [&](const auto& self) {\n\
-    \        if (cnt + alive <= res) return;\n\n        int v = -1;\n        for (int\
-    \ i = 0; i < n; ++i) {\n            if (used[i] || dead[i]) continue;\n      \
-    \      if (deg[i] <= 1) {\n                v = i;\n                break;\n  \
-    \          }\n            if (v < 0 || deg[v] < deg[i]) v = i;\n        }\n  \
-    \      if (v < 0) return;\n\n        // not use\n        if (deg[v] != 1) {\n\
-    \            dead[v] = true;\n            --alive;\n            for (int u : G[v])\
+    \ 2 \"graph/maximum_independent_set.cpp\"\n#include <vector>\n\nstd::vector<int>\
+    \ maximum_independent_set(const std::vector<std::vector<int>>& G) {\n    int n\
+    \ = G.size();\n    std::vector<bool> used(n), ans(n);\n    std::vector<int> deg(n),\
+    \ dead(n);\n    for (int i = 0; i < n; ++i) deg[i] = G[i].size();\n    int res\
+    \ = 0, cnt = 0, alive = n;\n\n    auto dfs = [&](const auto& self) {\n       \
+    \ if (cnt + alive <= res) return;\n\n        int v = -1;\n        for (int i =\
+    \ 0; i < n; ++i) {\n            if (used[i] || dead[i]) continue;\n          \
+    \  if (deg[i] <= 1) {\n                v = i;\n                break;\n      \
+    \      }\n            if (v < 0 || deg[v] < deg[i]) v = i;\n        }\n      \
+    \  if (v < 0) return;\n\n        // not use\n        if (deg[v] != 1) {\n    \
+    \        dead[v] = true;\n            --alive;\n            for (int u : G[v])\
     \ --deg[u];\n\n            self(self);\n\n            dead[v] = false;\n     \
     \       ++alive;\n            for (int u : G[v]) ++deg[u];\n        }\n\n    \
     \    // use\n        used[v] = true;\n        --alive;\n        for (int u : G[v])\
@@ -58,7 +57,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 12:58:49+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/maximum_independent_set.test.cpp

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.cpp
-    title: data-structure/unionfind/union_find.cpp
+    title: Union Find
   - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
@@ -34,8 +34,7 @@ data:
     \        data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return\
     \ find(x) == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
     \    }\n\nprivate:\n    std::vector<int> data;\n};\n#line 8 \"graph/mst.cpp\"\n\
-    \n/*\n * @brief Minimum Spanning Tree Algorithms\n * @docs docs/graph/mst.md\n\
-    \ */\n\n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
+    \n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
     \ kruskal(std::vector<Edge<T>> G, int V) {\n    std::sort(G.begin(), G.end(),\
     \ [](const auto& e1, const auto& e2) {\n        return e1.weight < e2.weight;\n\
     \    });\n    UnionFind uf(V);\n    T weight = 0;\n    std::vector<Edge<T>> edges;\n\
@@ -82,7 +81,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A.boruvka.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 18:47:10+09:00'
+  timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A.boruvka.test.cpp
