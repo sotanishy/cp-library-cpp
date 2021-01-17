@@ -1,4 +1,9 @@
-# Strongly Connected Components
+---
+title: Strongly Connected Components
+documentation_of: ../../graph/scc.cpp
+---
+
+## Description
 
 グラフ $G$ の強連結成分分解をする．
 
@@ -10,14 +15,11 @@
 
 空間計算量: $O(V + E)$
 
-## Constructor
+## Operations
 
 - `SCC(int n)`
     - グラフを $n$ 頂点で初期化する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `void add_edge(int u, int v)`
     - 辺 $(u, v)$ を追加する
     - 時間計算量: $O(1)$

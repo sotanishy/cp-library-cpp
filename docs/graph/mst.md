@@ -1,4 +1,9 @@
-# Minimum Spanning Tree Algorithms
+---
+title: Minimum Spanning Tree Algorithms
+documentation_of: ../../graph/mst.cpp
+---
+
+## Description
 
 最小全域木を求めるアルゴリズム詰め合わせ
 

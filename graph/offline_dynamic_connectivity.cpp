@@ -7,9 +7,6 @@
 #include <vector>
 #include "../data-structure/unionfind/undoable_union_find.cpp"
 
-/*
- * @brief Offline Dynamic Connectivity
- */
 template <typename M>
 class OfflineDynamicConnectivity {
     using T = typename M::T;

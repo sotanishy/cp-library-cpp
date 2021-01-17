@@ -1,4 +1,9 @@
-# Topological Sort
+---
+title: Topological Sort
+documentation_of: ../../graph/topological_sort.cpp
+---
+
+## Description
 
 トポロジカルソートは，有向非巡回グラフ (DAG) の頂点を順序付けして，任意の辺 $(u, v)$ について $u$ が $v$ よりも前に来るように並べることである．
 

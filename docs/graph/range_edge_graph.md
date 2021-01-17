@@ -1,3 +1,8 @@
+---
+title: Range Edge Graph
+documentation_of: ../../graph/range_edge_graph.cpp
+---
+
 ## Description
 
 セグメント木と同様の構造を用いることで，効率的に区間に辺を張ることができる．

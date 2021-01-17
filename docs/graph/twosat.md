@@ -1,4 +1,9 @@
-# 2-SAT
+---
+title: 2-SAT
+documentation_of: ../../graph/twosat.cpp
+---
+
+## Description
 
 2-SAT は，節内のリテラル数が高々2つであるような乗法標準形の論理式に対する充足可能性問題 (SAT) である．
 
@@ -6,14 +11,11 @@
 
 空間計算量: $O(n + m)$．$n$ は変の数，$m$ は節の数
 
-## Constructor
+## Operations
 
 - `TwoSat(int n)`
     - $n$ 変数で初期化する
     - 時間計算量: $O(n)$
-
-## Member functions
-
 - `void add_clause(int u, bool a, int v, bool b)`
     - 節 $(u \lor v)$ を追加する．`a == false` ならば，$u$ を $\lnot u$ で置き換える．同様に`b == false` ならば，$v$ を $\lnot v$ で置き換える
     - 時間計算量: $O(1)$

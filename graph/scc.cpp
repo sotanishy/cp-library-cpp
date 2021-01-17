@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Strongly Connected Components
- * @docs docs/graph/scc.md
- */
 class SCC {
 public:
     SCC() = default;

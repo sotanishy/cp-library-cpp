@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 
-/*
- * @brief Maximum Independent Set
- * @docs docs/graph/maximum_independent_set.md
- */
 std::vector<int> maximum_independent_set(const std::vector<std::vector<int>>& G) {
     int n = G.size();
     std::vector<bool> used(n), ans(n);

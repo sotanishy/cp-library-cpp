@@ -3,10 +3,6 @@
 #include "edge.cpp"
 #include "shortest_path.cpp"
 
-/*
- * @brief Range Edge Graph
- * @docs docs/graph/range_edge_graph.md
- */
 template <typename T>
 class RangeEdgeGraph {
 public:

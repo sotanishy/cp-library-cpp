@@ -2,10 +2,6 @@
 #include <vector>
 #include "scc.cpp"
 
-/*
- * @brief 2-SAT
- * @docs docs/graph/twosat.md
- */
 class TwoSat {
 public:
     TwoSat() = default;

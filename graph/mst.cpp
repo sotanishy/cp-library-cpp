@@ -7,11 +7,6 @@
 #include "../data-structure/unionfind/union_find.cpp"
 
 /*
- * @brief Minimum Spanning Tree Algorithms
- * @docs docs/graph/mst.md
- */
-
-/*
  * Kruskal's Algorithm
  */
 template <typename T>

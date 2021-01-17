@@ -1,4 +1,9 @@
-# Maximum Independent Set
+---
+title: Maximum Independent Set
+documentation_of: ../../graph/maximum_independent_set.cpp
+---
+
+## Description
 
 最大独立集合を求める．
 

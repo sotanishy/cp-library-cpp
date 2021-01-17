@@ -7,11 +7,6 @@
 #include "edge.cpp"
 
 /*
- * @brief Shortest Path Algorithms
- * @docs docs/graph/shortest_path.md
- */
-
-/*
  * Bellman-Ford Algorithm
  */
 template <typename T>

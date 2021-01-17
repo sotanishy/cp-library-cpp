@@ -2,10 +2,6 @@
 #include <stack>
 #include <vector>
 
-/*
- * @brief Topological Sort
- * @docs docs/graph/topological_sort.md
- */
 std::vector<int> topological_sort(const std::vector<std::vector<int>>& G) {
     int V = G.size();
     std::vector<int> par_count(V);

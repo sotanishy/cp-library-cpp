@@ -2,10 +2,6 @@
 #include <vector>
 #include "lowlink.cpp"
 
-/*
- * @brief 2-Edge-Connected Components
- * @docs docs/graph/two_edge_connected_components.md
- */
 class TwoEdgeConnectedComponents {
 public:
     TwoEdgeConnectedComponents() = default;

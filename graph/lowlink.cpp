@@ -3,10 +3,6 @@
 #include <utility>
 #include <vector>
 
-/*
- * @brief Lowlink
- * @docs docs/graph/lowlink.md
- */
 class Lowlink {
 public:
     Lowlink() = default;
