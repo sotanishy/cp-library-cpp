@@ -104,24 +104,24 @@ data:
     pages:
     - icon: ':warning:'
       path: data-structure/unionfind/partially_persistent_union_find.cpp
-      title: Partially Persistent Union Find
+      title: data-structure/unionfind/partially_persistent_union_find.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.cpp
-      title: Persistent Union Find
+      title: data-structure/unionfind/persistent_union_find.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.cpp
-      title: Undoable Union Find
+      title: data-structure/unionfind/undoable_union_find.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/union_find.cpp
-      title: Union Find
+      title: data-structure/unionfind/union_find.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/weighted_union_find.cpp
-      title: Weighted Union Find
+      title: data-structure/unionfind/weighted_union_find.cpp
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
       path: flow/bipartite_matching.cpp
-      title: Bipartite Matching
+      title: flow/bipartite_matching.cpp
     - icon: ':heavy_check_mark:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
@@ -229,10 +229,10 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.cpp
-      title: Matrix
+      title: math/matrix/matrix.cpp
     - icon: ':heavy_check_mark:'
       path: math/matrix/square_matrix.cpp
-      title: Square Matrix
+      title: math/matrix/square_matrix.cpp
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'

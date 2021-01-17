@@ -7,7 +7,7 @@ data:
     title: Persistent Queue
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/persistent_union_find.cpp
-    title: Persistent Union Find
+    title: data-structure/unionfind/persistent_union_find.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_queue.test.cpp

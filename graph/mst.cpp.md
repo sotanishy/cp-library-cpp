@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.cpp
-    title: Union Find
+    title: data-structure/unionfind/union_find.cpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
@@ -29,8 +29,7 @@ data:
     \ <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int\
     \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
     \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
-    \n\n/*\n * @brief Union Find\n * @docs docs/data-structure/unionfind/union_find.md\n\
-    \ */\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
+    \n\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
     \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
     \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return;\n\
@@ -104,7 +103,7 @@ data:
   isVerificationFile: false
   path: graph/mst.cpp
   requiredBy: []
-  timestamp: '2020-10-24 20:53:04+09:00'
+  timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.prim.test.cpp

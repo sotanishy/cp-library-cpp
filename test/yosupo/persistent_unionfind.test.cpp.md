@@ -6,7 +6,7 @@ data:
     title: Persistent Array
   - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/persistent_union_find.cpp
-    title: Persistent Union Find
+    title: data-structure/unionfind/persistent_union_find.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -35,8 +35,7 @@ data:
     \ : std::make_shared<Node>();\n        if (k == 0) {\n            res->val = x;\n\
     \        } else {\n            res->ch[k % B] = set(res->ch[k % B], k / B, x);\n\
     \        }\n        return res;\n    }\n};\n#line 5 \"data-structure/unionfind/persistent_union_find.cpp\"\
-    \n\n/*\n * @brief Persistent Union Find\n * @docs docs/data-structure/unionfind/persistent_union_find.md\n\
-    \ */\nclass PersistentUnionFind {\npublic:\n    PersistentUnionFind() = default;\n\
+    \n\nclass PersistentUnionFind {\npublic:\n    PersistentUnionFind() = default;\n\
     \    explicit PersistentUnionFind(int n) : data(std::vector<int>(n, -1)) {}\n\n\
     \    int find(int x) const {\n        int p = data.get(x);\n        if (p < 0)\
     \ return x;\n        return find(p);\n    }\n\n    PersistentUnionFind unite(int\
@@ -72,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:25:42+09:00'
+  timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_unionfind.test.cpp

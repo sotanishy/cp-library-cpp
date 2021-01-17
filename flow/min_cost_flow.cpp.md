@@ -9,14 +9,11 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/flow/min_cost_flow.md
-    document_title: Minimum Cost Flow
     links: []
   bundledCode: "#line 2 \"flow/min_cost_flow.cpp\"\n#include <algorithm>\n#include\
     \ <functional>\n#include <limits>\n#include <queue>\n#include <utility>\n#include\
-    \ <vector>\n\n/*\n * @brief Minimum Cost Flow\n * @docs docs/flow/min_cost_flow.md\n\
-    \ */\ntemplate <typename Cap, typename Cost>\nclass MinCostFlow {\npublic:\n \
-    \   MinCostFlow() = default;\n    explicit MinCostFlow(int V) : V(V), G(V) {}\n\
+    \ <vector>\n\ntemplate <typename Cap, typename Cost>\nclass MinCostFlow {\npublic:\n\
+    \    MinCostFlow() = default;\n    explicit MinCostFlow(int V) : V(V), G(V) {}\n\
     \n    void add_edge(int u, int v, Cap cap, Cost cost) {\n        G[u].emplace_back(v,\
     \ cap, cost, (int) G[v].size());\n        G[v].emplace_back(u, 0, -cost, (int)\
     \ G[u].size() - 1);\n    }\n\n    Cost min_cost_flow(int s, int t, Cap f) {\n\
@@ -46,9 +43,8 @@ data:
     \ rev(rev) {}\n    };\n\n    static constexpr Cost INF = std::numeric_limits<Cost>::max()\
     \ / 2;\n\n    int V;\n    std::vector<std::vector<Edge>> G;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <functional>\n#include <limits>\n\
-    #include <queue>\n#include <utility>\n#include <vector>\n\n/*\n * @brief Minimum\
-    \ Cost Flow\n * @docs docs/flow/min_cost_flow.md\n */\ntemplate <typename Cap,\
-    \ typename Cost>\nclass MinCostFlow {\npublic:\n    MinCostFlow() = default;\n\
+    #include <queue>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
+    \ Cap, typename Cost>\nclass MinCostFlow {\npublic:\n    MinCostFlow() = default;\n\
     \    explicit MinCostFlow(int V) : V(V), G(V) {}\n\n    void add_edge(int u, int\
     \ v, Cap cap, Cost cost) {\n        G[u].emplace_back(v, cap, cost, (int) G[v].size());\n\
     \        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);\n    }\n\n   \
@@ -81,36 +77,24 @@ data:
   isVerificationFile: false
   path: flow/min_cost_flow.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:23:12+09:00'
+  timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_B.test.cpp
 documentation_of: flow/min_cost_flow.cpp
 layout: document
-redirect_from:
-- /library/flow/min_cost_flow.cpp
-- /library/flow/min_cost_flow.cpp.html
 title: Minimum Cost Flow
 ---
-# Minimum Cost Flow
+
+## Description
 
 フローネットワークの最小費用流を求める．
 
-## Template parameters
-
-- `Cap`
-    - 容量の型
-- `Cost`
-    - コストの型
-
-## Construcor
+## Operations
 
 - `MinCostFlow(int V)`
     - グラフを $V$ 頂点で初期化する
     - 時間計算量: $O(V)$
-
-## Member functions
-
 - `void add_edge(int u, int v, Cap cap, Cost cost)`
     - 容量 $cap$，コスト $cost$ の辺 $(u, v)$ を追加する
     - 時間計算量: $O(1)$

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.cpp
-    title: Bipartite Matching
+    title: flow/bipartite_matching.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -15,11 +15,10 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A
   bundledCode: "#line 1 \"test/aoj/GRL_7_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A\"\
     \n\n#line 2 \"flow/bipartite_matching.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    \n/*\n * @brief Bipartite Matching\n * @docs docs/flow/bipartite_matching.md\n\
-    \ */\nclass BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n\
-    \    explicit BipartiteMatching(int n) : G(n), used(n), match(n) {}\n\n    void\
-    \ add_edge(int u, int v) {\n        G[u].push_back(v);\n        G[v].push_back(u);\n\
-    \    }\n\n    int bipartite_matching() {\n        int res = 0;\n        std::fill(match.begin(),\
+    \nclass BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n   \
+    \ explicit BipartiteMatching(int n) : G(n), used(n), match(n) {}\n\n    void add_edge(int\
+    \ u, int v) {\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n\
+    \n    int bipartite_matching() {\n        int res = 0;\n        std::fill(match.begin(),\
     \ match.end(), -1);\n        for (int v = 0; v < (int) G.size(); ++v) {\n    \
     \        if (match[v] == -1) {\n                std::fill(used.begin(), used.end(),\
     \ false);\n                if (dfs(v)) ++res;\n            }\n        }\n    \
@@ -50,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_7_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 20:53:04+09:00'
+  timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_7_A.test.cpp

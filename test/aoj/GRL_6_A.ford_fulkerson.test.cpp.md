@@ -16,8 +16,7 @@ data:
   bundledCode: "#line 1 \"test/aoj/GRL_6_A.ford_fulkerson.test.cpp\"\n#define PROBLEM\
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\n\n#line\
     \ 2 \"flow/ford_fulkerson.cpp\"\n#include <algorithm>\n#include <limits>\n#include\
-    \ <vector>\n\n/*\n * @brief Ford-Fulkerson Algorithm\n * @docs docs/flow/ford_fulkerson.md\n\
-    \ */\ntemplate <typename T>\nclass FordFulkerson {\npublic:\n    FordFulkerson()\
+    \ <vector>\n\ntemplate <typename T>\nclass FordFulkerson {\npublic:\n    FordFulkerson()\
     \ = default;\n    explicit FordFulkerson(int n) : G(n), used(n) {}\n\n    void\
     \ add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v, cap, (int) G[v].size());\n\
     \        G[v].emplace_back(u, 0, (int) G[u].size() - 1);\n    }\n\n    T max_flow(int\
@@ -51,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:56:56+09:00'
+  timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.ford_fulkerson.test.cpp

@@ -16,8 +16,7 @@ data:
   bundledCode: "#line 1 \"test/aoj/GRL_6_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
     \n\n#line 2 \"flow/min_cost_flow.cpp\"\n#include <algorithm>\n#include <functional>\n\
     #include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\n\
-    /*\n * @brief Minimum Cost Flow\n * @docs docs/flow/min_cost_flow.md\n */\ntemplate\
-    \ <typename Cap, typename Cost>\nclass MinCostFlow {\npublic:\n    MinCostFlow()\
+    template <typename Cap, typename Cost>\nclass MinCostFlow {\npublic:\n    MinCostFlow()\
     \ = default;\n    explicit MinCostFlow(int V) : V(V), G(V) {}\n\n    void add_edge(int\
     \ u, int v, Cap cap, Cost cost) {\n        G[u].emplace_back(v, cap, cost, (int)\
     \ G[v].size());\n        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);\n\
@@ -64,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:23:12+09:00'
+  timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp
