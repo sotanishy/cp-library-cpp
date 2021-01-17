@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/interpolation.cpp
+    title: Polynomial Interpolation
   - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
@@ -103,14 +106,15 @@ data:
   path: math/ntt.cpp
   requiredBy:
   - math/polynomial.cpp
+  - math/interpolation.cpp
   timestamp: '2020-11-28 19:10:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/inv_of_formal_power_series.test.cpp
-  - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
 documentation_of: math/ntt.cpp
 layout: document
 redirect_from:

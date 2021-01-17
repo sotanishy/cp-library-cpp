@@ -46,9 +46,9 @@ data:
   timestamp: '2020-10-24 00:03:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/point_add_rectangle_sum.test.cpp
-  - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
 documentation_of: misc/compress.cpp
 layout: document
 redirect_from:

@@ -107,9 +107,9 @@ data:
   timestamp: '2020-10-24 20:53:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_2_A.prim.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/aoj/GRL_2_A.prim.test.cpp
 documentation_of: graph/mst.cpp
 layout: document
 redirect_from:

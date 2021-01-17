@@ -56,10 +56,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/unionfind.test.cpp
-  - test/aoj/GRL_2_A.boruvka.test.cpp
-  - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/GRL_2_A.prim.test.cpp
+  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/DSL_1_A.test.cpp
+  - test/aoj/GRL_2_A.kruskal.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 redirect_from:

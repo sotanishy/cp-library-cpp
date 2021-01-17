@@ -150,8 +150,8 @@ data:
   timestamp: '2020-12-15 21:43:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/system_of_linear_equations.test.cpp
   - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/system_of_linear_equations.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 redirect_from:

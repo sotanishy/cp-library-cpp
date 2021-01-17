@@ -74,8 +74,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document
 redirect_from:

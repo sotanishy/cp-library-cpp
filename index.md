@@ -198,6 +198,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/geometry.cpp
       title: Geometry
+    - icon: ':warning:'
+      path: math/interpolation.cpp
+      title: Polynomial Interpolation
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
