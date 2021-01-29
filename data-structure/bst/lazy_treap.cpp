@@ -11,9 +11,26 @@ class LazyTreap {
     using E = typename O::T;
 
 public:
+    LazyTreap() = default;
 
-    T fold(int l,int r){return fold(root,l,r);}
-    void update(int l,int r,const E &x){update(root,l,r,x);}
+    void update(int l, int r, const E& x) {
+        assert(0 <= l && l < r && r <= size());
+        node_ptr a, b, c;
+        std::tie(a, b) = split(std::move(root), l);
+        std::tie(b, c) = split(std::move(b), r - l);
+        b->lazy = O::op(b->lazy, x);
+        root = join(join(std::move(a), std::move(b)), std::move(c));
+    }
+
+    T fold(int l, int r) {
+        assert(0 <= l && l < r && r <= size());
+        node_ptr a, b, c;
+        std::tie(a, b) = split(std::move(root), l);
+        std::tie(b, c) = split(std::move(b), r - l);
+        auto ret = b->sum;
+        root = join(join(std::move(a), std::move(b)), std::move(c));
+        return ret;
+    }
 
     void reverse(int l, int r) {
         assert(0 <= l && l < r && r <= size());
@@ -37,11 +54,11 @@ public:
     }
 
     void push_front(const T& x) {
-        // root = join(std::make_unique<Node>(x), std::move(root));
+        root = join(std::make_unique<Node>(x), std::move(root));
     }
 
     void push_back(const T& x) {
-        // root = join(std::move(root), std::make_unique<Node>(x));
+        root = join(std::move(root), std::make_unique<Node>(x));
     }
 
     void pop_front() {
@@ -82,7 +99,7 @@ private:
         Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1), rev(false) {}
     };
 
-    node_ptr root;
+    Node* root = nullptr;
 
     T sum(const Node *t){return t?t->sum:M::id;}
 
@@ -120,22 +137,20 @@ private:
         recalc(t);
     }
 
-    static node_ptr join(node_ptr l, node_ptr r) {
-        if (!l) return r;
-        if (!r) return l;
-        push(l);
-        push(r);
-        if (l->pri > r->pri) {
-            l->right = join(std::move(l->right), std::move(r));
+    Node *join(Node *l,Node *r){
+        if(!l or !r) return l?l:r;
+        if(l->pri>r->pri){
+            push(l);
+            l->right=join(l->right,r);
             recalc(l);
             return l;
-        } else {
-            r->left = join(std::move(l), std::move(r->left));
+        }else{
+            push(r);
+            r->left=join(l,r->left);
             recalc(r);
             return r;
         }
     }
-
     pair<Node *,Node *> split(Node *t,int k){
         if(!t) return {nullptr,nullptr};
         push(t);
@@ -152,31 +167,6 @@ private:
         }
     }
 
-
-    T fold(Node *&t,int a,int b){
-        if(a>b) return M::id;
-        auto x=split(t,a);
-        auto y=split(x.second,b-a);
-        auto ret=sum(y.first);
-        t=join(x.first,join(y.first,y.second));
-        return ret;
-    }
-    void update(Node *&t,int a,int b,const E &o){
-        if(a>b) return ;
-        auto x=split(t,a);
-        auto y=split(x.second,b-a);
-        y.first->lazy=O::op(y.first->lazy,o);
-        push(y.first);
-        t=join(x.first,join(y.first,y.second));
-    }
-
-    void reverse(Node *&t,int a,int b){
-        if(a>b) return ;
-        auto x=split(t,a);
-        auto y=split(x.second,b-a);
-        y.first->rev^=1;
-        t=join(x.first,join(y.first,y.second));
-    }
 };
 /*
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
