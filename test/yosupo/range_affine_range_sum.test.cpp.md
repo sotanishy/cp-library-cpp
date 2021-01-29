@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -81,7 +81,7 @@ data:
     \ static constexpr T id = {1, 0};\n    static T op(T a, T b) {\n        return\
     \ {a.first * b.first, a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T\
     \ a, O::T b) {\n    return {a.first * b.first + a.second * b.second, a.second};\n\
-    }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n\
+    }\n\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n\
     \    int N, Q;\n    cin >> N >> Q;\n    vector<pair<mint, mint>> a(N, {0, 1});\n\
     \    for (int i = 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M, O,\
     \ act> st(a);\n    for (int i = 0; i < Q; i++) {\n        int t;\n        cin\
@@ -98,7 +98,7 @@ data:
     \ T = pair<mint, mint>;\n    static constexpr T id = {1, 0};\n    static T op(T\
     \ a, T b) {\n        return {a.first * b.first, a.second * b.first + b.second};\n\
     \    }\n};\n\nM::T act(M::T a, O::T b) {\n    return {a.first * b.first + a.second\
-    \ * b.second, a.second};\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ * b.second, a.second};\n}\n\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<mint, mint>>\
     \ a(N, {0, 1});\n    for (int i = 0; i < N; i++) cin >> a[i].first;\n    LazySegmentTree<M,\
     \ O, act> st(a);\n    for (int i = 0; i < Q; i++) {\n        int t;\n        cin\
@@ -112,8 +112,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-01-29 22:05:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-01-30 01:14:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document

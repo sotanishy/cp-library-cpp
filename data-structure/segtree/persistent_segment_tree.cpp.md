@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Persistent Segment Tree
     links: []
@@ -85,7 +85,7 @@ data:
   path: data-structure/segtree/persistent_segment_tree.cpp
   requiredBy: []
   timestamp: '2020-10-26 15:47:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
 documentation_of: data-structure/segtree/persistent_segment_tree.cpp
