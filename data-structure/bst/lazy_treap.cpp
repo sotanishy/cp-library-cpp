@@ -12,129 +12,9 @@ class LazyTreap {
     using T = typename M::T;
     using E = typename O::T;
 
-    private:
+public:
 
-    inline int xorshift(){
-        static int x=122312555;
-        static int y=336261662;
-        static int z=558127122;
-        static int w=917277772;
-        int t;
-        t=x^(x<<11);
-        x=y;y=z;z=w;
-        return w=(w^(w>>19))^(t^(t>>8));
-    }
-
-    struct Node{
-        Node *l,*r;
-        int cnt,priority;
-        T val,acc;
-        E lazy;
-        bool rev;
-        Node()=default;
-        Node(const T &val,const E &lazy,int priority):
-        l(nullptr),r(nullptr),cnt(1),priority(priority),val(val),acc(val),lazy(lazy),rev(false){}
-    } *root=nullptr;
-
-    int count(const Node *t){return t?t->cnt:0;}
-    T acc(const Node *t){return t?t->acc:M::id;}
-
-    Node *update(Node *t){
-        t->cnt=count(t->l)+count(t->r)+1;
-        t->acc=M::op(M::op(acc(t->l),t->val),acc(t->r));
-        return t;
-    }
-    Node *propagate(Node *t){
-        if(t and t->rev){
-            t->rev=false;
-            swap(t->l,t->r);
-            if(t->l) t->l->rev^=1;
-            if(t->r) t->r->rev^=1;
-        }
-        if(t and t->lazy!=O::id){
-            t->val=act(t->val,t->lazy);
-            if(t->l){
-                t->l->lazy=O::op(t->l->lazy,t->lazy);
-                t->l->acc=act(t->l->acc,t->lazy);
-            }
-            if(t->r){
-                t->r->lazy=O::op(t->r->lazy,t->lazy);
-                t->r->acc=act(t->r->acc,t->lazy);
-            }
-            t->lazy=O::id;
-        }
-        return update(t);
-    }
-
-    Node *merge(Node *l,Node *r){
-        if(!l or !r) return l?l:r;
-        if(l->priority>r->priority){
-            l=propagate(l);
-            l->r=merge(l->r,r);
-            return update(l);
-        }else{
-            r=propagate(r);
-            r->l=merge(l,r->l);
-            return update(r);
-        }
-    }
-    pair<Node *,Node *> split(Node *t,int k){
-        if(!t) return {nullptr,nullptr};
-        t=propagate(t);
-        if(k<=count(t->l)){
-            auto s=split(t->l,k);
-            t->l=s.second;
-            return {s.first,update(t)};
-        }else{
-            auto s=split(t->r,k-count(t->l)-1);
-            t->r=s.first;
-            return {update(t),s.second};
-        }
-    }
-
-    void insert(Node *&t,int k,const T &x){
-        auto s=split(t,k);
-        t=merge(merge(s.first,new Node(x,O::id,xorshift())),s.second);
-    }
-    void erase(Node *&t,int k){
-        auto s=split(t,k);
-        t=merge(s.first,split(s.second,1).second);
-    }
-
-    T fold(Node *&t,int a,int b){
-        if(a>b) return M::id;
-        auto x=split(t,a);
-        auto y=split(x.second,b-a);
-        auto ret=acc(y.first);
-        t=merge(x.first,merge(y.first,y.second));
-        return ret;
-    }
-    void update(Node *&t,int a,int b,const E &o){
-        if(a>b) return ;
-        auto x=split(t,a);
-        auto y=split(x.second,b-a);
-        y.first->lazy=O::op(y.first->lazy,o);
-        t=merge(x.first,merge(propagate(y.first),y.second));
-    }
-    void reverse(Node *&t,int a,int b){
-        if(a>b) return ;
-        auto x=split(t,a);
-        auto y=split(x.second,b-a);
-        y.first->rev^=1;
-        t=merge(x.first,merge(y.first,y.second));
-    }
-    void dump(Node *t,typename vector<T>::iterator &ite){
-        if(!t) return ;
-        t=propagate(t);
-        dump(t->l,ite);
-        *ite=t->val;
-        dump(t->r,++ite);
-    }
-
-
-    public:
-
-    int size(){return count(root);}
+    int size(){return size(root);}
     bool empty(){return !root;}
 
     void insert(int k,const T &x){insert(root,k,x);}
@@ -149,6 +29,135 @@ class LazyTreap {
         return ret;
     }
 
+private:
+    struct Node;
+    using node_ptr = Node*;
+
+    static unsigned int rand() {
+        static std::random_device rd;
+        static std::mt19937 rng(rd());
+        return rng();
+    }
+
+    struct Node {
+        node_ptr left, right;
+        T val, sum;
+        E lazy;
+        unsigned int pri;
+        int sz;
+        bool rev;
+
+        Node() : Node(M::id) {}
+        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1), rev(false) {}
+    };
+
+    Node* root = nullptr;
+
+    T sum(const Node *t){return t?t->sum:M::id;}
+
+    static int size(const node_ptr& t) {
+        return t ? t->sz : 0;
+    }
+
+    static void recalc(const node_ptr& t) {
+        if (!t) return;
+        t->sz = size(t->left) + 1 + size(t->right);
+        t->sum = t->val;
+        if (t->left) t->sum = M::op(t->left->sum, t->sum);
+        if (t->right) t->sum = M::op(t->sum, t->right->sum);
+    }
+
+    static void push(const node_ptr& t) {
+        if (t->rev) {
+            std::swap(t->left, t->right);
+            if (t->left) t->left->rev ^= true;
+            if (t->right) t->right->rev ^= true;
+            t->rev = false;
+        }
+        if (t->lazy != O::id) {
+            t->val = act(t->val, t->lazy);
+            if (t->left) {
+                t->left->lazy = O::op(t->left->lazy, t->lazy);
+                t->left->sum = act(t->left->sum, t->lazy);
+            }
+            if (t->right) {
+                t->right->lazy = O::op(t->right->lazy, t->lazy);
+                t->right->sum = act(t->right->sum, t->lazy);
+            }
+            t->lazy = O::id;
+        }
+        recalc(t);
+    }
+
+    Node *merge(Node *l,Node *r){
+        if(!l or !r) return l?l:r;
+        if(l->pri>r->pri){
+            push(l);
+            l->right=merge(l->right,r);
+            recalc(l);
+            return l;
+        }else{
+            push(r);
+            r->left=merge(l,r->left);
+            recalc(r);
+            return r;
+        }
+    }
+    pair<Node *,Node *> split(Node *t,int k){
+        if(!t) return {nullptr,nullptr};
+        push(t);
+        if(k<=size(t->left)){
+            auto s=split(t->left,k);
+            t->left=s.second;
+            recalc(t);
+            return {s.first,t};
+        }else{
+            auto s=split(t->right,k-size(t->left)-1);
+            t->right=s.first;
+            recalc(t);
+            return {t,s.second};
+        }
+    }
+
+    void insert(Node *&t,int k,const T &x){
+        auto s=split(t,k);
+        t=merge(merge(s.first,new Node(x)),s.second);
+    }
+    void erase(Node *&t,int k){
+        auto s=split(t,k);
+        t=merge(s.first,split(s.second,1).second);
+    }
+
+    T fold(Node *&t,int a,int b){
+        if(a>b) return M::id;
+        auto x=split(t,a);
+        auto y=split(x.second,b-a);
+        auto ret=sum(y.first);
+        t=merge(x.first,merge(y.first,y.second));
+        return ret;
+    }
+    void update(Node *&t,int a,int b,const E &o){
+        if(a>b) return ;
+        auto x=split(t,a);
+        auto y=split(x.second,b-a);
+        y.first->lazy=O::op(y.first->lazy,o);
+        push(y.first);
+        t=merge(x.first,merge(y.first,y.second));
+    }
+    void reverse(Node *&t,int a,int b){
+        if(a>b) return ;
+        auto x=split(t,a);
+        auto y=split(x.second,b-a);
+        y.first->rev^=1;
+        t=merge(x.first,merge(y.first,y.second));
+    }
+    void dump(Node *t,typename vector<T>::iterator &ite){
+        if(!t) return ;
+        push(t);
+        dump(t->left,ite);
+        *ite=t->val;
+        dump(t->right,++ite);
+    }
 };
 /*
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>

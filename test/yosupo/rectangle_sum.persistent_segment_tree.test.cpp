@@ -7,7 +7,6 @@
 using namespace std;
 using ll = long long;
 
-
 struct AddMonoid {
     using T = ll;
     static constexpr T id = 0;

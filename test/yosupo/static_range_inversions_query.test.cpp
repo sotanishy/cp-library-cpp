@@ -11,7 +11,9 @@ using ll = long long;
 struct AddMonoid {
     using T = int;
     static constexpr T id = 0;
-    static T op(T a, T b) { return a + b; }
+    static T op(T a, T b) {
+        return a + b;
+    }
 };
 
 int main() {
