@@ -14,11 +14,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/interpolation.cpp\"\n#include <vector>\n#line 2 \"\
-    math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line 3 \"math/ntt.cpp\"\
-    \n\n/*\n * @brief Number Theoretic Transform\n * @docs docs/math/ntt.md\n */\n\
-    template <typename mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n    static\
-    \ std::vector<mint> convolve(const std::vector<mint>& a, const std::vector<mint>&\
+  bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n#line\
+    \ 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line 3\
+    \ \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic Transform\n * @docs docs/math/ntt.md\n\
+    \ */\ntemplate <typename mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n\
+    \    static std::vector<mint> convolve(const std::vector<mint>& a, const std::vector<mint>&\
     \ b) {\n        int size = a.size() + b.size() - 1;\n        int n = 1;\n    \
     \    while (n < size) n <<= 1;\n        std::vector<mint> na(a.begin(), a.end()),\
     \ nb(b.begin(), b.end());\n        na.resize(n);\n        nb.resize(n);\n    \
@@ -108,70 +108,35 @@ data:
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
     \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};\n#line 4 \"math/interpolation.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
-    \ interpolate(const std::vector<T>& x, const std::vector<T>& y) {\n    assert(x.size()\
-    \ == y.size());\n    int n = x.size();\n    std::vector<T> prod(n + 1);\n    prod[0]\
-    \ = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T> nxt(n + 1);\n\
-    \        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] = prod[j];\n  \
-    \          nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
-    \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
-    \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
-    \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
-    \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/\n"
+    \ }\n};\n#line 4 \"math/multipoint_evaluation.cpp\"\n\ntemplate <typename T>\n\
+    std::vector<T> multipoint_evaluation(const Polynomial<T>& p, const std::vector<T>&\
+    \ x) {\n    int m = x.size();\n    int n = 1;\n    while (n < m) n <<= 1;\n  \
+    \  std::vector<Polynomial<T>> q(2 * n, {1});\n    for (int i = 0; i < m; ++i)\
+    \ q[n + i] = {-x[i], 1};\n    for (int i = n; i > 0; ++i) q[i] = q[2 * i] * q[2\
+    \ * i + 1];\n    q[1] = p % q[1];\n    for (int i = 2; i < n + m; ++i) q[i] =\
+    \ q[i / 2] % q[i];\n    std::vector<T> y(m);\n    for (int i = 0; i < m; ++i)\
+    \ y[i] = q[n + i][0];\n    return y;\n}\n"
   code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\ntemplate\
-    \ <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x, const std::vector<T>&\
-    \ y) {\n    assert(x.size() == y.size());\n    int n = x.size();\n    std::vector<T>\
-    \ prod(n + 1);\n    prod[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T>\
-    \ nxt(n + 1);\n        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] =\
-    \ prod[j];\n            nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
-    \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
-    \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
-    \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
-    \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/"
+    \ <typename T>\nstd::vector<T> multipoint_evaluation(const Polynomial<T>& p, const\
+    \ std::vector<T>& x) {\n    int m = x.size();\n    int n = 1;\n    while (n <\
+    \ m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n, {1});\n    for (int i =\
+    \ 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int i = n; i > 0; ++i) q[i]\
+    \ = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int i = 2; i < n\
+    \ + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n    for (int i\
+    \ = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n}"
   dependsOn:
   - math/polynomial.cpp
   - math/ntt.cpp
   isVerificationFile: false
-  path: math/interpolation.cpp
+  path: math/multipoint_evaluation.cpp
   requiredBy: []
   timestamp: '2021-01-29 21:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/interpolation.cpp
+documentation_of: math/multipoint_evaluation.cpp
 layout: document
-title: Polynomial Interpolation
+redirect_from:
+- /library/math/multipoint_evaluation.cpp
+- /library/math/multipoint_evaluation.cpp.html
+title: math/multipoint_evaluation.cpp
 ---
-
-## Description
-
-多項式補間をする．
-
-- `Polynomial interpolate(vector<T> x, vector<T> y)`
-    - 与えられた点の補間多項式を計算する
-    - 時間計算量: $O(n^2)$
-
-## TODO
-
-- 高速化

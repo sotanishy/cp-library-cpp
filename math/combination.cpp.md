@@ -6,6 +6,7 @@ data:
     path: math/stirling_second.cpp
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:

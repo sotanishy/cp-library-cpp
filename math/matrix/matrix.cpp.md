@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -146,8 +147,8 @@ data:
   timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/matrix_det.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix_det.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 title: Matrix

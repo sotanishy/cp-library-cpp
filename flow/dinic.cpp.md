@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.dinic.test.cpp
     title: test/aoj/GRL_6_A.dinic.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

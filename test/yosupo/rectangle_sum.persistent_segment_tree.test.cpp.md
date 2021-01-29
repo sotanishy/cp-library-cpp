@@ -1,16 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/segtree/persistent_segment_tree.cpp
     title: Persistent Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -62,7 +63,8 @@ data:
     \ ret;\n        std::transform(vs.begin(), vs.end(), std::back_inserter(ret),\
     \ [&](const T& x) {\n            return compress(x);\n        });\n        return\
     \ ret;\n    }\n\n    T decompress(int i) const {\n        return xs[i];\n    }\n\
-    \nprivate:\n    std::vector<T> xs;\n};\n#line 5 \"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp\"\
+    \n    int size() const {\n        return xs.size();\n    }\n\nprivate:\n    std::vector<T>\
+    \ xs;\n};\n#line 5 \"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\n\
     struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -113,8 +115,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 15:47:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 21:41:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
 layout: document

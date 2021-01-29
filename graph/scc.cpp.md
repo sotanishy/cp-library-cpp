@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/two_sat.test.cpp
     title: test/yosupo/two_sat.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -78,8 +79,8 @@ data:
   timestamp: '2021-01-17 23:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/scc.test.cpp
   - test/yosupo/two_sat.test.cpp
+  - test/yosupo/scc.test.cpp
   - test/aoj/GRL_3_C.test.cpp
 documentation_of: graph/scc.cpp
 layout: document

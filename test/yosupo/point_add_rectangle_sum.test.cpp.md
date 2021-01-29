@@ -1,16 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/quadtree.cpp
     title: Quadtree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -54,23 +55,23 @@ data:
     \ vs) const {\n        std::vector<int> ret;\n        std::transform(vs.begin(),\
     \ vs.end(), std::back_inserter(ret), [&](const T& x) {\n            return compress(x);\n\
     \        });\n        return ret;\n    }\n\n    T decompress(int i) const {\n\
-    \        return xs[i];\n    }\n\nprivate:\n    std::vector<T> xs;\n};\n#line 5\
-    \ \"test/yosupo/point_add_rectangle_sum.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T\
-    \ = ll;\n    static constexpr T id = 0;\n    static T op(T a, T b) { return a\
-    \ + b; }\n};\n\nstruct Query {\n    int t, x, y, w, l, d, r, u;\n    Query(int\
-    \ t, int x, int y, int w) : t(t), x(x), y(y), w(w) {}\n    Query(int t, int l,\
-    \ int d, int r, int u) : t(t), l(l), d(d), r(r), u(u) {}\n};\n\nint main() {\n\
-    \    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    vector<int> xs, ys;\n    vector<int> x(N), y(N), w(N);\n\
-    \    for (int i = 0; i < N; ++i) {\n        cin >> x[i] >> y[i] >> w[i];\n   \
-    \ }\n    xs.insert(xs.end(), x.begin(), x.end());\n    ys.insert(ys.end(), y.begin(),\
-    \ y.end());\n    vector<Query> queries;\n    for (int i = 0; i < Q; ++i) {\n \
-    \       int t;\n        cin >> t;\n        if (t == 0) {\n            int x, y,\
-    \ w;\n            cin >> x >> y >> w;\n            queries.emplace_back(t, x,\
-    \ y, w);\n            xs.push_back(x);\n            ys.push_back(y);\n       \
-    \ } else {\n            int l, d, r, u;\n            cin >> l >> d >> r >> u;\n\
-    \            queries.emplace_back(t, l, d, r, u);\n            xs.push_back(l);\n\
+    \        return xs[i];\n    }\n\n    int size() const {\n        return xs.size();\n\
+    \    }\n\nprivate:\n    std::vector<T> xs;\n};\n#line 5 \"test/yosupo/point_add_rectangle_sum.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
+    \ T op(T a, T b) { return a + b; }\n};\n\nstruct Query {\n    int t, x, y, w,\
+    \ l, d, r, u;\n    Query(int t, int x, int y, int w) : t(t), x(x), y(y), w(w)\
+    \ {}\n    Query(int t, int l, int d, int r, int u) : t(t), l(l), d(d), r(r), u(u)\
+    \ {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs, ys;\n    vector<int>\
+    \ x(N), y(N), w(N);\n    for (int i = 0; i < N; ++i) {\n        cin >> x[i] >>\
+    \ y[i] >> w[i];\n    }\n    xs.insert(xs.end(), x.begin(), x.end());\n    ys.insert(ys.end(),\
+    \ y.begin(), y.end());\n    vector<Query> queries;\n    for (int i = 0; i < Q;\
+    \ ++i) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n         \
+    \   int x, y, w;\n            cin >> x >> y >> w;\n            queries.emplace_back(t,\
+    \ x, y, w);\n            xs.push_back(x);\n            ys.push_back(y);\n    \
+    \    } else {\n            int l, d, r, u;\n            cin >> l >> d >> r >>\
+    \ u;\n            queries.emplace_back(t, l, d, r, u);\n            xs.push_back(l);\n\
     \            ys.push_back(d);\n            xs.push_back(r);\n            ys.push_back(u);\n\
     \        }\n    }\n    Compress<int> cx(xs), cy(ys);\n    x = cx.compress(x);\n\
     \    y = cy.compress(y);\n    Quadtree<AddMonoid> qt(xs.size());\n    for (int\
@@ -112,8 +113,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-10-27 21:47:59+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 21:41:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   - icon: ':heavy_check_mark:'
@@ -12,6 +12,7 @@ data:
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

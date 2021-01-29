@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
     title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

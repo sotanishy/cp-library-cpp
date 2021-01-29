@@ -36,6 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -53,19 +54,19 @@ data:
   path: graph/edge.cpp
   requiredBy:
   - tree/tree_diameter.cpp
-  - graph/mst.cpp
-  - graph/shortest_path.cpp
   - graph/range_edge_graph.cpp
+  - graph/shortest_path.cpp
+  - graph/mst.cpp
   timestamp: '2020-10-24 20:53:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_2_A.prim.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_A.test.cpp
-  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_5_A.test.cpp
-  - test/aoj/GRL_2_A.kruskal.test.cpp
 documentation_of: graph/edge.cpp
 layout: document
 redirect_from:

@@ -1,19 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
@@ -100,22 +101,29 @@ data:
     \n    Poly& operator*=(const Poly& rhs) {\n        *this = NTT<mint>::convolve(*this,\
     \ rhs);\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
     \ {\n        for (int i = 0; i < (int) this->size(); ++i) (*this)[i] *= rhs;\n\
-    \        return *this;\n    }\n\n    Poly& operator-() const {\n        Poly ret(this->size());\n\
+    \        return *this;\n    }\n\n    Poly& operator/=(const Poly& rhs) {\n   \
+    \     if(this->size() < rhs.size()) {\n            this->clear();\n          \
+    \  return *this;\n        }\n        int n = this->size() - rhs.size() + 1;\n\
+    \        return *this = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n   \
+    \ }\n\n    Poly& operator%=(const Poly& rhs) {\n        return *this -= *this\
+    \ / rhs * rhs;\n    }\n\n    Poly& operator-() const {\n        Poly ret(this->size());\n\
     \        for (int i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n\
     \        return ret;\n    }\n\n    Poly operator+(const Poly& rhs) const { return\
     \ Poly(*this) += rhs; }\n    Poly operator+(const mint& rhs) const { return Poly(*this)\
     \ += rhs; }\n    Poly operator-(const Poly& rhs) const { return Poly(*this) -=\
     \ rhs; }\n    Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs;\
     \ }\n    Poly operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n\
-    \    Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }\n\n\
-    \    mint operator()(const mint& x) {\n        mint y = 0, powx = 1;\n       \
-    \ for (int i = 0; i < (int) this->size(); ++i) {\n            y += (*this)[i]\
-    \ * powx;\n            powx *= x;\n        }\n        return y;\n    }\n\n   \
-    \ Poly inv(int deg = -1) const {\n        assert((*this)[0] != mint(0));\n   \
-    \     if (deg == -1) deg = this->size();\n        Poly ret({mint(1) / (*this)[0]});\n\
-    \        for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * mint(2)\
-    \ - ret * ret * this->pre(i << 1)).pre(i << 1);\n        }\n        return ret;\n\
-    \    }\n\n    Poly exp(int deg = -1) const {\n        assert((*this)[0] == mint(0));\n\
+    \    Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }\n  \
+    \  Poly operator/(const Poly& rhs) const { return Poly(*this) /= rhs; }\n    Poly\
+    \ operator%(const Poly& rhs) const { return Poly(*this) %= rhs; }\n\n    mint\
+    \ operator()(const mint& x) {\n        mint y = 0, powx = 1;\n        for (int\
+    \ i = 0; i < (int) this->size(); ++i) {\n            y += (*this)[i] * powx;\n\
+    \            powx *= x;\n        }\n        return y;\n    }\n\n    Poly inv(int\
+    \ deg = -1) const {\n        assert((*this)[0] != mint(0));\n        if (deg ==\
+    \ -1) deg = this->size();\n        Poly ret({mint(1) / (*this)[0]});\n       \
+    \ for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * mint(2) - ret\
+    \ * ret * this->pre(i << 1)).pre(i << 1);\n        }\n        return ret;\n  \
+    \  }\n\n    Poly exp(int deg = -1) const {\n        assert((*this)[0] == mint(0));\n\
     \        if (deg == -1) deg = this->size();\n        Poly ret({mint(1)});\n  \
     \      for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * (this->pre(i\
     \ << 1) + mint(1) - ret.log(i << 1))).pre(i << 1);\n        }\n        return\
@@ -135,10 +143,11 @@ data:
     \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
-    \ size)); }\n};\n#line 5 \"test/yosupo/log_of_formal_power_series.test.cpp\"\n\
-    \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
+    \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
+    \ }\n};\n#line 5 \"test/yosupo/log_of_formal_power_series.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
+    \    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
     \ < N; ++i) cin >> f[i];\n    auto g = f.log();\n    for (int i = 0; i < N; ++i)\
     \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
@@ -155,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/log_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 17:28:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 21:41:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/log_of_formal_power_series.test.cpp
 layout: document

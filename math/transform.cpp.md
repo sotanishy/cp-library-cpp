@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_xor_convolution.test.cpp
     title: test/yosupo/bitwise_xor_convolution.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -91,8 +92,8 @@ data:
   timestamp: '2021-01-05 13:51:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/bitwise_xor_convolution.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
 documentation_of: math/transform.cpp
 layout: document
 redirect_from:

@@ -1,19 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/compress.cpp
     title: Coordinate Compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/mo.cpp
     title: Mo's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -46,10 +47,11 @@ data:
     \ ret;\n        std::transform(vs.begin(), vs.end(), std::back_inserter(ret),\
     \ [&](const T& x) {\n            return compress(x);\n        });\n        return\
     \ ret;\n    }\n\n    T decompress(int i) const {\n        return xs[i];\n    }\n\
-    \nprivate:\n    std::vector<T> xs;\n};\n#line 3 \"misc/mo.cpp\"\n#include <cmath>\n\
-    #line 5 \"misc/mo.cpp\"\n\nclass Mo {\npublic:\n    Mo() = default;\n    explicit\
-    \ Mo(int n) : n(n), cnt(0) {}\n\n    void query(int l, int r) {\n        queries.emplace_back(cnt++,\
-    \ l, r);\n    }\n\n    template <typename ExL, typename ShL, typename ExR, typename\
+    \n    int size() const {\n        return xs.size();\n    }\n\nprivate:\n    std::vector<T>\
+    \ xs;\n};\n#line 3 \"misc/mo.cpp\"\n#include <cmath>\n#line 5 \"misc/mo.cpp\"\n\
+    \nclass Mo {\npublic:\n    Mo() = default;\n    explicit Mo(int n) : n(n), cnt(0)\
+    \ {}\n\n    void query(int l, int r) {\n        queries.emplace_back(cnt++, l,\
+    \ r);\n    }\n\n    template <typename ExL, typename ShL, typename ExR, typename\
     \ ShR, typename Out>\n    void run(ExL exl, ShL shl, ExR exr, ShR shr, Out out)\
     \ {\n        int s = sqrt(n);\n        std::sort(queries.begin(), queries.end(),\
     \ [&](const auto& a, const auto& b) {\n            if (a.l / s != b.l / s) return\
@@ -101,8 +103,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 18:23:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 21:41:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp
 layout: document

@@ -4,11 +4,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
