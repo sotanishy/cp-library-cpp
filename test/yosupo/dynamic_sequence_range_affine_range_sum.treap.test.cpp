@@ -38,7 +38,7 @@ int main() {
     for (int i = 0; i < N; ++i) {
         int a;
         cin >> a;
-        st.insert(st.size(), {a, 1});
+        st.push_back({a, 1});
     }
     while (Q--) {
         int t;

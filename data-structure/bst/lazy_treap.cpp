@@ -1,8 +1,8 @@
 #pragma once
 #include <cassert>
-#include <memory>
 #include <random>
 #include <utility>
+#include <tuple>
 
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 class LazyTreap {
@@ -52,7 +52,6 @@ public:
 
     void insert(int k, const T& x) {
         auto s = split(std::move(root), k);
-        // root = join(join(std::move(s.first), std::make_unique<Node>(x)), std::move(s.second));
         root = join(join(std::move(s.first), new Node(x)), std::move(s.second));
     }
 
@@ -62,13 +61,13 @@ public:
         root = join(std::move(p.first), std::move(q.second));
     }
 
-    // void push_front(const T& x) {
-        // root = join(std::make_unique<Node>(x), std::move(root));
-    // }
+    void push_front(const T& x) {
+        root = join(new Node(x), std::move(root));
+    }
 
-    // void push_back(const T& x) {
-        // root = join(std::move(root), std::make_unique<Node>(x));
-    // }
+    void push_back(const T& x) {
+        root = join(std::move(root), new Node(x));
+    }
 
     void pop_front() {
         root = split(std::move(root), 1).second;
@@ -88,7 +87,6 @@ public:
 
 private:
     struct Node;
-    // using node_ptr = std::unique_ptr<Node>;
     using node_ptr = Node*;
 
     static unsigned int rand() {

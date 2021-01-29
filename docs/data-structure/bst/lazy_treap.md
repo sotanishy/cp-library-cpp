@@ -46,3 +46,7 @@ documentation_of: ../../../data-structure/bst/lazy_treap.cpp
 - `bool empty()`
     - 空か判定する
     - 時間計算量: $O(1)$
+
+## Note
+
+本当は`std::unique_ptr`を使いたいんだがなぜかGitHub上でめちゃくちゃ遅くなるので生ポインタを使っている．`std::unique_ptr`にしてコンパイルが通るような書き方はしているので生ポインタによる怖いことは起きないと思う．
