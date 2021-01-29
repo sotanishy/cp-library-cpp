@@ -28,6 +28,7 @@ M::T act(M::T a, O::T b) {
     return {a.first * b.first + a.second * b.second, a.second};
 }
 
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);

@@ -3,9 +3,7 @@
 #include <memory>
 #include <random>
 #include <utility>
-#include <vector>
 using namespace std;
-
 
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 class LazyTreap {
@@ -14,19 +12,52 @@ class LazyTreap {
 
 public:
 
-    int size(){return size(root);}
-    bool empty(){return !root;}
-
-    void insert(int k,const T &x){insert(root,k,x);}
-    void erase(int k){erase(root,k);}
-    void reverse(int l,int r){reverse(root,l,r);}
     T fold(int l,int r){return fold(root,l,r);}
     void update(int l,int r,const E &x){update(root,l,r,x);}
-    vector<T> dump(){
-        vector<T> ret(size());
-        auto ite=begin(ret);
-        dump(root,ite);
-        return ret;
+
+    void reverse(int l, int r) {
+        assert(0 <= l && l < r && r <= size());
+        node_ptr a, b, c;
+        std::tie(a, b) = split(std::move(root), l);
+        std::tie(b, c) = split(std::move(b), r - l);
+        b->rev ^= true;
+        root = join(join(std::move(a), std::move(b)), std::move(c));
+    }
+
+    void insert(int k, const T& x) {
+        auto s = split(std::move(root), k);
+        // root = join(join(std::move(s.first), std::make_unique<Node>(x)), std::move(s.second));
+        root = join(join(std::move(s.first), new Node(x)), std::move(s.second));
+    }
+
+    void erase(int k) {
+        auto p = split(std::move(root), k);
+        auto q = split(std::move(p.second), 1);
+        root = join(std::move(p.first), std::move(q.second));
+    }
+
+    void push_front(const T& x) {
+        // root = join(std::make_unique<Node>(x), std::move(root));
+    }
+
+    void push_back(const T& x) {
+        // root = join(std::move(root), std::make_unique<Node>(x));
+    }
+
+    void pop_front() {
+        root = split(std::move(root), 1).second;
+    }
+
+    void pop_back() {
+        root = split(std::move(root), size() - 1).first;
+    }
+
+    int size() const {
+        return size(root);
+    }
+
+    bool empty() const {
+        return size() == 0;
     }
 
 private:
@@ -51,7 +82,7 @@ private:
         Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1), rev(false) {}
     };
 
-    Node* root = nullptr;
+    node_ptr root;
 
     T sum(const Node *t){return t?t->sum:M::id;}
 
@@ -89,20 +120,22 @@ private:
         recalc(t);
     }
 
-    Node *merge(Node *l,Node *r){
-        if(!l or !r) return l?l:r;
-        if(l->pri>r->pri){
-            push(l);
-            l->right=merge(l->right,r);
+    static node_ptr join(node_ptr l, node_ptr r) {
+        if (!l) return r;
+        if (!r) return l;
+        push(l);
+        push(r);
+        if (l->pri > r->pri) {
+            l->right = join(std::move(l->right), std::move(r));
             recalc(l);
             return l;
-        }else{
-            push(r);
-            r->left=merge(l,r->left);
+        } else {
+            r->left = join(std::move(l), std::move(r->left));
             recalc(r);
             return r;
         }
     }
+
     pair<Node *,Node *> split(Node *t,int k){
         if(!t) return {nullptr,nullptr};
         push(t);
@@ -119,21 +152,13 @@ private:
         }
     }
 
-    void insert(Node *&t,int k,const T &x){
-        auto s=split(t,k);
-        t=merge(merge(s.first,new Node(x)),s.second);
-    }
-    void erase(Node *&t,int k){
-        auto s=split(t,k);
-        t=merge(s.first,split(s.second,1).second);
-    }
 
     T fold(Node *&t,int a,int b){
         if(a>b) return M::id;
         auto x=split(t,a);
         auto y=split(x.second,b-a);
         auto ret=sum(y.first);
-        t=merge(x.first,merge(y.first,y.second));
+        t=join(x.first,join(y.first,y.second));
         return ret;
     }
     void update(Node *&t,int a,int b,const E &o){
@@ -142,21 +167,15 @@ private:
         auto y=split(x.second,b-a);
         y.first->lazy=O::op(y.first->lazy,o);
         push(y.first);
-        t=merge(x.first,merge(y.first,y.second));
+        t=join(x.first,join(y.first,y.second));
     }
+
     void reverse(Node *&t,int a,int b){
         if(a>b) return ;
         auto x=split(t,a);
         auto y=split(x.second,b-a);
         y.first->rev^=1;
-        t=merge(x.first,merge(y.first,y.second));
-    }
-    void dump(Node *t,typename vector<T>::iterator &ite){
-        if(!t) return ;
-        push(t);
-        dump(t->left,ite);
-        *ite=t->val;
-        dump(t->right,++ite);
+        t=join(x.first,join(y.first,y.second));
     }
 };
 /*
