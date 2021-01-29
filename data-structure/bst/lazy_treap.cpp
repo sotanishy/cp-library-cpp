@@ -1,7 +1,6 @@
 #pragma once
 #include <cassert>
 #include <memory>
-#include <random>
 #include <utility>
 
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
@@ -90,9 +89,13 @@ private:
     using node_ptr = std::unique_ptr<Node>;
 
     static unsigned int rand() {
-        static std::random_device rd;
-        static std::mt19937 rng(rd());
-        return rng();
+        static int x = 122312555;
+        static int y = 336261662;
+        static int z = 558127122;
+        static int w = 917277772;
+        unsigned int t = x ^ (x << 11);
+        x = y; y = z; z = w;
+        return w = w ^ (w >> 19) ^ (t ^ (t >> 8));
     }
 
     struct Node {
