@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerate_palindromes.test.cpp
     title: test/yosupo/enumerate_palindromes.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/manacher.cpp\"\n#include <algorithm>\n#include <vector>\n\
@@ -41,7 +41,7 @@ data:
   path: string/manacher.cpp
   requiredBy: []
   timestamp: '2021-01-29 21:47:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerate_palindromes.test.cpp
 documentation_of: string/manacher.cpp
