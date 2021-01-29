@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compress.cpp
     title: Coordinate Compression
   - icon: ':x:'
@@ -64,7 +64,7 @@ data:
     \ };\n\n    int n, cnt;\n    std::vector<Query> queries;\n};\n#line 6 \"test/yosupo/static_range_inversions_query.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     struct AddMonoid {\n    using T = int;\n    static constexpr T id = 0;\n    static\
-    \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n\
     \    for (int i = 0; i < N; ++i) cin >> A[i];\n    A = Compress<int>(A).compress(A);\n\
     \    Mo mo(N);\n    for (int i = 0; i < Q; ++i) {\n        int l, r;\n       \
@@ -82,9 +82,9 @@ data:
     \n\n#include \"../../data-structure/fenwick_tree.cpp\"\n#include \"../../misc/compress.cpp\"\
     \n#include \"../../misc/mo.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = int;\n    static\
-    \ constexpr T id = 0;\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
-    \   int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (int i = 0;\
+    \ constexpr T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n  \
+    \  }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (int i = 0;\
     \ i < N; ++i) cin >> A[i];\n    A = Compress<int>(A).compress(A);\n    Mo mo(N);\n\
     \    for (int i = 0; i < Q; ++i) {\n        int l, r;\n        cin >> l >> r;\n\
     \        mo.query(l, r);\n    }\n\n    FenwickTree<AddMonoid> fw(N);\n    ll res\
@@ -103,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2021-01-29 21:41:25+09:00'
+  timestamp: '2021-01-30 00:55:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp

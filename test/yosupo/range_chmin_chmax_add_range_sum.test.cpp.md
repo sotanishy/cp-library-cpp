@@ -96,7 +96,7 @@ data:
     \ k, l, m);\n        T vr = fold<TYPE>(a, b, 2 * k + 1, m, r);\n        if (TYPE\
     \ == MIN) return std::min(vl, vr);\n        if (TYPE == MAX) return std::max(vl,\
     \ vr);\n        if (TYPE == SUM) return vl + vr;\n    }\n};\n#line 4 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
     \ N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N;\
     \ i++) cin >> a[i];\n    SegmentTreeBeats<ll> st(a);\n    for (int i = 0; i <\
@@ -107,10 +107,10 @@ data:
     \         cout << st.fold_sum(l, r) << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
     \n\n#include \"../../data-structure/segtree/segment_tree_beats.cpp\"\n\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N; i++) cin\
-    \ >> a[i];\n    SegmentTreeBeats<ll> st(a);\n    for (int i = 0; i < Q; i++) {\n\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n   \
+    \ cin >> N >> Q;\n    vector<ll> a(N);\n    for (int i = 0; i < N; i++) cin >>\
+    \ a[i];\n    SegmentTreeBeats<ll> st(a);\n    for (int i = 0; i < Q; i++) {\n\
     \        int t, l, r;\n        ll b;\n        cin >> t >> l >> r;\n        if\
     \ (t != 3) cin >> b;\n        if (t == 0) {\n            st.chmin(l, r, b);\n\
     \        } else if (t == 1) {\n            st.chmax(l, r, b);\n        } else\
@@ -121,7 +121,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-01-29 22:05:53+09:00'
+  timestamp: '2021-01-30 00:55:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

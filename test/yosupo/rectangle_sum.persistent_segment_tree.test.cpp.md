@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: data-structure/segtree/persistent_segment_tree.cpp
     title: Persistent Segment Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []
@@ -65,7 +65,7 @@ data:
     \ ret;\n    }\n\n    T decompress(int i) const {\n        return xs[i];\n    }\n\
     \n    int size() const {\n        return xs.size();\n    }\n\nprivate:\n    std::vector<T>\
     \ xs;\n};\n#line 5 \"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs,\
@@ -88,7 +88,7 @@ data:
     \ << ans << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"../../data-structure/segtree/persistent_segment_tree.cpp\"\n#include \"../../misc/compress.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs,\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-01-29 21:41:25+09:00'
+  timestamp: '2021-01-30 00:55:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp

@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
     title: math/multipoint_evaluation.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedVerifiedWith:
@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/ntt.md
     document_title: Number Theoretic Transform
@@ -113,7 +113,7 @@ data:
   - math/polynomial.cpp
   - math/multipoint_evaluation.cpp
   timestamp: '2020-11-28 19:10:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp

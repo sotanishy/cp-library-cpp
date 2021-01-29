@@ -36,7 +36,7 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/quadtree.cpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
@@ -210,10 +210,10 @@ data:
     - icon: ':warning:'
       path: math/multipoint_evaluation.cpp
       title: math/multipoint_evaluation.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -235,7 +235,7 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -487,13 +487,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.test.cpp
       title: test/yosupo/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
