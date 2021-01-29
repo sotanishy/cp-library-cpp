@@ -3,9 +3,6 @@
 #include <vector>
 #include <string>
 
-/*
- * @brief Manacher's Algorithm
- */
 std::vector<int> manacher(const std::string& s) {
     int n = s.size();
     std::vector<int> vs(2 * n - 1);
