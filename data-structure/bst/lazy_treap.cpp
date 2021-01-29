@@ -131,7 +131,7 @@ private:
         Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1), rev(false) {}
     };
 
-    node_ptr root;
+    node_ptr root = nullptr;
 
     explicit LazyTreap(node_ptr root) : root(std::move(root)) {}
     T sum(const Node *t){return t?t->sum:M::id;}
