@@ -1,8 +1,156 @@
 #pragma once
 #include <cassert>
 #include <memory>
+#include <random>
 #include <utility>
+#include <vector>
+using namespace std;
 
+
+template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
+class LazyTreap {
+    using T = typename M::T;
+    using E = typename O::T;
+
+    private:
+
+    inline int xorshift(){
+        static int x=122312555;
+        static int y=336261662;
+        static int z=558127122;
+        static int w=917277772;
+        int t;
+        t=x^(x<<11);
+        x=y;y=z;z=w;
+        return w=(w^(w>>19))^(t^(t>>8));
+    }
+
+    struct Node{
+        Node *l,*r;
+        int cnt,priority;
+        T val,acc;
+        E lazy;
+        bool rev;
+        Node()=default;
+        Node(const T &val,const E &lazy,int priority):
+        l(nullptr),r(nullptr),cnt(1),priority(priority),val(val),acc(val),lazy(lazy),rev(false){}
+    } *root=nullptr;
+
+    int count(const Node *t){return t?t->cnt:0;}
+    T acc(const Node *t){return t?t->acc:M::id;}
+
+    Node *update(Node *t){
+        t->cnt=count(t->l)+count(t->r)+1;
+        t->acc=M::op(M::op(acc(t->l),t->val),acc(t->r));
+        return t;
+    }
+    Node *propagate(Node *t){
+        if(t and t->rev){
+            t->rev=false;
+            swap(t->l,t->r);
+            if(t->l) t->l->rev^=1;
+            if(t->r) t->r->rev^=1;
+        }
+        if(t and t->lazy!=O::id){
+            t->val=act(t->val,t->lazy);
+            if(t->l){
+                t->l->lazy=O::op(t->l->lazy,t->lazy);
+                t->l->acc=act(t->l->acc,t->lazy);
+            }
+            if(t->r){
+                t->r->lazy=O::op(t->r->lazy,t->lazy);
+                t->r->acc=act(t->r->acc,t->lazy);
+            }
+            t->lazy=O::id;
+        }
+        return update(t);
+    }
+
+    Node *merge(Node *l,Node *r){
+        if(!l or !r) return l?l:r;
+        if(l->priority>r->priority){
+            l=propagate(l);
+            l->r=merge(l->r,r);
+            return update(l);
+        }else{
+            r=propagate(r);
+            r->l=merge(l,r->l);
+            return update(r);
+        }
+    }
+    pair<Node *,Node *> split(Node *t,int k){
+        if(!t) return {nullptr,nullptr};
+        t=propagate(t);
+        if(k<=count(t->l)){
+            auto s=split(t->l,k);
+            t->l=s.second;
+            return {s.first,update(t)};
+        }else{
+            auto s=split(t->r,k-count(t->l)-1);
+            t->r=s.first;
+            return {update(t),s.second};
+        }
+    }
+
+    void insert(Node *&t,int k,const T &x){
+        auto s=split(t,k);
+        t=merge(merge(s.first,new Node(x,O::id,xorshift())),s.second);
+    }
+    void erase(Node *&t,int k){
+        auto s=split(t,k);
+        t=merge(s.first,split(s.second,1).second);
+    }
+
+    T fold(Node *&t,int a,int b){
+        if(a>b) return M::id;
+        auto x=split(t,a);
+        auto y=split(x.second,b-a);
+        auto ret=acc(y.first);
+        t=merge(x.first,merge(y.first,y.second));
+        return ret;
+    }
+    void update(Node *&t,int a,int b,const E &o){
+        if(a>b) return ;
+        auto x=split(t,a);
+        auto y=split(x.second,b-a);
+        y.first->lazy=O::op(y.first->lazy,o);
+        t=merge(x.first,merge(propagate(y.first),y.second));
+    }
+    void reverse(Node *&t,int a,int b){
+        if(a>b) return ;
+        auto x=split(t,a);
+        auto y=split(x.second,b-a);
+        y.first->rev^=1;
+        t=merge(x.first,merge(y.first,y.second));
+    }
+    void dump(Node *t,typename vector<T>::iterator &ite){
+        if(!t) return ;
+        t=propagate(t);
+        dump(t->l,ite);
+        *ite=t->val;
+        dump(t->r,++ite);
+    }
+
+
+    public:
+
+    int size(){return count(root);}
+    bool empty(){return !root;}
+
+    void insert(int k,const T &x){insert(root,k,x);}
+    void erase(int k){erase(root,k);}
+    void reverse(int l,int r){reverse(root,l,r);}
+    T fold(int l,int r){return fold(root,l,r);}
+    void update(int l,int r,const E &x){update(root,l,r,x);}
+    vector<T> dump(){
+        vector<T> ret(size());
+        auto ite=begin(ret);
+        dump(root,ite);
+        return ret;
+    }
+
+};
+/*
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 class LazyTreap {
     using T = typename M::T;
@@ -89,13 +237,9 @@ private:
     using node_ptr = std::unique_ptr<Node>;
 
     static unsigned int rand() {
-        static int x = 122312555;
-        static int y = 336261662;
-        static int z = 558127122;
-        static int w = 917277772;
-        unsigned int t = x ^ (x << 11);
-        x = y; y = z; z = w;
-        return w = w ^ (w >> 19) ^ (t ^ (t >> 8));
+        static std::random_device rd;
+        static std::mt19937 rng(rd());
+        return rng();
     }
 
     struct Node {
@@ -180,3 +324,5 @@ private:
         }
     }
 };
+
+*/
