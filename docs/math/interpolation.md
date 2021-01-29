@@ -9,11 +9,7 @@ documentation_of: ../../math/interpolation.cpp
 
 - `Polynomial interpolate(vector<T> x, vector<T> y)`
     - 与えられた点の補間多項式を計算する
-    - 時間計算量: $O(n^2 \lg n)$
-
-## Reference
-
-- [非再帰で補間多項式を求めるよ](https://rsk0315.hatenablog.com/entry/2020/04/05/203210)
+    - 時間計算量: $O(n^2)$
 
 ## TODO
 

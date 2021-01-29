@@ -46,6 +46,19 @@ public:
         return *this;
     }
 
+    Poly& operator/=(const Poly& rhs) {
+        if(this->size() < rhs.size()) {
+            this->clear();
+            return *this;
+        }
+        int n = this->size() - rhs.size() + 1;
+        return *this = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);
+    }
+
+    Poly& operator%=(const Poly& rhs) {
+        return *this -= *this / rhs * rhs;
+    }
+
     Poly& operator-() const {
         Poly ret(this->size());
         for (int i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];
@@ -58,6 +71,8 @@ public:
     Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }
     Poly operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }
     Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }
+    Poly operator/(const Poly& rhs) const { return Poly(*this) /= rhs; }
+    Poly operator%(const Poly& rhs) const { return Poly(*this) %= rhs; }
 
     mint operator()(const mint& x) {
         mint y = 0, powx = 1;
@@ -122,4 +137,5 @@ public:
 
 private:
     Poly pre(int size) const { return Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }
+    Poly rev() const { return Poly(this->rbegin(), this->rend()); }
 };

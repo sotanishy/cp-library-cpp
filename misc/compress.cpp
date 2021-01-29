@@ -30,6 +30,10 @@ public:
         return xs[i];
     }
 
+    int size() const {
+        return xs.size();
+    }
+
 private:
     std::vector<T> xs;
 };
