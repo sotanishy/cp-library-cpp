@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 
-/*
- * @brief Dual Segment Tree
- * @docs docs/data-structure/segtree/dual_segment_tree.md
- */
 template <typename M>
 class DualSegmentTree {
     using T = typename M::T;

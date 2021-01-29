@@ -4,10 +4,6 @@
 #include <random>
 #include <utility>
 
-/*
- * @brief Treap
- * @docs docs/data-structure/bst/treap.md
- */
 template <typename M>
 class Treap {
     using T = typename M::T;

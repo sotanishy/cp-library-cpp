@@ -1,3 +1,8 @@
+---
+title: Segment Tree
+documentation_of: ../../../data-structure/segtree/segment_tree.cpp
+---
+
 ## Description
 
 セグメント木は，モノイド $(T, \cdot, e)$ の列に対する一点更新と区間取得を提供するデータ構造である．

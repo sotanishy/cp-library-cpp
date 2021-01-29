@@ -1,3 +1,8 @@
+---
+title: Treap with Lazy Propagation
+documentation_of: ../../../data-structure/bst/lazy_treap.cpp
+---
+
 ## Description
 
 遅延伝搬ツリープは，区間更新が可能なツリープである．扱える代数的構造は遅延伝搬セグメント木と同様なので，そちらを参照．遅延伝搬セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．

@@ -1,3 +1,8 @@
+---
+title: Dynamic Segment Tree
+documentation_of: ../../../data-structure/segtree/dynamic_segment_tree.cpp
+---
+
 ## Description
 
 動的セグメント木は，モノイド $(T, \cdot, e)$ の列に対する一点更新と区間取得を提供するデータ構造である．必要なノードだけを動的に構築することで， $n$ が非常に大きい場合でも効率的に値を管理することができる．

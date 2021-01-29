@@ -1,3 +1,8 @@
+---
+title: Segment Tree Beats
+documentation_of: ../../../data-structure/segtree/segment_tree_beats.cpp
+---
+
 ## Description
 
 Segment tree beats は，遅延伝搬セグメント木の亜種で，区間 chmin/chmax/add 更新と区間 min/max/sum 取得を提供する．sum クエリがないときは遅延伝搬セグメント木で十分である．

@@ -4,10 +4,6 @@
 #include <random>
 #include <utility>
 
-/*
- * @brief Randomized Binary Search Tree
- * @docs docs/data-structure/bst/rbst.md
- */
 template <typename M>
 class RBST {
     using T = typename M::T;

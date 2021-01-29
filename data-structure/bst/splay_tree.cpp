@@ -3,10 +3,6 @@
 #include <memory>
 #include <utility>
 
-/*
- * @brief Splay Tree
- * @docs docs/data-structure/bst/splay_tree.md
- */
 template <typename M>
 class SplayTree {
     using T = typename M::T;

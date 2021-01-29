@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Segment Tree with Lazy Propagation
- * @docs docs/data-structure/segtree/lazy_segment_tree.md
- */
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 class LazySegmentTree {
     using T = typename M::T;

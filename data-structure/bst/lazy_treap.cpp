@@ -4,10 +4,6 @@
 #include <random>
 #include <utility>
 
-/*
- * @brief Treap with Lazy Propagation
- * @docs docs/data-structure/bst/lazy_treap.md
- */
 template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
 class LazyTreap {
     using T = typename M::T;

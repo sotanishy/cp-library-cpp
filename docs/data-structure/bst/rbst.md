@@ -1,3 +1,8 @@
+---
+title: Randomized Binary Search Tree
+documentation_of: ../../../data-structure/bst/rbst.cpp
+---
+
 ## Description
 
 Randomized binary search tree は，平衡二分探索木の一種である．ツリープとほとんど同じだが，ノードにランダムな優先度を与えるのではなく，木を併合するときに木の根を部分木のサイズに比例する確率でランダムに決める．モノイドを扱い，セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．

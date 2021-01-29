@@ -1,10 +1,6 @@
 #pragma once
 #include <memory>
 
-/*
- * @brief Dynamic Segment Tree
- * @docs docs/data-structure/segtree/dynamic_segment_tree.md
- */
 template <typename M>
 class DynamicSegmentTree {
     using T = typename M::T;

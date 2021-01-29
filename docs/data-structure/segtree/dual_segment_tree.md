@@ -1,3 +1,8 @@
+---
+title: Dual Segment Tree
+documentation_of: ../../../data-structure/segtree/dual_segment_tree.cpp
+---
+
 ## Description
 
 双対セグメント木は，作用素モノイド $(T, \cdot, e)$ の列に対する区間更新と一点取得を提供するデータ構造である．

@@ -1,3 +1,8 @@
+---
+title: Segment Tree with Lazy Propagation
+documentation_of: ../../../data-structure/segtree/lazy_segment_tree.cpp
+---
+
 ## Description
 
 遅延伝搬セグメント木は，モノイド $(T, \cdot, e_M)$ の列と，作用素モノイド $(E, \circ, e_O)$ による作用 $*: T \times E \rightarrow T$ を扱うデータ構造である．区間更新と区間取得を提供する．
