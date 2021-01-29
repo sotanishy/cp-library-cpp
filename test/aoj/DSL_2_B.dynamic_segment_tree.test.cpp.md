@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/segtree/dynamic_segment_tree.cpp
     title: Dynamic Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
@@ -17,9 +17,8 @@ data:
   bundledCode: "#line 1 \"test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp\"\n#define\
     \ PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
     \n\n#line 2 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include <memory>\n\
-    \n/*\n * @brief Dynamic Segment Tree\n * @docs docs/data-structure/segtree/dynamic_segment_tree.md\n\
-    \ */\ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename\
-    \ M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long\
+    \ntemplate <typename M>\nclass DynamicSegmentTree {\n    using T = typename M::T;\n\
+    \npublic:\n    DynamicSegmentTree() = default;\n    explicit DynamicSegmentTree(long\
     \ long n) : root(std::make_unique<Node>()) {\n        size = 1;\n        while\
     \ (size < n) size <<= 1;\n    }\n\n    T operator[](long long k) const {\n   \
     \     return fold(k, k + 1);\n    }\n\n    void update(long long k, const T& x)\
@@ -62,8 +61,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-30 17:19:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 22:05:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
 layout: document

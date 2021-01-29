@@ -12,9 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-    title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
@@ -36,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -122,7 +119,6 @@ data:
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp

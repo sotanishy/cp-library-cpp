@@ -59,7 +59,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: data-structure/bst/lazy_treap.cpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -71,21 +71,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.cpp
       title: Splay Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/bst/treap.cpp
       title: Treap
   - name: data-structure/segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/dual_segment_tree.cpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_lazy_segment_tree.cpp
       title: Dynamic Segment Tree with Lazy Propagation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':x:'
@@ -94,7 +94,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
   - name: data-structure/unionfind
@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.splay_tree.test.cpp
       title: test/aoj/1508.splay_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -329,7 +329,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_A.test.cpp
       title: test/aoj/DSL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
       title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -338,19 +338,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_D.test.cpp
       title: test/aoj/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_E.test.cpp
       title: test/aoj/DSL_2_E.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -433,9 +433,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
-      path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-      title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
@@ -499,10 +496,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'

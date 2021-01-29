@@ -113,11 +113,9 @@ data:
   - test/aoj/DSL_2_A.test.cpp
 documentation_of: data-structure/segtree/segment_tree.cpp
 layout: document
-redirect_from:
-- /library/data-structure/segtree/segment_tree.cpp
-- /library/data-structure/segtree/segment_tree.cpp.html
 title: Segment Tree
 ---
+
 ## Description
 
 セグメント木は，モノイド $(T, \cdot, e)$ の列に対する一点更新と区間取得を提供するデータ構造である．

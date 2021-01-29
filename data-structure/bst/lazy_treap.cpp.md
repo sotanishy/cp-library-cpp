@@ -2,24 +2,18 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-    title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/bst/lazy_treap.md
-    document_title: Treap with Lazy Propagation
     links: []
   bundledCode: "#line 2 \"data-structure/bst/lazy_treap.cpp\"\n#include <cassert>\n\
-    #include <memory>\n#include <random>\n#include <utility>\n\n/*\n * @brief Treap\
-    \ with Lazy Propagation\n * @docs docs/data-structure/bst/lazy_treap.md\n */\n\
-    template <typename M, typename O, typename M::T (*act)(typename M::T, typename\
-    \ O::T)>\nclass LazyTreap {\n    using T = typename M::T;\n    using E = typename\
-    \ O::T;\n\npublic:\n    LazyTreap() = default;\n\n    static LazyTreap join(LazyTreap\
-    \ l, LazyTreap r) {\n        return LazyTreap(join(std::move(l.root), std::move(r.root)));\n\
+    #include <memory>\n#include <random>\n#include <utility>\n\ntemplate <typename\
+    \ M, typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazyTreap\
+    \ {\n    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n \
+    \   LazyTreap() = default;\n\n    static LazyTreap join(LazyTreap l, LazyTreap\
+    \ r) {\n        return LazyTreap(join(std::move(l.root), std::move(r.root)));\n\
     \    }\n\n    std::pair<LazyTreap, LazyTreap> split(int k) {\n        auto p =\
     \ split(std::move(root), k);\n        return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};\n\
     \    }\n\n    void update(int l, int r, const E& x) {\n        assert(0 <= l &&\
@@ -83,27 +77,27 @@ data:
     \      recalc(t);\n            return {std::move(t), std::move(s.second)};\n \
     \       }\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <memory>\n#include <random>\n\
-    #include <utility>\n\n/*\n * @brief Treap with Lazy Propagation\n * @docs docs/data-structure/bst/lazy_treap.md\n\
-    \ */\ntemplate <typename M, typename O, typename M::T (*act)(typename M::T, typename\
-    \ O::T)>\nclass LazyTreap {\n    using T = typename M::T;\n    using E = typename\
-    \ O::T;\n\npublic:\n    LazyTreap() = default;\n\n    static LazyTreap join(LazyTreap\
-    \ l, LazyTreap r) {\n        return LazyTreap(join(std::move(l.root), std::move(r.root)));\n\
-    \    }\n\n    std::pair<LazyTreap, LazyTreap> split(int k) {\n        auto p =\
-    \ split(std::move(root), k);\n        return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};\n\
-    \    }\n\n    void update(int l, int r, const E& x) {\n        assert(0 <= l &&\
-    \ l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a, b) =\
-    \ split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b), r -\
-    \ l);\n        b->lazy = O::op(b->lazy, x);\n        root = join(join(std::move(a),\
-    \ std::move(b)), std::move(c));\n    }\n\n    T fold(int l, int r) {\n       \
-    \ assert(0 <= l && l < r && r <= size());\n        node_ptr a, b, c;\n       \
-    \ std::tie(a, b) = split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b),\
-    \ r - l);\n        auto ret = b->sum;\n        root = join(join(std::move(a),\
-    \ std::move(b)), std::move(c));\n        return ret;\n    }\n\n    void reverse(int\
-    \ l, int r) {\n        assert(0 <= l && l < r && r <= size());\n        node_ptr\
-    \ a, b, c;\n        std::tie(a, b) = split(std::move(root), l);\n        std::tie(b,\
-    \ c) = split(std::move(b), r - l);\n        b->rev ^= true;\n        root = join(join(std::move(a),\
-    \ std::move(b)), std::move(c));\n    }\n\n    void insert(int k, const T& x) {\n\
-    \        auto s = split(std::move(root), k);\n        root = join(join(std::move(s.first),\
+    #include <utility>\n\ntemplate <typename M, typename O, typename M::T (*act)(typename\
+    \ M::T, typename O::T)>\nclass LazyTreap {\n    using T = typename M::T;\n   \
+    \ using E = typename O::T;\n\npublic:\n    LazyTreap() = default;\n\n    static\
+    \ LazyTreap join(LazyTreap l, LazyTreap r) {\n        return LazyTreap(join(std::move(l.root),\
+    \ std::move(r.root)));\n    }\n\n    std::pair<LazyTreap, LazyTreap> split(int\
+    \ k) {\n        auto p = split(std::move(root), k);\n        return {LazyTreap(std::move(p.first)),\
+    \ LazyTreap(std::move(p.second))};\n    }\n\n    void update(int l, int r, const\
+    \ E& x) {\n        assert(0 <= l && l < r && r <= size());\n        node_ptr a,\
+    \ b, c;\n        std::tie(a, b) = split(std::move(root), l);\n        std::tie(b,\
+    \ c) = split(std::move(b), r - l);\n        b->lazy = O::op(b->lazy, x);\n   \
+    \     root = join(join(std::move(a), std::move(b)), std::move(c));\n    }\n\n\
+    \    T fold(int l, int r) {\n        assert(0 <= l && l < r && r <= size());\n\
+    \        node_ptr a, b, c;\n        std::tie(a, b) = split(std::move(root), l);\n\
+    \        std::tie(b, c) = split(std::move(b), r - l);\n        auto ret = b->sum;\n\
+    \        root = join(join(std::move(a), std::move(b)), std::move(c));\n      \
+    \  return ret;\n    }\n\n    void reverse(int l, int r) {\n        assert(0 <=\
+    \ l && l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a,\
+    \ b) = split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b),\
+    \ r - l);\n        b->rev ^= true;\n        root = join(join(std::move(a), std::move(b)),\
+    \ std::move(c));\n    }\n\n    void insert(int k, const T& x) {\n        auto\
+    \ s = split(std::move(root), k);\n        root = join(join(std::move(s.first),\
     \ std::make_unique<Node>(x)), std::move(s.second));\n    }\n\n    void erase(int\
     \ k) {\n        auto p = split(std::move(root), k);\n        auto q = split(std::move(p.second),\
     \ 1);\n        root = join(std::move(p.first), std::move(q.second));\n    }\n\n\
@@ -154,17 +148,14 @@ data:
   isVerificationFile: false
   path: data-structure/bst/lazy_treap.cpp
   requiredBy: []
-  timestamp: '2020-11-28 19:10:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+  timestamp: '2021-01-29 22:05:53+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-structure/bst/lazy_treap.cpp
 layout: document
-redirect_from:
-- /library/data-structure/bst/lazy_treap.cpp
-- /library/data-structure/bst/lazy_treap.cpp.html
 title: Treap with Lazy Propagation
 ---
+
 ## Description
 
 遅延伝搬ツリープは，区間更新が可能なツリープである．扱える代数的構造は遅延伝搬セグメント木と同様なので，そちらを参照．遅延伝搬セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．

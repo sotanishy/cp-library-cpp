@@ -3,39 +3,36 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/segtree/segment_tree_beats.md
-    document_title: Segment Tree Beats
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include\
-    \ <algorithm>\n#include <limits>\n#include <vector>\n\n/*\n * @brief Segment Tree\
-    \ Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n */\ntemplate\
-    \ <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats() = default;\n\
-    \    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}\n\
-    \    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size = 1;\n\
-    \        while (size < (int) v.size()) size <<= 1;\n        sum.resize(2 * size);\n\
-    \        lazy.resize(2 * size);\n        max_val.resize(2 * size, NINF);\n   \
-    \     smax_val.resize(2 * size, NINF);\n        max_cnt.resize(2 * size);\n  \
-    \      min_val.resize(2 * size, INF);\n        smin_val.resize(2 * size, INF);\n\
-    \        min_cnt.resize(2 * size);\n        len.resize(2 * size);\n        len[1]\
-    \ = size;\n        for (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;\n\
-    \        for (int i = 0; i < (int) v.size(); ++i) {\n            sum[size + i]\
-    \ = max_val[size + i] = min_val[size + i] = v[i];\n            max_cnt[size +\
-    \ i] = min_cnt[size + i] = 1;\n        }\n        for (int i = size - 1; i > 0;\
-    \ --i) recalc(i);\n    }\n\n    T operator[](int k) {\n        return fold_sum(k,\
-    \ k + 1);\n    }\n\n    void chmin(int l, int r, T x) { update<CHMIN>(l, r, x,\
-    \ 1, 0, size); }\n    void chmax(int l, int r, T x) { update<CHMAX>(l, r, x, 1,\
-    \ 0, size); }\n    void add(int l, int r, T x) { update<ADD>(l, r, x, 1, 0, size);\
-    \ }\n\n    T fold_min(int l, int r) { return fold<MIN>(l, r, 1, 0, size); }\n\
-    \    T fold_max(int l, int r) { return fold<MAX>(l, r, 1, 0, size); }\n    T fold_sum(int\
-    \ l, int r) { return fold<SUM>(l, r, 1, 0, size); }\n\nprivate:\n    enum OpType\
-    \ {\n        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
+    \ <algorithm>\n#include <limits>\n#include <vector>\n\ntemplate <typename T>\n\
+    class SegmentTreeBeats {\npublic:\n    SegmentTreeBeats() = default;\n    explicit\
+    \ SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}\n    explicit\
+    \ SegmentTreeBeats(const std::vector<T>& v) {\n        size = 1;\n        while\
+    \ (size < (int) v.size()) size <<= 1;\n        sum.resize(2 * size);\n       \
+    \ lazy.resize(2 * size);\n        max_val.resize(2 * size, NINF);\n        smax_val.resize(2\
+    \ * size, NINF);\n        max_cnt.resize(2 * size);\n        min_val.resize(2\
+    \ * size, INF);\n        smin_val.resize(2 * size, INF);\n        min_cnt.resize(2\
+    \ * size);\n        len.resize(2 * size);\n        len[1] = size;\n        for\
+    \ (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;\n        for (int i\
+    \ = 0; i < (int) v.size(); ++i) {\n            sum[size + i] = max_val[size +\
+    \ i] = min_val[size + i] = v[i];\n            max_cnt[size + i] = min_cnt[size\
+    \ + i] = 1;\n        }\n        for (int i = size - 1; i > 0; --i) recalc(i);\n\
+    \    }\n\n    T operator[](int k) {\n        return fold_sum(k, k + 1);\n    }\n\
+    \n    void chmin(int l, int r, T x) { update<CHMIN>(l, r, x, 1, 0, size); }\n\
+    \    void chmax(int l, int r, T x) { update<CHMAX>(l, r, x, 1, 0, size); }\n \
+    \   void add(int l, int r, T x) { update<ADD>(l, r, x, 1, 0, size); }\n\n    T\
+    \ fold_min(int l, int r) { return fold<MIN>(l, r, 1, 0, size); }\n    T fold_max(int\
+    \ l, int r) { return fold<MAX>(l, r, 1, 0, size); }\n    T fold_sum(int l, int\
+    \ r) { return fold<SUM>(l, r, 1, 0, size); }\n\nprivate:\n    enum OpType {\n\
+    \        CHMIN, CHMAX, ADD\n    };\n\n    enum QueryType {\n        MIN, MAX,\
     \ SUM\n    };\n\n    static constexpr T INF = std::numeric_limits<T>::max();\n\
     \    static constexpr T NINF = std::numeric_limits<T>::min();\n\n    int size;\n\
     \    std::vector<T> sum, lazy;\n    std::vector<T> max_val, smax_val;\n    std::vector<T>\
@@ -96,8 +93,7 @@ data:
     \   if (TYPE == MAX) return std::max(vl, vr);\n        if (TYPE == SUM) return\
     \ vl + vr;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <vector>\n\
-    \n/*\n * @brief Segment Tree Beats\n * @docs docs/data-structure/segtree/segment_tree_beats.md\n\
-    \ */\ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
+    \ntemplate <typename T>\nclass SegmentTreeBeats {\npublic:\n    SegmentTreeBeats()\
     \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n))\
     \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size =\
     \ 1;\n        while (size < (int) v.size()) size <<= 1;\n        sum.resize(2\
@@ -180,17 +176,15 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2020-10-24 14:54:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-01-29 22:05:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: data-structure/segtree/segment_tree_beats.cpp
 layout: document
-redirect_from:
-- /library/data-structure/segtree/segment_tree_beats.cpp
-- /library/data-structure/segtree/segment_tree_beats.cpp.html
 title: Segment Tree Beats
 ---
+
 ## Description
 
 Segment tree beats は，遅延伝搬セグメント木の亜種で，区間 chmin/chmax/add 更新と区間 min/max/sum 取得を提供する．sum クエリがないときは遅延伝搬セグメント木で十分である．

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -16,23 +16,22 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
   bundledCode: "#line 1 \"test/aoj/DSL_2_F.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
     \n\n#line 2 \"data-structure/segtree/lazy_segment_tree.cpp\"\n#include <algorithm>\n\
-    #include <vector>\n\n/*\n * @brief Segment Tree with Lazy Propagation\n * @docs\
-    \ docs/data-structure/segtree/lazy_segment_tree.md\n */\ntemplate <typename M,\
-    \ typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazySegmentTree\
-    \ {\n    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n \
-    \   LazySegmentTree() = default;\n    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n,\
-    \ M::id)) {}\n    explicit LazySegmentTree(const std::vector<T>& v) {\n      \
-    \  size = 1;\n        height = 0;\n        while (size < (int) v.size()) size\
-    \ <<= 1, ++height;\n        node.resize(2 * size, M::id);\n        lazy.resize(2\
-    \ * size, O::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
-    \        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
-    \ * i + 1]);\n    }\n\n    T operator[](int k) {\n        return fold(k, k + 1);\n\
-    \    }\n\n    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size);\
-    \ }\n\n    T fold(int l, int r) { return fold(l, r, 1, 0, size); }\n\nprivate:\n\
-    \    int size, height;\n    std::vector<T> node;\n    std::vector<E> lazy;\n\n\
-    \    void push(int k) {\n        if (lazy[k] == O::id) return;\n        if (k\
-    \ < size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n        \
-    \    lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n        node[k]\
+    #include <vector>\n\ntemplate <typename M, typename O, typename M::T (*act)(typename\
+    \ M::T, typename O::T)>\nclass LazySegmentTree {\n    using T = typename M::T;\n\
+    \    using E = typename O::T;\n\npublic:\n    LazySegmentTree() = default;\n \
+    \   explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id))\
+    \ {}\n    explicit LazySegmentTree(const std::vector<T>& v) {\n        size =\
+    \ 1;\n        height = 0;\n        while (size < (int) v.size()) size <<= 1, ++height;\n\
+    \        node.resize(2 * size, M::id);\n        lazy.resize(2 * size, O::id);\n\
+    \        std::copy(v.begin(), v.end(), node.begin() + size);\n        for (int\
+    \ i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);\n \
+    \   }\n\n    T operator[](int k) {\n        return fold(k, k + 1);\n    }\n\n\
+    \    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }\n\n\
+    \    T fold(int l, int r) { return fold(l, r, 1, 0, size); }\n\nprivate:\n   \
+    \ int size, height;\n    std::vector<T> node;\n    std::vector<E> lazy;\n\n  \
+    \  void push(int k) {\n        if (lazy[k] == O::id) return;\n        if (k <\
+    \ size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n          \
+    \  lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n        node[k]\
     \ = act(node[k], lazy[k]);\n        lazy[k] = O::id;\n    }\n\n    void update(int\
     \ a, int b, const E& x, int k, int l, int r) {\n        push(k);\n        if (r\
     \ <= a || b <= l) return;\n        if (a <= l && r <= b) {\n            lazy[k]\
@@ -72,8 +71,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:25:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 22:05:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F.test.cpp
 layout: document

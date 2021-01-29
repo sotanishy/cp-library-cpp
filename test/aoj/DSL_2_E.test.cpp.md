@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/segtree/dual_segment_tree.cpp
     title: Dual Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
@@ -16,8 +16,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
   bundledCode: "#line 1 \"test/aoj/DSL_2_E.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
     \n\n#line 2 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include <vector>\n\
-    \n/*\n * @brief Dual Segment Tree\n * @docs docs/data-structure/segtree/dual_segment_tree.md\n\
-    \ */\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
+    \ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
     \ n) {\n        size = 1;\n        height = 1;\n        while (size < n) size\
     \ <<= 1, ++height;\n        lazy.resize(2 * size, M::id);\n    }\n\n    T operator[](int\
@@ -56,8 +55,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:25:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-01-29 22:05:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_E.test.cpp
 layout: document

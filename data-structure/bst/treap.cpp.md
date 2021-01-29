@@ -3,21 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1508.treap.test.cpp
     title: test/aoj/1508.treap.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/bst/treap.md
-    document_title: Treap
     links: []
   bundledCode: "#line 2 \"data-structure/bst/treap.cpp\"\n#include <cassert>\n#include\
-    \ <memory>\n#include <random>\n#include <utility>\n\n/*\n * @brief Treap\n * @docs\
-    \ docs/data-structure/bst/treap.md\n */\ntemplate <typename M>\nclass Treap {\n\
-    \    using T = typename M::T;\n\npublic:\n    Treap() = default;\n\n    static\
-    \ Treap join(Treap l, Treap r) {\n        return Treap(join(std::move(l.root),\
+    \ <memory>\n#include <random>\n#include <utility>\n\ntemplate <typename M>\nclass\
+    \ Treap {\n    using T = typename M::T;\n\npublic:\n    Treap() = default;\n\n\
+    \    static Treap join(Treap l, Treap r) {\n        return Treap(join(std::move(l.root),\
     \ std::move(r.root)));\n    }\n\n    std::pair<Treap, Treap> split(int k) {\n\
     \        auto p = split(std::move(root), k);\n        return {Treap(std::move(p.first)),\
     \ Treap(std::move(p.second))};\n    }\n\n    void update(int k, const T& x) const\
@@ -75,19 +72,18 @@ data:
     \ if (lsize < k) {\n            update(t->right, k - lsize - 1, x);\n        }\
     \ else {\n            t->val = x;\n        }\n        recalc(t);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <memory>\n#include <random>\n\
-    #include <utility>\n\n/*\n * @brief Treap\n * @docs docs/data-structure/bst/treap.md\n\
-    \ */\ntemplate <typename M>\nclass Treap {\n    using T = typename M::T;\n\npublic:\n\
-    \    Treap() = default;\n\n    static Treap join(Treap l, Treap r) {\n       \
-    \ return Treap(join(std::move(l.root), std::move(r.root)));\n    }\n\n    std::pair<Treap,\
-    \ Treap> split(int k) {\n        auto p = split(std::move(root), k);\n       \
-    \ return {Treap(std::move(p.first)), Treap(std::move(p.second))};\n    }\n\n \
-    \   void update(int k, const T& x) const {\n        update(root, k, x);\n    }\n\
-    \n    T fold(int l, int r) {\n        assert(0 <= l && l < r && r <= size());\n\
-    \        node_ptr a, b, c;\n        std::tie(a, b) = split(std::move(root), l);\n\
-    \        std::tie(b, c) = split(std::move(b), r - l);\n        auto ret = b->sum;\n\
-    \        root = join(join(std::move(a), std::move(b)), std::move(c));\n      \
-    \  return ret;\n    }\n\n    void reverse(int l, int r) {\n        assert(0 <=\
-    \ l && l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a,\
+    #include <utility>\n\ntemplate <typename M>\nclass Treap {\n    using T = typename\
+    \ M::T;\n\npublic:\n    Treap() = default;\n\n    static Treap join(Treap l, Treap\
+    \ r) {\n        return Treap(join(std::move(l.root), std::move(r.root)));\n  \
+    \  }\n\n    std::pair<Treap, Treap> split(int k) {\n        auto p = split(std::move(root),\
+    \ k);\n        return {Treap(std::move(p.first)), Treap(std::move(p.second))};\n\
+    \    }\n\n    void update(int k, const T& x) const {\n        update(root, k,\
+    \ x);\n    }\n\n    T fold(int l, int r) {\n        assert(0 <= l && l < r &&\
+    \ r <= size());\n        node_ptr a, b, c;\n        std::tie(a, b) = split(std::move(root),\
+    \ l);\n        std::tie(b, c) = split(std::move(b), r - l);\n        auto ret\
+    \ = b->sum;\n        root = join(join(std::move(a), std::move(b)), std::move(c));\n\
+    \        return ret;\n    }\n\n    void reverse(int l, int r) {\n        assert(0\
+    \ <= l && l < r && r <= size());\n        node_ptr a, b, c;\n        std::tie(a,\
     \ b) = split(std::move(root), l);\n        std::tie(b, c) = split(std::move(b),\
     \ r - l);\n        b->rev ^= true;\n        root = join(join(std::move(a), std::move(b)),\
     \ std::move(c));\n    }\n\n    void insert(int k, const T& x) {\n        auto\
@@ -139,17 +135,15 @@ data:
   isVerificationFile: false
   path: data-structure/bst/treap.cpp
   requiredBy: []
-  timestamp: '2020-11-28 19:10:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-01-29 22:05:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/1508.treap.test.cpp
 documentation_of: data-structure/bst/treap.cpp
 layout: document
-redirect_from:
-- /library/data-structure/bst/treap.cpp
-- /library/data-structure/bst/treap.cpp.html
 title: Treap
 ---
+
 ## Description
 
 ツリープは，平衡二分探索木の一種である．キーと別に，ランダムに割り当てられた優先度を用いてヒープ性を持たせることで，木の平衡を保つ．モノイドを扱い，セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．
