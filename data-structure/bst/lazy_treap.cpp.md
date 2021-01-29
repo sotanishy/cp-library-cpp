@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/bst/lazy_treap.cpp\"\n#include <cassert>\n\
@@ -59,7 +59,7 @@ data:
     \ val, sum;\n        E lazy;\n        unsigned int pri;\n        int sz;\n   \
     \     bool rev;\n\n        Node() : Node(M::id) {}\n        Node(const T& x) :\
     \ left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1),\
-    \ rev(false) {}\n    };\n\n    node_ptr root;\n\n    explicit LazyTreap(node_ptr\
+    \ rev(false) {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit LazyTreap(node_ptr\
     \ root) : root(std::move(root)) {}\n    T sum(const Node *t){return t?t->sum:M::id;}\n\
     \n    static int size(const node_ptr& t) {\n        return t ? t->sz : 0;\n  \
     \  }\n\n    static void recalc(const node_ptr& t) {\n        if (!t) return;\n\
@@ -196,7 +196,7 @@ data:
     \ val, sum;\n        E lazy;\n        unsigned int pri;\n        int sz;\n   \
     \     bool rev;\n\n        Node() : Node(M::id) {}\n        Node(const T& x) :\
     \ left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1),\
-    \ rev(false) {}\n    };\n\n    node_ptr root;\n\n    explicit LazyTreap(node_ptr\
+    \ rev(false) {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit LazyTreap(node_ptr\
     \ root) : root(std::move(root)) {}\n    T sum(const Node *t){return t?t->sum:M::id;}\n\
     \n    static int size(const node_ptr& t) {\n        return t ? t->sz : 0;\n  \
     \  }\n\n    static void recalc(const node_ptr& t) {\n        if (!t) return;\n\
@@ -290,8 +290,8 @@ data:
   isVerificationFile: false
   path: data-structure/bst/lazy_treap.cpp
   requiredBy: []
-  timestamp: '2021-01-30 01:48:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-01-30 01:51:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
 documentation_of: data-structure/bst/lazy_treap.cpp

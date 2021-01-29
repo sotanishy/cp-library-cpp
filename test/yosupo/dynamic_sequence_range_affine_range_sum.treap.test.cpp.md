@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/bst/lazy_treap.cpp
     title: Treap with Lazy Propagation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -67,7 +67,7 @@ data:
     \ val, sum;\n        E lazy;\n        unsigned int pri;\n        int sz;\n   \
     \     bool rev;\n\n        Node() : Node(M::id) {}\n        Node(const T& x) :\
     \ left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1),\
-    \ rev(false) {}\n    };\n\n    node_ptr root;\n\n    explicit LazyTreap(node_ptr\
+    \ rev(false) {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit LazyTreap(node_ptr\
     \ root) : root(std::move(root)) {}\n    T sum(const Node *t){return t?t->sum:M::id;}\n\
     \n    static int size(const node_ptr& t) {\n        return t ? t->sz : 0;\n  \
     \  }\n\n    static void recalc(const node_ptr& t) {\n        if (!t) return;\n\
@@ -232,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   requiredBy: []
-  timestamp: '2021-01-30 01:48:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-01-30 01:51:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
 layout: document
