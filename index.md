@@ -288,6 +288,9 @@ data:
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
+      path: tree/lazy_euler_tour_tree.cpp
+      title: Euler Tour Tree with Lazy Propagation
+    - icon: ':heavy_check_mark:'
       path: tree/lca.cpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -436,6 +439,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
+      title: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
