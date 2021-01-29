@@ -17,6 +17,7 @@ public:
     }
 
     std::pair<LazyTreap, LazyTreap> split(int k) {
+        assert(0 <= k && k <= size());
         auto p = split(std::move(root), k);
         return {LazyTreap(std::move(p.first)), LazyTreap(std::move(p.second))};
     }
@@ -161,10 +162,8 @@ private:
     }
 
     static std::pair<node_ptr, node_ptr> split(node_ptr t, int k) {
-        assert(0 <= k && k <= size(t));
+        if (!t) return {nullptr, nullptr};
         push(t);
-        if (k == 0) return {nullptr, std::move(t)};
-        if (k == size(t)) return {std::move(t), nullptr};
         if (k <= size(t->left)) {
             auto s = split(std::move(t->left), k);
             t->left = std::move(s.second);
