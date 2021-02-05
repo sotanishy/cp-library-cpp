@@ -1,3 +1,8 @@
+---
+title: Extended Euclidean Algorithm
+documentation_of: ../../math/extgcd.cpp
+---
+
 ## Description
 
 拡張ユークリッドの互除法は，2変数1次ディオファントス方程式 $ax + by = \gcd(a, b)$ の解 $(x, y)$ を1組求めるアルゴリズムである．

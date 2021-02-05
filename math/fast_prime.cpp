@@ -4,11 +4,6 @@
 #include <random>
 #include <vector>
 
-/*
- * @brief Fast Prime Number Algorithms
- * @docs docs/math/fast_prime.md
- */
-
 namespace fast_prime {
 
 class LargeModint {

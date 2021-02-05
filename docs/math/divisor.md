@@ -1,3 +1,8 @@
+---
+title: Divisor
+documentation_of: ../../math/divisor.cpp
+---
+
 ## Description
 
 $n$ の約数を試し割り法で全て求める．

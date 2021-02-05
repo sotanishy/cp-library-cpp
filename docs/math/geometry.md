@@ -1,3 +1,8 @@
+---
+title: Geometry
+documentation_of: ../../math/geometry.cpp
+---
+
 ## Description
 
 幾何アルゴリズム詰め合わせ
@@ -60,4 +65,3 @@
 - `vector<Vec> convex_hull(vector<Vec> points)`
     - 与えられた点の凸包を返す
     - 時間計算量: $O(n)$
-    - ***NOT VERIFIED***

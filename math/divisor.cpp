@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 
-/*
- * @brief Divisors
- * @docs docs/math/divisor.md
- */
 std::vector<long long> divisor(long long n) {
     std::vector<long long> ret1, ret2;
     for (long long i = 1; i * i <= n; ++i) {

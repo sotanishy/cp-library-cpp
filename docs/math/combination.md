@@ -1,3 +1,8 @@
+---
+title: Combination
+documentation_of: ../../math/combination.cpp
+---
+
 ## Description
 
 組み合わせ $n \choose r$ および順列 $_n P _r$ を $\mod mod$ で計算する．これらの値を何度も計算する必要があるときは non-static メンバーを，1度でいいときは static メンバーを使用する．また，$n$ の値が配列に入らないほど大きいが $r$ の値は十分小さいときも static メンバーを使用する．

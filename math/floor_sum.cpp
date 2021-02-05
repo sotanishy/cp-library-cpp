@@ -1,9 +1,5 @@
 #pragma once
 
-/*
- * @brief Floor Sum
- * @docs docs/math/floor_sum.md
- */
 long long floor_sum(long long n, long long m, long long a, long long b) {
     long long sum = 0;
     if (a >= m) {

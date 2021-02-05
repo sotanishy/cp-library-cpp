@@ -1,9 +1,5 @@
 #pragma once
 
-/*
- * @brief Euler's Totient Function
- * @docs docs/math/euler_totient.md
- */
 long long euler_totient(long long n) {
     long long ret = n;
     if (n % 2 == 0) {

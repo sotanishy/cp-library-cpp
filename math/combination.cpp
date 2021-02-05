@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 
-/*
- * @brief Combination
- * @docs docs/math/combination.md
- */
 template <typename T>
 class Combination {
 public:

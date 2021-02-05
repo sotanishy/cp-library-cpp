@@ -6,11 +6,6 @@
 #include <optional>
 #include <vector>
 
-/*
- * @brief Geometry
- * @docs docs/math/geometry.md
- */
-
 constexpr double eps = 1e-12;
 
 inline bool eq(double a, double b) { return std::abs(a - b) < eps; }
@@ -28,12 +23,12 @@ struct Vec {
     Vec operator*(double k) const { return Vec(x * k, y * k); }
     Vec operator/(double k) const { return Vec(x / k, y / k); }
 
-    double abs() const { return sqrt(x * x + y * y); }
+    double abs() const { return std::sqrt(x * x + y * y); }
     double dot(const Vec& other) const { return x * other.x + y * other.y; }
     double cross(const Vec& other) const { return x * other.y - y * other.x; }
 
     Vec rot(double ang) const {
-        double c = cos(ang), s = sin(ang);
+        double c = std::cos(ang), s = std::sin(ang);
         return Vec(c * x - s * y, s * x + c * y);
     }
 
@@ -82,7 +77,7 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
     // if one contains the other entirely
     if (lt(d, std::abs(r2 - r1))) return {};
     double x = (r1*r1 - r2*r2 + d*d) / (2*d);
-    double y = sqrt(r1*r1 - x*x);
+    double y = std::sqrt(r1*r1 - x*x);
     Vec e1 = (c2 - c1) / (c2 - c1).abs();
     Vec e2 = Vec(-e1.y, e1.x);
     Vec p1 = c1 + e1 * x + e2 * y;
@@ -127,22 +122,21 @@ Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
 std::vector<Vec> convex_hull(std::vector<Vec>& points) {
     int n = points.size();
     std::sort(points.begin(), points.end(), [](const Vec& v1, const Vec& v2) {
-        return std::make_pair(v1.x, v1.y) < std::make_pair(v2.x, v2.y);
+        return (v1.y != v2.y) ? (v1.y < v2.y) : (v1.x < v2.x);
     });
     int k = 0; // the number of vertices in the convex hull
     std::vector<Vec> ch(2 * n);
-    // bottom
+    // right
     for (int i = 0; i < n; ++i) {
-        while (k > 1 && leq((ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]), 0)) --k;
-        ch[k] = points[i];
-        ++k;
+        while (k > 1 && lt((ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]), 0)) --k;
+        ch[k++] = points[i];
     }
     int t = k;
-    // top
-    for (int i = n - 1; i >= 0; --i) {
-        while (k > t && leq((ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]), 0)) --k;
-        ch[k] = points[i];
-        ++k;
+    // left
+    for (int i = n - 2; i >= 0; --i) {
+        while (k > t && lt((ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]), 0)) --k;
+        ch[k++] = points[i];
     }
-    return std::vector<Vec>(ch.begin(), ch.begin() + (k - 1));
+    ch.resize(k - 1);
+    return ch;
 }

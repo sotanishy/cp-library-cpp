@@ -4,10 +4,6 @@
 #include <complex>
 #include <vector>
 
-/*
- * @brief Fast Fourier Transform
- * @docs docs/math/fft.md
- */
 class FFT {
     using C = std::complex<double>;
 

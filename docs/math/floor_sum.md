@@ -1,3 +1,8 @@
+---
+title: Sum of Floor of Linear
+documentation_of: ../../math/floor_sum.cpp
+---
+
 ## Description
 
 一次関数の床関数の和 $\sum_{i=0}^{N-1} \left\lfloor \frac{A*i + B}{M} \right\rfloor$ を再帰的に計算する．

@@ -1,3 +1,8 @@
+---
+title: Fast Fourier Transform
+documentation_of: ../../math/fft.cpp
+---
+
 ## Description
 
 高速フーリエ変換 (FFT) は数列の離散フーリエ変換を計算するアルゴリズムであり，2つの数列の畳み込みを高速に計算するのに用いられる．

@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <utility>
 
-/*
- * @brief Extended Euclidean Algorithm
- * @docs docs/math/extgcd.md
- */
 std::pair<long long, long long> extgcd(long long a, long long b) {
     long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;
     while (t) {

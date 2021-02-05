@@ -1,3 +1,8 @@
+---
+title: Fast Prime Number Algorithms
+documentation_of: ../../math/fast_prime.cpp
+---
+
 ## Description
 
 素数に関する高速なアルゴリズム
