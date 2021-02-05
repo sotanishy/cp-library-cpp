@@ -4,10 +4,6 @@
 #include <vector>
 #include "bit_vector.cpp"
 
-/*
- * @brief Wavelet Matrix
- * @docs docs/data-structure/wavelet_matrix.md
- */
 template <typename T>
 class WaveletMatrix {
 public:

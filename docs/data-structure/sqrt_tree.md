@@ -1,3 +1,8 @@
+---
+title: Sqrt Tree
+documentation_of: ../../data-structure/sqrt_tree.cpp
+---
+
 ## Description
 
 Sqrt tree は，半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．平方分割を再帰的に行うことで木の高さを $O(\lg\lg n)$ にしている．スパーステーブルと比べて前処理が高速でメモリ使用量が少ないという特徴がある．

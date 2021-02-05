@@ -16,5 +16,5 @@
     - 点 $(x, y)$ の値を `val` に更新する
     - 時間計算量: $O(\lg n)$
 - `T fold(int l, int r, int b, int t)`
-    - 領域 ${(x, y) | x \in [l, r),\ y \in [b, t)}$ 内の点を fold した値を返す
+    - 領域 ${(x, y) : x \in [l, r),\ y \in [b, t)}$ 内の点を fold した値を返す
     - 時間計算量: $O(m\lg n)$

@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Sparse Table
- * @docs docs/data-structure/sparse_table.md
- */
 template <typename S>
 class SparseTable {
     using T = typename S::T;

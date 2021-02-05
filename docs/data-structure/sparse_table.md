@@ -1,3 +1,8 @@
+---
+title: Sparse Table
+documentation_of: ../../data-structure/sparse_table.cpp
+---
+
 ## Description
 
 スパーステーブルは，冪等半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．
