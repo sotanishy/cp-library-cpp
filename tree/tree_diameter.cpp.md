@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []
@@ -9,9 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/tree_diameter.test.cpp
+    title: test/yosupo/tree_diameter.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/tree_diameter.cpp\"\n#include <algorithm>\n#include\
@@ -19,71 +22,58 @@ data:
     \ T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight)\
     \ : from(-1), to(to), weight(weight) {}\n    Edge(int from, int to, T weight)\
     \ : from(from), to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\
-    \n\nclass TreeDiameter {\npublic:\n    TreeDiameter() = delete;\n\n    static\
-    \ int diameter(const std::vector<std::vector<int>>& G) {\n        auto p = dfs(G,\
-    \ 0, -1);\n        auto q = dfs(G, p.second, -1);\n        return q.first;\n \
-    \   }\n\n    template <typename T>\n    static T diameter(const std::vector<std::vector<Edge<T>>>&\
-    \ G) {\n        auto p = dfs(G, 0, -1);\n        auto q = dfs(G, p.second, -1);\n\
-    \        return q.first;\n    }\n\nprivate:\n    static std::pair<int, int> dfs(const\
-    \ std::vector<std::vector<int>>& G, int v, int p) {\n        std::pair<int, int>\
-    \ ret(0, v);\n        for (int c : G[v]) {\n            if (c == p) continue;\n\
-    \            auto weight = dfs(G, c, v);\n            ++weight.first;\n      \
-    \      ret = std::max(ret, weight);\n        }\n        return ret;\n    }\n\n\
-    \    template <typename T>\n    static std::pair<T, int> dfs(const std::vector<std::vector<Edge<T>>>&\
-    \ G, int v, int p) {\n        std::pair<T, int> ret(0, v);\n        for (auto&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            auto weight =\
-    \ dfs(G, e.to, v);\n            weight.first += e.weight;\n            ret = std::max(ret,\
-    \ weight);\n        }\n        return ret;\n    }\n};\n\n/*\nint tree_diameter(const\
-    \ std::vector<std::vector<int>>& G) {\n    auto dfs = [&](const auto& self, int\
-    \ v, int p) {\n        std::pair<int, int> ret(0, v);\n        for (int c : G[v])\
-    \ {\n            if (c == p) continue;\n            auto weight = self(self, c,\
-    \ v);\n            ++weight.first;\n            ret = std::max(ret, weight);\n\
-    \        }\n        return ret;\n    };\n    auto p = dfs(dfs, 0, -1);\n    auto\
-    \ q = dfs(dfs, p.second, -1);\n    return q.first;\n}\n\ntemplate <typename T>\n\
-    T tree_diameter(const std::vector<std::vector<Edge<T>>>& G) {\n    auto dfs =\
-    \ [&](const auto& self, int v, int p) {\n        std::pair<int, int> ret(0, v);\n\
-    \        for (auto& e : G[v]) {\n            if (e.to == p) continue;\n      \
-    \      auto weight = self(self, e.to, v);\n            weight.first += e.weight;\n\
-    \            ret = std::max(ret, weight);\n        }\n        return ret;\n  \
-    \  }\n    auto p = dfs(dfs, 0, -1);\n    auto q = dfs(G, p.second, -1);\n    return\
-    \ q.first;\n}\n*/\n"
+    \n\nstd::pair<int, std::vector<int>> tree_diameter(const std::vector<std::vector<int>>&\
+    \ G) {\n    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs,\
+    \ int v, int p) -> std::pair<int, int> {\n        std::pair<int, int> ret(0, v);\n\
+    \        for (int c : G[v]) {\n            if (c == p) continue;\n           \
+    \ auto weight = dfs(dfs, c, v);\n            ++weight.first;\n            if (ret\
+    \ < weight) {\n                ret = weight;\n                to[v] = c;\n   \
+    \         }\n        }\n        return ret;\n    };\n\n    auto p = dfs(dfs, 0,\
+    \ -1);\n    auto q = dfs(dfs, p.second, -1);\n    std::vector<int> path;\n   \
+    \ int v = p.second;\n    while (v != q.second) {\n        path.push_back(v);\n\
+    \        v = to[v];\n    }\n    path.push_back(v);\n    return {q.first, path};\n\
+    }\n\ntemplate <typename T>\nstd::pair<T, std::vector<int>> tree_diameter(const\
+    \ std::vector<std::vector<Edge<T>>>& G) {\n    std::vector<int> to(G.size());\n\
+    \n    auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<T, int> {\n \
+    \       std::pair<T, int> ret(0, v);\n        for (auto& e : G[v]) {\n       \
+    \     if (e.to == p) continue;\n            auto weight = dfs(dfs, e.to, v);\n\
+    \            weight.first += e.weight;\n            if (ret < weight) {\n    \
+    \            ret = weight;\n                to[v] = e.to;\n            }\n   \
+    \     }\n        return ret;\n    };\n\n    auto p = dfs(dfs, 0, -1);\n    auto\
+    \ q = dfs(dfs, p.second, -1);\n    std::vector<int> path;\n    int v = p.second;\n\
+    \    while (v != q.second) {\n        path.push_back(v);\n        v = to[v];\n\
+    \    }\n    path.push_back(v);\n    return {q.first, path};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
-    #include \"../graph/edge.cpp\"\n\nclass TreeDiameter {\npublic:\n    TreeDiameter()\
-    \ = delete;\n\n    static int diameter(const std::vector<std::vector<int>>& G)\
-    \ {\n        auto p = dfs(G, 0, -1);\n        auto q = dfs(G, p.second, -1);\n\
-    \        return q.first;\n    }\n\n    template <typename T>\n    static T diameter(const\
-    \ std::vector<std::vector<Edge<T>>>& G) {\n        auto p = dfs(G, 0, -1);\n \
-    \       auto q = dfs(G, p.second, -1);\n        return q.first;\n    }\n\nprivate:\n\
-    \    static std::pair<int, int> dfs(const std::vector<std::vector<int>>& G, int\
-    \ v, int p) {\n        std::pair<int, int> ret(0, v);\n        for (int c : G[v])\
-    \ {\n            if (c == p) continue;\n            auto weight = dfs(G, c, v);\n\
-    \            ++weight.first;\n            ret = std::max(ret, weight);\n     \
-    \   }\n        return ret;\n    }\n\n    template <typename T>\n    static std::pair<T,\
-    \ int> dfs(const std::vector<std::vector<Edge<T>>>& G, int v, int p) {\n     \
-    \   std::pair<T, int> ret(0, v);\n        for (auto& e : G[v]) {\n           \
-    \ if (e.to == p) continue;\n            auto weight = dfs(G, e.to, v);\n     \
-    \       weight.first += e.weight;\n            ret = std::max(ret, weight);\n\
-    \        }\n        return ret;\n    }\n};\n\n/*\nint tree_diameter(const std::vector<std::vector<int>>&\
-    \ G) {\n    auto dfs = [&](const auto& self, int v, int p) {\n        std::pair<int,\
-    \ int> ret(0, v);\n        for (int c : G[v]) {\n            if (c == p) continue;\n\
-    \            auto weight = self(self, c, v);\n            ++weight.first;\n  \
-    \          ret = std::max(ret, weight);\n        }\n        return ret;\n    };\n\
-    \    auto p = dfs(dfs, 0, -1);\n    auto q = dfs(dfs, p.second, -1);\n    return\
-    \ q.first;\n}\n\ntemplate <typename T>\nT tree_diameter(const std::vector<std::vector<Edge<T>>>&\
-    \ G) {\n    auto dfs = [&](const auto& self, int v, int p) {\n        std::pair<int,\
-    \ int> ret(0, v);\n        for (auto& e : G[v]) {\n            if (e.to == p)\
-    \ continue;\n            auto weight = self(self, e.to, v);\n            weight.first\
-    \ += e.weight;\n            ret = std::max(ret, weight);\n        }\n        return\
-    \ ret;\n    }\n    auto p = dfs(dfs, 0, -1);\n    auto q = dfs(G, p.second, -1);\n\
-    \    return q.first;\n}\n*/"
+    #include \"../graph/edge.cpp\"\n\nstd::pair<int, std::vector<int>> tree_diameter(const\
+    \ std::vector<std::vector<int>>& G) {\n    std::vector<int> to(G.size());\n\n\
+    \    auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<int, int> {\n\
+    \        std::pair<int, int> ret(0, v);\n        for (int c : G[v]) {\n      \
+    \      if (c == p) continue;\n            auto weight = dfs(dfs, c, v);\n    \
+    \        ++weight.first;\n            if (ret < weight) {\n                ret\
+    \ = weight;\n                to[v] = c;\n            }\n        }\n        return\
+    \ ret;\n    };\n\n    auto p = dfs(dfs, 0, -1);\n    auto q = dfs(dfs, p.second,\
+    \ -1);\n    std::vector<int> path;\n    int v = p.second;\n    while (v != q.second)\
+    \ {\n        path.push_back(v);\n        v = to[v];\n    }\n    path.push_back(v);\n\
+    \    return {q.first, path};\n}\n\ntemplate <typename T>\nstd::pair<T, std::vector<int>>\
+    \ tree_diameter(const std::vector<std::vector<Edge<T>>>& G) {\n    std::vector<int>\
+    \ to(G.size());\n\n    auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<T,\
+    \ int> {\n        std::pair<T, int> ret(0, v);\n        for (auto& e : G[v]) {\n\
+    \            if (e.to == p) continue;\n            auto weight = dfs(dfs, e.to,\
+    \ v);\n            weight.first += e.weight;\n            if (ret < weight) {\n\
+    \                ret = weight;\n                to[v] = e.to;\n            }\n\
+    \        }\n        return ret;\n    };\n\n    auto p = dfs(dfs, 0, -1);\n   \
+    \ auto q = dfs(dfs, p.second, -1);\n    std::vector<int> path;\n    int v = p.second;\n\
+    \    while (v != q.second) {\n        path.push_back(v);\n        v = to[v];\n\
+    \    }\n    path.push_back(v);\n    return {q.first, path};\n}"
   dependsOn:
   - graph/edge.cpp
   isVerificationFile: false
   path: tree/tree_diameter.cpp
   requiredBy: []
-  timestamp: '2021-01-17 17:56:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-02-05 23:21:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/tree_diameter.test.cpp
   - test/aoj/GRL_5_A.test.cpp
 documentation_of: tree/tree_diameter.cpp
 layout: document
@@ -96,17 +86,13 @@ DFSを用いて木の直径を求める．
 
 ## Operations
 
-- `static int diameter(vector<vector<int>> G)`
-    - $G$ の辺の重みをすべて1として直径を求める
+- `pair<int, vector<int>> tree_diameter(vector<vector<int>> G)`
+    - $G$ の辺の重みをすべて1として直径の重みとそれに含まれる頂点を返す
     - 時間計算量: $O(n)$
-- `static T diameter(vector<vector<Edge<T>>> G)`
-    - $G$ の直径を求める
+- `T tree_diameter(vector<vector<Edge<T>>> G)`
+    - $G$ の直径の重みとそれに含まれる頂点を返す
     - 時間計算量: $O(n)$
 
 ## Reference
 
 - [木の直径を求めるアルゴリズム](https://algo-logic.info/tree-diameter/)
-
-## TODO
-
-- 長さだけでなく辺も返す

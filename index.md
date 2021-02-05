@@ -135,7 +135,7 @@ data:
       title: Minimum Cost Flow
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -296,15 +296,12 @@ data:
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
-      path: tree/lazy_euler_tour_tree.cpp
-      title: Euler Tour Tree with Lazy Propagation
-    - icon: ':heavy_check_mark:'
       path: tree/lca.cpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/tree_diameter.cpp
       title: Diameter of a Tree
   verificationCategories:
@@ -561,6 +558,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree_diameter.test.cpp
+      title: test/yosupo/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp

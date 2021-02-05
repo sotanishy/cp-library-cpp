@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: tree/lazy_euler_tour_tree.cpp
-    title: Euler Tour Tree with Lazy Propagation
+    path: tree/euler_tour_tree.cpp
+    title: Euler Tour Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,13 +16,12 @@ data:
     - https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum
   bundledCode: "#line 1 \"test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\"\
-    \n\n#line 2 \"tree/lazy_euler_tour_tree.cpp\"\n#include <cassert>\n#include <memory>\n\
-    #include <unordered_map>\n#include <utility>\n#include <vector>\n\n/*\n * @brief\
-    \ Euler Tour Tree with Lazy Propagation\n */\ntemplate <typename M, typename O,\
-    \ typename M::T (*act)(typename M::T, typename O::T)>\nclass LazyEulerTourTree{\n\
-    \    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n    LazyEulerTourTree()\
-    \ = default;\n    explicit LazyEulerTourTree(int n) {\n        ptr.resize(n);\n\
-    \        for (int i = 0; i < n; ++i) {\n            ptr[i][i] = std::make_shared<Node>(i,\
+    \n\n#line 2 \"tree/euler_tour_tree.cpp\"\n#include <cassert>\n#include <memory>\n\
+    #include <unordered_map>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
+    \ M, typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass EulerTourTree{\n\
+    \    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n    EulerTourTree()\
+    \ = default;\n    explicit EulerTourTree(int n) {\n        ptr.resize(n);\n  \
+    \      for (int i = 0; i < n; ++i) {\n            ptr[i][i] = std::make_shared<Node>(i,\
     \ i);\n        }\n    }\n\n    void link(int u, int v) {\n        assert(!same(u,\
     \ v));\n        auto tu = reroot(get_node(u, u));\n        auto tv = reroot(get_node(v,\
     \ v));\n        join(join(tu, get_node(u, v)), join(tv, get_node(v, u)));\n  \
@@ -98,7 +97,7 @@ data:
     \ constexpr T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n  \
     \  }\n};\n\npair<ll, int> act(pair<ll, int> a, ll b) { return {a.first + a.second\
     \ * b, a.second}; }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n \
-    \   cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    LazyEulerTourTree<AddRangeMonoid,\
+    \   cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    EulerTourTree<AddRangeMonoid,\
     \ AddMonoid, act> ett(N);\n    for (int i = 0; i < N; ++i) {\n        int a;\n\
     \        cin >> a;\n        ett.update(i, {a, 1});\n    }\n    for (int i = 0;\
     \ i < N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        ett.link(u,\
@@ -110,7 +109,7 @@ data:
     \    cin >> v >> p;\n            cout << ett.fold(v, p).first << \"\\n\";\n  \
     \      }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\"\
-    \n\n#include \"../../tree/lazy_euler_tour_tree.cpp\"\n\n#include <bits/stdc++.h>\n\
+    \n\n#include \"../../tree/euler_tour_tree.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nusing ll = long long;\n\nstruct AddRangeMonoid {\n   \
     \ using T = pair<ll, int>;\n    static constexpr T id = {0, 0};\n    static T\
     \ op(T a, T b) {\n        return {a.first + b.first, a.second + b.second};\n \
@@ -118,7 +117,7 @@ data:
     \ = 0;\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\npair<ll,\
     \ int> act(pair<ll, int> a, ll b) { return {a.first + a.second * b, a.second};\
     \ }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    LazyEulerTourTree<AddRangeMonoid, AddMonoid,\
+    \n    int N, Q;\n    cin >> N >> Q;\n    EulerTourTree<AddRangeMonoid, AddMonoid,\
     \ act> ett(N);\n    for (int i = 0; i < N; ++i) {\n        int a;\n        cin\
     \ >> a;\n        ett.update(i, {a, 1});\n    }\n    for (int i = 0; i < N - 1;\
     \ ++i) {\n        int u, v;\n        cin >> u >> v;\n        ett.link(u, v);\n\
@@ -130,11 +129,11 @@ data:
     \ cin >> v >> p;\n            cout << ett.fold(v, p).first << \"\\n\";\n     \
     \   }\n    }\n}"
   dependsOn:
-  - tree/lazy_euler_tour_tree.cpp
+  - tree/euler_tour_tree.cpp
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-01-30 03:13:32+09:00'
+  timestamp: '2021-02-05 23:21:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
