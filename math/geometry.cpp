@@ -4,7 +4,6 @@
 #include <cmath>
 #include <complex>
 #include <iostream>
-#include <optional>
 #include <vector>
 
 constexpr double eps = 1e-12;
@@ -27,35 +26,33 @@ Vec rot(const Vec& a, double ang) {
     return a * Vec(std::cos(ang), std::sin(ang));
 }
 
-// checks if the three points are on the same line
 bool are_colinear(const Vec& p1, const Vec& p2, const Vec& p3) {
     return eq(cross(p2 - p1, p3 - p1), 0);
 }
 
-// checks if a -> b -> c is counter clockwise
 bool ccw(const Vec& a, const Vec& b, const Vec& c) {
     return !lt(std::arg((c - a) / (b - a)), 0);
 }
 
-// checks if the segment ab intersects with the segment cd
 bool intersect(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
     return ccw(a, c, d) != ccw(b, c, d) && ccw(a, b, c) != ccw(a, b, d);
 }
 
-// checks if q is on the segment p1-p2
 bool on_segment(const Vec& p1, const Vec& p2, const Vec& q) {
     Vec v1 = p1 - q, v2 = p2 - q;
-    return eq(cross(v1, v2), 0) && eq(dot(v1, v2), 0);
+    return eq(cross(v1, v2), 0) && lt(dot(v1, v2), 0);
 }
 
-// returns the intersection of the lines p1-p2 and q1-q2
-// if the lines are parallel, returns nullopt
-std::optional<Vec> intersection(const Vec& p1, const Vec& p2, const Vec& q1, const Vec& q2) {
+double line_point_dist(const Vec& p1, const Vec& p2, const Vec& q) {
+    Vec p = p2 - p1;
+    return std::abs(cross(q, p) + cross(p2, p1)) / std::abs(p);
+}
+
+Vec intersection(const Vec& p1, const Vec& p2, const Vec& q1, const Vec& q2) {
     Vec p = p2 - p1;
     Vec q = q2 - q1;
     Vec r = q1 - p1;
-    // if parallel
-    if (eq(cross(q, p), 0)) return std::nullopt;
+    assert(!eq(cross(q, p), 0)); // not parallel
     return p1 + cross(q, r) / cross(q, p) * p;
 }
 
@@ -70,15 +67,21 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
     double y = std::sqrt(r1*r1 - x*x);
     Vec e1 = (c2 - c1) / std::abs(c2 - c1);
     Vec e2 = Vec(-e1.imag(), e1.real());
-    Vec p1 = c1 + e1 * x + e2 * y;
-    Vec p2 = c1 + e1 * x - e2 * y;
-    return {p1, p2};
+    return {c1 + x*e1 + y*e2, c1 + x*e1 - y*e2};
 }
 
-// returns the distance between the point q and the line p1-p2
-double point_line_dist(const Vec& p1, const Vec& p2, const Vec& q) {
-    Vec p = p2 - p1;
-    return std::abs(cross(q, p) + cross(p2, p1)) / std::abs(p);
+// returns a list of the intersections of a circle and a line
+std::vector<Vec> intersection_circle_line(const Vec& c, double r, const Vec& p1, const Vec& p2) {
+    double d = line_point_dist(p1, p2, c);
+    // no intersection
+    if (lt(r, d)) return {};
+    Vec e1 = (p2 - p1) / std::abs(p2 - p1);
+    Vec e2 = Vec(-e1.imag(), e1.real());
+    double t = std::sqrt(r*r - d*d);
+    if (eq(d, 0)) return {c + t*e1, c - t*e1};
+    if (ccw(c, p1, p2)) e2 *= -1;
+    if (eq(r, d)) return {c + d*e2};
+    return {c + d*e2 + t*e1, c + d*e2 - t*e1};
 }
 
 double area(const Vec& A, const Vec& B, const Vec& C) {
