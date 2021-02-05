@@ -11,27 +11,28 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
+    ERROR: '0.00000001'
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
-  bundledCode: "#line 1 \"test/aoj/CGL_4_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
-    \n\n#line 2 \"math/geometry.cpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <iostream>\n#include <vector>\n\
-    \nconstexpr double eps = 1e-12;\n\ninline bool eq(double a, double b) { return\
-    \ std::abs(a - b) < eps; }\ninline bool lt(double a, double b) { return a < b\
-    \ - eps; }\ninline bool leq(double a, double b) { return a < b + eps; }\n\nusing\
-    \ Vec = std::complex<double>;\n\ndouble dot(const Vec& a, const Vec& b) {\n  \
-    \  return (std::conj(a) * b).real();\n}\n\ndouble cross(const Vec& a, const Vec&\
-    \ b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const Vec& a, double\
-    \ ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\nbool are_colinear(const\
-    \ Vec& p1, const Vec& p2, const Vec& p3) {\n    return eq(cross(p2 - p1, p3 -\
-    \ p1), 0);\n}\n\nbool ccw(const Vec& a, const Vec& b, const Vec& c) {\n    return\
-    \ !lt(std::arg((c - a) / (b - a)), 0);\n}\n\nbool intersect(const Vec& a, const\
-    \ Vec& b, const Vec& c, const Vec& d) {\n    return ccw(a, c, d) != ccw(b, c,\
-    \ d) && ccw(a, b, c) != ccw(a, b, d);\n}\n\nbool on_segment(const Vec& p1, const\
-    \ Vec& p2, const Vec& q) {\n    Vec v1 = p1 - q, v2 = p2 - q;\n    return eq(cross(v1,\
-    \ v2), 0) && lt(dot(v1, v2), 0);\n}\n\ndouble line_point_dist(const Vec& p1, const\
-    \ Vec& p2, const Vec& q) {\n    Vec p = p2 - p1;\n    return std::abs(cross(q,\
+    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
+  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n#define ERROR 0.00000001\n\n#line 2 \"math/geometry.cpp\"\n#include <algorithm>\n\
+    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
+    #include <vector>\n\nconstexpr double eps = 1e-12;\n\ninline bool eq(double a,\
+    \ double b) { return std::abs(a - b) < eps; }\ninline bool lt(double a, double\
+    \ b) { return a < b - eps; }\ninline bool leq(double a, double b) { return a <\
+    \ b + eps; }\n\nusing Vec = std::complex<double>;\n\ndouble dot(const Vec& a,\
+    \ const Vec& b) {\n    return (std::conj(a) * b).real();\n}\n\ndouble cross(const\
+    \ Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const\
+    \ Vec& a, double ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\
+    \nbool are_colinear(const Vec& p1, const Vec& p2, const Vec& p3) {\n    return\
+    \ eq(cross(p2 - p1, p3 - p1), 0);\n}\n\nbool ccw(const Vec& a, const Vec& b, const\
+    \ Vec& c) {\n    return !lt(std::arg((c - a) / (b - a)), 0);\n}\n\nbool intersect(const\
+    \ Vec& a, const Vec& b, const Vec& c, const Vec& d) {\n    return ccw(a, c, d)\
+    \ != ccw(b, c, d) && ccw(a, b, c) != ccw(a, b, d);\n}\n\nbool on_segment(const\
+    \ Vec& p1, const Vec& p2, const Vec& q) {\n    Vec v1 = p1 - q, v2 = p2 - q;\n\
+    \    return eq(cross(v1, v2), 0) && lt(dot(v1, v2), 0);\n}\n\ndouble line_point_dist(const\
+    \ Vec& p1, const Vec& p2, const Vec& q) {\n    Vec p = p2 - p1;\n    return std::abs(cross(q,\
     \ p) + cross(p2, p1)) / std::abs(p);\n}\n\nVec intersection(const Vec& p1, const\
     \ Vec& p2, const Vec& q1, const Vec& q2) {\n    Vec p = p2 - p1;\n    Vec q =\
     \ q2 - q1;\n    Vec r = q1 - p1;\n    assert(!eq(cross(q, p), 0)); // not parallel\n\
@@ -71,33 +72,35 @@ data:
     \  }\n    int t = k;\n    // left\n    for (int i = n - 2; i >= 0; --i) {\n  \
     \      while (k > t && lt(cross(ch[k-1] - ch[k-2], points[i] - ch[k-1]), 0)) --k;\n\
     \        ch[k++] = points[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n\
-    }\n#line 4 \"test/aoj/CGL_4_A.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    }\n#line 5 \"test/aoj/CGL_2_C.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int n;\n    cin >> n;\n    vector<Vec> points(n);\n    for (int i = 0; i\
-    \ < n; ++i) {\n        double x, y;\n        cin >> x >> y;\n        points[i]\
-    \ = {x, y};\n    }\n    auto ans = convex_hull(points);\n    cout << ans.size()\
-    \ << endl;\n    for (auto& p : ans) cout << p.real() << \" \" << p.imag() << \"\
-    \\n\";\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
-    \n\n#include \"../../math/geometry.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int n;\n    cin >> n;\n    vector<Vec> points(n);\n    for (int i = 0; i\
-    \ < n; ++i) {\n        double x, y;\n        cin >> x >> y;\n        points[i]\
-    \ = {x, y};\n    }\n    auto ans = convex_hull(points);\n    cout << ans.size()\
-    \ << endl;\n    for (auto& p : ans) cout << p.real() << \" \" << p.imag() << \"\
-    \\n\";\n}\n"
+    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
+    \ (q--) {\n        double x0, y0, x1, y1, x2, y2, x3, y3;\n        cin >>  x0\
+    \ >> y0 >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;\n        Vec p0 = {x0, y0}, p1 =\
+    \ {x1, y1}, p2 = {x2, y2}, p3 = {x3, y3};\n        auto q = intersection(p0, p1,\
+    \ p2, p3);\n        cout << q.real() << \" \" << q.imag() << \"\\n\";\n    }\n\
+    }\n\n\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n#define ERROR 0.00000001\n\n#include \"../../math/geometry.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    int q;\n\
+    \    cin >> q;\n    while (q--) {\n        double x0, y0, x1, y1, x2, y2, x3,\
+    \ y3;\n        cin >>  x0 >> y0 >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;\n       \
+    \ Vec p0 = {x0, y0}, p1 = {x1, y1}, p2 = {x2, y2}, p3 = {x3, y3};\n        auto\
+    \ q = intersection(p0, p1, p2, p3);\n        cout << q.real() << \" \" << q.imag()\
+    \ << \"\\n\";\n    }\n}\n\n\n"
   dependsOn:
   - math/geometry.cpp
   isVerificationFile: true
-  path: test/aoj/CGL_4_A.test.cpp
+  path: test/aoj/CGL_2_C.test.cpp
   requiredBy: []
   timestamp: '2021-02-06 03:00:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_4_A.test.cpp
+documentation_of: test/aoj/CGL_2_C.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_4_A.test.cpp
-- /verify/test/aoj/CGL_4_A.test.cpp.html
-title: test/aoj/CGL_4_A.test.cpp
+- /verify/test/aoj/CGL_2_C.test.cpp
+- /verify/test/aoj/CGL_2_C.test.cpp.html
+title: test/aoj/CGL_2_C.test.cpp
 ---

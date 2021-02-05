@@ -308,9 +308,6 @@ data:
   - name: test/aoj
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/1157.test.cpp
-      title: test/aoj/1157.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/1508.rbst.test.cpp
       title: test/aoj/1508.rbst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -332,8 +329,20 @@ data:
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_1_C.test.cpp
+      title: test/aoj/CGL_1_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_2_C.test.cpp
+      title: test/aoj/CGL_2_C.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_7_D.test.cpp
+      title: test/aoj/CGL_7_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_7_E.test.cpp
+      title: test/aoj/CGL_7_E.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
