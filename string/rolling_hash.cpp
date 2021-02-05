@@ -3,10 +3,6 @@
 #include <string>
 #include <vector>
 
-/*
- * @brief Rolling Hash
- * @docs docs/string/rolling_hash.md
- */
 class RollingHash {
 public:
     static long long generate_base() {

@@ -21,6 +21,8 @@ public:
     }
 
     T sum(int a, int b) const {
+        ++a;
+        ++b;
         T ret = 0;
         for (int i = a; i > 0; i -= i & -i) {
             for (int j = b; j > 0; j -= j & -j) {
