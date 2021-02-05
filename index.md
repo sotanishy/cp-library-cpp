@@ -114,6 +114,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/weighted_union_find.cpp
       title: Weighted Union Find
+  - name: dp
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: dp/largest_rectangle.cpp
+      title: Largest Rectangle
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -259,6 +264,9 @@ data:
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
+      path: string/kmp.cpp
+      title: Knuth-Morris-Pratt Algorithm
+    - icon: ':heavy_check_mark:'
       path: string/lcp_array.cpp
       title: Longest Common Prefix Array
     - icon: ':heavy_check_mark:'
@@ -315,6 +323,9 @@ data:
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_14_B.kmp.test.cpp
+      title: test/aoj/ALDS1_14_B.kmp.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
       title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     - icon: ':heavy_check_mark:'
@@ -323,6 +334,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_3_C.test.cpp
+      title: test/aoj/DPL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_A.test.cpp
       title: test/aoj/DSL_1_A.test.cpp
