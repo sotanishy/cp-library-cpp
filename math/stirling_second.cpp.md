@@ -12,9 +12,8 @@ data:
   attributes:
     document_title: Stirling Number of the Second Kind
     links: []
-  bundledCode: "#line 2 \"math/combination.cpp\"\n#include <vector>\n\n/*\n * @brief\
-    \ Combination\n * @docs docs/math/combination.md\n */\ntemplate <typename T>\n\
-    class Combination {\npublic:\n    Combination() = default;\n    Combination(int\
+  bundledCode: "#line 2 \"math/combination.cpp\"\n#include <vector>\n\ntemplate <typename\
+    \ T>\nclass Combination {\npublic:\n    Combination() = default;\n    Combination(int\
     \ n) : fact(n + 1), fact_inv(n + 1) {\n        fact[0] = 1;\n        for (int\
     \ i = 1; i <= n; ++i) fact[i] = fact[i - 1] * i;\n        fact_inv[n] = T(1) /\
     \ fact[n];\n        for (int i = n; i > 0; --i) fact_inv[i - 1] = fact_inv[i]\
@@ -41,7 +40,7 @@ data:
   isVerificationFile: false
   path: math/stirling_second.cpp
   requiredBy: []
-  timestamp: '2020-10-26 00:14:34+09:00'
+  timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/stirling_second.cpp

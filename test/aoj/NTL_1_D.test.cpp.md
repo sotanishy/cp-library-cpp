@@ -15,8 +15,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D
   bundledCode: "#line 1 \"test/aoj/NTL_1_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D\"\
-    \n\n#line 2 \"math/euler_totient.cpp\"\n\n/*\n * @brief Euler's Totient Function\n\
-    \ * @docs docs/math/euler_totient.md\n */\nlong long euler_totient(long long n)\
+    \n\n#line 2 \"math/euler_totient.cpp\"\n\nlong long euler_totient(long long n)\
     \ {\n    long long ret = n;\n    if (n % 2 == 0) {\n        ret -= ret / 2;\n\
     \        while (n % 2 == 0) n /= 2;\n    }\n    for (long long i = 3; i * i <=\
     \ n; i += 2) {\n        if (n % i == 0) {\n            ret -= ret / i;\n     \
@@ -34,7 +33,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 00:14:34+09:00'
+  timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_D.test.cpp

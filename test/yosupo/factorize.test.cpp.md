@@ -16,8 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"test/yosupo/factorize.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
     \n\n#line 2 \"math/fast_prime.cpp\"\n#include <algorithm>\n#include <numeric>\n\
-    #include <random>\n#include <vector>\n\n/*\n * @brief Fast Prime Number Algorithms\n\
-    \ * @docs docs/math/fast_prime.md\n */\n\nnamespace fast_prime {\n\nclass LargeModint\
+    #include <random>\n#include <vector>\n\nnamespace fast_prime {\n\nclass LargeModint\
     \ {\n    using mint = LargeModint;\n\npublic:\n    static long long& get_mod()\
     \ noexcept {\n        static long long mod = 1;\n        return mod;\n    }\n\n\
     \    static void set_mod(long long mod) {\n        get_mod() = mod;\n    }\n\n\
@@ -77,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/factorize.test.cpp
   requiredBy: []
-  timestamp: '2020-10-26 13:50:55+09:00'
+  timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/factorize.test.cpp

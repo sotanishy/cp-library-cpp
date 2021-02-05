@@ -135,7 +135,7 @@ data:
       title: Minimum Cost Flow
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -181,7 +181,7 @@ data:
       title: Base Conversion
     - icon: ':warning:'
       path: math/divisor.cpp
-      title: Divisors
+      title: Divisor
     - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
@@ -196,7 +196,7 @@ data:
       title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
-      title: Floor Sum
+      title: Sum of Floor of Linear
     - icon: ':heavy_check_mark:'
       path: math/geometry.cpp
       title: Geometry
@@ -301,7 +301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree_diameter.cpp
       title: Diameter of a Tree
   verificationCategories:
@@ -331,6 +331,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_4_A.test.cpp
+      title: test/aoj/CGL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
@@ -558,7 +561,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'

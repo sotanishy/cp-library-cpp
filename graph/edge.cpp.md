@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path.cpp
     title: Shortest Path Algorithms
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/tree_diameter.cpp
     title: Diameter of a Tree
   _extendedVerifiedWith:
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -61,7 +61,7 @@ data:
   - graph/shortest_path.cpp
   - graph/mst.cpp
   timestamp: '2020-10-24 20:53:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree_diameter.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp

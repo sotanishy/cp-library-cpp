@@ -10,13 +10,10 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/fast_prime.md
-    document_title: Fast Prime Number Algorithms
     links:
     - https://miller-rabin.appspot.com/
   bundledCode: "#line 2 \"math/fast_prime.cpp\"\n#include <algorithm>\n#include <numeric>\n\
-    #include <random>\n#include <vector>\n\n/*\n * @brief Fast Prime Number Algorithms\n\
-    \ * @docs docs/math/fast_prime.md\n */\n\nnamespace fast_prime {\n\nclass LargeModint\
+    #include <random>\n#include <vector>\n\nnamespace fast_prime {\n\nclass LargeModint\
     \ {\n    using mint = LargeModint;\n\npublic:\n    static long long& get_mod()\
     \ noexcept {\n        static long long mod = 1;\n        return mod;\n    }\n\n\
     \    static void set_mod(long long mod) {\n        get_mod() = mod;\n    }\n\n\
@@ -59,26 +56,25 @@ data:
     \ / p);\n    std::copy(r.begin(), r.end(), std::back_inserter(l));\n    return\
     \ l;\n}\n\n} // namespace fast_prime\n"
   code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <random>\n\
-    #include <vector>\n\n/*\n * @brief Fast Prime Number Algorithms\n * @docs docs/math/fast_prime.md\n\
-    \ */\n\nnamespace fast_prime {\n\nclass LargeModint {\n    using mint = LargeModint;\n\
-    \npublic:\n    static long long& get_mod() noexcept {\n        static long long\
-    \ mod = 1;\n        return mod;\n    }\n\n    static void set_mod(long long mod)\
-    \ {\n        get_mod() = mod;\n    }\n\n    LargeModint(long long y = 0) noexcept\
-    \ : x(y >= 0 ? y % get_mod() : (y % get_mod() + get_mod()) % get_mod()) {}\n\n\
-    \    long long value() const noexcept { return x; }\n\n    mint& operator+=(const\
-    \ mint& r) noexcept { if ((x += r.x) >= get_mod()) x -= get_mod(); return *this;\
-    \ }\n    mint& operator-=(const mint& r) noexcept { if ((x += get_mod() - r.x)\
-    \ >= get_mod()) x -= get_mod(); return *this; }\n    mint& operator*=(const mint&\
-    \ r) noexcept { x = static_cast<long long>((__int128_t) x * r.x % get_mod());\
-    \ return *this; }\n\n    mint operator-() const noexcept { return mint(-x); }\n\
-    \n    mint operator+(const mint& r) const noexcept { return mint(*this) += r;\
-    \ }\n    mint operator-(const mint& r) const noexcept { return mint(*this) -=\
-    \ r; }\n    mint operator*(const mint& r) const noexcept { return mint(*this)\
-    \ *= r; }\n\n    bool operator==(const mint& r) const noexcept { return x == r.x;\
-    \ }\n    bool operator!=(const mint& r) const noexcept { return x != r.x; }\n\n\
-    \    mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n  \
-    \      while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *=\
-    \ mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\nprivate:\n\
+    #include <vector>\n\nnamespace fast_prime {\n\nclass LargeModint {\n    using\
+    \ mint = LargeModint;\n\npublic:\n    static long long& get_mod() noexcept {\n\
+    \        static long long mod = 1;\n        return mod;\n    }\n\n    static void\
+    \ set_mod(long long mod) {\n        get_mod() = mod;\n    }\n\n    LargeModint(long\
+    \ long y = 0) noexcept : x(y >= 0 ? y % get_mod() : (y % get_mod() + get_mod())\
+    \ % get_mod()) {}\n\n    long long value() const noexcept { return x; }\n\n  \
+    \  mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= get_mod()) x -=\
+    \ get_mod(); return *this; }\n    mint& operator-=(const mint& r) noexcept { if\
+    \ ((x += get_mod() - r.x) >= get_mod()) x -= get_mod(); return *this; }\n    mint&\
+    \ operator*=(const mint& r) noexcept { x = static_cast<long long>((__int128_t)\
+    \ x * r.x % get_mod()); return *this; }\n\n    mint operator-() const noexcept\
+    \ { return mint(-x); }\n\n    mint operator+(const mint& r) const noexcept { return\
+    \ mint(*this) += r; }\n    mint operator-(const mint& r) const noexcept { return\
+    \ mint(*this) -= r; }\n    mint operator*(const mint& r) const noexcept { return\
+    \ mint(*this) *= r; }\n\n    bool operator==(const mint& r) const noexcept { return\
+    \ x == r.x; }\n    bool operator!=(const mint& r) const noexcept { return x !=\
+    \ r.x; }\n\n    mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\nprivate:\n\
     \    long long x;\n};\n\nusing mint = LargeModint;\n\nbool is_prime(long long\
     \ n) {\n    if (n == 2) return true;\n    if (n == 1 || n % 2 == 0) return false;\n\
     \n    mint::set_mod(n);\n    int s = 0;\n    long long d = n - 1;\n    while (!(d\
@@ -106,17 +102,15 @@ data:
   isVerificationFile: false
   path: math/fast_prime.cpp
   requiredBy: []
-  timestamp: '2020-10-26 13:50:55+09:00'
+  timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/factorize.test.cpp
 documentation_of: math/fast_prime.cpp
 layout: document
-redirect_from:
-- /library/math/fast_prime.cpp
-- /library/math/fast_prime.cpp.html
 title: Fast Prime Number Algorithms
 ---
+
 ## Description
 
 素数に関する高速なアルゴリズム
