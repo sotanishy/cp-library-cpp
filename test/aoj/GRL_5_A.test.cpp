@@ -18,5 +18,5 @@ int main() {
         G[s].push_back({t, w});
         G[t].push_back({s, w});
     }
-    cout << TreeDiameter::diameter(G) << endl;
+    cout << tree_diameter(G).first << endl;
 }

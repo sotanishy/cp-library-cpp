@@ -5,9 +5,10 @@
 #include <utility>
 #include <vector>
 
-template <typename M>
-class EulerTourTree {
+template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
+class EulerTourTree{
     using T = typename M::T;
+    using E = typename O::T;
 
 public:
     EulerTourTree() = default;
@@ -39,7 +40,9 @@ public:
     }
 
     T get(int v) {
-        return get_node(v, v)->val;
+        auto t = get_node(v, v);
+        splay(t);
+        return t->val;
     }
 
     void update(int v, const T& x) {
@@ -47,6 +50,14 @@ public:
         splay(t);
         t->val = x;
         recalc(t);
+    }
+
+    void update(int v, int p, const E& x) {
+        cut(p, v);
+        auto t = get_node(v, v);
+        splay(t);
+        t->lazy = O::op(t->lazy, x);
+        link(p, v);
     }
 
     T fold(int v, int p = -1) {
@@ -67,6 +78,7 @@ private:
         node_ptr par = nullptr;
         int from, to, sz;
         T val = M::id, sum = M::id;
+        E lazy = O::id;
         Node(int from, int to) : from(from), to(to), sz(from == to) {}
     };
 
@@ -107,6 +119,22 @@ private:
         if (t->ch[0]) t->sum = M::op(t->ch[0]->sum, t->sum);
         if (t->ch[1]) t->sum = M::op(t->sum, t->ch[1]->sum);
         return t;
+    }
+
+    static void push(const node_ptr& t) {
+        if (t->lazy != O::id) {
+            t->val = act(t->val, t->lazy);
+            if (t->ch[0]) {
+                t->ch[0]->lazy = O::op(t->ch[0]->lazy, t->lazy);
+                t->ch[0]->sum = act(t->ch[0]->sum, t->lazy);
+            }
+            if (t->ch[1]) {
+                t->ch[1]->lazy = O::op(t->ch[1]->lazy, t->lazy);
+                t->ch[1]->sum = act(t->ch[1]->sum, t->lazy);
+            }
+            t->lazy = O::id;
+        }
+        recalc(t);
     }
 
     static node_ptr join(node_ptr l, node_ptr r) {
@@ -151,280 +179,42 @@ private:
     }
 
     static void rotate(node_ptr t, bool b) {
-        node_ptr s = t->ch[1 - b], p = t->par;
-        t->ch[1 - b] = s->ch[b];
-        if (t->ch[1 - b]) t->ch[1 - b]->par = t;
-        s->ch[b] = t;
-        t->par = s;
+        node_ptr p = t->par, g = p->par;
+        p->ch[1 - b] = t->ch[b];
+        if (p->ch[1 - b]) t->ch[b]->par = p;
+        t->ch[b] = p;
+        p->par = t;
+        recalc(p);
         recalc(t);
-        recalc(s);
-        s->par = p;
-        if (p) {
-            if (p->ch[0] == t) p->ch[0] = s;
-            else p->ch[1] = s;
+        t->par = g;
+        if (t->par) {
+            if (g->ch[0] == p) g->ch[0] = t;
+            else g->ch[1] = t;
+            recalc(g);
         }
     }
 
     static void splay(node_ptr t) {
-        if (!t) return;
+        push(t);
         while (t->par) {
             auto p = t->par, g = p->par;
             if (!g) {
-                rotate(p, t == p->ch[0]);
+                push(p);
+                push(t);
+                rotate(t, p->ch[0] == t);
             } else {
-                if (t == p->ch[0]) {
-                    if (p == g->ch[0]) {
-                        rotate(g, 1);
-                        rotate(p, 1);
-                    } else {
-                        rotate(p, 1);
-                        rotate(g, 0);
-                    }
+                push(g);
+                push(p);
+                push(t);
+                bool b = g->ch[0] == p;
+                if (p->ch[1 - b] == t) {
+                    rotate(p, b);
+                    rotate(t, b);
                 } else {
-                    if (p == g->ch[0]) {
-                        rotate(p, 0);
-                        rotate(g, 1);
-                    } else {
-                        rotate(g, 0);
-                        rotate(p, 0);
-                    }
+                    rotate(t, 1 - b);
+                    rotate(t, b);
                 }
             }
         }
     }
 };
-
-/*
-template <typename M>
-class EulerTourTree {
-    using T = typename M::T;
-
-public:
-    EulerTourTree() = default;
-    explicit EulerTourTree(int n) {
-        for (int i = 0; i < n; ++i) {
-            vertex.push_back(std::make_shared<Node>(i, i, M::id));
-        }
-    }
-
-    void link(int u, int v) {
-        reroot(u);
-        reroot(v);
-        auto uv = std::make_shared<Node>(u, v, M::id);
-        auto vu = std::make_shared<Node>(v, u, M::id);
-        splay(vertex[u]);
-        splay(vertex[v]);
-        join(join(vertex[u], uv), join(vertex[v], vu));
-        edge[std::minmax(u, v)] = {uv, vu};
-    }
-
-    void cut(int u, int v) {
-        auto p = edge[std::minmax(u, v)];
-        node_ptr a, b, c, d;
-        std::tie(a, b) = split(p.first);
-        auto r = p.second;
-        while (r->par) r = r->par;
-        if (r == a) {
-            std::tie(c, d) = split(p.second);
-            join(c, b->right);
-            while (d->left) d = d->left;
-            if (d->par) d->par->left = nullptr;
-            d->par = nullptr;
-        } else {
-            std::tie(c, d) = split(p.second);
-            join(a, d->right);
-            while (c->left) c = c->left;
-            if (c->par) c->par->left = nullptr;
-            c->par = nullptr;
-        }
-        edge.erase(std::minmax(u, v));
-    }
-
-    void reroot(int v) {
-        node_ptr a, b;
-        std::tie(a, b) = split(vertex[v]);
-        join(b, a);
-    }
-
-    T get(int v) const {
-        return vertex[v]->val;
-    }
-
-    void set(int v, const T& x) {
-        splay(vertex[v]);
-        vertex[v]->val = x;
-        recalc(vertex[v]);
-    }
-
-    T fold(int v, int p) {
-        if (p == -1) {
-            splay(vertex[v]);
-            return vertex[v]->sum;
-        }
-        auto e = edge[std::minmax(v, p)];
-        node_ptr a, b, c, d;
-        std::tie(a, b) = split(e.first);
-        auto r = e.second;
-        while (r->par) r = r->par;
-        T ret;
-        if (r == a) {
-            std::tie(c, d) = split(e.second);
-            ret = d->sum;
-            join(join(c, d), b);
-        } else {
-            std::tie(c, d) = split(e.second);
-            ret = c->sum;
-            join(a, join(c, d));
-        }
-        return ret;
-    }
-
-    // void print(int v) {
-    //     auto r = vertex[v];
-    //     while (r->par) r = r->par;
-    //     print(r);
-    //     cout << endl;
-    // }
-
-    // void print2(int v) {
-    //     auto r = vertex[v];
-    //     while (r->par) r = r->par;
-    //     print2(r, 0);
-    //     cout << endl;
-    // }
-
-private:
-    struct Node;
-    using node_ptr = std::shared_ptr<Node>;
-
-    // void print(node_ptr t) {
-    //     if (!t) return;
-    //     print(t->left);
-    //     cout << "(" << t->from << " " << t->to << ") ";
-    //     print(t->right);
-    // }
-
-    // void print2(node_ptr t, int depth) {
-    //     if (!t) return;
-    //     for (int i = 0; i < depth; ++i) cout << " ";
-    //     cout << "(" << t->from << " " << t->to << ")" << t->sum << endl;
-    //     print2(t->left, depth + 1);
-    //     for (int i = 0; i < depth; ++i) cout << " ";
-    //     cout << "(" << t->from << " " << t->to << ")" << endl;
-    //     print2(t->right, depth + 1);
-    //     for (int i = 0; i < depth; ++i) cout << " ";
-    //     cout << "(" << t->from << " " << t->to << ")" << endl;
-    // }
-
-    struct Node {
-        node_ptr left, right, par;
-        T val, sum;
-        int from, to, sz;
-        Node(int from, int to, const T& x)
-            : left(nullptr), right(nullptr), par(nullptr),
-              val(x), sum(x), from(from), to(to), sz(from == to) {}
-    };
-
-    std::vector<node_ptr> vertex;
-    std::map<std::pair<int, int>, std::pair<node_ptr, node_ptr>> edge;
-
-    // splay tree
-
-    static int size(const node_ptr& t) {
-        return t ? t->sz : 0;
-    }
-
-    static void recalc(const node_ptr& t) {
-        if (!t) return;
-        t->sz = size(t->left) + 1 + size(t->right);
-        t->sum = t->val;
-        if (t->left) t->sum = M::op(t->left->sum, t->sum);
-        if (t->right) t->sum = M::op(t->sum, t->right->sum);
-    }
-
-    static node_ptr join(node_ptr l, node_ptr r) {
-        if (!l) return r;
-        if (!r) return l;
-        while (l->right) l = l->right;
-        splay(l);
-        l->right = r;
-        r->par = l;
-        recalc(l);
-        return l;
-    }
-
-    static std::pair<node_ptr, node_ptr> split(node_ptr t) {
-        splay(t);
-        auto s = t->left;
-        t->left = nullptr;
-        if (s) s->par = nullptr;
-        recalc(t);
-        return {s, t};
-    }
-
-    static void rotate_left(node_ptr t) {
-        node_ptr s = t->right;
-        t->right = s->left;
-        if (s->left) s->left->par = t;
-        s->par = t->par;
-        if (t->par) {
-            if (t->par->left == t) {
-                t->par->left = s;
-            } else {
-                t->par->right = s;
-            }
-        }
-        s->left = t;
-        t->par = s;
-        recalc(t);
-        recalc(s);
-    }
-
-    static void rotate_right(node_ptr t) {
-        node_ptr s = t->left;
-        t->left = s->right;
-        if (s->right) s->right->par = t;
-        s->par = t->par;
-        if (t->par) {
-            if (t->par->right == t) {
-                t->par->right = s;
-            } else {
-                t->par->left = s;
-            }
-        }
-        s->right = t;
-        t->par = s;
-        recalc(t);
-        recalc(s);
-    }
-
-    static void splay(node_ptr t) {
-        if (!t) return;
-        while (t->par) {
-            auto p = t->par, g = p->par;
-            if (!g) {
-                if (t == p->left) rotate_right(p);
-                else rotate_left(p);
-            } else {
-                if (t == p->left) {
-                    if (p == g->left) {
-                        rotate_right(g);
-                        rotate_right(p);
-                    } else {
-                        rotate_right(p);
-                        rotate_left(g);
-                    }
-                } else {
-                    if (p == g->left) {
-                        rotate_left(p);
-                        rotate_right(g);
-                    } else {
-                        rotate_left(g);
-                        rotate_left(p);
-                    }
-                }
-            }
-        }
-    }
-};
-*/

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum"
 
-#include "../../tree/lazy_euler_tour_tree.cpp"
+#include "../../tree/euler_tour_tree.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -31,7 +31,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    LazyEulerTourTree<AddRangeMonoid, AddMonoid, act> ett(N);
+    EulerTourTree<AddRangeMonoid, AddMonoid, act> ett(N);
     for (int i = 0; i < N; ++i) {
         int a;
         cin >> a;

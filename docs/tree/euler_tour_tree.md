@@ -9,6 +9,7 @@ Euler tour 木は，森を管理するデータ構造である．以下の機能
 - 辺の追加
 - 辺の削除
 - 頂点の値の更新
+- 部分木に対する作用
 - 部分木の頂点の値 (可換モノイド) の総和
 
 オイラーツアーを平衡二分探索木で管理することでこれらの操作を実現する．
@@ -32,6 +33,9 @@ Euler tour 木は，森を管理するデータ構造である．以下の機能
 - `void update(int v, T x)`
     - 頂点 $v$ の値を $x$ に変更する
     - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+- `void update(int v, int p, E x)`
+    - 頂点 $p$ を $v$ の親としたときの $v$ の部分木に $x$ を作用させる
+    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
 - `T fold(int v, int p)`
     - $p$ を親として，$v$ を根とする部分木上の頂点の値を fold する
     - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
@@ -45,5 +49,4 @@ Euler tour 木は，森を管理するデータ構造である．以下の機能
 
 ## TODO
 
-- 遅延伝搬
 - online dynamic connectivity

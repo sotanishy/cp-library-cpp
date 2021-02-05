@@ -9,17 +9,13 @@ DFSを用いて木の直径を求める．
 
 ## Operations
 
-- `static int diameter(vector<vector<int>> G)`
-    - $G$ の辺の重みをすべて1として直径を求める
+- `pair<int, vector<int>> tree_diameter(vector<vector<int>> G)`
+    - $G$ の辺の重みをすべて1として直径の重みとそれに含まれる頂点を返す
     - 時間計算量: $O(n)$
-- `static T diameter(vector<vector<Edge<T>>> G)`
-    - $G$ の直径を求める
+- `T tree_diameter(vector<vector<Edge<T>>> G)`
+    - $G$ の直径の重みとそれに含まれる頂点を返す
     - 時間計算量: $O(n)$
 
 ## Reference
 
 - [木の直径を求めるアルゴリズム](https://algo-logic.info/tree-diameter/)
-
-## TODO
-
-- 長さだけでなく辺も返す

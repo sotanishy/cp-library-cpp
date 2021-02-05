@@ -14,13 +14,15 @@ struct AddMonoid {
     }
 };
 
+ll act(ll a, ll b) { return a + b; }
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int N, Q;
     cin >> N >> Q;
-    EulerTourTree<AddMonoid> ett(N);
+    EulerTourTree<AddMonoid, AddMonoid, act> ett(N);
     for (int i = 0; i < N; ++i) {
         int a;
         cin >> a;
