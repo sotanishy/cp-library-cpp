@@ -13,12 +13,9 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/prime.md
-    document_title: Prime Number Algorithms
     links: []
   bundledCode: "#line 2 \"math/prime.cpp\"\n#include <map>\n#include <vector>\n\n\
-    /*\n * @brief Prime Number Algorithms\n * @docs docs/math/prime.md\n */\n\n/*\n\
-    \ * Primality Test\n */\nbool is_prime(long long n) {\n    if (n <= 1) return\
+    /*\n * Primality Test\n */\nbool is_prime(long long n) {\n    if (n <= 1) return\
     \ false;\n    if (n <= 3) return true;\n    if (n % 2 == 0 || n % 3 == 0) return\
     \ false;\n    if (n < 9) return true;\n    for (long long i = 5; i * i <= n; i\
     \ += 6) {\n        if (n % i == 0 || n % (i + 2) == 0) return false;\n    }\n\
@@ -35,40 +32,38 @@ data:
     \       while (n % i == 0) {\n                ++cnt;\n                n /= i;\n\
     \            }\n            ret[i] = cnt;\n        }\n    }\n    if (n != 1) ret[n]\
     \ = 1;\n    return ret;\n}\n"
-  code: "#pragma once\n#include <map>\n#include <vector>\n\n/*\n * @brief Prime Number\
-    \ Algorithms\n * @docs docs/math/prime.md\n */\n\n/*\n * Primality Test\n */\n\
-    bool is_prime(long long n) {\n    if (n <= 1) return false;\n    if (n <= 3) return\
-    \ true;\n    if (n % 2 == 0 || n % 3 == 0) return false;\n    if (n < 9) return\
-    \ true;\n    for (long long i = 5; i * i <= n; i += 6) {\n        if (n % i ==\
-    \ 0 || n % (i + 2) == 0) return false;\n    }\n    return true;\n}\n\n/*\n * Prime\
-    \ Table\n */\nstd::vector<bool> prime_table(int n) {\n    std::vector<bool> prime(n\
-    \ + 1, true);\n    prime[0] = prime[1] = false;\n    for (int j = 4; j <= n; j\
-    \ += 2) prime[j] = false;\n    for (int i = 3; i * i <= n; i += 2) {\n       \
-    \ if (!prime[i]) continue;\n        for (int j = i * i; j <= n; j += 2 * i) prime[j]\
-    \ = false;\n    }\n    return prime;\n}\n\n/*\n * Prime Factorization\n */\nstd::map<long\
-    \ long, int> prime_factor(long long n) {\n    std::map<long long, int> ret;\n\
-    \    if (n % 2 == 0) {\n        int cnt = 0;\n        while (n % 2 == 0) {\n \
-    \           ++cnt;\n            n /= 2;\n        }\n        ret[2] = cnt;\n  \
-    \  }\n    for (long long i = 3; i * i <= n; i += 2) {\n        if (n % i == 0)\
-    \ {\n            int cnt = 0;\n            while (n % i == 0) {\n            \
-    \    ++cnt;\n                n /= i;\n            }\n            ret[i] = cnt;\n\
-    \        }\n    }\n    if (n != 1) ret[n] = 1;\n    return ret;\n}"
+  code: "#pragma once\n#include <map>\n#include <vector>\n\n/*\n * Primality Test\n\
+    \ */\nbool is_prime(long long n) {\n    if (n <= 1) return false;\n    if (n <=\
+    \ 3) return true;\n    if (n % 2 == 0 || n % 3 == 0) return false;\n    if (n\
+    \ < 9) return true;\n    for (long long i = 5; i * i <= n; i += 6) {\n       \
+    \ if (n % i == 0 || n % (i + 2) == 0) return false;\n    }\n    return true;\n\
+    }\n\n/*\n * Prime Table\n */\nstd::vector<bool> prime_table(int n) {\n    std::vector<bool>\
+    \ prime(n + 1, true);\n    prime[0] = prime[1] = false;\n    for (int j = 4; j\
+    \ <= n; j += 2) prime[j] = false;\n    for (int i = 3; i * i <= n; i += 2) {\n\
+    \        if (!prime[i]) continue;\n        for (int j = i * i; j <= n; j += 2\
+    \ * i) prime[j] = false;\n    }\n    return prime;\n}\n\n/*\n * Prime Factorization\n\
+    \ */\nstd::map<long long, int> prime_factor(long long n) {\n    std::map<long\
+    \ long, int> ret;\n    if (n % 2 == 0) {\n        int cnt = 0;\n        while\
+    \ (n % 2 == 0) {\n            ++cnt;\n            n /= 2;\n        }\n       \
+    \ ret[2] = cnt;\n    }\n    for (long long i = 3; i * i <= n; i += 2) {\n    \
+    \    if (n % i == 0) {\n            int cnt = 0;\n            while (n % i ==\
+    \ 0) {\n                ++cnt;\n                n /= i;\n            }\n     \
+    \       ret[i] = cnt;\n        }\n    }\n    if (n != 1) ret[n] = 1;\n    return\
+    \ ret;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/prime.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:23:12+09:00'
+  timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_A.test.cpp
   - test/aoj/ALDS1_1_C.is_prime.test.cpp
 documentation_of: math/prime.cpp
 layout: document
-redirect_from:
-- /library/math/prime.cpp
-- /library/math/prime.cpp.html
 title: Prime Number Algorithms
 ---
+
 ## Description
 
 素数に関するアルゴリズム詰め合わせ

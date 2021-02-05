@@ -15,8 +15,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A
   bundledCode: "#line 1 \"test/aoj/NTL_1_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\
-    \n\n#line 2 \"math/prime.cpp\"\n#include <map>\n#include <vector>\n\n/*\n * @brief\
-    \ Prime Number Algorithms\n * @docs docs/math/prime.md\n */\n\n/*\n * Primality\
+    \n\n#line 2 \"math/prime.cpp\"\n#include <map>\n#include <vector>\n\n/*\n * Primality\
     \ Test\n */\nbool is_prime(long long n) {\n    if (n <= 1) return false;\n   \
     \ if (n <= 3) return true;\n    if (n % 2 == 0 || n % 3 == 0) return false;\n\
     \    if (n < 9) return true;\n    for (long long i = 5; i * i <= n; i += 6) {\n\
@@ -50,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:23:12+09:00'
+  timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_A.test.cpp

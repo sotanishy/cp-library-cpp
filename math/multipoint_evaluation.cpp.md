@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -13,28 +13,28 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Multipoint Evaluation
     links: []
   bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n#line\
     \ 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line 3\
-    \ \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic Transform\n * @docs docs/math/ntt.md\n\
-    \ */\ntemplate <typename mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n\
-    \    static std::vector<mint> convolve(const std::vector<mint>& a, const std::vector<mint>&\
-    \ b) {\n        int size = a.size() + b.size() - 1;\n        int n = 1;\n    \
-    \    while (n < size) n <<= 1;\n        std::vector<mint> na(a.begin(), a.end()),\
-    \ nb(b.begin(), b.end());\n        na.resize(n);\n        nb.resize(n);\n    \
-    \    ntt(na, false);\n        ntt(nb, false);\n        for (int i = 0; i < n;\
-    \ ++i) na[i] *= nb[i];\n        intt(na, false);\n        na.resize(size);\n \
-    \       mint n_inv = mint(n).inv();\n        for (int i = 0; i < size; ++i) na[i]\
-    \ *= n_inv;\n        return na;\n    }\n\n    static void ntt(std::vector<mint>&\
-    \ a, bool ordered = true) {\n        int n = a.size();\n        for (int m = n;\
-    \ m > 1; m >>= 1) {\n            mint omega = primitive_root.pow((mod - 1) / m);\n\
-    \            for (int s = 0; s < n / m; ++s) {\n                mint w = 1;\n\
-    \                for (int i = 0; i < m / 2; ++i) {\n                    mint l\
-    \ = a[s * m + i];\n                    mint r = a[s * m + i + m / 2];\n      \
-    \              a[s * m + i] = l + r;\n                    a[s * m + i + m / 2]\
-    \ = (l - r) * w;\n                    w *= omega;\n                }\n       \
-    \     }\n        }\n        if (ordered) bit_reverse(a);\n    }\n\n    static\
-    \ void intt(std::vector<mint>& a, bool ordered = true) {\n        if (ordered)\
+    \ \"math/ntt.cpp\"\n\ntemplate <typename mint>\nclass NTT {\npublic:\n    NTT()\
+    \ = delete;\n\n    static std::vector<mint> convolve(const std::vector<mint>&\
+    \ a, const std::vector<mint>& b) {\n        int size = a.size() + b.size() - 1;\n\
+    \        int n = 1;\n        while (n < size) n <<= 1;\n        std::vector<mint>\
+    \ na(a.begin(), a.end()), nb(b.begin(), b.end());\n        na.resize(n);\n   \
+    \     nb.resize(n);\n        ntt(na, false);\n        ntt(nb, false);\n      \
+    \  for (int i = 0; i < n; ++i) na[i] *= nb[i];\n        intt(na, false);\n   \
+    \     na.resize(size);\n        mint n_inv = mint(n).inv();\n        for (int\
+    \ i = 0; i < size; ++i) na[i] *= n_inv;\n        return na;\n    }\n\n    static\
+    \ void ntt(std::vector<mint>& a, bool ordered = true) {\n        int n = a.size();\n\
+    \        for (int m = n; m > 1; m >>= 1) {\n            mint omega = primitive_root.pow((mod\
+    \ - 1) / m);\n            for (int s = 0; s < n / m; ++s) {\n                mint\
+    \ w = 1;\n                for (int i = 0; i < m / 2; ++i) {\n                \
+    \    mint l = a[s * m + i];\n                    mint r = a[s * m + i + m / 2];\n\
+    \                    a[s * m + i] = l + r;\n                    a[s * m + i +\
+    \ m / 2] = (l - r) * w;\n                    w *= omega;\n                }\n\
+    \            }\n        }\n        if (ordered) bit_reverse(a);\n    }\n\n   \
+    \ static void intt(std::vector<mint>& a, bool ordered = true) {\n        if (ordered)\
     \ bit_reverse(a);\n        int n = a.size();\n        for (int m = 2; m <= n;\
     \ m <<= 1) {\n            mint omega = primitive_root.pow((mod - 1) / m).inv();\n\
     \            for (int s = 0; s < n / m; ++s) {\n                mint w = 1;\n\
@@ -108,29 +108,30 @@ data:
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
     \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};\n#line 4 \"math/multipoint_evaluation.cpp\"\n\ntemplate <typename T>\n\
-    std::vector<T> multipoint_evaluation(const Polynomial<T>& p, const std::vector<T>&\
-    \ x) {\n    int m = x.size();\n    int n = 1;\n    while (n < m) n <<= 1;\n  \
-    \  std::vector<Polynomial<T>> q(2 * n, {1});\n    for (int i = 0; i < m; ++i)\
-    \ q[n + i] = {-x[i], 1};\n    for (int i = n; i > 0; ++i) q[i] = q[2 * i] * q[2\
-    \ * i + 1];\n    q[1] = p % q[1];\n    for (int i = 2; i < n + m; ++i) q[i] =\
-    \ q[i / 2] % q[i];\n    std::vector<T> y(m);\n    for (int i = 0; i < m; ++i)\
-    \ y[i] = q[n + i][0];\n    return y;\n}\n"
-  code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\ntemplate\
-    \ <typename T>\nstd::vector<T> multipoint_evaluation(const Polynomial<T>& p, const\
-    \ std::vector<T>& x) {\n    int m = x.size();\n    int n = 1;\n    while (n <\
-    \ m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n, {1});\n    for (int i =\
-    \ 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int i = n; i > 0; ++i) q[i]\
-    \ = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int i = 2; i < n\
-    \ + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n    for (int i\
-    \ = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n}"
+    \ }\n};\n#line 4 \"math/multipoint_evaluation.cpp\"\n\n/*\n * @brief Multipoint\
+    \ Evaluation\n */\ntemplate <typename T>\nstd::vector<T> multipoint_evaluation(const\
+    \ Polynomial<T>& p, const std::vector<T>& x) {\n    int m = x.size();\n    int\
+    \ n = 1;\n    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n,\
+    \ {1});\n    for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int\
+    \ i = n; i > 0; ++i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n \
+    \   for (int i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T>\
+    \ y(m);\n    for (int i = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n\
+    }\n"
+  code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\n/*\n * @brief\
+    \ Multipoint Evaluation\n */\ntemplate <typename T>\nstd::vector<T> multipoint_evaluation(const\
+    \ Polynomial<T>& p, const std::vector<T>& x) {\n    int m = x.size();\n    int\
+    \ n = 1;\n    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n,\
+    \ {1});\n    for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int\
+    \ i = n; i > 0; ++i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n \
+    \   for (int i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T>\
+    \ y(m);\n    for (int i = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n}"
   dependsOn:
   - math/polynomial.cpp
   - math/ntt.cpp
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy: []
-  timestamp: '2021-01-29 21:41:25+09:00'
+  timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.cpp
@@ -138,5 +139,5 @@ layout: document
 redirect_from:
 - /library/math/multipoint_evaluation.cpp
 - /library/math/multipoint_evaluation.cpp.html
-title: math/multipoint_evaluation.cpp
+title: Multipoint Evaluation
 ---

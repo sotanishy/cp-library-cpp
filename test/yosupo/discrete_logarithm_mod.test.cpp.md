@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/mod_arithmetic.cpp
     title: Modular Arithmetic
   _extendedRequiredBy: []
@@ -16,8 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/discrete_logarithm_mod
   bundledCode: "#line 1 \"test/yosupo/discrete_logarithm_mod.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\n\n#line 2 \"math/mod_arithmetic.cpp\"\
-    \n#include <cmath>\n#include <numeric>\n#include <unordered_map>\n\n/*\n * @brief\
-    \ Modular Arithmetic\n * @docs docs/math/mod_arithmetic.md\n */\n\n/*\n * Modular\
+    \n#include <cmath>\n#include <numeric>\n#include <unordered_map>\n\n/*\n * Modular\
     \ Exponentiation\n */\nlong long mod_pow(long long a, long long p, int mod) {\n\
     \    long long ret = 1;\n    while (p > 0) {\n        if (p & 1) ret = ret * a\
     \ % mod;\n        a = a * a % mod;\n        p >>= 1;\n    }\n    return ret;\n\
@@ -61,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 21:55:28+09:00'
+  timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/discrete_logarithm_mod.test.cpp

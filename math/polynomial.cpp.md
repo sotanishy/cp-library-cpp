@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
@@ -10,7 +10,7 @@ data:
     title: Polynomial Interpolation
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
-    title: math/multipoint_evaluation.cpp
+    title: Multipoint Evaluation
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
@@ -21,18 +21,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #include <vector>\n#line 3 \"math/ntt.cpp\"\n\n/*\n * @brief Number Theoretic\
-    \ Transform\n * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\nclass NTT\
-    \ {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const\
+    #include <vector>\n#line 3 \"math/ntt.cpp\"\n\ntemplate <typename mint>\nclass\
+    \ NTT {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const\
     \ std::vector<mint>& a, const std::vector<mint>& b) {\n        int size = a.size()\
     \ + b.size() - 1;\n        int n = 1;\n        while (n < size) n <<= 1;\n   \
     \     std::vector<mint> na(a.begin(), a.end()), nb(b.begin(), b.end());\n    \
@@ -190,8 +189,8 @@ data:
   requiredBy:
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2021-01-29 21:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-02-06 03:15:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp

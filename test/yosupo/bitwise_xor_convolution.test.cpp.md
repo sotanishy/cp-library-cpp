@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   - icon: ':heavy_check_mark:'
@@ -48,8 +48,7 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/transform.cpp\"\n#include <vector>\n\
-    \n/*\n * @brief Transform\n * @docs docs/math/transform.md\n */\n\n/*\n * Fast\
-    \ Zeta/Mobius Transform\n */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>&\
+    \n/*\n * Fast Zeta/Mobius Transform\n */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>&\
     \ a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n    for (int i\
     \ = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j) {\n         \
     \   if ((j >> i & 1) == subset) a[j] += a[j ^ (1 << i)];\n        }\n    }\n}\n\
@@ -103,7 +102,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2021-01-05 13:51:41+09:00'
+  timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_xor_convolution.test.cpp

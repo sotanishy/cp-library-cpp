@@ -7,8 +7,8 @@ data:
     title: Polynomial Interpolation
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
-    title: math/multipoint_evaluation.cpp
-  - icon: ':heavy_check_mark:'
+    title: Multipoint Evaluation
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedVerifiedWith:
@@ -24,35 +24,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/math/ntt.md
-    document_title: Number Theoretic Transform
     links: []
-  bundledCode: "#line 2 \"math/ntt.cpp\"\n#include <vector>\n\n/*\n * @brief Number\
-    \ Theoretic Transform\n * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\n\
-    class NTT {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const\
-    \ std::vector<mint>& a, const std::vector<mint>& b) {\n        int size = a.size()\
-    \ + b.size() - 1;\n        int n = 1;\n        while (n < size) n <<= 1;\n   \
-    \     std::vector<mint> na(a.begin(), a.end()), nb(b.begin(), b.end());\n    \
-    \    na.resize(n);\n        nb.resize(n);\n        ntt(na, false);\n        ntt(nb,\
-    \ false);\n        for (int i = 0; i < n; ++i) na[i] *= nb[i];\n        intt(na,\
-    \ false);\n        na.resize(size);\n        mint n_inv = mint(n).inv();\n   \
-    \     for (int i = 0; i < size; ++i) na[i] *= n_inv;\n        return na;\n   \
-    \ }\n\n    static void ntt(std::vector<mint>& a, bool ordered = true) {\n    \
-    \    int n = a.size();\n        for (int m = n; m > 1; m >>= 1) {\n          \
-    \  mint omega = primitive_root.pow((mod - 1) / m);\n            for (int s = 0;\
-    \ s < n / m; ++s) {\n                mint w = 1;\n                for (int i =\
-    \ 0; i < m / 2; ++i) {\n                    mint l = a[s * m + i];\n         \
-    \           mint r = a[s * m + i + m / 2];\n                    a[s * m + i] =\
-    \ l + r;\n                    a[s * m + i + m / 2] = (l - r) * w;\n          \
-    \          w *= omega;\n                }\n            }\n        }\n        if\
-    \ (ordered) bit_reverse(a);\n    }\n\n    static void intt(std::vector<mint>&\
+  bundledCode: "#line 2 \"math/ntt.cpp\"\n#include <vector>\n\ntemplate <typename\
+    \ mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint>\
+    \ convolve(const std::vector<mint>& a, const std::vector<mint>& b) {\n       \
+    \ int size = a.size() + b.size() - 1;\n        int n = 1;\n        while (n <\
+    \ size) n <<= 1;\n        std::vector<mint> na(a.begin(), a.end()), nb(b.begin(),\
+    \ b.end());\n        na.resize(n);\n        nb.resize(n);\n        ntt(na, false);\n\
+    \        ntt(nb, false);\n        for (int i = 0; i < n; ++i) na[i] *= nb[i];\n\
+    \        intt(na, false);\n        na.resize(size);\n        mint n_inv = mint(n).inv();\n\
+    \        for (int i = 0; i < size; ++i) na[i] *= n_inv;\n        return na;\n\
+    \    }\n\n    static void ntt(std::vector<mint>& a, bool ordered = true) {\n \
+    \       int n = a.size();\n        for (int m = n; m > 1; m >>= 1) {\n       \
+    \     mint omega = primitive_root.pow((mod - 1) / m);\n            for (int s\
+    \ = 0; s < n / m; ++s) {\n                mint w = 1;\n                for (int\
+    \ i = 0; i < m / 2; ++i) {\n                    mint l = a[s * m + i];\n     \
+    \               mint r = a[s * m + i + m / 2];\n                    a[s * m +\
+    \ i] = l + r;\n                    a[s * m + i + m / 2] = (l - r) * w;\n     \
+    \               w *= omega;\n                }\n            }\n        }\n   \
+    \     if (ordered) bit_reverse(a);\n    }\n\n    static void intt(std::vector<mint>&\
     \ a, bool ordered = true) {\n        if (ordered) bit_reverse(a);\n        int\
     \ n = a.size();\n        for (int m = 2; m <= n; m <<= 1) {\n            mint\
     \ omega = primitive_root.pow((mod - 1) / m).inv();\n            for (int s = 0;\
@@ -70,9 +67,8 @@ data:
     \        for (int i = 0, j = 1; j < n - 1; ++j) {\n            for (int k = n\
     \ >> 1; k > (i ^= k); k >>= 1);\n            if (i < j) std::swap(a[i], a[j]);\n\
     \        }\n    }\n};\n"
-  code: "#pragma once\n#include <vector>\n\n/*\n * @brief Number Theoretic Transform\n\
-    \ * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\nclass NTT {\npublic:\n\
-    \    NTT() = delete;\n\n    static std::vector<mint> convolve(const std::vector<mint>&\
+  code: "#pragma once\n#include <vector>\n\ntemplate <typename mint>\nclass NTT {\n\
+    public:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int size = a.size() + b.size() - 1;\n\
     \        int n = 1;\n        while (n < size) n <<= 1;\n        std::vector<mint>\
     \ na(a.begin(), a.end()), nb(b.begin(), b.end());\n        na.resize(n);\n   \
@@ -112,8 +108,8 @@ data:
   - math/interpolation.cpp
   - math/polynomial.cpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2020-11-28 19:10:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-02-06 03:15:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
@@ -122,11 +118,9 @@ data:
   - test/yosupo/convolution_mod.test.cpp
 documentation_of: math/ntt.cpp
 layout: document
-redirect_from:
-- /library/math/ntt.cpp
-- /library/math/ntt.cpp.html
 title: Number Theoretic Transform
 ---
+
 ## Description
 
 数論変換 (NTT) は，剰余環 $\mathbb{Z}/p\mathbb{Z}$ 上の高速フーリエ変換である．

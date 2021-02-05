@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -51,25 +51,24 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 3 \"math/polynomial.cpp\"\n#include\
-    \ <cassert>\n#include <vector>\n#line 3 \"math/ntt.cpp\"\n\n/*\n * @brief Number\
-    \ Theoretic Transform\n * @docs docs/math/ntt.md\n */\ntemplate <typename mint>\n\
-    class NTT {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint> convolve(const\
-    \ std::vector<mint>& a, const std::vector<mint>& b) {\n        int size = a.size()\
-    \ + b.size() - 1;\n        int n = 1;\n        while (n < size) n <<= 1;\n   \
-    \     std::vector<mint> na(a.begin(), a.end()), nb(b.begin(), b.end());\n    \
-    \    na.resize(n);\n        nb.resize(n);\n        ntt(na, false);\n        ntt(nb,\
-    \ false);\n        for (int i = 0; i < n; ++i) na[i] *= nb[i];\n        intt(na,\
-    \ false);\n        na.resize(size);\n        mint n_inv = mint(n).inv();\n   \
-    \     for (int i = 0; i < size; ++i) na[i] *= n_inv;\n        return na;\n   \
-    \ }\n\n    static void ntt(std::vector<mint>& a, bool ordered = true) {\n    \
-    \    int n = a.size();\n        for (int m = n; m > 1; m >>= 1) {\n          \
-    \  mint omega = primitive_root.pow((mod - 1) / m);\n            for (int s = 0;\
-    \ s < n / m; ++s) {\n                mint w = 1;\n                for (int i =\
-    \ 0; i < m / 2; ++i) {\n                    mint l = a[s * m + i];\n         \
-    \           mint r = a[s * m + i + m / 2];\n                    a[s * m + i] =\
-    \ l + r;\n                    a[s * m + i + m / 2] = (l - r) * w;\n          \
-    \          w *= omega;\n                }\n            }\n        }\n        if\
-    \ (ordered) bit_reverse(a);\n    }\n\n    static void intt(std::vector<mint>&\
+    \ <cassert>\n#include <vector>\n#line 3 \"math/ntt.cpp\"\n\ntemplate <typename\
+    \ mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n    static std::vector<mint>\
+    \ convolve(const std::vector<mint>& a, const std::vector<mint>& b) {\n       \
+    \ int size = a.size() + b.size() - 1;\n        int n = 1;\n        while (n <\
+    \ size) n <<= 1;\n        std::vector<mint> na(a.begin(), a.end()), nb(b.begin(),\
+    \ b.end());\n        na.resize(n);\n        nb.resize(n);\n        ntt(na, false);\n\
+    \        ntt(nb, false);\n        for (int i = 0; i < n; ++i) na[i] *= nb[i];\n\
+    \        intt(na, false);\n        na.resize(size);\n        mint n_inv = mint(n).inv();\n\
+    \        for (int i = 0; i < size; ++i) na[i] *= n_inv;\n        return na;\n\
+    \    }\n\n    static void ntt(std::vector<mint>& a, bool ordered = true) {\n \
+    \       int n = a.size();\n        for (int m = n; m > 1; m >>= 1) {\n       \
+    \     mint omega = primitive_root.pow((mod - 1) / m);\n            for (int s\
+    \ = 0; s < n / m; ++s) {\n                mint w = 1;\n                for (int\
+    \ i = 0; i < m / 2; ++i) {\n                    mint l = a[s * m + i];\n     \
+    \               mint r = a[s * m + i + m / 2];\n                    a[s * m +\
+    \ i] = l + r;\n                    a[s * m + i + m / 2] = (l - r) * w;\n     \
+    \               w *= omega;\n                }\n            }\n        }\n   \
+    \     if (ordered) bit_reverse(a);\n    }\n\n    static void intt(std::vector<mint>&\
     \ a, bool ordered = true) {\n        if (ordered) bit_reverse(a);\n        int\
     \ n = a.size();\n        for (int m = 2; m <= n; m <<= 1) {\n            mint\
     \ omega = primitive_root.pow((mod - 1) / m).inv();\n            for (int s = 0;\
@@ -164,8 +163,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-01-29 21:41:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-02-06 03:15:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/pow_of_formal_power_series.test.cpp
 layout: document

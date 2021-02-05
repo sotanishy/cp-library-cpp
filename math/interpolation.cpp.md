@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -16,9 +16,8 @@ data:
     links: []
   bundledCode: "#line 2 \"math/interpolation.cpp\"\n#include <vector>\n#line 2 \"\
     math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line 3 \"math/ntt.cpp\"\
-    \n\n/*\n * @brief Number Theoretic Transform\n * @docs docs/math/ntt.md\n */\n\
-    template <typename mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n    static\
-    \ std::vector<mint> convolve(const std::vector<mint>& a, const std::vector<mint>&\
+    \n\ntemplate <typename mint>\nclass NTT {\npublic:\n    NTT() = delete;\n\n  \
+    \  static std::vector<mint> convolve(const std::vector<mint>& a, const std::vector<mint>&\
     \ b) {\n        int size = a.size() + b.size() - 1;\n        int n = 1;\n    \
     \    while (n < size) n <<= 1;\n        std::vector<mint> na(a.begin(), a.end()),\
     \ nb(b.begin(), b.end());\n        na.resize(n);\n        nb.resize(n);\n    \
@@ -156,7 +155,7 @@ data:
   isVerificationFile: false
   path: math/interpolation.cpp
   requiredBy: []
-  timestamp: '2021-01-29 21:41:25+09:00'
+  timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/interpolation.cpp
