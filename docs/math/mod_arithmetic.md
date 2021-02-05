@@ -1,3 +1,8 @@
+---
+title: Modular Arithmetic
+documentation_of: ../../math/mod_arithmetic.cpp
+---
+
 ## Description
 
 モジュラ計算アルゴリズム詰め合わせ

@@ -3,11 +3,6 @@
 #include <vector>
 
 /*
- * @brief Prime Number Algorithms
- * @docs docs/math/prime.md
- */
-
-/*
  * Primality Test
  */
 bool is_prime(long long n) {

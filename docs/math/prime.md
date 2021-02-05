@@ -1,3 +1,8 @@
+---
+title: Prime Number Algorithms
+documentation_of: ../../math/prime.cpp
+---
+
 ## Description
 
 素数に関するアルゴリズム詰め合わせ

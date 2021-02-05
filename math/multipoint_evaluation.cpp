@@ -2,6 +2,9 @@
 #include <vector>
 #include "polynomial.cpp"
 
+/*
+ * @brief Multipoint Evaluation
+ */
 template <typename T>
 std::vector<T> multipoint_evaluation(const Polynomial<T>& p, const std::vector<T>& x) {
     int m = x.size();

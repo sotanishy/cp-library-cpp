@@ -1,3 +1,8 @@
+---
+title: Number Theoretic Transform
+documentation_of: ../../math/ntt.cpp
+---
+
 ## Description
 
 数論変換 (NTT) は，剰余環 $\mathbb{Z}/p\mathbb{Z}$ 上の高速フーリエ変換である．

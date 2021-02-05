@@ -1,3 +1,8 @@
+---
+title: Transform
+documentation_of: ../../math/transform.cpp
+---
+
 ## Description
 
 変換アルゴリズム詰め合わせ

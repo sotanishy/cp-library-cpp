@@ -2,11 +2,6 @@
 #include <vector>
 
 /*
- * @brief Transform
- * @docs docs/math/transform.md
- */
-
-/*
  * Fast Zeta/Mobius Transform
  */
 

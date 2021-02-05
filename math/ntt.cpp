@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 
-/*
- * @brief Number Theoretic Transform
- * @docs docs/math/ntt.md
- */
 template <typename mint>
 class NTT {
 public:
