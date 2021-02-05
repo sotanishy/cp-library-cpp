@@ -7,19 +7,22 @@ documentation_of: ../../math/geometry.cpp
 
 幾何アルゴリズム詰め合わせ
 
+`Vec` は `std::complex<double>` のエイリアスである．
+
 大半は未 verify．
-
-## Vector
-
-- `struct Vector`
-    - 2次元ベクトルを表す
-    - メンバー変数: `x`, `y`
-    - 演算子: ベクトル加減算，スカラー乗除算，標準出力
-    - メンバー関数: 絶対値 `abs`，内積 `dot`，外積の $z$ 成分 `cross`，回転 `rot`
 
 ## Functions
 
 時間計算量は明示しない限り $O(1)$．
+
+- `double dot(Vec a, Vec b)`
+    - 内積を計算する
+
+- `double cross(Vec a, Vec b)`
+    - 外積の $z$ 座標を計算する
+
+- `Vec rot(Vec a, double ang)`
+    - $a$ を $ang$ だけ回転させる
 
 - `bool are_colinear(Vec p1, Vec p2, Vec p3)`
     - 3点が共線か判定する

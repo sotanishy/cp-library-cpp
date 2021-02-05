@@ -35,26 +35,26 @@ int main() {
                     break;
                 }
             }
-            if (x1 < min(s.x, e.x) && max(s.x, e.x) < x2 && y1 < min(s.y, e.y) && max(s.y, e.y) < y2) {
+            if (x1 < min(s.real(), e.real()) && max(s.real(), e.real()) < x2 && y1 < min(s.imag(), e.imag()) && max(s.imag(), e.imag()) < y2) {
                 ans = 0;
             }
             for (auto& p : {s, e}) {
-                if (x1 < p.x && p.x < x2) {
-                    pts.push_back(Vec(p.x, y1));
-                    pts.push_back(Vec(p.x, y2));
+                if (x1 < p.real() && p.real() < x2) {
+                    pts.push_back(Vec(p.real(), y1));
+                    pts.push_back(Vec(p.real(), y2));
                 }
-                if (y1 < p.y && p.y < y2) {
-                    pts.push_back(Vec(x1, p.y));
-                    pts.push_back(Vec(x2, p.y));
+                if (y1 < p.imag() && p.imag() < y2) {
+                    pts.push_back(Vec(x1, p.imag()));
+                    pts.push_back(Vec(x2, p.imag()));
                 }
             }
             for (auto& p : pts) {
                 double d = point_line_dist(s, e, p);
-                if (lt((e - s).dot(p - s), 0)) {
-                    d = (p - s).abs();
+                if (lt(dot(e - s, p - s), 0)) {
+                    d = std::abs(p - s);
                 }
-                if (lt((s - e).dot(p - e), 0)) {
-                    d = (p - e).abs();
+                if (lt(dot(s - e, p - e), 0)) {
+                    d = std::abs(p - e);
                 }
                 if (h > d) {
                     ans = min(ans, d);

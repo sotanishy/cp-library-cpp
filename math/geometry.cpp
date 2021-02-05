@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <optional>
 #include <vector>
@@ -12,39 +13,28 @@ inline bool eq(double a, double b) { return std::abs(a - b) < eps; }
 inline bool lt(double a, double b) { return a < b - eps; }
 inline bool leq(double a, double b) { return a < b + eps; }
 
-struct Vec {
-    double x, y;
+using Vec = std::complex<double>;
 
-    Vec() = default;
-    Vec(double x, double y) : x(x), y(y) {}
+double dot(const Vec& a, const Vec& b) {
+    return (std::conj(a) * b).real();
+}
 
-    Vec operator+(const Vec& other) const { return Vec(x + other.x, y + other.y); }
-    Vec operator-(const Vec& other) const { return Vec(x - other.x, y - other.y); }
-    Vec operator*(double k) const { return Vec(x * k, y * k); }
-    Vec operator/(double k) const { return Vec(x / k, y / k); }
+double cross(const Vec& a, const Vec& b) {
+    return (std::conj(a) * b).imag();
+}
 
-    double abs() const { return std::sqrt(x * x + y * y); }
-    double dot(const Vec& other) const { return x * other.x + y * other.y; }
-    double cross(const Vec& other) const { return x * other.y - y * other.x; }
-
-    Vec rot(double ang) const {
-        double c = std::cos(ang), s = std::sin(ang);
-        return Vec(c * x - s * y, s * x + c * y);
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const Vec& v) {
-        return os << "(" << v.x << ", " << v.y << ")";
-    }
-};
+Vec rot(const Vec& a, double ang) {
+    return a * Vec(std::cos(ang), std::sin(ang));
+}
 
 // checks if the three points are on the same line
 bool are_colinear(const Vec& p1, const Vec& p2, const Vec& p3) {
-    return eq((p2 - p1).cross(p3 - p1), 0);
+    return eq(cross(p2 - p1, p3 - p1), 0);
 }
 
 // checks if a -> b -> c is counter clockwise
 bool ccw(const Vec& a, const Vec& b, const Vec& c) {
-    return lt((b.y - a.y) * (c.x - a.x), (c.y - a.y) * (b.x - a.x));
+    return !lt(std::arg((c - a) / (b - a)), 0);
 }
 
 // checks if the segment ab intersects with the segment cd
@@ -55,7 +45,7 @@ bool intersect(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
 // checks if q is on the segment p1-p2
 bool on_segment(const Vec& p1, const Vec& p2, const Vec& q) {
     Vec v1 = p1 - q, v2 = p2 - q;
-    return eq(v1.cross(v2), 0) && eq(v1.dot(v2), 0);
+    return eq(cross(v1, v2), 0) && eq(dot(v1, v2), 0);
 }
 
 // returns the intersection of the lines p1-p2 and q1-q2
@@ -65,21 +55,21 @@ std::optional<Vec> intersection(const Vec& p1, const Vec& p2, const Vec& q1, con
     Vec q = q2 - q1;
     Vec r = q1 - p1;
     // if parallel
-    if (eq(q.cross(p), 0)) return std::nullopt;
-    return p1 + p * (q.cross(r) / q.cross(p));
+    if (eq(cross(q, p), 0)) return std::nullopt;
+    return p1 + cross(q, r) / cross(q, p) * p;
 }
 
 // returns a list of the intersections of two circles
 std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, double r2) {
-    double d = (c1 - c2).abs();
+    double d = std::abs(c1 - c2);
     // if the circles are outside of each other
     if (lt(r1 + r2, d)) return {};
     // if one contains the other entirely
     if (lt(d, std::abs(r2 - r1))) return {};
     double x = (r1*r1 - r2*r2 + d*d) / (2*d);
     double y = std::sqrt(r1*r1 - x*x);
-    Vec e1 = (c2 - c1) / (c2 - c1).abs();
-    Vec e2 = Vec(-e1.y, e1.x);
+    Vec e1 = (c2 - c1) / std::abs(c2 - c1);
+    Vec e2 = Vec(-e1.imag(), e1.real());
     Vec p1 = c1 + e1 * x + e2 * y;
     Vec p2 = c1 + e1 * x - e2 * y;
     return {p1, p2};
@@ -88,53 +78,53 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
 // returns the distance between the point q and the line p1-p2
 double point_line_dist(const Vec& p1, const Vec& p2, const Vec& q) {
     Vec p = p2 - p1;
-    return std::abs(q.cross(p) + p2.cross(p1)) / p.abs();
+    return std::abs(cross(q, p) + cross(p2, p1)) / std::abs(p);
 }
 
 double area(const Vec& A, const Vec& B, const Vec& C) {
-    return std::abs((B - A).cross(C - A)) / 2;
+    return std::abs(cross(B - A, C - A)) / 2.0;
 }
 
 Vec centroid(const Vec& A, const Vec& B, const Vec& C) {
     assert(!are_colinear(A, B, C));
-    return (A + B + C) / 3;
+    return (A + B + C) / 3.0;
 }
 
 Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
     assert(!are_colinear(A, B, C));
-    double a = (B - C).abs();
-    double b = (C - A).abs();
-    double c = (A - B).abs();
+    double a = std::abs(B - C);
+    double b = std::abs(C - A);
+    double c = std::abs(A - B);
     double cosA = (b*b + c*c - a*a) / (2*b*c);
     double cosB = (c*c + a*a - b*b) / (2*c*a);
     double cosC = (a*a + b*b - c*c) / (2*a*b);
-    return (A*(a*cosA) + B*(b*cosB) + C*(c*cosC)) / (a*cosA + b*cosB + c*cosC);
+    return (a*cosA*A + b*cosB*B + c*cosC*C) / (a*cosA + b*cosB + c*cosC);
 }
 
 Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
     assert(!are_colinear(A, B, C));
-    double a = (B - C).abs();
-    double b = (C - A).abs();
-    double c = (A - B).abs();
-    return (A*a + B*b + C*c) / (a + b + c);
+    double a = std::abs(B - C);
+    double b = std::abs(C - A);
+    double c = std::abs(A - B);
+    return (a*A + b*B + c*C) / (a + b + c);
 }
 
 std::vector<Vec> convex_hull(std::vector<Vec>& points) {
     int n = points.size();
     std::sort(points.begin(), points.end(), [](const Vec& v1, const Vec& v2) {
-        return (v1.y != v2.y) ? (v1.y < v2.y) : (v1.x < v2.x);
+        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());
     });
     int k = 0; // the number of vertices in the convex hull
     std::vector<Vec> ch(2 * n);
     // right
     for (int i = 0; i < n; ++i) {
-        while (k > 1 && lt((ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]), 0)) --k;
+        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], points[i] - ch[k-1]), 0)) --k;
         ch[k++] = points[i];
     }
     int t = k;
     // left
     for (int i = n - 2; i >= 0; --i) {
-        while (k > t && lt((ch[k-1] - ch[k-2]).cross(points[i] - ch[k-1]), 0)) --k;
+        while (k > t && lt(cross(ch[k-1] - ch[k-2], points[i] - ch[k-1]), 0)) --k;
         ch[k++] = points[i];
     }
     ch.resize(k - 1);
