@@ -20,84 +20,80 @@ data:
     \nconstexpr double eps = 1e-12;\n\ninline bool eq(double a, double b) { return\
     \ std::abs(a - b) < eps; }\ninline bool lt(double a, double b) { return a < b\
     \ - eps; }\ninline bool leq(double a, double b) { return a < b + eps; }\n\nusing\
-    \ Vec = std::complex<double>;\n\ndouble dot(const Vec& a, const Vec& b) {\n  \
-    \  return (std::conj(a) * b).real();\n}\n\ndouble cross(const Vec& a, const Vec&\
-    \ b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const Vec& a, double\
-    \ ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\nbool are_colinear(const\
-    \ Vec& p1, const Vec& p2, const Vec& p3) {\n    return eq(cross(p2 - p1, p3 -\
-    \ p1), 0);\n}\n\nbool ccw(const Vec& a, const Vec& b, const Vec& c) {\n    return\
-    \ !lt(std::arg((c - a) / (b - a)), 0);\n}\n\nbool intersect(const Vec& a, const\
-    \ Vec& b, const Vec& c, const Vec& d) {\n    return ccw(a, c, d) != ccw(b, c,\
-    \ d) && ccw(a, b, c) != ccw(a, b, d);\n}\n\nbool on_segment(const Vec& p1, const\
-    \ Vec& p2, const Vec& q) {\n    Vec v1 = p1 - q, v2 = p2 - q;\n    return eq(cross(v1,\
-    \ v2), 0) && lt(dot(v1, v2), 0);\n}\n\ndouble line_point_dist(const Vec& p1, const\
-    \ Vec& p2, const Vec& q) {\n    Vec p = p2 - p1;\n    return std::abs(cross(q,\
+    \ Vec = std::complex<double>;\n\nstd::istream& operator>>(std::istream& is, Vec&\
+    \ p) {\n    double x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
+    }\n\ndouble dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
+    }\n\ndouble cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
+    }\n\nVec rot(const Vec& a, double ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
+    }\n\nbool are_colinear(const Vec& p1, const Vec& p2, const Vec& p3) {\n    return\
+    \ eq(cross(p2 - p1, p3 - p1), 0);\n}\n\nbool ccw(const Vec& a, const Vec& b, const\
+    \ Vec& c) {\n    return !lt(std::arg((c - a) / (b - a)), 0);\n}\n\nbool intersect(const\
+    \ Vec& a, const Vec& b, const Vec& c, const Vec& d) {\n    return ccw(a, c, d)\
+    \ != ccw(b, c, d) && ccw(a, b, c) != ccw(a, b, d);\n}\n\nbool on_segment(const\
+    \ Vec& p1, const Vec& p2, const Vec& q) {\n    Vec v1 = p1 - q, v2 = p2 - q;\n\
+    \    return eq(cross(v1, v2), 0) && lt(dot(v1, v2), 0);\n}\n\ndouble line_point_dist(const\
+    \ Vec& p1, const Vec& p2, const Vec& q) {\n    Vec p = p2 - p1;\n    return std::abs(cross(q,\
     \ p) + cross(p2, p1)) / std::abs(p);\n}\n\nVec intersection(const Vec& p1, const\
     \ Vec& p2, const Vec& q1, const Vec& q2) {\n    Vec p = p2 - p1;\n    Vec q =\
     \ q2 - q1;\n    Vec r = q1 - p1;\n    assert(!eq(cross(q, p), 0)); // not parallel\n\
-    \    return p1 + cross(q, r) / cross(q, p) * p;\n}\n\n// returns a list of the\
-    \ intersections of two circles\nstd::vector<Vec> intersection_circles(const Vec&\
-    \ c1, double r1, const Vec& c2, double r2) {\n    double d = std::abs(c1 - c2);\n\
-    \    // if the circles are outside of each other\n    if (lt(r1 + r2, d)) return\
-    \ {};\n    // if one contains the other entirely\n    if (lt(d, std::abs(r2 -\
-    \ r1))) return {};\n    double x = (r1*r1 - r2*r2 + d*d) / (2*d);\n    double\
+    \    return p1 + cross(q, r) / cross(q, p) * p;\n}\n\nstd::vector<Vec> intersection_circles(const\
+    \ Vec& c1, double r1, const Vec& c2, double r2) {\n    double d = std::abs(c1\
+    \ - c2);\n    // if the circles are outside of each other\n    if (lt(r1 + r2,\
+    \ d)) return {};\n    // if one contains the other entirely\n    if (lt(d, std::abs(r2\
+    \ - r1))) return {};\n    double x = (r1*r1 - r2*r2 + d*d) / (2*d);\n    double\
     \ y = std::sqrt(r1*r1 - x*x);\n    Vec e1 = (c2 - c1) / std::abs(c2 - c1);\n \
     \   Vec e2 = Vec(-e1.imag(), e1.real());\n    return {c1 + x*e1 + y*e2, c1 + x*e1\
-    \ - y*e2};\n}\n\n// returns a list of the intersections of a circle and a line\n\
-    std::vector<Vec> intersection_circle_line(const Vec& c, double r, const Vec& p1,\
-    \ const Vec& p2) {\n    double d = line_point_dist(p1, p2, c);\n    // no intersection\n\
-    \    if (lt(r, d)) return {};\n    Vec e1 = (p2 - p1) / std::abs(p2 - p1);\n \
-    \   Vec e2 = Vec(-e1.imag(), e1.real());\n    double t = std::sqrt(r*r - d*d);\n\
-    \    if (eq(d, 0)) return {c + t*e1, c - t*e1};\n    if (ccw(c, p1, p2)) e2 *=\
-    \ -1;\n    if (eq(r, d)) return {c + d*e2};\n    return {c + d*e2 + t*e1, c +\
-    \ d*e2 - t*e1};\n}\n\ndouble area(const Vec& A, const Vec& B, const Vec& C) {\n\
-    \    return std::abs(cross(B - A, C - A)) / 2.0;\n}\n\nVec centroid(const Vec&\
-    \ A, const Vec& B, const Vec& C) {\n    assert(!are_colinear(A, B, C));\n    return\
-    \ (A + B + C) / 3.0;\n}\n\nVec circumcenter(const Vec& A, const Vec& B, const\
-    \ Vec& C) {\n    assert(!are_colinear(A, B, C));\n    double a = std::abs(B -\
-    \ C);\n    double b = std::abs(C - A);\n    double c = std::abs(A - B);\n    double\
-    \ cosA = (b*b + c*c - a*a) / (2*b*c);\n    double cosB = (c*c + a*a - b*b) / (2*c*a);\n\
-    \    double cosC = (a*a + b*b - c*c) / (2*a*b);\n    return (a*cosA*A + b*cosB*B\
-    \ + c*cosC*C) / (a*cosA + b*cosB + c*cosC);\n}\n\nVec incenter(const Vec& A, const\
-    \ Vec& B, const Vec& C) {\n    assert(!are_colinear(A, B, C));\n    double a =\
-    \ std::abs(B - C);\n    double b = std::abs(C - A);\n    double c = std::abs(A\
-    \ - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n}\n\nstd::vector<Vec> convex_hull(std::vector<Vec>&\
-    \ points) {\n    int n = points.size();\n    std::sort(points.begin(), points.end(),\
-    \ [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() != v2.imag())\
-    \ ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n    int k = 0;\
-    \ // the number of vertices in the convex hull\n    std::vector<Vec> ch(2 * n);\n\
-    \    // right\n    for (int i = 0; i < n; ++i) {\n        while (k > 1 && lt(cross(ch[k-1]\
+    \ - y*e2};\n}\n\nstd::vector<Vec> intersection_circle_line(const Vec& c, double\
+    \ r, const Vec& p1, const Vec& p2) {\n    double d = line_point_dist(p1, p2, c);\n\
+    \    // no intersection\n    if (lt(r, d)) return {};\n    Vec e1 = (p2 - p1)\
+    \ / std::abs(p2 - p1);\n    Vec e2 = Vec(-e1.imag(), e1.real());\n    double t\
+    \ = std::sqrt(r*r - d*d);\n    if (eq(d, 0)) return {c + t*e1, c - t*e1};\n  \
+    \  if (ccw(c, p1, p2)) e2 *= -1;\n    if (eq(r, d)) return {c + d*e2};\n    return\
+    \ {c + d*e2 + t*e1, c + d*e2 - t*e1};\n}\n\ndouble area(const Vec& A, const Vec&\
+    \ B, const Vec& C) {\n    return std::abs(cross(B - A, C - A)) / 2.0;\n}\n\nVec\
+    \ centroid(const Vec& A, const Vec& B, const Vec& C) {\n    assert(!are_colinear(A,\
+    \ B, C));\n    return (A + B + C) / 3.0;\n}\n\nVec circumcenter(const Vec& A,\
+    \ const Vec& B, const Vec& C) {\n    assert(!are_colinear(A, B, C));\n    double\
+    \ a = std::abs(B - C);\n    double b = std::abs(C - A);\n    double c = std::abs(A\
+    \ - B);\n    double cosA = (b*b + c*c - a*a) / (2*b*c);\n    double cosB = (c*c\
+    \ + a*a - b*b) / (2*c*a);\n    double cosC = (a*a + b*b - c*c) / (2*a*b);\n  \
+    \  return (a*cosA*A + b*cosB*B + c*cosC*C) / (a*cosA + b*cosB + c*cosC);\n}\n\n\
+    Vec incenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(!are_colinear(A,\
+    \ B, C));\n    double a = std::abs(B - C);\n    double b = std::abs(C - A);\n\
+    \    double c = std::abs(A - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n\
+    }\n\nstd::vector<Vec> convex_hull(std::vector<Vec>& points) {\n    int n = points.size();\n\
+    \    std::sort(points.begin(), points.end(), [](const Vec& v1, const Vec& v2)\
+    \ {\n        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real()\
+    \ < v2.real());\n    });\n    int k = 0; // the number of vertices in the convex\
+    \ hull\n    std::vector<Vec> ch(2 * n);\n    // right\n    for (int i = 0; i <\
+    \ n; ++i) {\n        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], points[i] - ch[k-1]),\
+    \ 0)) --k;\n        ch[k++] = points[i];\n    }\n    int t = k;\n    // left\n\
+    \    for (int i = n - 2; i >= 0; --i) {\n        while (k > t && lt(cross(ch[k-1]\
     \ - ch[k-2], points[i] - ch[k-1]), 0)) --k;\n        ch[k++] = points[i];\n  \
-    \  }\n    int t = k;\n    // left\n    for (int i = n - 2; i >= 0; --i) {\n  \
-    \      while (k > t && lt(cross(ch[k-1] - ch[k-2], points[i] - ch[k-1]), 0)) --k;\n\
-    \        ch[k++] = points[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n\
-    }\n#line 4 \"test/aoj/CGL_1_C.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    double x0, y0, x1, y1;\n    cin >> x0 >> y0 >> x1 >> y1;\n    Vec p0 = {x0,\
-    \ y0}, p1 = {x1, y1};\n    int q;\n    cin >> q;\n    while (q--) {\n        double\
-    \ x2, y2;\n        cin >> x2 >> y2;\n        Vec p2 = {x2, y2};\n        if (p0\
-    \ == p2 || p1 == p2 || on_segment(p0, p1, p2)) cout << \"ON_SEGMENT\\n\";\n  \
-    \      else if (on_segment(p1, p2, p0)) cout << \"ONLINE_BACK\\n\";\n        else\
-    \ if (on_segment(p2, p0, p1)) cout << \"ONLINE_FRONT\\n\";\n        else if (ccw(p0,\
-    \ p1, p2)) cout << \"COUNTER_CLOCKWISE\\n\";\n        else cout << \"CLOCKWISE\\\
-    n\";\n    }\n}\n\n"
+    \  }\n    ch.resize(k - 1);\n    return ch;\n}\n#line 4 \"test/aoj/CGL_1_C.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    Vec p0, p1;\n    cin >> p0 >> p1;\n    int q;\n\
+    \    cin >> q;\n    while (q--) {\n        Vec p2;\n        cin >> p2;\n     \
+    \   if (p0 == p2 || p1 == p2 || on_segment(p0, p1, p2)) cout << \"ON_SEGMENT\\\
+    n\";\n        else if (on_segment(p1, p2, p0)) cout << \"ONLINE_BACK\\n\";\n \
+    \       else if (on_segment(p2, p0, p1)) cout << \"ONLINE_FRONT\\n\";\n      \
+    \  else if (ccw(p0, p1, p2)) cout << \"COUNTER_CLOCKWISE\\n\";\n        else cout\
+    \ << \"CLOCKWISE\\n\";\n    }\n}\n\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\"\
     \n\n#include \"../../math/geometry.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    double x0, y0, x1, y1;\n    cin >> x0 >> y0 >> x1 >> y1;\n    Vec p0 = {x0,\
-    \ y0}, p1 = {x1, y1};\n    int q;\n    cin >> q;\n    while (q--) {\n        double\
-    \ x2, y2;\n        cin >> x2 >> y2;\n        Vec p2 = {x2, y2};\n        if (p0\
-    \ == p2 || p1 == p2 || on_segment(p0, p1, p2)) cout << \"ON_SEGMENT\\n\";\n  \
-    \      else if (on_segment(p1, p2, p0)) cout << \"ONLINE_BACK\\n\";\n        else\
-    \ if (on_segment(p2, p0, p1)) cout << \"ONLINE_FRONT\\n\";\n        else if (ccw(p0,\
-    \ p1, p2)) cout << \"COUNTER_CLOCKWISE\\n\";\n        else cout << \"CLOCKWISE\\\
-    n\";\n    }\n}\n\n"
+    \n    Vec p0, p1;\n    cin >> p0 >> p1;\n    int q;\n    cin >> q;\n    while\
+    \ (q--) {\n        Vec p2;\n        cin >> p2;\n        if (p0 == p2 || p1 ==\
+    \ p2 || on_segment(p0, p1, p2)) cout << \"ON_SEGMENT\\n\";\n        else if (on_segment(p1,\
+    \ p2, p0)) cout << \"ONLINE_BACK\\n\";\n        else if (on_segment(p2, p0, p1))\
+    \ cout << \"ONLINE_FRONT\\n\";\n        else if (ccw(p0, p1, p2)) cout << \"COUNTER_CLOCKWISE\\\
+    n\";\n        else cout << \"CLOCKWISE\\n\";\n    }\n}\n\n"
   dependsOn:
   - math/geometry.cpp
   isVerificationFile: true
   path: test/aoj/CGL_1_C.test.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:00:13+09:00'
+  timestamp: '2021-02-06 03:11:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_C.test.cpp
