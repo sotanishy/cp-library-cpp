@@ -14,6 +14,13 @@ inline bool leq(double a, double b) { return a < b + eps; }
 
 using Vec = std::complex<double>;
 
+std::istream& operator>>(std::istream& is, Vec& p) {
+    double x, y;
+    is >> x >> y;
+    p = {x, y};
+    return is;
+}
+
 double dot(const Vec& a, const Vec& b) {
     return (std::conj(a) * b).real();
 }
@@ -56,7 +63,6 @@ Vec intersection(const Vec& p1, const Vec& p2, const Vec& q1, const Vec& q2) {
     return p1 + cross(q, r) / cross(q, p) * p;
 }
 
-// returns a list of the intersections of two circles
 std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, double r2) {
     double d = std::abs(c1 - c2);
     // if the circles are outside of each other
@@ -70,7 +76,6 @@ std::vector<Vec> intersection_circles(const Vec& c1, double r1, const Vec& c2, d
     return {c1 + x*e1 + y*e2, c1 + x*e1 - y*e2};
 }
 
-// returns a list of the intersections of a circle and a line
 std::vector<Vec> intersection_circle_line(const Vec& c, double r, const Vec& p1, const Vec& p2) {
     double d = line_point_dist(p1, p2, c);
     // no intersection

@@ -12,11 +12,7 @@ int main() {
     int n;
     cin >> n;
     vector<Vec> points(n);
-    for (int i = 0; i < n; ++i) {
-        double x, y;
-        cin >> x >> y;
-        points[i] = {x, y};
-    }
+    for (auto& p : points) cin >> p;
     auto ans = convex_hull(points);
     cout << ans.size() << endl;
     for (auto& p : ans) cout << p.real() << " " << p.imag() << "\n";

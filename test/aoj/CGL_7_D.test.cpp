@@ -11,15 +11,14 @@ int main() {
     cin.tie(nullptr);
     cout << fixed << setprecision(10);
 
-    double cx, cy, r;
-    cin >> cx >> cy >> r;
-    Vec c = {cx, cy};
+    Vec c;
+    double r;
+    cin >> c >> r;
     int q;
     cin >> q;
     while (q--) {
-        double x1, y1, x2, y2;
-        cin >> x1 >> y1 >> x2 >> y2;
-        Vec p1 = {x1, y1}, p2 = {x2, y2};
+        Vec p1, p2;
+        cin >> p1 >> p2;
         auto ans = intersection_circle_line(c, r, p1, p2);
         if (ans.size() == 1) {
             cout << ans[0].real() << " " << ans[0].imag() << " ";

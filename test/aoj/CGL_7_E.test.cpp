@@ -11,10 +11,10 @@ int main() {
     cin.tie(nullptr);
     cout << fixed << setprecision(10);
 
-    double x1, y1, r1, x2, y2, r2;
-    cin >> x1 >> y1 >> r1;
-    cin >> x2 >> y2 >> r2;
-    Vec p1 = {x1, y1}, p2 = {x2, y2};
+    Vec p1, p2;
+    double r1, r2;
+    cin >> p1 >> r1;
+    cin >> p2 >> r2;
     auto ans = intersection_circles(p1, r1, p2, r2);
     if (ans.size() == 1) {
         cout << ans[0].real() << " " << ans[0].imag() << " ";

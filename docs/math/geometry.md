@@ -9,7 +9,7 @@ documentation_of: ../../math/geometry.cpp
 
 `Vec` は `std::complex<double>` のエイリアスである．
 
-## Functions
+## Operations
 
 時間計算量は明示しない限り $O(1)$．
 
