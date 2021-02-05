@@ -17,9 +17,8 @@ data:
   bundledCode: "#line 1 \"test/aoj/DSL_3_D.sparse_table.test.cpp\"\n#define PROBLEM\
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\n\n#line\
     \ 2 \"data-structure/sparse_table.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    \n/*\n * @brief Sparse Table\n * @docs docs/data-structure/sparse_table.md\n */\n\
-    template <typename S>\nclass SparseTable {\n    using T = typename S::T;\n\npublic:\n\
-    \    SparseTable() = default;\n    explicit SparseTable(const std::vector<T>&\
+    \ntemplate <typename S>\nclass SparseTable {\n    using T = typename S::T;\n\n\
+    public:\n    SparseTable() = default;\n    explicit SparseTable(const std::vector<T>&\
     \ v) {\n        int n = v.size(), b = 0;\n        while ((1 << b) <= n) ++b;\n\
     \        lookup.resize(b, std::vector<T>(n));\n        std::copy(v.begin(), v.end(),\
     \ lookup[0].begin());\n        for (int i = 1; i < b; ++i) {\n            for\
@@ -49,7 +48,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_3_D.sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2020-10-24 15:56:56+09:00'
+  timestamp: '2021-02-06 03:32:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_3_D.sparse_table.test.cpp

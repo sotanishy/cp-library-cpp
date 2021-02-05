@@ -13,8 +13,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/wavelet_matrix.md
-    document_title: Wavelet Matrix
     links: []
   bundledCode: "#line 2 \"data-structure/wavelet_matrix.cpp\"\n#include <algorithm>\n\
     #include <unordered_map>\n#include <vector>\n#line 2 \"data-structure/bit_vector.cpp\"\
@@ -33,8 +31,7 @@ data:
     \     int m = (lb + ub) / 2;\n            if (rank(m, b) <= k) lb = m;\n     \
     \       else ub = m;\n        }\n        return lb;\n    }\n\nprivate:\n    static\
     \ constexpr int sz = 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int>\
-    \ sum;\n};\n#line 6 \"data-structure/wavelet_matrix.cpp\"\n\n/*\n * @brief Wavelet\
-    \ Matrix\n * @docs docs/data-structure/wavelet_matrix.md\n */\ntemplate <typename\
+    \ sum;\n};\n#line 6 \"data-structure/wavelet_matrix.cpp\"\n\ntemplate <typename\
     \ T>\nclass WaveletMatrix {\npublic:\n    WaveletMatrix() = default;\n    explicit\
     \ WaveletMatrix(std::vector<T> v) {\n        int n = v.size() ;\n        T m =\
     \ *std::max_element(v.begin(), v.end());\n        int d = 0;\n        while ((1\
@@ -69,12 +66,11 @@ data:
     \  }\n        return ret;\n    }\n\nprivate:\n    std::vector<BitVector> mat;\n\
     \    std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <unordered_map>\n#include <vector>\n\
-    #include \"bit_vector.cpp\"\n\n/*\n * @brief Wavelet Matrix\n * @docs docs/data-structure/wavelet_matrix.md\n\
-    \ */\ntemplate <typename T>\nclass WaveletMatrix {\npublic:\n    WaveletMatrix()\
-    \ = default;\n    explicit WaveletMatrix(std::vector<T> v) {\n        int n =\
-    \ v.size() ;\n        T m = *std::max_element(v.begin(), v.end());\n        int\
-    \ d = 0;\n        while ((1 << d) <= m) ++d;\n        mat.resize(d);\n       \
-    \ cnt0.resize(d);\n        for (d -= 1; d >= 0; --d) {\n            std::vector<bool>\
+    #include \"bit_vector.cpp\"\n\ntemplate <typename T>\nclass WaveletMatrix {\n\
+    public:\n    WaveletMatrix() = default;\n    explicit WaveletMatrix(std::vector<T>\
+    \ v) {\n        int n = v.size() ;\n        T m = *std::max_element(v.begin(),\
+    \ v.end());\n        int d = 0;\n        while ((1 << d) <= m) ++d;\n        mat.resize(d);\n\
+    \        cnt0.resize(d);\n        for (d -= 1; d >= 0; --d) {\n            std::vector<bool>\
     \ bit(n);\n            for (int i = 0; i < n; ++i) bit[i] = v[i] >> d & 1;\n \
     \           mat[d] = BitVector(bit);\n            std::vector<int> cnt(2);\n \
     \           for (int i = 0; i < n; ++i) if (!bit[i]) cnt[0]++;\n            cnt0[d]\
@@ -108,17 +104,15 @@ data:
   isVerificationFile: false
   path: data-structure/wavelet_matrix.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:25:42+09:00'
+  timestamp: '2021-02-06 03:32:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_kth_smallest.test.cpp
 documentation_of: data-structure/wavelet_matrix.cpp
 layout: document
-redirect_from:
-- /library/data-structure/wavelet_matrix.cpp
-- /library/data-structure/wavelet_matrix.cpp.html
 title: Wavelet Matrix
 ---
+
 ## Description
 
 ウェーブレット行列は，静的な整数列に対する様々なクエリが処理できるデータ構造である．整数列を上位ビットからソートして完備辞書を構築する．

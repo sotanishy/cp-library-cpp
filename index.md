@@ -203,10 +203,10 @@ data:
     - icon: ':warning:'
       path: math/interpolation.cpp
       title: Polynomial Interpolation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -215,10 +215,10 @@ data:
     - icon: ':warning:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -522,7 +522,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -549,7 +549,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'

@@ -35,8 +35,7 @@ data:
     \     int m = (lb + ub) / 2;\n            if (rank(m, b) <= k) lb = m;\n     \
     \       else ub = m;\n        }\n        return lb;\n    }\n\nprivate:\n    static\
     \ constexpr int sz = 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int>\
-    \ sum;\n};\n#line 6 \"data-structure/wavelet_matrix.cpp\"\n\n/*\n * @brief Wavelet\
-    \ Matrix\n * @docs docs/data-structure/wavelet_matrix.md\n */\ntemplate <typename\
+    \ sum;\n};\n#line 6 \"data-structure/wavelet_matrix.cpp\"\n\ntemplate <typename\
     \ T>\nclass WaveletMatrix {\npublic:\n    WaveletMatrix() = default;\n    explicit\
     \ WaveletMatrix(std::vector<T> v) {\n        int n = v.size() ;\n        T m =\
     \ *std::max_element(v.begin(), v.end());\n        int d = 0;\n        while ((1\
@@ -89,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:25:42+09:00'
+  timestamp: '2021-02-06 03:32:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_kth_smallest.test.cpp

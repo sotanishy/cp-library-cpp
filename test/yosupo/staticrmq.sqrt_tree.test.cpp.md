@@ -16,8 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/yosupo/staticrmq.sqrt_tree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#line 2 \"data-structure/sqrt_tree.cpp\"\
-    \n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Sqrt Tree\n * @docs\
-    \ docs/data-structure/sqrt_tree.md\n */\ntemplate <typename S>\nclass SqrtTree\
+    \n#include <algorithm>\n#include <vector>\n\ntemplate <typename S>\nclass SqrtTree\
     \ {\n    using T = typename S::T;\n\npublic:\n    SqrtTree() = default;\n    explicit\
     \ SqrtTree(const std::vector<T>& v) : v(v) {\n        int n = v.size(), lg = 0;\n\
     \        while ((1 << lg) < n) ++lg;\n        on_layer.resize(lg + 1);\n     \
@@ -73,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq.sqrt_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-11-05 00:29:49+09:00'
+  timestamp: '2021-02-06 03:32:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq.sqrt_tree.test.cpp

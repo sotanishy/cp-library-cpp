@@ -10,13 +10,10 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/sqrt_tree.md
-    document_title: Sqrt Tree
     links: []
   bundledCode: "#line 2 \"data-structure/sqrt_tree.cpp\"\n#include <algorithm>\n#include\
-    \ <vector>\n\n/*\n * @brief Sqrt Tree\n * @docs docs/data-structure/sqrt_tree.md\n\
-    \ */\ntemplate <typename S>\nclass SqrtTree {\n    using T = typename S::T;\n\n\
-    public:\n    SqrtTree() = default;\n    explicit SqrtTree(const std::vector<T>&\
+    \ <vector>\n\ntemplate <typename S>\nclass SqrtTree {\n    using T = typename\
+    \ S::T;\n\npublic:\n    SqrtTree() = default;\n    explicit SqrtTree(const std::vector<T>&\
     \ v) : v(v) {\n        int n = v.size(), lg = 0;\n        while ((1 << lg) < n)\
     \ ++lg;\n        on_layer.resize(lg + 1);\n        int n_layer = 0;\n        for\
     \ (int i = lg; i > 1; i = (i + 1) / 2) {\n            on_layer[i] = n_layer++;\n\
@@ -51,14 +48,13 @@ data:
     \  val = S::op(val, pref[layer][r]);\n        return val;\n    }\n\nprivate:\n\
     \    std::vector<int> layer_lg, on_layer;\n    std::vector<T> v;\n    std::vector<std::vector<T>>\
     \ pref, suf, btwn;\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n/*\n * @brief Sqrt\
-    \ Tree\n * @docs docs/data-structure/sqrt_tree.md\n */\ntemplate <typename S>\n\
-    class SqrtTree {\n    using T = typename S::T;\n\npublic:\n    SqrtTree() = default;\n\
-    \    explicit SqrtTree(const std::vector<T>& v) : v(v) {\n        int n = v.size(),\
-    \ lg = 0;\n        while ((1 << lg) < n) ++lg;\n        on_layer.resize(lg + 1);\n\
-    \        int n_layer = 0;\n        for (int i = lg; i > 1; i = (i + 1) / 2) {\n\
-    \            on_layer[i] = n_layer++;\n            layer_lg.push_back(i);\n  \
-    \      }\n        for (int i = lg - 1; i >= 0; --i) on_layer[i] = std::max(on_layer[i],\
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\ntemplate <typename\
+    \ S>\nclass SqrtTree {\n    using T = typename S::T;\n\npublic:\n    SqrtTree()\
+    \ = default;\n    explicit SqrtTree(const std::vector<T>& v) : v(v) {\n      \
+    \  int n = v.size(), lg = 0;\n        while ((1 << lg) < n) ++lg;\n        on_layer.resize(lg\
+    \ + 1);\n        int n_layer = 0;\n        for (int i = lg; i > 1; i = (i + 1)\
+    \ / 2) {\n            on_layer[i] = n_layer++;\n            layer_lg.push_back(i);\n\
+    \        }\n        for (int i = lg - 1; i >= 0; --i) on_layer[i] = std::max(on_layer[i],\
     \ on_layer[i + 1]);\n        pref.resize(n_layer, std::vector<T>(n));\n      \
     \  suf.resize(n_layer, std::vector<T>(n));\n        btwn.resize(n_layer, std::vector<T>(1\
     \ << lg));\n\n        for (int layer = 0; layer < n_layer; ++layer) {\n      \
@@ -92,17 +88,15 @@ data:
   isVerificationFile: false
   path: data-structure/sqrt_tree.cpp
   requiredBy: []
-  timestamp: '2020-11-05 00:29:49+09:00'
+  timestamp: '2021-02-06 03:32:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq.sqrt_tree.test.cpp
 documentation_of: data-structure/sqrt_tree.cpp
 layout: document
-redirect_from:
-- /library/data-structure/sqrt_tree.cpp
-- /library/data-structure/sqrt_tree.cpp.html
 title: Sqrt Tree
 ---
+
 ## Description
 
 Sqrt tree は，半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．平方分割を再帰的に行うことで木の高さを $O(\lg\lg n)$ にしている．スパーステーブルと比べて前処理が高速でメモリ使用量が少ないという特徴がある．
