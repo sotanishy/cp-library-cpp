@@ -1,24 +1,5 @@
 #pragma GCC optimize ("Ofast")
-
-#include <iostream>
-#include <vector>
-#include <set>
-#include <unordered_set>
-#include <map>
-#include <unordered_map>
-#include <cstdio>
-#include <bitset>
-#include <queue>
-#include <deque>
-#include <algorithm>
-#include <numeric>
-#include <cassert>
-#include <functional>
-#include <stack>
-#include <cmath>
-#include <string>
-#include <chrono>
-
+#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 
