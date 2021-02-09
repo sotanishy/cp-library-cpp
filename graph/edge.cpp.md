@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_arborescence.cpp
+    title: Minimum Cost Arborescence
+  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   - icon: ':warning:'
@@ -37,6 +40,9 @@ data:
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/directedmst.test.cpp
+    title: test/yosupo/directedmst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
   _isVerificationFailed: false
@@ -45,24 +51,26 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \    int from, to;\n    T weight;\n    Edge(int to, T weight) : from(-1), to(to),\
-    \ weight(weight) {}\n    Edge(int from, int to, T weight) : from(from), to(to),\
-    \ weight(weight) {}\n};\n"
+    \    int from, to;\n    T weight;\n    Edge() = default;\n    Edge(int to, T weight)\
+    \ : from(-1), to(to), weight(weight) {}\n    Edge(int from, int to, T weight)\
+    \ : from(from), to(to), weight(weight) {}\n};\n"
   code: "#pragma once\n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n\
-    \    T weight;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
-    \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n"
+    \    T weight;\n    Edge() = default;\n    Edge(int to, T weight) : from(-1),\
+    \ to(to), weight(weight) {}\n    Edge(int from, int to, T weight) : from(from),\
+    \ to(to), weight(weight) {}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/edge.cpp
   requiredBy:
   - tree/tree_diameter.cpp
   - graph/range_edge_graph.cpp
+  - graph/minimum_spanning_arborescence.cpp
   - graph/shortest_path.cpp
   - graph/mst.cpp
-  timestamp: '2020-10-24 20:53:04+09:00'
+  timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/directedmst.test.cpp
   - test/yosupo/tree_diameter.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp

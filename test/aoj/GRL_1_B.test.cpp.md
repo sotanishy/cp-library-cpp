@@ -21,24 +21,24 @@ data:
     \n\n#line 2 \"graph/shortest_path.cpp\"\n#include <limits>\n#include <queue>\n\
     #include <tuple>\n#include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
-    \   Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
-    \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 8\
-    \ \"graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate\
-    \ <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int\
-    \ V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<int>\
-    \ dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n       \
-    \ for (auto& e : G) {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from]\
-    \ + e.weight) {\n                dist[e.to] = dist[e.from] + e.weight;\n     \
-    \           if (i == V - 1) return std::vector<T>();\n            }\n        }\n\
-    \    }\n    return dist;\n}\n\n/*\n * Floyd-Warshall Algorithm\n */\ntemplate\
-    \ <typename T>\nvoid floyd_warshall(std::vector<std::vector<T>>& dist) {\n   \
-    \ int V = dist.size();\n    for (int k = 0; k < V; ++k) {\n        for (int i\
-    \ = 0; i < V; ++i) {\n            for (int j = 0; j < V; ++j) {\n            \
-    \    dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);\n           \
-    \ }\n        }\n    }\n}\n\n/*\n * Dijkstra's Algorithm\n */\ntemplate <typename\
-    \ T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int\
-    \ s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n  \
-    \  dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
+    \   Edge() = default;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
+    \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
+    \ {}\n};\n#line 8 \"graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n\
+    \ */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
+    \ G, int V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n \
+    \   std::vector<int> dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i <\
+    \ V; ++i) {\n        for (auto& e : G) {\n            if (dist[e.from] != INF\
+    \ && dist[e.to] > dist[e.from] + e.weight) {\n                dist[e.to] = dist[e.from]\
+    \ + e.weight;\n                if (i == V - 1) return std::vector<T>();\n    \
+    \        }\n        }\n    }\n    return dist;\n}\n\n/*\n * Floyd-Warshall Algorithm\n\
+    \ */\ntemplate <typename T>\nvoid floyd_warshall(std::vector<std::vector<T>>&\
+    \ dist) {\n    int V = dist.size();\n    for (int k = 0; k < V; ++k) {\n     \
+    \   for (int i = 0; i < V; ++i) {\n            for (int j = 0; j < V; ++j) {\n\
+    \                dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \            }\n        }\n    }\n}\n\n/*\n * Dijkstra's Algorithm\n */\ntemplate\
+    \ <typename T>\nstd::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>&\
+    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
+    \    dist[s] = 0;\n    using P = std::pair<T, int>;\n    std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n    pq.emplace(0, s);\n\n    while (!pq.empty())\
     \ {\n        T d;\n        int v;\n        std::tie(d, v) = pq.top();\n      \
     \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 23:34:19+09:00'
+  timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_B.test.cpp

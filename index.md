@@ -25,6 +25,9 @@ data:
       path: data-structure/kd_tree.cpp
       title: k-d Tree
     - icon: ':heavy_check_mark:'
+      path: data-structure/leftist_heap.cpp
+      title: Leftist Heap
+    - icon: ':heavy_check_mark:'
       path: data-structure/li_chao_tree.cpp
       title: Li Chao Tree
     - icon: ':heavy_check_mark:'
@@ -144,6 +147,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.cpp
       title: Maximum Independent Set
+    - icon: ':heavy_check_mark:'
+      path: graph/minimum_spanning_arborescence.cpp
+      title: Minimum Cost Arborescence
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
@@ -453,6 +459,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/directedmst.test.cpp
+      title: test/yosupo/directedmst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp

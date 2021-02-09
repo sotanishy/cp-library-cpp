@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_arborescence.cpp
+    title: Minimum Cost Arborescence
+  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedVerifiedWith:
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.prim.test.cpp
     title: test/aoj/GRL_2_A.prim.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/directedmst.test.cpp
+    title: test/yosupo/directedmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
@@ -49,10 +55,12 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.cpp
   requiredBy:
+  - graph/minimum_spanning_arborescence.cpp
   - graph/mst.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/directedmst.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp

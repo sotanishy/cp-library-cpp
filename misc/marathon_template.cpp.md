@@ -9,15 +9,11 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/marathon_template.cpp\"\n#pragma GCC optimize (\"Ofast\"\
-    )\n\n#include <iostream>\n#include <vector>\n#include <set>\n#include <unordered_set>\n\
-    #include <map>\n#include <unordered_map>\n#include <cstdio>\n#include <bitset>\n\
-    #include <queue>\n#include <deque>\n#include <algorithm>\n#include <numeric>\n\
-    #include <cassert>\n#include <functional>\n#include <stack>\n#include <cmath>\n\
-    #include <string>\n#include <chrono>\n\nusing namespace std;\nusing ll = long\
-    \ long;\n\nclass Random {\npublic:\n    // returns a random integer in the range\
-    \ [0, n)\n    unsigned int next_int(int n) noexcept {\n        return xorshift()\
-    \ % n;\n    }\n\n    // returns a random double number in the range [0, 1)\n \
-    \   double next_double() noexcept {\n        return xorshift() * (1.0 / 0xFFFFFFFFu);\n\
+    )\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nclass\
+    \ Random {\npublic:\n    // returns a random integer in the range [0, n)\n   \
+    \ unsigned int next_int(int n) noexcept {\n        return xorshift() % n;\n  \
+    \  }\n\n    // returns a random double number in the range [0, 1)\n    double\
+    \ next_double() noexcept {\n        return xorshift() * (1.0 / 0xFFFFFFFFu);\n\
     \    }\n\nprivate:\n    unsigned int x = 123456789, y = 362436069, z = 521288629,\
     \ w = 88675123;\n\n    unsigned int xorshift() noexcept {\n        unsigned int\
     \ t;\n        t = x ^ (x << 11);\n        x = y; y = z; z = w;\n        return\
@@ -47,14 +43,10 @@ data:
     \        }\n\n        ++iter;\n    }\n\n    #ifdef DEBUG\n    cerr << \"Iterations:\
     \ \" << iter << endl;\n    #endif\n\n    return best_state;\n}\n\nint main() {\n\
     \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n}\n"
-  code: "#pragma GCC optimize (\"Ofast\")\n\n#include <iostream>\n#include <vector>\n\
-    #include <set>\n#include <unordered_set>\n#include <map>\n#include <unordered_map>\n\
-    #include <cstdio>\n#include <bitset>\n#include <queue>\n#include <deque>\n#include\
-    \ <algorithm>\n#include <numeric>\n#include <cassert>\n#include <functional>\n\
-    #include <stack>\n#include <cmath>\n#include <string>\n#include <chrono>\n\nusing\
-    \ namespace std;\nusing ll = long long;\n\nclass Random {\npublic:\n    // returns\
-    \ a random integer in the range [0, n)\n    unsigned int next_int(int n) noexcept\
-    \ {\n        return xorshift() % n;\n    }\n\n    // returns a random double number\
+  code: "#pragma GCC optimize (\"Ofast\")\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\nusing ll = long long;\n\nclass Random {\npublic:\n    // returns a random\
+    \ integer in the range [0, n)\n    unsigned int next_int(int n) noexcept {\n \
+    \       return xorshift() % n;\n    }\n\n    // returns a random double number\
     \ in the range [0, 1)\n    double next_double() noexcept {\n        return xorshift()\
     \ * (1.0 / 0xFFFFFFFFu);\n    }\n\nprivate:\n    unsigned int x = 123456789, y\
     \ = 362436069, z = 521288629, w = 88675123;\n\n    unsigned int xorshift() noexcept\
@@ -89,7 +81,7 @@ data:
   isVerificationFile: false
   path: misc/marathon_template.cpp
   requiredBy: []
-  timestamp: '2020-09-26 16:05:46+09:00'
+  timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/marathon_template.cpp

@@ -24,9 +24,9 @@ data:
     http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A\"\n\n#line 2\
     \ \"graph/mst.cpp\"\n#include <algorithm>\n#include <queue>\n#include <utility>\n\
     #include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight) : from(-1),\
-    \ to(to), weight(weight) {}\n    Edge(int from, int to, T weight) : from(from),\
-    \ to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
+    \ Edge {\n    int from, to;\n    T weight;\n    Edge() = default;\n    Edge(int\
+    \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
+    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
     \n\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
     \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A.boruvka.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 23:34:19+09:00'
+  timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A.boruvka.test.cpp

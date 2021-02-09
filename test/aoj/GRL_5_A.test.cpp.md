@@ -20,12 +20,12 @@ data:
   bundledCode: "#line 1 \"test/aoj/GRL_5_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A\"\
     \n\n#line 2 \"tree/tree_diameter.cpp\"\n#include <algorithm>\n#include <utility>\n\
     #include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n    int from, to;\n    T weight;\n    Edge(int to, T weight) : from(-1),\
-    \ to(to), weight(weight) {}\n    Edge(int from, int to, T weight) : from(from),\
-    \ to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\n\nstd::pair<int,\
-    \ std::vector<int>> tree_diameter(const std::vector<std::vector<int>>& G) {\n\
-    \    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs, int\
-    \ v, int p) -> std::pair<int, int> {\n        std::pair<int, int> ret(0, v);\n\
+    \ Edge {\n    int from, to;\n    T weight;\n    Edge() = default;\n    Edge(int\
+    \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
+    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 6 \"tree/tree_diameter.cpp\"\
+    \n\nstd::pair<int, std::vector<int>> tree_diameter(const std::vector<std::vector<int>>&\
+    \ G) {\n    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs,\
+    \ int v, int p) -> std::pair<int, int> {\n        std::pair<int, int> ret(0, v);\n\
     \        for (int c : G[v]) {\n            if (c == p) continue;\n           \
     \ auto weight = dfs(dfs, c, v);\n            ++weight.first;\n            if (ret\
     \ < weight) {\n                ret = weight;\n                to[v] = c;\n   \
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2021-02-05 23:21:25+09:00'
+  timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_A.test.cpp
