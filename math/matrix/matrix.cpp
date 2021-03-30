@@ -27,6 +27,9 @@ public:
         n = mat[0].size();
     }
 
+    int row() const { return m; }
+    int col() const { return n; }
+
     const std::vector<T>& operator[](int i) const { return mat[i]; }
     std::vector<T>& operator[](int i) { return mat[i]; }
 
@@ -117,43 +120,13 @@ public:
         return m;
     }
 
-    std::vector<std::vector<T>> solve_system(const std::vector<T>& b) {
-        assert(m == (int) b.size());
-        Matrix bb(m, 1);
-        for (int i = 0; i < m; ++i) bb[i][0] = b[i];
-        auto sol = concat((*this), bb).rref();
-
-        std::vector<bool> independent(n);
-        std::vector<std::vector<T>> ret(1, std::vector<T>(n));
-        std::vector<std::vector<T>> bases(n, std::vector<T>(n));
-        for (int j = 0; j < n; ++j) bases[j][j] = 1;
-        int j = 0;
-        for (int i = 0; i < m; ++i) {
-            for (; j < n; ++j) {
-                if (eq(sol[i][j], T(1))) {
-                    independent[j] = true;
-                    for (int k = j + 1; k < n; ++k) {
-                        bases[k][j] = -sol[i][k];
-                    }
-                    ret[0][j] = sol[i][n];
-                    break;
-                }
-            }
-            if (j == n && !eq(sol[i][n], T(0))) return {};
-        }
-        for (int j = 0; j < n; ++j) {
-            if (!independent[j]) ret.push_back(bases[j]);
-        }
-        return ret;
-    }
-
-protected:
     template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type* = nullptr>
     static constexpr bool eq(U a, U b) { return std::abs(a - b) < 1e-8; }
 
     template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type* = nullptr>
     static constexpr bool eq(U a, U b) { return a == b; }
 
+protected:
     std::vector<std::vector<T>> mat;
     int m, n;
 };

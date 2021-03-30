@@ -2,11 +2,10 @@
 #include <vector>
 #include "lowlink.cpp"
 
-class TwoEdgeConnectedComponents {
+class TwoEdgeConnectedComponents : Lowlink {
 public:
     TwoEdgeConnectedComponents() = default;
-    explicit TwoEdgeConnectedComponents(const std::vector<std::vector<int>>& G)
-        : G(G), comp(G.size(), -1), lowlink(G) {
+    explicit TwoEdgeConnectedComponents(const std::vector<std::vector<int>>& G) : Lowlink(G), comp(G.size(), -1) {
         for (int v = 0; v < (int) G.size(); ++v) {
             if (comp[v] == -1) dfs(v, cnt++);
         }
@@ -21,15 +20,13 @@ public:
     }
 
 private:
-    std::vector<std::vector<int>> G;
     std::vector<int> comp;
-    Lowlink lowlink;
     int cnt = 0;
 
     void dfs(int u, int c) {
         comp[u] = c;
         for (int v : G[u]) {
-            if (comp[v] == -1 && !lowlink.is_bridge(u, v)) dfs(v, c);
+            if (comp[v] == -1 && !is_bridge(u, v)) dfs(v, c);
         }
     }
 };

@@ -3,6 +3,10 @@
 using namespace std;
 using ll = long long;
 
+#ifndef ONLINE_JUDGE
+#define DEBUG
+#endif
+
 class Random {
 public:
     // returns a random integer in the range [0, n)
@@ -45,8 +49,6 @@ private:
  * CODE BELOW
  ***************************************************************/
 
-#define DEBUG
-
 struct State {
 
     ll score;
@@ -69,7 +71,7 @@ inline double accept(ll prev_score, ll cur_score, double temperature) {
     return exp((double) (cur_score - prev_score) / temperature);
 }
 
-State simulated_annealing(State cur_state, ll duration) {
+State anneal(State cur_state, ll duration) {
 
     double temp_start = 2e3;
     double temp_end = 6e2;

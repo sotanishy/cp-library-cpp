@@ -1,44 +1,36 @@
 #pragma once
+#include <memory>
 #include <string>
 #include <vector>
 
-/*
- * @brief Trie
- */
 class Trie {
 public:
-    Trie() : nodes(1) {}
+    Trie() : root(std::make_unique<Node>()) {}
 
-    void add(const std::string& s, int id) {
-        int node = 0;
-        for (char c : s) {
-            if (nodes[node].child[c - 'a'] == -1) {
-                nodes[node].child[c - 'a'] = nodes.size();
-                nodes.emplace_back();
-            }
-            ++nodes[node].count;
-            node = nodes[node].child[c - 'a'];
-        }
-        nodes[node].is_end = true;
-    }
-
-    int query(const std::string& s) const {
-        int node = 0;
-        for (char c : s) {
-            if (nodes[node].child[c - 'a'] == -1) return 0;
-            node = nodes[node].child[c - 'a'];
-        }
-        return nodes[node].count;
-    }
+    void insert(const std::string& s, int id) { insert(root, s, id, 0); }
 
 private:
-    struct Node {
-        std::vector<int> child;
-        bool is_end = false;
-        int count = 0;
+    struct Node;
+    using node_ptr = std::unique_ptr<Node>;
 
-        Node() : child(26, -1) {}
+    struct Node {
+        std::vector<node_ptr> ch;
+        std::vector<int> accept;
+        int sz = 0;
+
+        Node() : ch(26) {}
     };
 
-    std::vector<Node> nodes;
+    const node_ptr root;
+
+    void insert(const node_ptr& t, const std::string& s, int id, int k) {
+        ++t->sz;
+        if (k == s.size()) {
+            t->accept.push_back(id);
+            return;
+        }
+        int c = s[k] - 'a';
+        if (!t->ch[c]) t->ch[c] = std::make_unique<Node>();
+        insert(t->ch[c], s, id, k + 1);
+    }
 };

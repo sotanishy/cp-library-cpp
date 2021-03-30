@@ -30,6 +30,3 @@ documentation_of: ../../../math/matrix/matrix.cpp
 - `int rank()`
     - $A$ の階数を返す
     - 時間計算量: $O(mn^2)$
-- `vector<vector<T>> solve_system(vector<T> b)`
-    - $Ax = b$ の解を返す．返り値を `sol` としたとき，`sol[0]` は解の1つ，`sol[1:]` は解空間の基底である．解がないときは空リストを返す．
-    - 時間計算量: $O(mn^2)$

@@ -2,6 +2,7 @@
 
 #include "../../math/modint.cpp"
 #include "../../math/matrix/matrix.cpp"
+#include "../../math/system_of_linear_equations.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -18,7 +19,7 @@ int main() {
     for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) cin >> A[i][j];
     vector<mint> b(N);
     for (int i = 0; i < N; ++i) cin >> b[i];
-    auto sol = A.solve_system(b);
+    auto sol = solve_system(A, b);
     if (sol.empty()) {
         cout << -1 << "\n";
         return 0;

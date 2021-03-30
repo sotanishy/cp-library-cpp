@@ -20,28 +20,27 @@ public:
         return articulation;
     }
 
-    bool is_bridge(int u, int v) {
+    bool is_bridge(int u, int v) const {
         if (ord[u] > ord[v]) std::swap(u, v);
         return ord[u] < low[v];
     }
 
-private:
+protected:
     std::vector<std::vector<int>> G;
     std::vector<int> ord, low;
     std::vector<std::pair<int, int>> bridge;
     std::vector<int> articulation;
+
+private:
     int k = 0;
 
     void dfs(int v, int p) {
         ord[v] = k++;
         low[v] = ord[v];
-        bool is_articulation = false, checked = false;
+        bool is_articulation = false;
         int cnt = 0;
         for (int c : G[v]) {
-            if (c == p && !checked) {
-                checked = true;
-                continue;
-            }
+            if (c == p) continue;
             if (ord[c] == -1) {
                 ++cnt;
                 dfs(c, v);

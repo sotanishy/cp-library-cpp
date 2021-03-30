@@ -10,7 +10,7 @@
 #include "../data-structure/leftist_heap.cpp"
 
 /*
- * @brief Minimum Cost Arborescence
+ * @brief Minimum Spanning Arborescence
  */
 template <typename T>
 std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>> G, int V, int root) {
