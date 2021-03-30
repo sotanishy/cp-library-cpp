@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
-    title: Minimum Cost Arborescence
+    title: Minimum Spanning Arborescence
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp

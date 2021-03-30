@@ -89,8 +89,8 @@ data:
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bitwise_xor_convolution.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/bitwise_xor_convolution.test.cpp
 documentation_of: math/transform.cpp
 layout: document
 title: Transform

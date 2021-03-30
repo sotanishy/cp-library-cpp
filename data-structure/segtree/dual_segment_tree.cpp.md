@@ -50,8 +50,8 @@ data:
   timestamp: '2021-01-29 22:05:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DSL_2_D.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
 documentation_of: data-structure/segtree/dual_segment_tree.cpp
 layout: document
 title: Dual Segment Tree

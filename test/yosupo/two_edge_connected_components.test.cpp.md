@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lowlink.cpp
     title: Lowlink
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_connected_components.cpp
     title: 2-Edge-Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -27,32 +27,30 @@ data:
     \           if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    std::vector<std::pair<int,\
     \ int>> get_bridges() const {\n        return bridge;\n    }\n\n    std::vector<int>\
     \ get_articulation_points() const {\n        return articulation;\n    }\n\n \
-    \   bool is_bridge(int u, int v) {\n        if (ord[u] > ord[v]) std::swap(u,\
-    \ v);\n        return ord[u] < low[v];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
+    \   bool is_bridge(int u, int v) const {\n        if (ord[u] > ord[v]) std::swap(u,\
+    \ v);\n        return ord[u] < low[v];\n    }\n\nprotected:\n    std::vector<std::vector<int>>\
     \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
-    \    std::vector<int> articulation;\n    int k = 0;\n\n    void dfs(int v, int\
-    \ p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
-    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
-    \                continue;\n            }\n            if (ord[c] == -1) {\n \
-    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
-    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
-    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
-    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
-    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
-    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
-    #line 4 \"graph/two_edge_connected_components.cpp\"\n\nclass TwoEdgeConnectedComponents\
-    \ {\npublic:\n    TwoEdgeConnectedComponents() = default;\n    explicit TwoEdgeConnectedComponents(const\
-    \ std::vector<std::vector<int>>& G)\n        : G(G), comp(G.size(), -1), lowlink(G)\
-    \ {\n        for (int v = 0; v < (int) G.size(); ++v) {\n            if (comp[v]\
-    \ == -1) dfs(v, cnt++);\n        }\n    }\n\n    int operator[](int i) const {\n\
-    \        return comp[i];\n    }\n\n    int count() const noexcept {\n        return\
-    \ cnt;\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
-    \ comp;\n    Lowlink lowlink;\n    int cnt = 0;\n\n    void dfs(int u, int c)\
-    \ {\n        comp[u] = c;\n        for (int v : G[u]) {\n            if (comp[v]\
-    \ == -1 && !lowlink.is_bridge(u, v)) dfs(v, c);\n        }\n    }\n};\n#line 4\
-    \ \"test/yosupo/two_edge_connected_components.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    std::vector<int> articulation;\n\nprivate:\n    int k = 0;\n\n    void dfs(int\
+    \ v, int p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
+    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
+    \ (c == p) continue;\n            if (ord[c] == -1) {\n                ++cnt;\n\
+    \                dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
+    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
+    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
+    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
+    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
+    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
+    graph/two_edge_connected_components.cpp\"\n\nclass TwoEdgeConnectedComponents\
+    \ : Lowlink {\npublic:\n    TwoEdgeConnectedComponents() = default;\n    explicit\
+    \ TwoEdgeConnectedComponents(const std::vector<std::vector<int>>& G) : Lowlink(G),\
+    \ comp(G.size(), -1) {\n        for (int v = 0; v < (int) G.size(); ++v) {\n \
+    \           if (comp[v] == -1) dfs(v, cnt++);\n        }\n    }\n\n    int operator[](int\
+    \ i) const {\n        return comp[i];\n    }\n\n    int count() const noexcept\
+    \ {\n        return cnt;\n    }\n\nprivate:\n    std::vector<int> comp;\n    int\
+    \ cnt = 0;\n\n    void dfs(int u, int c) {\n        comp[u] = c;\n        for\
+    \ (int v : G[u]) {\n            if (comp[v] == -1 && !is_bridge(u, v)) dfs(v,\
+    \ c);\n        }\n    }\n};\n#line 4 \"test/yosupo/two_edge_connected_components.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    vector<vector<int>>\
     \ G(N);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin >>\
     \ a >> b;\n        G[a].push_back(b);\n        G[b].push_back(a);\n    }\n   \
@@ -76,8 +74,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 23:34:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-03-30 13:20:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp
 layout: document

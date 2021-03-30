@@ -12,7 +12,7 @@ data:
     title: graph/edge.cpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
-    title: Minimum Cost Arborescence
+    title: Minimum Spanning Arborescence
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -59,7 +59,7 @@ data:
     \ t) {\n        if (t->left) t->left->lazy += t->lazy;\n        if (t->right)\
     \ t->right->lazy += t->lazy;\n        t->val += t->lazy;\n        t->lazy = 0;\n\
     \    }\n};\n#line 11 \"graph/minimum_spanning_arborescence.cpp\"\n\n/*\n * @brief\
-    \ Minimum Cost Arborescence\n */\ntemplate <typename T>\nstd::pair<T, std::vector<int>>\
+    \ Minimum Spanning Arborescence\n */\ntemplate <typename T>\nstd::pair<T, std::vector<int>>\
     \ minimum_spanning_arborescence(std::vector<Edge<T>> G, int V, int root) {\n \
     \   std::vector<LeftistHeap<T>> incoming(V);\n    for (int i = 0; i < (int) G.size();\
     \ ++i) {\n        auto& e = G[i];\n        incoming[e.to].push(i, e.weight);\n\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/directedmst.test.cpp
   requiredBy: []
-  timestamp: '2021-02-09 14:52:42+09:00'
+  timestamp: '2021-03-30 13:20:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/directedmst.test.cpp

@@ -138,10 +138,13 @@ data:
       title: Minimum Cost Flow
   - name: graph
     pages:
+    - icon: ':warning:'
+      path: graph/biconnected_components.cpp
+      title: Bionnected Components
     - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -149,7 +152,7 @@ data:
       title: Maximum Independent Set
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_arborescence.cpp
-      title: Minimum Cost Arborescence
+      title: Minimum Spanning Arborescence
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
@@ -168,7 +171,7 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
     - icon: ':heavy_check_mark:'
@@ -233,6 +236,9 @@ data:
     - icon: ':warning:'
       path: math/stirling_second.cpp
       title: Stirling Number of the Second Kind
+    - icon: ':heavy_check_mark:'
+      path: math/system_of_linear_equations.cpp
+      title: math/system_of_linear_equations.cpp
     - icon: ':heavy_check_mark:'
       path: math/transform.cpp
       title: Transform
@@ -582,7 +588,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'

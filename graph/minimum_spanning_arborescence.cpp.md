@@ -19,7 +19,7 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: Minimum Cost Arborescence
+    document_title: Minimum Spanning Arborescence
     links: []
   bundledCode: "#line 2 \"graph/minimum_spanning_arborescence.cpp\"\n#include <algorithm>\n\
     #include <limits>\n#include <memory>\n#include <numeric>\n#include <utility>\n\
@@ -56,7 +56,7 @@ data:
     \ t) {\n        if (t->left) t->left->lazy += t->lazy;\n        if (t->right)\
     \ t->right->lazy += t->lazy;\n        t->val += t->lazy;\n        t->lazy = 0;\n\
     \    }\n};\n#line 11 \"graph/minimum_spanning_arborescence.cpp\"\n\n/*\n * @brief\
-    \ Minimum Cost Arborescence\n */\ntemplate <typename T>\nstd::pair<T, std::vector<int>>\
+    \ Minimum Spanning Arborescence\n */\ntemplate <typename T>\nstd::pair<T, std::vector<int>>\
     \ minimum_spanning_arborescence(std::vector<Edge<T>> G, int V, int root) {\n \
     \   std::vector<LeftistHeap<T>> incoming(V);\n    for (int i = 0; i < (int) G.size();\
     \ ++i) {\n        auto& e = G[i];\n        incoming[e.to].push(i, e.weight);\n\
@@ -93,10 +93,10 @@ data:
   code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <memory>\n\
     #include <numeric>\n#include <utility>\n#include <vector>\n#include \"edge.cpp\"\
     \n#include \"../data-structure/unionfind/union_find.cpp\"\n#include \"../data-structure/leftist_heap.cpp\"\
-    \n\n/*\n * @brief Minimum Cost Arborescence\n */\ntemplate <typename T>\nstd::pair<T,\
-    \ std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>> G, int\
-    \ V, int root) {\n    std::vector<LeftistHeap<T>> incoming(V);\n    for (int i\
-    \ = 0; i < (int) G.size(); ++i) {\n        auto& e = G[i];\n        incoming[e.to].push(i,\
+    \n\n/*\n * @brief Minimum Spanning Arborescence\n */\ntemplate <typename T>\n\
+    std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>>\
+    \ G, int V, int root) {\n    std::vector<LeftistHeap<T>> incoming(V);\n    for\
+    \ (int i = 0; i < (int) G.size(); ++i) {\n        auto& e = G[i];\n        incoming[e.to].push(i,\
     \ e.weight);\n    }\n    T weight = 0;\n    UnionFind uf(V);\n    std::vector<int>\
     \ from(V), stem(V, -1), prev_edge(G.size()), ord;\n    std::vector<T> from_cost(V);\n\
     \    std::vector<int> status(V); // 0: not checked, 1: cheking, 2: checked\n \
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_arborescence.cpp
   requiredBy: []
-  timestamp: '2021-02-09 14:52:42+09:00'
+  timestamp: '2021-03-30 13:20:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/directedmst.test.cpp
@@ -143,5 +143,5 @@ layout: document
 redirect_from:
 - /library/graph/minimum_spanning_arborescence.cpp
 - /library/graph/minimum_spanning_arborescence.cpp.html
-title: Minimum Cost Arborescence
+title: Minimum Spanning Arborescence
 ---
