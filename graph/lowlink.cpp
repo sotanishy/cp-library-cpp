@@ -37,10 +37,13 @@ private:
     void dfs(int v, int p) {
         ord[v] = k++;
         low[v] = ord[v];
-        bool is_articulation = false;
+        bool is_articulation = false, checked = false;
         int cnt = 0;
         for (int c : G[v]) {
-            if (c == p) continue;
+            if (c == p && !checked) {
+                checked = true;
+                continue;
+            }
             if (ord[c] == -1) {
                 ++cnt;
                 dfs(c, v);
