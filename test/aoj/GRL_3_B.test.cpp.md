@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
@@ -27,18 +27,19 @@ data:
     \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
     \    std::vector<int> articulation;\n\nprivate:\n    int k = 0;\n\n    void dfs(int\
     \ v, int p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p) continue;\n            if (ord[c] == -1) {\n                ++cnt;\n\
-    \                dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
-    test/aoj/GRL_3_B.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
-    \ int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int i\
-    \ = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
+    #line 4 \"test/aoj/GRL_3_B.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int\
+    \ i = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
     \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    vector<pair<int,\
     \ int>> bridges = lowlink.get_bridges();\n    sort(bridges.begin(), bridges.end());\n\
     \    for (auto& p : bridges) {\n        cout << p.first << \" \" << p.second <<\
@@ -57,7 +58,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2021-03-30 13:20:41+09:00'
+  timestamp: '2021-03-31 15:18:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp

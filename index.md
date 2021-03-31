@@ -144,7 +144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -171,7 +171,7 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
     - icon: ':heavy_check_mark:'
@@ -588,7 +588,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'

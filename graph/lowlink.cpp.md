@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: graph/biconnected_components.cpp
     title: Bionnected Components
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_connected_components.cpp
     title: 2-Edge-Connected Components
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n\
@@ -35,14 +35,15 @@ data:
     \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
     \    std::vector<int> articulation;\n\nprivate:\n    int k = 0;\n\n    void dfs(int\
     \ v, int p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p) continue;\n            if (ord[c] == -1) {\n                ++cnt;\n\
-    \                dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
     \nclass Lowlink {\npublic:\n    Lowlink() = default;\n    explicit Lowlink(const\
     \ std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {\n\
@@ -55,22 +56,23 @@ data:
     \ ord, low;\n    std::vector<std::pair<int, int>> bridge;\n    std::vector<int>\
     \ articulation;\n\nprivate:\n    int k = 0;\n\n    void dfs(int v, int p) {\n\
     \        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p) continue;\n            if (ord[c] == -1) {\n                ++cnt;\n\
-    \                dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};"
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.cpp
   requiredBy:
   - graph/biconnected_components.cpp
   - graph/two_edge_connected_components.cpp
-  timestamp: '2021-03-30 13:20:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-03-31 15:18:53+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
   - test/aoj/GRL_3_B.test.cpp

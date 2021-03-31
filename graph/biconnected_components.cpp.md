@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
@@ -24,16 +24,17 @@ data:
     \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
     \    std::vector<int> articulation;\n\nprivate:\n    int k = 0;\n\n    void dfs(int\
     \ v, int p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p) continue;\n            if (ord[c] == -1) {\n                ++cnt;\n\
-    \                dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 6 \"\
-    graph/biconnected_components.cpp\"\n\nclass BiconnectedComponents : Lowlink {\n\
-    public:\n    BiconnectedComponents() = default;\n    explicit BiconnectedComponents(const\
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
+    #line 6 \"graph/biconnected_components.cpp\"\n\nclass BiconnectedComponents :\
+    \ Lowlink {\npublic:\n    BiconnectedComponents() = default;\n    explicit BiconnectedComponents(const\
     \ std::vector<std::vector<int>>& G) : Lowlink(G), used(G.size()) {\n        for\
     \ (int v = 0; v < (int) G.size(); ++v) {\n            if (!used[v] == -1) dfs(v,\
     \ -1);\n        }\n    }\n\n    std::vector<std::vector<std::pair<int, int>>>\
@@ -72,7 +73,7 @@ data:
   isVerificationFile: false
   path: graph/biconnected_components.cpp
   requiredBy: []
-  timestamp: '2021-03-30 13:20:41+09:00'
+  timestamp: '2021-03-31 15:18:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/biconnected_components.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_connected_components.cpp
     title: 2-Edge-Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -32,15 +32,16 @@ data:
     \ G;\n    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
     \    std::vector<int> articulation;\n\nprivate:\n    int k = 0;\n\n    void dfs(int\
     \ v, int p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n            if\
-    \ (c == p) continue;\n            if (ord[c] == -1) {\n                ++cnt;\n\
-    \                dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n\
-    \                if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n  \
-    \              if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v,\
-    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
-    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
-    graph/two_edge_connected_components.cpp\"\n\nclass TwoEdgeConnectedComponents\
+    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
+    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
+    \                continue;\n            }\n            if (ord[c] == -1) {\n \
+    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
+    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
+    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
+    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
+    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
+    #line 4 \"graph/two_edge_connected_components.cpp\"\n\nclass TwoEdgeConnectedComponents\
     \ : Lowlink {\npublic:\n    TwoEdgeConnectedComponents() = default;\n    explicit\
     \ TwoEdgeConnectedComponents(const std::vector<std::vector<int>>& G) : Lowlink(G),\
     \ comp(G.size(), -1) {\n        for (int v = 0; v < (int) G.size(); ++v) {\n \
@@ -74,8 +75,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-03-30 13:20:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-31 15:18:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp
 layout: document
