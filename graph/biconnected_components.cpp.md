@@ -78,7 +78,7 @@ data:
   verifiedWith: []
 documentation_of: graph/biconnected_components.cpp
 layout: document
-title: Bionnected Components
+title: Biconnected Components
 ---
 
 ## Description

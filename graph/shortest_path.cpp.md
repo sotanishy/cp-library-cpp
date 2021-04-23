@@ -100,8 +100,8 @@ data:
   timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_1_A.test.cpp
+  - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path.cpp
 layout: document

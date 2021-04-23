@@ -140,7 +140,7 @@ data:
     pages:
     - icon: ':warning:'
       path: graph/biconnected_components.cpp
-      title: Bionnected Components
+      title: Biconnected Components
     - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
@@ -182,6 +182,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/arbitrary_modint.cpp
       title: Arbitrary Mod int
+    - icon: ':heavy_check_mark:'
+      path: math/berlekamp_massey.cpp
+      title: Berlekamp-Massey Algorithm
     - icon: ':warning:'
       path: math/combination.cpp
       title: Combination
@@ -498,6 +501,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/factorize.test.cpp
       title: test/yosupo/factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/find_linear_recurrence.test.cpp
+      title: test/yosupo/find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp

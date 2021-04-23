@@ -58,8 +58,8 @@ data:
   isVerificationFile: false
   path: data-structure/persistent_array.cpp
   requiredBy:
-  - data-structure/persistent_queue.cpp
   - data-structure/unionfind/persistent_union_find.cpp
+  - data-structure/persistent_queue.cpp
   timestamp: '2020-11-03 02:25:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
