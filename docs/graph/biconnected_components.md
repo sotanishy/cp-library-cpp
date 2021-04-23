@@ -1,5 +1,5 @@
 ---
-title: Bionnected Components
+title: Biconnected Components
 documentation_of: ../../graph/biconnected_components.cpp
 ---
 
