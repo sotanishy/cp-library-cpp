@@ -38,11 +38,11 @@ data:
     \    }\n    std::vector<int> comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\
     \n    auto dfs = [&](const auto& self, int u) -> void {\n        if (visited[u])\
     \ return;\n        visited[u] = true;\n        for (int v : G[u]) self(self, v);\n\
-    \        order.push_back(v);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs,\
+    \        order.push_back(u);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs,\
     \ v);\n    std::reverse(order.begin(), order.end());\n    int c = 0;\n\n    auto\
     \ rdfs = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] !=\
     \ -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self,\
-    \ v, c);\n    }\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
+    \ v, c);\n    };\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
     \    return comp;\n}\n*/\n#line 4 \"graph/twosat.cpp\"\n\nclass TwoSat {\npublic:\n\
     \    TwoSat() = default;\n    explicit TwoSat(int n) : n(n), scc(2 * n), val(n)\
     \ {}\n\n    void add_clause(int u, bool a, int v, bool b) {\n        scc.add_edge(n\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 23:34:19+09:00'
+  timestamp: '2021-04-29 16:04:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_sat.test.cpp

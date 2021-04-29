@@ -17,9 +17,8 @@ data:
     links: []
   bundledCode: "#line 2 \"tree/euler_tour.cpp\"\n#include <vector>\n#line 2 \"data-structure/segtree/segment_tree.cpp\"\
     \n#include <algorithm>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\n\n\
-    /*\n * @brief Segment Tree\n * @docs docs/data-structure/segtree/segment_tree.md\n\
-    \ */\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
-    \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
+    template <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\npublic:\n\
+    \    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id)) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
     \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
     \ * size, M::id);\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
@@ -76,7 +75,7 @@ data:
   isVerificationFile: false
   path: tree/euler_tour.cpp
   requiredBy: []
-  timestamp: '2020-11-11 19:45:48+09:00'
+  timestamp: '2021-04-29 16:04:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
