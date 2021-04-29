@@ -61,7 +61,7 @@ std::vector<int> scc_decomposition(const std::vector<std::vector<int>>& G) {
         if (visited[u]) return;
         visited[u] = true;
         for (int v : G[u]) self(self, v);
-        order.push_back(v);
+        order.push_back(u);
     };
 
     for (int v = 0; v < n; ++v) dfs(dfs, v);
@@ -72,7 +72,7 @@ std::vector<int> scc_decomposition(const std::vector<std::vector<int>>& G) {
         if (comp[u] != -1) return;
         comp[u] = c;
         for (int v : G_rev[u]) self(self, v, c);
-    }
+    };
 
     for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);
     return comp;

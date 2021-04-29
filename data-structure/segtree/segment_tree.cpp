@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Segment Tree
- * @docs docs/data-structure/segtree/segment_tree.md
- */
 template <typename M>
 class SegmentTree {
     using T = typename M::T;
