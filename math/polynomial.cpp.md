@@ -187,8 +187,8 @@ data:
   isVerificationFile: false
   path: math/polynomial.cpp
   requiredBy:
-  - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
+  - math/interpolation.cpp
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

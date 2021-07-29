@@ -105,17 +105,17 @@ data:
   isVerificationFile: false
   path: math/ntt.cpp
   requiredBy:
-  - math/polynomial.cpp
-  - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
+  - math/interpolation.cpp
+  - math/polynomial.cpp
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
 documentation_of: math/ntt.cpp
 layout: document
 title: Number Theoretic Transform

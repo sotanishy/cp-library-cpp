@@ -45,6 +45,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
+    - icon: ':warning:'
+      path: data-structure/range_tree.cpp
+      title: Range Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
@@ -241,7 +244,7 @@ data:
       title: Stirling Number of the Second Kind
     - icon: ':heavy_check_mark:'
       path: math/system_of_linear_equations.cpp
-      title: math/system_of_linear_equations.cpp
+      title: System of Linear Equations
     - icon: ':heavy_check_mark:'
       path: math/transform.cpp
       title: Transform

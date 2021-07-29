@@ -9,7 +9,7 @@ data:
     title: Mod int
   - icon: ':heavy_check_mark:'
     path: math/system_of_linear_equations.cpp
-    title: math/system_of_linear_equations.cpp
+    title: System of Linear Equations
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
