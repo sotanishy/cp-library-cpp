@@ -57,8 +57,8 @@ data:
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_1_C.is_prime.test.cpp
   - test/aoj/NTL_1_A.test.cpp
+  - test/aoj/ALDS1_1_C.is_prime.test.cpp
 documentation_of: math/prime.cpp
 layout: document
 title: Prime Number Algorithms

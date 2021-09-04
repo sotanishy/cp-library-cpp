@@ -54,6 +54,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
+    - icon: ':warning:'
+      path: data-structure/slope_trick.cpp
+      title: Slope Trick
     - icon: ':heavy_check_mark:'
       path: data-structure/sparse_table.cpp
       title: Sparse Table
