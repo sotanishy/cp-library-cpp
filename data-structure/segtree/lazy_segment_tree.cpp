@@ -12,8 +12,7 @@ public:
     explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id)) {}
     explicit LazySegmentTree(const std::vector<T>& v) {
         size = 1;
-        height = 0;
-        while (size < (int) v.size()) size <<= 1, ++height;
+        while (size < (int) v.size()) size <<= 1;
         node.resize(2 * size, M::id);
         lazy.resize(2 * size, O::id);
         std::copy(v.begin(), v.end(), node.begin() + size);
@@ -29,7 +28,7 @@ public:
     T fold(int l, int r) { return fold(l, r, 1, 0, size); }
 
 private:
-    int size, height;
+    int size;
     std::vector<T> node;
     std::vector<E> lazy;
 
