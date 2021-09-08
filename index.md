@@ -221,6 +221,9 @@ data:
     - icon: ':warning:'
       path: math/interpolation.cpp
       title: Polynomial Interpolation
+    - icon: ':warning:'
+      path: math/kitamasa.cpp
+      title: Kitamasa's Algorithm
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
