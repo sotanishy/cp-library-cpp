@@ -39,7 +39,7 @@ private:
         int s;
         int id;
         T val, lazy;
-        Node(int id, T x) : id(id), val(x) {}
+        Node(int id, T x) : id(id), val(x), lazy(0) {}
     };
 
     node_ptr root = nullptr;
