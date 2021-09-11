@@ -24,7 +24,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/leftist_heap.cpp
       title: Leftist Heap
     - icon: ':heavy_check_mark:'
@@ -125,7 +125,7 @@ data:
       title: Weighted Union Find
   - name: dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/hu_tucker.cpp
       title: Hu-Tucker Algorithm
     - icon: ':heavy_check_mark:'
@@ -343,7 +343,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
     - icon: ':heavy_check_mark:'

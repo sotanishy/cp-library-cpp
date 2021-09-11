@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/hu_tucker.cpp
     title: Hu-Tucker Algorithm
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
     title: Minimum Spanning Arborescence
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2415.test.cpp
     title: test/aoj/2415.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp
     title: test/yosupo/directedmst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/leftist_heap.cpp\"\n#include <algorithm>\n\
@@ -71,7 +71,7 @@ data:
   - graph/minimum_spanning_arborescence.cpp
   - dp/hu_tucker.cpp
   timestamp: '2021-09-11 15:28:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/directedmst.test.cpp
   - test/aoj/2415.test.cpp

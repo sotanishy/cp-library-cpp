@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/leftist_heap.cpp
     title: Leftist Heap
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2415.test.cpp
     title: test/aoj/2415.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"dp/hu_tucker.cpp\"\n#include <functional>\n#include <limits>\n\
@@ -46,7 +46,7 @@ data:
     \ = i - 1;\n        right[i] = i + 1;\n        cs[i] = w[i] + w[i + 1];\n    \
     \    pq.emplace(cs[i], i);\n    }\n    T ret = 0;\n    for (int k = 0; k < n -\
     \ 1; ++k) {\n        T c;\n        int i;\n        // find the optimal nodes to\
-    \ merge\n        do {\n            tie(c, i) = pq.top();\n            pq.pop();\n\
+    \ merge\n        do {\n            std::tie(c, i) = pq.top();\n            pq.pop();\n\
     \        } while (right[i] == -1 || cs[i] != c);\n\n        bool merge_l = false,\
     \ merge_r = false;\n        if (w[i] + w[right[i]] == c) {  // lr\n          \
     \  merge_l = merge_r = true;\n        } else {\n            T top = heaps[i].top().second;\n\
@@ -79,7 +79,7 @@ data:
     \ i = 0; i < n - 1; ++i) {\n        left[i] = i - 1;\n        right[i] = i + 1;\n\
     \        cs[i] = w[i] + w[i + 1];\n        pq.emplace(cs[i], i);\n    }\n    T\
     \ ret = 0;\n    for (int k = 0; k < n - 1; ++k) {\n        T c;\n        int i;\n\
-    \        // find the optimal nodes to merge\n        do {\n            tie(c,\
+    \        // find the optimal nodes to merge\n        do {\n            std::tie(c,\
     \ i) = pq.top();\n            pq.pop();\n        } while (right[i] == -1 || cs[i]\
     \ != c);\n\n        bool merge_l = false, merge_r = false;\n        if (w[i] +\
     \ w[right[i]] == c) {  // lr\n            merge_l = merge_r = true;\n        }\
@@ -108,8 +108,8 @@ data:
   isVerificationFile: false
   path: dp/hu_tucker.cpp
   requiredBy: []
-  timestamp: '2021-09-11 15:28:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-09-11 15:32:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2415.test.cpp
 documentation_of: dp/hu_tucker.cpp

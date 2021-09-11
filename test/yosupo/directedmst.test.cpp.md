@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/leftist_heap.cpp
     title: Leftist Heap
   - icon: ':heavy_check_mark:'
