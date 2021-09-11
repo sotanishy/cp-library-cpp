@@ -27,7 +27,7 @@ T hu_tucker(std::vector<T> w) {
         int i;
         // find the optimal nodes to merge
         do {
-            tie(c, i) = pq.top();
+            std::tie(c, i) = pq.top();
             pq.pop();
         } while (right[i] == -1 || cs[i] != c);
 
