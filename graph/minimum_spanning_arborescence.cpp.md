@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/leftist_heap.cpp
     title: Leftist Heap
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
     \ const { return root == nullptr; }\n\n    void add(T x) { root->lazy += x; }\n\
     \nprivate:\n    struct Node;\n    using node_ptr = std::unique_ptr<Node>;\n\n\
     \    struct Node {\n        node_ptr left, right;\n        int s;\n        int\
-    \ id;\n        T val, lazy;\n        Node(int id, T x) : id(id), val(x) {}\n \
-    \   };\n\n    node_ptr root = nullptr;\n\n    explicit LeftistHeap(node_ptr root)\
-    \ : root(std::move(root)) {}\n\n    static node_ptr meld(node_ptr a, node_ptr\
+    \ id;\n        T val, lazy;\n        Node(int id, T x) : id(id), val(x), lazy(0)\
+    \ {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit LeftistHeap(node_ptr\
+    \ root) : root(std::move(root)) {}\n\n    static node_ptr meld(node_ptr a, node_ptr\
     \ b) {\n        if (!a) return b;\n        if (!b) return a;\n        push(a);\n\
     \        push(b);\n        if (a->val > b->val) std::swap(a, b);\n        a->right\
     \ = meld(std::move(a->right), std::move(b));\n        if (!a->left || a->left->s\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_arborescence.cpp
   requiredBy: []
-  timestamp: '2021-03-30 13:20:41+09:00'
+  timestamp: '2021-09-11 15:28:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/directedmst.test.cpp

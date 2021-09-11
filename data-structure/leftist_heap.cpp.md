@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: dp/hu_tucker.cpp
+    title: Hu-Tucker Algorithm
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
     title: Minimum Spanning Arborescence
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/2415.test.cpp
+    title: test/aoj/2415.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp
     title: test/yosupo/directedmst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/leftist_heap.cpp\"\n#include <algorithm>\n\
@@ -26,16 +32,16 @@ data:
     \ add(T x) { root->lazy += x; }\n\nprivate:\n    struct Node;\n    using node_ptr\
     \ = std::unique_ptr<Node>;\n\n    struct Node {\n        node_ptr left, right;\n\
     \        int s;\n        int id;\n        T val, lazy;\n        Node(int id, T\
-    \ x) : id(id), val(x) {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit\
-    \ LeftistHeap(node_ptr root) : root(std::move(root)) {}\n\n    static node_ptr\
-    \ meld(node_ptr a, node_ptr b) {\n        if (!a) return b;\n        if (!b) return\
-    \ a;\n        push(a);\n        push(b);\n        if (a->val > b->val) std::swap(a,\
-    \ b);\n        a->right = meld(std::move(a->right), std::move(b));\n        if\
-    \ (!a->left || a->left->s < a->right->s) std::swap(a->left, a->right);\n     \
-    \   a->s = (a->right ? a->right->s : 0) + 1;\n        return a;\n    }\n\n   \
-    \ static void push(const node_ptr& t) {\n        if (t->left) t->left->lazy +=\
-    \ t->lazy;\n        if (t->right) t->right->lazy += t->lazy;\n        t->val +=\
-    \ t->lazy;\n        t->lazy = 0;\n    }\n};\n"
+    \ x) : id(id), val(x), lazy(0) {}\n    };\n\n    node_ptr root = nullptr;\n\n\
+    \    explicit LeftistHeap(node_ptr root) : root(std::move(root)) {}\n\n    static\
+    \ node_ptr meld(node_ptr a, node_ptr b) {\n        if (!a) return b;\n       \
+    \ if (!b) return a;\n        push(a);\n        push(b);\n        if (a->val >\
+    \ b->val) std::swap(a, b);\n        a->right = meld(std::move(a->right), std::move(b));\n\
+    \        if (!a->left || a->left->s < a->right->s) std::swap(a->left, a->right);\n\
+    \        a->s = (a->right ? a->right->s : 0) + 1;\n        return a;\n    }\n\n\
+    \    static void push(const node_ptr& t) {\n        if (t->left) t->left->lazy\
+    \ += t->lazy;\n        if (t->right) t->right->lazy += t->lazy;\n        t->val\
+    \ += t->lazy;\n        t->lazy = 0;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <memory>\n#include <utility>\n\
     \ntemplate <typename T>\nclass LeftistHeap {\npublic:\n    LeftistHeap() = default;\n\
     \n    static LeftistHeap meld(LeftistHeap a, LeftistHeap b) {\n        return\
@@ -47,9 +53,9 @@ data:
     \ const { return root == nullptr; }\n\n    void add(T x) { root->lazy += x; }\n\
     \nprivate:\n    struct Node;\n    using node_ptr = std::unique_ptr<Node>;\n\n\
     \    struct Node {\n        node_ptr left, right;\n        int s;\n        int\
-    \ id;\n        T val, lazy;\n        Node(int id, T x) : id(id), val(x) {}\n \
-    \   };\n\n    node_ptr root = nullptr;\n\n    explicit LeftistHeap(node_ptr root)\
-    \ : root(std::move(root)) {}\n\n    static node_ptr meld(node_ptr a, node_ptr\
+    \ id;\n        T val, lazy;\n        Node(int id, T x) : id(id), val(x), lazy(0)\
+    \ {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit LeftistHeap(node_ptr\
+    \ root) : root(std::move(root)) {}\n\n    static node_ptr meld(node_ptr a, node_ptr\
     \ b) {\n        if (!a) return b;\n        if (!b) return a;\n        push(a);\n\
     \        push(b);\n        if (a->val > b->val) std::swap(a, b);\n        a->right\
     \ = meld(std::move(a->right), std::move(b));\n        if (!a->left || a->left->s\
@@ -63,10 +69,12 @@ data:
   path: data-structure/leftist_heap.cpp
   requiredBy:
   - graph/minimum_spanning_arborescence.cpp
-  timestamp: '2021-02-09 14:52:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - dp/hu_tucker.cpp
+  timestamp: '2021-09-11 15:28:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/directedmst.test.cpp
+  - test/aoj/2415.test.cpp
 documentation_of: data-structure/leftist_heap.cpp
 layout: document
 title: Leftist Heap
