@@ -131,6 +131,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/largest_rectangle.cpp
       title: Largest Rectangle
+    - icon: ':warning:'
+      path: dp/monotone_minima.cpp
+      title: Monotone Minima
+    - icon: ':warning:'
+      path: dp/smawk.cpp
+      title: SMAWK Algorithm
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
