@@ -1,6 +1,6 @@
 ---
 title: Convex Hull Trick
-documentation_of: ../../../data-structure/convex_hull_trick.cpp
+documentation_of: ../../data-structure/convex_hull_trick.cpp
 ---
 
 ## Description
