@@ -11,7 +11,7 @@ data:
       title: Rank/Select Dictionary
     - icon: ':warning:'
       path: data-structure/convex_hull_trick.cpp
-      title: Convex Hull Trick
+      title: data-structure/convex_hull_trick.cpp
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
