@@ -12,17 +12,18 @@ int main() {
 
     int N, M;
     cin >> N >> M;
-    SCC scc(N);
+    vector<vector<int>> G(N);
     for (int i = 0; i < M; ++i) {
         int a, b;
         cin >> a >> b;
-        scc.add_edge(a, b);
+        G[a].push_back(b);
     }
-    scc.build();
-    vector<vector<int>> comps(scc.count());
-    for (int i = 0; i < N; ++i) comps[scc[i]].push_back(i);
-    cout << comps.size() << "\n";
-    for (int i = 0; i < comps.size(); ++i) {
+    auto comp = scc(G);
+    int n = *max_element(comp.begin(), comp.end()) + 1;
+    vector<vector<int>> comps(n);
+    for (int i = 0; i < N; ++i) comps[comp[i]].push_back(i);
+    cout << n << "\n";
+    for (int i = 0; i < n; ++i) {
         cout << comps[i].size();
         for (int v : comps[i]) cout << " " << v;
         cout << "\n";

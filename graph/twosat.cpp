@@ -5,21 +5,21 @@
 class TwoSat {
 public:
     TwoSat() = default;
-    explicit TwoSat(int n) : n(n), scc(2 * n), val(n) {}
+    explicit TwoSat(int n) : n(n), G(2 * n), val(n) {}
 
     void add_clause(int u, bool a, int v, bool b) {
-        scc.add_edge(n * a + u, n * (!b) + v);
-        scc.add_edge(n * b + v, n * (!a) + u);
+        G[n * a + u].push_back(n * (!b) + v);
+        G[n * b + v].push_back(n * (!a) + u);
     }
 
     void solve() {
-        scc.build();
+        auto comp = scc(G);
         for (int i = 0; i < n; ++i) {
-            if (scc[i] == scc[n + i]) {
+            if (comp[i] == comp[n + i]) {
                 satisfiable = false;
                 break;
             }
-            val[i] = scc[i] > scc[n + i];
+            val[i] = comp[i] > comp[n + i];
         }
     }
 
@@ -33,7 +33,7 @@ public:
 
 private:
     int n;
-    SCC scc;
+    std::vector<std::vector<int>> G;
     std::vector<bool> val;
     bool satisfiable = true;
 };

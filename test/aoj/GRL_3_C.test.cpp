@@ -11,18 +11,18 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    SCC scc(V);
+    vector<vector<int>> G(V);
     for (int i = 0; i < E; i++) {
         int s, t;
         cin >> s >> t;
-        scc.add_edge(s, t);
+        G[s].push_back(t);
     }
-    scc.build();
+    auto comp = scc(G);
     int Q;
     cin >> Q;
     for (int i = 0; i < Q; i++) {
         int u, v;
         cin >> u >> v;
-        cout << (scc[u] == scc[v]) << "\n";
+        cout << (comp[u] == comp[v]) << "\n";
     }
 }

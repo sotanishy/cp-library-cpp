@@ -13,22 +13,9 @@ documentation_of: ../../graph/scc.cpp
 
 強連結成分のラベルはトポロジカル順序になっている．
 
-空間計算量: $O(V + E)$
-
-## Operations
-
-- `SCC(int n)`
-    - グラフを $n$ 頂点で初期化する
-    - 時間計算量: $O(n)$
-- `void add_edge(int u, int v)`
-    - 辺 $(u, v)$ を追加する
-    - 時間計算量: $O(1)$
-- `void build()`
-    - 強連結成分分解をする
+- `vector<int> scc(vector<vector<int>> G)`
+    - グラフ $G$ の隣接リストが与えられたとき，$G$ を強連結成分分解し，各頂点が属する成分のラベルを返す
     - 時間計算量: $O(V + E)$
-- `int operator[](int i)`
-    - 頂点 $i$ が属する強連結成分のラベルを返す
-    - 時間計算量: $O(1)$
-- `int count()`
-    - 強連結成分の数を返す
-    - 時間計算量: $O(1)$
+- `vector<vector<int>> contract(vector<vector<int>> G, vector<int> comp)`
+    - グラフ $G$ の隣接リストとその強連結成分が与えられたとき，各強連結成分を縮約したグラフを返す
+    - 時間計算量: $O(V + E)$
