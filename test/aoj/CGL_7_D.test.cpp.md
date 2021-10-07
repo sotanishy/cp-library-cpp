@@ -18,14 +18,12 @@ data:
   bundledCode: "#line 1 \"test/aoj/CGL_7_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D\"\
     \n#define ERROR 0.00000001\n\n#line 2 \"math/geometry.cpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n\nnamespace geometry {\n\nusing T = double;\nusing Vec = std::complex<T>;\n\
-    \n// note that if T is of an integer type, std::abs does not work\n\nconstexpr\
-    \ T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b) < eps; }\n\
-    inline bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) {\
-    \ return a < b + eps; }\n\ninline bool eq(long long a, long long b) { return a\
-    \ == b; }\ninline bool lt(long long a, long long b) { return a < b; }\ninline\
-    \ bool leq(long long a, long long b) { return a <= b; }\n\nstd::istream& operator>>(std::istream&\
-    \ is, Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
+    #include <vector>\n\nnamespace geometry {\n\n// note that if T is of an integer\
+    \ type, std::abs does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\
+    \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
+    \ < eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T\
+    \ a, T b) { return a < b + eps; }\n\nstd::istream& operator>>(std::istream& is,\
+    \ Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
     }\n\nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
     }\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
     }\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
@@ -107,7 +105,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_D.test.cpp
   requiredBy: []
-  timestamp: '2021-10-07 13:04:29+09:00'
+  timestamp: '2021-10-07 13:13:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_D.test.cpp

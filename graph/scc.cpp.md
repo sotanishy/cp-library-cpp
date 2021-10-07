@@ -21,23 +21,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/scc.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    \nclass SCC {\npublic:\n    SCC() = default;\n    explicit SCC(int n) : G(n),\
-    \ G_rev(n), comp(n, -1), visited(n) {}\n\n    void add_edge(int u, int v) {\n\
-    \        G[u].push_back(v);\n        G_rev[v].push_back(u);\n    }\n\n    void\
-    \ build() {\n        for (int v = 0; v < (int) G.size(); ++v) dfs(v);\n      \
-    \  std::reverse(order.begin(), order.end());\n        cnt = 0;\n        for (int\
-    \ v : order) if (comp[v] == -1) rdfs(v, cnt++);\n    }\n\n    int operator[](int\
-    \ i) const {\n        return comp[i];\n    }\n\n    int count() const noexcept\
-    \ {\n        return cnt;\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
-    \ G, G_rev;\n    std::vector<int> comp, order;\n    std::vector<bool> visited;\n\
-    \    int cnt;\n\n    void dfs(int u) {\n        if (visited[u]) return;\n    \
-    \    visited[u] = true;\n        for (int v : G[u]) dfs(v);\n        order.push_back(u);\n\
-    \    }\n\n    void rdfs(int u, int c) {\n        if (comp[u] != -1) return;\n\
-    \        comp[u] = c;\n        for (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n\
-    \n/*\nstd::vector<int> scc_decomposition(const std::vector<std::vector<int>>&\
-    \ G) {\n    const int n = G.size();\n    std::vector<std::vector<int>> G_rev(n);\n\
-    \    for (int u = 0; u < n; ++u) {\n        for (int v : G[u]) G_rev[v].push_back(u);\n\
-    \    }\n    std::vector<int> comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\
+    \nstd::vector<int> scc(const std::vector<std::vector<int>>& G) {\n    const int\
+    \ n = G.size();\n    std::vector<std::vector<int>> G_rev(n);\n    for (int u =\
+    \ 0; u < n; ++u) {\n        for (int v : G[u]) G_rev[v].push_back(u);\n    }\n\
+    \    std::vector<int> comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\
     \n    auto dfs = [&](const auto& self, int u) -> void {\n        if (visited[u])\
     \ return;\n        visited[u] = true;\n        for (int v : G[u]) self(self, v);\n\
     \        order.push_back(u);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs,\
@@ -45,38 +32,40 @@ data:
     \ rdfs = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] !=\
     \ -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self,\
     \ v, c);\n    };\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
-    \    return comp;\n}\n*/\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\nclass SCC {\npublic:\n\
-    \    SCC() = default;\n    explicit SCC(int n) : G(n), G_rev(n), comp(n, -1),\
-    \ visited(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
-    \        G_rev[v].push_back(u);\n    }\n\n    void build() {\n        for (int\
-    \ v = 0; v < (int) G.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
-    \ order.end());\n        cnt = 0;\n        for (int v : order) if (comp[v] ==\
-    \ -1) rdfs(v, cnt++);\n    }\n\n    int operator[](int i) const {\n        return\
-    \ comp[i];\n    }\n\n    int count() const noexcept {\n        return cnt;\n \
-    \   }\n\nprivate:\n    std::vector<std::vector<int>> G, G_rev;\n    std::vector<int>\
-    \ comp, order;\n    std::vector<bool> visited;\n    int cnt;\n\n    void dfs(int\
-    \ u) {\n        if (visited[u]) return;\n        visited[u] = true;\n        for\
-    \ (int v : G[u]) dfs(v);\n        order.push_back(u);\n    }\n\n    void rdfs(int\
-    \ u, int c) {\n        if (comp[u] != -1) return;\n        comp[u] = c;\n    \
-    \    for (int v : G_rev[u]) rdfs(v, c);\n    }\n};\n\n/*\nstd::vector<int> scc_decomposition(const\
-    \ std::vector<std::vector<int>>& G) {\n    const int n = G.size();\n    std::vector<std::vector<int>>\
-    \ G_rev(n);\n    for (int u = 0; u < n; ++u) {\n        for (int v : G[u]) G_rev[v].push_back(u);\n\
-    \    }\n    std::vector<int> comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\
-    \n    auto dfs = [&](const auto& self, int u) -> void {\n        if (visited[u])\
-    \ return;\n        visited[u] = true;\n        for (int v : G[u]) self(self, v);\n\
-    \        order.push_back(u);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs,\
-    \ v);\n    std::reverse(order.begin(), order.end());\n    int c = 0;\n\n    auto\
-    \ rdfs = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] !=\
-    \ -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self,\
-    \ v, c);\n    };\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
-    \    return comp;\n}\n*/"
+    \    return comp;\n}\n\nstd::vector<std::vector<int>> contract(const std::vector<std::vector<int>>&\
+    \ G, const std::vector<int>& comp) {\n    const int n = *max_element(comp.begin(),\
+    \ comp.end()) + 1;\n    std::vector<std::vector<int>> G2(n);\n    for (int i =\
+    \ 0; i < (int) G.size(); ++i) {\n        for (int j : G[i]) {\n            if\
+    \ (comp[i] != comp[j]) {\n                G2[comp[i]].push_back(comp[j]);\n  \
+    \          }\n        }\n    }\n    for (int i = 0; i < n; ++i) {\n        std::sort(G2[i].begin(),\
+    \ G2[i].end());\n        G2[i].erase(std::unique(G2[i].begin(), G2[i].end()),\
+    \ G2[i].end());\n    }\n    return G2;\n}\n"
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\nstd::vector<int>\
+    \ scc(const std::vector<std::vector<int>>& G) {\n    const int n = G.size();\n\
+    \    std::vector<std::vector<int>> G_rev(n);\n    for (int u = 0; u < n; ++u)\
+    \ {\n        for (int v : G[u]) G_rev[v].push_back(u);\n    }\n    std::vector<int>\
+    \ comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\n    auto dfs =\
+    \ [&](const auto& self, int u) -> void {\n        if (visited[u]) return;\n  \
+    \      visited[u] = true;\n        for (int v : G[u]) self(self, v);\n       \
+    \ order.push_back(u);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs, v);\n\
+    \    std::reverse(order.begin(), order.end());\n    int c = 0;\n\n    auto rdfs\
+    \ = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] != -1)\
+    \ return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self, v,\
+    \ c);\n    };\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
+    \    return comp;\n}\n\nstd::vector<std::vector<int>> contract(const std::vector<std::vector<int>>&\
+    \ G, const std::vector<int>& comp) {\n    const int n = *max_element(comp.begin(),\
+    \ comp.end()) + 1;\n    std::vector<std::vector<int>> G2(n);\n    for (int i =\
+    \ 0; i < (int) G.size(); ++i) {\n        for (int j : G[i]) {\n            if\
+    \ (comp[i] != comp[j]) {\n                G2[comp[i]].push_back(comp[j]);\n  \
+    \          }\n        }\n    }\n    for (int i = 0; i < n; ++i) {\n        std::sort(G2[i].begin(),\
+    \ G2[i].end());\n        G2[i].erase(std::unique(G2[i].begin(), G2[i].end()),\
+    \ G2[i].end());\n    }\n    return G2;\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/scc.cpp
   requiredBy:
   - graph/twosat.cpp
-  timestamp: '2021-04-29 16:04:35+09:00'
+  timestamp: '2021-10-07 13:18:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_3_C.test.cpp
@@ -97,22 +86,9 @@ title: Strongly Connected Components
 
 強連結成分のラベルはトポロジカル順序になっている．
 
-空間計算量: $O(V + E)$
-
-## Operations
-
-- `SCC(int n)`
-    - グラフを $n$ 頂点で初期化する
-    - 時間計算量: $O(n)$
-- `void add_edge(int u, int v)`
-    - 辺 $(u, v)$ を追加する
-    - 時間計算量: $O(1)$
-- `void build()`
-    - 強連結成分分解をする
+- `vector<int> scc(vector<vector<int>> G)`
+    - グラフ $G$ の隣接リストが与えられたとき，$G$ を強連結成分分解し，各頂点が属する成分のラベルを返す
     - 時間計算量: $O(V + E)$
-- `int operator[](int i)`
-    - 頂点 $i$ が属する強連結成分のラベルを返す
-    - 時間計算量: $O(1)$
-- `int count()`
-    - 強連結成分の数を返す
-    - 時間計算量: $O(1)$
+- `vector<vector<int>> contract(vector<vector<int>> G, vector<int> comp)`
+    - グラフ $G$ の隣接リストとその強連結成分が与えられたとき，各強連結成分を縮約したグラフを返す
+    - 時間計算量: $O(V + E)$
