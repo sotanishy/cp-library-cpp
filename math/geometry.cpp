@@ -8,19 +8,14 @@
 
 namespace geometry {
 
+// note that if T is of an integer type, std::abs does not work
 using T = double;
 using Vec = std::complex<T>;
-
-// note that if T is of an integer type, std::abs does not work
 
 constexpr T eps = 1e-12;
 inline bool eq(T a, T b) { return std::abs(a - b) < eps; }
 inline bool lt(T a, T b) { return a < b - eps; }
 inline bool leq(T a, T b) { return a < b + eps; }
-
-inline bool eq(long long a, long long b) { return a == b; }
-inline bool lt(long long a, long long b) { return a < b; }
-inline bool leq(long long a, long long b) { return a <= b; }
 
 std::istream& operator>>(std::istream& is, Vec& p) {
     T x, y;
