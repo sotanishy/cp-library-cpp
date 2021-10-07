@@ -69,6 +69,29 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
 }
 
 /*
+ * Breadth-First Search
+ */
+std::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {
+    std::vector<int> dist(G.size(), -1);
+    dist[s] = 0;
+    std::queue<int> que;
+    que.push(s);
+
+    while (!que.empty()) {
+        int v = que.front();
+        que.pop();
+        for (int u : G[v]) {
+            if (dist[u] == -1) {
+                dist[u] = dist[v] + 1;
+                que.push(u);
+            }
+        }
+    }
+
+    return dist;
+}
+
+/*
  * Dial's Algorithm
  */
 std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int w) {

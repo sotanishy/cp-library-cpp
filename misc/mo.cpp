@@ -22,8 +22,8 @@ public:
         int curL = 0, curR = 0;
         for (auto [id, l, r] : queries) {
             while (curL > l) exl(--curL);
-            while (curL < l) shl(curL++);
             while (curR < r) exr(curR++);
+            while (curL < l) shl(curL++);
             while (curR > r) shr(--curR);
             out(id);
         }

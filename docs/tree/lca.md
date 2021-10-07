@@ -18,6 +18,9 @@ documentation_of: ../../tree/lca.cpp
 - `int dist(int u, int v)`
     - $uv$ 間の距離を計算する
     - 時間計算量: $O(\lg n)$
+- `int parent(int v, int k)`
+    - 頂点 $v$ の $k$ 個上の頂点を求める
+    - 時間計算量: $O(\lg n)$
 
 ## Reference
 

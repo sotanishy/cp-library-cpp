@@ -44,6 +44,16 @@ public:
         return depth[u] + depth[v] - 2 * depth[query(u, v)];
     }
 
+    int parent(int v, int k) const {
+        for (int i = LOG - 1; i >= 0; --i) {
+            if (k >= (1 << i)) {
+                v = table[i][v];
+                k -= 1 << i;
+            }
+        }
+        return v;
+    }
+
 private:
     const std::vector<std::vector<int>>& G;
     const int LOG;
