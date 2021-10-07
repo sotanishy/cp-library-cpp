@@ -296,6 +296,9 @@ data:
       title: misc/timer.cpp
   - name: string
     pages:
+    - icon: ':warning:'
+      path: string/aho_corasick.cpp
+      title: Aho-Corasick Algorithm
     - icon: ':heavy_check_mark:'
       path: string/kmp.cpp
       title: Knuth-Morris-Pratt Algorithm
