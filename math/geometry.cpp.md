@@ -150,11 +150,11 @@ data:
   timestamp: '2021-10-07 13:13:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_1_C.test.cpp
   - test/aoj/CGL_7_D.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_7_E.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_1_C.test.cpp
 documentation_of: math/geometry.cpp
 layout: document
 title: Geometry

@@ -49,9 +49,15 @@ data:
     \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
     \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
     \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
-    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\n\
-    std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int\
-    \ w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Breadth-First Search\n\
+    \ */\nstd::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {\n\
+    \    std::vector<int> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int>\
+    \ que;\n    que.push(s);\n\n    while (!que.empty()) {\n        int v = que.front();\n\
+    \        que.pop();\n        for (int u : G[v]) {\n            if (dist[u] ==\
+    \ -1) {\n                dist[u] = dist[v] + 1;\n                que.push(u);\n\
+    \            }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n\
+    \ */\nstd::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int\
+    \ s, int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
     \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
     \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int) buckets.size();\
     \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
@@ -81,9 +87,15 @@ data:
     \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
     \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
     \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
-    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\n\
-    std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int\
-    \ w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Breadth-First Search\n\
+    \ */\nstd::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {\n\
+    \    std::vector<int> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int>\
+    \ que;\n    que.push(s);\n\n    while (!que.empty()) {\n        int v = que.front();\n\
+    \        que.pop();\n        for (int u : G[v]) {\n            if (dist[u] ==\
+    \ -1) {\n                dist[u] = dist[v] + 1;\n                que.push(u);\n\
+    \            }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n\
+    \ */\nstd::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int\
+    \ s, int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
     \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
     \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int) buckets.size();\
     \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
@@ -97,11 +109,11 @@ data:
   path: graph/shortest_path.cpp
   requiredBy:
   - graph/range_edge_graph.cpp
-  timestamp: '2021-02-09 14:52:42+09:00'
+  timestamp: '2021-10-07 16:56:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_1_B.test.cpp
+  - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path.cpp
 layout: document
@@ -135,6 +147,16 @@ Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単�
 - `vector<T> dijkstra(vector<vector<Edge<T>>> G, int s)`
     - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
     - 時間計算量: $O(E \lg V)$
+
+## Breadth-First Search
+
+***NOT VERIFIED***
+
+幅優先探索は，重みがすべて1のグラフの単一始点最短経路問題を得アルゴリズムである．
+
+- `vector<T> bfs(vector<vector<Edge<T>>> G, int s)`
+    - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
+    - 時間計算量: $O(V + E)$
 
 ## Dial's Algorithm
 

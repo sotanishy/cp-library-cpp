@@ -74,8 +74,8 @@ data:
   timestamp: '2021-03-31 15:18:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document

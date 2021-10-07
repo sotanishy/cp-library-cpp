@@ -57,8 +57,8 @@ data:
     \ [&](const auto& a, const auto& b) {\n            if (a.l / s != b.l / s) return\
     \ a.l < b.l;\n            return a.r < b.r;\n        });\n        int curL = 0,\
     \ curR = 0;\n        for (auto [id, l, r] : queries) {\n            while (curL\
-    \ > l) exl(--curL);\n            while (curL < l) shl(curL++);\n            while\
-    \ (curR < r) exr(curR++);\n            while (curR > r) shr(--curR);\n       \
+    \ > l) exl(--curL);\n            while (curR < r) exr(curR++);\n            while\
+    \ (curL < l) shl(curL++);\n            while (curR > r) shr(--curR);\n       \
     \     out(id);\n        }\n    }\n\nprivate:\n    struct Query {\n        int\
     \ id, l, r;\n        Query(int id, int l, int r) : id(id), l(l), r(r) {}\n   \
     \ };\n\n    int n, cnt;\n    std::vector<Query> queries;\n};\n#line 6 \"test/yosupo/static_range_inversions_query.test.cpp\"\
@@ -103,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2021-01-30 00:55:50+09:00'
+  timestamp: '2021-10-07 16:56:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp
