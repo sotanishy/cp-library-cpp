@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
-  bundledCode: "#line 1 \"test/aoj/CGL_1_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\"\
+    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
+  bundledCode: "#line 1 \"test/aoj/CGL_3_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C\"\
     \n\n#line 2 \"math/geometry.cpp\"\n#include <algorithm>\n#include <cassert>\n\
     #include <cmath>\n#include <complex>\n#include <iostream>\n#include <vector>\n\
     \n// note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
@@ -91,40 +91,31 @@ data:
     \ ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++] = pts[i];\n    }\n   \
     \ int t = k;\n    // left\n    for (int i = n - 2; i >= 0; --i) {\n        while\
     \ (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++]\
-    \ = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n#line 4 \"test/aoj/CGL_1_C.test.cpp\"\
+    \ = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n#line 4 \"test/aoj/CGL_3_C.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    Vec p0, p1;\n    cin >> p0 >> p1;\n    int q;\n\
-    \    cin >> q;\n    while (q--) {\n        Vec p2;\n        cin >> p2;\n     \
-    \   switch (ccw(p0, p1, p2)) {\n            case 0:\n            if (on_segment(p0,\
-    \ p1, p2)) cout << \"ON_SEGMENT\\n\";\n            else if (on_segment(p1, p2,\
-    \ p0)) cout << \"ONLINE_BACK\\n\";\n            else if (on_segment(p2, p0, p1))\
-    \ cout << \"ONLINE_FRONT\\n\";\n            break;\n\n            case 1:\n  \
-    \          cout << \"COUNTER_CLOCKWISE\\n\";\n            break;\n\n         \
-    \   case -1:\n            cout << \"CLOCKWISE\\n\";\n            break;\n    \
-    \    }\n    }\n}\n\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\"\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
+    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& x : pts) cin >> x;\n \
+    \   int q;\n    cin >> q;\n    while (q--) {\n        Vec p;\n        cin >> p;\n\
+    \        cout << contains(pts, p) << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C\"\
     \n\n#include \"../../math/geometry.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    Vec p0, p1;\n    cin >> p0 >> p1;\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p2;\n        cin >> p2;\n        switch (ccw(p0, p1, p2))\
-    \ {\n            case 0:\n            if (on_segment(p0, p1, p2)) cout << \"ON_SEGMENT\\\
-    n\";\n            else if (on_segment(p1, p2, p0)) cout << \"ONLINE_BACK\\n\"\
-    ;\n            else if (on_segment(p2, p0, p1)) cout << \"ONLINE_FRONT\\n\";\n\
-    \            break;\n\n            case 1:\n            cout << \"COUNTER_CLOCKWISE\\\
-    n\";\n            break;\n\n            case -1:\n            cout << \"CLOCKWISE\\\
-    n\";\n            break;\n        }\n    }\n}\n\n"
+    \    cout << fixed << setprecision(15);\n\n    int n;\n    cin >> n;\n    vector<Vec>\
+    \ pts(n);\n    for (auto& x : pts) cin >> x;\n    int q;\n    cin >> q;\n    while\
+    \ (q--) {\n        Vec p;\n        cin >> p;\n        cout << contains(pts, p)\
+    \ << \"\\n\";\n    }\n}\n"
   dependsOn:
   - math/geometry.cpp
   isVerificationFile: true
-  path: test/aoj/CGL_1_C.test.cpp
+  path: test/aoj/CGL_3_C.test.cpp
   requiredBy: []
   timestamp: '2021-10-09 01:30:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_1_C.test.cpp
+documentation_of: test/aoj/CGL_3_C.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_1_C.test.cpp
-- /verify/test/aoj/CGL_1_C.test.cpp.html
-title: test/aoj/CGL_1_C.test.cpp
+- /verify/test/aoj/CGL_3_C.test.cpp
+- /verify/test/aoj/CGL_3_C.test.cpp.html
+title: test/aoj/CGL_3_C.test.cpp
 ---

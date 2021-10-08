@@ -9,9 +9,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
-    - icon: ':warning:'
-      path: data-structure/convex_hull_trick.cpp
-      title: Convex Hull Trick
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
@@ -27,9 +24,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/leftist_heap.cpp
       title: Leftist Heap
-    - icon: ':heavy_check_mark:'
-      path: data-structure/li_chao_tree.cpp
-      title: Li Chao Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
@@ -83,6 +77,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/treap.cpp
       title: Treap
+  - name: data-structure/cht
+    pages:
+    - icon: ':warning:'
+      path: data-structure/cht/convex_hull_trick.cpp
+      title: data-structure/cht/convex_hull_trick.cpp
+    - icon: ':x:'
+      path: data-structure/cht/li_chao_tree.cpp
+      title: data-structure/cht/li_chao_tree.cpp
   - name: data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -224,7 +226,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/geometry.cpp
       title: Geometry
     - icon: ':warning:'
@@ -368,18 +370,45 @@ data:
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_1_A.test.cpp
+      title: test/aoj/CGL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_1_B.test.cpp
+      title: test/aoj/CGL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_C.test.cpp
       title: test/aoj/CGL_1_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_2_A.test.cpp
+      title: test/aoj/CGL_2_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_2_B.test.cpp
+      title: test/aoj/CGL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_C.test.cpp
       title: test/aoj/CGL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_2_D.test.cpp
+      title: test/aoj/CGL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_3_A.test.cpp
+      title: test/aoj/CGL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_3_B.test.cpp
+      title: test/aoj/CGL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_3_C.test.cpp
+      title: test/aoj/CGL_3_C.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: test/aoj/CGL_7_A.test.cpp
+      title: test/aoj/CGL_7_A.test.cpp
+    - icon: ':x:'
       path: test/aoj/CGL_7_D.test.cpp
       title: test/aoj/CGL_7_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_7_E.test.cpp
       title: test/aoj/CGL_7_E.test.cpp
     - icon: ':heavy_check_mark:'
@@ -534,7 +563,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -588,7 +617,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
