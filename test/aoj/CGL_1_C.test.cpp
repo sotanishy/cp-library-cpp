@@ -4,7 +4,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-using namespace geometry;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -17,11 +16,21 @@ int main() {
     while (q--) {
         Vec p2;
         cin >> p2;
-        if (p0 == p2 || p1 == p2 || on_segment(p0, p1, p2)) cout << "ON_SEGMENT\n";
-        else if (on_segment(p1, p2, p0)) cout << "ONLINE_BACK\n";
-        else if (on_segment(p2, p0, p1)) cout << "ONLINE_FRONT\n";
-        else if (ccw(p0, p1, p2)) cout << "COUNTER_CLOCKWISE\n";
-        else cout << "CLOCKWISE\n";
+        switch (ccw(p0, p1, p2)) {
+            case 0:
+            if (on_segment(p0, p1, p2)) cout << "ON_SEGMENT\n";
+            else if (on_segment(p1, p2, p0)) cout << "ONLINE_BACK\n";
+            else if (on_segment(p2, p0, p1)) cout << "ONLINE_FRONT\n";
+            break;
+
+            case 1:
+            cout << "COUNTER_CLOCKWISE\n";
+            break;
+
+            case -1:
+            cout << "CLOCKWISE\n";
+            break;
+        }
     }
 }
 

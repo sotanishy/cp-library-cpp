@@ -1,4 +1,4 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D"
 #define ERROR 0.00000001
 
 #include "../../math/geometry.cpp"
@@ -16,7 +16,6 @@ int main() {
     while (q--) {
         Vec p0, p1, p2, p3;
         cin >> p0 >> p1 >> p2 >> p3;
-        auto q = intersection_segments(p0, p1, p2, p3);
-        cout << q.real() << " " << q.imag() << "\n";
+        cout << dist_segments(p0, p1, p2, p3) << "\n";
     }
 }

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
-#include "../../data-structure/li_chao_tree.cpp"
+#include "../../data-structure/cht/li_chao_tree.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -47,7 +47,7 @@ int main() {
         if (q.t == 0) {
             lct.add_line(q.a, q.b);
         } else {
-            cout << lct.get_min(lower_bound(xs.begin(), xs.end(), q.p) - xs.begin()) << "\n";
+            cout << lct.get(lower_bound(xs.begin(), xs.end(), q.p) - xs.begin()) << "\n";
         }
     }
 }

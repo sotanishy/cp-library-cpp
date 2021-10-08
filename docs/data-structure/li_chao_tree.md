@@ -1,4 +1,9 @@
-# Li Chao Tree
+---
+title: Li Chao Tree
+documentation_of: ../../../data-structure/cht/li_chao_tree.cpp
+---
+
+## Description
 
 Li Chao tree は，直線及び線分の集合をセグメント木で管理し，与えられた $x$ 座標での最小値を取得するデータ構造である．
 

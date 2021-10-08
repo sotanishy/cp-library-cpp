@@ -4,14 +4,8 @@
 #include <utility>
 #include <vector>
 
-/*
- * @brief Li Chao Tree
- * @docs docs/data-structure/li_chao_tree.md
- */
 template <typename T>
 class LiChaoTree {
-    using Line = std::pair<T, T>;
-
 public:
     LiChaoTree() = default;
     explicit LiChaoTree(const std::vector<T>& vs) : xs(vs) {
@@ -43,31 +37,33 @@ public:
         }
     }
 
-    T get_min(int k) const {
+    T get(int k) const {
         const T x = xs[k];
         k += size;
-        T res = f(node[k], x);
-        while (k >>= 1) res = std::min(res, f(node[k], x));
+        T res = node[k](x);
+        while (k >>= 1) res = std::min(res, node[k](x));
         return res;
     }
 
 private:
+    struct Line {
+        T a, b;
+        Line(T a, T b) : a(a), b(b) {}
+        T operator()(T x) { return a * x + b; }
+    };
+
     static constexpr T INF = std::numeric_limits<T>::max();
 
     int size;
     std::vector<T> xs;
     std::vector<Line> node;
 
-    inline T f(const Line& line, T x) const {
-        return line.first * x + line.second;
-    }
-
     void update(Line line, int k, int l, int r) {
         while (true) {
             int m = (l + r) / 2;
-            bool left = f(line, xs[l]) < f(node[k], xs[l]);
-            bool mid = f(line, xs[m]) < f(node[k], xs[m]);
-            bool right = f(line, xs[r]) < f(node[k], xs[r]);
+            bool left = line(xs[l]) < node[k](xs[l]);
+            bool mid = line(xs[m]) < node[k](xs[m]);
+            bool right = line(xs[r]) < node[k](xs[r]);
 
             if (!left && !right) break;
             if (left && right) {
@@ -85,4 +81,4 @@ private:
             }
         }
     }
-};
+}

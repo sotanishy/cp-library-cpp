@@ -5,8 +5,6 @@
 
 template <typename T>
 class ConvexHullTrick {
-    using Line = std::pair<T, T>;
-
 public:
     explicit ConvexHullTrick(bool monotone_query = false) : monotone_query(monotone_query) {}
 
@@ -18,38 +16,40 @@ public:
         lines.push_back(line);
     }
 
-    T get(T x) {
+    T get(T x) const {
         if (monotone_query) {
-            while (lines.size() - head >= 2 && f(head, x) > f(head + 1, x)) {
+            while (lines.size() - head >= 2 && lines[head](x) > lines[head + 1](x)) {
                 ++head;
             }
-            return f(head, x);
+            return lines[head](x);
         } else {
             int lb = -1, ub = lines.size() - 1;
             while (ub - lb > 1) {
                 int m = (lb + ub) / 2;
-                if (f(m, x) > f(m + 1, x)) {
+                if (lines[m](x) > lines[m + 1](x)) {
                     lb = m;
                 } else {
                     ub = m;
                 }
             }
-            return f(ub, x);
+            return lines[ub](x);
         }
     }
 
 private:
+    struct Line {
+        T a, b;
+        Line(T a, T b) : a(a), b(b) {}
+        T operator()(T x) { return a * x + b; }
+    };
+
     std::vector<Line> lines;
     bool monotone_query;
     int head = 0;
 
-    bool check(Line l1, Line l2, Line l3) {
+    bool check(Line l1, Line l2, Line l3) const {
         if (l1 > l3) std::swap(l1, l3);
         return (l3.first - l1.first) * (l2.second - l1.second) >=
                (l2.first - l1.first) * (l3.second - l1.second);
-    }
-
-    inline T f(int i, T x) {
-        return lines[i].first * x + lines[i].second;
     }
 };
