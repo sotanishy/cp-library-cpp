@@ -16,7 +16,7 @@ int main() {
     while (q--) {
         Vec p0, p1, p2, p3;
         cin >> p0 >> p1 >> p2 >> p3;
-        auto q = intersection_segments(p0, p1, p2, p3);
+        auto q = intersection_lines(p0, p1, p2, p3);
         cout << q.real() << " " << q.imag() << "\n";
     }
 }

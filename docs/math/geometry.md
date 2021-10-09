@@ -49,14 +49,14 @@ documentation_of: ../../math/geometry.cpp
  - `T dist_segments(Vec a, Vec b, Vec c, Vec d)`
     - 線分 $ab$ と線分 $cd$ の距離を求める
 
-- `Vec intersection_segments(Vec a, Vec b, Vec c, Vec d)`
+- `Vec intersection_lines(Vec a, Vec b, Vec c, Vec d)`
     - 直線 $ab$ と直線 $cd$ の交点を求める
+
+- `vector<Vec> intersection_circle_line(Vec c, T r, Vec a, Vec b)`
+    - 中心 $c$，半径 $r$ の円と直線 $ab$ の交点を求める
 
 - `vector<Vec> intersection_circles(Vec c1, T r1, Vec c2, T r2)`
     - 中心 $c_1$，半径 $r_1$ の円と中心 $c_2$，半径 $r_2$ の円の交点を求める
-
-- `vector<Vec> intersection_circle_line(Vec c, T r, Vec p1, T p2)`
-    - 中心 $c$，半径 $r$ の円と直線 $p_1 p_2$ の交点を求める
 
 - `T area(vector<Vec> pts)`
     - 多角形 $pts$ の面積を求める
@@ -74,14 +74,26 @@ documentation_of: ../../math/geometry.cpp
     - 三角形 $ABC$ の重心を返す
     - ***NOT VERIFIED***
 
-- `Vec circumcenter(Vec A, Vec B, Vec C)`
-    - 三角形 $ABC$ の外心を返す
-    - ***NOT VERIFIED***
-
 - `Vec incenter(Vec A, Vec B, Vec C)`
     - 三角形 $ABC$ の内心を返す
-    - ***NOT VERIFIED***
+
+- `Vec circumcenter(Vec A, Vec B, Vec C)`
+    - 三角形 $ABC$ の外心を返す
 
 - `vector<Vec> convex_hull(vector<Vec> pts)`
     - 与えられた点の凸包を返す
     - 時間計算量: $O(n\log n)$
+
+- `T closest_pair(vector<Vec> pts)`
+    - 与えられた点のうち最も近い2点の距離を分割統治法で求める
+    - 時間計算量: $O(n\log n)$
+
+
+## TODO
+
+- 多角形の直径
+- convex cut
+- 円の接線
+- 共通接線
+- 円と多角形の共通部分の面積
+- 2円の共通部分の面積

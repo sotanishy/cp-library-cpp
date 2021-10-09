@@ -5,7 +5,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-using namespace geometry;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -23,11 +22,11 @@ int main() {
         auto ans = intersection_circle_line(c, r, p1, p2);
         if (ans.size() == 1) {
             cout << ans[0].real() << " " << ans[0].imag() << " ";
-            cout << ans[0].real() << " " << ans[0].imag() << endl;
+            cout << ans[0].real() << " " << ans[0].imag() << "\n";
         } else {
             if (make_pair(ans[0].real(), ans[0].imag()) > make_pair(ans[1].real(), ans[1].imag())) swap(ans[0], ans[1]);
             cout << ans[0].real() << " " << ans[0].imag() << " ";
-            cout << ans[1].real() << " " << ans[1].imag() << endl;
+            cout << ans[1].real() << " " << ans[1].imag() << "\n";
         }
     }
 }

@@ -77,7 +77,7 @@ T dist_segments(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
     );
 }
 
-Vec intersection_segments(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
+Vec intersection_lines(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
     Vec p = b - a;
     Vec q = d - c;
     Vec r = c - a;
@@ -85,30 +85,27 @@ Vec intersection_segments(const Vec& a, const Vec& b, const Vec& c, const Vec& d
     return a + cross(q, r) / cross(q, p) * p;
 }
 
-std::vector<Vec> intersection_circles(const Vec& c1, T r1, const Vec& c2, T r2) {
-    T d = std::abs(c1 - c2);
-    // if the circles are outside of each other
-    if (lt(r1 + r2, d)) return {};
-    // if one contains the other entirely
-    if (lt(d, std::abs(r2 - r1))) return {};
-    T x = (r1*r1 - r2*r2 + d*d) / (2*d);
-    T y = std::sqrt(r1*r1 - x*x);
-    Vec e1 = (c2 - c1) / std::abs(c2 - c1);
+std::vector<Vec> intersection_circle_line(const Vec& c, T r, const Vec& a, const Vec& b) {
+    T d = dist_line_point(a, b, c);
+    if (lt(r, d)) return {};  // no intersection
+    Vec e1 = (b - a) / std::abs(b - a);
     Vec e2 = Vec(-e1.imag(), e1.real());
-    return {c1 + x*e1 + y*e2, c1 + x*e1 - y*e2};
+    if (ccw(c, a, b) == 1) e2 *= -1;
+    if (eq(r, d)) return {c + d*e2};  // tangent
+    T t = std::sqrt(r*r - d*d);
+    return {c + d*e2 + t*e1, c + d*e2 - t*e1};
 }
 
-std::vector<Vec> intersection_circle_line(const Vec& c, T r, const Vec& p1, const Vec& p2) {
-    T d = dist_line_point(p1, p2, c);
-    // no intersection
-    if (lt(r, d)) return {};
-    Vec e1 = (p2 - p1) / std::abs(p2 - p1);
+std::vector<Vec> intersection_circles(const Vec& c1, T r1, const Vec& c2, T r2) {
+    T d = std::abs(c1 - c2);
+    if (lt(r1 + r2, d)) return {};  // outside
+    Vec e1 = (c2 - c1) / std::abs(c2 - c1);
     Vec e2 = Vec(-e1.imag(), e1.real());
-    T t = std::sqrt(r*r - d*d);
-    if (eq(d, 0)) return {c + t*e1, c - t*e1};
-    if (ccw(c, p1, p2) == 1) e2 *= -1;
-    if (eq(r, d)) return {c + d*e2};
-    return {c + d*e2 + t*e1, c + d*e2 - t*e1};
+    if (lt(d, std::abs(r2 - r1))) return {};  // contain
+    if (eq(d, std::abs(r2 - r1))) return {c1 + r1*e1};  // tangent
+    T x = (r1*r1 - r2*r2 + d*d) / (2*d);
+    T y = std::sqrt(r1*r1 - x*x);
+    return {c1 + x*e1 + y*e2, c1 + x*e1 - y*e2};
 }
 
 T area(const std::vector<Vec>& pts) {
@@ -147,17 +144,6 @@ Vec centroid(const Vec& A, const Vec& B, const Vec& C) {
     return (A + B + C) / T(3);
 }
 
-Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
-    assert(ccw(A, B, C) != 0);
-    T a = std::abs(B - C);
-    T b = std::abs(C - A);
-    T c = std::abs(A - B);
-    T cosA = (b*b + c*c - a*a) / (2*b*c);
-    T cosB = (c*c + a*a - b*b) / (2*c*a);
-    T cosC = (a*a + b*b - c*c) / (2*a*b);
-    return (a*cosA*A + b*cosB*B + c*cosC*C) / (a*cosA + b*cosB + c*cosC);
-}
-
 Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
     assert(ccw(A, B, C) != 0);
     T a = std::abs(B - C);
@@ -165,6 +151,23 @@ Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
     T c = std::abs(A - B);
     return (a*A + b*B + c*C) / (a + b + c);
 }
+
+Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
+    assert(ccw(A, B, C) != 0);
+    auto p = B - A, q = C - A;
+    return A + intersection_lines(p/T(2), p/T(2) + Vec(-p.imag(), p.real()),
+                                  q/T(2), q/T(2) + Vec(-q.imag(), q.real()));
+}
+
+// large error but beautiful
+// Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
+//     assert(ccw(A, B, C) != 0);
+//     Vec p = C - B, q = A - C, r = B - A;
+//     T a = std::norm(p) * dot(q, r);
+//     T b = std::norm(q) * dot(r, p);
+//     T c = std::norm(r) * dot(p, q);
+//     return (a*A + b*B + c*C) / (a + b + c);
+// }
 
 std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
     int n = pts.size();
@@ -186,4 +189,32 @@ std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
     }
     ch.resize(k - 1);
     return ch;
+}
+
+T closest_pair(std::vector<Vec>& pts) {
+    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {
+        return v1.real() < v2.real();
+    });
+
+    auto rec = [&](const auto& rec, int l, int r) -> T {
+        if (r - l <= 1) return std::numeric_limits<T>::max();
+        int m = (l + r) / 2;
+        T x = pts[m].real();
+        T d = std::min(rec(rec, l, m), rec(rec, m, r));
+        std::inplace_merge(pts.begin() + l, pts.begin() + m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {
+            return v1.imag() < v2.imag();
+        });
+        std::vector<Vec> b;
+        for (int i = l; i < r; ++i) {
+            if (leq(d, std::abs(pts[i].real() - x))) continue;
+            for (int j = (int) b.size() - 1; j >= 0; --j) {
+                if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;
+                d = std::min(d, std::abs(pts[i] - b[j]));
+            }
+            b.push_back(pts[i]);
+        }
+        return d;
+    };
+
+    return rec(rec, 0, pts.size());
 }
