@@ -81,10 +81,13 @@ data:
     pages:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.cpp
-      title: data-structure/cht/convex_hull_trick.cpp
-    - icon: ':x:'
+      title: Convex Hull Trick
+    - icon: ':warning:'
+      path: data-structure/cht/dynamic_convex_hull_trick.cpp
+      title: data-structure/cht/dynamic_convex_hull_trick.cpp
+    - icon: ':heavy_check_mark:'
       path: data-structure/cht/li_chao_tree.cpp
-      title: data-structure/cht/li_chao_tree.cpp
+      title: Li Chao Tree
   - name: data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -226,7 +229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/geometry.cpp
       title: Geometry
     - icon: ':warning:'
@@ -381,7 +384,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_A.test.cpp
       title: test/aoj/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -402,13 +405,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
-    - icon: ':x:'
-      path: test/aoj/CGL_7_A.test.cpp
-      title: test/aoj/CGL_7_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_5_A.test.cpp
+      title: test/aoj/CGL_5_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_7_B.test.cpp
+      title: test/aoj/CGL_7_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_7_C.test.cpp
+      title: test/aoj/CGL_7_C.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_D.test.cpp
       title: test/aoj/CGL_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_E.test.cpp
       title: test/aoj/CGL_7_E.test.cpp
     - icon: ':heavy_check_mark:'
@@ -563,7 +572,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -617,7 +626,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'

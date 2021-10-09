@@ -11,12 +11,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    ERROR: '0.000001'
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-  bundledCode: "#line 1 \"test/aoj/CGL_2_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\"\
-    \n#define ERROR 0.00000001\n\n#line 2 \"math/geometry.cpp\"\n#include <algorithm>\n\
+    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
+  bundledCode: "#line 1 \"test/aoj/CGL_5_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
+    \n#define ERROR 0.000001\n\n#line 2 \"math/geometry.cpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
     #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
     \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconstexpr T eps = 1e-12;\n\
@@ -107,31 +107,29 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n#line 5 \"test/aoj/CGL_2_D.test.cpp\"\n\n#include\
+    \ rec(rec, 0, pts.size());\n}\n#line 5 \"test/aoj/CGL_5_A.test.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    int q;\n\
-    \    cin >> q;\n    while (q--) {\n        Vec p0, p1, p2, p3;\n        cin >>\
-    \ p0 >> p1 >> p2 >> p3;\n        cout << dist_segments(p0, p1, p2, p3) << \"\\\
-    n\";\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\"\
-    \n#define ERROR 0.00000001\n\n#include \"../../math/geometry.cpp\"\n\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    int q;\n\
-    \    cin >> q;\n    while (q--) {\n        Vec p0, p1, p2, p3;\n        cin >>\
-    \ p0 >> p1 >> p2 >> p3;\n        cout << dist_segments(p0, p1, p2, p3) << \"\\\
-    n\";\n    }\n}"
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
+    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& p : pts) cin >> p;\n \
+    \   cout << closest_pair(pts) << endl;\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
+    \n#define ERROR 0.000001\n\n#include \"../../math/geometry.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
+    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& p : pts) cin >> p;\n \
+    \   cout << closest_pair(pts) << endl;\n}\n"
   dependsOn:
   - math/geometry.cpp
   isVerificationFile: true
-  path: test/aoj/CGL_2_D.test.cpp
+  path: test/aoj/CGL_5_A.test.cpp
   requiredBy: []
   timestamp: '2021-10-09 20:53:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_2_D.test.cpp
+documentation_of: test/aoj/CGL_5_A.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_2_D.test.cpp
-- /verify/test/aoj/CGL_2_D.test.cpp.html
-title: test/aoj/CGL_2_D.test.cpp
+- /verify/test/aoj/CGL_5_A.test.cpp
+- /verify/test/aoj/CGL_5_A.test.cpp.html
+title: test/aoj/CGL_5_A.test.cpp
 ---
