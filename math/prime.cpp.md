@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/carmichael.cpp
+    title: Carmichael Function
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.is_prime.test.cpp
@@ -53,7 +56,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/prime.cpp
-  requiredBy: []
+  requiredBy:
+  - math/carmichael.cpp
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

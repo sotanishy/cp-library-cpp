@@ -206,6 +206,9 @@ data:
       path: math/berlekamp_massey.cpp
       title: Berlekamp-Massey Algorithm
     - icon: ':warning:'
+      path: math/carmichael.cpp
+      title: Carmichael Function
+    - icon: ':warning:'
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
@@ -342,6 +345,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
+    - icon: ':warning:'
+      path: tree/rerooting.cpp
+      title: Rerooting
     - icon: ':heavy_check_mark:'
       path: tree/tree_diameter.cpp
       title: Diameter of a Tree
