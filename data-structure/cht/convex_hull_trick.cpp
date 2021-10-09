@@ -40,7 +40,7 @@ private:
     struct Line {
         T a, b;
         Line(T a, T b) : a(a), b(b) {}
-        T operator()(T x) { return a * x + b; }
+        T operator()(T x) const { return a * x + b; }
     };
 
     std::vector<Line> lines;

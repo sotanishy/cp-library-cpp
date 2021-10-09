@@ -49,7 +49,7 @@ private:
     struct Line {
         T a, b;
         Line(T a, T b) : a(a), b(b) {}
-        T operator()(T x) { return a * x + b; }
+        T operator()(T x) const { return a * x + b; }
     };
 
     static constexpr T INF = std::numeric_limits<T>::max();
@@ -81,4 +81,4 @@ private:
             }
         }
     }
-}
+};
