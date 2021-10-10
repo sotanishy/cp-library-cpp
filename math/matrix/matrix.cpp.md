@@ -10,6 +10,9 @@ data:
     title: System of Linear Equations
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/inverse_matrix.test.cpp
+    title: test/yosupo/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,6 +130,7 @@ data:
   verifiedWith:
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
+  - test/yosupo/inverse_matrix.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 title: Matrix

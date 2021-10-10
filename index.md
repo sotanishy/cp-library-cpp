@@ -82,12 +82,18 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.cpp
       title: Convex Hull Trick
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/cht/dynamic_convex_hull_trick.cpp
-      title: data-structure/cht/dynamic_convex_hull_trick.cpp
+      title: Dynamic Convex Hull Trick
     - icon: ':heavy_check_mark:'
       path: data-structure/cht/li_chao_tree.cpp
       title: Li Chao Tree
+    - icon: ':warning:'
+      path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
+      title: data-structure/cht/offline_deletable_convex_hull_trick.cpp
+    - icon: ':warning:'
+      path: data-structure/cht/undoable_li_chao_tree.cpp
+      title: data-structure/cht/undoable_li_chao_tree.cpp
   - name: data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -576,11 +582,17 @@ data:
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/inverse_matrix.test.cpp
+      title: test/yosupo/inverse_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/line_add_get_min.test.cpp
-      title: test/yosupo/line_add_get_min.test.cpp
+      path: test/yosupo/line_add_get_min.cht.test.cpp
+      title: test/yosupo/line_add_get_min.cht.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/line_add_get_min.lct.test.cpp
+      title: test/yosupo/line_add_get_min.lct.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp

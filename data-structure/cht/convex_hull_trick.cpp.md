@@ -24,8 +24,8 @@ data:
     \        }\n    }\n\nprivate:\n    struct Line {\n        T a, b;\n        Line(T\
     \ a, T b) : a(a), b(b) {}\n        T operator()(T x) const { return a * x + b;\
     \ }\n    };\n\n    std::vector<Line> lines;\n    bool monotone_query;\n    int\
-    \ head = 0;\n\n    bool check(Line l1, Line l2, Line l3) const {\n        if (l1\
-    \ > l3) std::swap(l1, l3);\n        return (l3.first - l1.first) * (l2.second\
+    \ head = 0;\n\n    static bool check(Line l1, Line l2, Line l3) {\n        if\
+    \ (l1 > l3) std::swap(l1, l3);\n        return (l3.first - l1.first) * (l2.second\
     \ - l1.second) >=\n               (l2.first - l1.first) * (l3.second - l1.second);\n\
     \    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
@@ -43,15 +43,15 @@ data:
     \       }\n            return lines[ub](x);\n        }\n    }\n\nprivate:\n  \
     \  struct Line {\n        T a, b;\n        Line(T a, T b) : a(a), b(b) {}\n  \
     \      T operator()(T x) const { return a * x + b; }\n    };\n\n    std::vector<Line>\
-    \ lines;\n    bool monotone_query;\n    int head = 0;\n\n    bool check(Line l1,\
-    \ Line l2, Line l3) const {\n        if (l1 > l3) std::swap(l1, l3);\n       \
-    \ return (l3.first - l1.first) * (l2.second - l1.second) >=\n               (l2.first\
+    \ lines;\n    bool monotone_query;\n    int head = 0;\n\n    static bool check(Line\
+    \ l1, Line l2, Line l3) {\n        if (l1 > l3) std::swap(l1, l3);\n        return\
+    \ (l3.first - l1.first) * (l2.second - l1.second) >=\n               (l2.first\
     \ - l1.first) * (l3.second - l1.second);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/cht/convex_hull_trick.cpp
   requiredBy: []
-  timestamp: '2021-10-09 19:00:16+09:00'
+  timestamp: '2021-10-10 23:27:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/cht/convex_hull_trick.cpp
@@ -63,7 +63,7 @@ title: Convex Hull Trick
 
 Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエリを効率的に行う手法である．
 
-この実装では，追加する直線の傾きが単調非増加である必要がある．傾きに単調性がないときは Li Chao tree を使用のこと．
+この実装では，追加する直線の傾きが単調非増加である必要がある．傾きに単調性がないときは動的 CHT または Li Chao tree を使用せよ．
 
 空間計算量: $O(n)$
 

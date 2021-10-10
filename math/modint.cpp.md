@@ -28,6 +28,9 @@ data:
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/inverse_matrix.test.cpp
+    title: test/yosupo/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -134,6 +137,7 @@ data:
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/inverse_matrix.test.cpp
 documentation_of: math/modint.cpp
 layout: document
 redirect_from:
