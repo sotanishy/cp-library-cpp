@@ -13,7 +13,7 @@ documentation_of: ../../graph/offline_dynamic_connectivity.cpp
 
 Undo 可能 union find を用いることでこれらの操作を実現する．
 
-空間計算量: $O(n + q\lg q)$, $q$ はクエリ数
+空間計算量: $O(n + q\log q)$, $q$ はクエリ数
 
 ## Operations
 
@@ -37,4 +37,4 @@ Undo 可能 union find を用いることでこれらの操作を実現する．
     - 時間計算量: $O(1)$
 - `vector<T> run()`
     - クエリを実行し，`component_fold`の結果を返す
-    - 時間計算量: $O(n + q\log nq)$
+    - 時間計算量: $O(n + q\log q\log n)$

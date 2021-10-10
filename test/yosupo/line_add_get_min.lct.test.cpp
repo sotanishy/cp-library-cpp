@@ -37,8 +37,6 @@ int main() {
             xs.push_back(p);
         }
     }
-    sort(xs.begin(), xs.end());
-    xs.erase(unique(xs.begin(), xs.end()), xs.end());
     LiChaoTree<ll> lct(xs);
     for (auto& p : ab) {
         lct.add_line(p.first, p.second);
@@ -47,7 +45,7 @@ int main() {
         if (q.t == 0) {
             lct.add_line(q.a, q.b);
         } else {
-            cout << lct.get(lower_bound(xs.begin(), xs.end(), q.p) - xs.begin()) << "\n";
+            cout << lct.get(q.p) << "\n";
         }
     }
 }

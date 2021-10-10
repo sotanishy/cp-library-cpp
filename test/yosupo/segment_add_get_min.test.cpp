@@ -48,20 +48,15 @@ int main() {
             xs.push_back(p);
         }
     }
-    sort(xs.begin(), xs.end());
-    xs.erase(unique(xs.begin(), xs.end()), xs.end());
-    auto compress = [&](int x) {
-        return lower_bound(xs.begin(), xs.end(), x) - xs.begin();
-    };
     LiChaoTree<ll> lct(xs);
     for (auto& s : seg) {
-        lct.add_segment(s.a, s.b, compress(s.l), compress(s.r));
+        lct.add_segment(s.a, s.b, s.l, s.r);
     }
     for (auto& q : query) {
         if (q.t == 0) {
-            lct.add_segment(q.seg.a, q.seg.b, compress(q.seg.l), compress(q.seg.r));
+            lct.add_segment(q.seg.a, q.seg.b, q.seg.l, q.seg.r);
         } else {
-            ll ans = lct.get(compress(q.p));
+            ll ans = lct.get(q.p);
             if (ans > 5e18) cout << "INFINITY\n";
             else cout << ans << "\n";
         }

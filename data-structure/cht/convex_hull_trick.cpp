@@ -47,7 +47,7 @@ private:
     bool monotone_query;
     int head = 0;
 
-    bool check(Line l1, Line l2, Line l3) const {
+    static bool check(Line l1, Line l2, Line l3) {
         if (l1 > l3) std::swap(l1, l3);
         return (l3.first - l1.first) * (l2.second - l1.second) >=
                (l2.first - l1.first) * (l3.second - l1.second);
