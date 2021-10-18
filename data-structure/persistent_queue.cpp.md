@@ -99,8 +99,3 @@ title: Persistent Queue
 - `PersistentQueue pop()`
     - キューの先頭要素を削除する
     - 時間計算量: $O(1)$
-
-## TODO
-
-- ダブリングによる実装
-- [これ](https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf) 読む

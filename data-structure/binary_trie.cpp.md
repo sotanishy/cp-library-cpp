@@ -147,10 +147,3 @@ title: Binary Trie
 
 - [非負整数値を扱う Trie について](https://kazuma8128.hatenablog.com/entry/2018/05/06/022654)
 - [binaryTrie: A digital search tree](http://opendatastructures.org/ods-java/13_1_binaryTrie_digital_sea.html)
-
-## TODO
-
-- `lower_bound`, `upper_bound`, `kth_element` の実装
-- jump ポインタによる高速化
-- 遅延評価
-- 永続化

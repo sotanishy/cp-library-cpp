@@ -13,14 +13,14 @@ Fenwick tree，または binary indexed tree (BIT) は，可換モノイド $(T,
     - 時間計算量: $O(n)$
 - `T prefix_fold(int i)`
     - 区間 $[0, i)$ の値を fold する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `void update(int i, T x)`
     - $i$ 番目の要素を $x$ と演算した値に更新する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `int lower_bound(T x)`
 - `int lower_bound(T x, Compare cmp)`
     - `cmp(prefix_fold(i), x) == false` となる最初の $i$ を返す．そのような $i$ が存在しない場合は $n$ を返す．`cmp` を指定しない場合は `<` で比較される．列の単調性を仮定する．
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Reference
 

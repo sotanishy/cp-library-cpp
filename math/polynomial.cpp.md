@@ -211,16 +211,16 @@ title: Polynomial
 
 - `Polynomial inv(int deg)`
     - $\frac{1}{f(x)}$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \lg n)$
+    - 時間計算量: $O(n \log n)$
 - `Polynomial exp(int deg)`
     - $\exp(f(x))$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \lg n)$
+    - 時間計算量: $O(n \log n)$
 - `Polynomial log(int deg)`
     - $\log(f(x))$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \lg n)$
+    - 時間計算量: $O(n \log n)$
 - `Polynomial pow(long long k, int deg)`
     - $(f(x))^k$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \lg n)$
+    - 時間計算量: $O(n \log n)$
 - `Polynomial diff()`
     - $f'(x)$ を計算する
     - 時間計算量: $O(n)$

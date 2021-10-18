@@ -147,7 +147,26 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n"
+    \ rec(rec, 0, pts.size());\n}\n\n\n/*\n// for 3d geometry\n// functions that will\
+    \ work without any modifications\n// projection, reflection, dist_line_point,\
+    \ dist_segment_point, dist_segments,\n// centroid, incenter\n\nstruct Vec {\n\
+    \    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T y, T z) : x(x),\
+    \ y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) { x += r.x; y +=\
+    \ r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const Vec& r)\
+    \ { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec& operator*=(T\
+    \ r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec& operator/=(T\
+    \ r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec operator-()\
+    \ const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r)\
+    \ const { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r)\
+    \ const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const {\
+    \ return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
+    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
+    \ r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y,\
+    \ z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nT dot(const\
+    \ Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const\
+    \ Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n\
+    }\n\nnamespace std {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const\
+    \ Vec& a) { return std::sqrt(std::norm(a)); }\n}\n\n*/\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
     #include <complex>\n#include <iostream>\n#include <vector>\n\n// note that if\
     \ T is of an integer type, std::abs does not work\nusing T = double;\nusing Vec\
@@ -239,12 +258,31 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}"
+    \ rec(rec, 0, pts.size());\n}\n\n\n/*\n// for 3d geometry\n// functions that will\
+    \ work without any modifications\n// projection, reflection, dist_line_point,\
+    \ dist_segment_point, dist_segments,\n// centroid, incenter\n\nstruct Vec {\n\
+    \    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T y, T z) : x(x),\
+    \ y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) { x += r.x; y +=\
+    \ r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const Vec& r)\
+    \ { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec& operator*=(T\
+    \ r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec& operator/=(T\
+    \ r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec operator-()\
+    \ const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r)\
+    \ const { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r)\
+    \ const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const {\
+    \ return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
+    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
+    \ r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y,\
+    \ z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nT dot(const\
+    \ Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const\
+    \ Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n\
+    }\n\nnamespace std {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const\
+    \ Vec& a) { return std::sqrt(std::norm(a)); }\n}\n\n*/"
   dependsOn: []
   isVerificationFile: false
   path: math/geometry.cpp
   requiredBy: []
-  timestamp: '2021-10-09 20:53:47+09:00'
+  timestamp: '2021-10-18 17:48:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_3_A.test.cpp
@@ -352,13 +390,3 @@ title: Geometry
 - `T closest_pair(vector<Vec> pts)`
     - 与えられた点のうち最も近い2点の距離を分割統治法で求める
     - 時間計算量: $O(n\log n)$
-
-
-## TODO
-
-- 多角形の直径
-- convex cut
-- 円の接線
-- 共通接線
-- 円と多角形の共通部分の面積
-- 2円の共通部分の面積

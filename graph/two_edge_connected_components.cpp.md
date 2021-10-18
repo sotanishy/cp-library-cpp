@@ -85,5 +85,7 @@ title: 2-Edge-Connected Components
     - 時間計算量: $O(V + E)$
 - `int operator[](int i)`
     - 頂点 $v$ が属する二辺連結成分のラベルを返す
+    - 時間計算量: $O(1)$
 - `int count()`
     - $G$ の二辺連結成分の数を返す
+    - 時間計算量: $O(1)$

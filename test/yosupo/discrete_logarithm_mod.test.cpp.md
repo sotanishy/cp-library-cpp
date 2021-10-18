@@ -17,9 +17,9 @@ data:
   bundledCode: "#line 1 \"test/yosupo/discrete_logarithm_mod.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\n\n#line 2 \"math/mod_arithmetic.cpp\"\
     \n#include <cmath>\n#include <numeric>\n#include <unordered_map>\n\n/*\n * Modular\
-    \ Exponentiation\n */\nlong long mod_pow(long long a, long long p, int mod) {\n\
-    \    long long ret = 1;\n    while (p > 0) {\n        if (p & 1) ret = ret * a\
-    \ % mod;\n        a = a * a % mod;\n        p >>= 1;\n    }\n    return ret;\n\
+    \ Exponentiation\n */\nlong long mod_pow(long long a, long long e, int mod) {\n\
+    \    long long ret = 1;\n    while (e > 0) {\n        if (e & 1) ret = ret * a\
+    \ % mod;\n        a = a * a % mod;\n        e >>= 1;\n    }\n    return ret;\n\
     }\n\nlong long mod_inv(long long a, int mod) {\n    return mod_pow(a, mod - 2,\
     \ mod);\n}\n\n/*\n * Discrete Logarithm\n */\nint mod_log(long long a, long long\
     \ b, int mod) {\n    // make a and mod coprime\n    a %= mod;\n    b %= mod;\n\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:15:51+09:00'
+  timestamp: '2021-10-18 17:48:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/discrete_logarithm_mod.test.cpp

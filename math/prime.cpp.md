@@ -82,18 +82,16 @@ $n$ を試し割り法で素数判定する．
 
 ## Prime Table
 
-***NOT VERIFIED***
-
 エラトステネスの篩を用いて，$n$ 以下の整数の素数表を構築する．
 
 - `vector<bool> prime_table(int n)`
     - $n$ 以下の整数の素数表を構築する
-    - 時間計算量: $O(n\ln\ln n)$
+    - 時間計算量: $O(n\log\log n)$
 
 ## Prime Factorization
 
 $n$ を試し割り法で素因数分解する．
 
 - `map<long long, int> prime_factor(long long n)`
-    - $n$ を素因数分解し，素因数とその個数の map を返す．
+    - $n$ を素因数分解し，素因数とその個数を返す．
     - 時間計算量: $O(\sqrt{n})$

@@ -98,7 +98,3 @@ title: Persistent Union Find
 ## Reference
 
 - [A Persistent Union-Find Data Structure](https://www.lri.fr/~filliatr/ftp/publis/puf-wml07.pdf)
-
-## TODO
-
-- 論文 読む

@@ -151,10 +151,10 @@ Undo 可能 union find を用いることでこれらの操作を実現する．
     - 時間計算量: $O(n)$
 - `void link(int u, int v)`
     - 辺 $uv$ を追加する
-    - 時間計算量: $O(\lg q)$
+    - 時間計算量: $O(\log q)$
 - `void cut(int u, int v)`
     - 辺 $uv$ を削除する
-    - 時間計算量: $O(\lg q)$
+    - 時間計算量: $O(\log q)$
 - `void update(int v, T x)`
     - $a_v$ を $a_v \cdot x$ に更新する
     - 時間計算量: $O(1)$

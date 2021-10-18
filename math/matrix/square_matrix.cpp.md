@@ -147,7 +147,7 @@ title: Square Matrix
     - 時間計算量: $O(n^2)$
 - `SquareMatrix pow(long long k)`
     - $A^k$ を返す
-    - 時間計算量: $O(n^3 \lg k)$
+    - 時間計算量: $O(n^3 \log k)$
 - `T det()`
     - 行列式 $\det(A)$ を返す
     - 時間計算量: $O(n^3)$

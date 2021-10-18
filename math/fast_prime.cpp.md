@@ -125,8 +125,8 @@ $n$ を Miller-Rabin 法で素数判定する．
 
 ## Prime Factorization
 
-$n$ を Pollard's Rho 法で素因数分解する．
+$n$ を Pollard's rho 法で素因数分解する．
 
 - `vector<long long> prime_factor(long long n)`
-    - $n$ の素因数のリストを返す．
+    - $n$ の素因数のリストを返す
     - 時間計算量: $\mathrm{expected}\ O(n^{\frac{1}{4}} \log n)$

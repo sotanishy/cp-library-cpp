@@ -101,4 +101,4 @@ title: Minimum Cost Flow
     - 時間計算量: $O(1)$
 - `Cost min_cost_flow(int s, int t, Cap f)`
     - 始点 $s$ から終点 $t$ への流量 $f$ の最小費用流を求める
-    - 時間計算量: $O(fE\lg V)$
+    - 時間計算量: $O(fE\log V)$

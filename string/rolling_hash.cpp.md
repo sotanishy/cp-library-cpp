@@ -71,6 +71,8 @@ title: Rolling Hash
 
 この実装では $\mod 2^{61} - 1$ を用いている．
 
+この実装は内部で `__int128_t` を用いているが，Codeforces ではそれが使用できないので注意．Codeforces で rolling hash を使いたいときは，`mod` を 32 bit 以下の適当な整数 (素数?) に設定し，`long long` で乗算を行えばよい．
+
 ## Operations
 
 - `RollingHash(string s, long long base)`
@@ -89,10 +91,6 @@ title: Rolling Hash
 - `void push_back(char c)`
     - 文字 $c$ を末尾に結合する
     - 時間計算量: $O(1)$
-
-## Note
-
-この実装は内部で `__int128_t` を用いているが，Codeforces ではそれが使用できないので注意．Codeforces でローリングハッシュを行いたいときは，`mod` を 32 bit 以下の適当な整数 (素数?) に設定し，`long long` で乗算を行えばよい．
 
 ## Reference
 

@@ -86,6 +86,8 @@ title: Strongly Connected Components
 
 強連結成分のラベルはトポロジカル順序になっている．
 
+## Operations
+
 - `vector<int> scc(vector<vector<int>> G)`
     - グラフ $G$ の隣接リストが与えられたとき，$G$ を強連結成分分解し，各頂点が属する成分のラベルを返す
     - 時間計算量: $O(V + E)$

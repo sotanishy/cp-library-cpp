@@ -124,13 +124,13 @@ Undo 可能 Li Chao tree を用いて，offline dynamic connectivity の要領�
 
 - `void add(T a, T b)`
     - 直線 $ax + b$ を追加する
-    - 時間計算量: $O(\lg q)$
+    - 時間計算量: $O(\log q)$
 - `void erase(T a, T b)`
     - 直線 $ax + b$ を削除する
-    - 時間計算量: $O(\lg q)$
+    - 時間計算量: $O(\log q)$
 - `void get(T x)`
     - $x$ における最小値を取得する
-    - 時間計算量: $O(\lg q)$
+    - 時間計算量: $O(\log q)$
 - `vector<T> run()`
     - クエリを実行し，`get`の結果を返す
     - 時間計算量: $O(q\log^2 q)$

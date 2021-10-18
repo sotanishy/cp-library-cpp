@@ -85,6 +85,8 @@ title: Biconnected Components
 
 二重頂点連結成分は，どの1頂点を取り除いても連結であるような部分グラフである．つまり，関節点を含まない部分グラフである．
 
+関節点と二重頂点連結成分を結んで構成した木は block cut tree と呼ばれる．
+
 空間計算量: $O(V + E)$
 
 ## Operations
@@ -94,3 +96,4 @@ title: Biconnected Components
     - 時間計算量: $O(V + E)$
 - `vector<vector<pair<int, int>>> get_biconnected_components()`
     - $G$ の二重頂点連結成分を返す
+    - 時間計算量: $O(V)$

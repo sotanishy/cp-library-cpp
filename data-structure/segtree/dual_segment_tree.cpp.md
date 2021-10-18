@@ -70,10 +70,10 @@ title: Dual Segment Tree
     - 時間計算量: $O(n)$
 - `T operator[](int k)`
     - $k$ 番目の要素を返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `void update(int l, int r, T x)`
     - 区間 $[l, r)$ の値に $x$ を作用させる
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Note
 

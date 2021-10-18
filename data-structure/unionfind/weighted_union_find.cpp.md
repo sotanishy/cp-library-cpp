@@ -82,7 +82,3 @@ title: Weighted Union Find
 - `int size(int x)`
     - $x$ が属する集合の大きさを返す
     - 時間計算量: $\mathrm{amortized}\ O(\alpha(n))$
-
-## TODO
-
-- 抽象化

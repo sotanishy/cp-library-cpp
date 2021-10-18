@@ -106,8 +106,27 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n#line 4 \"test/aoj/CGL_3_C.test.cpp\"\n\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ rec(rec, 0, pts.size());\n}\n\n\n/*\n// for 3d geometry\n// functions that will\
+    \ work without any modifications\n// projection, reflection, dist_line_point,\
+    \ dist_segment_point, dist_segments,\n// centroid, incenter\n\nstruct Vec {\n\
+    \    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T y, T z) : x(x),\
+    \ y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) { x += r.x; y +=\
+    \ r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const Vec& r)\
+    \ { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec& operator*=(T\
+    \ r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec& operator/=(T\
+    \ r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec operator-()\
+    \ const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r)\
+    \ const { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r)\
+    \ const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const {\
+    \ return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
+    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
+    \ r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y,\
+    \ z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nT dot(const\
+    \ Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const\
+    \ Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n\
+    }\n\nnamespace std {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const\
+    \ Vec& a) { return std::sqrt(std::norm(a)); }\n}\n\n*/\n#line 4 \"test/aoj/CGL_3_C.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
     \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& x : pts) cin >> x;\n \
     \   int q;\n    cin >> q;\n    while (q--) {\n        Vec p;\n        cin >> p;\n\
@@ -124,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2021-10-09 20:53:47+09:00'
+  timestamp: '2021-10-18 17:48:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_3_C.test.cpp

@@ -93,7 +93,3 @@ title: Persistent Array
 ## Reference
 
 - [ゼロから作る永続データ構造](https://qiita.com/wotsushi/items/72e7f8cdd674741ffd61)
-
-## TODO
-
-- $O(\log \log n)$ 時間の永続配列の実装 [http://web.mit.edu/andersk/Public/6.851-presentation.pdf]()

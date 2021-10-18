@@ -1,6 +1,6 @@
 ## Description
 
-Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．スパーステーブルと違って二項演算 $\cdot$ に冪等性を要求しない．
+Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．Sparse table と違って二項演算 $\cdot$ に冪等性を要求しない．
 
 空間計算量: $O(n \lg n)$
 
@@ -8,7 +8,7 @@ Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列の区間和を�
 
 - `DisjointSparseTable(vector<T> v)`
     - `v`の要素から disjoint sparse table を構築する
-    - 時間計算量: $O(n \lg n)$
+    - 時間計算量: $O(n \log n)$
 - `T fold(int l, int r)`
     - 区間 $[l, r)$ の値を fold する
     - 時間計算量: $O(1)$
