@@ -5,6 +5,9 @@
 #include <utility>
 #include <vector>
 
+/*
+ * @brief Undoable Li Chao Tree
+ */
 template <typename T>
 class UndoableLiChaoTree {
 public:

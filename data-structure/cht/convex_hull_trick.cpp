@@ -16,7 +16,7 @@ public:
         lines.push_back(line);
     }
 
-    T get(T x) const {
+    T get(T x) {
         if (monotone_query) {
             while (lines.size() - head >= 2 && lines[head](x) > lines[head + 1](x)) {
                 ++head;
@@ -48,8 +48,7 @@ private:
     int head = 0;
 
     static bool check(Line l1, Line l2, Line l3) {
-        if (l1 > l3) std::swap(l1, l3);
-        return (l3.first - l1.first) * (l2.second - l1.second) >=
-               (l2.first - l1.first) * (l3.second - l1.second);
+        if (l2.a == l3.a) return l2.b >= l3.b;
+        return 1.0 * (l2.b - l1.b) / (l2.a - l1.a) <= 1.0 * (l3.b - l2.b) / (l3.a - l2.a);
     }
 };
