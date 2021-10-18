@@ -5,7 +5,7 @@ documentation_of: ../../../data-structure/bst/splay_tree.cpp
 
 ## Descriptions
 
-スプレー木は，平衡二分探索木の一種である．ノードを根に持ってくるスプレーという操作を利用して様々な操作を実現している．同じ要素への連続アクセスが高速であるという特徴がある．モノイドを扱い，セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．
+Splay tree は，平衡二分探索木の一種である．ノードを根に持ってくる splay という操作を利用して様々な操作を実現している．同じ要素への連続アクセスが高速であるという特徴がある．モノイドを扱い，セグメント木が提供する操作に加えて挿入，削除，併合，分割，区間反転が可能である．
 
 空間計算量: $O(n)$
 
@@ -50,10 +50,3 @@ documentation_of: ../../../data-structure/bst/splay_tree.cpp
 - [プログラミングコンテストでのデータ構造 2　～平衡二分探索木編～](https://www.slideshare.net/iwiwi/2-12188757)
 - [Splay tree](https://en.wikipedia.org/wiki/Splay_tree)
 - [Self-adjusting Binary Search Trees](https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf)
-
-## TODO
-
-- 遅延評価
-- 永続化
-- オリジナル論文読む
-- 計算量理解

@@ -24,13 +24,13 @@ documentation_of: ../../../data-structure/segtree/lazy_segment_tree.cpp
     - 時間計算量: $O(n)$
 - `T operator[](int k)`
     - $k$ 番目の要素を返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `void update(int l, int r, E x)`
     - 区間 $[l, r)$ の値に $x$ を作用させる
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `T fold(int l, int r)`
     - 区間 $[l, r)$ の値を fold する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Note
 
@@ -44,9 +44,3 @@ documentation_of: ../../../data-structure/segtree/lazy_segment_tree.cpp
 - [遅延伝播セグメント木について](https://beet-aizu.hatenablog.com/entry/2017/12/01/225955)
 - [SegmentTreeに載る代数的構造について](https://qiita.com/keymoon/items/0f929a19ed30f34ae6e8)
 - [遅延伝搬segment木についてもっと詳しく](https://kimiyuki.net/blog/2018/11/03/lazy-propagation-segment-tree/)
-
-
-## TODO
-
-- 二分探索の実装
-- 非再帰

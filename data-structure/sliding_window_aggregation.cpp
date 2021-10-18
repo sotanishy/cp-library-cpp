@@ -3,10 +3,6 @@
 #include <stack>
 #include <utility>
 
-/*
- * @brief Sliding Window Aggregation
- * @docs docs/data-structure/sliding_window_aggregation.md
- */
 template <typename S>
 class SlidingWindowAggregation {
     using T = typename S::T;

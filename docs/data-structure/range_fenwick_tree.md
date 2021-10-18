@@ -1,3 +1,8 @@
+---
+title: Fenwick Tree with Range Update
+documentation_of: ../../data-structure/range_fenwick_tree.cpp
+---
+
 ## Description
 
 接頭辞和を扱う Fenwick tree を2つ使うことで，区間加算を実現できる．
@@ -11,10 +16,10 @@
     - 時間計算量: $O(n)$
 - `T prefix_sum(int i)`
     - $[0, i)$ の総和を計算する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `void add(int l, int r, T x)`
     - 区間 $[l, r)$ に $x$ を加える
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Reference
 

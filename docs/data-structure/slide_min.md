@@ -1,3 +1,8 @@
+---
+title: Sliding Window Minimum
+documentation_of: ../../data-structure/slide_min.cpp
+---
+
 ## Description
 
 スライド最小値は，全順序集合 $T$ を扱い，要素の最小値を求めることができるキューである．

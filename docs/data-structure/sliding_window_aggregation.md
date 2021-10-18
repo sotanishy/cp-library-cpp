@@ -1,3 +1,8 @@
+---
+title: Sliding Window Aggregation
+documentation_of: ../../data-structure/sliding_window_aggregation.cpp
+---
+
 ## Description
 
 Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素の総和の計算が可能なキューである．スタックを2つ用いてキューをシミュレートする．
@@ -21,7 +26,3 @@ Sliding window aggregation は，半群 $(T, \cdot)$ を扱い，要素の総和
 
 - [Sliding Window Aggregation](https://scrapbox.io/data-structures/Sliding_Window_Aggregation)
 - [Constant-Time Sliding Window Aggregation](http://hirzels.com/martin/papers/tr15-rc25574-daba.pdf)
-
-## TODO
-
-- deque の実装

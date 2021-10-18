@@ -29,13 +29,13 @@ Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単�
 
 - `vector<T> dijkstra(vector<vector<Edge<T>>> G, int s)`
     - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
-    - 時間計算量: $O(E \lg V)$
+    - 時間計算量: $O(E \log V)$
 
 ## Breadth-First Search
 
 ***NOT VERIFIED***
 
-幅優先探索は，重みがすべて1のグラフの単一始点最短経路問題を得アルゴリズムである．
+幅優先探索は，重みがすべて1のグラフの単一始点最短経路問題を解くアルゴリズムである．
 
 - `vector<T> bfs(vector<vector<Edge<T>>> G, int s)`
     - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する

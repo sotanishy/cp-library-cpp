@@ -9,13 +9,13 @@ Monotone minima は，monotone 行列の各行の argmin を高速に求める�
 
 $n \times m$ 行列 $A$ が monotone であるとは，
 
-$\mathrm{argmin} A_{i,*} \leq \mathrm{argmin} A_{i+1,*}$ が成り立つことである．
+$\mathrm{argmin} A_{i,\ast} \leq \mathrm{argmin} A_{i+1,\ast}$ が成り立つことである．
 
 $A$ が更に totally monotone ($A$ の任意の部分行列が monotone) であれば，SMAWK algorithm という更に高速なアルゴリズムが存在する．
 
 - `vector<int> monotone_minima(int n, int m, F f)`
     - $A_{i,j}=f(i,j)$ である $n \times m$ 行列 $A$ の各行の argmin を求める
-    - 時間計算量: $O((n + m)\lg n)$
+    - 時間計算量: $O((n + m)\log n)$
 
 ## Reference
 

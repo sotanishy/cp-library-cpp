@@ -19,16 +19,16 @@ documentation_of: ../../../data-structure/unionfind/partially_persistent_union_f
     - 時間計算量: $O(n)$
 - `int find(int t, int x)`
     - 時刻 $t$ で $x$ が属する木の根を返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `void unite(int x, int y)`
     - 時刻を 1 増加させ，$x$ が属する集合と $y$ が属する集合を連結する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `bool same(int t, int x, int y)`
     - 時刻 $t$ で $x$ と $y$ が同じ集合に属するかを判定する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `int size(int t, int x)`
     - 時刻 $t$ で $x$ が属する集合の大きさを返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Reference
 

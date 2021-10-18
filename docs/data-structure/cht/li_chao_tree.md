@@ -25,7 +25,3 @@ Li Chao tree は，直線及び線分の集合をセグメント木で管理し�
 ## Reference
 
 - [Li Chao Treeのメモ](https://smijake3.hatenablog.com/entry/2018/06/16/144548)
-
-## TODO
-
-- 動的構築

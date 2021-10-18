@@ -9,8 +9,10 @@ Garner のアルゴリズムは，連立合同式 $x \equiv b_i \mod m_i \quad (
 
 $m_i$が pairwise coprime であるとき，この連立合同式には法$m = m_1\dots m_n$のもとでただ一つの解が存在することが中国の剰余定理によって保証される．
 
+## Operations
+
 - `long long garner(vector<long long> b, vector<long long> m, long long mod)`
-    - 連立合同式を満たす最小の非負整数を$\mod mod$で求める．
+    - 連立合同式を満たす最小の非負整数を法$mod$で求める．
     - 時間計算量: $O(n^2)$
 
 

@@ -30,7 +30,3 @@ documentation_of: ../../../data-structure/unionfind/persistent_union_find.cpp
 ## Reference
 
 - [A Persistent Union-Find Data Structure](https://www.lri.fr/~filliatr/ftp/publis/puf-wml07.pdf)
-
-## TODO
-
-- 論文 読む

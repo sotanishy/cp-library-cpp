@@ -20,8 +20,10 @@ Lowlink はグラフの橋や間接点などを求める際に有効な概念で
     - 時間計算量: $O(V + E)$
 - `vector<pair<int, int>> get_bridges()`
     - $G$ の橋を返す
+    - 時間計算量: $O(n)$
 - `vector<int> get_articulation_points()`
     - $G$ の間接点を返す
+    - 時間計算量: $O(n)$
 - `bool is_bridge(int u, int v)`
     - 辺 $uv$ が橋かどうか判定する
     - 時間計算量: $O(1)$

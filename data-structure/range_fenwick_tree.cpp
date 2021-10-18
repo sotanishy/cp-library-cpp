@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 
-/*
- * @brief Fenwick Tree with Range Update
- * @docs docs/data-structure/range_fenwick_tree.md
- */
 template <typename T>
 class RangeFenwickTree {
 public:

@@ -9,9 +9,11 @@ Hu-Tucker のアルゴリズムは，最適二分探索木問題を高速に解�
 
 正当性の証明は難しいらしい．
 
+## Operations
+
 - `T hu_tucker(vector<T> w)`
     - 各頂点の重み $w_i$ が与えられたとき，最適二分探索木の重みを求める．
-    - 時間計算量: $O(n\lg n)$
+    - 時間計算量: $O(n\log n)$
 
 ## Reference
 

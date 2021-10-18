@@ -4,7 +4,7 @@
 
 空間計算量: $O(m)$, $m$ は変更の数
 
-## Member functions
+## Operations
 
 - `bool empty()`
     - 時間計算量: $O(1)$

@@ -6,12 +6,12 @@
 /*
  * Modular Exponentiation
  */
-long long mod_pow(long long a, long long p, int mod) {
+long long mod_pow(long long a, long long e, int mod) {
     long long ret = 1;
-    while (p > 0) {
-        if (p & 1) ret = ret * a % mod;
+    while (e > 0) {
+        if (e & 1) ret = ret * a % mod;
         a = a * a % mod;
-        p >>= 1;
+        e >>= 1;
     }
     return ret;
 }

@@ -13,8 +13,4 @@ documentation_of: ../../string/trie.cpp
 
 - `void insert(string s, int id)`
     - 文字列 $s$ を挿入する
-    - 時間計算量: $O(|s|)$
-
-## TODO
-
-- パトリシア木
+    - 時間計算量: $O(\vert s\vert)$

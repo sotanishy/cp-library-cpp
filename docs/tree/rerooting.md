@@ -5,7 +5,7 @@ documentation_of: ../../tree/rerooting.cpp
 
 ## Description
 
-全方位木DPは，木において，各頂点を根としたときの木DPの値を求めるアルゴリズムである．
+全方位木DP (rerooting) は，木において，各頂点を根としたときの木DPの値を求めるアルゴリズムである．
 
 空間計算量: $O(n)$
 

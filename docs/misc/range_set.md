@@ -12,22 +12,22 @@ documentation_of: ../../misc/range_set.cpp
 - `bool covered(T x)`
 - `bool covered(T l, T r)`
     - 区間 $[l, r]$ が含まれているか判定する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `pair<T, T> covered_by(T x)`
 - `pair<T, T> covered_by(T l, T r)`
     - 区間 $[l, r]$ を含む区間を返す．そのような区間がない場合は $(-\infty, -\infty)$ を返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `void insert(T x)`
 - `void insert(T l, T r)`
     - 区間 $[l, r]$ を集合に追加する
-    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `void erase(T x)`
 - `void erase(T l, T r)`
     - 区間 $[l, r]$ を集合から削除する
-    - 時間計算量: $\mathrm{amortized}\ O(\lg n)$
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `T mex(T x)`
     - $x$ 以上の整数のうち，集合に含まれない最小のものを返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Reference
 

@@ -11,16 +11,16 @@ documentation_of: ../../tree/lca.cpp
 
 - `LCA(vector<vector<int>> G, int root)`
     - 前計算をする
-    - 時間計算量: $O(n\lg n)$
+    - 時間計算量: $O(n\log n)$
 - `int query(int u, int v)`
     - 頂点 $u$ と頂点 $v$ の最小共通祖先を返す
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `int dist(int u, int v)`
     - $uv$ 間の距離を計算する
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 - `int parent(int v, int k)`
     - 頂点 $v$ の $k$ 個上の頂点を求める
-    - 時間計算量: $O(\lg n)$
+    - 時間計算量: $O(\log n)$
 
 ## Reference
 
@@ -29,11 +29,3 @@ documentation_of: ../../tree/lca.cpp
 - [Lowest Common Ancestor - Tarjan's off-line algorithm](https://cp-algorithms.com/graph/lca_tarjan.html)
 - [Lowest Common Ancestor - Farach-Colton and Bender Algorithm](https://cp-algorithms.com/graph/lca_farachcoltonbender.html)
 - [Solve RMQ (Range Minimum Query) by finding LCA (Lowest Common Ancestor)](https://cp-algorithms.com/graph/rmq_linear.html)
-
-## TODO
-
-- パスクエリ
-- オイラーツアー
-- Tarjan's offline algorithm
-- Farach-Colton and Bender algorithm
-- RMQ
