@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':warning:'
     path: data-structure/cht/undoable_li_chao_tree.cpp
-    title: data-structure/cht/undoable_li_chao_tree.cpp
+    title: Undoable Li Chao Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,10 +15,10 @@ data:
     \n#include <cassert>\n#include <map>\n#include <utility>\n#include <vector>\n\
     #line 2 \"data-structure/cht/undoable_li_chao_tree.cpp\"\n#include <algorithm>\n\
     #line 4 \"data-structure/cht/undoable_li_chao_tree.cpp\"\n#include <limits>\n\
-    #line 7 \"data-structure/cht/undoable_li_chao_tree.cpp\"\n\ntemplate <typename\
-    \ T>\nclass UndoableLiChaoTree {\npublic:\n    UndoableLiChaoTree() = default;\n\
-    \    explicit UndoableLiChaoTree(const std::vector<T>& vs) : xs(vs) {\n      \
-    \  std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
+    #line 7 \"data-structure/cht/undoable_li_chao_tree.cpp\"\n\n/*\n * @brief Undoable\
+    \ Li Chao Tree\n */\ntemplate <typename T>\nclass UndoableLiChaoTree {\npublic:\n\
+    \    UndoableLiChaoTree() = default;\n    explicit UndoableLiChaoTree(const std::vector<T>&\
+    \ vs) : xs(vs) {\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
     \ xs.end()), xs.end());\n        size = 1;\n        while (size < (int) xs.size())\
     \ size <<= 1;\n        node.resize(2 * size, {0, INF});\n        while ((int)\
     \ xs.size() <= size) xs.push_back(xs.back() + 1);\n    }\n\n    void add(T a,\
@@ -101,13 +101,40 @@ data:
   isVerificationFile: false
   path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
   requiredBy: []
-  timestamp: '2021-10-10 23:27:42+09:00'
+  timestamp: '2021-10-18 15:45:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/cht/offline_deletable_convex_hull_trick.cpp
 layout: document
-redirect_from:
-- /library/data-structure/cht/offline_deletable_convex_hull_trick.cpp
-- /library/data-structure/cht/offline_deletable_convex_hull_trick.cpp.html
-title: data-structure/cht/offline_deletable_convex_hull_trick.cpp
+title: Offline Deletable Convex Hull Trick
 ---
+
+## Description
+
+直線の多重集合に対する以下のクエリをオフラインで処理する:
+- 直線の追加
+- 直線の削除
+- $x$ における最小値の取得
+
+Undo 可能 Li Chao tree を用いて，offline dynamic connectivity の要領でこれを実現する．
+
+空間計算量: $O(q\log q)$
+
+## Operations
+
+- `void add(T a, T b)`
+    - 直線 $ax + b$ を追加する
+    - 時間計算量: $O(\lg q)$
+- `void erase(T a, T b)`
+    - 直線 $ax + b$ を削除する
+    - 時間計算量: $O(\lg q)$
+- `void get(T x)`
+    - $x$ における最小値を取得する
+    - 時間計算量: $O(\lg q)$
+- `vector<T> run()`
+    - クエリを実行し，`get`の結果を返す
+    - 時間計算量: $O(q\log^2 q)$
+
+## Reference
+
+- [オフライン 削除可能 Convex Hull Trick](https://mugen1337.github.io/procon/DataStructure/DeletableLiChaoTreeOffline.cpp)

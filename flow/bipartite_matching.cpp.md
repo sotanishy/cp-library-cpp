@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/dm_decomposition.cpp
+    title: Dulmage-Mendelsohn Decomposition
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_7_A.test.cpp
@@ -48,7 +51,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: flow/bipartite_matching.cpp
-  requiredBy: []
+  requiredBy:
+  - graph/dm_decomposition.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

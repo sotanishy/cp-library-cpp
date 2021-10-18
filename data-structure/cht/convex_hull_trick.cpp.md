@@ -13,27 +13,26 @@ data:
     \ {\npublic:\n    explicit ConvexHullTrick(bool monotone_query = false) : monotone_query(monotone_query)\
     \ {}\n\n    void add(T a, T b) {\n        Line line(a, b);\n        while (lines.size()\
     \ >= 2 && check(*(lines.end() - 2), lines.back(), line)) {\n            lines.pop_back();\n\
-    \        }\n        lines.push_back(line);\n    }\n\n    T get(T x) const {\n\
-    \        if (monotone_query) {\n            while (lines.size() - head >= 2 &&\
-    \ lines[head](x) > lines[head + 1](x)) {\n                ++head;\n          \
-    \  }\n            return lines[head](x);\n        } else {\n            int lb\
-    \ = -1, ub = lines.size() - 1;\n            while (ub - lb > 1) {\n          \
-    \      int m = (lb + ub) / 2;\n                if (lines[m](x) > lines[m + 1](x))\
-    \ {\n                    lb = m;\n                } else {\n                 \
-    \   ub = m;\n                }\n            }\n            return lines[ub](x);\n\
-    \        }\n    }\n\nprivate:\n    struct Line {\n        T a, b;\n        Line(T\
-    \ a, T b) : a(a), b(b) {}\n        T operator()(T x) const { return a * x + b;\
-    \ }\n    };\n\n    std::vector<Line> lines;\n    bool monotone_query;\n    int\
-    \ head = 0;\n\n    static bool check(Line l1, Line l2, Line l3) {\n        if\
-    \ (l1 > l3) std::swap(l1, l3);\n        return (l3.first - l1.first) * (l2.second\
-    \ - l1.second) >=\n               (l2.first - l1.first) * (l3.second - l1.second);\n\
-    \    }\n};\n"
+    \        }\n        lines.push_back(line);\n    }\n\n    T get(T x) {\n      \
+    \  if (monotone_query) {\n            while (lines.size() - head >= 2 && lines[head](x)\
+    \ > lines[head + 1](x)) {\n                ++head;\n            }\n          \
+    \  return lines[head](x);\n        } else {\n            int lb = -1, ub = lines.size()\
+    \ - 1;\n            while (ub - lb > 1) {\n                int m = (lb + ub) /\
+    \ 2;\n                if (lines[m](x) > lines[m + 1](x)) {\n                 \
+    \   lb = m;\n                } else {\n                    ub = m;\n         \
+    \       }\n            }\n            return lines[ub](x);\n        }\n    }\n\
+    \nprivate:\n    struct Line {\n        T a, b;\n        Line(T a, T b) : a(a),\
+    \ b(b) {}\n        T operator()(T x) const { return a * x + b; }\n    };\n\n \
+    \   std::vector<Line> lines;\n    bool monotone_query;\n    int head = 0;\n\n\
+    \    static bool check(Line l1, Line l2, Line l3) {\n        if (l2.a == l3.a)\
+    \ return l2.b >= l3.b;\n        return 1.0 * (l2.b - l1.b) / (l2.a - l1.a) <=\
+    \ 1.0 * (l3.b - l2.b) / (l3.a - l2.a);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
     \ntemplate <typename T>\nclass ConvexHullTrick {\npublic:\n    explicit ConvexHullTrick(bool\
     \ monotone_query = false) : monotone_query(monotone_query) {}\n\n    void add(T\
     \ a, T b) {\n        Line line(a, b);\n        while (lines.size() >= 2 && check(*(lines.end()\
     \ - 2), lines.back(), line)) {\n            lines.pop_back();\n        }\n   \
-    \     lines.push_back(line);\n    }\n\n    T get(T x) const {\n        if (monotone_query)\
+    \     lines.push_back(line);\n    }\n\n    T get(T x) {\n        if (monotone_query)\
     \ {\n            while (lines.size() - head >= 2 && lines[head](x) > lines[head\
     \ + 1](x)) {\n                ++head;\n            }\n            return lines[head](x);\n\
     \        } else {\n            int lb = -1, ub = lines.size() - 1;\n         \
@@ -44,14 +43,14 @@ data:
     \  struct Line {\n        T a, b;\n        Line(T a, T b) : a(a), b(b) {}\n  \
     \      T operator()(T x) const { return a * x + b; }\n    };\n\n    std::vector<Line>\
     \ lines;\n    bool monotone_query;\n    int head = 0;\n\n    static bool check(Line\
-    \ l1, Line l2, Line l3) {\n        if (l1 > l3) std::swap(l1, l3);\n        return\
-    \ (l3.first - l1.first) * (l2.second - l1.second) >=\n               (l2.first\
-    \ - l1.first) * (l3.second - l1.second);\n    }\n};"
+    \ l1, Line l2, Line l3) {\n        if (l2.a == l3.a) return l2.b >= l3.b;\n  \
+    \      return 1.0 * (l2.b - l1.b) / (l2.a - l1.a) <= 1.0 * (l3.b - l2.b) / (l3.a\
+    \ - l2.a);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/cht/convex_hull_trick.cpp
   requiredBy: []
-  timestamp: '2021-10-10 23:27:42+09:00'
+  timestamp: '2021-10-18 15:45:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/cht/convex_hull_trick.cpp

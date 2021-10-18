@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/garner.cpp
+    title: Garner's Algorithm
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
@@ -25,7 +28,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/extgcd.cpp
-  requiredBy: []
+  requiredBy:
+  - math/garner.cpp
   timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

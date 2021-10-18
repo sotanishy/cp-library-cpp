@@ -90,10 +90,10 @@ data:
       title: Li Chao Tree
     - icon: ':warning:'
       path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
-      title: data-structure/cht/offline_deletable_convex_hull_trick.cpp
+      title: Offline Deletable Convex Hull Trick
     - icon: ':warning:'
       path: data-structure/cht/undoable_li_chao_tree.cpp
-      title: data-structure/cht/undoable_li_chao_tree.cpp
+      title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -167,6 +167,9 @@ data:
     - icon: ':warning:'
       path: graph/biconnected_components.cpp
       title: Biconnected Components
+    - icon: ':warning:'
+      path: graph/dm_decomposition.cpp
+      title: Dulmage-Mendelsohn Decomposition
     - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
@@ -238,6 +241,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
+    - icon: ':warning:'
+      path: math/garner.cpp
+      title: Garner's Algorithm
     - icon: ':heavy_check_mark:'
       path: math/geometry.cpp
       title: Geometry
