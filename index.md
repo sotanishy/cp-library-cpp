@@ -174,6 +174,9 @@ data:
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/enumerate_cliques.cpp
+      title: Enumerate Cliques
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -375,6 +378,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2306.test.cpp
+      title: test/aoj/2306.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
