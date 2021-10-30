@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C"
 
-#include "../../math/geometry.cpp"
+#include "../../geometry/geometry.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;

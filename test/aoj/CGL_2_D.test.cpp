@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D"
 #define ERROR 0.00000001
 
-#include "../../math/geometry.cpp"
+#include "../../geometry/geometry.cpp"
 
 #include <bits/stdc++.h>
 using namespace std;
