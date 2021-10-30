@@ -18,8 +18,8 @@ int main() {
         G[a].push_back(b);
         G[b].push_back(a);
     }
-    TwoEdgeConnectedComponents comp(G);
-    vector<vector<int>> ans(comp.count());
+    auto comp = two_edge_connected_components(G);
+    vector<vector<int>> ans(*max_element(comp.begin(), comp.end()) + 1);
     for (int i = 0; i < N; ++i) ans[comp[i]].push_back(i);
     cout << ans.size() << "\n";
     for (auto& v : ans) {

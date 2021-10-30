@@ -1,10 +1,6 @@
 #pragma once
 #include <memory>
 
-/*
- * @brief Persistent Stack
- * @docs docs/data-structure/persistent_stack.md
- */
 template <typename T>
 class PersistentStack {
 public:

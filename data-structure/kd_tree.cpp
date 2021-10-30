@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief k-d Tree
- * @docs docs/data-structure/kd_tree.md
- */
 template <typename T>
 class KDTree {
 public:

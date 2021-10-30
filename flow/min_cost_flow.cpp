@@ -19,10 +19,12 @@ public:
 
     Cost min_cost_flow(int s, int t, Cap f) {
         int ret = 0;
-        std::vector<Cost> dist(V), h(V);
+        std::vector<Cost> dist(V);
         std::vector<int> prevv(V), preve(V);
         using P = std::pair<Cost, int>;
         std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
+
+        auto h = calculate_initial_potential(s);
 
         while (f > 0) {
             // update h using dijkstra
@@ -47,19 +49,21 @@ public:
                 }
             }
 
-            if (dist[t] == INF) return -1;
+            if (dist[t] == INF) return -1;  // if the amount of flow is arbitrary, comment this out
             for (int v = 0; v < V; ++v) h[v] += dist[v];
 
-            Cap m = f;
+            // if (h[t] >= 0) break;  // if the amount of flow is arbitrary, uncomment this
+
+            Cap d = f;
             for (int v = t; v != s; v = prevv[v]) {
-                m = std::min(m, G[prevv[v]][preve[v]].cap);
+                d = std::min(d, G[prevv[v]][preve[v]].cap);
             }
-            f -= m;
-            ret += m * h[t];
+            f -= d;
+            ret += d * h[t];
             for (int v = t; v != s; v = prevv[v]) {
                 Edge& e = G[prevv[v]][preve[v]];
-                e.cap -= m;
-                G[v][e.rev].cap += m;
+                e.cap -= d;
+                G[v][e.rev].cap += d;
             }
         }
         return ret;
@@ -78,4 +82,26 @@ private:
 
     int V;
     std::vector<std::vector<Edge>> G;
+
+
+    std::vector<Cost> calculate_initial_potential(int s) {
+        std::vector<Cost> h(V);
+        // if all costs are nonnegative, then do nothing
+        return h;
+
+        // if there is a negative edge,
+        // use Bellman-Ford or topological sort and a DP (for DAG)
+        // std::fill(h.begin(), h.end(), INF);
+        // h[s] = 0;
+        // for (int i = 0; i < V - 1; ++i) {
+        //     for (int v = 0; v < V; ++v) {
+        //         for (auto& e : G[v]) {
+        //             if (e.cap > 0 && h[v] != INF && h[e.to] > h[v] + e.cost) {
+        //                 h[e.to] = h[v] + e.cost;
+        //             }
+        //         }
+        //     }
+        // }
+        // return h;
+    }
 };

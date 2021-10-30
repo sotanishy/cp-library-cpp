@@ -1,3 +1,8 @@
+---
+title: Persistent Array
+documentation_of: ../../data-structure/persistent_array.cpp
+---
+
 ## Description
 
 永続配列は，過去のバージョンを保持する配列である．永続配列の要素を変更したとき，変更された値を保持する新しい配列を生成する．

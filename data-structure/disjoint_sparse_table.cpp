@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <vector>
 
-/*
- * @brief Disjoint Sparse Table
- * @docs docs/data-structure/disjoint_sparse_table.md
- */
 template <typename S>
 class DisjointSparseTable {
     using T = typename S::T;

@@ -1,3 +1,8 @@
+---
+title: k-d Tree
+documentation_of: ../../data-structure/kd_tree.cpp
+---
+
 ## Description
 
 k-d 木は，$k$ 次元空間の点を保持し，効率的に範囲探索を行うデータ構造である．この実装は2次元空間の長方形領域の探索を提供する．
@@ -19,10 +24,3 @@ k-d 木は，$k$ 次元空間の点を保持し，効率的に範囲探索を行
 ## Reference
 
 - [kd木](https://ja.wikipedia.org/wiki/Kd%E6%9C%A8)
-
-## TODO
-
-- $k$ 次元への拡張
-- 最近傍点探索
-- `insert`, `erase` の実装
-- 線形中央値探索による $O(n\lg n)$ での構築

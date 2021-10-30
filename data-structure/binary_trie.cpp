@@ -2,10 +2,6 @@
 #include <cassert>
 #include <memory>
 
-/*
- * @brief Binary Trie
- * @docs docs/data-structure/binary_trie.md
- */
 template <typename T, int B = 32>
 class BinaryTrie {
 public:

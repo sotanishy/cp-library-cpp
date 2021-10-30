@@ -2,10 +2,6 @@
 #include <memory>
 #include <vector>
 
-/*
- * @brief Persistent Array
- * @docs docs/data-structure/persistent_array.md
- */
 template <typename T, int B = 2>
 class PersistentArray {
 public:

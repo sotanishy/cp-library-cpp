@@ -1,3 +1,8 @@
+---
+title: Persistent Queue
+documentation_of: ../../data-structure/persistent_queue.cpp
+---
+
 ## Description
 
 永続キューは，過去のバージョンを保持するキューである．この実装では内部で永続配列を用いている．

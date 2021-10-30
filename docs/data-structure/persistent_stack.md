@@ -1,3 +1,8 @@
+---
+title: Persistent Stack
+documentation_of: ../../data-structure/persistent_stack.cpp
+---
+
 ## Description
 
 永続スタックは，過去のバージョンを保持するスタックである．

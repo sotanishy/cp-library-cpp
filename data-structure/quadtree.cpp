@@ -2,10 +2,6 @@
 #include <memory>
 #include <vector>
 
-/*
- * @brief Quadtree
- * @docs docs/data-structure/quadtree.md
- */
 template <typename M>
 class Quadtree {
     using T = typename M::T;

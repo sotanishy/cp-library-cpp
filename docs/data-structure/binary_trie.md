@@ -1,3 +1,8 @@
+---
+title: Binary Trie
+documentation_of: ../../data-structure/binary_trie.cpp
+---
+
 ## Description
 
 二分トライ木 (binary trie) は，非負整数の多重集合を扱うデータ構造である．整数をビット列とみなしてトライ木に格納する．平衡二分木による多重集合の実装よりも実装が簡単であるほか，要素全体をある値で xor した時の最大/最小値を求めるなどの操作が可能である．

@@ -2,10 +2,6 @@
 #include <functional>
 #include <vector>
 
-/*
- * @brief Fenwick Tree
- * @docs docs/data-structure/fenwick_tree.md
- */
 template <typename M>
 class FenwickTree {
     using T = typename M::T;

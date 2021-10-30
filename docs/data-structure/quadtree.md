@@ -1,3 +1,8 @@
+---
+title: Quadtree
+documentation_of: ../../data-structure/quadtree.cpp
+---
+
 ## Description
 
 四分木は，二次元領域を扱うデータ構造である．この実装では，可換モノイドの一点更新と長方形領域和を扱う．一点更新は高速だが，長方形領域取得は最悪計算量が悪い．実用上は愚直よりは高速であると思われる．

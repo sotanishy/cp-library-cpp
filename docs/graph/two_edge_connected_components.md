@@ -13,12 +13,10 @@ documentation_of: ../../graph/two_edge_connected_components.cpp
 
 ## Operations
 
-- `TwoEdgeConnectedComponents(vector<vector<int>> G)`
+- `vector<int> two_edge_connected_components(vector<vector<int>> G)`
     - グラフ $G$ の隣接リストが与えられたとき，$G$ を二辺連結成分分解する
     - 時間計算量: $O(V + E)$
-- `int operator[](int i)`
-    - 頂点 $v$ が属する二辺連結成分のラベルを返す
-    - 時間計算量: $O(1)$
-- `int count()`
-    - $G$ の二辺連結成分の数を返す
-    - 時間計算量: $O(1)$
+
+## Note
+
+縮約には強連結成分分解のファイルにある`contract`関数がそのまま使える．

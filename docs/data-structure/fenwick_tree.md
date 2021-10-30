@@ -1,3 +1,8 @@
+---
+title: Fenwick Tree
+documentation_of: ../../data-structure/fenwick_tree.cpp
+---
+
 ## Description
 
 Fenwick tree，または binary indexed tree (BIT) は，可換モノイド $(T, \cdot, e)$ の列に対する一点更新と接頭辞和の取得を提供するデータ構造である．

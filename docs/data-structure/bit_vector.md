@@ -1,3 +1,8 @@
+---
+title: Rank/Select Dictionary
+documentation_of: ../../data-structure/bit_vector.cpp
+---
+
 ## Description
 
 完備辞書 (fully indexable dictionary)，または rank/select 辞書は，ビット列を扱うデータ構造である．`rank` 操作 ($k$ 番目までの1の個数) と `select` 操作 ($k$ 番目の1の位置) を提供する．

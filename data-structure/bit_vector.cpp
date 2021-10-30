@@ -2,10 +2,6 @@
 #include <cstdint>
 #include <vector>
 
-/*
- * @brief Rank/Select Dictionary
- * @docs docs/data-structure/bit_vector.md
- */
 class BitVector {
 public:
     BitVector() = default;

@@ -1,3 +1,8 @@
+---
+title: Quadtree
+documentation_of: ../../data-structure/disjoint_sparse_table.cpp
+---
+
 ## Description
 
 Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．Sparse table と違って二項演算 $\cdot$ に冪等性を要求しない．
