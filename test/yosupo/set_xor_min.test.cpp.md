@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/binary_trie.cpp
     title: Binary Trie
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -16,8 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/set_xor_min
   bundledCode: "#line 1 \"test/yosupo/set_xor_min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
     \n\n#line 2 \"data-structure/binary_trie.cpp\"\n#include <cassert>\n#include <memory>\n\
-    \n/*\n * @brief Binary Trie\n * @docs docs/data-structure/binary_trie.md\n */\n\
-    template <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie()\
+    \ntemplate <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie()\
     \ : root(std::make_unique<Node>()) {}\n\n    int size() const {\n        return\
     \ root->count;\n    }\n\n    bool empty() const {\n        return size() == 0;\n\
     \    }\n\n    int count(T x) const {\n        return count(root, x, B - 1);\n\
@@ -76,8 +75,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2021-01-11 09:41:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-30 12:57:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/set_xor_min.test.cpp
 layout: document

@@ -3,38 +3,35 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/set_xor_min.test.cpp
     title: test/yosupo/set_xor_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/binary_trie.md
-    document_title: Binary Trie
     links: []
   bundledCode: "#line 2 \"data-structure/binary_trie.cpp\"\n#include <cassert>\n#include\
-    \ <memory>\n\n/*\n * @brief Binary Trie\n * @docs docs/data-structure/binary_trie.md\n\
-    \ */\ntemplate <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie()\
-    \ : root(std::make_unique<Node>()) {}\n\n    int size() const {\n        return\
-    \ root->count;\n    }\n\n    bool empty() const {\n        return size() == 0;\n\
-    \    }\n\n    int count(T x) const {\n        return count(root, x, B - 1);\n\
-    \    }\n\n    int count_less(T x, T xor_val = 0) const {\n        return count_less(root,\
-    \ x, xor_val, B - 1);\n    }\n\n    void insert(T x) {\n        insert(root, x,\
-    \ B - 1);\n    }\n\n    void erase(T x) {\n        erase(root, x, B - 1);\n  \
-    \  }\n\n    T min_element(T xor_val = 0) const {\n        assert(!empty());\n\
-    \        return min_element(root, xor_val, B - 1);\n    }\n\n    T max_element(T\
-    \ xor_val = 0) const {\n        assert(!empty());\n        return max_element(root,\
-    \ xor_val, B - 1);\n    }\n\nprivate:\n    struct Node;\n    using node_ptr =\
-    \ std::unique_ptr<Node>;\n\n    struct Node {\n        node_ptr ch[2];\n     \
-    \   int count = 0;\n    };\n\n    const node_ptr root;\n\n    int count(const\
-    \ node_ptr& t, T x, int k) const {\n        if (k == -1) return t->count;\n  \
-    \      bool b = x >> k & 1;\n        return t->ch[b] ? count(t->ch[b], x, k -\
-    \ 1) : 0;\n    }\n\n    int count_less(const node_ptr& t, T x, T xor_val, int\
-    \ k) const {\n        if (k == -1) return 0;\n        bool b = x >> k & 1;\n \
-    \       bool f = xor_val >> k & 1;\n        int ret = 0;\n        if (f ^ b) {\n\
-    \            if (t->ch[f]) ret += t->ch[f]->count;\n            if (t->ch[1 -\
-    \ f]) ret += count_less(t->ch[1 - f], x, xor_val, k - 1);\n        } else {\n\
+    \ <memory>\n\ntemplate <typename T, int B = 32>\nclass BinaryTrie {\npublic:\n\
+    \    BinaryTrie() : root(std::make_unique<Node>()) {}\n\n    int size() const\
+    \ {\n        return root->count;\n    }\n\n    bool empty() const {\n        return\
+    \ size() == 0;\n    }\n\n    int count(T x) const {\n        return count(root,\
+    \ x, B - 1);\n    }\n\n    int count_less(T x, T xor_val = 0) const {\n      \
+    \  return count_less(root, x, xor_val, B - 1);\n    }\n\n    void insert(T x)\
+    \ {\n        insert(root, x, B - 1);\n    }\n\n    void erase(T x) {\n       \
+    \ erase(root, x, B - 1);\n    }\n\n    T min_element(T xor_val = 0) const {\n\
+    \        assert(!empty());\n        return min_element(root, xor_val, B - 1);\n\
+    \    }\n\n    T max_element(T xor_val = 0) const {\n        assert(!empty());\n\
+    \        return max_element(root, xor_val, B - 1);\n    }\n\nprivate:\n    struct\
+    \ Node;\n    using node_ptr = std::unique_ptr<Node>;\n\n    struct Node {\n  \
+    \      node_ptr ch[2];\n        int count = 0;\n    };\n\n    const node_ptr root;\n\
+    \n    int count(const node_ptr& t, T x, int k) const {\n        if (k == -1) return\
+    \ t->count;\n        bool b = x >> k & 1;\n        return t->ch[b] ? count(t->ch[b],\
+    \ x, k - 1) : 0;\n    }\n\n    int count_less(const node_ptr& t, T x, T xor_val,\
+    \ int k) const {\n        if (k == -1) return 0;\n        bool b = x >> k & 1;\n\
+    \        bool f = xor_val >> k & 1;\n        int ret = 0;\n        if (f ^ b)\
+    \ {\n            if (t->ch[f]) ret += t->ch[f]->count;\n            if (t->ch[1\
+    \ - f]) ret += count_less(t->ch[1 - f], x, xor_val, k - 1);\n        } else {\n\
     \            if (t->ch[f]) ret += count_less(t->ch[f], x, xor_val, k - 1);\n \
     \       }\n        return ret;\n    }\n\n    void insert(const node_ptr& t, T\
     \ x, int k) {\n        if (k == -1) {\n            ++t->count;\n            return;\n\
@@ -53,9 +50,8 @@ data:
     \ - b].count > 0) {\n            ret += T(1) << k;\n            ret += max_element(t->ch[1\
     \ - b], xor_val, k - 1);\n        } else {\n            ret += max_element(t->ch[b],\
     \ xor_val, k - 1);\n        }\n        return ret;\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <memory>\n\n/*\n * @brief Binary\
-    \ Trie\n * @docs docs/data-structure/binary_trie.md\n */\ntemplate <typename T,\
-    \ int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie() : root(std::make_unique<Node>())\
+  code: "#pragma once\n#include <cassert>\n#include <memory>\n\ntemplate <typename\
+    \ T, int B = 32>\nclass BinaryTrie {\npublic:\n    BinaryTrie() : root(std::make_unique<Node>())\
     \ {}\n\n    int size() const {\n        return root->count;\n    }\n\n    bool\
     \ empty() const {\n        return size() == 0;\n    }\n\n    int count(T x) const\
     \ {\n        return count(root, x, B - 1);\n    }\n\n    int count_less(T x, T\
@@ -97,17 +93,15 @@ data:
   isVerificationFile: false
   path: data-structure/binary_trie.cpp
   requiredBy: []
-  timestamp: '2021-01-11 09:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-10-30 12:57:24+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/set_xor_min.test.cpp
 documentation_of: data-structure/binary_trie.cpp
 layout: document
-redirect_from:
-- /library/data-structure/binary_trie.cpp
-- /library/data-structure/binary_trie.cpp.html
 title: Binary Trie
 ---
+
 ## Description
 
 二分トライ木 (binary trie) は，非負整数の多重集合を扱うデータ構造である．整数をビット列とみなしてトライ木に格納する．平衡二分木による多重集合の実装よりも実装が簡単であるほか，要素全体をある値で xor した時の最大/最小値を求めるなどの操作が可能である．

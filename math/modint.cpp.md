@@ -37,6 +37,9 @@ data:
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix_product.test.cpp
+    title: test/yosupo/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -131,6 +134,7 @@ data:
   - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/bitwise_xor_convolution.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix_product.test.cpp
   - test/yosupo/find_linear_recurrence.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp

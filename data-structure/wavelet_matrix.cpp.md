@@ -1,51 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_kth_smallest.test.cpp
     title: test/yosupo/range_kth_smallest.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/wavelet_matrix.cpp\"\n#include <algorithm>\n\
     #include <unordered_map>\n#include <vector>\n#line 2 \"data-structure/bit_vector.cpp\"\
-    \n#include <cstdint>\n#line 4 \"data-structure/bit_vector.cpp\"\n\n/*\n * @brief\
-    \ Rank/Select Dictionary\n * @docs docs/data-structure/bit_vector.md\n */\nclass\
-    \ BitVector {\npublic:\n    BitVector() = default;\n    explicit BitVector(const\
-    \ std::vector<bool>& v) {\n        int n = (v.size() + sz - 1) / sz;\n       \
-    \ data.resize(n);\n        sum.resize(n + 1);\n        for (int i = 0; i < (int)\
-    \ v.size(); ++i) data[i / sz] |= v[i] << (i % sz);\n        for (int i = 0; i\
-    \ < n; ++i) sum[i + 1] = sum[i] + __builtin_popcount(data[i]);\n    }\n\n    bool\
-    \ access(int k) const {\n        return data[k / sz] >> (k % sz) & 1;\n    }\n\
-    \n    int rank(int k, bool b) const {\n        int mask = (1 << (k % sz)) - 1;\n\
-    \        int r = sum[k / sz] + __builtin_popcount(data[k / sz] & mask);\n    \
-    \    return b ? r : k - r;\n    }\n\n    int select(int k, bool b) const {\n \
-    \       int lb = 0, ub = data.size();\n        while (ub - lb > 1) {\n       \
-    \     int m = (lb + ub) / 2;\n            if (rank(m, b) <= k) lb = m;\n     \
-    \       else ub = m;\n        }\n        return lb;\n    }\n\nprivate:\n    static\
-    \ constexpr int sz = 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int>\
-    \ sum;\n};\n#line 6 \"data-structure/wavelet_matrix.cpp\"\n\ntemplate <typename\
-    \ T>\nclass WaveletMatrix {\npublic:\n    WaveletMatrix() = default;\n    explicit\
-    \ WaveletMatrix(std::vector<T> v) {\n        int n = v.size() ;\n        T m =\
-    \ *std::max_element(v.begin(), v.end());\n        int d = 0;\n        while ((1\
-    \ << d) <= m) ++d;\n        mat.resize(d);\n        cnt0.resize(d);\n        for\
-    \ (d -= 1; d >= 0; --d) {\n            std::vector<bool> bit(n);\n           \
-    \ for (int i = 0; i < n; ++i) bit[i] = v[i] >> d & 1;\n            mat[d] = BitVector(bit);\n\
-    \            std::vector<int> cnt(2);\n            for (int i = 0; i < n; ++i)\
-    \ if (!bit[i]) cnt[0]++;\n            cnt0[d] = cnt[0];\n            cnt[1] =\
-    \ n;\n            std::vector<T> nv(n);\n            for (int i = n - 1; i >=\
-    \ 0; --i) nv[--cnt[bit[i]]] = v[i];\n            v.swap(nv);\n        }\n    \
-    \    for (int i = 0; i < n; ++i) if (!start.count(v[i])) start[v[i]] = i;\n  \
-    \  }\n\n    T access(int k) const {\n        T ret = 0;\n        for (int d =\
-    \ mat.size() - 1; d >= 0; --d) {\n            bool b = mat[d].access(k);\n   \
-    \         ret |= T(b) << d;\n            k = cnt0[d] * b + mat[d].rank(k, b);\n\
+    \n#include <cstdint>\n#line 4 \"data-structure/bit_vector.cpp\"\n\nclass BitVector\
+    \ {\npublic:\n    BitVector() = default;\n    explicit BitVector(const std::vector<bool>&\
+    \ v) {\n        int n = (v.size() + sz - 1) / sz;\n        data.resize(n);\n \
+    \       sum.resize(n + 1);\n        for (int i = 0; i < (int) v.size(); ++i) data[i\
+    \ / sz] |= v[i] << (i % sz);\n        for (int i = 0; i < n; ++i) sum[i + 1] =\
+    \ sum[i] + __builtin_popcount(data[i]);\n    }\n\n    bool access(int k) const\
+    \ {\n        return data[k / sz] >> (k % sz) & 1;\n    }\n\n    int rank(int k,\
+    \ bool b) const {\n        int mask = (1 << (k % sz)) - 1;\n        int r = sum[k\
+    \ / sz] + __builtin_popcount(data[k / sz] & mask);\n        return b ? r : k -\
+    \ r;\n    }\n\n    int select(int k, bool b) const {\n        int lb = 0, ub =\
+    \ data.size();\n        while (ub - lb > 1) {\n            int m = (lb + ub) /\
+    \ 2;\n            if (rank(m, b) <= k) lb = m;\n            else ub = m;\n   \
+    \     }\n        return lb;\n    }\n\nprivate:\n    static constexpr int sz =\
+    \ 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int> sum;\n};\n#line\
+    \ 6 \"data-structure/wavelet_matrix.cpp\"\n\ntemplate <typename T>\nclass WaveletMatrix\
+    \ {\npublic:\n    WaveletMatrix() = default;\n    explicit WaveletMatrix(std::vector<T>\
+    \ v) {\n        int n = v.size() ;\n        T m = *std::max_element(v.begin(),\
+    \ v.end());\n        int d = 0;\n        while ((1 << d) <= m) ++d;\n        mat.resize(d);\n\
+    \        cnt0.resize(d);\n        for (d -= 1; d >= 0; --d) {\n            std::vector<bool>\
+    \ bit(n);\n            for (int i = 0; i < n; ++i) bit[i] = v[i] >> d & 1;\n \
+    \           mat[d] = BitVector(bit);\n            std::vector<int> cnt(2);\n \
+    \           for (int i = 0; i < n; ++i) if (!bit[i]) cnt[0]++;\n            cnt0[d]\
+    \ = cnt[0];\n            cnt[1] = n;\n            std::vector<T> nv(n);\n    \
+    \        for (int i = n - 1; i >= 0; --i) nv[--cnt[bit[i]]] = v[i];\n        \
+    \    v.swap(nv);\n        }\n        for (int i = 0; i < n; ++i) if (!start.count(v[i]))\
+    \ start[v[i]] = i;\n    }\n\n    T access(int k) const {\n        T ret = 0;\n\
+    \        for (int d = mat.size() - 1; d >= 0; --d) {\n            bool b = mat[d].access(k);\n\
+    \            ret |= T(b) << d;\n            k = cnt0[d] * b + mat[d].rank(k, b);\n\
     \        }\n        return ret;\n    }\n\n    int rank(int k, T x) const {\n \
     \       for (int d = mat.size() - 1; d >= 0; --d) {\n            bool b = x >>\
     \ d & 1;\n            k = cnt0[d] * b + mat[d].rank(k, b);\n        }\n      \
@@ -104,8 +102,8 @@ data:
   isVerificationFile: false
   path: data-structure/wavelet_matrix.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:32:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-10-30 12:57:24+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/range_kth_smallest.test.cpp
 documentation_of: data-structure/wavelet_matrix.cpp

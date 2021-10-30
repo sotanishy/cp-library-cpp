@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: misc/compress.cpp
     title: Coordinate Compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/mo.cpp
     title: Mo's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -23,10 +23,9 @@ data:
   bundledCode: "#line 1 \"test/yosupo/static_range_inversions_query.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\n\n\
     #line 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n#include <vector>\n\
-    \n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n */\n\
-    template <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\npublic:\n\
-    \    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n), data(n\
-    \ + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
+    \ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\n\
+    public:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
+    \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
     \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
@@ -103,8 +102,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2021-10-07 16:56:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-30 12:57:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp
 layout: document

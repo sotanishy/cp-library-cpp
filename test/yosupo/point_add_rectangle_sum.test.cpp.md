@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/quadtree.cpp
     title: Quadtree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []
@@ -20,9 +20,8 @@ data:
   bundledCode: "#line 1 \"test/yosupo/point_add_rectangle_sum.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\n#line\
     \ 2 \"data-structure/quadtree.cpp\"\n#include <memory>\n#include <vector>\n\n\
-    /*\n * @brief Quadtree\n * @docs docs/data-structure/quadtree.md\n */\ntemplate\
-    \ <typename M>\nclass Quadtree {\n    using T = typename M::T;\n\npublic:\n  \
-    \  Quadtree() = default;\n    Quadtree(int n) : root(std::make_unique<Node>())\
+    template <typename M>\nclass Quadtree {\n    using T = typename M::T;\n\npublic:\n\
+    \    Quadtree() = default;\n    Quadtree(int n) : root(std::make_unique<Node>())\
     \ {\n        size = 1;\n        while (size < n) size <<= 1;\n    }\n\n    T get(int\
     \ x, int y) const { return fold(x, x + 1, y, y + 1); }\n\n    void update(int\
     \ x, int y, const T& val) const { update(x, y, val, root, 0, 0, size); }\n\n \
@@ -113,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-01-29 21:41:25+09:00'
+  timestamp: '2021-10-30 12:57:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.test.cpp

@@ -7,12 +7,9 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/persistent_stack.md
-    document_title: Persistent Stack
     links: []
   bundledCode: "#line 2 \"data-structure/persistent_stack.cpp\"\n#include <memory>\n\
-    \n/*\n * @brief Persistent Stack\n * @docs docs/data-structure/persistent_stack.md\n\
-    \ */\ntemplate <typename T>\nclass PersistentStack {\npublic:\n    PersistentStack()\
+    \ntemplate <typename T>\nclass PersistentStack {\npublic:\n    PersistentStack()\
     \ = default;\n\n    T top() const {\n        return last->val;\n    }\n\n    bool\
     \ empty() const {\n        return last == nullptr;\n    }\n\n    PersistentStack\
     \ push(const T& val) const {\n        return PersistentStack(std::make_shared<Node>(val,\
@@ -21,8 +18,7 @@ data:
     \n    struct Node {\n        T val;\n        node_ptr prev;\n        Node(T val,\
     \ node_ptr prev) : val(val), prev(prev) {}\n    };\n\n    node_ptr last;\n\n \
     \   explicit PersistentStack(node_ptr last) : last(last) {}\n};\n"
-  code: "#pragma once\n#include <memory>\n\n/*\n * @brief Persistent Stack\n * @docs\
-    \ docs/data-structure/persistent_stack.md\n */\ntemplate <typename T>\nclass PersistentStack\
+  code: "#pragma once\n#include <memory>\n\ntemplate <typename T>\nclass PersistentStack\
     \ {\npublic:\n    PersistentStack() = default;\n\n    T top() const {\n      \
     \  return last->val;\n    }\n\n    bool empty() const {\n        return last ==\
     \ nullptr;\n    }\n\n    PersistentStack push(const T& val) const {\n        return\
@@ -36,16 +32,14 @@ data:
   isVerificationFile: false
   path: data-structure/persistent_stack.cpp
   requiredBy: []
-  timestamp: '2020-11-03 02:25:42+09:00'
+  timestamp: '2021-10-30 12:57:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/persistent_stack.cpp
 layout: document
-redirect_from:
-- /library/data-structure/persistent_stack.cpp
-- /library/data-structure/persistent_stack.cpp.html
 title: Persistent Stack
 ---
+
 ## Description
 
 永続スタックは，過去のバージョンを保持するスタックである．

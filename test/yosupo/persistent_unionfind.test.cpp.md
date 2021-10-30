@@ -20,14 +20,13 @@ data:
   bundledCode: "#line 1 \"test/yosupo/persistent_unionfind.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\n#line 2 \"data-structure/unionfind/persistent_union_find.cpp\"\
     \n#include <algorithm>\n#include <vector>\n#line 2 \"data-structure/persistent_array.cpp\"\
-    \n#include <memory>\n#line 4 \"data-structure/persistent_array.cpp\"\n\n/*\n *\
-    \ @brief Persistent Array\n * @docs docs/data-structure/persistent_array.md\n\
-    \ */\ntemplate <typename T, int B = 2>\nclass PersistentArray {\npublic:\n   \
-    \ PersistentArray() = default;\n    explicit PersistentArray(const std::vector<T>&\
-    \ v) {\n        for (int i = 0; i < (int) v.size(); ++i) root = set(root, i, v[i]);\n\
-    \    }\n\n    T get(int k) const {\n        return get(root, k);\n    }\n\n  \
-    \  PersistentArray set(int k, const T& x) const {\n        return PersistentArray(set(root,\
-    \ k, x));\n    }\n\nprivate:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
+    \n#include <memory>\n#line 4 \"data-structure/persistent_array.cpp\"\n\ntemplate\
+    \ <typename T, int B = 2>\nclass PersistentArray {\npublic:\n    PersistentArray()\
+    \ = default;\n    explicit PersistentArray(const std::vector<T>& v) {\n      \
+    \  for (int i = 0; i < (int) v.size(); ++i) root = set(root, i, v[i]);\n    }\n\
+    \n    T get(int k) const {\n        return get(root, k);\n    }\n\n    PersistentArray\
+    \ set(int k, const T& x) const {\n        return PersistentArray(set(root, k,\
+    \ x));\n    }\n\nprivate:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
     \n    struct Node {\n        T val;\n        node_ptr ch[B];\n    };\n\n    node_ptr\
     \ root = nullptr;\n\n    explicit PersistentArray(const node_ptr& root) : root(root)\
     \ {}\n\n    T get(const node_ptr& t, int k) const {\n        if (k == 0) return\
@@ -72,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 18:47:10+09:00'
+  timestamp: '2021-10-30 12:57:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_unionfind.test.cpp

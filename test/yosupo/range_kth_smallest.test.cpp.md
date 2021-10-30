@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/wavelet_matrix.cpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -21,8 +21,7 @@ data:
     \ \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n#line 2 \"data-structure/wavelet_matrix.cpp\"\
     \n#include <algorithm>\n#include <unordered_map>\n#include <vector>\n#line 2 \"\
     data-structure/bit_vector.cpp\"\n#include <cstdint>\n#line 4 \"data-structure/bit_vector.cpp\"\
-    \n\n/*\n * @brief Rank/Select Dictionary\n * @docs docs/data-structure/bit_vector.md\n\
-    \ */\nclass BitVector {\npublic:\n    BitVector() = default;\n    explicit BitVector(const\
+    \n\nclass BitVector {\npublic:\n    BitVector() = default;\n    explicit BitVector(const\
     \ std::vector<bool>& v) {\n        int n = (v.size() + sz - 1) / sz;\n       \
     \ data.resize(n);\n        sum.resize(n + 1);\n        for (int i = 0; i < (int)\
     \ v.size(); ++i) data[i / sz] |= v[i] << (i % sz);\n        for (int i = 0; i\
@@ -88,8 +87,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:32:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-30 12:57:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_kth_smallest.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
   _extendedRequiredBy: []
@@ -16,13 +16,12 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
   bundledCode: "#line 1 \"test/aoj/DSL_2_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
     \n\n#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n#include\
-    \ <vector>\n\n/*\n * @brief Fenwick Tree\n * @docs docs/data-structure/fenwick_tree.md\n\
-    \ */\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
-    \npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
-    \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
-    \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
-    \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
-    \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
+    \ <vector>\n\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename\
+    \ M::T;\n\npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int\
+    \ n) : n(n), data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n     \
+    \   T ret = M::id;\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
+    \        return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
+    \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
     \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
     \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
     \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
@@ -52,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2020-11-02 19:09:03+09:00'
+  timestamp: '2021-10-30 12:57:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_B.test.cpp
