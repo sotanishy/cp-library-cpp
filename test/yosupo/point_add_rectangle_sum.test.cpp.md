@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/quadtree.cpp
     title: Quadtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []

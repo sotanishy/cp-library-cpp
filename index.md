@@ -3,16 +3,16 @@ data:
   libraryCategories:
   - name: data-structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Quadtree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -57,7 +57,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -164,7 +164,7 @@ data:
       title: Minimum Cost Flow
   - name: geometry
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.cpp
       title: geometry/geometry.cpp
   - name: graph
@@ -181,7 +181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_cliques.cpp
       title: Enumerate Cliques
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -208,7 +208,7 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
     - icon: ':heavy_check_mark:'
@@ -298,13 +298,13 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: misc/mo.cpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -356,7 +356,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
       title: Euler Tour Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -401,52 +401,52 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_B.test.cpp
       title: test/aoj/CGL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_C.test.cpp
       title: test/aoj/CGL_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_A.test.cpp
       title: test/aoj/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_C.test.cpp
       title: test/aoj/CGL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_A.test.cpp
       title: test/aoj/CGL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_C.test.cpp
       title: test/aoj/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_5_A.test.cpp
       title: test/aoj/CGL_5_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_B.test.cpp
       title: test/aoj/CGL_7_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_C.test.cpp
       title: test/aoj/CGL_7_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_D.test.cpp
       title: test/aoj/CGL_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_E.test.cpp
       title: test/aoj/CGL_7_E.test.cpp
     - icon: ':heavy_check_mark:'
@@ -655,7 +655,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -667,19 +667,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.sqrt_tree.test.cpp
       title: test/yosupo/staticrmq.sqrt_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -694,7 +694,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
@@ -709,7 +709,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     - icon: ':heavy_check_mark:'
