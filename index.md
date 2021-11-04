@@ -166,7 +166,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: geometry/geometry.cpp
-      title: geometry/geometry.cpp
+      title: Geometry
   - name: graph
     pages:
     - icon: ':warning:'

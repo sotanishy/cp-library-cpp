@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: geometry/geometry.cpp
-    title: geometry/geometry.cpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
