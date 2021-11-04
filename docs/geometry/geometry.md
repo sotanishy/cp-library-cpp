@@ -1,6 +1,6 @@
 ---
 title: Geometry
-documentation_of: ../../math/geometry.cpp
+documentation_of: ../../geometry/geometry.cpp
 ---
 
 ## Description
