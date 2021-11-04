@@ -31,6 +31,7 @@ private:
 
 template <typename T>
 T comb(int n, int r) {
+    if (r < 0 || n < r) return 0;
     T num = 1, den = 1;
     for (int i = 1; i <= r; ++i) {
         num = num * (n - i + 1);

@@ -2,7 +2,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> berlekamp_massey(std::vector<T> a) {
+std::vector<T> berlekamp_massey(const std::vector<T>& a) {
     int n = a.size();
     std::vector<T> B = {1}, C = {1};
     T b = 1;

@@ -2,13 +2,13 @@
 #include <vector>
 
 template <typename T>
-T kitamasa(const std::vector<T>& a, const std::vector<T>& d, int n) {
+T kitamasa(const std::vector<T>& a, const std::vector<T>& d, long long n) {
     const int k = a.size();
     if (n < k) {
         return a[n];
     }
 
-    auto dfs = [&](const auto& dfs, int n) -> std::vector<T> {
+    auto dfs = [&](const auto& dfs, long long n) -> std::vector<T> {
         if (n == k) {
             return d;
         }
