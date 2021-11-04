@@ -48,7 +48,7 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/berlekamp_massey.cpp\"\n#include\
-    \ <vector>\n\ntemplate <typename T>\nstd::vector<T> berlekamp_massey(std::vector<T>\
+    \ <vector>\n\ntemplate <typename T>\nstd::vector<T> berlekamp_massey(const std::vector<T>&\
     \ a) {\n    int n = a.size();\n    std::vector<T> B = {1}, C = {1};\n    T b =\
     \ 1;\n    int L = 0, m = 1;\n    for (int i = 0; i < n; ++i) {\n        T d =\
     \ a[i];\n        for (int j = 1; j < (int) C.size(); ++j) {\n            d +=\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2021-04-23 22:08:54+09:00'
+  timestamp: '2021-11-04 23:22:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/find_linear_recurrence.test.cpp

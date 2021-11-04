@@ -187,14 +187,14 @@ data:
   isVerificationFile: false
   path: math/polynomial.cpp
   requiredBy:
-  - math/multipoint_evaluation.cpp
   - math/interpolation.cpp
+  - math/multipoint_evaluation.cpp
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
 documentation_of: math/polynomial.cpp
 layout: document

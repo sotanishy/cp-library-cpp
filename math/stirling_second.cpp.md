@@ -23,14 +23,14 @@ data:
     \ * fact_inv_[r] * fact_inv_[n - r];\n    }\n\n    T fact(int n) const { return\
     \ fact_[n]; }\n    T fact_inv(int n) const { return fact_inv_[n]; }\n\nprivate:\n\
     \    std::vector<T> fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(int\
-    \ n, int r) {\n    T num = 1, den = 1;\n    for (int i = 1; i <= r; ++i) {\n \
-    \       num = num * (n - i + 1);\n        den = den * i;\n    }\n    return num\
-    \ / den;\n}\n#line 3 \"math/stirling_second.cpp\"\n\n/*\n * @brief Stirling Number\
-    \ of the Second Kind\n */\ntemplate <typename T>\nT stirling_second(int n, int\
-    \ k) {\n    Combination<T> comb(n);\n    T res = 0;\n    for (int i = 0; i <=\
-    \ k; ++i) {\n        T tmp = comb.comb(k, i) * T(i).pow(n);\n        if ((k -\
-    \ i) & 1) res -= tmp;\n        else res += tmp;\n    }\n    for (int i = 1; i\
-    \ <= k; ++i) res /= i;\n    return res;\n}\n"
+    \ n, int r) {\n    if (r < 0 || n < r) return 0;\n    T num = 1, den = 1;\n  \
+    \  for (int i = 1; i <= r; ++i) {\n        num = num * (n - i + 1);\n        den\
+    \ = den * i;\n    }\n    return num / den;\n}\n#line 3 \"math/stirling_second.cpp\"\
+    \n\n/*\n * @brief Stirling Number of the Second Kind\n */\ntemplate <typename\
+    \ T>\nT stirling_second(int n, int k) {\n    Combination<T> comb(n);\n    T res\
+    \ = 0;\n    for (int i = 0; i <= k; ++i) {\n        T tmp = comb.comb(k, i) *\
+    \ T(i).pow(n);\n        if ((k - i) & 1) res -= tmp;\n        else res += tmp;\n\
+    \    }\n    for (int i = 1; i <= k; ++i) res /= i;\n    return res;\n}\n"
   code: "#pragma once\n#include \"combination.cpp\"\n\n/*\n * @brief Stirling Number\
     \ of the Second Kind\n */\ntemplate <typename T>\nT stirling_second(int n, int\
     \ k) {\n    Combination<T> comb(n);\n    T res = 0;\n    for (int i = 0; i <=\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: math/stirling_second.cpp
   requiredBy: []
-  timestamp: '2021-09-08 22:33:55+09:00'
+  timestamp: '2021-11-04 23:22:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/stirling_second.cpp

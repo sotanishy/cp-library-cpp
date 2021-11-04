@@ -9,47 +9,47 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"math/kitamasa.cpp\"\n#include <vector>\n\ntemplate <typename\
-    \ T>\nT kitamasa(const std::vector<T>& a, const std::vector<T>& d, int n) {\n\
-    \    const int k = a.size();\n    if (n < k) {\n        return a[n];\n    }\n\n\
-    \    auto dfs = [&](const auto& dfs, int n) -> std::vector<T> {\n        if (n\
-    \ == k) {\n            return d;\n        }\n        std::vector<T> res(k);\n\
-    \        if (n & 1 || n < 2 * k) {\n            auto x = dfs(dfs, n - 1);\n  \
-    \          for (int j = 0; j < k; ++j) {\n                res[j] = d[j] * x[k\
-    \ - 1];\n                if (j > 0) {\n                    res[j] += x[j - 1];\n\
-    \                }\n            }\n        } else {\n            std::vector x(k,\
-    \ std::vector<T>(k));\n            x[0] = dfs(dfs, n / 2);\n            for (int\
-    \ i = 1; i < k; ++i) {\n                for (int j = 0; j < k; ++j) {\n      \
-    \              x[i][j] = d[j] * x[i - 1][k - 1];\n                    if (j >\
-    \ 0) {\n                        x[i][j] += x[i - 1][j - 1];\n                \
-    \    }\n                }\n            }\n            for (int i = 0; i < k; ++i)\
-    \ {\n                for (int j = 0; j < k; ++j) {\n                    res[j]\
-    \ += x[0][i] * x[i][j];\n                }\n            }\n        }\n       \
-    \ return res;\n    };\n\n    auto x = dfs(dfs, n);\n    T ans = 0;\n    for (int\
-    \ i = 0; i < k; ++i) {\n        ans += x[i] * a[i];\n    }\n    return ans;\n\
-    }\n"
+    \ T>\nT kitamasa(const std::vector<T>& a, const std::vector<T>& d, long long n)\
+    \ {\n    const int k = a.size();\n    if (n < k) {\n        return a[n];\n   \
+    \ }\n\n    auto dfs = [&](const auto& dfs, long long n) -> std::vector<T> {\n\
+    \        if (n == k) {\n            return d;\n        }\n        std::vector<T>\
+    \ res(k);\n        if (n & 1 || n < 2 * k) {\n            auto x = dfs(dfs, n\
+    \ - 1);\n            for (int j = 0; j < k; ++j) {\n                res[j] = d[j]\
+    \ * x[k - 1];\n                if (j > 0) {\n                    res[j] += x[j\
+    \ - 1];\n                }\n            }\n        } else {\n            std::vector\
+    \ x(k, std::vector<T>(k));\n            x[0] = dfs(dfs, n / 2);\n            for\
+    \ (int i = 1; i < k; ++i) {\n                for (int j = 0; j < k; ++j) {\n \
+    \                   x[i][j] = d[j] * x[i - 1][k - 1];\n                    if\
+    \ (j > 0) {\n                        x[i][j] += x[i - 1][j - 1];\n           \
+    \         }\n                }\n            }\n            for (int i = 0; i <\
+    \ k; ++i) {\n                for (int j = 0; j < k; ++j) {\n                 \
+    \   res[j] += x[0][i] * x[i][j];\n                }\n            }\n        }\n\
+    \        return res;\n    };\n\n    auto x = dfs(dfs, n);\n    T ans = 0;\n  \
+    \  for (int i = 0; i < k; ++i) {\n        ans += x[i] * a[i];\n    }\n    return\
+    \ ans;\n}\n"
   code: "#pragma once\n#include <vector>\n\ntemplate <typename T>\nT kitamasa(const\
-    \ std::vector<T>& a, const std::vector<T>& d, int n) {\n    const int k = a.size();\n\
-    \    if (n < k) {\n        return a[n];\n    }\n\n    auto dfs = [&](const auto&\
-    \ dfs, int n) -> std::vector<T> {\n        if (n == k) {\n            return d;\n\
-    \        }\n        std::vector<T> res(k);\n        if (n & 1 || n < 2 * k) {\n\
-    \            auto x = dfs(dfs, n - 1);\n            for (int j = 0; j < k; ++j)\
-    \ {\n                res[j] = d[j] * x[k - 1];\n                if (j > 0) {\n\
-    \                    res[j] += x[j - 1];\n                }\n            }\n \
-    \       } else {\n            std::vector x(k, std::vector<T>(k));\n         \
-    \   x[0] = dfs(dfs, n / 2);\n            for (int i = 1; i < k; ++i) {\n     \
-    \           for (int j = 0; j < k; ++j) {\n                    x[i][j] = d[j]\
-    \ * x[i - 1][k - 1];\n                    if (j > 0) {\n                     \
-    \   x[i][j] += x[i - 1][j - 1];\n                    }\n                }\n  \
-    \          }\n            for (int i = 0; i < k; ++i) {\n                for (int\
-    \ j = 0; j < k; ++j) {\n                    res[j] += x[0][i] * x[i][j];\n   \
-    \             }\n            }\n        }\n        return res;\n    };\n\n   \
-    \ auto x = dfs(dfs, n);\n    T ans = 0;\n    for (int i = 0; i < k; ++i) {\n \
-    \       ans += x[i] * a[i];\n    }\n    return ans;\n}"
+    \ std::vector<T>& a, const std::vector<T>& d, long long n) {\n    const int k\
+    \ = a.size();\n    if (n < k) {\n        return a[n];\n    }\n\n    auto dfs =\
+    \ [&](const auto& dfs, long long n) -> std::vector<T> {\n        if (n == k) {\n\
+    \            return d;\n        }\n        std::vector<T> res(k);\n        if\
+    \ (n & 1 || n < 2 * k) {\n            auto x = dfs(dfs, n - 1);\n            for\
+    \ (int j = 0; j < k; ++j) {\n                res[j] = d[j] * x[k - 1];\n     \
+    \           if (j > 0) {\n                    res[j] += x[j - 1];\n          \
+    \      }\n            }\n        } else {\n            std::vector x(k, std::vector<T>(k));\n\
+    \            x[0] = dfs(dfs, n / 2);\n            for (int i = 1; i < k; ++i)\
+    \ {\n                for (int j = 0; j < k; ++j) {\n                    x[i][j]\
+    \ = d[j] * x[i - 1][k - 1];\n                    if (j > 0) {\n              \
+    \          x[i][j] += x[i - 1][j - 1];\n                    }\n              \
+    \  }\n            }\n            for (int i = 0; i < k; ++i) {\n             \
+    \   for (int j = 0; j < k; ++j) {\n                    res[j] += x[0][i] * x[i][j];\n\
+    \                }\n            }\n        }\n        return res;\n    };\n\n\
+    \    auto x = dfs(dfs, n);\n    T ans = 0;\n    for (int i = 0; i < k; ++i) {\n\
+    \        ans += x[i] * a[i];\n    }\n    return ans;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/kitamasa.cpp
   requiredBy: []
-  timestamp: '2021-09-08 22:33:29+09:00'
+  timestamp: '2021-11-04 23:22:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/kitamasa.cpp

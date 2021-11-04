@@ -22,9 +22,9 @@ data:
     \ * fact_inv_[r] * fact_inv_[n - r];\n    }\n\n    T fact(int n) const { return\
     \ fact_[n]; }\n    T fact_inv(int n) const { return fact_inv_[n]; }\n\nprivate:\n\
     \    std::vector<T> fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(int\
-    \ n, int r) {\n    T num = 1, den = 1;\n    for (int i = 1; i <= r; ++i) {\n \
-    \       num = num * (n - i + 1);\n        den = den * i;\n    }\n    return num\
-    \ / den;\n}\n"
+    \ n, int r) {\n    if (r < 0 || n < r) return 0;\n    T num = 1, den = 1;\n  \
+    \  for (int i = 1; i <= r; ++i) {\n        num = num * (n - i + 1);\n        den\
+    \ = den * i;\n    }\n    return num / den;\n}\n"
   code: "#pragma once\n#include <vector>\n\ntemplate <typename T>\nclass Combination\
     \ {\npublic:\n    Combination() = default;\n    Combination(int n) : fact_(n +\
     \ 1), fact_inv_(n + 1) {\n        fact_[0] = 1;\n        for (int i = 1; i <=\
@@ -36,14 +36,15 @@ data:
     \ * fact_inv_[n - r];\n    }\n\n    T fact(int n) const { return fact_[n]; }\n\
     \    T fact_inv(int n) const { return fact_inv_[n]; }\n\nprivate:\n    std::vector<T>\
     \ fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(int n, int r) {\n   \
-    \ T num = 1, den = 1;\n    for (int i = 1; i <= r; ++i) {\n        num = num *\
-    \ (n - i + 1);\n        den = den * i;\n    }\n    return num / den;\n}"
+    \ if (r < 0 || n < r) return 0;\n    T num = 1, den = 1;\n    for (int i = 1;\
+    \ i <= r; ++i) {\n        num = num * (n - i + 1);\n        den = den * i;\n \
+    \   }\n    return num / den;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/combination.cpp
   requiredBy:
   - math/stirling_second.cpp
-  timestamp: '2021-09-08 22:33:55+09:00'
+  timestamp: '2021-11-04 23:22:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/combination.cpp

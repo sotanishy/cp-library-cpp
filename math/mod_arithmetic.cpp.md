@@ -84,8 +84,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_B.test.cpp
-  - test/yosupo/sqrt_mod.test.cpp
   - test/yosupo/discrete_logarithm_mod.test.cpp
+  - test/yosupo/sqrt_mod.test.cpp
 documentation_of: math/mod_arithmetic.cpp
 layout: document
 title: Modular Arithmetic

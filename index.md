@@ -302,8 +302,14 @@ data:
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
+      path: misc/fraction.cpp
+      title: misc/fraction.cpp
+    - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
+    - icon: ':warning:'
+      path: misc/median_set.cpp
+      title: misc/median_set.cpp
     - icon: ':heavy_check_mark:'
       path: misc/mo.cpp
       title: Mo's Algorithm

@@ -68,8 +68,8 @@ data:
   isVerificationFile: false
   path: data-structure/leftist_heap.cpp
   requiredBy:
-  - graph/minimum_spanning_arborescence.cpp
   - dp/hu_tucker.cpp
+  - graph/minimum_spanning_arborescence.cpp
   timestamp: '2021-09-11 15:28:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

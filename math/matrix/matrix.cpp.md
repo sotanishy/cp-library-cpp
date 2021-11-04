@@ -126,15 +126,15 @@ data:
   isVerificationFile: false
   path: math/matrix/matrix.cpp
   requiredBy:
-  - math/matrix/square_matrix.cpp
   - math/system_of_linear_equations.cpp
+  - math/matrix/square_matrix.cpp
   timestamp: '2021-03-30 13:20:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/matrix_det.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
-  - test/yosupo/matrix_product.test.cpp
   - test/yosupo/inverse_matrix.test.cpp
+  - test/yosupo/matrix_product.test.cpp
+  - test/yosupo/matrix_det.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 title: Matrix
