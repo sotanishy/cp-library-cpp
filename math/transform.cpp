@@ -2,7 +2,7 @@
 #include <vector>
 
 /*
- * Fast Zeta/Mobius Transform
+ * Fast Zeta/Moebius Transform
  */
 
 template <typename T>
@@ -26,7 +26,7 @@ void fmt(std::vector<T>& a, bool subset) {
 }
 
 /*
- * Divisor Fast Zeta/Mobius Transform
+ * Divisor Fast Zeta/Moebius Transform
  */
 
 template <typename T>

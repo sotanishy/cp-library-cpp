@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <numeric>
 #include <vector>
 
 /*
@@ -28,6 +29,24 @@ std::vector<bool> prime_table(int n) {
         for (int j = i * i; j <= n; j += 2 * i) prime[j] = false;
     }
     return prime;
+}
+
+/*
+ * Table of Minimum Prime Factors
+ */
+std::vector<int> min_factor_table(int n) {
+    std::vector<int> factor(n + 1);
+    std::iota(factor.begin(), factor.end(), 0);
+    for (int i = 2; i * i <= n; ++i) {
+        if (factor[i] == i) {
+            for (int j = i * i; j <= n; j += i) {
+                if (factor[j] == j) {
+                    factor[j] = i;
+                }
+            }
+        }
+    }
+    return factor;
 }
 
 /*

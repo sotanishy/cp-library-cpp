@@ -10,6 +10,8 @@
 using T = double;
 using Vec = std::complex<T>;
 
+const T PI = std::acos(-1);
+
 constexpr T eps = 1e-12;
 inline bool eq(T a, T b) { return std::abs(a - b) < eps; }
 inline bool lt(T a, T b) { return a < b - eps; }
@@ -115,6 +117,22 @@ T area(const std::vector<Vec>& pts) {
         res += cross(pts[i], pts[(i + 1) % n]);
     }
     return std::abs(res) / T(2);
+}
+
+T area_intersection_circles(const Vec& c1, T r1, const Vec& c2, T r2) {
+    T d = std::abs(c2 - c1);
+    if (leq(r1 + r2, d)) return 0;  // outside
+    if (leq(d, std::abs(r2 - r1))) {  // contain
+        T r = std::min(r1, r2);
+        return PI * r * r;
+    }
+    T ans = 0;
+    T a;
+    a = std::acos((r1*r1+d*d-r2*r2)/(2*r1*d));
+    ans += r1*r1*(a - std::sin(a)*std::cos(a));
+    a = std::acos((r2*r2+d*d-r1*r1)/(2*r2*d));
+    ans += r2*r2*(a - std::sin(a)*std::cos(a));
+    return ans;
 }
 
 bool is_convex(const std::vector<Vec>& pts) {
@@ -260,6 +278,33 @@ Vec cross(const Vec& a, const Vec& b) {
 namespace std {
 T norm(const Vec& a) { return dot(a, a); }
 T abs(const Vec& a) { return std::sqrt(std::norm(a)); }
+}
+
+*/
+
+/*
+// for integer coordinates
+// operations with no floating point error
+
+void sort_by_arg(std::vector<pair<Vec, int>>& pts) {
+    auto top = [&](auto& a) {
+        return a.real() > 0 || (a.imag() == 0 && a.real() > 0);
+    };
+    auto cmp = [&](auto& p, auto& q) {
+        auto a = p.first;
+        auto b = q.first;
+        bool ta = top(a), tb = top(b);
+        if (ta != tb) return tb;
+        return cross(a, b) > 0;
+    };
+    std::sort(pts.begin(), pts.end(), cmp);
+}
+
+// watch out for overflow
+bool compare_angle(const Vec& a, const Vec& b, const Vec& c, const Vec& d) {
+    Vec u(dot(a, b), std::abs(cross(a, b)));
+    Vec v(dot(c, d), std::abs(cross(c, d)));
+    return cross(u, v) > 0;
 }
 
 */

@@ -23,6 +23,14 @@ $n$ を試し割り法で素数判定する．
     - $n$ 以下の整数の素数表を構築する
     - 時間計算量: $O(n\log\log n)$
 
+## Table of Minimum Prime Factors
+
+エラトステネスの篩を用いて，$n$ 以下の整数のそれぞれについてその最小の素因数を計算する．
+
+- `vector<bool> min_factor_table(int n)`
+    - $n$ 以下の各整数の最小の素因数を計算する
+    - 時間計算量: $O(n\log\log n)$
+
 ## Prime Factorization
 
 $n$ を試し割り法で素因数分解する．

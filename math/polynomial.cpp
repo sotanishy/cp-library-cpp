@@ -137,5 +137,10 @@ public:
 
 private:
     Poly pre(int size) const { return Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }
-    Poly rev() const { return Poly(this->rbegin(), this->rend()); }
+
+    Poly rev(int deg = -1) const {
+        Poly ret(*this);
+        if (deg != -1) ret.resize(deg, 0);
+        return Poly(ret.rbegin(), ret.rend());
+    }
 };
