@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/transform.cpp\"\n#include <vector>\n\n/*\n * Fast Zeta/Mobius\
+  bundledCode: "#line 2 \"math/transform.cpp\"\n#include <vector>\n\n/*\n * Fast Zeta/Moebius\
     \ Transform\n */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>& a, bool subset)\
     \ {\n    int k = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i)\
     \ {\n        for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1)\
@@ -22,14 +22,14 @@ data:
     \ T>\nvoid fmt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
     \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
     \ {\n            if ((j >> i & 1) == subset) a[j] -= a[j ^ (1 << i)];\n      \
-    \  }\n    }\n}\n\n/*\n * Divisor Fast Zeta/Mobius Transform\n */\n\ntemplate <typename\
-    \ T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n    int n = a.size();\n\
-    \    std::vector<bool> sieve(n, true);\n    for (int p = 2; p < n; ++p) {\n  \
-    \      if (!sieve[p]) continue;\n        if (subset) {\n            for (int k\
-    \ = 1; k * p < n; ++k) {\n                sieve[k * p] = false;\n            \
-    \    a[k * p] += a[k];\n            }\n        } else {\n            for (int\
-    \ k = (n - 1) / p; k > 0; --k) {\n                sieve[k * p] = false;\n    \
-    \            a[k] += a[k * p];\n            }\n        }\n    }\n}\n\ntemplate\
+    \  }\n    }\n}\n\n/*\n * Divisor Fast Zeta/Moebius Transform\n */\n\ntemplate\
+    \ <typename T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n    int n\
+    \ = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p = 2; p <\
+    \ n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset) {\n       \
+    \     for (int k = 1; k * p < n; ++k) {\n                sieve[k * p] = false;\n\
+    \                a[k * p] += a[k];\n            }\n        } else {\n        \
+    \    for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k * p] = false;\n\
+    \                a[k] += a[k * p];\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename T>\nvoid divisor_fmt(std::vector<T>& a, bool subset) {\n    int n\
     \ = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p = 2; p <\
     \ n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset) {\n       \
@@ -48,7 +48,7 @@ data:
     \ ++j) {\n                T x = a[j];\n                T y = a[j | h];\n     \
     \           a[j] = (x + y) / 2;\n                a[j | h] = (x - y) / 2;\n   \
     \         }\n        }\n    }\n}\n"
-  code: "#pragma once\n#include <vector>\n\n/*\n * Fast Zeta/Mobius Transform\n */\n\
+  code: "#pragma once\n#include <vector>\n\n/*\n * Fast Zeta/Moebius Transform\n */\n\
     \ntemplate <typename T>\nvoid fzt(std::vector<T>& a, bool subset) {\n    int k\
     \ = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i) {\n       \
     \ for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1) == subset)\
@@ -56,14 +56,14 @@ data:
     \ fmt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
     \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
     \ {\n            if ((j >> i & 1) == subset) a[j] -= a[j ^ (1 << i)];\n      \
-    \  }\n    }\n}\n\n/*\n * Divisor Fast Zeta/Mobius Transform\n */\n\ntemplate <typename\
-    \ T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n    int n = a.size();\n\
-    \    std::vector<bool> sieve(n, true);\n    for (int p = 2; p < n; ++p) {\n  \
-    \      if (!sieve[p]) continue;\n        if (subset) {\n            for (int k\
-    \ = 1; k * p < n; ++k) {\n                sieve[k * p] = false;\n            \
-    \    a[k * p] += a[k];\n            }\n        } else {\n            for (int\
-    \ k = (n - 1) / p; k > 0; --k) {\n                sieve[k * p] = false;\n    \
-    \            a[k] += a[k * p];\n            }\n        }\n    }\n}\n\ntemplate\
+    \  }\n    }\n}\n\n/*\n * Divisor Fast Zeta/Moebius Transform\n */\n\ntemplate\
+    \ <typename T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n    int n\
+    \ = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p = 2; p <\
+    \ n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset) {\n       \
+    \     for (int k = 1; k * p < n; ++k) {\n                sieve[k * p] = false;\n\
+    \                a[k * p] += a[k];\n            }\n        } else {\n        \
+    \    for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k * p] = false;\n\
+    \                a[k] += a[k * p];\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename T>\nvoid divisor_fmt(std::vector<T>& a, bool subset) {\n    int n\
     \ = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p = 2; p <\
     \ n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset) {\n       \
@@ -86,11 +86,11 @@ data:
   isVerificationFile: false
   path: math/transform.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:15:51+09:00'
+  timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bitwise_xor_convolution.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/bitwise_xor_convolution.test.cpp
 documentation_of: math/transform.cpp
 layout: document
 title: Transform

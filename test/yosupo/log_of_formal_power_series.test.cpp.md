@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
@@ -142,11 +142,12 @@ data:
     \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
-    \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};\n#line 5 \"test/yosupo/log_of_formal_power_series.test.cpp\"\n\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
-    \    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
+    \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n};\n#line 5 \"test/yosupo/log_of_formal_power_series.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
     \ < N; ++i) cin >> f[i];\n    auto g = f.log();\n    for (int i = 0; i < N; ++i)\
     \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
@@ -163,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/log_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:15:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-04 19:51:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/log_of_formal_power_series.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -121,8 +121,9 @@ data:
     \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
-    \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};\n"
+    \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     #include \"ntt.cpp\"\n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint>\
     \ {\n    using Poly = Polynomial;\n\npublic:\n    using std::vector<mint>::vector;\n\
@@ -180,22 +181,23 @@ data:
     \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
-    \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};"
+    \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n};"
   dependsOn:
   - math/ntt.cpp
   isVerificationFile: false
   path: math/polynomial.cpp
   requiredBy:
-  - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2021-02-06 03:15:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - math/interpolation.cpp
+  timestamp: '2021-12-04 19:51:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
 documentation_of: math/polynomial.cpp
 layout: document
 title: Polynomial

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -106,13 +106,14 @@ data:
     \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
-    \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};\n#line 4 \"math/interpolation.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
-    \ interpolate(const std::vector<T>& x, const std::vector<T>& y) {\n    assert(x.size()\
-    \ == y.size());\n    int n = x.size();\n    std::vector<T> prod(n + 1);\n    prod[0]\
-    \ = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T> nxt(n + 1);\n\
-    \        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] = prod[j];\n  \
-    \          nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
+    \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n};\n#line 4 \"math/interpolation.cpp\"\n\ntemplate <typename\
+    \ T>\nPolynomial<T> interpolate(const std::vector<T>& x, const std::vector<T>&\
+    \ y) {\n    assert(x.size() == y.size());\n    int n = x.size();\n    std::vector<T>\
+    \ prod(n + 1);\n    prod[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T>\
+    \ nxt(n + 1);\n        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] =\
+    \ prod[j];\n            nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
     \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
     \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
     \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
@@ -155,7 +156,7 @@ data:
   isVerificationFile: false
   path: math/interpolation.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:15:51+09:00'
+  timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/interpolation.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -107,9 +107,10 @@ data:
     \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
     \ / mint(i + 1);\n        return ret;\n    }\n\nprivate:\n    Poly pre(int size)\
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
-    \ size)); }\n    Poly rev() const { return Poly(this->rbegin(), this->rend());\
-    \ }\n};\n#line 4 \"math/multipoint_evaluation.cpp\"\n\n/*\n * @brief Multipoint\
-    \ Evaluation\n */\ntemplate <typename T>\nstd::vector<T> multipoint_evaluation(const\
+    \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n};\n#line 4 \"math/multipoint_evaluation.cpp\"\n\n/*\n\
+    \ * @brief Multipoint Evaluation\n */\ntemplate <typename T>\nstd::vector<T> multipoint_evaluation(const\
     \ Polynomial<T>& p, const std::vector<T>& x) {\n    int m = x.size();\n    int\
     \ n = 1;\n    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n,\
     \ {1});\n    for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int\
@@ -131,7 +132,7 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy: []
-  timestamp: '2021-02-06 03:15:51+09:00'
+  timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.cpp

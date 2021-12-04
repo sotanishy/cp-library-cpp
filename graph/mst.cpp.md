@@ -105,8 +105,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/aoj/GRL_2_A.prim.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
 documentation_of: graph/mst.cpp
 layout: document
 title: Minimum Spanning Tree Algorithms
