@@ -113,40 +113,47 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n\n\n/*\n// for 3d geometry\n// functions that will\
-    \ work without any modifications\n// projection, reflection, dist_line_point,\
-    \ dist_segment_point, dist_segments,\n// centroid, incenter\n\nstruct Vec {\n\
-    \    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T y, T z) : x(x),\
-    \ y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) { x += r.x; y +=\
-    \ r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const Vec& r)\
-    \ { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec& operator*=(T\
-    \ r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec& operator/=(T\
-    \ r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec operator-()\
-    \ const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r)\
-    \ const { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r)\
-    \ const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const {\
-    \ return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
-    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
-    \ r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y,\
-    \ z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nT dot(const\
-    \ Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const\
-    \ Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n\
-    }\n\nnamespace std {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const\
-    \ Vec& a) { return std::sqrt(std::norm(a)); }\n}\n\n*/\n\n/*\n// for integer coordinates\n\
-    // operations with no floating point error\n\nvoid sort_by_arg(std::vector<pair<Vec,\
-    \ int>>& pts) {\n    auto top = [&](auto& a) {\n        return a.real() > 0 ||\
-    \ (a.imag() == 0 && a.real() > 0);\n    };\n    auto cmp = [&](auto& p, auto&\
-    \ q) {\n        auto a = p.first;\n        auto b = q.first;\n        bool ta\
-    \ = top(a), tb = top(b);\n        if (ta != tb) return tb;\n        return cross(a,\
-    \ b) > 0;\n    };\n    std::sort(pts.begin(), pts.end(), cmp);\n}\n\n// watch\
-    \ out for overflow\nbool compare_angle(const Vec& a, const Vec& b, const Vec&\
-    \ c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a, b)));\n    Vec v(dot(c,\
-    \ d), std::abs(cross(c, d)));\n    return cross(u, v) > 0;\n}\n\n*/\n#line 4 \"\
-    test/aoj/CGL_4_A.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int n;\n    cin >> n;\n    vector<Vec> points(n);\n    for (auto& p : points)\
-    \ cin >> p;\n    auto ans = convex_hull(points);\n    cout << ans.size() << endl;\n\
-    \    for (auto& p : ans) cout << p.real() << \" \" << p.imag() << \"\\n\";\n}\n"
+    \ rec(rec, 0, pts.size());\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n \
+    \   std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
+    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
+    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
+    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
+    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
+    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n\n/*\n// for 3d geometry\n\
+    // functions that will work without any modifications\n// projection, reflection,\
+    \ dist_line_point, dist_segment_point, dist_segments,\n// centroid, incenter\n\
+    \nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T\
+    \ y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) {\
+    \ x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const\
+    \ Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec&\
+    \ operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec&\
+    \ operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec\
+    \ operator-() const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const\
+    \ Vec& r) const { return Vec(*this) += r; }\n    constexpr Vec operator-(const\
+    \ Vec& r) const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r)\
+    \ const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const {\
+    \ return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r, const Vec&\
+    \ v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec&\
+    \ p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return\
+    \ is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y\
+    \ + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y,\
+    \ a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std {\nT norm(const Vec&\
+    \ a) { return dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a));\
+    \ }\n}\n\n*/\n\n/*\n// for integer coordinates\n// operations with no floating\
+    \ point error\n\nvoid sort_by_arg(std::vector<pair<Vec, int>>& pts) {\n    auto\
+    \ top = [&](auto& a) {\n        return a.real() > 0 || (a.imag() == 0 && a.real()\
+    \ > 0);\n    };\n    auto cmp = [&](auto& p, auto& q) {\n        auto a = p.first;\n\
+    \        auto b = q.first;\n        bool ta = top(a), tb = top(b);\n        if\
+    \ (ta != tb) return tb;\n        return cross(a, b) > 0;\n    };\n    std::sort(pts.begin(),\
+    \ pts.end(), cmp);\n}\n\n// watch out for overflow\nbool compare_angle(const Vec&\
+    \ a, const Vec& b, const Vec& c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a,\
+    \ b)));\n    Vec v(dot(c, d), std::abs(cross(c, d)));\n    return cross(u, v)\
+    \ > 0;\n}\n\n*/\n#line 4 \"test/aoj/CGL_4_A.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<Vec> points(n);\n\
+    \    for (auto& p : points) cin >> p;\n    auto ans = convex_hull(points);\n \
+    \   cout << ans.size() << endl;\n    for (auto& p : ans) cout << p.real() << \"\
+    \ \" << p.imag() << \"\\n\";\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
     \n\n#include \"../../geometry/geometry.cpp\"\n\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
@@ -158,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2021-12-04 19:51:00+09:00'
+  timestamp: '2022-03-06 22:28:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_A.test.cpp

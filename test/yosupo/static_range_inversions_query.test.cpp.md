@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compress.cpp
     title: Coordinate Compression
   - icon: ':x:'

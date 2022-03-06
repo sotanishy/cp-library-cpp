@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/quadtree.cpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -193,12 +193,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
-    - icon: ':warning:'
-      path: graph/namori_cycle.cpp
-      title: Namori Cycle
     - icon: ':heavy_check_mark:'
       path: graph/offline_dynamic_connectivity.cpp
       title: Offline Dynamic Connectivity
+    - icon: ':warning:'
+      path: graph/pseudoforest_cycle.cpp
+      title: Pseudoforest Cycle
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph
@@ -291,7 +291,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/system_of_linear_equations.cpp
       title: System of Linear Equations
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/transform.cpp
       title: Transform
   - name: math/matrix
@@ -304,7 +304,7 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -610,10 +610,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -622,7 +622,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -631,7 +631,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -655,10 +655,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.test.cpp
       title: test/yosupo/point_add_rectangle_sum.test.cpp
     - icon: ':x:'
@@ -676,7 +676,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':x:'
@@ -694,6 +694,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/static_range_frequency.test.cpp
+      title: test/yosupo/static_range_frequency.test.cpp
     - icon: ':x:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp

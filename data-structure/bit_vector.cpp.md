@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/wavelet_matrix.cpp
     title: Wavelet Matrix
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_kth_smallest.test.cpp
     title: test/yosupo/range_kth_smallest.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/static_range_frequency.test.cpp
+    title: test/yosupo/static_range_frequency.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/bit_vector.cpp\"\n#include <cstdint>\n#include\
@@ -49,8 +52,9 @@ data:
   requiredBy:
   - data-structure/wavelet_matrix.cpp
   timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yosupo/static_range_frequency.test.cpp
   - test/yosupo/range_kth_smallest.test.cpp
 documentation_of: data-structure/bit_vector.cpp
 layout: document

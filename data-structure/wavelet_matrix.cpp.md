@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_kth_smallest.test.cpp
     title: test/yosupo/range_kth_smallest.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/static_range_frequency.test.cpp
+    title: test/yosupo/static_range_frequency.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/wavelet_matrix.cpp\"\n#include <algorithm>\n\
@@ -47,22 +50,22 @@ data:
     \        }\n        return ret;\n    }\n\n    int rank(int k, T x) const {\n \
     \       for (int d = mat.size() - 1; d >= 0; --d) {\n            bool b = x >>\
     \ d & 1;\n            k = cnt0[d] * b + mat[d].rank(k, b);\n        }\n      \
-    \  return k - start.at(x);\n    }\n\n    int rank_less(int k, T x) const {\n \
-    \       int ret = 0;\n        int l = 0;\n        for (int d = mat.size() - 1;\
-    \ d >= 0; --d) {\n            bool b = x >> d & 1;\n            if (b) ret +=\
-    \ mat[d].rank(k, 0) - mat[d].rank(l, 0);\n            l = cnt0[d] * b + mat[d].rank(l,\
-    \ b);\n            k = cnt0[d] * b + mat[d].rank(k, b);\n        }\n        return\
-    \ ret;\n    }\n\n    int select(int k, T x) const {\n        k += start.at(x);\n\
-    \        for (int d = 0; d < (int) mat.size(); ++d) {\n            bool b = x\
-    \ >> d & 1;\n            k = mat[d].select(k - cnt0[d] * b, b);\n        }\n \
-    \       return k;\n    }\n\n    T quantile(int l, int r, int k) const {\n    \
-    \    T ret = 0;\n        for (int d = (int) mat.size() - 1; d >= 0; --d) {\n \
-    \           int cnt = mat[d].rank(r, 0) - mat[d].rank(l, 0);\n            bool\
-    \ b = k < cnt ? 0 : 1;\n            l = cnt0[d] * b + mat[d].rank(l, b);\n   \
-    \         r = cnt0[d] * b + mat[d].rank(r, b);\n            if (b) {\n       \
-    \         ret |= T(1) << d;\n                k -= cnt;\n            }\n      \
-    \  }\n        return ret;\n    }\n\nprivate:\n    std::vector<BitVector> mat;\n\
-    \    std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n"
+    \  if (start.count(x)) return k - start.at(x);\n        return k;\n    }\n\n \
+    \   int rank_less(int k, T x) const {\n        int ret = 0;\n        int l = 0;\n\
+    \        for (int d = mat.size() - 1; d >= 0; --d) {\n            bool b = x >>\
+    \ d & 1;\n            if (b) ret += mat[d].rank(k, 0) - mat[d].rank(l, 0);\n \
+    \           l = cnt0[d] * b + mat[d].rank(l, b);\n            k = cnt0[d] * b\
+    \ + mat[d].rank(k, b);\n        }\n        return ret;\n    }\n\n    int select(int\
+    \ k, T x) const {\n        k += start.at(x);\n        for (int d = 0; d < (int)\
+    \ mat.size(); ++d) {\n            bool b = x >> d & 1;\n            k = mat[d].select(k\
+    \ - cnt0[d] * b, b);\n        }\n        return k;\n    }\n\n    T quantile(int\
+    \ l, int r, int k) const {\n        T ret = 0;\n        for (int d = (int) mat.size()\
+    \ - 1; d >= 0; --d) {\n            int cnt = mat[d].rank(r, 0) - mat[d].rank(l,\
+    \ 0);\n            bool b = k < cnt ? 0 : 1;\n            l = cnt0[d] * b + mat[d].rank(l,\
+    \ b);\n            r = cnt0[d] * b + mat[d].rank(r, b);\n            if (b) {\n\
+    \                ret |= T(1) << d;\n                k -= cnt;\n            }\n\
+    \        }\n        return ret;\n    }\n\nprivate:\n    std::vector<BitVector>\
+    \ mat;\n    std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <unordered_map>\n#include <vector>\n\
     #include \"bit_vector.cpp\"\n\ntemplate <typename T>\nclass WaveletMatrix {\n\
     public:\n    WaveletMatrix() = default;\n    explicit WaveletMatrix(std::vector<T>\
@@ -81,30 +84,31 @@ data:
     \        }\n        return ret;\n    }\n\n    int rank(int k, T x) const {\n \
     \       for (int d = mat.size() - 1; d >= 0; --d) {\n            bool b = x >>\
     \ d & 1;\n            k = cnt0[d] * b + mat[d].rank(k, b);\n        }\n      \
-    \  return k - start.at(x);\n    }\n\n    int rank_less(int k, T x) const {\n \
-    \       int ret = 0;\n        int l = 0;\n        for (int d = mat.size() - 1;\
-    \ d >= 0; --d) {\n            bool b = x >> d & 1;\n            if (b) ret +=\
-    \ mat[d].rank(k, 0) - mat[d].rank(l, 0);\n            l = cnt0[d] * b + mat[d].rank(l,\
-    \ b);\n            k = cnt0[d] * b + mat[d].rank(k, b);\n        }\n        return\
-    \ ret;\n    }\n\n    int select(int k, T x) const {\n        k += start.at(x);\n\
-    \        for (int d = 0; d < (int) mat.size(); ++d) {\n            bool b = x\
-    \ >> d & 1;\n            k = mat[d].select(k - cnt0[d] * b, b);\n        }\n \
-    \       return k;\n    }\n\n    T quantile(int l, int r, int k) const {\n    \
-    \    T ret = 0;\n        for (int d = (int) mat.size() - 1; d >= 0; --d) {\n \
-    \           int cnt = mat[d].rank(r, 0) - mat[d].rank(l, 0);\n            bool\
-    \ b = k < cnt ? 0 : 1;\n            l = cnt0[d] * b + mat[d].rank(l, b);\n   \
-    \         r = cnt0[d] * b + mat[d].rank(r, b);\n            if (b) {\n       \
-    \         ret |= T(1) << d;\n                k -= cnt;\n            }\n      \
-    \  }\n        return ret;\n    }\n\nprivate:\n    std::vector<BitVector> mat;\n\
-    \    std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};"
+    \  if (start.count(x)) return k - start.at(x);\n        return k;\n    }\n\n \
+    \   int rank_less(int k, T x) const {\n        int ret = 0;\n        int l = 0;\n\
+    \        for (int d = mat.size() - 1; d >= 0; --d) {\n            bool b = x >>\
+    \ d & 1;\n            if (b) ret += mat[d].rank(k, 0) - mat[d].rank(l, 0);\n \
+    \           l = cnt0[d] * b + mat[d].rank(l, b);\n            k = cnt0[d] * b\
+    \ + mat[d].rank(k, b);\n        }\n        return ret;\n    }\n\n    int select(int\
+    \ k, T x) const {\n        k += start.at(x);\n        for (int d = 0; d < (int)\
+    \ mat.size(); ++d) {\n            bool b = x >> d & 1;\n            k = mat[d].select(k\
+    \ - cnt0[d] * b, b);\n        }\n        return k;\n    }\n\n    T quantile(int\
+    \ l, int r, int k) const {\n        T ret = 0;\n        for (int d = (int) mat.size()\
+    \ - 1; d >= 0; --d) {\n            int cnt = mat[d].rank(r, 0) - mat[d].rank(l,\
+    \ 0);\n            bool b = k < cnt ? 0 : 1;\n            l = cnt0[d] * b + mat[d].rank(l,\
+    \ b);\n            r = cnt0[d] * b + mat[d].rank(r, b);\n            if (b) {\n\
+    \                ret |= T(1) << d;\n                k -= cnt;\n            }\n\
+    \        }\n        return ret;\n    }\n\nprivate:\n    std::vector<BitVector>\
+    \ mat;\n    std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};"
   dependsOn:
   - data-structure/bit_vector.cpp
   isVerificationFile: false
   path: data-structure/wavelet_matrix.cpp
   requiredBy: []
-  timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-06 22:28:09+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yosupo/static_range_frequency.test.cpp
   - test/yosupo/range_kth_smallest.test.cpp
 documentation_of: data-structure/wavelet_matrix.cpp
 layout: document

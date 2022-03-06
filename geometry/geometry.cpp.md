@@ -154,35 +154,42 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n\n\n/*\n// for 3d geometry\n// functions that will\
-    \ work without any modifications\n// projection, reflection, dist_line_point,\
-    \ dist_segment_point, dist_segments,\n// centroid, incenter\n\nstruct Vec {\n\
-    \    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T y, T z) : x(x),\
-    \ y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) { x += r.x; y +=\
-    \ r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const Vec& r)\
-    \ { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec& operator*=(T\
-    \ r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec& operator/=(T\
-    \ r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec operator-()\
-    \ const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r)\
-    \ const { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r)\
-    \ const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const {\
-    \ return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
-    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
-    \ r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y,\
-    \ z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nT dot(const\
-    \ Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const\
-    \ Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n\
-    }\n\nnamespace std {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const\
-    \ Vec& a) { return std::sqrt(std::norm(a)); }\n}\n\n*/\n\n/*\n// for integer coordinates\n\
-    // operations with no floating point error\n\nvoid sort_by_arg(std::vector<pair<Vec,\
-    \ int>>& pts) {\n    auto top = [&](auto& a) {\n        return a.real() > 0 ||\
-    \ (a.imag() == 0 && a.real() > 0);\n    };\n    auto cmp = [&](auto& p, auto&\
-    \ q) {\n        auto a = p.first;\n        auto b = q.first;\n        bool ta\
-    \ = top(a), tb = top(b);\n        if (ta != tb) return tb;\n        return cross(a,\
-    \ b) > 0;\n    };\n    std::sort(pts.begin(), pts.end(), cmp);\n}\n\n// watch\
-    \ out for overflow\nbool compare_angle(const Vec& a, const Vec& b, const Vec&\
-    \ c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a, b)));\n    Vec v(dot(c,\
-    \ d), std::abs(cross(c, d)));\n    return cross(u, v) > 0;\n}\n\n*/\n"
+    \ rec(rec, 0, pts.size());\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n \
+    \   std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
+    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
+    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
+    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
+    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
+    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n\n/*\n// for 3d geometry\n\
+    // functions that will work without any modifications\n// projection, reflection,\
+    \ dist_line_point, dist_segment_point, dist_segments,\n// centroid, incenter\n\
+    \nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T\
+    \ y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) {\
+    \ x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const\
+    \ Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec&\
+    \ operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec&\
+    \ operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec\
+    \ operator-() const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const\
+    \ Vec& r) const { return Vec(*this) += r; }\n    constexpr Vec operator-(const\
+    \ Vec& r) const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r)\
+    \ const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const {\
+    \ return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r, const Vec&\
+    \ v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec&\
+    \ p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return\
+    \ is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y\
+    \ + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y,\
+    \ a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std {\nT norm(const Vec&\
+    \ a) { return dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a));\
+    \ }\n}\n\n*/\n\n/*\n// for integer coordinates\n// operations with no floating\
+    \ point error\n\nvoid sort_by_arg(std::vector<pair<Vec, int>>& pts) {\n    auto\
+    \ top = [&](auto& a) {\n        return a.real() > 0 || (a.imag() == 0 && a.real()\
+    \ > 0);\n    };\n    auto cmp = [&](auto& p, auto& q) {\n        auto a = p.first;\n\
+    \        auto b = q.first;\n        bool ta = top(a), tb = top(b);\n        if\
+    \ (ta != tb) return tb;\n        return cross(a, b) > 0;\n    };\n    std::sort(pts.begin(),\
+    \ pts.end(), cmp);\n}\n\n// watch out for overflow\nbool compare_angle(const Vec&\
+    \ a, const Vec& b, const Vec& c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a,\
+    \ b)));\n    Vec v(dot(c, d), std::abs(cross(c, d)));\n    return cross(u, v)\
+    \ > 0;\n}\n\n*/\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
     #include <complex>\n#include <iostream>\n#include <vector>\n\n// note that if\
     \ T is of an integer type, std::abs does not work\nusing T = double;\nusing Vec\
@@ -280,40 +287,47 @@ data:
     \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
     \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
     \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n\n\n/*\n// for 3d geometry\n// functions that will\
-    \ work without any modifications\n// projection, reflection, dist_line_point,\
-    \ dist_segment_point, dist_segments,\n// centroid, incenter\n\nstruct Vec {\n\
-    \    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T y, T z) : x(x),\
-    \ y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) { x += r.x; y +=\
-    \ r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const Vec& r)\
-    \ { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec& operator*=(T\
-    \ r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec& operator/=(T\
-    \ r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec operator-()\
-    \ const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r)\
-    \ const { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r)\
-    \ const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const {\
-    \ return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
-    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
-    \ r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y,\
-    \ z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nT dot(const\
-    \ Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const\
-    \ Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n\
-    }\n\nnamespace std {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const\
-    \ Vec& a) { return std::sqrt(std::norm(a)); }\n}\n\n*/\n\n/*\n// for integer coordinates\n\
-    // operations with no floating point error\n\nvoid sort_by_arg(std::vector<pair<Vec,\
-    \ int>>& pts) {\n    auto top = [&](auto& a) {\n        return a.real() > 0 ||\
-    \ (a.imag() == 0 && a.real() > 0);\n    };\n    auto cmp = [&](auto& p, auto&\
-    \ q) {\n        auto a = p.first;\n        auto b = q.first;\n        bool ta\
-    \ = top(a), tb = top(b);\n        if (ta != tb) return tb;\n        return cross(a,\
-    \ b) > 0;\n    };\n    std::sort(pts.begin(), pts.end(), cmp);\n}\n\n// watch\
-    \ out for overflow\nbool compare_angle(const Vec& a, const Vec& b, const Vec&\
-    \ c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a, b)));\n    Vec v(dot(c,\
-    \ d), std::abs(cross(c, d)));\n    return cross(u, v) > 0;\n}\n\n*/"
+    \ rec(rec, 0, pts.size());\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n \
+    \   std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
+    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
+    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
+    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
+    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
+    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n\n/*\n// for 3d geometry\n\
+    // functions that will work without any modifications\n// projection, reflection,\
+    \ dist_line_point, dist_segment_point, dist_segments,\n// centroid, incenter\n\
+    \nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T\
+    \ y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) {\
+    \ x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const\
+    \ Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec&\
+    \ operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec&\
+    \ operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec\
+    \ operator-() const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const\
+    \ Vec& r) const { return Vec(*this) += r; }\n    constexpr Vec operator-(const\
+    \ Vec& r) const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r)\
+    \ const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const {\
+    \ return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r, const Vec&\
+    \ v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec&\
+    \ p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return\
+    \ is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y\
+    \ + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y,\
+    \ a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std {\nT norm(const Vec&\
+    \ a) { return dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a));\
+    \ }\n}\n\n*/\n\n/*\n// for integer coordinates\n// operations with no floating\
+    \ point error\n\nvoid sort_by_arg(std::vector<pair<Vec, int>>& pts) {\n    auto\
+    \ top = [&](auto& a) {\n        return a.real() > 0 || (a.imag() == 0 && a.real()\
+    \ > 0);\n    };\n    auto cmp = [&](auto& p, auto& q) {\n        auto a = p.first;\n\
+    \        auto b = q.first;\n        bool ta = top(a), tb = top(b);\n        if\
+    \ (ta != tb) return tb;\n        return cross(a, b) > 0;\n    };\n    std::sort(pts.begin(),\
+    \ pts.end(), cmp);\n}\n\n// watch out for overflow\nbool compare_angle(const Vec&\
+    \ a, const Vec& b, const Vec& c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a,\
+    \ b)));\n    Vec v(dot(c, d), std::abs(cross(c, d)));\n    return cross(u, v)\
+    \ > 0;\n}\n\n*/"
   dependsOn: []
   isVerificationFile: false
   path: geometry/geometry.cpp
   requiredBy: []
-  timestamp: '2021-12-04 19:51:00+09:00'
+  timestamp: '2022-03-06 22:28:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_2_A.test.cpp
@@ -421,3 +435,7 @@ title: Geometry
 - `T closest_pair(vector<Vec> pts)`
     - 与えられた点のうち最も近い2点の距離を分割統治法で求める
     - 時間計算量: $O(n\log n)$
+
+- `void sort_by_arg(vector<Vec> pts)`
+  - 与えられた点を偏角ソートする (ソート順は[この問題](https://judge.yosupo.jp/problem/sort_points_by_argument)に準拠)
+  - 時間計算量: $O(n\log n)$
