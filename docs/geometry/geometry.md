@@ -87,3 +87,7 @@ documentation_of: ../../geometry/geometry.cpp
 - `T closest_pair(vector<Vec> pts)`
     - 与えられた点のうち最も近い2点の距離を分割統治法で求める
     - 時間計算量: $O(n\log n)$
+
+- `void sort_by_arg(vector<Vec> pts)`
+  - 与えられた点を偏角ソートする (ソート順は[この問題](https://judge.yosupo.jp/problem/sort_points_by_argument)に準拠)
+  - 時間計算量: $O(n\log n)$

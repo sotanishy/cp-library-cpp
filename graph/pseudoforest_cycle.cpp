@@ -3,9 +3,9 @@
 #include <vector>
 
 /**
- * @brief Namori Cycle
+ * @brief Pseudoforest Cycle
  */
-std::vector<int> namori_cycle(const std::vector<std::vector<int>>& G) {
+std::vector<int> pseudoforest_cycle(const std::vector<std::vector<int>>& G) {
     int n = G.size();
     std::vector<int> deg(n);
     std::stack<int> st;

@@ -237,6 +237,18 @@ T closest_pair(std::vector<Vec>& pts) {
     return rec(rec, 0, pts.size());
 }
 
+void sort_by_arg(std::vector<Vec>& pts) {
+    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {
+        if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);
+        if (cross(p, q) == 0) {
+            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));
+            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));
+            return (p.real() > q.real());
+        }
+        return (cross(p, q) > 0);
+    });
+}
+
 
 /*
 // for 3d geometry

@@ -45,7 +45,8 @@ public:
             bool b = x >> d & 1;
             k = cnt0[d] * b + mat[d].rank(k, b);
         }
-        return k - start.at(x);
+        if (start.count(x)) return k - start.at(x);
+        return k;
     }
 
     int rank_less(int k, T x) const {
