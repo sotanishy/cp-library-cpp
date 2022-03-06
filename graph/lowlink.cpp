@@ -49,7 +49,7 @@ private:
                 dfs(c, v);
                 low[v] = std::min(low[v], low[c]);
                 if (p != -1 && ord[v] <= low[c]) is_articulation = true;
-                if (ord[v] < low[c]) bridge.emplace_back(std::min(v, c), std::max(v, c));
+                if (ord[v] < low[c]) bridge.push_back(std::minmax(v, c));
             } else {
                 low[v] = std::min(low[v], ord[c]);
             }

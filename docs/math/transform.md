@@ -39,11 +39,9 @@ $$
 - `void divisor_fzt(vector<T> a, bool subset)`
     - $a$ を約数に関して高速 zeta 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 - `void divisor_fmt(vector<T> a, bool subset)`
     - $a$ を約数に関して高速 Möbius 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 
 ## Fast Walsh-Hadamard Transform
 

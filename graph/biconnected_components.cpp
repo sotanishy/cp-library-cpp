@@ -7,9 +7,9 @@
 class BiconnectedComponents : Lowlink {
 public:
     BiconnectedComponents() = default;
-    explicit BiconnectedComponents(const std::vector<std::vector<int>>& G) : Lowlink(G), used(G.size()) {
+    explicit BiconnectedComponents(const std::vector<std::vector<int>>& G) : Lowlink(G), G(G), used(G.size()) {
         for (int v = 0; v < (int) G.size(); ++v) {
-            if (!used[v] == -1) dfs(v, -1);
+            if (!used[v]) dfs(v, -1);
         }
     }
 
@@ -24,6 +24,7 @@ private:
     std::vector<std::vector<std::pair<int, int>>> bc;
 
     void dfs(int v, int p) {
+        used[v] = true;
         for (int c : G[v]) {
             if (c == p) continue;
             if (!used[c] || ord[c] < ord[v]) {
@@ -31,7 +32,7 @@ private:
             }
             if (!used[c]) {
                 dfs(c, v);
-                if (low[c] >= ord[v]) {
+                if (ord[v] <= low[c]) {  // v is an articulation point
                     bc.emplace_back();
                     while (true) {
                         auto e = st.top();
