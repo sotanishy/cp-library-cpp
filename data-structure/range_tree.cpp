@@ -17,7 +17,7 @@ public:
 
     void build() {
         for (int i = 0; i < size; ++i) {
-            sort(node[size + i].begin(), node[size + i].end());
+            std::sort(node[size + i].begin(), node[size + i].end());
         }
         for (int i = size - 1; i > 0; --i) {
             std::merge(node[2*i].begin(), node[2*i].end(), node[2*i+1].begin(), node[2*i+1].end(), std::back_inserter(node[i]));

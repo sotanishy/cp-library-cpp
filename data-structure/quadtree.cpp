@@ -26,7 +26,7 @@ private:
     struct Node {
         T val;
         node_ptr ch[4];
-        Node() : val(M::id) {}
+        Node() : val(M::id()) {}
     };
 
     const node_ptr root;
@@ -45,22 +45,22 @@ private:
                 break;
             }
         }
-        n->val = M::id;
+        n->val = M::id();
         for (int i = 0; i < 4; ++i) {
             if (n->ch[i]) n->val = M::op(n->val, n->ch[i]->val);
         }
     }
 
     T fold(int l, int r, int b, int t, const node_ptr& n, int p, int q, int len) const {
-        if (!n) return M::id;
+        if (!n) return M::id();
         if (p + len <= l || r <= p || q + len <= b || t <= q) {
-            return M::id;
+            return M::id();
         }
         if (l <= p && p + len <= r && b <= q && q + len <= t) {
             return n->val;
         }
         len /= 2;
-        T val = M::id;
+        T val = M::id();
         for (int i = 0; i < 4; ++i) {
             if (n->ch[i]) val = M::op(val, fold(l, r, b, t, n->ch[i], p + len * (i >> 1), q + len * (i & 1), len));
         }

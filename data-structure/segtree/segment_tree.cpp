@@ -8,11 +8,11 @@ class SegmentTree {
 
 public:
     SegmentTree() = default;
-    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id)) {}
+    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id())) {}
     explicit SegmentTree(const std::vector<T>& v) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
-        node.resize(2 * size, M::id);
+        node.resize(2 * size, M::id());
         std::copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
@@ -28,7 +28,7 @@ public:
     }
 
     T fold(int l, int r) const {
-        T vl = M::id, vr = M::id;
+        T vl = M::id(), vr = M::id();
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) vl = M::op(vl, node[l++]);
             if (r & 1) vr = M::op(node[--r], vr);
@@ -38,7 +38,7 @@ public:
 
     template <typename F>
     int find_first(int l, F cond) const {
-        T vl = M::id;
+        T vl = M::id();
         int r = size;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
@@ -60,7 +60,7 @@ public:
 
     template <typename F>
     int find_last(int r, F cond) const {
-        T vr = M::id;
+        T vr = M::id();
         int l = 0;
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (r & 1) {

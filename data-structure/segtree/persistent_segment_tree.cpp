@@ -11,7 +11,7 @@ class PersistentSegmentTree {
 
 public:
     PersistentSegmentTree() = default;
-    explicit PersistentSegmentTree(int n): PersistentSegmentTree(std::vector<T>(n, M::id)) {}
+    explicit PersistentSegmentTree(int n): PersistentSegmentTree(std::vector<T>(n, M::id())) {}
     explicit PersistentSegmentTree(const std::vector<T>& v) : root(std::make_shared<Node>()) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
@@ -37,7 +37,7 @@ private:
     struct Node {
         T val;
         node_ptr left, right;
-        Node() : val(M::id), left(nullptr), right(nullptr) {}
+        Node() : val(M::id()), left(nullptr), right(nullptr) {}
         Node(const T& val, const node_ptr& left, const node_ptr& right) : val(val), left(left), right(right) {}
     };
 
@@ -48,7 +48,7 @@ private:
 
     void build(const std::vector<T>& v, const node_ptr& n, int l, int r) const {
         if (r - l == 1) {
-            n->val = l < (int) v.size() ? v[l] : M::id;
+            n->val = l < (int) v.size() ? v[l] : M::id();
             return;
         }
         int m = (l + r) / 2;
@@ -76,7 +76,7 @@ private:
     }
 
     T fold(int a, int b, const node_ptr& n, int l, int r) const {
-        if (r <= a || b <= l) return M::id;
+        if (r <= a || b <= l) return M::id();
         if (a <= l && r <= b) return n->val;
         int m = (l + r) / 2;
         return M::op(fold(a, b, n->left, l, m),

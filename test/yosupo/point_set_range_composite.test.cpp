@@ -10,7 +10,7 @@ const ll mod = 998244353;
 
 struct Monoid {
     using T = pair<ll, ll>;
-    static inline T id = {1, 0};
+    static T id() { return {1, 0}; }
     static T op(T a, T b) {
         return {a.first * b.first % mod, (a.second * b.first + b.second) % mod};
     }

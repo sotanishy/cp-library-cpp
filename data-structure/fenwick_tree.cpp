@@ -8,10 +8,10 @@ class FenwickTree {
 
 public:
     FenwickTree() = default;
-    explicit FenwickTree(int n) : n(n), data(n + 1, M::id) {}
+    explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}
 
     T prefix_fold(int i) const {
-        T ret = M::id;
+        T ret = M::id();
         for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
         return ret;
     }
@@ -29,7 +29,7 @@ public:
         int k = 1;
         while (k * 2 <= n) k <<= 1;
         int i = 0;
-        T v = M::id;
+        T v = M::id();
         for (; k > 0; k >>= 1) {
             if (i + k <= n) continue;
             T nv = M::op(v, data[i + k]);

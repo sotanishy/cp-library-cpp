@@ -5,7 +5,7 @@ using namespace std;
 
 struct AddMonoid {
     using T = int;
-    static constexpr T id = 0;
+    static T id() { return 0; }
     static T op(T a, T b) {
         return a + b;
     }
@@ -13,7 +13,7 @@ struct AddMonoid {
 
 struct MinMonoid {
     using T = int;
-    static constexpr T id = (1u << 31) - 1;
+    static T id() { return (1u << 31) - 1; }
     static T op(T a, T b) {
         return min(a, b);
     }
@@ -21,7 +21,7 @@ struct MinMonoid {
 
 struct MaxMonoid {
     using T = int;
-    static constexpr T id = 0;
+    static T id() { return 0; }
     static T op(T a, T b) {
         return max(a, b);
     }
@@ -29,7 +29,7 @@ struct MaxMonoid {
 
 struct AddRangeMonoid {
     using T = pair<int, int>;
-    static constexpr T id = {0, 0};
+    static T id() { return {0, 0}; }
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
     }
@@ -37,7 +37,7 @@ struct AddRangeMonoid {
 
 struct UpdateMonoid {
     using T = int;
-    static constexpr T id = -1;
+    static T id() { return -1; }
     static T op(T a, T b) {
         return b;
     }
@@ -45,7 +45,7 @@ struct UpdateMonoid {
 
 struct AffineMonoid {
     using T = pair<int, int>;
-    static constexpr T id = {1, 0};
+    static T id() { return {1, 0}; }
     static T op(T a, T b) {
         return {a.first * b.first, a.second * b.first + b.second};
     }

@@ -1,6 +1,9 @@
 #pragma once
 #include <numeric>
 
+/*
+ * @brief Fraction
+ */
 template <typename T>
 struct Fraction {
     T num, den;

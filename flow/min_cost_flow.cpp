@@ -18,7 +18,7 @@ public:
     }
 
     Cost min_cost_flow(int s, int t, Cap f) {
-        int ret = 0;
+        Cost ret = 0;
         std::vector<Cost> dist(V);
         std::vector<int> prevv(V), preve(V);
         using P = std::pair<Cost, int>;

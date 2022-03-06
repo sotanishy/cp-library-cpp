@@ -20,6 +20,12 @@ public:
         f(in[v], x);
     }
 
+    template <typename F>
+    void update_edge(int u, int v, const T& x, const F& f) const {
+        if (in[u] > in[v]) std::swap(u, v);
+        f(in[v], x);
+    }
+
     template <typename E, typename F>
     void update(int u, int v, const E& x, const F& f) const {
         while (head[u] != head[v]) {
@@ -33,7 +39,7 @@ public:
 
     template <typename F>
     T path_fold(int u, int v, const F& f) const {
-        T res = M::id;
+        T res = M::id();
         while (head[u] != head[v]) {
             if (in[head[u]] > in[head[v]]) std::swap(u, v);
             T val = f(in[head[v]], in[v] + 1);

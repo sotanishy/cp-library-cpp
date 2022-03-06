@@ -1,42 +1,19 @@
 #pragma once
 #include <vector>
-#include "../data-structure/segtree/segment_tree.cpp"
 
 /*
  * @brief Euler Tour
  */
-template <typename M>
-class EulerTour {
-    using T = typename M::T;
-
-public:
-    EulerTour() = default;
-    EulerTour(const std::vector<std::vector<int>>& G, int root) : n(G.size()), root(root), G(G), in(n), out(n), st(2 * n) {
-        dfs(root, -1);
-    }
-
-    T get(int v) {
-        return st[in[v]];
-    }
-
-    void update(int v, const T& x) {
-        st.update(in[v], x);
-    }
-
-    T subtree_fold(int v) {
-        return st.fold(in[v], out[v]);
-    }
-
-private:
-    int n, root;
-    std::vector<std::vector<int>> G;
-    std::vector<int> in, out;
+std::pair<std::vector<int>, std::vector<int>> euler_tour(const std::vector<std::vector<int>>& G, int root) {
+    std::vector<int> in(G.size()), out(G.size());
     int k = 0;
-    SegmentTree<M> st;
 
-    void dfs(int v, int p) {
+    auto dfs = [&](auto& dfs, int v, int p) -> void {
         in[v] = k++;
-        for (int c : G[v]) if (c != p) dfs(c, v);
+        for (int c : G[v]) if (c != p) dfs(dfs, c, v);
         out[v] = k;
-    }
-};
+    };
+
+    dfs(dfs, root, -1);
+    return {in, out};
+}

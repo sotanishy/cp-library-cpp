@@ -9,12 +9,12 @@ class LazySegmentTree {
 
 public:
     LazySegmentTree() = default;
-    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id)) {}
+    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id())) {}
     explicit LazySegmentTree(const std::vector<T>& v) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
-        node.resize(2 * size, M::id);
-        lazy.resize(2 * size, O::id);
+        node.resize(2 * size, M::id());
+        lazy.resize(2 * size, O::id());
         std::copy(v.begin(), v.end(), node.begin() + size);
         for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
@@ -33,13 +33,13 @@ private:
     std::vector<E> lazy;
 
     void push(int k) {
-        if (lazy[k] == O::id) return;
+        if (lazy[k] == O::id()) return;
         if (k < size) {
             lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
         node[k] = act(node[k], lazy[k]);
-        lazy[k] = O::id;
+        lazy[k] = O::id();
     }
 
     void update(int a, int b, const E& x, int k, int l, int r) {
@@ -58,7 +58,7 @@ private:
 
     T fold(int a, int b, int k, int l, int r) {
         push(k);
-        if (r <= a || b <= l) return M::id;
+        if (r <= a || b <= l) return M::id();
         if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
         return M::op(fold(a, b, 2 * k, l, m),

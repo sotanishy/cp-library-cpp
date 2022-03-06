@@ -7,7 +7,7 @@ using namespace std;
 
 struct Monoid {
     using T = int;
-    static constexpr T id = (1u << 31) - 1;
+    static T id() { return (1u << 31) - 1; }
     static T op(T a, T b) {
         return b;
     }

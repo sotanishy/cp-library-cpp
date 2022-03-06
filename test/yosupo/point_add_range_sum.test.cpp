@@ -8,10 +8,8 @@ using ll = long long;
 
 struct Monoid {
     using T = ll;
-    static inline T id = 0;
-    static T op(T a, T b) {
-        return a + b;
-    }
+    static T id() { return 0; }
+    static T op(T a, T b) { return a + b; }
 };
 
 int main() {

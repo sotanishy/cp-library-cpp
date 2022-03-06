@@ -12,7 +12,7 @@ using mint = Modint<998244353>;
 
 struct AffineMonoid {
     using T = pair<pair<mint, mint>, pair<mint, mint>>;
-    static constexpr T id = {{1, 0}, {1, 0}};
+    static T id() { return {{1, 0}, {1, 0}}; }
     static T op(T a, T b) {
         return {
             {a.first.first * b.first.first, a.first.second * b.first.first + b.first.second},

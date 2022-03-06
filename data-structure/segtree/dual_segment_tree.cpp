@@ -11,7 +11,7 @@ public:
         size = 1;
         height = 1;
         while (size < n) size <<= 1, ++height;
-        lazy.resize(2 * size, M::id);
+        lazy.resize(2 * size, M::id());
     }
 
     T operator[](int k) {
@@ -36,10 +36,10 @@ private:
     std::vector<T> lazy;
 
     void push(int k) {
-        if (lazy[k] == M::id) return;
+        if (lazy[k] == M::id()) return;
         lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);
         lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);
-        lazy[k] = M::id;
+        lazy[k] = M::id();
     }
 
     void propagate(int k) {

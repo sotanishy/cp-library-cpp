@@ -3,10 +3,6 @@
 #include <functional>
 #include <utility>
 
-/*
- * @brief Sliding Window Minimum
- * @docs docs/data-structure/slide_min.md
- */
 template <typename T, typename Compare = std::less<>>
 class SlideMin {
 public:

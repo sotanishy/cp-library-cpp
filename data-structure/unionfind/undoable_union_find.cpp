@@ -11,7 +11,7 @@ class UndoableUnionFind {
 
 public:
     UndoableUnionFind() = default;
-    explicit UndoableUnionFind(int n) : UndoableUnionFind(std::vector<T>(n, M::id)) {}
+    explicit UndoableUnionFind(int n) : UndoableUnionFind(std::vector<T>(n, M::id())) {}
     explicit UndoableUnionFind(const std::vector<T>& v)
         : data(v.size(), -1), val(v.begin(), v.end()) {}
 
@@ -23,7 +23,7 @@ public:
     void unite(int x, int y) {
         x = find(x);
         y = find(y);
-        history.emplace(-1, 0, M::id);
+        history.emplace(-1, 0, M::id());
         history.emplace(x, data[x], val[x]);
         history.emplace(y, data[y], val[y]);
         if (x == y) return;
@@ -58,7 +58,7 @@ public:
 
     void update(int x, const T& v) {
         x = find(x);
-        history.emplace(-1, 0, M::id);
+        history.emplace(-1, 0, M::id());
         history.emplace(x, data[x], val[x]);
         val[x] = M::op(val[x], v);
     }

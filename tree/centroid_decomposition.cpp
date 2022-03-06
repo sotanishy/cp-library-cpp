@@ -1,6 +1,10 @@
 #pragma once
 #include <vector>
 
+/*
+ * @brief Centroid Decomposition
+ */
+
 int find_centroid(const std::vector<std::vector<int>>& G, int r,
                   const std::vector<bool>& dead) {
     static std::vector<int> sz(G.size());

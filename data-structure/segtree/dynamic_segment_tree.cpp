@@ -27,7 +27,7 @@ private:
     struct Node {
         T val;
         node_ptr left, right;
-        Node() : val(M::id), left(nullptr), right(nullptr) {}
+        Node() : val(M::id()), left(nullptr), right(nullptr) {}
     };
 
     const node_ptr root;
@@ -42,20 +42,20 @@ private:
         if (k < m) {
             if (!n->left) n->left = std::make_unique<Node>();
             update(k, x, n->left, l, m);
-            n->val = M::op(n->left->val, n->right ? n->right->val : M::id);
+            n->val = M::op(n->left->val, n->right ? n->right->val : M::id());
         } else {
             if (!n->right) n->right = std::make_unique<Node>();
             update(k, x, n->right, m, r);
-            n->val = M::op(n->left ? n->left->val : M::id, n->right->val);
+            n->val = M::op(n->left ? n->left->val : M::id(), n->right->val);
         }
     }
 
     T fold(long long a, long long b, const node_ptr& n, long long l, long long r) const {
-        if (r <= a || b <= l) return M::id;
+        if (r <= a || b <= l) return M::id();
         if (a <= l && r <= b) return n->val;
         long long m = (l + r) / 2;
-        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;
-        T vr = n->right ? fold(a, b, n->right, m, r) : M::id;
+        T vl = n->left ? fold(a, b, n->left, l, m) : M::id();
+        T vr = n->right ? fold(a, b, n->right, m, r) : M::id();
         return M::op(vl, vr);
     }
 };

@@ -18,10 +18,10 @@ public:
     }
 
     std::vector<T> run() {
-        dp_sub.resize(G.size(), M::id);
+        dp_sub.resize(G.size(), M::id());
         dp_all.resize(G.size());
         dfs_sub(0, -1);
-        dfs_all(0, -1, M::id);
+        dfs_all(0, -1, M::id());
         return dp_all;
     }
 
@@ -47,7 +47,7 @@ private:
             ds.push_back(apply(dp_sub[c], v, c, cost));
         }
         int n = ds.size();
-        std::vector<T> head(n + 1, M::id), tail(n + 1, M::id);
+        std::vector<T> head(n + 1, M::id()), tail(n + 1, M::id());
         for (int i = 0; i < n; ++i) head[i+1] = M::op(head[i], ds[i]);
         for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i+1]);
         dp_all[v] = head[n];

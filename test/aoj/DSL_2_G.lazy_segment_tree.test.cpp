@@ -9,7 +9,7 @@ using ll = long long;
 
 struct M {
     using T = pair<ll, int>;
-    static constexpr T id = {0, 1};
+    static T id() { return {0, 1}; }
     static T op(T a, T b) {
         return {a.first + b.first, a.second + b.second};
     }
@@ -17,7 +17,7 @@ struct M {
 
 struct O {
     using T = ll;
-    static constexpr T id = 0;
+    static T id() { return 0; }
     static T op(T a, T b) {
         return a + b;
     }

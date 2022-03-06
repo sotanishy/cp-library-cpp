@@ -103,8 +103,8 @@ private:
         int sz;
         bool rev;
 
-        Node() : Node(M::id) {}
-        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()), sz(1), rev(false) {}
+        Node() : Node(M::id()) {}
+        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id()), pri(rand()), sz(1), rev(false) {}
     };
 
     node_ptr root = nullptr;
@@ -130,7 +130,7 @@ private:
             if (t->right) t->right->rev ^= true;
             t->rev = false;
         }
-        if (t->lazy != O::id) {
+        if (t->lazy != O::id()) {
             t->val = act(t->val, t->lazy);
             if (t->left) {
                 t->left->lazy = O::op(t->left->lazy, t->lazy);
@@ -140,7 +140,7 @@ private:
                 t->right->lazy = O::op(t->right->lazy, t->lazy);
                 t->right->sum = act(t->right->sum, t->lazy);
             }
-            t->lazy = O::id;
+            t->lazy = O::id();
         }
         recalc(t);
     }

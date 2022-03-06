@@ -1,5 +1,5 @@
 ---
-title: Quadtree
+title: Disjoint Sparse Table
 documentation_of: ../../data-structure/disjoint_sparse_table.cpp
 ---
 

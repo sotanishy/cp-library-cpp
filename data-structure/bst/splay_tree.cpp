@@ -88,7 +88,7 @@ private:
         int sz;
         bool rev;
 
-        Node() : Node(M::id) {}
+        Node() : Node(M::id()) {}
         Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(x), sz(1), rev(false) {}
     };
 
