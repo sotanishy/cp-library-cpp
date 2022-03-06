@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/min_cost_flow.cpp\"\n#include <algorithm>\n#include\
@@ -18,7 +18,7 @@ data:
     \n    void add_edge(int u, int v, Cap cap, Cost cost) {\n        G[u].emplace_back(v,\
     \ cap, cost, (int) G[v].size());\n        G[v].emplace_back(u, 0, -cost, (int)\
     \ G[u].size() - 1);\n    }\n\n    Cost min_cost_flow(int s, int t, Cap f) {\n\
-    \        int ret = 0;\n        std::vector<Cost> dist(V);\n        std::vector<int>\
+    \        Cost ret = 0;\n        std::vector<Cost> dist(V);\n        std::vector<int>\
     \ prevv(V), preve(V);\n        using P = std::pair<Cost, int>;\n        std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> pq;\n\n        auto h = calculate_initial_potential(s);\n\
     \n        while (f > 0) {\n            // update h using dijkstra\n          \
@@ -61,7 +61,7 @@ data:
     \    explicit MinCostFlow(int V) : V(V), G(V) {}\n\n    void add_edge(int u, int\
     \ v, Cap cap, Cost cost) {\n        G[u].emplace_back(v, cap, cost, (int) G[v].size());\n\
     \        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);\n    }\n\n   \
-    \ Cost min_cost_flow(int s, int t, Cap f) {\n        int ret = 0;\n        std::vector<Cost>\
+    \ Cost min_cost_flow(int s, int t, Cap f) {\n        Cost ret = 0;\n        std::vector<Cost>\
     \ dist(V);\n        std::vector<int> prevv(V), preve(V);\n        using P = std::pair<Cost,\
     \ int>;\n        std::priority_queue<P, std::vector<P>, std::greater<P>> pq;\n\
     \n        auto h = calculate_initial_potential(s);\n\n        while (f > 0) {\n\
@@ -103,8 +103,8 @@ data:
   isVerificationFile: false
   path: flow/min_cost_flow.cpp
   requiredBy: []
-  timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_6_B.test.cpp
 documentation_of: flow/min_cost_flow.cpp

@@ -13,13 +13,13 @@ data:
     \    explicit RangeTree(int n) {\n        size = 1;\n        while (size < n)\
     \ size <<= 1;\n        node.resize(2 * size);\n    }\n\n    void add_point(int\
     \ x, int y) {\n        node[size + x].push_back(y);\n    }\n\n    void build()\
-    \ {\n        for (int i = 0; i < size; ++i) {\n            sort(node[size + i].begin(),\
-    \ node[size + i].end());\n        }\n        for (int i = size - 1; i > 0; --i)\
-    \ {\n            std::merge(node[2*i].begin(), node[2*i].end(), node[2*i+1].begin(),\
-    \ node[2*i+1].end(), std::back_inserter(node[i]));\n        }\n    }\n\n    int\
-    \ count(int sx, int tx, int sy, int ty) const {\n        int cnt = 0;\n      \
-    \  for (int l = size + sx, r = size + tx; l < r; l >>= 1, r >>= 1) {\n       \
-    \     if (l & 1) {\n                auto hi = std::lower_bound(node[l].begin(),\
+    \ {\n        for (int i = 0; i < size; ++i) {\n            std::sort(node[size\
+    \ + i].begin(), node[size + i].end());\n        }\n        for (int i = size -\
+    \ 1; i > 0; --i) {\n            std::merge(node[2*i].begin(), node[2*i].end(),\
+    \ node[2*i+1].begin(), node[2*i+1].end(), std::back_inserter(node[i]));\n    \
+    \    }\n    }\n\n    int count(int sx, int tx, int sy, int ty) const {\n     \
+    \   int cnt = 0;\n        for (int l = size + sx, r = size + tx; l < r; l >>=\
+    \ 1, r >>= 1) {\n            if (l & 1) {\n                auto hi = std::lower_bound(node[l].begin(),\
     \ node[l].end(), ty);\n                auto lo = std::lower_bound(node[l].begin(),\
     \ node[l].end(), sy);\n                cnt += hi - lo;\n                ++l;\n\
     \            }\n            if (r & 1) {\n                --r;\n             \
@@ -33,8 +33,8 @@ data:
     \      size = 1;\n        while (size < n) size <<= 1;\n        node.resize(2\
     \ * size);\n    }\n\n    void add_point(int x, int y) {\n        node[size + x].push_back(y);\n\
     \    }\n\n    void build() {\n        for (int i = 0; i < size; ++i) {\n     \
-    \       sort(node[size + i].begin(), node[size + i].end());\n        }\n     \
-    \   for (int i = size - 1; i > 0; --i) {\n            std::merge(node[2*i].begin(),\
+    \       std::sort(node[size + i].begin(), node[size + i].end());\n        }\n\
+    \        for (int i = size - 1; i > 0; --i) {\n            std::merge(node[2*i].begin(),\
     \ node[2*i].end(), node[2*i+1].begin(), node[2*i+1].end(), std::back_inserter(node[i]));\n\
     \        }\n    }\n\n    int count(int sx, int tx, int sy, int ty) const {\n \
     \       int cnt = 0;\n        for (int l = size + sx, r = size + tx; l < r; l\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: data-structure/range_tree.cpp
   requiredBy: []
-  timestamp: '2021-07-29 21:53:23+09:00'
+  timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/range_tree.cpp

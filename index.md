@@ -11,8 +11,8 @@ data:
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
-      title: Quadtree
-    - icon: ':heavy_check_mark:'
+      title: Disjoint Sparse Table
+    - icon: ':x:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -33,7 +33,7 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.cpp
       title: Persistent Stack
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/quadtree.cpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
@@ -42,7 +42,7 @@ data:
     - icon: ':warning:'
       path: data-structure/range_tree.cpp
       title: Range Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
     - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/bst/lazy_treap.cpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -96,22 +96,22 @@ data:
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/dual_segment_tree.cpp
       title: Dual Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/dynamic_lazy_segment_tree.cpp
       title: Dynamic Segment Tree with Lazy Propagation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -125,7 +125,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.cpp
       title: Persistent Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/unionfind/undoable_union_find.cpp
       title: Undoable Union Find
     - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
   - name: geometry
@@ -193,7 +193,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: graph/namori_cycle.cpp
+      title: Namori Cycle
+    - icon: ':x:'
       path: graph/offline_dynamic_connectivity.cpp
       title: Offline Dynamic Connectivity
     - icon: ':warning:'
@@ -276,7 +279,7 @@ data:
     - icon: ':question:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -301,19 +304,19 @@ data:
       title: Square Matrix
   - name: misc
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
       path: misc/fraction.cpp
-      title: misc/fraction.cpp
+      title: Fraction
     - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
     - icon: ':warning:'
       path: misc/median_set.cpp
       title: misc/median_set.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: misc/mo.cpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -358,14 +361,14 @@ data:
     pages:
     - icon: ':warning:'
       path: tree/centroid_decomposition.cpp
-      title: tree/centroid_decomposition.cpp
-    - icon: ':heavy_check_mark:'
+      title: Centroid Decomposition
+    - icon: ':x:'
       path: tree/euler_tour.cpp
       title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
       title: Euler Tour Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -467,37 +470,37 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_A.test.cpp
       title: test/aoj/DSL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
       title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_B.test.cpp
       title: test/aoj/DSL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_D.test.cpp
       title: test/aoj/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_E.test.cpp
       title: test/aoj/DSL_2_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
       title: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_3_D.slide_min.test.cpp
       title: test/aoj/DSL_3_D.slide_min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -542,7 +545,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -574,10 +577,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -595,7 +598,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -604,7 +607,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -643,13 +646,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_rectangle_sum.test.cpp
       title: test/yosupo/point_add_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
     - icon: ':x:'
@@ -658,7 +661,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -667,7 +670,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -682,7 +685,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -712,16 +715,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

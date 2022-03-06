@@ -40,8 +40,8 @@ data:
     \   }\n\n    bool empty() const {\n        return size() == 0;\n    }\n\nprivate:\n\
     \    struct Node;\n    using node_ptr = std::unique_ptr<Node>;\n\n    struct Node\
     \ {\n        node_ptr left, right;\n        T val, sum;\n        int sz;\n   \
-    \     bool rev;\n\n        Node() : Node(M::id) {}\n        Node(const T& x) :\
-    \ left(nullptr), right(nullptr), val(x), sum(x), sz(1), rev(false) {}\n    };\n\
+    \     bool rev;\n\n        Node() : Node(M::id()) {}\n        Node(const T& x)\
+    \ : left(nullptr), right(nullptr), val(x), sum(x), sz(1), rev(false) {}\n    };\n\
     \n    node_ptr root;\n\n    explicit SplayTree(node_ptr root) : root(std::move(root))\
     \ {}\n\n    static int size(const node_ptr& t) {\n        return t ? t->sz : 0;\n\
     \    }\n\n    static void recalc(const node_ptr& t) {\n        if (!t) return;\n\
@@ -109,7 +109,7 @@ data:
     \ {\n        return size() == 0;\n    }\n\nprivate:\n    struct Node;\n    using\
     \ node_ptr = std::unique_ptr<Node>;\n\n    struct Node {\n        node_ptr left,\
     \ right;\n        T val, sum;\n        int sz;\n        bool rev;\n\n        Node()\
-    \ : Node(M::id) {}\n        Node(const T& x) : left(nullptr), right(nullptr),\
+    \ : Node(M::id()) {}\n        Node(const T& x) : left(nullptr), right(nullptr),\
     \ val(x), sum(x), sz(1), rev(false) {}\n    };\n\n    node_ptr root;\n\n    explicit\
     \ SplayTree(node_ptr root) : root(std::move(root)) {}\n\n    static int size(const\
     \ node_ptr& t) {\n        return t ? t->sz : 0;\n    }\n\n    static void recalc(const\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: false
   path: data-structure/bst/splay_tree.cpp
   requiredBy: []
-  timestamp: '2021-01-29 22:05:53+09:00'
+  timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508.splay_tree.test.cpp

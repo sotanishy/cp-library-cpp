@@ -3,52 +3,53 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/dual_segment_tree.cpp\"\n#include\
     \ <vector>\n\ntemplate <typename M>\nclass DualSegmentTree {\n    using T = typename\
     \ M::T;\n\npublic:\n    DualSegmentTree() = default;\n    explicit DualSegmentTree(int\
     \ n) {\n        size = 1;\n        height = 1;\n        while (size < n) size\
-    \ <<= 1, ++height;\n        lazy.resize(2 * size, M::id);\n    }\n\n    T operator[](int\
+    \ <<= 1, ++height;\n        lazy.resize(2 * size, M::id());\n    }\n\n    T operator[](int\
     \ k) {\n        k += size;\n        propagate(k);\n        return lazy[k];\n \
     \   }\n\n    void update(int l, int r, const T& x) {\n        l += size;\n   \
     \     r += size;\n        propagate(l);\n        propagate(r - 1);\n        for\
     \ (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) lazy[l] = M::op(lazy[l],\
     \ x), ++l;\n            if (r & 1) --r, lazy[r] = M::op(lazy[r], x);\n       \
     \ }\n    }\n\nprivate:\n    int size, height;\n    std::vector<T> lazy;\n\n  \
-    \  void push(int k) {\n        if (lazy[k] == M::id) return;\n        lazy[2 *\
-    \ k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2 *\
-    \ k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\n    void propagate(int\
+    \  void push(int k) {\n        if (lazy[k] == M::id()) return;\n        lazy[2\
+    \ * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2\
+    \ * k + 1], lazy[k]);\n        lazy[k] = M::id();\n    }\n\n    void propagate(int\
     \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};\n"
   code: "#pragma once\n#include <vector>\n\ntemplate <typename M>\nclass DualSegmentTree\
     \ {\n    using T = typename M::T;\n\npublic:\n    DualSegmentTree() = default;\n\
     \    explicit DualSegmentTree(int n) {\n        size = 1;\n        height = 1;\n\
     \        while (size < n) size <<= 1, ++height;\n        lazy.resize(2 * size,\
-    \ M::id);\n    }\n\n    T operator[](int k) {\n        k += size;\n        propagate(k);\n\
+    \ M::id());\n    }\n\n    T operator[](int k) {\n        k += size;\n        propagate(k);\n\
     \        return lazy[k];\n    }\n\n    void update(int l, int r, const T& x) {\n\
     \        l += size;\n        r += size;\n        propagate(l);\n        propagate(r\
     \ - 1);\n        for (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) lazy[l]\
     \ = M::op(lazy[l], x), ++l;\n            if (r & 1) --r, lazy[r] = M::op(lazy[r],\
     \ x);\n        }\n    }\n\nprivate:\n    int size, height;\n    std::vector<T>\
-    \ lazy;\n\n    void push(int k) {\n        if (lazy[k] == M::id) return;\n   \
-    \     lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2\
-    \ * k + 1], lazy[k]);\n        lazy[k] = M::id;\n    }\n\n    void propagate(int\
-    \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};"
+    \ lazy;\n\n    void push(int k) {\n        if (lazy[k] == M::id()) return;\n \
+    \       lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] =\
+    \ M::op(lazy[2 * k + 1], lazy[k]);\n        lazy[k] = M::id();\n    }\n\n    void\
+    \ propagate(int k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n\
+    \    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/dual_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-01-29 22:05:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DSL_2_D.test.cpp

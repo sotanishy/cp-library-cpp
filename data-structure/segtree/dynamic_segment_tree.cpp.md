@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
     title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/dynamic_segment_tree.cpp\"\n#include\
@@ -20,22 +20,22 @@ data:
     \ long k, const T& x) const { update(k, x, root, 0, size); }\n\n    T fold(long\
     \ long l, long long r) const { return fold(l, r, root, 0, size); }\n\nprivate:\n\
     \    struct Node;\n    using node_ptr = std::unique_ptr<Node>;\n\n    struct Node\
-    \ {\n        T val;\n        node_ptr left, right;\n        Node() : val(M::id),\
+    \ {\n        T val;\n        node_ptr left, right;\n        Node() : val(M::id()),\
     \ left(nullptr), right(nullptr) {}\n    };\n\n    const node_ptr root;\n    long\
     \ long size;\n\n    void update(long long k, const T& x, const node_ptr& n, long\
     \ long l, long long r) const {\n        if (r - l == 1) {\n            n->val\
     \ = x;\n            return;\n        }\n        long long m = (l + r) / 2;\n \
     \       if (k < m) {\n            if (!n->left) n->left = std::make_unique<Node>();\n\
     \            update(k, x, n->left, l, m);\n            n->val = M::op(n->left->val,\
-    \ n->right ? n->right->val : M::id);\n        } else {\n            if (!n->right)\
+    \ n->right ? n->right->val : M::id());\n        } else {\n            if (!n->right)\
     \ n->right = std::make_unique<Node>();\n            update(k, x, n->right, m,\
-    \ r);\n            n->val = M::op(n->left ? n->left->val : M::id, n->right->val);\n\
+    \ r);\n            n->val = M::op(n->left ? n->left->val : M::id(), n->right->val);\n\
     \        }\n    }\n\n    T fold(long long a, long long b, const node_ptr& n, long\
-    \ long l, long long r) const {\n        if (r <= a || b <= l) return M::id;\n\
+    \ long l, long long r) const {\n        if (r <= a || b <= l) return M::id();\n\
     \        if (a <= l && r <= b) return n->val;\n        long long m = (l + r) /\
-    \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr\
-    \ = n->right ? fold(a, b, n->right, m, r) : M::id;\n        return M::op(vl, vr);\n\
-    \    }\n};\n"
+    \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id();\n        T\
+    \ vr = n->right ? fold(a, b, n->right, m, r) : M::id();\n        return M::op(vl,\
+    \ vr);\n    }\n};\n"
   code: "#pragma once\n#include <memory>\n\ntemplate <typename M>\nclass DynamicSegmentTree\
     \ {\n    using T = typename M::T;\n\npublic:\n    DynamicSegmentTree() = default;\n\
     \    explicit DynamicSegmentTree(long long n) : root(std::make_unique<Node>())\
@@ -44,28 +44,28 @@ data:
     \ long k, const T& x) const { update(k, x, root, 0, size); }\n\n    T fold(long\
     \ long l, long long r) const { return fold(l, r, root, 0, size); }\n\nprivate:\n\
     \    struct Node;\n    using node_ptr = std::unique_ptr<Node>;\n\n    struct Node\
-    \ {\n        T val;\n        node_ptr left, right;\n        Node() : val(M::id),\
+    \ {\n        T val;\n        node_ptr left, right;\n        Node() : val(M::id()),\
     \ left(nullptr), right(nullptr) {}\n    };\n\n    const node_ptr root;\n    long\
     \ long size;\n\n    void update(long long k, const T& x, const node_ptr& n, long\
     \ long l, long long r) const {\n        if (r - l == 1) {\n            n->val\
     \ = x;\n            return;\n        }\n        long long m = (l + r) / 2;\n \
     \       if (k < m) {\n            if (!n->left) n->left = std::make_unique<Node>();\n\
     \            update(k, x, n->left, l, m);\n            n->val = M::op(n->left->val,\
-    \ n->right ? n->right->val : M::id);\n        } else {\n            if (!n->right)\
+    \ n->right ? n->right->val : M::id());\n        } else {\n            if (!n->right)\
     \ n->right = std::make_unique<Node>();\n            update(k, x, n->right, m,\
-    \ r);\n            n->val = M::op(n->left ? n->left->val : M::id, n->right->val);\n\
+    \ r);\n            n->val = M::op(n->left ? n->left->val : M::id(), n->right->val);\n\
     \        }\n    }\n\n    T fold(long long a, long long b, const node_ptr& n, long\
-    \ long l, long long r) const {\n        if (r <= a || b <= l) return M::id;\n\
+    \ long l, long long r) const {\n        if (r <= a || b <= l) return M::id();\n\
     \        if (a <= l && r <= b) return n->val;\n        long long m = (l + r) /\
-    \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id;\n        T vr\
-    \ = n->right ? fold(a, b, n->right, m, r) : M::id;\n        return M::op(vl, vr);\n\
-    \    }\n};"
+    \ 2;\n        T vl = n->left ? fold(a, b, n->left, l, m) : M::id();\n        T\
+    \ vr = n->right ? fold(a, b, n->right, m, r) : M::id();\n        return M::op(vl,\
+    \ vr);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/dynamic_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-01-29 22:05:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
 documentation_of: data-structure/segtree/dynamic_segment_tree.cpp

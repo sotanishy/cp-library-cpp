@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/compress.cpp
     title: Coordinate Compression
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/mo.cpp
     title: Mo's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -25,17 +25,17 @@ data:
     #line 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n#include <vector>\n\
     \ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\n\
     public:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
-    \ data(n + 1, M::id) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id;\n\
-    \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
-    \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
-    \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
+    \ data(n + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n        T ret =\
+    \ M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n  \
+    \      return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
+    \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
     \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
     \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
     \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
-    \        T v = M::id;\n        for (; k > 0; k >>= 1) {\n            if (i + k\
-    \ <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if (cmp(nv,\
-    \ x)) {\n                v = nv;\n                i += k;\n            }\n   \
-    \     }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
+    \        T v = M::id();\n        for (; k > 0; k >>= 1) {\n            if (i +\
+    \ k <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if\
+    \ (cmp(nv, x)) {\n                v = nv;\n                i += k;\n         \
+    \   }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
     \ data;\n};\n#line 2 \"misc/compress.cpp\"\n#include <algorithm>\n#line 4 \"misc/compress.cpp\"\
     \n\n/*\n * @brief Coordinate Compression\n */\ntemplate <typename T>\nclass Compress\
     \ {\npublic:\n    Compress() = default;\n    explicit Compress(const std::vector<T>&\
@@ -62,7 +62,7 @@ data:
     \ id, l, r;\n        Query(int id, int l, int r) : id(id), l(l), r(r) {}\n   \
     \ };\n\n    int n, cnt;\n    std::vector<Query> queries;\n};\n#line 6 \"test/yosupo/static_range_inversions_query.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = int;\n    static constexpr T id = 0;\n    static\
+    struct AddMonoid {\n    using T = int;\n    static T id() { return 0; }\n    static\
     \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n\
     \    for (int i = 0; i < N; ++i) cin >> A[i];\n    A = Compress<int>(A).compress(A);\n\
@@ -81,8 +81,8 @@ data:
     \n\n#include \"../../data-structure/fenwick_tree.cpp\"\n#include \"../../misc/compress.cpp\"\
     \n#include \"../../misc/mo.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = int;\n    static\
-    \ constexpr T id = 0;\n    static T op(T a, T b) {\n        return a + b;\n  \
-    \  }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \ T id() { return 0; }\n    static T op(T a, T b) {\n        return a + b;\n \
+    \   }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (int i = 0;\
     \ i < N; ++i) cin >> A[i];\n    A = Compress<int>(A).compress(A);\n    Mo mo(N);\n\
     \    for (int i = 0; i < Q; ++i) {\n        int l, r;\n        cin >> l >> r;\n\
@@ -102,8 +102,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp
 layout: document

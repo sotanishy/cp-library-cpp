@@ -42,7 +42,7 @@ data:
     \    static std::random_device rd;\n        static std::mt19937 rng(rd());\n \
     \       return rng();\n    }\n\n    struct Node {\n        node_ptr left, right;\n\
     \        T val, sum;\n        unsigned int pri;\n        int sz;\n        bool\
-    \ rev;\n\n        Node() : Node(M::id) {}\n        Node(const T& x) : left(nullptr),\
+    \ rev;\n\n        Node() : Node(M::id()) {}\n        Node(const T& x) : left(nullptr),\
     \ right(nullptr), val(x), sum(val), pri(rand()), sz(1), rev(false) {}\n    };\n\
     \n    node_ptr root;\n\n    explicit Treap(node_ptr root) : root(std::move(root))\
     \ {}\n\n    static int size(const node_ptr& t) {\n        return t ? t->sz : 0;\n\
@@ -102,7 +102,7 @@ data:
     \    static std::random_device rd;\n        static std::mt19937 rng(rd());\n \
     \       return rng();\n    }\n\n    struct Node {\n        node_ptr left, right;\n\
     \        T val, sum;\n        unsigned int pri;\n        int sz;\n        bool\
-    \ rev;\n\n        Node() : Node(M::id) {}\n        Node(const T& x) : left(nullptr),\
+    \ rev;\n\n        Node() : Node(M::id()) {}\n        Node(const T& x) : left(nullptr),\
     \ right(nullptr), val(x), sum(val), pri(rand()), sz(1), rev(false) {}\n    };\n\
     \n    node_ptr root;\n\n    explicit Treap(node_ptr root) : root(std::move(root))\
     \ {}\n\n    static int size(const node_ptr& t) {\n        return t ? t->sz : 0;\n\
@@ -135,7 +135,7 @@ data:
   isVerificationFile: false
   path: data-structure/bst/treap.cpp
   requiredBy: []
-  timestamp: '2021-01-29 22:05:53+09:00'
+  timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508.treap.test.cpp

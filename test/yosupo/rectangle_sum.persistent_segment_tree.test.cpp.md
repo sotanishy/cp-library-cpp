@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/segtree/persistent_segment_tree.cpp
     title: Persistent Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -23,7 +23,7 @@ data:
     #include <memory>\n\n/*\n * @brief Persistent Segment Tree\n */\ntemplate <typename\
     \ M>\nclass PersistentSegmentTree {\n    using T = typename M::T;\n\npublic:\n\
     \    PersistentSegmentTree() = default;\n    explicit PersistentSegmentTree(int\
-    \ n): PersistentSegmentTree(std::vector<T>(n, M::id)) {}\n    explicit PersistentSegmentTree(const\
+    \ n): PersistentSegmentTree(std::vector<T>(n, M::id())) {}\n    explicit PersistentSegmentTree(const\
     \ std::vector<T>& v) : root(std::make_shared<Node>()) {\n        size = 1;\n \
     \       while (size < (int) v.size()) size <<= 1;\n        build(v, root, 0, size);\n\
     \    }\n\n    T operator[](int k) const {\n        return fold(k, k + 1);\n  \
@@ -31,14 +31,14 @@ data:
     \ PersistentSegmentTree(update(k, x, root, 0, size), size);\n    }\n\n    T fold(int\
     \ l, int r) const {\n        return fold(l, r, root, 0, size);\n    }\n\nprivate:\n\
     \    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\n    struct Node\
-    \ {\n        T val;\n        node_ptr left, right;\n        Node() : val(M::id),\
+    \ {\n        T val;\n        node_ptr left, right;\n        Node() : val(M::id()),\
     \ left(nullptr), right(nullptr) {}\n        Node(const T& val, const node_ptr&\
     \ left, const node_ptr& right) : val(val), left(left), right(right) {}\n    };\n\
     \n    node_ptr root;\n    int size;\n\n    PersistentSegmentTree(const node_ptr&\
     \ root, int size) : root(root), size(size) {}\n\n    void build(const std::vector<T>&\
     \ v, const node_ptr& n, int l, int r) const {\n        if (r - l == 1) {\n   \
-    \         n->val = l < (int) v.size() ? v[l] : M::id;\n            return;\n \
-    \       }\n        int m = (l + r) / 2;\n        n->left = std::make_shared<Node>();\n\
+    \         n->val = l < (int) v.size() ? v[l] : M::id();\n            return;\n\
+    \        }\n        int m = (l + r) / 2;\n        n->left = std::make_shared<Node>();\n\
     \        build(v, n->left, l, m);\n        n->right = std::make_shared<Node>();\n\
     \        build(v, n->right, m, r);\n        n->val = M::op(n->left->val, n->right->val);\n\
     \    }\n\n    node_ptr update(int k, const T& x, const node_ptr& n, int l, int\
@@ -50,9 +50,9 @@ data:
     \ m, r);\n            T val = M::op(n->left->val, right->val);\n            return\
     \ std::make_shared<Node>(val, n->left, right);\n        }\n    }\n\n    T fold(int\
     \ a, int b, const node_ptr& n, int l, int r) const {\n        if (r <= a || b\
-    \ <= l) return M::id;\n        if (a <= l && r <= b) return n->val;\n        int\
-    \ m = (l + r) / 2;\n        return M::op(fold(a, b, n->left, l, m),\n        \
-    \             fold(a, b, n->right, m, r));\n    }\n};\n#line 2 \"misc/compress.cpp\"\
+    \ <= l) return M::id();\n        if (a <= l && r <= b) return n->val;\n      \
+    \  int m = (l + r) / 2;\n        return M::op(fold(a, b, n->left, l, m),\n   \
+    \                  fold(a, b, n->right, m, r));\n    }\n};\n#line 2 \"misc/compress.cpp\"\
     \n#include <algorithm>\n#line 4 \"misc/compress.cpp\"\n\n/*\n * @brief Coordinate\
     \ Compression\n */\ntemplate <typename T>\nclass Compress {\npublic:\n    Compress()\
     \ = default;\n    explicit Compress(const std::vector<T>& vs) : xs(vs) {\n   \
@@ -66,7 +66,7 @@ data:
     \n    int size() const {\n        return xs.size();\n    }\n\nprivate:\n    std::vector<T>\
     \ xs;\n};\n#line 5 \"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
+    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs,\
     \ ys;\n    vector<int> x(N), y(N), w(N);\n    vector<int> l(Q), d(Q), r(Q), u(Q);\n\
@@ -89,7 +89,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"../../data-structure/segtree/persistent_segment_tree.cpp\"\n#include \"../../misc/compress.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
+    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
     \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs,\
     \ ys;\n    vector<int> x(N), y(N), w(N);\n    vector<int> l(Q), d(Q), r(Q), u(Q);\n\
@@ -115,8 +115,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-01-30 00:55:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
 layout: document

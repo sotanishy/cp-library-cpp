@@ -54,7 +54,7 @@ data:
   - test/yosupo/staticrmq.test.cpp
 documentation_of: data-structure/disjoint_sparse_table.cpp
 layout: document
-title: Quadtree
+title: Disjoint Sparse Table
 ---
 
 ## Description

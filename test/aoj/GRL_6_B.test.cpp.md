@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/min_cost_flow.cpp
     title: Minimum Cost Flow
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
@@ -21,7 +21,7 @@ data:
     \ = default;\n    explicit MinCostFlow(int V) : V(V), G(V) {}\n\n    void add_edge(int\
     \ u, int v, Cap cap, Cost cost) {\n        G[u].emplace_back(v, cap, cost, (int)\
     \ G[v].size());\n        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);\n\
-    \    }\n\n    Cost min_cost_flow(int s, int t, Cap f) {\n        int ret = 0;\n\
+    \    }\n\n    Cost min_cost_flow(int s, int t, Cap f) {\n        Cost ret = 0;\n\
     \        std::vector<Cost> dist(V);\n        std::vector<int> prevv(V), preve(V);\n\
     \        using P = std::pair<Cost, int>;\n        std::priority_queue<P, std::vector<P>,\
     \ std::greater<P>> pq;\n\n        auto h = calculate_initial_potential(s);\n\n\
@@ -76,8 +76,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp
 layout: document

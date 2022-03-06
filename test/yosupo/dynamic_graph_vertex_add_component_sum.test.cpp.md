@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/unionfind/undoable_union_find.cpp
     title: Undoable Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/offline_dynamic_connectivity.cpp
     title: Offline Dynamic Connectivity
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -25,22 +25,22 @@ data:
     \ <stack>\n#line 7 \"data-structure/unionfind/undoable_union_find.cpp\"\n\ntemplate\
     \ <typename M>\nclass UndoableUnionFind {\n    using T = typename M::T;\n\npublic:\n\
     \    UndoableUnionFind() = default;\n    explicit UndoableUnionFind(int n) : UndoableUnionFind(std::vector<T>(n,\
-    \ M::id)) {}\n    explicit UndoableUnionFind(const std::vector<T>& v)\n      \
-    \  : data(v.size(), -1), val(v.begin(), v.end()) {}\n\n    int find(int x) const\
+    \ M::id())) {}\n    explicit UndoableUnionFind(const std::vector<T>& v)\n    \
+    \    : data(v.size(), -1), val(v.begin(), v.end()) {}\n\n    int find(int x) const\
     \ {\n        if (data[x] < 0) return x;\n        return find(data[x]);\n    }\n\
     \n    void unite(int x, int y) {\n        x = find(x);\n        y = find(y);\n\
-    \        history.emplace(-1, 0, M::id);\n        history.emplace(x, data[x], val[x]);\n\
-    \        history.emplace(y, data[y], val[y]);\n        if (x == y) return;\n \
-    \       if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n\
-    \        data[y] = x;\n        val[x] = M::op(val[x], val[y]);\n    }\n\n    void\
-    \ undo() {\n        assert(!history.empty());\n        while (true) {\n      \
-    \      auto [x, dx, vx] = history.top();\n            history.pop();\n       \
-    \     if (x == -1) break;\n            data[x] = dx;\n            val[x] = vx;\n\
-    \        }\n    }\n\n    bool same(int x, int y) const {\n        return find(x)\
-    \ == find(y);\n    }\n\n    int size(int x) const {\n        return -data[find(x)];\n\
+    \        history.emplace(-1, 0, M::id());\n        history.emplace(x, data[x],\
+    \ val[x]);\n        history.emplace(y, data[y], val[y]);\n        if (x == y)\
+    \ return;\n        if (data[x] > data[y]) std::swap(x, y);\n        data[x] +=\
+    \ data[y];\n        data[y] = x;\n        val[x] = M::op(val[x], val[y]);\n  \
+    \  }\n\n    void undo() {\n        assert(!history.empty());\n        while (true)\
+    \ {\n            auto [x, dx, vx] = history.top();\n            history.pop();\n\
+    \            if (x == -1) break;\n            data[x] = dx;\n            val[x]\
+    \ = vx;\n        }\n    }\n\n    bool same(int x, int y) const {\n        return\
+    \ find(x) == find(y);\n    }\n\n    int size(int x) const {\n        return -data[find(x)];\n\
     \    }\n\n    T component_fold(int x) const {\n        return val[find(x)];\n\
     \    }\n\n    void update(int x, const T& v) {\n        x = find(x);\n       \
-    \ history.emplace(-1, 0, M::id);\n        history.emplace(x, data[x], val[x]);\n\
+    \ history.emplace(-1, 0, M::id());\n        history.emplace(x, data[x], val[x]);\n\
     \        val[x] = M::op(val[x], v);\n    }\n\nprivate:\n    std::vector<int> data;\n\
     \    std::vector<T> val;\n    std::stack<std::tuple<int, int, T>> history;\n};\n\
     #line 9 \"graph/offline_dynamic_connectivity.cpp\"\n\ntemplate <typename M>\n\
@@ -82,7 +82,7 @@ data:
     \ int, int, int>> closed;\n    std::vector<std::tuple<int, int, T>> query_update;\n\
     \    std::map<int, int> query_fold;\n    std::vector<T> val;\n};\n#line 4 \"test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static constexpr T id = 0;\n    static\
+    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
     \ T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
     \    for (auto& x : a) cin >> x;\n    OfflineDynamicConnectivity<AddMonoid> dc(a);\n\
@@ -97,8 +97,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
     \n\n#include \"../../graph/offline_dynamic_connectivity.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nusing ll = long long;\n\nstruct AddMonoid {\n    using\
-    \ T = ll;\n    static constexpr T id = 0;\n    static T op(T a, T b) {\n     \
-    \   return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ T = ll;\n    static T id() { return 0; }\n    static T op(T a, T b) {\n    \
+    \    return a + b;\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<ll> a(N);\n\
     \    for (auto& x : a) cin >> x;\n    OfflineDynamicConnectivity<AddMonoid> dc(a);\n\
     \    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n      \
@@ -115,8 +115,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 23:34:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

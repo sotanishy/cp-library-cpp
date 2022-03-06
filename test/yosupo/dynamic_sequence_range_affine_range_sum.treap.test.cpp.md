@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/bst/lazy_treap.cpp
     title: Treap with Lazy Propagation
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -55,8 +55,8 @@ data:
     \ {\n        static std::random_device rd;\n        static std::mt19937 rng(rd());\n\
     \        return rng();\n    }\n\n    struct Node {\n        node_ptr left, right;\n\
     \        T val, sum;\n        E lazy;\n        unsigned int pri;\n        int\
-    \ sz;\n        bool rev;\n\n        Node() : Node(M::id) {}\n        Node(const\
-    \ T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id), pri(rand()),\
+    \ sz;\n        bool rev;\n\n        Node() : Node(M::id()) {}\n        Node(const\
+    \ T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id()), pri(rand()),\
     \ sz(1), rev(false) {}\n    };\n\n    node_ptr root = nullptr;\n\n    explicit\
     \ LazyTreap(node_ptr root) : root(std::move(root)) {}\n\n    static int size(const\
     \ node_ptr& t) {\n        return t ? t->sz : 0;\n    }\n\n    static void recalc(const\
@@ -66,20 +66,20 @@ data:
     \ }\n\n    static void push(const node_ptr& t) {\n        if (t->rev) {\n    \
     \        std::swap(t->left, t->right);\n            if (t->left) t->left->rev\
     \ ^= true;\n            if (t->right) t->right->rev ^= true;\n            t->rev\
-    \ = false;\n        }\n        if (t->lazy != O::id) {\n            t->val = act(t->val,\
-    \ t->lazy);\n            if (t->left) {\n                t->left->lazy = O::op(t->left->lazy,\
-    \ t->lazy);\n                t->left->sum = act(t->left->sum, t->lazy);\n    \
-    \        }\n            if (t->right) {\n                t->right->lazy = O::op(t->right->lazy,\
-    \ t->lazy);\n                t->right->sum = act(t->right->sum, t->lazy);\n  \
-    \          }\n            t->lazy = O::id;\n        }\n        recalc(t);\n  \
-    \  }\n\n    static node_ptr join(node_ptr l, node_ptr r) {\n        if (!l) return\
-    \ r;\n        if (!r) return l;\n        push(l);\n        push(r);\n        if\
-    \ (l->pri > r->pri) {\n            l->right = join(std::move(l->right), std::move(r));\n\
-    \            recalc(l);\n            return l;\n        } else {\n           \
-    \ r->left = join(std::move(l), std::move(r->left));\n            recalc(r);\n\
-    \            return r;\n        }\n    }\n\n    static std::pair<node_ptr, node_ptr>\
-    \ split(node_ptr t, int k) {\n        if (!t) return {nullptr, nullptr};\n   \
-    \     push(t);\n        if (k <= size(t->left)) {\n            auto s = split(std::move(t->left),\
+    \ = false;\n        }\n        if (t->lazy != O::id()) {\n            t->val =\
+    \ act(t->val, t->lazy);\n            if (t->left) {\n                t->left->lazy\
+    \ = O::op(t->left->lazy, t->lazy);\n                t->left->sum = act(t->left->sum,\
+    \ t->lazy);\n            }\n            if (t->right) {\n                t->right->lazy\
+    \ = O::op(t->right->lazy, t->lazy);\n                t->right->sum = act(t->right->sum,\
+    \ t->lazy);\n            }\n            t->lazy = O::id();\n        }\n      \
+    \  recalc(t);\n    }\n\n    static node_ptr join(node_ptr l, node_ptr r) {\n \
+    \       if (!l) return r;\n        if (!r) return l;\n        push(l);\n     \
+    \   push(r);\n        if (l->pri > r->pri) {\n            l->right = join(std::move(l->right),\
+    \ std::move(r));\n            recalc(l);\n            return l;\n        } else\
+    \ {\n            r->left = join(std::move(l), std::move(r->left));\n         \
+    \   recalc(r);\n            return r;\n        }\n    }\n\n    static std::pair<node_ptr,\
+    \ node_ptr> split(node_ptr t, int k) {\n        if (!t) return {nullptr, nullptr};\n\
+    \        push(t);\n        if (k <= size(t->left)) {\n            auto s = split(std::move(t->left),\
     \ k);\n            t->left = std::move(s.second);\n            recalc(t);\n  \
     \          return {std::move(s.first), std::move(t)};\n        } else {\n    \
     \        auto s = split(std::move(t->right), k - size(t->left) - 1);\n       \
@@ -115,10 +115,10 @@ data:
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 5 \"test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nstruct M {\n    using T = pair<mint, mint>;\n    static constexpr T id = {0,\
-    \ 0};\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
+    \nstruct M {\n    using T = pair<mint, mint>;\n    static T id() { return {0,\
+    \ 0}; }\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
     \ + b.second};\n    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n   \
-    \ static constexpr T id = {1, 0};\n    static T op(T a, T b) {\n        return\
+    \ static T id() { return {1, 0}; }\n    static T op(T a, T b) {\n        return\
     \ {a.first * b.first, a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T\
     \ a, O::T b) {\n    return {a.first * b.first + a.second * b.second, a.second};\n\
     }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n\
@@ -136,10 +136,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n\n#include \"../../data-structure/bst/lazy_treap.cpp\"\n#include \"../../math/modint.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nstruct M {\n    using T = pair<mint, mint>;\n    static constexpr T id = {0,\
-    \ 0};\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
+    \nstruct M {\n    using T = pair<mint, mint>;\n    static T id() { return {0,\
+    \ 0}; }\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
     \ + b.second};\n    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n   \
-    \ static constexpr T id = {1, 0};\n    static T op(T a, T b) {\n        return\
+    \ static T id() { return {1, 0}; }\n    static T op(T a, T b) {\n        return\
     \ {a.first * b.first, a.second * b.first + b.second};\n    }\n};\n\nM::T act(M::T\
     \ a, O::T b) {\n    return {a.first * b.first + a.second * b.second, a.second};\n\
     }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n\
@@ -160,8 +160,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   requiredBy: []
-  timestamp: '2021-01-30 02:09:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-06 20:10:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
 layout: document
