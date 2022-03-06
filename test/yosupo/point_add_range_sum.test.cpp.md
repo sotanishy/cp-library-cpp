@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []

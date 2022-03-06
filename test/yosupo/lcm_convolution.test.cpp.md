@@ -9,28 +9,28 @@ data:
     title: Transform
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
     links:
-    - https://judge.yosupo.jp/problem/bitwise_and_convolution
-  bundledCode: "#line 1 \"test/yosupo/bitwise_and_convolution.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
-    \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
-    \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
-    \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
-    \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
-    \  constexpr int value() const noexcept { return x; }\n\n    constexpr mint& operator+=(const\
-    \ mint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr\
-    \ mint& operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -=\
-    \ mod; return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept\
-    \ { x = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr\
-    \ mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\
-    \n    constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
+    - https://judge.yosupo.jp/problem/lcm_convolution
+  bundledCode: "#line 1 \"test/yosupo/lcm_convolution.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#line 2 \"math/modint.cpp\"\
+    \n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief Mod int\n */\ntemplate\
+    \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
+    \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
+    \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
+    \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
+    \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
+    \ noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint&\
+    \ operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod;\
+    \ return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept { x\
+    \ = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr mint&\
+    \ operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\n \
+    \   constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
     \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
     \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
     \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
@@ -81,35 +81,35 @@ data:
     \            for (int j = i; j < i + h; ++j) {\n                T x = a[j];\n\
     \                T y = a[j | h];\n                a[j] = (x + y) / 2;\n      \
     \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n#line\
-    \ 5 \"test/yosupo/bitwise_and_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 <<\
-    \ N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto& x : b) cin >>\
-    \ x;\n    fzt(a, false);\n    fzt(b, false);\n    for (int i = 0; i < (1 << N);\
-    \ ++i) c[i] = a[i] * b[i];\n    fmt(c, false);\n    for (int i = 0; i < (1 <<\
-    \ N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/transform.cpp\"\n\
-    \n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing\
-    \ mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<mint>\
-    \ a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto&\
-    \ x : b) cin >> x;\n    fzt(a, false);\n    fzt(b, false);\n    for (int i = 0;\
-    \ i < (1 << N); ++i) c[i] = a[i] * b[i];\n    fmt(c, false);\n    for (int i =\
-    \ 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n\
+    \ 5 \"test/yosupo/lcm_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\n\
+    int main() {\n    int N;\n    cin >> N;\n    vector<mint> a(N+1), b(N+1);\n  \
+    \  for (int i = 1; i <= N; ++i) cin >> a[i];\n    for (int i = 1; i <= N; ++i)\
+    \ cin >> b[i];\n    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for\
+    \ (int i = 1; i <= N; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    for (int\
+    \ i = 1; i <= N; ++i) cout << a[i] << (i < N ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
+    \ \"../../math/modint.cpp\"\n#include \"../../math/transform.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
+    \ Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<mint>\
+    \ a(N+1), b(N+1);\n    for (int i = 1; i <= N; ++i) cin >> a[i];\n    for (int\
+    \ i = 1; i <= N; ++i) cin >> b[i];\n    divisor_fzt(a, true);\n    divisor_fzt(b,\
+    \ true);\n    for (int i = 1; i <= N; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n\
+    \    for (int i = 1; i <= N; ++i) cout << a[i] << (i < N ? \" \" : \"\\n\");\n\
     }\n"
   dependsOn:
   - math/modint.cpp
   - math/transform.cpp
   isVerificationFile: true
-  path: test/yosupo/bitwise_and_convolution.test.cpp
+  path: test/yosupo/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2021-12-04 19:51:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-06 21:25:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/bitwise_and_convolution.test.cpp
+documentation_of: test/yosupo/lcm_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/bitwise_and_convolution.test.cpp
-- /verify/test/yosupo/bitwise_and_convolution.test.cpp.html
-title: test/yosupo/bitwise_and_convolution.test.cpp
+- /verify/test/yosupo/lcm_convolution.test.cpp
+- /verify/test/yosupo/lcm_convolution.test.cpp.html
+title: test/yosupo/lcm_convolution.test.cpp
 ---

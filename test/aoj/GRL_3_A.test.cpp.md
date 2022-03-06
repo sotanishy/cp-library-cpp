@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
@@ -32,14 +32,14 @@ data:
     \                continue;\n            }\n            if (ord[c] == -1) {\n \
     \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
     \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
-    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
-    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
-    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
-    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
-    #line 4 \"test/aoj/GRL_3_A.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int\
-    \ i = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
+    \ true;\n                if (ord[v] < low[c]) bridge.push_back(std::minmax(v,\
+    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
+    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
+    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
+    test/aoj/GRL_3_A.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
+    \ int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int i\
+    \ = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
     \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    vector<int> pts\
     \ = lowlink.get_articulation_points();\n    sort(pts.begin(), pts.end());\n  \
     \  for (int v : pts) cout << v << \"\\n\";\n}\n"
@@ -56,7 +56,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2021-03-31 15:18:53+09:00'
+  timestamp: '2022-03-06 21:25:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_A.test.cpp

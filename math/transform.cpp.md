@@ -9,9 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_xor_convolution.test.cpp
     title: test/yosupo/bitwise_xor_convolution.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/gcd_convolution.test.cpp
+    title: test/yosupo/gcd_convolution.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/lcm_convolution.test.cpp
+    title: test/yosupo/lcm_convolution.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/transform.cpp\"\n#include <vector>\n\n/*\n * Fast Zeta/Moebius\
@@ -87,8 +93,10 @@ data:
   path: math/transform.cpp
   requiredBy: []
   timestamp: '2021-12-04 19:51:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/bitwise_xor_convolution.test.cpp
 documentation_of: math/transform.cpp
@@ -132,11 +140,9 @@ $$
 - `void divisor_fzt(vector<T> a, bool subset)`
     - $a$ を約数に関して高速 zeta 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 - `void divisor_fmt(vector<T> a, bool subset)`
     - $a$ を約数に関して高速 Möbius 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる
     - 時間計算量: $n\lg n$
-    - ***NOT VERIFIED***
 
 ## Fast Walsh-Hadamard Transform
 

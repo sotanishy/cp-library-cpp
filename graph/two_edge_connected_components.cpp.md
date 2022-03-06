@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/two_edge_connected_components.cpp\"\n#include <vector>\n\
@@ -32,11 +32,11 @@ data:
     \                continue;\n            }\n            if (ord[c] == -1) {\n \
     \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
     \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
-    \ true;\n                if (ord[v] < low[c]) bridge.emplace_back(std::min(v,\
-    \ c), std::max(v, c));\n            } else {\n                low[v] = std::min(low[v],\
-    \ ord[c]);\n            }\n        }\n        if (p == -1 && cnt > 1) is_articulation\
-    \ = true;\n        if (is_articulation) articulation.push_back(v);\n    }\n};\n\
-    #line 4 \"graph/two_edge_connected_components.cpp\"\n\nstd::vector<int> two_edge_connected_components(const\
+    \ true;\n                if (ord[v] < low[c]) bridge.push_back(std::minmax(v,\
+    \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
+    \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
+    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 4 \"\
+    graph/two_edge_connected_components.cpp\"\n\nstd::vector<int> two_edge_connected_components(const\
     \ std::vector<std::vector<int>>& G) {\n    int k = 0;\n    std::vector<int> comp(G.size(),\
     \ -1);\n    auto lowlink = Lowlink(G);\n\n    auto dfs = [&](const auto& dfs,\
     \ int u) -> void {\n        comp[u] = k;\n        for (int v : G[u]) {\n     \
@@ -57,8 +57,8 @@ data:
   isVerificationFile: false
   path: graph/two_edge_connected_components.cpp
   requiredBy: []
-  timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-06 21:25:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
 documentation_of: graph/two_edge_connected_components.cpp

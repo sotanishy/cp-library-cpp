@@ -12,24 +12,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/find_linear_recurrence.test.cpp
     title: test/yosupo/find_linear_recurrence.test.cpp
   - icon: ':x:'
+    path: test/yosupo/gcd_convolution.test.cpp
+    title: test/yosupo/gcd_convolution.test.cpp
+  - icon: ':x:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inverse_matrix.test.cpp
     title: test/yosupo/inverse_matrix.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/lcm_convolution.test.cpp
+    title: test/yosupo/lcm_convolution.test.cpp
   - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
@@ -126,9 +132,11 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/lcm_convolution.test.cpp
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/find_linear_recurrence.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp

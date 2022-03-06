@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/undoable_union_find.cpp
     title: Undoable Union Find
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/offline_dynamic_connectivity.cpp
     title: Offline Dynamic Connectivity
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -116,7 +116,7 @@ data:
   path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
   timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

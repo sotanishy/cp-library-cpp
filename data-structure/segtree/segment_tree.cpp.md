@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
     title: test/aoj/DSL_2_A.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree.cpp\"\n#include <algorithm>\n\
@@ -96,7 +96,7 @@ data:
   path: data-structure/segtree/segment_tree.cpp
   requiredBy: []
   timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp

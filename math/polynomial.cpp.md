@@ -12,7 +12,7 @@ data:
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -199,7 +199,7 @@ data:
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
   timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp

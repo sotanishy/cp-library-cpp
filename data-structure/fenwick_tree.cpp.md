@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_B.test.cpp
     title: test/aoj/DSL_2_B.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n\
@@ -52,7 +52,7 @@ data:
   path: data-structure/fenwick_tree.cpp
   requiredBy: []
   timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/ntt.cpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []

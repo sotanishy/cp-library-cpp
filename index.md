@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -42,7 +42,7 @@ data:
     - icon: ':warning:'
       path: data-structure/range_tree.cpp
       title: Range Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
     - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/lazy_treap.cpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -96,22 +96,22 @@ data:
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dual_segment_tree.cpp
       title: Dual Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_lazy_segment_tree.cpp
       title: Dynamic Segment Tree with Lazy Propagation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':x:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -125,7 +125,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.cpp
       title: Persistent Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.cpp
       title: Undoable Union Find
     - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
   - name: geometry
@@ -169,7 +169,7 @@ data:
       title: Geometry
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/biconnected_components.cpp
       title: Biconnected Components
     - icon: ':warning:'
@@ -181,7 +181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_cliques.cpp
       title: Enumerate Cliques
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -196,7 +196,7 @@ data:
     - icon: ':warning:'
       path: graph/namori_cycle.cpp
       title: Namori Cycle
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/offline_dynamic_connectivity.cpp
       title: Offline Dynamic Connectivity
     - icon: ':warning:'
@@ -211,7 +211,7 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.cpp
       title: Topological Sort
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
     - icon: ':heavy_check_mark:'
@@ -279,7 +279,7 @@ data:
     - icon: ':question:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -291,7 +291,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/system_of_linear_equations.cpp
       title: System of Linear Equations
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/transform.cpp
       title: Transform
   - name: math/matrix
@@ -470,37 +470,37 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_A.test.cpp
       title: test/aoj/DSL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
       title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.test.cpp
       title: test/aoj/DSL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_D.test.cpp
       title: test/aoj/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_E.test.cpp
       title: test/aoj/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
       title: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_3_D.slide_min.test.cpp
       title: test/aoj/DSL_3_D.slide_min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -545,7 +545,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -563,6 +563,9 @@ data:
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/biconnected_components.test.cpp
+      title: test/yosupo/biconnected_components.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -577,10 +580,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -598,7 +601,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -608,6 +611,9 @@ data:
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
     - icon: ':x:'
+      path: test/yosupo/gcd_convolution.test.cpp
+      title: test/yosupo/gcd_convolution.test.cpp
+    - icon: ':x:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -616,6 +622,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/lcm_convolution.test.cpp
+      title: test/yosupo/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.cht.test.cpp
       title: test/yosupo/line_add_get_min.cht.test.cpp
@@ -706,7 +715,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
