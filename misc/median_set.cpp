@@ -1,6 +1,9 @@
 #pragma once
 #include <set>
 
+/**
+ * @brief Median Set
+ */
 template <typename T>
 class MedianSet {
 public:
