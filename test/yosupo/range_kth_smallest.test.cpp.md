@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/wavelet_matrix.cpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -88,7 +88,7 @@ data:
   path: test/yosupo/range_kth_smallest.test.cpp
   requiredBy: []
   timestamp: '2022-03-06 22:28:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_kth_smallest.test.cpp
 layout: document

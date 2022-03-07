@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_kth_smallest.test.cpp
     title: test/yosupo/range_kth_smallest.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yosupo/static_range_frequency.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/wavelet_matrix.cpp\"\n#include <algorithm>\n\
@@ -106,7 +106,7 @@ data:
   path: data-structure/wavelet_matrix.cpp
   requiredBy: []
   timestamp: '2022-03-06 22:28:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/static_range_frequency.test.cpp
   - test/yosupo/range_kth_smallest.test.cpp

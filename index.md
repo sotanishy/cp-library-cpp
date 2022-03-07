@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -105,10 +105,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
     - icon: ':question:'
@@ -276,10 +276,10 @@ data:
     - icon: ':warning:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ntt.cpp
       title: Number Theoretic Transform
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -315,7 +315,7 @@ data:
       title: misc/marathon_template.cpp
     - icon: ':warning:'
       path: misc/median_set.cpp
-      title: misc/median_set.cpp
+      title: Median Set
     - icon: ':x:'
       path: misc/mo.cpp
       title: Mo's Algorithm
@@ -661,25 +661,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.test.cpp
       title: test/yosupo/point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
