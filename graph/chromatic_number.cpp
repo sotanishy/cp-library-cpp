@@ -3,10 +3,10 @@
 
 int chromatic_number(std::vector<std::vector<bool>>& G) {
     int n = G.size();
-    std::vector<int> edges(n);
+    std::vector<int> neighbor(n);
     for (int i = 0; i < (int) G.size(); ++i) {
         for (int j = 0; j < (int) G.size(); ++j) {
-            if (G[i][j]) edges[i] |= 1 << j;
+            if (G[i][j]) neighbor[i] |= 1 << j;
         }
     }
     // number of subsets of S that are independent
@@ -15,7 +15,7 @@ int chromatic_number(std::vector<std::vector<bool>>& G) {
     for (int S = 1; S < (1 << n); ++S) {
         int v = __builtin_ctz(S);
         // (not containing v) + (containing v)
-        ind[S] = ind[S ^ (1 << v)] + ind[(S ^ (1 << v)) & ~edges[v]];
+        ind[S] = ind[S ^ (1 << v)] + ind[(S ^ (1 << v)) & ~neighbor[v]];
     }
     // number of ways to choose k subsets of S that are independent
     auto f = ind;
