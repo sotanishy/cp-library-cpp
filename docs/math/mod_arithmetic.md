@@ -39,3 +39,12 @@ Tonelli-Shanks のアルゴリズムを用いている．時間計算量はよ�
 
 - `long long mod_sqrt(long long n, int mod)`
     - $r^2 \equiv n \mod mod$ を満たす $r$ を求める．$n = 0$ のときは $0$ を返す．$n$ と $mod$ が互いに素でないときと $r$ が存在しないときは$-1$ を返す．
+
+
+## Modular Tetration
+
+$a \uparrow \uparrow b \mod mod$ を再帰的に計算する．
+
+- `long long mod_tetration(long long a, long long b, int mod)`
+  - $a \uparrow \uparrow b \mod mod$ を計算する
+  - 時間計算量: $O(\sqrt{mod})$

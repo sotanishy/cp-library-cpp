@@ -2,6 +2,7 @@
 #include <cmath>
 #include <numeric>
 #include <unordered_map>
+#include "euler_totient.cpp"
 
 /*
  * Modular Exponentiation
@@ -93,4 +94,35 @@ long long mod_sqrt(long long n, int mod) {
         R = R * b % mod;
     }
     return R;
+}
+
+/**
+ * Modular Tetration
+ */
+long long mod_tetration(long long a, long long b, int mod) {
+    if (a == 0) return 1 - (b % 2);
+    if (a == 1 || b == 0) return 1;
+
+    auto pow = [&](long long a, long long e, int mod) {
+        if (a >= mod) a = a % mod + mod;
+        long long ret = 1;
+        while (e > 0) {
+            if (e & 1) {
+                ret = ret * a;
+                if (ret >= mod) ret = ret % mod + mod;
+            }
+            a = a * a;
+            if (a >= mod) a = a % mod + mod;
+            e >>= 1;
+        }
+        return ret;
+    };
+
+    auto rec = [&](auto& rec, long long b, int mod) -> long long {
+        if (b == 1) return a;
+        if (mod == 1) return 1;
+        return pow(a, rec(rec, b - 1, euler_totient(mod)), mod);
+    };
+
+    return rec(rec, b, mod) % mod;
 }
