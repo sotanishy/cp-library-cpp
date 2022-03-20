@@ -82,7 +82,7 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.cpp
       title: Convex Hull Trick
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/cht/dynamic_convex_hull_trick.cpp
       title: Dynamic Convex Hull Trick
     - icon: ':heavy_check_mark:'
@@ -91,7 +91,7 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
       title: Offline Deletable Convex Hull Trick
-    - icon: ':x:'
+    - icon: ':warning:'
       path: data-structure/cht/undoable_li_chao_tree.cpp
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
@@ -246,7 +246,7 @@ data:
     - icon: ':warning:'
       path: math/divisor.cpp
       title: Divisor
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
     - icon: ':heavy_check_mark:'
@@ -270,7 +270,7 @@ data:
     - icon: ':warning:'
       path: math/kitamasa.cpp
       title: Kitamasa's Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
     - icon: ':heavy_check_mark:'
@@ -419,9 +419,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
-    - icon: ':x:'
-      path: test/aoj/3255.test.cpp
-      title: test/aoj/3255.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.kmp.test.cpp
       title: test/aoj/ALDS1_14_B.kmp.test.cpp
@@ -748,6 +745,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tetration_mod.test.cpp
+      title: test/yosupo/tetration_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp

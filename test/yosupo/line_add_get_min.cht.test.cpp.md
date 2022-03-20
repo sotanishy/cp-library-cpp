@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/cht/dynamic_convex_hull_trick.cpp
     title: Dynamic Convex Hull Trick
   _extendedRequiredBy: []
@@ -17,21 +17,21 @@ data:
   bundledCode: "#line 1 \"test/yosupo/line_add_get_min.cht.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\n\n#line 2 \"data-structure/cht/dynamic_convex_hull_trick.cpp\"\
     \n#include <cassert>\n#include <limits>\n#include <set>\n#include <utility>\n\n\
-    template <typename T>\nclass DynamicConvexHullTrick {\n    struct Line {\n   \
-    \     mutable T a, b;  // ax + b\n        mutable double p;  // intersection point\
-    \ with the next line\n        bool operator<(const Line& o) const { return a <\
-    \ o.a; }\n        bool operator<(T x) const { return p < x; }\n    };\n\npublic:\n\
-    \    std::multiset<Line, std::less<>> lines;\n\n    void add(T a, T b) {\n   \
-    \     a = -a, b = -b;\n        auto m = lines.insert({a, b, 0});\n        auto\
-    \ l = m, r = m;\n        ++r;\n        while (update(m, r)) {\n            r =\
-    \ lines.erase(r);\n        }\n        if (l != lines.begin() && update(--l, m))\
-    \ {\n            m = lines.erase(m);\n            update(l, m);\n        }\n \
-    \       m = l;\n        while (l != lines.begin() && (--l)->p >= m->p) {\n   \
-    \         update(l, lines.erase(m));\n            m = l;\n        }\n    }\n\n\
+    template <typename T>\nclass DynamicConvexHullTrick {\npublic:\n\n    void add(T\
+    \ a, T b) {\n        a = -a, b = -b;\n        auto m = lines.insert({a, b, 0});\n\
+    \        auto l = m, r = m;\n        ++r;\n        while (update(m, r)) {\n  \
+    \          r = lines.erase(r);\n        }\n        if (l != lines.begin() && update(--l,\
+    \ m)) {\n            m = lines.erase(m);\n            update(l, m);\n        }\n\
+    \        m = l;\n        while (l != lines.begin() && (--l)->p >= m->p) {\n  \
+    \          update(l, lines.erase(m));\n            m = l;\n        }\n    }\n\n\
     \    T get(T x) const {\n        assert(!lines.empty());\n        auto it = *lines.lower_bound(x);\n\
-    \        return -(it.a * x + it.b);\n    }\n\nprivate:\n    using iterator = typename\
-    \ std::multiset<Line, std::less<>>::iterator;\n    static constexpr double INF\
-    \ = std::numeric_limits<double>::max() / 2;\n\n    bool update(iterator x, iterator\
+    \        return -(it.a * x + it.b);\n    }\n\nprivate:\n    struct Line {\n  \
+    \      mutable T a, b;  // ax + b\n        mutable double p;  // intersection\
+    \ point with the next line\n        bool operator<(const Line& o) const { return\
+    \ a < o.a; }\n        bool operator<(T x) const { return p < x; }\n    };\n\n\
+    \    using iterator = typename std::multiset<Line, std::less<>>::iterator;\n \
+    \   static constexpr double INF = std::numeric_limits<double>::max() / 2;\n\n\
+    \    std::multiset<Line, std::less<>> lines;\n\n    bool update(iterator x, iterator\
     \ y) const {\n        if (y == lines.end()) {\n            x->p = INF;\n     \
     \       return false;\n        }\n        if (x->a == y->a) {\n            x->p\
     \ = (x->b > y->b ? INF : -INF);\n        } else {\n            x->p = 1.0 * (y->b\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/line_add_get_min.cht.test.cpp
   requiredBy: []
-  timestamp: '2022-03-20 23:28:34+09:00'
+  timestamp: '2022-03-21 01:19:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/line_add_get_min.cht.test.cpp

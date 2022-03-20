@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: data-structure/cht/undoable_li_chao_tree.cpp
     title: Undoable Li Chao Tree
   _extendedRequiredBy: []

@@ -9,16 +9,16 @@ data:
     title: Modular Arithmetic
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
+    PROBLEM: https://judge.yosupo.jp/problem/tetration_mod
     links:
-    - https://judge.yosupo.jp/problem/discrete_logarithm_mod
-  bundledCode: "#line 1 \"test/yosupo/discrete_logarithm_mod.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\n\n#line 2 \"math/mod_arithmetic.cpp\"\
+    - https://judge.yosupo.jp/problem/tetration_mod
+  bundledCode: "#line 1 \"test/yosupo/tetration_mod.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/tetration_mod\"\n\n#line 2 \"math/mod_arithmetic.cpp\"\
     \n#include <cmath>\n#include <numeric>\n#include <unordered_map>\n#line 3 \"math/euler_totient.cpp\"\
     \n#include <vector>\n\nlong long euler_totient(long long n) {\n    long long ret\
     \ = n;\n    if (n % 2 == 0) {\n        ret -= ret / 2;\n        while (n % 2 ==\
@@ -68,30 +68,31 @@ data:
     \ ret;\n    };\n\n    auto rec = [&](auto& rec, long long b, int mod) -> long\
     \ long {\n        if (b == 1) return a;\n        if (mod == 1) return 1;\n   \
     \     return pow(a, rec(rec, b - 1, euler_totient(mod)), mod);\n    };\n\n   \
-    \ return rec(rec, b, mod) % mod;\n}\n#line 4 \"test/yosupo/discrete_logarithm_mod.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    for (int i = 0; i < T;\
-    \ ++i) {\n        int X, Y, M;\n        cin >> X >> Y >> M;\n        cout << mod_log(X,\
-    \ Y, M) << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
-    \n\n#include \"../../math/mod_arithmetic.cpp\"\n\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int T;\n    cin >> T;\n    for (int i = 0; i < T; ++i) {\n        int X,\
-    \ Y, M;\n        cin >> X >> Y >> M;\n        cout << mod_log(X, Y, M) << \"\\\
-    n\";\n    }\n}"
+    \ return rec(rec, b, mod) % mod;\n}\n#line 4 \"test/yosupo/tetration_mod.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
+    \    int T;\n    cin >> T;\n    while (T--) {\n        int A, B, M;\n        cin\
+    \ >> A >> B >> M;\n        cout << mod_tetration(A, B, M) << \"\\n\";\n    }\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\n\n#include\
+    \ \"../../math/mod_arithmetic.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n     \
+    \   int A, B, M;\n        cin >> A >> B >> M;\n        cout << mod_tetration(A,\
+    \ B, M) << \"\\n\";\n    }\n}\n"
   dependsOn:
   - math/mod_arithmetic.cpp
   - math/euler_totient.cpp
   isVerificationFile: true
-  path: test/yosupo/discrete_logarithm_mod.test.cpp
+  path: test/yosupo/tetration_mod.test.cpp
   requiredBy: []
   timestamp: '2022-03-21 01:19:10+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/discrete_logarithm_mod.test.cpp
+documentation_of: test/yosupo/tetration_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/discrete_logarithm_mod.test.cpp
-- /verify/test/yosupo/discrete_logarithm_mod.test.cpp.html
-title: test/yosupo/discrete_logarithm_mod.test.cpp
+- /verify/test/yosupo/tetration_mod.test.cpp
+- /verify/test/yosupo/tetration_mod.test.cpp.html
+title: test/yosupo/tetration_mod.test.cpp
 ---

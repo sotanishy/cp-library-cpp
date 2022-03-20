@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/euler_totient.cpp
     title: Euler's Totient Function
   _extendedRequiredBy: []
