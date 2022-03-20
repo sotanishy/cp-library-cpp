@@ -39,7 +39,7 @@ struct UpdateMonoid {
     using T = int;
     static T id() { return -1; }
     static T op(T a, T b) {
-        return b;
+        return b == id() ? a : b;
     }
 };
 
@@ -58,6 +58,6 @@ AddRangeMonoid::T act(AddRangeMonoid::T a, AffineMonoid::T b) {
 }
 
 AddRangeMonoid::T act(AddRangeMonoid::T a, UpdateMonoid::T b) {
-    if (b == UpdateMonoid::id) return a;
+    if (b == UpdateMonoid::id()) return a;
     return {b * a.second, a.second};
 }
