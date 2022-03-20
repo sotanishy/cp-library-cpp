@@ -222,7 +222,7 @@ data:
       title: 2-SAT
   - name: math
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/arbitrary_mod_convolution.cpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -246,7 +246,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
     - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/garner.cpp
       title: Garner's Algorithm
     - icon: ':warning:'

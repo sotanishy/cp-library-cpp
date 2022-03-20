@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/extgcd.cpp
     title: Extended Euclidean Algorithm
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/garner.cpp
     title: Garner's Algorithm
   - icon: ':heavy_check_mark:'
@@ -14,10 +14,13 @@ data:
     path: math/ntt.cpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod_1000000007.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/arbitrary_mod_convolution.cpp\"\n#include <vector>\n\
@@ -131,8 +134,9 @@ data:
   path: math/arbitrary_mod_convolution.cpp
   requiredBy: []
   timestamp: '2022-03-20 20:27:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/convolution_mod_1000000007.test.cpp
 documentation_of: math/arbitrary_mod_convolution.cpp
 layout: document
 title: Arbitrary Mod Convolution

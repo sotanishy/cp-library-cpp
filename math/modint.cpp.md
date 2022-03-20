@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/arbitrary_mod_convolution.cpp
     title: Arbitrary Mod Convolution
   _extendedVerifiedWith:
@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod_1000000007.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
@@ -137,6 +140,7 @@ data:
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/convolution_mod.test.cpp
