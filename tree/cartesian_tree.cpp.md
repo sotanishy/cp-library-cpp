@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/cartesian_tree.test.cpp
+    title: test/yosupo/cartesian_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/cartesian_tree.cpp\"\n#include <stack>\n#include <vector>\n\
@@ -29,8 +32,9 @@ data:
   path: tree/cartesian_tree.cpp
   requiredBy: []
   timestamp: '2022-03-20 18:18:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/cartesian_tree.test.cpp
 documentation_of: tree/cartesian_tree.cpp
 layout: document
 title: Cartesian Tree

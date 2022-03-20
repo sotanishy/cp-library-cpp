@@ -172,6 +172,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/biconnected_components.cpp
       title: Biconnected Components
+    - icon: ':heavy_check_mark:'
+      path: graph/chromatic_number.cpp
+      title: Chromatic Number
     - icon: ':warning:'
       path: graph/dm_decomposition.cpp
       title: Dulmage-Mendelsohn Decomposition
@@ -365,7 +368,7 @@ data:
     - icon: ':warning:'
       path: tree/auxiliary_tree.cpp
       title: Auxiliary Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: Cartesian Tree
     - icon: ':warning:'
@@ -580,6 +583,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_xor_convolution.test.cpp
       title: test/yosupo/bitwise_xor_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/cartesian_tree.test.cpp
+      title: test/yosupo/cartesian_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/chromatic_number.test.cpp
+      title: test/yosupo/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
