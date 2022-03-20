@@ -185,6 +185,9 @@ data:
       path: graph/enumerate_cliques.cpp
       title: Enumerate Cliques
     - icon: ':heavy_check_mark:'
+      path: graph/enumerate_triangles.cpp
+      title: Enumerate Triangles
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -625,6 +628,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/enumerate_triangles.test.cpp
+      title: test/yosupo/enumerate_triangles.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp

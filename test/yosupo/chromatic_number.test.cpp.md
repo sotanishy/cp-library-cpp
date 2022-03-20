@@ -17,19 +17,19 @@ data:
   bundledCode: "#line 1 \"test/yosupo/chromatic_number.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n#line 2 \"graph/chromatic_number.cpp\"\
     \n#include <vector>\n\nint chromatic_number(std::vector<std::vector<bool>>& G)\
-    \ {\n    int n = G.size();\n    std::vector<int> edges(n);\n    for (int i = 0;\
-    \ i < (int) G.size(); ++i) {\n        for (int j = 0; j < (int) G.size(); ++j)\
-    \ {\n            if (G[i][j]) edges[i] |= 1 << j;\n        }\n    }\n    // number\
-    \ of subsets of S that are independent\n    std::vector<int> ind(1 << n);\n  \
-    \  ind[0] = 1;\n    for (int S = 1; S < (1 << n); ++S) {\n        int v = __builtin_ctz(S);\n\
-    \        // (not containing v) + (containing v)\n        ind[S] = ind[S ^ (1 <<\
-    \ v)] + ind[(S ^ (1 << v)) & ~edges[v]];\n    }\n    // number of ways to choose\
-    \ k subsets of S that are independent\n    auto f = ind;\n    for (int k = 1;\
-    \ ; ++k) {\n        // numer of ways to choose k subsets of S so that they cover\
-    \ S\n        int g = 0;\n        for (int S = 0; S < (1 << n); ++S) {\n      \
-    \      g += (__builtin_parity(S) ? -1 : 1) * f[S];\n        }\n        if (g)\
-    \ return k;\n        for (int S = 1; S < (1 << n); ++S) {\n            f[S] *=\
-    \ ind[S];\n        }\n    }\n}\n#line 4 \"test/yosupo/chromatic_number.test.cpp\"\
+    \ {\n    int n = G.size();\n    std::vector<int> neighbor(n);\n    for (int i\
+    \ = 0; i < (int) G.size(); ++i) {\n        for (int j = 0; j < (int) G.size();\
+    \ ++j) {\n            if (G[i][j]) neighbor[i] |= 1 << j;\n        }\n    }\n\
+    \    // number of subsets of S that are independent\n    std::vector<int> ind(1\
+    \ << n);\n    ind[0] = 1;\n    for (int S = 1; S < (1 << n); ++S) {\n        int\
+    \ v = __builtin_ctz(S);\n        // (not containing v) + (containing v)\n    \
+    \    ind[S] = ind[S ^ (1 << v)] + ind[(S ^ (1 << v)) & ~neighbor[v]];\n    }\n\
+    \    // number of ways to choose k subsets of S that are independent\n    auto\
+    \ f = ind;\n    for (int k = 1; ; ++k) {\n        // numer of ways to choose k\
+    \ subsets of S so that they cover S\n        int g = 0;\n        for (int S =\
+    \ 0; S < (1 << n); ++S) {\n            g += (__builtin_parity(S) ? -1 : 1) * f[S];\n\
+    \        }\n        if (g) return k;\n        for (int S = 1; S < (1 << n); ++S)\
+    \ {\n            f[S] *= ind[S];\n        }\n    }\n}\n#line 4 \"test/yosupo/chromatic_number.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
     \    int N, M;\n    cin >> N >> M;\n    vector<vector<bool>> G(N, vector<bool>(N));\n\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2022-03-20 19:41:35+09:00'
+  timestamp: '2022-03-20 23:18:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/chromatic_number.test.cpp
