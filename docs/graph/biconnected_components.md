@@ -13,7 +13,7 @@ documentation_of: ../../graph/biconnected_components.cpp
 
 ## Operations
 
-- `BionnectedComponents(vector<vector<int>> G)`
+- `BiconnectedComponents(vector<vector<int>> G)`
     - グラフ $G$ の隣接リストが与えられたとき，$G$ を二重頂点連結成分分解する
     - 時間計算量: $O(V + E)$
 - `vector<vector<pair<int, int>>> get_biconnected_components()`
