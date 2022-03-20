@@ -6,7 +6,16 @@
 
 template <typename T>
 class DynamicConvexHullTrick {
+    struct Line {
+        mutable T a, b;  // ax + b
+        mutable double p;  // intersection point with the next line
+        bool operator<(const Line& o) const { return a < o.a; }
+        bool operator<(T x) const { return p < x; }
+    };
+
 public:
+    std::multiset<Line, std::less<>> lines;
+
     void add(T a, T b) {
         a = -a, b = -b;
         auto m = lines.insert({a, b, 0});
@@ -33,15 +42,6 @@ public:
     }
 
 private:
-    struct Line {
-        mutable T a, b;  // ax + b
-        mutable double p;  // intersection point with the next line
-        bool operator<(const Line& o) const { return a < o.a; }
-        bool operator<(T x) const { return p < x; }
-    };
-
-    std::multiset<Line, std::less<>> lines;
-
     using iterator = typename std::multiset<Line, std::less<>>::iterator;
     static constexpr double INF = std::numeric_limits<double>::max() / 2;
 
