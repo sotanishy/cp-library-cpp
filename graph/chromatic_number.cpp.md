@@ -61,3 +61,7 @@ title: Chromatic Number
 - `int chromatic_number(vector<vector<bool>> G)`
     - グラフ $G$ の隣接行列が与えられたとき，$G$ の彩色数を求める
     - 時間計算量: $O(n 2^n)$
+
+## Reference
+
+- [指数時間アルゴリズム入門](https://www.slideshare.net/wata_orz/ss-12131479)

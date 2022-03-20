@@ -4,7 +4,10 @@ data:
   - icon: ':warning:'
     path: math/extgcd.cpp
     title: Extended Euclidean Algorithm
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/arbitrary_mod_convolution.cpp
+    title: Arbitrary Mod Convolution
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
@@ -20,26 +23,27 @@ data:
     \ a, long long mod) {\n    long long inv = extgcd(a, mod).first;\n    return (inv\
     \ % mod + mod) % mod;\n}\n#line 4 \"math/garner.cpp\"\n\nlong long garner(const\
     \ std::vector<long long>& b, std::vector<long long> m, long long mod) {\n    m.push_back(mod);\n\
-    \    int n = m.size();\n    long long ans = 0;\n    std::vector<long long> coeffs(n,\
-    \ 1);\n    std::vector<long long> consts(n, 0);\n    for (int k = 0; k < n; ++k)\
-    \ {\n        long long t = (b[k] - consts[k]) * mod_inv(coeffs[k], m[k]) % m[k];\n\
-    \        if (t < 0) t += m[k];\n        for (int i = k + 1; i < n; ++i) {\n  \
-    \          consts[i] = (consts[i] + t * coeffs[i]) % m[i];\n            coeffs[i]\
-    \ = coeffs[i] * m[k] % m[i];\n        }\n    }\n    return consts.back();\n}\n"
+    \    int n = m.size();\n    std::vector<long long> coeffs(n, 1);\n    std::vector<long\
+    \ long> consts(n, 0);\n    for (int k = 0; k < n - 1; ++k) {\n        long long\
+    \ t = (b[k] - consts[k]) * mod_inv(coeffs[k], m[k]) % m[k];\n        if (t < 0)\
+    \ t += m[k];\n        for (int i = k + 1; i < n; ++i) {\n            consts[i]\
+    \ = (consts[i] + t * coeffs[i]) % m[i];\n            coeffs[i] = coeffs[i] * m[k]\
+    \ % m[i];\n        }\n    }\n    return consts.back();\n}\n"
   code: "#pragma once\n#include <vector>\n#include \"extgcd.cpp\"\n\nlong long garner(const\
     \ std::vector<long long>& b, std::vector<long long> m, long long mod) {\n    m.push_back(mod);\n\
-    \    int n = m.size();\n    long long ans = 0;\n    std::vector<long long> coeffs(n,\
-    \ 1);\n    std::vector<long long> consts(n, 0);\n    for (int k = 0; k < n; ++k)\
-    \ {\n        long long t = (b[k] - consts[k]) * mod_inv(coeffs[k], m[k]) % m[k];\n\
-    \        if (t < 0) t += m[k];\n        for (int i = k + 1; i < n; ++i) {\n  \
-    \          consts[i] = (consts[i] + t * coeffs[i]) % m[i];\n            coeffs[i]\
-    \ = coeffs[i] * m[k] % m[i];\n        }\n    }\n    return consts.back();\n}"
+    \    int n = m.size();\n    std::vector<long long> coeffs(n, 1);\n    std::vector<long\
+    \ long> consts(n, 0);\n    for (int k = 0; k < n - 1; ++k) {\n        long long\
+    \ t = (b[k] - consts[k]) * mod_inv(coeffs[k], m[k]) % m[k];\n        if (t < 0)\
+    \ t += m[k];\n        for (int i = k + 1; i < n; ++i) {\n            consts[i]\
+    \ = (consts[i] + t * coeffs[i]) % m[i];\n            coeffs[i] = coeffs[i] * m[k]\
+    \ % m[i];\n        }\n    }\n    return consts.back();\n}"
   dependsOn:
   - math/extgcd.cpp
   isVerificationFile: false
   path: math/garner.cpp
-  requiredBy: []
-  timestamp: '2021-10-18 15:45:31+09:00'
+  requiredBy:
+  - math/arbitrary_mod_convolution.cpp
+  timestamp: '2022-03-20 20:27:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/garner.cpp

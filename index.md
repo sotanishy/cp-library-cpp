@@ -222,6 +222,9 @@ data:
       title: 2-SAT
   - name: math
     pages:
+    - icon: ':warning:'
+      path: math/arbitrary_mod_convolution.cpp
+      title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
       path: math/arbitrary_modint.cpp
       title: Arbitrary Mod int
@@ -592,6 +595,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution_mod_1000000007.test.cpp
+      title: test/yosupo/convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/directedmst.test.cpp
       title: test/yosupo/directedmst.test.cpp

@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: math/arbitrary_mod_convolution.cpp
+    title: Arbitrary Mod Convolution
+  - icon: ':warning:'
     path: math/interpolation.cpp
     title: Polynomial Interpolation
   - icon: ':warning:'
@@ -107,6 +110,7 @@ data:
   requiredBy:
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
+  - math/arbitrary_mod_convolution.cpp
   - math/polynomial.cpp
   timestamp: '2021-02-06 03:15:51+09:00'
   verificationStatus: LIBRARY_ALL_AC

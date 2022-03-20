@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: math/arbitrary_mod_convolution.cpp
+    title: Arbitrary Mod Convolution
+  - icon: ':warning:'
     path: math/garner.cpp
     title: Garner's Algorithm
   _extendedVerifiedWith: []
@@ -30,6 +33,7 @@ data:
   path: math/extgcd.cpp
   requiredBy:
   - math/garner.cpp
+  - math/arbitrary_mod_convolution.cpp
   timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

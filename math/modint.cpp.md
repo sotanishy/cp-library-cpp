@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/arbitrary_mod_convolution.cpp
+    title: Arbitrary Mod Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
@@ -127,7 +130,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/modint.cpp
-  requiredBy: []
+  requiredBy:
+  - math/arbitrary_mod_convolution.cpp
   timestamp: '2020-10-26 00:14:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
