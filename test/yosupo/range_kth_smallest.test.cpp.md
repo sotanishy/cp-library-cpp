@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/wavelet_matrix.cpp
     title: Wavelet Matrix
   _extendedRequiredBy: []

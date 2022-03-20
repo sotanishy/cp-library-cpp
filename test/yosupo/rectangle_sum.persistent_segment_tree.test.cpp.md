@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/persistent_segment_tree.cpp
     title: Persistent Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: misc/compress.cpp
     title: Coordinate Compression
   _extendedRequiredBy: []

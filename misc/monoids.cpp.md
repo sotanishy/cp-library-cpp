@@ -18,14 +18,14 @@ data:
     \ {\n    using T = pair<int, int>;\n    static T id() { return {0, 0}; }\n   \
     \ static T op(T a, T b) {\n        return {a.first + b.first, a.second + b.second};\n\
     \    }\n};\n\nstruct UpdateMonoid {\n    using T = int;\n    static T id() { return\
-    \ -1; }\n    static T op(T a, T b) {\n        return b;\n    }\n};\n\nstruct AffineMonoid\
-    \ {\n    using T = pair<int, int>;\n    static T id() { return {1, 0}; }\n   \
-    \ static T op(T a, T b) {\n        return {a.first * b.first, a.second * b.first\
-    \ + b.second};\n    }\n};\n\n// actions\n\nAddRangeMonoid::T act(AddRangeMonoid::T\
-    \ a, AffineMonoid::T b) {\n    return {a.first * b.first + a.second * b.second,\
-    \ a.second};\n}\n\nAddRangeMonoid::T act(AddRangeMonoid::T a, UpdateMonoid::T\
-    \ b) {\n    if (b == UpdateMonoid::id) return a;\n    return {b * a.second, a.second};\n\
-    }\n"
+    \ -1; }\n    static T op(T a, T b) {\n        return b == id() ? a : b;\n    }\n\
+    };\n\nstruct AffineMonoid {\n    using T = pair<int, int>;\n    static T id()\
+    \ { return {1, 0}; }\n    static T op(T a, T b) {\n        return {a.first * b.first,\
+    \ a.second * b.first + b.second};\n    }\n};\n\n// actions\n\nAddRangeMonoid::T\
+    \ act(AddRangeMonoid::T a, AffineMonoid::T b) {\n    return {a.first * b.first\
+    \ + a.second * b.second, a.second};\n}\n\nAddRangeMonoid::T act(AddRangeMonoid::T\
+    \ a, UpdateMonoid::T b) {\n    if (b == UpdateMonoid::id()) return a;\n    return\
+    \ {b * a.second, a.second};\n}\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n// monoids\n\nstruct AddMonoid\
     \ {\n    using T = int;\n    static T id() { return 0; }\n    static T op(T a,\
     \ T b) {\n        return a + b;\n    }\n};\n\nstruct MinMonoid {\n    using T\
@@ -36,18 +36,19 @@ data:
     \ int>;\n    static T id() { return {0, 0}; }\n    static T op(T a, T b) {\n \
     \       return {a.first + b.first, a.second + b.second};\n    }\n};\n\nstruct\
     \ UpdateMonoid {\n    using T = int;\n    static T id() { return -1; }\n    static\
-    \ T op(T a, T b) {\n        return b;\n    }\n};\n\nstruct AffineMonoid {\n  \
-    \  using T = pair<int, int>;\n    static T id() { return {1, 0}; }\n    static\
-    \ T op(T a, T b) {\n        return {a.first * b.first, a.second * b.first + b.second};\n\
-    \    }\n};\n\n// actions\n\nAddRangeMonoid::T act(AddRangeMonoid::T a, AffineMonoid::T\
-    \ b) {\n    return {a.first * b.first + a.second * b.second, a.second};\n}\n\n\
-    AddRangeMonoid::T act(AddRangeMonoid::T a, UpdateMonoid::T b) {\n    if (b ==\
-    \ UpdateMonoid::id) return a;\n    return {b * a.second, a.second};\n}"
+    \ T op(T a, T b) {\n        return b == id() ? a : b;\n    }\n};\n\nstruct AffineMonoid\
+    \ {\n    using T = pair<int, int>;\n    static T id() { return {1, 0}; }\n   \
+    \ static T op(T a, T b) {\n        return {a.first * b.first, a.second * b.first\
+    \ + b.second};\n    }\n};\n\n// actions\n\nAddRangeMonoid::T act(AddRangeMonoid::T\
+    \ a, AffineMonoid::T b) {\n    return {a.first * b.first + a.second * b.second,\
+    \ a.second};\n}\n\nAddRangeMonoid::T act(AddRangeMonoid::T a, UpdateMonoid::T\
+    \ b) {\n    if (b == UpdateMonoid::id()) return a;\n    return {b * a.second,\
+    \ a.second};\n}"
   dependsOn: []
   isVerificationFile: false
   path: misc/monoids.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
+  timestamp: '2022-03-20 18:18:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/monoids.cpp

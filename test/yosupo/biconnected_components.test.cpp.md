@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/biconnected_components.cpp
     title: Biconnected Components
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []

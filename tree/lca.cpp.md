@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: tree/auxiliary_tree.cpp
+    title: Auxiliary Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_C.test.cpp
@@ -65,7 +68,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: tree/lca.cpp
-  requiredBy: []
+  requiredBy:
+  - tree/auxiliary_tree.cpp
   timestamp: '2021-10-07 16:56:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/biconnected_components.cpp
     title: Biconnected Components
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_connected_components.cpp
     title: 2-Edge-Connected Components
   _extendedVerifiedWith:
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/biconnected_components.test.cpp
     title: test/yosupo/biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/lowlink.cpp\"\n#include <algorithm>\n#include <utility>\n\
@@ -75,7 +75,7 @@ data:
   - graph/two_edge_connected_components.cpp
   - graph/biconnected_components.cpp
   timestamp: '2022-03-06 21:25:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/biconnected_components.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
