@@ -5,10 +5,13 @@ data:
   - icon: ':warning:'
     path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
     title: Offline Deletable Convex Hull Trick
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/3255.test.cpp
+    title: test/aoj/3255.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Undoable Li Chao Tree
     links: []
@@ -80,8 +83,9 @@ data:
   requiredBy:
   - data-structure/cht/offline_deletable_convex_hull_trick.cpp
   timestamp: '2021-10-18 15:45:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/3255.test.cpp
 documentation_of: data-structure/cht/undoable_li_chao_tree.cpp
 layout: document
 redirect_from:

@@ -82,7 +82,7 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.cpp
       title: Convex Hull Trick
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/cht/dynamic_convex_hull_trick.cpp
       title: Dynamic Convex Hull Trick
     - icon: ':heavy_check_mark:'
@@ -91,7 +91,7 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
       title: Offline Deletable Convex Hull Trick
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data-structure/cht/undoable_li_chao_tree.cpp
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
@@ -419,6 +419,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
+    - icon: ':x:'
+      path: test/aoj/3255.test.cpp
+      title: test/aoj/3255.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.kmp.test.cpp
       title: test/aoj/ALDS1_14_B.kmp.test.cpp
