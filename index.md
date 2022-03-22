@@ -178,6 +178,9 @@ data:
     - icon: ':warning:'
       path: graph/dm_decomposition.cpp
       title: Dulmage-Mendelsohn Decomposition
+    - icon: ':x:'
+      path: graph/dominator_tree.cpp
+      title: Dominator Tree
     - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
@@ -607,6 +610,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/dominatortree.test.cpp
+      title: test/yosupo/dominatortree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
