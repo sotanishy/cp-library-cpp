@@ -3,64 +3,70 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/gcd_lcm_convolution.hpp\"\n#include <vector>\n\
     \ntemplate <typename T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n\
     \    int n = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p\
-    \ = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        for (int k = 1;\
-    \ k * p < n; ++k) {\n            sieve[k * p] = false;\n            if (subset)\
-    \ {\n                a[k * p] += a[k];\n            } else {\n               \
-    \ a[k] += a[k * p];\n            }\n        }\n    }\n}\n\ntemplate <typename\
-    \ T>\nvoid divisor_fmt(std::vector<T>& a, bool subset) {\n    int n = a.size();\n\
-    \    std::vector<bool> sieve(n, true);\n    for (int p = 2; p < n; ++p) {\n  \
-    \      if (!sieve[p]) continue;\n        for (int k = (n - 1) / p; k > 0; --k)\
-    \ {\n            sieve[k * p] = false;\n            if (subset) {\n          \
-    \      a[k * p] -= a[k];\n            } else {\n                a[k] -= a[k *\
-    \ p];\n            }\n        }\n    }\n}\n\ntemplate <typename T>\nstd::vector<T>\
-    \ gcd_convolution(std::vector<T> a, std::vector<T> b) {\n    int n = std::max(a.size(),\
-    \ b.size());\n    a.resize(n);\n    b.resize(n);\n    divisor_fzt(a, false);\n\
-    \    divisor_fzt(b, false);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n \
-    \   divisor_fmt(a, false);\n    return a;\n}\n\ntemplate <typename T>\nstd::vector<T>\
-    \ lcm_convolution(std::vector<T> a, std::vector<T> b) {\n    int n = std::max(a.size(),\
-    \ b.size());\n    a.resize(n);\n    b.resize(n);\n    divisor_fzt(a, true);\n\
-    \    divisor_fzt(b, true);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n  \
-    \  divisor_fmt(a, true);\n    return a;\n}\n"
+    \ = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset) {\n\
+    \            for (int k = 1; k * p < n; ++k) {\n                sieve[k * p] =\
+    \ false;\n                a[k * p] += a[k];\n            }\n        } else {\n\
+    \            for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k\
+    \ * p] = false;\n                a[k] += a[k * p];\n            }\n        }\n\
+    \    }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>& a, bool subset)\
+    \ {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int\
+    \ p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset)\
+    \ {\n            for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k\
+    \ * p] = false;\n                a[k * p] -= a[k];\n            }\n        } else\
+    \ {\n            for (int k = 1; k * p < n; ++k) {\n                sieve[k *\
+    \ p] = false;\n                a[k] -= a[k * p];\n            }\n        }\n \
+    \   }\n}\n\ntemplate <typename T>\nstd::vector<T> gcd_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
+    \    b.resize(n);\n    divisor_fzt(a, false);\n    divisor_fzt(b, false);\n  \
+    \  for (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, false);\n   \
+    \ return a;\n}\n\ntemplate <typename T>\nstd::vector<T> lcm_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
+    \    b.resize(n);\n    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for\
+    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    return\
+    \ a;\n}\n"
   code: "#pragma once\n#include <vector>\n\ntemplate <typename T>\nvoid divisor_fzt(std::vector<T>&\
     \ a, bool subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n\
     \    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n       \
-    \ for (int k = 1; k * p < n; ++k) {\n            sieve[k * p] = false;\n     \
-    \       if (subset) {\n                a[k * p] += a[k];\n            } else {\n\
-    \                a[k] += a[k * p];\n            }\n        }\n    }\n}\n\ntemplate\
-    \ <typename T>\nvoid divisor_fmt(std::vector<T>& a, bool subset) {\n    int n\
-    \ = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p = 2; p <\
-    \ n; ++p) {\n        if (!sieve[p]) continue;\n        for (int k = (n - 1) /\
-    \ p; k > 0; --k) {\n            sieve[k * p] = false;\n            if (subset)\
-    \ {\n                a[k * p] -= a[k];\n            } else {\n               \
-    \ a[k] -= a[k * p];\n            }\n        }\n    }\n}\n\ntemplate <typename\
-    \ T>\nstd::vector<T> gcd_convolution(std::vector<T> a, std::vector<T> b) {\n \
-    \   int n = std::max(a.size(), b.size());\n    a.resize(n);\n    b.resize(n);\n\
-    \    divisor_fzt(a, false);\n    divisor_fzt(b, false);\n    for (int i = 0; i\
-    \ < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, false);\n    return a;\n}\n\ntemplate\
-    \ <typename T>\nstd::vector<T> lcm_convolution(std::vector<T> a, std::vector<T>\
-    \ b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n    b.resize(n);\n\
-    \    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for (int i = 0; i <\
-    \ n; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    return a;\n}"
+    \ if (subset) {\n            for (int k = 1; k * p < n; ++k) {\n             \
+    \   sieve[k * p] = false;\n                a[k * p] += a[k];\n            }\n\
+    \        } else {\n            for (int k = (n - 1) / p; k > 0; --k) {\n     \
+    \           sieve[k * p] = false;\n                a[k] += a[k * p];\n       \
+    \     }\n        }\n    }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>&\
+    \ a, bool subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n\
+    \    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n       \
+    \ if (subset) {\n            for (int k = (n - 1) / p; k > 0; --k) {\n       \
+    \         sieve[k * p] = false;\n                a[k * p] -= a[k];\n         \
+    \   }\n        } else {\n            for (int k = 1; k * p < n; ++k) {\n     \
+    \           sieve[k * p] = false;\n                a[k] -= a[k * p];\n       \
+    \     }\n        }\n    }\n}\n\ntemplate <typename T>\nstd::vector<T> gcd_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
+    \    b.resize(n);\n    divisor_fzt(a, false);\n    divisor_fzt(b, false);\n  \
+    \  for (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, false);\n   \
+    \ return a;\n}\n\ntemplate <typename T>\nstd::vector<T> lcm_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
+    \    b.resize(n);\n    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for\
+    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    return\
+    \ a;\n}"
   dependsOn: []
   isVerificationFile: false
   path: convolution/gcd_lcm_convolution.hpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-03-24 13:03:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lcm_convolution.test.cpp
   - test/yosupo/gcd_convolution.test.cpp

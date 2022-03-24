@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dominatortree.test.cpp
     title: test/yosupo/dominatortree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/dominator_tree.cpp\"\n#include <numeric>\n#include\
@@ -35,10 +35,10 @@ data:
     \   sdom[w] = std::min(sdom[w], sdom[eval(v)]);\n        }\n        bucket[vs[sdom[w]]].push_back(w);\n\
     \        for (int v : bucket[par[w]]) {\n            us[v] = eval(v);\n      \
     \  }\n        bucket[par[w]].clear();\n        unite(par[w], w);\n    }\n\n  \
-    \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = s;\n  \
-    \  for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n        idom[w]\
-    \ = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v : vs) {\n\
-    \        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}\n"
+    \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = sdom[s];\n\
+    \    for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n      \
+    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v\
+    \ : vs) {\n        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}\n"
   code: "#pragma once\n#include <numeric>\n#include <vector>\n\nstd::vector<int> dominator_tree(const\
     \ std::vector<std::vector<int>>& G, int s) {\n    const int n = G.size();\n\n\
     \    // label nodes with the arrival times of a dfs\n    std::vector<int> sdom(n,\
@@ -63,16 +63,16 @@ data:
     \   sdom[w] = std::min(sdom[w], sdom[eval(v)]);\n        }\n        bucket[vs[sdom[w]]].push_back(w);\n\
     \        for (int v : bucket[par[w]]) {\n            us[v] = eval(v);\n      \
     \  }\n        bucket[par[w]].clear();\n        unite(par[w], w);\n    }\n\n  \
-    \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = s;\n  \
-    \  for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n        idom[w]\
-    \ = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v : vs) {\n\
-    \        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}\n"
+    \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = sdom[s];\n\
+    \    for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n      \
+    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v\
+    \ : vs) {\n        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/dominator_tree.cpp
   requiredBy: []
-  timestamp: '2022-03-22 15:51:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-03-24 13:03:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dominatortree.test.cpp
 documentation_of: graph/dominator_tree.cpp
