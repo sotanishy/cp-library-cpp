@@ -7,11 +7,14 @@ void divisor_fzt(std::vector<T>& a, bool subset) {
     std::vector<bool> sieve(n, true);
     for (int p = 2; p < n; ++p) {
         if (!sieve[p]) continue;
-        for (int k = 1; k * p < n; ++k) {
-            sieve[k * p] = false;
-            if (subset) {
+        if (subset) {
+            for (int k = 1; k * p < n; ++k) {
+                sieve[k * p] = false;
                 a[k * p] += a[k];
-            } else {
+            }
+        } else {
+            for (int k = (n - 1) / p; k > 0; --k) {
+                sieve[k * p] = false;
                 a[k] += a[k * p];
             }
         }
@@ -24,11 +27,14 @@ void divisor_fmt(std::vector<T>& a, bool subset) {
     std::vector<bool> sieve(n, true);
     for (int p = 2; p < n; ++p) {
         if (!sieve[p]) continue;
-        for (int k = (n - 1) / p; k > 0; --k) {
-            sieve[k * p] = false;
-            if (subset) {
+        if (subset) {
+            for (int k = (n - 1) / p; k > 0; --k) {
+                sieve[k * p] = false;
                 a[k * p] -= a[k];
-            } else {
+            }
+        } else {
+            for (int k = 1; k * p < n; ++k) {
+                sieve[k * p] = false;
                 a[k] -= a[k * p];
             }
         }

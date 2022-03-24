@@ -72,7 +72,7 @@ std::vector<int> dominator_tree(const std::vector<std::vector<int>>& G, int s) {
 
     // calculate idom
     std::vector<int> idom(n, -1);
-    idom[s] = s;
+    idom[s] = sdom[s];
     for (int i = 1; i < k; ++i) {
         int w = vs[i], u = us[w];
         idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);
