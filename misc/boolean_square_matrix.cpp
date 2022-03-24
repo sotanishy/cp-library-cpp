@@ -2,6 +2,9 @@
 #include <array>
 #include <bitset>
 
+/**
+ * @brief Boolean Square Matrix
+ */
 template <int N>
 class BooleanSquareMatrix {
     using BSMatrix = BooleanSquareMatrix;

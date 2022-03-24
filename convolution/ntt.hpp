@@ -21,7 +21,7 @@ void bit_reverse(std::vector<T>& a) {
 template <typename mint>
 void ntt(std::vector<mint>& a, bool ordered = true) {
     constexpr int mod = mint::get_mod();
-    constexpr mint primitive_root = primitive_root(mod);
+    constexpr mint primitive_root = get_primitive_root(mod);
 
     int n = a.size();
     for (int m = n; m > 1; m >>= 1) {
@@ -43,7 +43,7 @@ void ntt(std::vector<mint>& a, bool ordered = true) {
 template <typename mint>
 void intt(std::vector<mint>& a, bool ordered = true) {
     constexpr int mod = mint::get_mod();
-    constexpr mint primitive_root = primitive_root(mod);
+    constexpr mint primitive_root = get_primitive_root(mod);
 
     if (ordered) bit_reverse(a);
     int n = a.size();

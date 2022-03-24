@@ -32,7 +32,7 @@ void ifwht(std::vector<T>& a) {
 }
 
 template <typename T>
-static std::vector<double> xor_convolution(std::vector<T> a, std::vector<T> b) {
+std::vector<T> xor_convolution(std::vector<T> a, std::vector<T> b) {
     int size = std::max(a.size(), b.size());
     int n = 1;
     while (n < size) n <<= 1;

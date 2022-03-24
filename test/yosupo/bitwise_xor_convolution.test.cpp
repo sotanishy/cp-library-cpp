@@ -12,7 +12,7 @@ using mint = Modint<998244353>;
 int main() {
     int N;
     cin >> N;
-    vector<mint> a(1 << N), b(1 << N), c(1 << N);
+    vector<mint> a(1 << N), b(1 << N);
     for (auto& x : a) cin >> x;
     for (auto& x : b) cin >> x;
     auto c = xor_convolution(a, b);
