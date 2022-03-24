@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: convolution/xor_convolution.hpp
+    title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
-    path: math/transform.cpp
-    title: Transform
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
@@ -47,63 +47,44 @@ data:
     \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/transform.cpp\"\n#include <vector>\n\
-    \n/*\n * Fast Zeta/Moebius Transform\n */\n\ntemplate <typename T>\nvoid fzt(std::vector<T>&\
-    \ a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n    for (int i\
-    \ = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j) {\n         \
-    \   if ((j >> i & 1) == subset) a[j] += a[j ^ (1 << i)];\n        }\n    }\n}\n\
-    \ntemplate <typename T>\nvoid fmt(std::vector<T>& a, bool subset) {\n    int k\
-    \ = 31 - __builtin_clz(a.size());\n    for (int i = 0; i < k; ++i) {\n       \
-    \ for (int j = 0; j < (1 << k); ++j) {\n            if ((j >> i & 1) == subset)\
-    \ a[j] -= a[j ^ (1 << i)];\n        }\n    }\n}\n\n/*\n * Divisor Fast Zeta/Moebius\
-    \ Transform\n */\n\ntemplate <typename T>\nvoid divisor_fzt(std::vector<T>& a,\
-    \ bool subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n\
-    \    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n       \
-    \ if (subset) {\n            for (int k = 1; k * p < n; ++k) {\n             \
-    \   sieve[k * p] = false;\n                a[k * p] += a[k];\n            }\n\
-    \        } else {\n            for (int k = (n - 1) / p; k > 0; --k) {\n     \
-    \           sieve[k * p] = false;\n                a[k] += a[k * p];\n       \
-    \     }\n        }\n    }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>&\
-    \ a, bool subset) {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n\
-    \    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n       \
-    \ if (subset) {\n            for (int k = (n - 1) / p; k > 0; --k) {\n       \
-    \         sieve[k * p] = false;\n                a[k * p] -= a[k];\n         \
-    \   }\n        } else {\n            for (int k = 1; k * p < n; ++k) {\n     \
-    \           sieve[k * p] = false;\n                a[k] -= a[k * p];\n       \
-    \     }\n        }\n    }\n}\n\n/*\n * Fast Walsh-Hadamard Transform\n */\n\n\
-    template <typename T>\nvoid fwht(std::vector<T>& a) {\n    int n = a.size();\n\
-    \    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h\
-    \ << 1) {\n            for (int j = i; j < i + h; ++j) {\n                T x\
-    \ = a[j];\n                T y = a[j | h];\n                a[j] = x + y;\n  \
-    \              a[j | h] = x - y;\n            }\n        }\n    }\n}\n\ntemplate\
-    \ <typename T>\nvoid ifwht(std::vector<T>& a) {\n    int n = a.size();\n    for\
-    \ (int h = 1; h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h << 1) {\n\
-    \            for (int j = i; j < i + h; ++j) {\n                T x = a[j];\n\
-    \                T y = a[j | h];\n                a[j] = (x + y) / 2;\n      \
-    \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n#line\
-    \ 5 \"test/yosupo/bitwise_xor_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 <<\
-    \ N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto& x : b) cin >>\
-    \ x;\n    fwht(a);\n    fwht(b);\n    for (int i = 0; i < (1 << N); ++i) c[i]\
-    \ = a[i] * b[i];\n    ifwht(c);\n    for (int i = 0; i < (1 << N); ++i) cout <<\
-    \ c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
+    \    }\n\nprivate:\n    int x;\n};\n#line 2 \"convolution/xor_convolution.hpp\"\
+    \n#include <vector>\n\ntemplate <typename T>\nvoid fwht(std::vector<T>& a) {\n\
+    \    int n = a.size();\n    for (int h = 1; h < n; h <<= 1) {\n        for (int\
+    \ i = 0; i < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j) {\n\
+    \                T x = a[j];\n                T y = a[j | h];\n              \
+    \  a[j] = x + y;\n                a[j | h] = x - y;\n            }\n        }\n\
+    \    }\n}\n\ntemplate <typename T>\nvoid ifwht(std::vector<T>& a) {\n    int n\
+    \ = a.size();\n    for (int h = 1; h < n; h <<= 1) {\n        for (int i = 0;\
+    \ i < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j) {\n     \
+    \           T x = a[j];\n                T y = a[j | h];\n                a[j]\
+    \ = (x + y) / 2;\n                a[j | h] = (x - y) / 2;\n            }\n   \
+    \     }\n    }\n}\n\ntemplate <typename T>\nstatic std::vector<double> xor_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int size = std::max(a.size(), b.size());\n    int\
+    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
+    \    fwht(a);\n    fwht(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n \
+    \   ifwht(a);\n    return a;\n}\n#line 5 \"test/yosupo/bitwise_xor_convolution.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
+    \   vector<mint> a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >>\
+    \ x;\n    for (auto& x : b) cin >> x;\n    auto c = xor_convolution(a, b);\n \
+    \   for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \"\
+    \ \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/transform.cpp\"\n\
-    \n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing\
-    \ mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<mint>\
-    \ a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto&\
-    \ x : b) cin >> x;\n    fwht(a);\n    fwht(b);\n    for (int i = 0; i < (1 <<\
-    \ N); ++i) c[i] = a[i] * b[i];\n    ifwht(c);\n    for (int i = 0; i < (1 << N);\
-    \ ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
+    \n\n#include \"../../math/modint.cpp\"\n#include \"../../convolution/xor_convolution.hpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
+    \   vector<mint> a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >>\
+    \ x;\n    for (auto& x : b) cin >> x;\n    auto c = xor_convolution(a, b);\n \
+    \   for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \"\
+    \ \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.cpp
-  - math/transform.cpp
+  - convolution/xor_convolution.hpp
   isVerificationFile: true
   path: test/yosupo/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2021-12-04 19:51:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-24 12:11:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_xor_convolution.test.cpp
 layout: document

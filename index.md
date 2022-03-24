@@ -1,6 +1,26 @@
 ---
 data:
   libraryCategories:
+  - name: convolution
+    pages:
+    - icon: ':x:'
+      path: convolution/and_or_convolution.hpp
+      title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
+    - icon: ':x:'
+      path: convolution/arbitrary_mod_convolution.hpp
+      title: Arbitrary Mod Convolution
+    - icon: ':warning:'
+      path: convolution/fft.hpp
+      title: Fast Fourier Transform
+    - icon: ':x:'
+      path: convolution/gcd_lcm_convolution.hpp
+      title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
+    - icon: ':x:'
+      path: convolution/ntt.hpp
+      title: Number Theoretic Transform
+    - icon: ':x:'
+      path: convolution/xor_convolution.hpp
+      title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
   - name: data-structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -229,9 +249,6 @@ data:
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
-      path: math/arbitrary_mod_convolution.cpp
-      title: Arbitrary Mod Convolution
-    - icon: ':heavy_check_mark:'
       path: math/arbitrary_modint.cpp
       title: Arbitrary Mod int
     - icon: ':heavy_check_mark:'
@@ -252,19 +269,16 @@ data:
     - icon: ':question:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
     - icon: ':heavy_check_mark:'
       path: math/fast_prime.cpp
       title: Fast Prime Number Algorithms
-    - icon: ':warning:'
-      path: math/fft.cpp
-      title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/garner.cpp
       title: Garner's Algorithm
     - icon: ':warning:'
@@ -276,7 +290,7 @@ data:
     - icon: ':question:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -288,10 +302,7 @@ data:
     - icon: ':warning:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
-    - icon: ':heavy_check_mark:'
-      path: math/ntt.cpp
-      title: Number Theoretic Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -303,9 +314,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/system_of_linear_equations.cpp
       title: System of Linear Equations
-    - icon: ':heavy_check_mark:'
-      path: math/transform.cpp
-      title: Transform
   - name: math/matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -586,10 +594,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bitwise_xor_convolution.test.cpp
       title: test/yosupo/bitwise_xor_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -598,10 +606,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -637,7 +645,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -646,10 +654,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -658,7 +666,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -667,7 +675,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -700,7 +708,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -727,7 +735,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'

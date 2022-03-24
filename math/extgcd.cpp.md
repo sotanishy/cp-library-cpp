@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/arbitrary_mod_convolution.cpp
+  - icon: ':x:'
+    path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/garner.cpp
     title: Garner's Algorithm
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution_mod_1000000007.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/extgcd.cpp\"\n#include <algorithm>\n#include <utility>\n\
@@ -36,9 +36,9 @@ data:
   path: math/extgcd.cpp
   requiredBy:
   - math/garner.cpp
-  - math/arbitrary_mod_convolution.cpp
+  - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2021-02-06 00:41:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution_mod_1000000007.test.cpp
 documentation_of: math/extgcd.cpp

@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/discrete_logarithm_mod.test.cpp
     title: test/yosupo/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/sqrt_mod.test.cpp
     title: test/yosupo/sqrt_mod.test.cpp
   - icon: ':x:'
@@ -63,16 +63,17 @@ data:
     \    long long b = mod_pow(c, 1 << (M - i - 1), mod);\n        M = i;\n      \
     \  c = b * b % mod;\n        t = t * c % mod;\n        R = R * b % mod;\n    }\n\
     \    return R;\n}\n\n/**\n * Modular Tetration\n */\nlong long mod_tetration(long\
-    \ long a, long long b, int mod) {\n    if (a == 0) return 1 - (b % 2);\n    if\
-    \ (a == 1 || b == 0) return 1;\n\n    auto pow = [&](long long a, long long e,\
-    \ int mod) {\n        if (a >= mod) a = a % mod + mod;\n        long long ret\
-    \ = 1;\n        while (e > 0) {\n            if (e & 1) {\n                ret\
-    \ = ret * a;\n                if (ret >= mod) ret = ret % mod + mod;\n       \
-    \     }\n            a = a * a;\n            if (a >= mod) a = a % mod + mod;\n\
-    \            e >>= 1;\n        }\n        return ret;\n    };\n\n    auto rec\
-    \ = [&](auto& rec, long long b, int mod) -> long long {\n        if (b == 1) return\
-    \ a;\n        if (mod == 1) return 1;\n        return pow(a, rec(rec, b - 1, euler_totient(mod)),\
-    \ mod);\n    };\n\n    return rec(rec, b, mod) % mod;\n}\n"
+    \ long a, long long b, int mod) {\n    if (mod == 1) return 0;\n    if (a == 0)\
+    \ return 1 - (b % 2);\n    if (a == 1 || b == 0) return 1;\n\n    auto pow = [&](long\
+    \ long a, long long e, int mod) {\n        if (a >= mod) a = a % mod + mod;\n\
+    \        long long ret = 1;\n        while (e > 0) {\n            if (e & 1) {\n\
+    \                ret = ret * a;\n                if (ret >= mod) ret = ret % mod\
+    \ + mod;\n            }\n            a = a * a;\n            if (a >= mod) a =\
+    \ a % mod + mod;\n            e >>= 1;\n        }\n        return ret;\n    };\n\
+    \n    auto rec = [&](auto& rec, long long b, int mod) -> long long {\n       \
+    \ if (b == 1) return a;\n        if (mod == 1) return 1;\n        return pow(a,\
+    \ rec(rec, b - 1, euler_totient(mod)), mod);\n    };\n\n    return rec(rec, b,\
+    \ mod) % mod;\n}\n"
   code: "#pragma once\n#include <cmath>\n#include <numeric>\n#include <unordered_map>\n\
     #include \"euler_totient.cpp\"\n\n/*\n * Modular Exponentiation\n */\nlong long\
     \ mod_pow(long long a, long long e, int mod) {\n    long long ret = 1;\n    while\
@@ -103,22 +104,23 @@ data:
     \    long long b = mod_pow(c, 1 << (M - i - 1), mod);\n        M = i;\n      \
     \  c = b * b % mod;\n        t = t * c % mod;\n        R = R * b % mod;\n    }\n\
     \    return R;\n}\n\n/**\n * Modular Tetration\n */\nlong long mod_tetration(long\
-    \ long a, long long b, int mod) {\n    if (a == 0) return 1 - (b % 2);\n    if\
-    \ (a == 1 || b == 0) return 1;\n\n    auto pow = [&](long long a, long long e,\
-    \ int mod) {\n        if (a >= mod) a = a % mod + mod;\n        long long ret\
-    \ = 1;\n        while (e > 0) {\n            if (e & 1) {\n                ret\
-    \ = ret * a;\n                if (ret >= mod) ret = ret % mod + mod;\n       \
-    \     }\n            a = a * a;\n            if (a >= mod) a = a % mod + mod;\n\
-    \            e >>= 1;\n        }\n        return ret;\n    };\n\n    auto rec\
-    \ = [&](auto& rec, long long b, int mod) -> long long {\n        if (b == 1) return\
-    \ a;\n        if (mod == 1) return 1;\n        return pow(a, rec(rec, b - 1, euler_totient(mod)),\
-    \ mod);\n    };\n\n    return rec(rec, b, mod) % mod;\n}"
+    \ long a, long long b, int mod) {\n    if (mod == 1) return 0;\n    if (a == 0)\
+    \ return 1 - (b % 2);\n    if (a == 1 || b == 0) return 1;\n\n    auto pow = [&](long\
+    \ long a, long long e, int mod) {\n        if (a >= mod) a = a % mod + mod;\n\
+    \        long long ret = 1;\n        while (e > 0) {\n            if (e & 1) {\n\
+    \                ret = ret * a;\n                if (ret >= mod) ret = ret % mod\
+    \ + mod;\n            }\n            a = a * a;\n            if (a >= mod) a =\
+    \ a % mod + mod;\n            e >>= 1;\n        }\n        return ret;\n    };\n\
+    \n    auto rec = [&](auto& rec, long long b, int mod) -> long long {\n       \
+    \ if (b == 1) return a;\n        if (mod == 1) return 1;\n        return pow(a,\
+    \ rec(rec, b - 1, euler_totient(mod)), mod);\n    };\n\n    return rec(rec, b,\
+    \ mod) % mod;\n}"
   dependsOn:
   - math/euler_totient.cpp
   isVerificationFile: false
   path: math/mod_arithmetic.cpp
   requiredBy: []
-  timestamp: '2022-03-21 01:19:10+09:00'
+  timestamp: '2022-03-24 12:11:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/discrete_logarithm_mod.test.cpp

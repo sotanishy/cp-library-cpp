@@ -11,11 +11,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/dominator_tree
+    PROBLEM: https://judge.yosupo.jp/problem/dominatortree
     links:
-    - https://judge.yosupo.jp/problem/dominator_tree
+    - https://judge.yosupo.jp/problem/dominatortree
   bundledCode: "#line 1 \"test/yosupo/dominatortree.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/dominator_tree\"\n\n#line 2 \"graph/dominator_tree.cpp\"\
+    https://judge.yosupo.jp/problem/dominatortree\"\n\n#line 2 \"graph/dominator_tree.cpp\"\
     \n#include <numeric>\n#include <vector>\n\nstd::vector<int> dominator_tree(const\
     \ std::vector<std::vector<int>>& G, int s) {\n    const int n = G.size();\n\n\
     \    // label nodes with the arrival times of a dfs\n    std::vector<int> sdom(n,\
@@ -51,7 +51,7 @@ data:
     \        G[a].push_back(b);\n    }\n    auto dom = dominator_tree(G, S);\n   \
     \ for (int i = 0; i < N; ++i) cout << dom[i] << (i < N-1 ? \" \" : \"\\n\");\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dominator_tree\"\n\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dominatortree\"\n\n#include\
     \ \"../../graph/dominator_tree.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M, S;\n    cin >> N >> M >> S;\n    vector<vector<int>>\
@@ -64,7 +64,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dominatortree.test.cpp
   requiredBy: []
-  timestamp: '2022-03-22 15:51:30+09:00'
+  timestamp: '2022-03-24 12:11:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/dominatortree.test.cpp

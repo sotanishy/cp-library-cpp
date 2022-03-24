@@ -9,9 +9,9 @@ data:
     title: Modular Arithmetic
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
@@ -58,17 +58,18 @@ data:
     \    long long b = mod_pow(c, 1 << (M - i - 1), mod);\n        M = i;\n      \
     \  c = b * b % mod;\n        t = t * c % mod;\n        R = R * b % mod;\n    }\n\
     \    return R;\n}\n\n/**\n * Modular Tetration\n */\nlong long mod_tetration(long\
-    \ long a, long long b, int mod) {\n    if (a == 0) return 1 - (b % 2);\n    if\
-    \ (a == 1 || b == 0) return 1;\n\n    auto pow = [&](long long a, long long e,\
-    \ int mod) {\n        if (a >= mod) a = a % mod + mod;\n        long long ret\
-    \ = 1;\n        while (e > 0) {\n            if (e & 1) {\n                ret\
-    \ = ret * a;\n                if (ret >= mod) ret = ret % mod + mod;\n       \
-    \     }\n            a = a * a;\n            if (a >= mod) a = a % mod + mod;\n\
-    \            e >>= 1;\n        }\n        return ret;\n    };\n\n    auto rec\
-    \ = [&](auto& rec, long long b, int mod) -> long long {\n        if (b == 1) return\
-    \ a;\n        if (mod == 1) return 1;\n        return pow(a, rec(rec, b - 1, euler_totient(mod)),\
-    \ mod);\n    };\n\n    return rec(rec, b, mod) % mod;\n}\n#line 4 \"test/yosupo/sqrt_mod.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ long a, long long b, int mod) {\n    if (mod == 1) return 0;\n    if (a == 0)\
+    \ return 1 - (b % 2);\n    if (a == 1 || b == 0) return 1;\n\n    auto pow = [&](long\
+    \ long a, long long e, int mod) {\n        if (a >= mod) a = a % mod + mod;\n\
+    \        long long ret = 1;\n        while (e > 0) {\n            if (e & 1) {\n\
+    \                ret = ret * a;\n                if (ret >= mod) ret = ret % mod\
+    \ + mod;\n            }\n            a = a * a;\n            if (a >= mod) a =\
+    \ a % mod + mod;\n            e >>= 1;\n        }\n        return ret;\n    };\n\
+    \n    auto rec = [&](auto& rec, long long b, int mod) -> long long {\n       \
+    \ if (b == 1) return a;\n        if (mod == 1) return 1;\n        return pow(a,\
+    \ rec(rec, b - 1, euler_totient(mod)), mod);\n    };\n\n    return rec(rec, b,\
+    \ mod) % mod;\n}\n#line 4 \"test/yosupo/sqrt_mod.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    for (int i = 0; i < T;\
     \ ++i) {\n        int Y, P;\n        cin >> Y >> P;\n        cout << mod_sqrt(Y,\
     \ P) << \"\\n\";\n    }\n}\n"
@@ -84,8 +85,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-03-21 01:19:10+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-03-24 12:11:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/sqrt_mod.test.cpp
 layout: document
