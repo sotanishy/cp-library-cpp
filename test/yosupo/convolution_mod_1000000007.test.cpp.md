@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/extgcd.cpp
     title: Extended Euclidean Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/garner.cpp
     title: Garner's Algorithm
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -80,17 +80,17 @@ data:
     \ > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\
     \ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered = true)\
     \ {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
-    \ = primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m > 1;\
-    \ m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n      \
-    \  for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n            for\
-    \ (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n    \
-    \            mint r = a[s * m + i + m / 2];\n                a[s * m + i] = l\
-    \ + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n                w\
-    \ *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
+    \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
+    \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
+    \     for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n           \
+    \ for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
+    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
+    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
+    \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
     }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
     \ true) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
-    \ = primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n = a.size();\n\
-    \    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
+    \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
     \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
     \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
@@ -135,8 +135,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-24 12:27:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod_1000000007.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -25,8 +25,8 @@ data:
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
     \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = primitive_root(mod);\n\n    int n = a.size();\n    for\
-    \ (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
+    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
     \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
     \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
@@ -34,7 +34,7 @@ data:
     \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
     \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
     \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
     \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
     \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
@@ -132,7 +132,7 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
+  timestamp: '2022-03-24 12:27:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.cpp

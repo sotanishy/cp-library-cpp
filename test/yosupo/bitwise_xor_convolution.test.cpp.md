@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/xor_convolution.hpp
     title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
@@ -58,33 +58,33 @@ data:
     \ i < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j) {\n     \
     \           T x = a[j];\n                T y = a[j | h];\n                a[j]\
     \ = (x + y) / 2;\n                a[j | h] = (x - y) / 2;\n            }\n   \
-    \     }\n    }\n}\n\ntemplate <typename T>\nstatic std::vector<double> xor_convolution(std::vector<T>\
+    \     }\n    }\n}\n\ntemplate <typename T>\nstd::vector<T> xor_convolution(std::vector<T>\
     \ a, std::vector<T> b) {\n    int size = std::max(a.size(), b.size());\n    int\
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
     \    fwht(a);\n    fwht(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n \
     \   ifwht(a);\n    return a;\n}\n#line 5 \"test/yosupo/bitwise_xor_convolution.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
-    \   vector<mint> a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >>\
-    \ x;\n    for (auto& x : b) cin >> x;\n    auto c = xor_convolution(a, b);\n \
-    \   for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \"\
-    \ \" : \"\\n\");\n}\n"
+    \   vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a) cin >> x;\n    for\
+    \ (auto& x : b) cin >> x;\n    auto c = xor_convolution(a, b);\n    for (int i\
+    \ = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../convolution/xor_convolution.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
-    \   vector<mint> a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >>\
-    \ x;\n    for (auto& x : b) cin >> x;\n    auto c = xor_convolution(a, b);\n \
-    \   for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \"\
-    \ \" : \"\\n\");\n}\n"
+    \   vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a) cin >> x;\n    for\
+    \ (auto& x : b) cin >> x;\n    auto c = xor_convolution(a, b);\n    for (int i\
+    \ = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   dependsOn:
   - math/modint.cpp
   - convolution/xor_convolution.hpp
   isVerificationFile: true
   path: test/yosupo/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-24 12:27:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_xor_convolution.test.cpp
 layout: document

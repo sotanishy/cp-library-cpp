@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_xor_convolution.test.cpp
     title: test/yosupo/bitwise_xor_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/xor_convolution.hpp\"\n#include <vector>\n\n\
@@ -22,7 +22,7 @@ data:
     \            for (int j = i; j < i + h; ++j) {\n                T x = a[j];\n\
     \                T y = a[j | h];\n                a[j] = (x + y) / 2;\n      \
     \          a[j | h] = (x - y) / 2;\n            }\n        }\n    }\n}\n\ntemplate\
-    \ <typename T>\nstatic std::vector<double> xor_convolution(std::vector<T> a, std::vector<T>\
+    \ <typename T>\nstd::vector<T> xor_convolution(std::vector<T> a, std::vector<T>\
     \ b) {\n    int size = std::max(a.size(), b.size());\n    int n = 1;\n    while\
     \ (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    fwht(a);\n    fwht(b);\n\
     \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    ifwht(a);\n    return a;\n\
@@ -37,7 +37,7 @@ data:
     \ i = 0; i < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j) {\n\
     \                T x = a[j];\n                T y = a[j | h];\n              \
     \  a[j] = (x + y) / 2;\n                a[j | h] = (x - y) / 2;\n            }\n\
-    \        }\n    }\n}\n\ntemplate <typename T>\nstatic std::vector<double> xor_convolution(std::vector<T>\
+    \        }\n    }\n}\n\ntemplate <typename T>\nstd::vector<T> xor_convolution(std::vector<T>\
     \ a, std::vector<T> b) {\n    int size = std::max(a.size(), b.size());\n    int\
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
     \    fwht(a);\n    fwht(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n \
@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: convolution/xor_convolution.hpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-03-24 12:27:27+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bitwise_xor_convolution.test.cpp
 documentation_of: convolution/xor_convolution.hpp

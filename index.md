@@ -6,7 +6,7 @@ data:
     - icon: ':x:'
       path: convolution/and_or_convolution.hpp
       title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
     - icon: ':warning:'
@@ -15,10 +15,10 @@ data:
     - icon: ':x:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/xor_convolution.hpp
       title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
   - name: data-structure
@@ -269,7 +269,7 @@ data:
     - icon: ':question:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
     - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/garner.cpp
       title: Garner's Algorithm
     - icon: ':warning:'
@@ -302,12 +302,15 @@ data:
     - icon: ':warning:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
       path: math/prime.cpp
       title: Prime Number Algorithms
+    - icon: ':warning:'
+      path: math/quotients.hpp
+      title: Quotient Ranges
     - icon: ':warning:'
       path: math/stirling_second.cpp
       title: Stirling Number of the Second Kind
@@ -326,7 +329,7 @@ data:
     pages:
     - icon: ':warning:'
       path: misc/boolean_square_matrix.cpp
-      title: misc/boolean_square_matrix.cpp
+      title: Boolean Square Matrix
     - icon: ':heavy_check_mark:'
       path: misc/compress.cpp
       title: Coordinate Compression
@@ -597,7 +600,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_xor_convolution.test.cpp
       title: test/yosupo/bitwise_xor_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -606,10 +609,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -645,7 +648,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'

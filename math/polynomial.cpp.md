@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
@@ -12,7 +12,7 @@ data:
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -38,8 +38,8 @@ data:
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
     \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = primitive_root(mod);\n\n    int n = a.size();\n    for\
-    \ (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
+    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
     \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
     \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
@@ -47,7 +47,7 @@ data:
     \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
     \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
     \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
     \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
     \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
@@ -194,8 +194,8 @@ data:
   requiredBy:
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-03-24 12:27:27+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp

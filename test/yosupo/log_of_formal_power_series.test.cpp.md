@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -59,7 +59,7 @@ data:
     \ i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k > (i ^= k);\
     \ k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\ntemplate <typename\
     \ mint>\nvoid ntt(std::vector<mint>& a, bool ordered = true) {\n    constexpr\
-    \ int mod = mint::get_mod();\n    constexpr mint primitive_root = primitive_root(mod);\n\
+    \ int mod = mint::get_mod();\n    constexpr mint primitive_root = get_primitive_root(mod);\n\
     \n    int n = a.size();\n    for (int m = n; m > 1; m >>= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m);\n        for (int s = 0; s < n / m; ++s)\
     \ {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n\
@@ -68,7 +68,7 @@ data:
     \ i + m / 2] = (l - r) * w;\n                w *= omega;\n            }\n    \
     \    }\n    }\n    if (ordered) bit_reverse(a);\n}\n\ntemplate <typename mint>\n\
     void intt(std::vector<mint>& a, bool ordered = true) {\n    constexpr int mod\
-    \ = mint::get_mod();\n    constexpr mint primitive_root = primitive_root(mod);\n\
+    \ = mint::get_mod();\n    constexpr mint primitive_root = get_primitive_root(mod);\n\
     \n    if (ordered) bit_reverse(a);\n    int n = a.size();\n    for (int m = 2;\
     \ m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m).inv();\n\
     \        for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n        \
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/log_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
+  timestamp: '2022-03-24 12:27:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/log_of_formal_power_series.test.cpp
