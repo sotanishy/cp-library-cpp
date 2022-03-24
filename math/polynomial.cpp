@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
-#include "ntt.cpp"
+#include "../convolution/ntt.hpp"
 
 template <typename mint>
 class Polynomial : public std::vector<mint> {
@@ -37,7 +37,8 @@ public:
     }
 
     Poly& operator*=(const Poly& rhs) {
-        *this = NTT<mint>::convolve(*this, rhs);
+        *this = convolution(*this, rhs);
+        // // naive convolution O(N^2)
         // std::vector<mint> res(this->size() + rhs.size() - 1);
         // for (int i = 0; i < (int) this->size(); ++i) {
         //     for (int j = 0; j < (int) rhs.size(); ++j) {

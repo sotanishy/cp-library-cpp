@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include "garner.cpp"
-#include "modint.cpp"
-#include "ntt.cpp"
+#include "../math/garner.cpp"
+#include "../math/modint.cpp"
+#include "ntt.hpp"
 
-std::vector<int> arbitrary_mod_convolution(std::vector<int>& a, std::vector<int>& b, int mod) {
+std::vector<int> convolution(const std::vector<int>& a, const std::vector<int>& b, int mod) {
     using mint1 = Modint<167772161>;
     using mint2 = Modint<469762049>;
     using mint3 = Modint<754974721>;
@@ -13,9 +13,9 @@ std::vector<int> arbitrary_mod_convolution(std::vector<int>& a, std::vector<int>
     std::vector<mint2> a2(a.begin(), a.end()), b2(b.begin(), b.end());
     std::vector<mint3> a3(a.begin(), a.end()), b3(b.begin(), b.end());
 
-    auto c1 = NTT<mint1>::convolve(a1, b1);
-    auto c2 = NTT<mint2>::convolve(a2, b2);
-    auto c3 = NTT<mint3>::convolve(a3, b3);
+    auto c1 = convolution(a1, b1);
+    auto c2 = convolution(a2, b2);
+    auto c3 = convolution(a3, b3);
 
     std::vector<int> c(c1.size());
     std::vector<long long> d(3);

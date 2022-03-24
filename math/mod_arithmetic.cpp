@@ -100,6 +100,7 @@ long long mod_sqrt(long long n, int mod) {
  * Modular Tetration
  */
 long long mod_tetration(long long a, long long b, int mod) {
+    if (mod == 1) return 0;
     if (a == 0) return 1 - (b % 2);
     if (a == 1 || b == 0) return 1;
 

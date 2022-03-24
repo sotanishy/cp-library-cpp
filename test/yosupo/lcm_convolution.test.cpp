@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lcm_convolution"
 
 #include "../../math/modint.cpp"
-#include "../../math/transform.cpp"
+#include "../../convolution/gcd_lcm_convolution.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -15,9 +15,6 @@ int main() {
     vector<mint> a(N+1), b(N+1);
     for (int i = 1; i <= N; ++i) cin >> a[i];
     for (int i = 1; i <= N; ++i) cin >> b[i];
-    divisor_fzt(a, true);
-    divisor_fzt(b, true);
-    for (int i = 1; i <= N; ++i) a[i] *= b[i];
-    divisor_fmt(a, true);
-    for (int i = 1; i <= N; ++i) cout << a[i] << (i < N ? " " : "\n");
+    auto c = lcm_convolution(a, b);
+    for (int i = 1; i <= N; ++i) cout << c[i] << (i < N ? " " : "\n");
 }

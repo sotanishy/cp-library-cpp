@@ -1,6 +1,6 @@
 ---
 title: Arbitrary Mod Convolution
-documentation_of: ../../math/arbitrary_mod_convolution.cpp
+documentation_of: ../../convolution/arbitrary_mod_convolution.hpp
 ---
 
 ## Description
@@ -13,6 +13,6 @@ mod を取る前の値が $p_1 \times p_2 \times p_3$ 未満なら正しく復�
 
 ## Operations
 
-- `vector<int> arbitrary_mod_convolution(vector<int> a, vector<int>, int mod)`
-    - $a$ と $b$ の畳み込みを $mod$ で割った余りを計算する
+- `vector<int> convolution(vector<int> a, vector<int>, int mod)`
+    - 数列 $a$ と $b$ の畳み込みを $mod$ で割った余りを計算する
     - 時間計算量: $O(n\log n)$

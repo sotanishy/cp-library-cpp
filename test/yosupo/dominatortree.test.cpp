@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dominator_tree"
+#define PROBLEM "https://judge.yosupo.jp/problem/dominatortree"
 
 #include "../../graph/dominator_tree.cpp"
 
