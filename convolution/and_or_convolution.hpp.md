@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/and_or_convolution.hpp\"\n#include <vector>\n\
@@ -50,7 +50,7 @@ data:
   path: convolution/and_or_convolution.hpp
   requiredBy: []
   timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bitwise_and_convolution.test.cpp
 documentation_of: convolution/and_or_convolution.hpp

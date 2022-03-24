@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/and_or_convolution.hpp
       title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
     - icon: ':heavy_check_mark:'
@@ -266,7 +266,7 @@ data:
     - icon: ':warning:'
       path: math/divisor.cpp
       title: Divisor
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
     - icon: ':heavy_check_mark:'
@@ -287,10 +287,10 @@ data:
     - icon: ':warning:'
       path: math/kitamasa.cpp
       title: Kitamasa's Algorithm
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -597,7 +597,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -738,7 +738,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -762,7 +762,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tetration_mod.test.cpp
       title: test/yosupo/tetration_mod.test.cpp
     - icon: ':heavy_check_mark:'

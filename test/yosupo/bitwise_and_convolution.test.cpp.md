@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/and_or_convolution.hpp
     title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -66,26 +66,26 @@ data:
     \ i < n; ++i) a[i] *= b[i];\n    fmt(a, false);\n    return a;\n}\n#line 5 \"\
     test/yosupo/bitwise_and_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\n\
-    int main() {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 << N),\
-    \ c(1 << N);\n    for (auto& x : a) cin >> x;\n    for (auto& x : b) cin >> x;\n\
-    \    auto c = and_convolution(a, b);\n    for (int i = 0; i < (1 << N); ++i) cout\
-    \ << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
+    int main() {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 << N);\n\
+    \    for (auto& x : a) cin >> x;\n    for (auto& x : b) cin >> x;\n    auto c\
+    \ = and_convolution(a, b);\n    for (int i = 0; i < (1 << N); ++i) cout << c[i]\
+    \ << (i < (1 << N) - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../convolution/and_or_convolution.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
-    \   vector<mint> a(1 << N), b(1 << N), c(1 << N);\n    for (auto& x : a) cin >>\
-    \ x;\n    for (auto& x : b) cin >> x;\n    auto c = and_convolution(a, b);\n \
-    \   for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \"\
-    \ \" : \"\\n\");\n}\n"
+    \   vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a) cin >> x;\n    for\
+    \ (auto& x : b) cin >> x;\n    auto c = and_convolution(a, b);\n    for (int i\
+    \ = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   dependsOn:
   - math/modint.cpp
   - convolution/and_or_convolution.hpp
   isVerificationFile: true
   path: test/yosupo/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-24 13:21:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_and_convolution.test.cpp
 layout: document
