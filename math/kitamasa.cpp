@@ -2,38 +2,38 @@
 #include <vector>
 
 template <typename T>
-T kitamasa(const std::vector<T>& a, const std::vector<T>& d, long long n) {
-    const int k = a.size();
-    if (n < k) {
+T kitamasa(const std::vector<T>& a, const std::vector<T>& c, long long n) {
+    const int d = a.size();
+    if (n < d) {
         return a[n];
     }
 
     auto dfs = [&](const auto& dfs, long long n) -> std::vector<T> {
-        if (n == k) {
-            return d;
+        if (n == d) {
+            return c;
         }
-        std::vector<T> res(k);
-        if (n & 1 || n < 2 * k) {
+        std::vector<T> res(d);
+        if (n & 1 || n < 2 * d) {
             auto x = dfs(dfs, n - 1);
-            for (int j = 0; j < k; ++j) {
-                res[j] = d[j] * x[k - 1];
+            for (int j = 0; j < d; ++j) {
+                res[j] = c[j] * x[d - 1];
                 if (j > 0) {
                     res[j] += x[j - 1];
                 }
             }
         } else {
-            std::vector x(k, std::vector<T>(k));
+            std::vector x(d, std::vector<T>(d));
             x[0] = dfs(dfs, n / 2);
-            for (int i = 1; i < k; ++i) {
-                for (int j = 0; j < k; ++j) {
-                    x[i][j] = d[j] * x[i - 1][k - 1];
+            for (int i = 1; i < d; ++i) {
+                for (int j = 0; j < d; ++j) {
+                    x[i][j] = c[j] * x[i - 1][d - 1];
                     if (j > 0) {
                         x[i][j] += x[i - 1][j - 1];
                     }
                 }
             }
-            for (int i = 0; i < k; ++i) {
-                for (int j = 0; j < k; ++j) {
+            for (int i = 0; i < d; ++i) {
+                for (int j = 0; j < d; ++j) {
                     res[j] += x[0][i] * x[i][j];
                 }
             }
@@ -43,7 +43,7 @@ T kitamasa(const std::vector<T>& a, const std::vector<T>& d, long long n) {
 
     auto x = dfs(dfs, n);
     T ans = 0;
-    for (int i = 0; i < k; ++i) {
+    for (int i = 0; i < d; ++i) {
         ans += x[i] * a[i];
     }
     return ans;

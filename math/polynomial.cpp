@@ -42,7 +42,7 @@ public:
         // std::vector<mint> res(this->size() + rhs.size() - 1);
         // for (int i = 0; i < (int) this->size(); ++i) {
         //     for (int j = 0; j < (int) rhs.size(); ++j) {
-        //         res[i + j] = (*this)[i] * rhs[j];
+        //         res[i + j] += (*this)[i] * rhs[j];
         //     }
         // }
         // *this = res;
