@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -70,10 +70,11 @@ data:
     \ < rhs.size()) {\n            this->clear();\n            return *this;\n   \
     \     }\n        int n = this->size() - rhs.size() + 1;\n        return *this\
     \ = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n    }\n\n    Poly& operator%=(const\
-    \ Poly& rhs) {\n        return *this -= *this / rhs * rhs;\n    }\n\n    Poly&\
-    \ operator-() const {\n        Poly ret(this->size());\n        for (int i = 0;\
-    \ i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n  \
-    \  }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
+    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        while (!this->empty()\
+    \ && this->back() == 0) this->pop_back();\n        return *this;\n    }\n\n  \
+    \  Poly& operator-() const {\n        Poly ret(this->size());\n        for (int\
+    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
+    \    }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
     \ }\n    Poly operator+(const mint& rhs) const { return Poly(*this) += rhs; }\n\
     \    Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n  \
     \  Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
@@ -132,7 +133,7 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy: []
-  timestamp: '2022-03-31 14:37:51+09:00'
+  timestamp: '2022-03-31 22:19:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
@@ -104,8 +104,9 @@ data:
     \ {\n        if(this->size() < rhs.size()) {\n            this->clear();\n   \
     \         return *this;\n        }\n        int n = this->size() - rhs.size()\
     \ + 1;\n        return *this = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n\
-    \    }\n\n    Poly& operator%=(const Poly& rhs) {\n        return *this -= *this\
-    \ / rhs * rhs;\n    }\n\n    Poly& operator-() const {\n        Poly ret(this->size());\n\
+    \    }\n\n    Poly& operator%=(const Poly& rhs) {\n        *this -= *this / rhs\
+    \ * rhs;\n        while (!this->empty() && this->back() == 0) this->pop_back();\n\
+    \        return *this;\n    }\n\n    Poly& operator-() const {\n        Poly ret(this->size());\n\
     \        for (int i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n\
     \        return ret;\n    }\n\n    Poly operator+(const Poly& rhs) const { return\
     \ Poly(*this) += rhs; }\n    Poly operator+(const mint& rhs) const { return Poly(*this)\
@@ -172,8 +173,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2022-03-31 21:24:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-31 22:19:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/division_of_polynomials.test.cpp
 layout: document

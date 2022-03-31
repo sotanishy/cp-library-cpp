@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedVerifiedWith:
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/division_of_polynomials.test.cpp
     title: test/yosupo/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,9 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/ntt.hpp\"\n#include <vector>\n\nconstexpr int\
@@ -118,7 +118,7 @@ data:
   - math/polynomial.cpp
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2022-03-24 12:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution_mod.test.cpp

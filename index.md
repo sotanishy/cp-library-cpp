@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -305,7 +305,7 @@ data:
     - icon: ':warning:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -624,7 +624,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/division_of_polynomials.test.cpp
       title: test/yosupo/division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'

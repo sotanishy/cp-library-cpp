@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
@@ -12,7 +12,7 @@ data:
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/division_of_polynomials.test.cpp
     title: test/yosupo/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -86,10 +86,11 @@ data:
     \ < rhs.size()) {\n            this->clear();\n            return *this;\n   \
     \     }\n        int n = this->size() - rhs.size() + 1;\n        return *this\
     \ = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n    }\n\n    Poly& operator%=(const\
-    \ Poly& rhs) {\n        return *this -= *this / rhs * rhs;\n    }\n\n    Poly&\
-    \ operator-() const {\n        Poly ret(this->size());\n        for (int i = 0;\
-    \ i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n  \
-    \  }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
+    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        while (!this->empty()\
+    \ && this->back() == 0) this->pop_back();\n        return *this;\n    }\n\n  \
+    \  Poly& operator-() const {\n        Poly ret(this->size());\n        for (int\
+    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
+    \    }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
     \ }\n    Poly operator+(const mint& rhs) const { return Poly(*this) += rhs; }\n\
     \    Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n  \
     \  Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
@@ -150,10 +151,11 @@ data:
     \ < rhs.size()) {\n            this->clear();\n            return *this;\n   \
     \     }\n        int n = this->size() - rhs.size() + 1;\n        return *this\
     \ = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n    }\n\n    Poly& operator%=(const\
-    \ Poly& rhs) {\n        return *this -= *this / rhs * rhs;\n    }\n\n    Poly&\
-    \ operator-() const {\n        Poly ret(this->size());\n        for (int i = 0;\
-    \ i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n  \
-    \  }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
+    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        while (!this->empty()\
+    \ && this->back() == 0) this->pop_back();\n        return *this;\n    }\n\n  \
+    \  Poly& operator-() const {\n        Poly ret(this->size());\n        for (int\
+    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
+    \    }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
     \ }\n    Poly operator+(const mint& rhs) const { return Poly(*this) += rhs; }\n\
     \    Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n  \
     \  Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
@@ -197,8 +199,8 @@ data:
   requiredBy:
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2022-03-31 14:37:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-03-31 22:19:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
