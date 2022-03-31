@@ -290,6 +290,9 @@ data:
     - icon: ':warning:'
       path: math/kitamasa.cpp
       title: Kitamasa's Algorithm
+    - icon: ':warning:'
+      path: math/lagrange_interpolation.hpp
+      title: Lagrange Interpolation
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
