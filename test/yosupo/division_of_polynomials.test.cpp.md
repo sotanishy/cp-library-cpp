@@ -145,7 +145,7 @@ data:
     \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
     \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
     \ ret.rend());\n    }\n};\n#line 5 \"test/yosupo/division_of_polynomials.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<99824353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, M;\n    cin >> N >> M;\n    Polynomial<mint> f(N), g(M);\n    for\
     \ (int i = 0; i < N; ++i) cin >> f[i];\n    for (int i = 0; i < M; ++i) cin >>\
@@ -156,7 +156,7 @@ data:
     \       cout << r[i];\n    }\n    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<99824353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, M;\n    cin >> N >> M;\n    Polynomial<mint> f(N), g(M);\n    for\
     \ (int i = 0; i < N; ++i) cin >> f[i];\n    for (int i = 0; i < M; ++i) cin >>\
@@ -172,7 +172,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2022-03-31 14:37:51+09:00'
+  timestamp: '2022-03-31 21:24:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/division_of_polynomials.test.cpp
