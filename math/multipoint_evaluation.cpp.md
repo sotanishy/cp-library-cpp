@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -62,7 +62,7 @@ data:
     \ {\n        *this = convolution(*this, rhs);\n        // // naive convolution\
     \ O(N^2)\n        // std::vector<mint> res(this->size() + rhs.size() - 1);\n \
     \       // for (int i = 0; i < (int) this->size(); ++i) {\n        //     for\
-    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] = (*this)[i]\
+    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] += (*this)[i]\
     \ * rhs[j];\n        //     }\n        // }\n        // *this = res;\n       \
     \ return *this;\n    }\n\n    Poly& operator*=(const mint& rhs) {\n        for\
     \ (int i = 0; i < (int) this->size(); ++i) (*this)[i] *= rhs;\n        return\
@@ -132,7 +132,7 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:27:27+09:00'
+  timestamp: '2022-03-31 14:37:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.cpp

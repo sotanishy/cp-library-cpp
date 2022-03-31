@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
@@ -12,21 +12,24 @@ data:
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/division_of_polynomials.test.cpp
+    title: test/yosupo/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -75,7 +78,7 @@ data:
     \ {\n        *this = convolution(*this, rhs);\n        // // naive convolution\
     \ O(N^2)\n        // std::vector<mint> res(this->size() + rhs.size() - 1);\n \
     \       // for (int i = 0; i < (int) this->size(); ++i) {\n        //     for\
-    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] = (*this)[i]\
+    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] += (*this)[i]\
     \ * rhs[j];\n        //     }\n        // }\n        // *this = res;\n       \
     \ return *this;\n    }\n\n    Poly& operator*=(const mint& rhs) {\n        for\
     \ (int i = 0; i < (int) this->size(); ++i) (*this)[i] *= rhs;\n        return\
@@ -139,7 +142,7 @@ data:
     \ {\n        *this = convolution(*this, rhs);\n        // // naive convolution\
     \ O(N^2)\n        // std::vector<mint> res(this->size() + rhs.size() - 1);\n \
     \       // for (int i = 0; i < (int) this->size(); ++i) {\n        //     for\
-    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] = (*this)[i]\
+    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] += (*this)[i]\
     \ * rhs[j];\n        //     }\n        // }\n        // *this = res;\n       \
     \ return *this;\n    }\n\n    Poly& operator*=(const mint& rhs) {\n        for\
     \ (int i = 0; i < (int) this->size(); ++i) (*this)[i] *= rhs;\n        return\
@@ -194,9 +197,10 @@ data:
   requiredBy:
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2022-03-24 12:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-31 14:37:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp

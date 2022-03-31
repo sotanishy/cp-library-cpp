@@ -12,16 +12,16 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
     links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\n\n#line\
+    - https://judge.yosupo.jp/problem/division_of_polynomials
+  bundledCode: "#line 1 \"test/yosupo/division_of_polynomials.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\n#line\
     \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
     \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
@@ -144,33 +144,41 @@ data:
     \ const { return Poly(this->begin(), this->begin() + std::min((int) this->size(),\
     \ size)); }\n\n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n\
     \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
-    \ ret.rend());\n    }\n};\n#line 5 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \ ret.rend());\n    }\n};\n#line 5 \"test/yosupo/division_of_polynomials.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<99824353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    \n    int N, M;\n    cin >> N >> M;\n    Polynomial<mint> f(N), g(M);\n    for\
+    \ (int i = 0; i < N; ++i) cin >> f[i];\n    for (int i = 0; i < M; ++i) cin >>\
+    \ g[i];\n    auto q = f / g;\n    auto r = f % g;\n    cout << q.size() << \"\
+    \ \" << r.size() << endl;\n    for (int i = 0; i < q.size(); ++i) {\n        if\
+    \ (i > 0) cout << \" \";\n        cout << q[i];\n    }\n    cout << endl;\n  \
+    \  for (int i = 0; i < r.size(); ++i) {\n        if (i > 0) cout << \" \";\n \
+    \       cout << r[i];\n    }\n    cout << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<99824353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \n    int N, M;\n    cin >> N >> M;\n    Polynomial<mint> f(N), g(M);\n    for\
+    \ (int i = 0; i < N; ++i) cin >> f[i];\n    for (int i = 0; i < M; ++i) cin >>\
+    \ g[i];\n    auto q = f / g;\n    auto r = f % g;\n    cout << q.size() << \"\
+    \ \" << r.size() << endl;\n    for (int i = 0; i < q.size(); ++i) {\n        if\
+    \ (i > 0) cout << \" \";\n        cout << q[i];\n    }\n    cout << endl;\n  \
+    \  for (int i = 0; i < r.size(); ++i) {\n        if (i > 0) cout << \" \";\n \
+    \       cout << r[i];\n    }\n    cout << endl;\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: true
-  path: test/yosupo/exp_of_formal_power_series.test.cpp
+  path: test/yosupo/division_of_polynomials.test.cpp
   requiredBy: []
   timestamp: '2022-03-31 14:37:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/exp_of_formal_power_series.test.cpp
+documentation_of: test/yosupo/division_of_polynomials.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp.html
-title: test/yosupo/exp_of_formal_power_series.test.cpp
+- /verify/test/yosupo/division_of_polynomials.test.cpp
+- /verify/test/yosupo/division_of_polynomials.test.cpp.html
+title: test/yosupo/division_of_polynomials.test.cpp
 ---
