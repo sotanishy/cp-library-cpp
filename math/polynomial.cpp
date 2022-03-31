@@ -64,7 +64,9 @@ public:
     }
 
     Poly& operator%=(const Poly& rhs) {
-        return *this -= *this / rhs * rhs;
+        *this -= *this / rhs * rhs;
+        while (!this->empty() && this->back() == 0) this->pop_back();
+        return *this;
     }
 
     Poly& operator-() const {
