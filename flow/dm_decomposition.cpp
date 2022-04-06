@@ -2,7 +2,7 @@
 #include <stack>
 #include <utility>
 #include <vector>
-#include "../flow/bipartite_matching.cpp"
+#include "bipartite_matching.cpp"
 
 std::vector<int> dm_decomposition(const std::vector<std::vector<int>>& G) {
     int N = G.size();

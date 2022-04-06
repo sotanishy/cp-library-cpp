@@ -1,5 +1,5 @@
 ---
-title: Enumerate Triangles
+title: Triangle Enumeration
 documentation_of: ../../graph/enumerate_triangles.cpp
 ---
 

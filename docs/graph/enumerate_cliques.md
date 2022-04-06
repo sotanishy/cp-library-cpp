@@ -1,5 +1,5 @@
 ---
-title: Enumerate Cliques
+title: Clique Enumeration
 documentation_of: ../../graph/enumerate_cliques.cpp
 ---
 
