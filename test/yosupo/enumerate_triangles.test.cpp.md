@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/enumerate_triangles.cpp
-    title: Enumerate Triangles
+    title: Triangle Enumeration
   - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int

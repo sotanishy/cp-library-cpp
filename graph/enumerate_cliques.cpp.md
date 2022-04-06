@@ -69,7 +69,7 @@ data:
   - test/aoj/2306.test.cpp
 documentation_of: graph/enumerate_cliques.cpp
 layout: document
-title: Enumerate Cliques
+title: Clique Enumeration
 ---
 
 ## Description

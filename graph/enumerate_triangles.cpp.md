@@ -47,7 +47,7 @@ data:
   - test/yosupo/enumerate_triangles.test.cpp
 documentation_of: graph/enumerate_triangles.cpp
 layout: document
-title: Enumerate Triangles
+title: Triangle Enumeration
 ---
 
 ## Description

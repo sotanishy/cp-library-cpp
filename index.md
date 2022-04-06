@@ -19,6 +19,9 @@ data:
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':heavy_check_mark:'
+      path: convolution/subset_convolution.hpp
+      title: Subset Convolution
+    - icon: ':heavy_check_mark:'
       path: convolution/xor_convolution.hpp
       title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
   - name: data-structure
@@ -176,6 +179,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
+    - icon: ':warning:'
+      path: flow/dm_decomposition.cpp
+      title: Dulmage-Mendelsohn Decomposition
     - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
@@ -195,9 +201,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.cpp
       title: Chromatic Number
-    - icon: ':warning:'
-      path: graph/dm_decomposition.cpp
-      title: Dulmage-Mendelsohn Decomposition
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.cpp
       title: Dominator Tree
@@ -206,10 +209,10 @@ data:
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_cliques.cpp
-      title: Enumerate Cliques
+      title: Clique Enumeration
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_triangles.cpp
-      title: Enumerate Triangles
+      title: Triangle Enumeration
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
@@ -765,6 +768,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/subset_convolution.test.cpp
+      title: test/yosupo/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp

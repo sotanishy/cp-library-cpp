@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/dm_decomposition.cpp\"\n#include <stack>\n#include\
+  bundledCode: "#line 2 \"flow/dm_decomposition.cpp\"\n#include <stack>\n#include\
     \ <utility>\n#include <vector>\n#line 2 \"flow/bipartite_matching.cpp\"\n#include\
     \ <algorithm>\n#line 4 \"flow/bipartite_matching.cpp\"\n\nclass BipartiteMatching\
     \ {\npublic:\n    BipartiteMatching() = default;\n    explicit BipartiteMatching(int\
@@ -29,7 +29,7 @@ data:
     \ = true;\n        for (int v : G[u]) {\n            int w = match[v];\n     \
     \       if (w == -1 || (!used[w] && dfs(w))) {\n                match[u] = v;\n\
     \                match[v] = u;\n                return true;\n            }\n\
-    \        }\n        return false;\n    }\n};\n#line 6 \"graph/dm_decomposition.cpp\"\
+    \        }\n        return false;\n    }\n};\n#line 6 \"flow/dm_decomposition.cpp\"\
     \n\nstd::vector<int> dm_decomposition(const std::vector<std::vector<int>>& G)\
     \ {\n    int N = G.size();\n    BipartiteMatching bm(N);\n    for (int u = 0;\
     \ u < N; ++u) {\n        for (int v : G[u]) {\n            if (u < v) {\n    \
@@ -45,30 +45,29 @@ data:
     \            st.push({v, !b});\n            }\n        }\n    }\n    return comp;\n\
     }\n"
   code: "#pragma once\n#include <stack>\n#include <utility>\n#include <vector>\n#include\
-    \ \"../flow/bipartite_matching.cpp\"\n\nstd::vector<int> dm_decomposition(const\
-    \ std::vector<std::vector<int>>& G) {\n    int N = G.size();\n    BipartiteMatching\
-    \ bm(N);\n    for (int u = 0; u < N; ++u) {\n        for (int v : G[u]) {\n  \
-    \          if (u < v) {\n                bm.add_edge(u, v);\n            }\n \
-    \       }\n    }\n    bm.bipartite_matching();\n    std::vector<int> comp(N),\
-    \ matched(N, -1);\n    for (auto [u, v] : bm.get_edges()) {\n        comp[u] =\
-    \ comp[v] = -1;\n        matched[u] = v;\n        matched[v] = u;\n    }\n   \
-    \ std::stack<std::pair<int, bool>> st;  // whether or not the previous edges is\
-    \ used in the matching\n    for (int v = 0; v < N; ++v) {\n        if (comp[v]\
-    \ == 0) {\n            st.push({v, 0});\n            st.push({v, 1});\n      \
-    \  }\n    }\n    while (!st.empty()) {\n        auto [u, b] = st.top();\n    \
-    \    st.pop();\n        for (int v : G[u]) {\n            if (comp[v] == -1 &&\
-    \ (b ^ (matched[u] == v))) {\n                comp[v] = comp[u] ^ 1;\n       \
-    \         st.push({v, !b});\n            }\n        }\n    }\n    return comp;\n\
+    \ \"bipartite_matching.cpp\"\n\nstd::vector<int> dm_decomposition(const std::vector<std::vector<int>>&\
+    \ G) {\n    int N = G.size();\n    BipartiteMatching bm(N);\n    for (int u =\
+    \ 0; u < N; ++u) {\n        for (int v : G[u]) {\n            if (u < v) {\n \
+    \               bm.add_edge(u, v);\n            }\n        }\n    }\n    bm.bipartite_matching();\n\
+    \    std::vector<int> comp(N), matched(N, -1);\n    for (auto [u, v] : bm.get_edges())\
+    \ {\n        comp[u] = comp[v] = -1;\n        matched[u] = v;\n        matched[v]\
+    \ = u;\n    }\n    std::stack<std::pair<int, bool>> st;  // whether or not the\
+    \ previous edges is used in the matching\n    for (int v = 0; v < N; ++v) {\n\
+    \        if (comp[v] == 0) {\n            st.push({v, 0});\n            st.push({v,\
+    \ 1});\n        }\n    }\n    while (!st.empty()) {\n        auto [u, b] = st.top();\n\
+    \        st.pop();\n        for (int v : G[u]) {\n            if (comp[v] == -1\
+    \ && (b ^ (matched[u] == v))) {\n                comp[v] = comp[u] ^ 1;\n    \
+    \            st.push({v, !b});\n            }\n        }\n    }\n    return comp;\n\
     }"
   dependsOn:
   - flow/bipartite_matching.cpp
   isVerificationFile: false
-  path: graph/dm_decomposition.cpp
+  path: flow/dm_decomposition.cpp
   requiredBy: []
-  timestamp: '2021-10-18 15:45:31+09:00'
+  timestamp: '2022-04-06 10:49:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/dm_decomposition.cpp
+documentation_of: flow/dm_decomposition.cpp
 layout: document
 title: Dulmage-Mendelsohn Decomposition
 ---
