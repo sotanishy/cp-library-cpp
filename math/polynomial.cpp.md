@@ -202,11 +202,11 @@ data:
   timestamp: '2022-03-31 22:19:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
-  - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/division_of_polynomials.test.cpp
 documentation_of: math/polynomial.cpp
 layout: document
 title: Polynomial

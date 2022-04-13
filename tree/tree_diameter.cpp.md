@@ -4,8 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: tree/tree_hash.hpp
+    title: tree/tree_hash.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2821.test.cpp
+    title: test/aoj/2821.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
@@ -69,10 +75,12 @@ data:
   - graph/edge.cpp
   isVerificationFile: false
   path: tree/tree_diameter.cpp
-  requiredBy: []
+  requiredBy:
+  - tree/tree_hash.hpp
   timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/2821.test.cpp
   - test/aoj/GRL_5_A.test.cpp
   - test/yosupo/tree_diameter.test.cpp
 documentation_of: tree/tree_diameter.cpp

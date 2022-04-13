@@ -55,8 +55,8 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.cpp
   requiredBy:
-  - graph/minimum_spanning_arborescence.cpp
   - graph/mst.cpp
+  - graph/minimum_spanning_arborescence.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

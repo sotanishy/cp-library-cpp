@@ -424,6 +424,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/tree_diameter.cpp
       title: Diameter of a Tree
+    - icon: ':heavy_check_mark:'
+      path: tree/tree_hash.hpp
+      title: tree/tree_hash.hpp
   verificationCategories:
   - name: test/aoj
     pages:
@@ -442,6 +445,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2821.test.cpp
+      title: test/aoj/2821.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.kmp.test.cpp
       title: test/aoj/ALDS1_14_B.kmp.test.cpp

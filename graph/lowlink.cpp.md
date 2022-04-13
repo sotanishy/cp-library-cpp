@@ -72,13 +72,13 @@ data:
   isVerificationFile: false
   path: graph/lowlink.cpp
   requiredBy:
-  - graph/biconnected_components.cpp
   - graph/two_edge_connected_components.cpp
+  - graph/biconnected_components.cpp
   timestamp: '2022-03-06 21:25:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
   - test/yosupo/biconnected_components.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
 documentation_of: graph/lowlink.cpp
