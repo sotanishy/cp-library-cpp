@@ -1,6 +1,6 @@
 ---
 title: Tree Hashing
-documentation_of: ../../tree/tree_hash.cpp
+documentation_of: ../../tree/tree_hash.hpp
 ---
 
 ## Description
