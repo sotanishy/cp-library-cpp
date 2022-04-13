@@ -19,7 +19,7 @@ data:
     title: Diameter of a Tree
   - icon: ':heavy_check_mark:'
     path: tree/tree_hash.hpp
-    title: tree/tree_hash.hpp
+    title: Tree Hashing
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2821.test.cpp

@@ -426,7 +426,7 @@ data:
       title: Diameter of a Tree
     - icon: ':heavy_check_mark:'
       path: tree/tree_hash.hpp
-      title: tree/tree_hash.hpp
+      title: Tree Hashing
   verificationCategories:
   - name: test/aoj
     pages:

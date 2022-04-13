@@ -93,8 +93,19 @@ data:
   - test/aoj/2821.test.cpp
 documentation_of: tree/tree_hash.hpp
 layout: document
-redirect_from:
-- /library/tree/tree_hash.hpp
-- /library/tree/tree_hash.hpp.html
-title: tree/tree_hash.hpp
+title: Tree Hashing
 ---
+
+## Description
+
+木のハッシュを計算する．木の同型性判定に用いる．
+
+## Operations
+
+- `long long tree_hash(vector<vector<int>> G, int root)`
+    - 木 $G$ の隣接リストが与えられたとき，$G$ のハッシュを計算する．`root` が与えられた場合はそれを根とする．
+    - 時間計算量: $O(n)$
+
+## Reference
+
+- [Tree Isomorphism - My Algorithm](https://kopricky.github.io/code/Graph/tree_isomorphism.html)
