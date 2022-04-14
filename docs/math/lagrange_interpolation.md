@@ -16,3 +16,4 @@ Lagrange 補間は，$d+1$ 点が与えられたときにそれらを通る$d$�
 ## Reference
 
 - [ABC208 F - Cumulative Sum 解説](https://atcoder.jp/contests/abc208/editorial/2195)
+- verify: [https://atcoder.jp/contests/abc208/submissions/30592769]()
