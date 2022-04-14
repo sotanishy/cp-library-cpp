@@ -246,9 +246,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
-    - icon: ':heavy_check_mark:'
-      path: graph/twosat.cpp
-      title: 2-SAT
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -366,6 +363,14 @@ data:
     - icon: ':warning:'
       path: misc/timer.cpp
       title: misc/timer.cpp
+  - name: sat
+    pages:
+    - icon: ':warning:'
+      path: sat/hornsat.hpp
+      title: Horn-SAT
+    - icon: ':heavy_check_mark:'
+      path: sat/twosat.hpp
+      title: 2-SAT
   - name: string
     pages:
     - icon: ':warning:'

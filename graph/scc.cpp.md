@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/twosat.cpp
+    path: sat/twosat.hpp
     title: 2-SAT
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: graph/scc.cpp
   requiredBy:
-  - graph/twosat.cpp
+  - sat/twosat.hpp
   timestamp: '2021-10-07 13:18:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

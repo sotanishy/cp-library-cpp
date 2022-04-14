@@ -137,4 +137,5 @@ Undo 可能 Li Chao tree を用いて，offline dynamic connectivity の要領�
 
 ## Reference
 
-- [オフライン 削除可能 Convex Hull Trick](https://mugen1337.github.io/procon/DataStructure/DeletableLiChaoTreeOffline.cpp)
+- [オフライン 削除可能 Convex Hull Trick - procon](https://mugen1337.github.io/procon/DataStructure/DeletableLiChaoTreeOffline.cpp)
+- verify: [https://codeforces.com/contest/678/submission/131471122]()
