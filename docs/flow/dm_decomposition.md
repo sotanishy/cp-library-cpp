@@ -26,4 +26,4 @@ DM 分解は疎行列のブロック対角化に用いられるらしい．行�
 
 - [Dulmage Mendelsohn Decomposition](http://www.cse.iitm.ac.in/~meghana/matchings/bip-decomp.pdf)
 - [Dulmage–Mendelsohn分解 (DM分解)](http://misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf)
-- verify: [https://atcoder.jp/contests/abc223/submissions/26666610]()
+- verify: [https://atcoder.jp/contests/abc223/submissions/26666610](https://atcoder.jp/contests/abc223/submissions/26666610)

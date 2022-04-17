@@ -33,3 +33,4 @@ documentation_of: ../../../data-structure/unionfind/partially_persistent_union_f
 ## Reference
 
 - [部分永続Union-Find Treeについて](https://noshi91.hatenablog.com/entry/2018/02/18/161529)
+- verify: [https://atcoder.jp/contests/agc002/submissions/31059136](https://atcoder.jp/contests/agc002/submissions/31059136)
