@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
@@ -405,8 +405,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: Cartesian Tree
-    - icon: ':warning:'
-      path: tree/centroid_decomposition.cpp
+    - icon: ':heavy_check_mark:'
+      path: tree/centroid_decomposition.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour.cpp
@@ -680,6 +680,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/frequency_table_of_tree_distance.test.cpp
+      title: test/yosupo/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
