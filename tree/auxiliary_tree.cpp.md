@@ -106,4 +106,4 @@ Auxiliary tree は，木の頂点のある部分集合と集合内の頂点間�
 ## Reference
 
 - [LCAをベースに構築するAuxiliary Treeのメモ](https://smijake3.hatenablog.com/entry/2019/09/15/200200)
-- verify: [https://atcoder.jp/contests/typical90/submissions/30186948]()
+- verify: [https://atcoder.jp/contests/typical90/submissions/30186948](https://atcoder.jp/contests/typical90/submissions/30186948)

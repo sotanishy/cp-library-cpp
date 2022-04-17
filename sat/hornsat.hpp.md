@@ -78,4 +78,4 @@ $(a_1 \land a_2 \land \dots \land a_n \rightarrow b)$ や $(a_1 \land a_2 \land 
 
 - [Horn-satisfiability - Wikipedia](https://en.wikipedia.org/wiki/Horn-satisfiability)
 - [Horn SATのメモ - むげんのぶろぐ](https://mugen1337.hatenablog.com/entry/2021/08/22/230456)
-- verify: [https://codeforces.com/gym/103202/submission/153602970]()
+- verify: [https://codeforces.com/gym/103202/submission/153602970](https://codeforces.com/gym/103202/submission/153602970)
