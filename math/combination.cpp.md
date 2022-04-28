@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: math/stirling_second.cpp
+  - icon: ':x:'
+    path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
+    title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/combination.cpp\"\n#include <vector>\n\ntemplate <typename\
@@ -43,10 +46,11 @@ data:
   isVerificationFile: false
   path: math/combination.cpp
   requiredBy:
-  - math/stirling_second.cpp
+  - math/stirling_second.hpp
   timestamp: '2021-11-04 23:22:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
 documentation_of: math/combination.cpp
 layout: document
 title: Combination

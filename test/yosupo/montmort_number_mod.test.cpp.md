@@ -48,20 +48,20 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/montmort.cpp\"\n#include <vector>\n\
-    \n/*\n * @brief Monmort Number\n */\ntemplate <typename T>\nstd::vector<T> montmort(int\
+    \n/*\n * @brief Monmort Number\n */\ntemplate <typename T>\nstd::vector<T> montmort_table(int\
     \ n) {\n    std::vector<T> ret(n + 1);\n    if (n == 1) return ret;\n    ret[2]\
     \ = 1;\n    for (int i = 3; i <= n; ++i) {\n        ret[i] = (ret[i - 1] + ret[i\
     \ - 2]) * (i - 1);\n    }\n    return ret;\n}\n#line 5 \"test/yosupo/montmort_number_mod.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    using mint =\
-    \ ArbitraryModint;\n    mint::set_mod(M);\n    vector<mint> ans = montmort<mint>(N);\n\
+    \ ArbitraryModint;\n    mint::set_mod(M);\n    vector<mint> ans = montmort_table<mint>(N);\n\
     \    for (int i = 1; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\
     \n#include \"../../math/arbitrary_modint.cpp\"\n#include \"../../math/montmort.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    using mint =\
-    \ ArbitraryModint;\n    mint::set_mod(M);\n    vector<mint> ans = montmort<mint>(N);\n\
+    \ ArbitraryModint;\n    mint::set_mod(M);\n    vector<mint> ans = montmort_table<mint>(N);\n\
     \    for (int i = 1; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n\
     }"
   dependsOn:
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 17:56:39+09:00'
+  timestamp: '2022-04-28 21:35:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/montmort_number_mod.test.cpp

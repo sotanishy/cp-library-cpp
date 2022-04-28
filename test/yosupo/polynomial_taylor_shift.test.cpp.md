@@ -17,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
     links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\n\n#line\
+    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
+  bundledCode: "#line 1 \"test/yosupo/polynomial_taylor_shift.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\n\n#line\
     \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
     \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
@@ -157,32 +157,43 @@ data:
     \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
     \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
     \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };\n#line 5 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for\
-    \ (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    };\n#line 5 \"test/yosupo/polynomial_taylor_shift.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n#define rep(i, s, t) for (int i =\
+    \ (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1;\
+    \ i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\
+    \ bool chmax(T& a, const T& b) { return a < b ? (a = b, 1) : 0; }\ntemplate <typename\
+    \ T> bool chmin(T& a, const T& b) { return a > b ? (a = b, 1) : 0; }\n\nusing\
+    \ mint = Modint<998244353>;\nusing P = Polynomial<mint>;\n\nint main() {\n   \
+    \ ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cout << fixed\
+    \ << setprecision(15);\n\n    int N, c;\n    cin >> N >> c;\n    P a(N);\n   \
+    \ for (auto& x : a) cin >> x;\n    auto b = a.taylor_shift(c);\n    rep(i,0,N)\
+    \ cout << b[i] << (i < N-1 ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n#define\
+    \ rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t,\
+    \ s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\n\
+    template <typename T> bool chmax(T& a, const T& b) { return a < b ? (a = b, 1)\
+    \ : 0; }\ntemplate <typename T> bool chmin(T& a, const T& b) { return a > b ?\
+    \ (a = b, 1) : 0; }\n\nusing mint = Modint<998244353>;\nusing P = Polynomial<mint>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \    cout << fixed << setprecision(15);\n\n    int N, c;\n    cin >> N >> c;\n\
+    \    P a(N);\n    for (auto& x : a) cin >> x;\n    auto b = a.taylor_shift(c);\n\
+    \    rep(i,0,N) cout << b[i] << (i < N-1 ? \" \" : \"\\n\");\n}"
   dependsOn:
   - math/modint.cpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: true
-  path: test/yosupo/exp_of_formal_power_series.test.cpp
+  path: test/yosupo/polynomial_taylor_shift.test.cpp
   requiredBy: []
   timestamp: '2022-04-28 21:35:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/exp_of_formal_power_series.test.cpp
+documentation_of: test/yosupo/polynomial_taylor_shift.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp.html
-title: test/yosupo/exp_of_formal_power_series.test.cpp
+- /verify/test/yosupo/polynomial_taylor_shift.test.cpp
+- /verify/test/yosupo/polynomial_taylor_shift.test.cpp.html
+title: test/yosupo/polynomial_taylor_shift.test.cpp
 ---

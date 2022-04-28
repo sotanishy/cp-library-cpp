@@ -10,44 +10,43 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/interpolation.cpp\"\n#include <vector>\n#line 2 \"\
-    math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line 3 \"convolution/ntt.hpp\"\
-    \n\nconstexpr int get_primitive_root(int mod) {\n    if (mod == 167772161) return\
-    \ 3;\n    if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n\
-    \    if (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\
-    \ntemplate <typename T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n\
-    \    for (int i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k\
-    \ > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\
-    \ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered = true)\
-    \ {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
-    \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
-    \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
-    \     for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n           \
-    \ for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
-    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
-    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
-    \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
-    }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
-    \ true) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
-    \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
-    \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
-    \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
-    \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
-    \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
-    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
-    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
-    \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
-    \ b) {\n    int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n\
-    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a, false);\n \
-    \   ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a,\
-    \ false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 6 \"math/polynomial.cpp\"\
-    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
-    \    using Poly = Polynomial;\n\npublic:\n    using std::vector<mint>::vector;\n\
+  bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
+    #include <vector>\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
+    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
+    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
+    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
+    \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
+    \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
+    \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
+    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
+    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
+    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
+    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
+    \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
+    \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
+    \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
+    \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
+    \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
+    \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
+    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
+    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
+    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
+    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
+    \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
+    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
+    \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
+    \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
+    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 6\
+    \ \"math/polynomial.cpp\"\n\ntemplate <typename mint>\nclass Polynomial : public\
+    \ std::vector<mint> {\n    using Poly = Polynomial;\n\npublic:\n    using std::vector<mint>::vector;\n\
     \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const { return\
     \ Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }\n\
     \n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n        if (deg\
@@ -122,68 +121,59 @@ data:
     \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
     \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
     \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };\n#line 4 \"math/interpolation.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
-    \ interpolate(const std::vector<T>& x, const std::vector<T>& y) {\n    assert(x.size()\
-    \ == y.size());\n    int n = x.size();\n    std::vector<T> prod(n + 1);\n    prod[0]\
-    \ = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T> nxt(n + 1);\n\
-    \        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] = prod[j];\n  \
-    \          nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
-    \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
-    \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
-    \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
-    \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/\n"
-  code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\ntemplate\
-    \ <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x, const std::vector<T>&\
-    \ y) {\n    assert(x.size() == y.size());\n    int n = x.size();\n    std::vector<T>\
-    \ prod(n + 1);\n    prod[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T>\
-    \ nxt(n + 1);\n        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] =\
-    \ prod[j];\n            nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
-    \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
-    \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
-    \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
-    \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/"
+    };\n#line 3 \"math/stirling_first.hpp\"\n\ntemplate <typename T>\nPolynomial<T>\
+    \ stirling_first_table(int n) {\n    if (n == 0) return {1};\n    Polynomial<T>\
+    \ ret = stirling_first_table<T>(n / 2);\n    ret *= ret.taylor_shift(-(n / 2));\n\
+    \    if (n % 2) ret = (ret << 1) + ret * (-(n - 1));  // ret *= (x - (n - 1))\n\
+    \    return ret;\n}\n"
+  code: "#pragma once\n#include \"polynomial.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
+    \ stirling_first_table(int n) {\n    if (n == 0) return {1};\n    Polynomial<T>\
+    \ ret = stirling_first_table<T>(n / 2);\n    ret *= ret.taylor_shift(-(n / 2));\n\
+    \    if (n % 2) ret = (ret << 1) + ret * (-(n - 1));  // ret *= (x - (n - 1))\n\
+    \    return ret;\n}"
   dependsOn:
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: false
-  path: math/interpolation.cpp
+  path: math/stirling_first.hpp
   requiredBy: []
   timestamp: '2022-04-28 21:35:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/interpolation.cpp
+documentation_of: math/stirling_first.hpp
 layout: document
-title: Polynomial Interpolation
+title: Stirling Number of the First Kind
 ---
 
 ## Description
 
-多項式補間をする．
+第1種 Stirling 数 $s(n,k)$ は，以下の恒等式で定義される数である．
+
+$$
+x(x-1)\cdots(x-(n-1)) = \sum_{k=0}^n s(n,k) x^k
+$$
+
+$s(n,k)$ の絶対値 (${n \brack k}$ と書く) は，$n$ 要素の置換のうち，$k$ 個のサイクルに分解されるものの個数である．
 
 ## Operations
 
-- `Polynomial interpolate(vector<T> x, vector<T> y)`
-    - 与えられた点の補間多項式を計算する
-    - 時間計算量: $O(n^2)$
+- `vector<T> stirling_first_table(int n)`
+    - $s(n,k)$ を各 $k=0,1,\dots,n$ について計算する
+    - 時間計算量: $O(n\log n)$
+
+## Notes
+
+第1種 Stirling 数について以下の式が成り立つ．
+
+$$
+s(n,k) = (-1)^{(n-k)} {n \brack k}
+$$
+
+$$
+{n\brack k} = {n-1\brack k-1} + (n-1){n-1 \brack k}
+$$
+
+## Reference
+
+- [「写像12相」を総整理！ 〜 数え上げ問題の学びの宝庫 〜 - Qiita](https://qiita.com/drken/items/f2ea4b58b0d21621bd51)
+

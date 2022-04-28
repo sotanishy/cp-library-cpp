@@ -4,24 +4,27 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
-    path: math/bostan_mori.hpp
-    title: Bostan-Mori Algorithm
+  - icon: ':x:'
+    path: math/combination.cpp
+    title: Combination
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
+  - icon: ':x:'
+    path: math/stirling_second.hpp
+    title: Stirling Number of the Second Kind
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
     links:
-    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
-  bundledCode: "#line 1 \"test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
+  bundledCode: "#line 1 \"test/yosupo/stirling_number_of_the_second_kind.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
     \n\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\
     /*\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
     \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
@@ -50,7 +53,7 @@ data:
     \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
     \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
-    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/bostan_mori.hpp\"\
+    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/stirling_second.hpp\"\
     \n#include <vector>\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
     \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
     \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
@@ -80,44 +83,55 @@ data:
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
     \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
     \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
-    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 4\
-    \ \"math/bostan_mori.hpp\"\n\ntemplate <typename T>\nT bostan_mori(const std::vector<T>&\
-    \ a, const std::vector<T>& c, long long n) {\n    const int d = c.size();\n  \
-    \  if (n < d) return a[n];\n\n    std::vector<T> q(d + 1);\n    q[0] = 1;\n  \
-    \  for (int i = 0; i < d; ++i) q[i + 1] = -c[i];\n    auto p = convolution(a,\
-    \ q);\n    p.resize(d);\n\n    auto take = [&](const std::vector<T>& p, int s)\
-    \ {\n        std::vector<T> r((p.size() + 1) / 2);\n        for (int i = 0; i\
-    \ < (int) r.size(); ++i) {\n            r[i] = p[2 * i + s];\n        }\n    \
-    \    return r;\n    };\n\n    while (n > 0) {\n        auto qm = q;\n        for\
-    \ (int i = 1; i < (int) qm.size(); i += 2) qm[i] = -qm[i];\n        p = take(convolution(p,\
-    \ qm), n & 1);\n        q = take(convolution(q, qm), 0);\n        n >>= 1;\n \
-    \   }\n\n    return p[0] / q[0];\n}\n#line 5 \"test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int d;\n    long long k;\n    cin >> d >> k;\n    vector<mint> a(d), c(d);\n\
-    \    for (auto& x : a) cin >> x;\n    for (auto& x : c) cin >> x;\n    cout <<\
-    \ bostan_mori(a, c, k) << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/bostan_mori.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int d;\n    long long k;\n    cin >> d >> k;\n    vector<mint> a(d), c(d);\n\
-    \    for (auto& x : a) cin >> x;\n    for (auto& x : c) cin >> x;\n    cout <<\
-    \ bostan_mori(a, c, k) << endl;\n}\n"
+    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 3\
+    \ \"math/combination.cpp\"\n\ntemplate <typename T>\nclass Combination {\npublic:\n\
+    \    Combination() = default;\n    Combination(int n) : fact_(n + 1), fact_inv_(n\
+    \ + 1) {\n        fact_[0] = 1;\n        for (int i = 1; i <= n; ++i) fact_[i]\
+    \ = fact_[i - 1] * i;\n        fact_inv_[n] = T(1) / fact_[n];\n        for (int\
+    \ i = n; i > 0; --i) fact_inv_[i - 1] = fact_inv_[i] * i;\n    }\n\n    T perm(int\
+    \ n, int r) const {\n        if (r < 0 || n < r) return 0;\n        return fact_[n]\
+    \ * fact_inv_[n - r];\n    }\n\n    T comb(int n, int r) const {\n        if (r\
+    \ < 0 || n < r) return 0;\n        return fact_[n] * fact_inv_[r] * fact_inv_[n\
+    \ - r];\n    }\n\n    T fact(int n) const { return fact_[n]; }\n    T fact_inv(int\
+    \ n) const { return fact_inv_[n]; }\n\nprivate:\n    std::vector<T> fact_, fact_inv_;\n\
+    };\n\ntemplate <typename T>\nT comb(int n, int r) {\n    if (r < 0 || n < r) return\
+    \ 0;\n    T num = 1, den = 1;\n    for (int i = 1; i <= r; ++i) {\n        num\
+    \ = num * (n - i + 1);\n        den = den * i;\n    }\n    return num / den;\n\
+    }\n#line 5 \"math/stirling_second.hpp\"\n\ntemplate <typename T>\nstd::vector<T>\
+    \ stirling_second_table(int n) {\n    T f = 1;\n    for (int i = 1; i <= n; ++i)\
+    \ f *= i;\n    f = T(1) / f;\n    std::vector<T> a(n + 1), b(n + 1);\n    for\
+    \ (int i = n; i >= 0; --i) {\n        a[i] = f * (i % 2 ? -1 : 1);\n        b[i]\
+    \ = f * T(i).pow(n);\n        f *= i;\n    }\n    auto c = convolution(a, b);\n\
+    \    return std::vector(c.begin(), c.begin() + n + 1);\n}\n\ntemplate <typename\
+    \ T>\nT stirling_second(int n, int k) {\n    Combination<T> comb(n);\n    T res\
+    \ = 0;\n    for (int i = 0; i <= k; ++i) {\n        T tmp = comb.comb(k, i) *\
+    \ T(i).pow(n);\n        if ((k - i) & 1) res -= tmp;\n        else res += tmp;\n\
+    \    }\n    res /= comb.fact(k);\n    return res;\n}\n#line 5 \"test/yosupo/stirling_number_of_the_second_kind.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
+    \   auto ans = stirling_second_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
+    \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
+    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/stirling_second.hpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
+    \   auto ans = stirling_second_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
+    \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
   dependsOn:
   - math/modint.cpp
-  - math/bostan_mori.hpp
+  - math/stirling_second.hpp
   - convolution/ntt.hpp
+  - math/combination.cpp
   isVerificationFile: true
-  path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-03-31 14:37:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-28 21:35:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+documentation_of: test/yosupo/stirling_number_of_the_second_kind.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-- /verify/test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp.html
-title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+- /verify/test/yosupo/stirling_number_of_the_second_kind.test.cpp
+- /verify/test/yosupo/stirling_number_of_the_second_kind.test.cpp.html
+title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
 ---

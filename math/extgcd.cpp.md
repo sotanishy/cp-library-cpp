@@ -35,8 +35,8 @@ data:
   isVerificationFile: false
   path: math/extgcd.cpp
   requiredBy:
-  - math/garner.cpp
   - convolution/arbitrary_mod_convolution.hpp
+  - math/garner.cpp
   timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

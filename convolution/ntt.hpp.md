@@ -17,6 +17,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
+  - icon: ':warning:'
+    path: math/stirling_first.hpp
+    title: Stirling Number of the First Kind
+  - icon: ':x:'
+    path: math/stirling_second.hpp
+    title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
@@ -40,11 +46,17 @@ data:
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial_taylor_shift.test.cpp
+    title: test/yosupo/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
+    title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/ntt.hpp\"\n#include <vector>\n\nconstexpr int\
@@ -112,22 +124,26 @@ data:
   isVerificationFile: false
   path: convolution/ntt.hpp
   requiredBy:
-  - math/multipoint_evaluation.cpp
-  - math/polynomial.cpp
-  - math/bostan_mori.hpp
-  - math/interpolation.cpp
   - convolution/arbitrary_mod_convolution.hpp
+  - math/multipoint_evaluation.cpp
+  - math/interpolation.cpp
+  - math/bostan_mori.hpp
+  - math/stirling_first.hpp
+  - math/stirling_second.hpp
+  - math/polynomial.cpp
   timestamp: '2022-03-24 12:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/pow_of_formal_power_series.test.cpp
-  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
-  - test/yosupo/division_of_polynomials.test.cpp
-  - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
+  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/convolution_mod_1000000007.test.cpp
+  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial_taylor_shift.test.cpp
+  - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/division_of_polynomials.test.cpp
 documentation_of: convolution/ntt.hpp
 layout: document
 title: Number Theoretic Transform

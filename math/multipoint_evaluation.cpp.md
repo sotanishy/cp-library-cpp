@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
@@ -49,43 +49,50 @@ data:
     \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 6\
     \ \"math/polynomial.cpp\"\n\ntemplate <typename mint>\nclass Polynomial : public\
     \ std::vector<mint> {\n    using Poly = Polynomial;\n\npublic:\n    using std::vector<mint>::vector;\n\
-    \    using std::vector<mint>::operator=;\n\n    Poly& operator+=(const Poly& rhs)\
-    \ {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n      \
-    \  for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] += rhs[i];\n        return\
-    \ *this;\n    }\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty())\
-    \ this->resize(1);\n        (*this)[0] += rhs;\n        return *this;\n    }\n\
-    \n    Poly& operator-=(const Poly& rhs) {\n        if (this->size() < rhs.size())\
-    \ this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size(); ++i)\
-    \ (*this)[i] -= rhs[i];\n        return *this;\n    }\n\n    Poly& operator-=(const\
+    \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const { return\
+    \ Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }\n\
+    \n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n        if (deg\
+    \ != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(), ret.rend());\n\
+    \    }\n\n    Poly& operator+=(const Poly& rhs) {\n        if (this->size() <\
+    \ rhs.size()) this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size();\
+    \ ++i) (*this)[i] += rhs[i];\n        return *this;\n    }\n\n    Poly& operator+=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
-    \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const Poly& rhs)\
-    \ {\n        *this = convolution(*this, rhs);\n        // // naive convolution\
-    \ O(N^2)\n        // std::vector<mint> res(this->size() + rhs.size() - 1);\n \
-    \       // for (int i = 0; i < (int) this->size(); ++i) {\n        //     for\
-    \ (int j = 0; j < (int) rhs.size(); ++j) {\n        //         res[i + j] += (*this)[i]\
-    \ * rhs[j];\n        //     }\n        // }\n        // *this = res;\n       \
-    \ return *this;\n    }\n\n    Poly& operator*=(const mint& rhs) {\n        for\
-    \ (int i = 0; i < (int) this->size(); ++i) (*this)[i] *= rhs;\n        return\
-    \ *this;\n    }\n\n    Poly& operator/=(const Poly& rhs) {\n        if(this->size()\
-    \ < rhs.size()) {\n            this->clear();\n            return *this;\n   \
-    \     }\n        int n = this->size() - rhs.size() + 1;\n        return *this\
-    \ = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n    }\n\n    Poly& operator%=(const\
-    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        while (!this->empty()\
-    \ && this->back() == 0) this->pop_back();\n        return *this;\n    }\n\n  \
-    \  Poly& operator-() const {\n        Poly ret(this->size());\n        for (int\
-    \ i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n        return ret;\n\
-    \    }\n\n    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs;\
-    \ }\n    Poly operator+(const mint& rhs) const { return Poly(*this) += rhs; }\n\
-    \    Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n  \
-    \  Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
-    \ operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n    Poly operator*(const\
-    \ mint& rhs) const { return Poly(*this) *= rhs; }\n    Poly operator/(const Poly&\
-    \ rhs) const { return Poly(*this) /= rhs; }\n    Poly operator%(const Poly& rhs)\
-    \ const { return Poly(*this) %= rhs; }\n\n    mint operator()(const mint& x) {\n\
-    \        mint y = 0, powx = 1;\n        for (int i = 0; i < (int) this->size();\
-    \ ++i) {\n            y += (*this)[i] * powx;\n            powx *= x;\n      \
-    \  }\n        return y;\n    }\n\n    Poly inv(int deg = -1) const {\n       \
-    \ assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
+    \ += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const Poly& rhs)\
+    \ {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n      \
+    \  for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] -= rhs[i];\n        return\
+    \ *this;\n    }\n\n    Poly& operator-=(const mint& rhs) {\n        if (this->empty())\
+    \ this->resize(1);\n        (*this)[0] -= rhs;\n        return *this;\n    }\n\
+    \n    Poly& operator*=(const Poly& rhs) {\n        *this = convolution(*this,\
+    \ rhs);\n        // // naive convolution O(N^2)\n        // std::vector<mint>\
+    \ res(this->size() + rhs.size() - 1);\n        // for (int i = 0; i < (int) this->size();\
+    \ ++i) {\n        //     for (int j = 0; j < (int) rhs.size(); ++j) {\n      \
+    \  //         res[i + j] += (*this)[i] * rhs[j];\n        //     }\n        //\
+    \ }\n        // *this = res;\n        return *this;\n    }\n\n    Poly& operator*=(const\
+    \ mint& rhs) {\n        for (int i = 0; i < (int) this->size(); ++i) (*this)[i]\
+    \ *= rhs;\n        return *this;\n    }\n\n    Poly& operator/=(const Poly& rhs)\
+    \ {\n        if(this->size() < rhs.size()) {\n            this->clear();\n   \
+    \         return *this;\n        }\n        int n = this->size() - rhs.size()\
+    \ + 1;\n        return *this = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n\
+    \    }\n\n    Poly& operator%=(const Poly& rhs) {\n        *this -= *this / rhs\
+    \ * rhs;\n        while (!this->empty() && this->back() == 0) this->pop_back();\n\
+    \        return *this;\n    }\n\n    Poly& operator-() const {\n        Poly ret(this->size());\n\
+    \        for (int i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n\
+    \        return ret;\n    }\n\n    Poly operator+(const Poly& rhs) const { return\
+    \ Poly(*this) += rhs; }\n    Poly operator+(const mint& rhs) const { return Poly(*this)\
+    \ += rhs; }\n    Poly operator-(const Poly& rhs) const { return Poly(*this) -=\
+    \ rhs; }\n    Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs;\
+    \ }\n    Poly operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n\
+    \    Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }\n  \
+    \  Poly operator/(const Poly& rhs) const { return Poly(*this) /= rhs; }\n    Poly\
+    \ operator%(const Poly& rhs) const { return Poly(*this) %= rhs; }\n\n    Poly\
+    \ operator<<(int n) const {\n        Poly ret(*this);\n        ret.insert(ret.begin(),\
+    \ n, 0);\n        return ret;\n    }\n\n    Poly operator>>(int n) const {\n \
+    \       if (this->size() <= n) return {};\n        Poly ret(*this);\n        ret.erase(ret.begin(),\
+    \ ret.begin() + n);\n        return ret;\n    }\n\n\n    mint operator()(const\
+    \ mint& x) {\n        mint y = 0, powx = 1;\n        for (int i = 0; i < (int)\
+    \ this->size(); ++i) {\n            y += (*this)[i] * powx;\n            powx\
+    \ *= x;\n        }\n        return y;\n    }\n\n    Poly inv(int deg = -1) const\
+    \ {\n        assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
     \        Poly ret({mint(1) / (*this)[0]});\n        for (int i = 1; i < deg; i\
     \ <<= 1) {\n            ret = (ret * mint(2) - ret * ret * this->pre(i << 1)).pre(i\
     \ << 1);\n        }\n        return ret;\n    }\n\n    Poly exp(int deg = -1)\
@@ -107,18 +114,23 @@ data:
     \ ret;\n    }\n\n    Poly integral() const {\n        Poly ret(this->size() +\
     \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
     \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
-    \nprivate:\n    Poly pre(int size) const { return Poly(this->begin(), this->begin()\
-    \ + std::min((int) this->size(), size)); }\n\n    Poly rev(int deg = -1) const\
-    \ {\n        Poly ret(*this);\n        if (deg != -1) ret.resize(deg, 0);\n  \
-    \      return Poly(ret.rbegin(), ret.rend());\n    }\n};\n#line 4 \"math/multipoint_evaluation.cpp\"\
-    \n\n/*\n * @brief Multipoint Evaluation\n */\ntemplate <typename T>\nstd::vector<T>\
-    \ multipoint_evaluation(const Polynomial<T>& p, const std::vector<T>& x) {\n \
-    \   int m = x.size();\n    int n = 1;\n    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>>\
-    \ q(2 * n, {1});\n    for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n   \
-    \ for (int i = n; i > 0; ++i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p %\
-    \ q[1];\n    for (int i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T>\
-    \ y(m);\n    for (int i = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n\
-    }\n"
+    \n    Poly taylor_shift(long long c) const {\n        const int n = this->size();\n\
+    \        std::vector<mint> fact(n, 1), fact_inv(n, 1);\n        for (int i = 1;\
+    \ i < n; ++i) fact[i] = fact[i-1] * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n\
+    \        for (int i = n - 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n\
+    \        auto ret = *this;\n        Poly e(n+1);\n        e[0] = 1;\n        mint\
+    \ p = c;\n        for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n\
+    \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
+    \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
+    \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
+    };\n#line 4 \"math/multipoint_evaluation.cpp\"\n\n/*\n * @brief Multipoint Evaluation\n\
+    \ */\ntemplate <typename T>\nstd::vector<T> multipoint_evaluation(const Polynomial<T>&\
+    \ p, const std::vector<T>& x) {\n    int m = x.size();\n    int n = 1;\n    while\
+    \ (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n, {1});\n    for (int\
+    \ i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int i = n; i > 0; ++i) q[i]\
+    \ = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int i = 2; i < n\
+    \ + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n    for (int i\
+    \ = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n}\n"
   code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\n/*\n * @brief\
     \ Multipoint Evaluation\n */\ntemplate <typename T>\nstd::vector<T> multipoint_evaluation(const\
     \ Polynomial<T>& p, const std::vector<T>& x) {\n    int m = x.size();\n    int\
@@ -133,7 +145,7 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy: []
-  timestamp: '2022-03-31 22:19:09+09:00'
+  timestamp: '2022-04-28 21:35:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.cpp
