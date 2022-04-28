@@ -29,8 +29,11 @@ documentation_of: ../../math/polynomial.cpp
 - `Polynomial integral()`
     - $\int f(x)$ を計算する
     - 時間計算量: $O(n)$
+- `Polynomial taylor_shift(long long c)`
+    - $f(x+c)$ を計算する
+    - 時間計算量: $O(n \log n)$
 
 ## Reference
 
-- [【競技プログラミング】形式的冪級数の応用テクニック(前編)](https://qiita.com/hotman78/items/f0e6d2265badd84d429a)
+- [【競技プログラミング】形式的冪級数の応用テクニック(前編) - Qiita](https://qiita.com/hotman78/items/f0e6d2265badd84d429a)
 

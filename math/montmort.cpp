@@ -5,7 +5,7 @@
  * @brief Monmort Number
  */
 template <typename T>
-std::vector<T> montmort(int n) {
+std::vector<T> montmort_table(int n) {
     std::vector<T> ret(n + 1);
     if (n == 1) return ret;
     ret[2] = 1;

@@ -14,6 +14,6 @@ int main() {
     cin >> N >> M;
     using mint = ArbitraryModint;
     mint::set_mod(M);
-    vector<mint> ans = montmort<mint>(N);
+    vector<mint> ans = montmort_table<mint>(N);
     for (int i = 1; i <= N; ++i) cout << ans[i] << (i < N ? " " : "\n");
 }

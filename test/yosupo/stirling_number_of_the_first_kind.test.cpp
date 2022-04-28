@@ -1,8 +1,151 @@
-#pragma once
-#include <algorithm>
-#include <cassert>
-#include <vector>
-#include "../convolution/ntt.hpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
+
+// #include "../../math/modint.cpp"
+// #include "../../math/stirling_first.hpp"
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+template <int mod>
+class Modint {
+    using mint = Modint;
+    static_assert(mod > 0, "Modulus must be positive");
+
+public:
+    static constexpr int get_mod() noexcept { return mod; }
+
+    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}
+
+    constexpr int value() const noexcept { return x; }
+
+    constexpr mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }
+    constexpr mint& operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod; return *this; }
+    constexpr mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this; }
+    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }
+
+    constexpr mint operator-() const noexcept { return mint(-x); }
+
+    constexpr mint operator+(const mint& r) const noexcept { return mint(*this) += r; }
+    constexpr mint operator-(const mint& r) const noexcept { return mint(*this) -= r; }
+    constexpr mint operator*(const mint& r) const noexcept { return mint(*this) *= r; }
+    constexpr mint operator/(const mint& r) const noexcept { return mint(*this) /= r; }
+
+    constexpr bool operator==(const mint& r) const noexcept { return x == r.x; }
+    constexpr bool operator!=(const mint& r) const noexcept { return x != r.x; }
+
+    constexpr mint inv() const noexcept {
+        int a = x, b = mod, u = 1, v = 0;
+        while (b > 0) {
+            int t = a / b;
+            std::swap(a -= t * b, b);
+            std::swap(u -= t * v, v);
+        }
+        return mint(u);
+    }
+
+    constexpr mint pow(long long n) const noexcept {
+        mint ret(1), mul(x);
+        while (n > 0) {
+            if (n & 1) ret *= mul;
+            mul *= mul;
+            n >>= 1;
+        }
+        return ret;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const mint& r) {
+        return os << r.x;
+    }
+
+    friend std::istream& operator>>(std::istream& is, mint& r) {
+        long long t;
+        is >> t;
+        r = mint(t);
+        return is;
+    }
+
+private:
+    int x;
+};
+
+constexpr int get_primitive_root(int mod) {
+    if (mod == 167772161) return 3;
+    if (mod == 469762049) return 3;
+    if (mod == 754974721) return 11;
+    if (mod == 998244353) return 3;
+    if (mod == 1224736769) return 3;
+}
+
+template <typename T>
+void bit_reverse(std::vector<T>& a) {
+    int n = a.size();
+    for (int i = 0, j = 1; j < n - 1; ++j) {
+        for (int k = n >> 1; k > (i ^= k); k >>= 1);
+        if (i < j) std::swap(a[i], a[j]);
+    }
+}
+
+template <typename mint>
+void ntt(std::vector<mint>& a, bool ordered = true) {
+    constexpr int mod = mint::get_mod();
+    constexpr mint primitive_root = get_primitive_root(mod);
+
+    int n = a.size();
+    for (int m = n; m > 1; m >>= 1) {
+        mint omega = primitive_root.pow((mod - 1) / m);
+        for (int s = 0; s < n / m; ++s) {
+            mint w = 1;
+            for (int i = 0; i < m / 2; ++i) {
+                mint l = a[s * m + i];
+                mint r = a[s * m + i + m / 2];
+                a[s * m + i] = l + r;
+                a[s * m + i + m / 2] = (l - r) * w;
+                w *= omega;
+            }
+        }
+    }
+    if (ordered) bit_reverse(a);
+}
+
+template <typename mint>
+void intt(std::vector<mint>& a, bool ordered = true) {
+    constexpr int mod = mint::get_mod();
+    constexpr mint primitive_root = get_primitive_root(mod);
+
+    if (ordered) bit_reverse(a);
+    int n = a.size();
+    for (int m = 2; m <= n; m <<= 1) {
+        mint omega = primitive_root.pow((mod - 1) / m).inv();
+        for (int s = 0; s < n / m; ++s) {
+            mint w = 1;
+            for (int i = 0; i < m / 2; ++i) {
+                mint l = a[s * m + i];
+                mint r = a[s * m + i + m / 2] * w;
+                a[s * m + i] = l + r;
+                a[s * m + i + m / 2] = l - r;
+                w *= omega;
+            }
+        }
+    }
+}
+
+template <typename mint>
+std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
+    int size = a.size() + b.size() - 1;
+    int n = 1;
+    while (n < size) n <<= 1;
+    a.resize(n);
+    b.resize(n);
+    ntt(a, false);
+    ntt(b, false);
+    for (int i = 0; i < n; ++i) a[i] *= b[i];
+    intt(a, false);
+    a.resize(size);
+    mint n_inv = mint(n).inv();
+    for (int i = 0; i < size; ++i) a[i] *= n_inv;
+    return a;
+}
 
 template <typename mint>
 class Polynomial : public std::vector<mint> {
@@ -11,14 +154,6 @@ class Polynomial : public std::vector<mint> {
 public:
     using std::vector<mint>::vector;
     using std::vector<mint>::operator=;
-
-    Poly pre(int size) const { return Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }
-
-    Poly rev(int deg = -1) const {
-        Poly ret(*this);
-        if (deg != -1) ret.resize(deg, 0);
-        return Poly(ret.rbegin(), ret.rend());
-    }
 
     Poly& operator+=(const Poly& rhs) {
         if (this->size() < rhs.size()) this->resize(rhs.size());
@@ -105,7 +240,6 @@ public:
         return ret;
     }
 
-
     mint operator()(const mint& x) {
         mint y = 0, powx = 1;
         for (int i = 0; i < (int) this->size(); ++i) {
@@ -189,4 +323,34 @@ public:
         }
         return ret;
     }
+
+
+private:
+    Poly pre(int size) const { return Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }
+
+    Poly rev(int deg = -1) const {
+        Poly ret(*this);
+        if (deg != -1) ret.resize(deg, 0);
+        return Poly(ret.rbegin(), ret.rend());
+    }
 };
+
+template <typename T>
+Polynomial<T> stirling_first_table(int n) {
+    if (n == 0) return {1};
+    Polynomial<T> ret = stirling_first_table<T>(n / 2);
+    ret *= ret.taylor_shift(-(n / 2));
+    if (n % 2) ret = (ret << 1) + ret * (-(n - 1));  // ret *= (x - (n - 1))
+    return ret;
+}
+
+using mint = Modint<998244353>;
+
+int main() {
+    int N;
+    cin >> N;
+    auto ans = stirling_first_table<mint>(N);
+    for (int i = 0; i <= N; ++i) {
+        cout << ans[i] << (i < N ? " " : "\n");
+    }
+}
