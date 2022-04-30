@@ -10,15 +10,21 @@ template <typename Cap, typename Cost>
 class MinCostFlow {
 public:
     MinCostFlow() = default;
-    explicit MinCostFlow(int V) : V(V), G(V) {}
+    explicit MinCostFlow(int V) : V(V), G(V), add(0) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
         G[u].emplace_back(v, cap, cost, (int) G[v].size());
         G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);
     }
 
-    Cost min_cost_flow(int s, int t, Cap f) {
-        Cost ret = 0;
+    void add_edge(int u, int v, Cap lb, Cap ub, Cost cost) {
+        add_edge(u, v, ub - lb, cost);
+        add_edge(u, v, lb, cost - M);
+        add += M * lb;
+    }
+
+    Cost min_cost_flow(int s, int t, Cap f, bool arbitrary = false) {
+        Cost ret = add;
         std::vector<Cost> dist(V);
         std::vector<int> prevv(V), preve(V);
         using P = std::pair<Cost, int>;
@@ -49,10 +55,10 @@ public:
                 }
             }
 
-            if (dist[t] == INF) return -1;  // if the amount of flow is arbitrary, comment this out
+            if (!arbitrary && dist[t] == INF) return -1;
             for (int v = 0; v < V; ++v) h[v] += dist[v];
 
-            // if (h[t] >= 0) break;  // if the amount of flow is arbitrary, uncomment this
+            if (arbitrary && h[t] >= 0) break;
 
             Cap d = f;
             for (int v = t; v != s; v = prevv[v]) {
@@ -79,9 +85,11 @@ private:
     };
 
     static constexpr Cost INF = std::numeric_limits<Cost>::max() / 2;
+    static constexpr Cost M = INF / 1e9;  // large constant used for minimum flow requirement for edges
 
     int V;
     std::vector<std::vector<Edge>> G;
+    Cost add;
 
 
     std::vector<Cost> calculate_initial_potential(int s) {
@@ -102,6 +110,7 @@ private:
         //         }
         //     }
         // }
+
         // return h;
     }
 };

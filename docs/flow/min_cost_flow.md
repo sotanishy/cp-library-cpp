@@ -15,8 +15,11 @@ documentation_of: ../../flow/min_cost_flow.cpp
 - `void add_edge(int u, int v, Cap cap, Cost cost)`
     - 容量 $cap$，コスト $cost$ の辺 $(u, v)$ を追加する
     - 時間計算量: $O(1)$
-- `Cost min_cost_flow(int s, int t, Cap f)`
-    - 始点 $s$ から終点 $t$ への流量 $f$ の最小費用流を求める
+- `void add_edge(int u, int v, Cap lb, Cap ub, Cost cost)`
+    - 最小流量 $lb$, 容量 $ub$，コスト $cost$ の辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
+- `Cost min_cost_flow(int s, int t, Cap f, bool arbitrary)`
+    - 始点 $s$ から終点 $t$ への流量 $f$ の最小費用流を求める．`arbitrary == true` の場合，流量は $f$ 以下の任意の値とする．
     - 時間計算量: $O(fE\log V)$
 
 ## Note
