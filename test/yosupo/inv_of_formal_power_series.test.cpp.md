@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []

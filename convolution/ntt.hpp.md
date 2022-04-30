@@ -14,13 +14,13 @@ data:
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
@@ -52,6 +52,9 @@ data:
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   - icon: ':x:'
+    path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   _isVerificationFailed: true
@@ -137,6 +140,7 @@ data:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp

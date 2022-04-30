@@ -73,6 +73,9 @@ data:
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':x:'
+    path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,6 +165,7 @@ data:
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/subset_convolution.test.cpp
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp

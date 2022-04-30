@@ -120,3 +120,4 @@ Slope Trick は，区分線形凸関数 $f: T \mapsto T$ を管理するテク�
 ## Reference
 
 - [slope trick (1) 解説編](https://maspypy.com/slope-trick-1-%e8%a7%a3%e8%aa%ac%e7%b7%a8)
+- verify: [https://atcoder.jp/contests/abc217/submissions/25616122](https://atcoder.jp/contests/abc217/submissions/25616122)

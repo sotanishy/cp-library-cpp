@@ -260,7 +260,7 @@ data:
     - icon: ':warning:'
       path: math/carmichael.cpp
       title: Carmichael Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
@@ -311,7 +311,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -320,10 +320,10 @@ data:
     - icon: ':warning:'
       path: math/quotients.hpp
       title: Quotient Ranges
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
     - icon: ':heavy_check_mark:'
@@ -797,7 +797,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     - icon: ':heavy_check_mark:'

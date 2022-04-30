@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -138,8 +141,9 @@ data:
   path: math/stirling_first.hpp
   requiredBy: []
   timestamp: '2022-04-28 21:35:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
 documentation_of: math/stirling_first.hpp
 layout: document
 title: Stirling Number of the First Kind
