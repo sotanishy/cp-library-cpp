@@ -13,12 +13,13 @@ int main() {
 
     Vec p1, p2;
     cin >> p1 >> p2;
+    Line l(p1, p2);
     int q;
     cin >> q;
     while (q--) {
         Vec p;
         cin >> p;
-        auto q = reflection(p1, p2, p);
+        auto q = reflection(l, p);
         cout << q.real() << " " << q.imag() << endl;
     }
 }

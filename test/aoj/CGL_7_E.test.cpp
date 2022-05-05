@@ -15,7 +15,7 @@ int main() {
     double r1, r2;
     cin >> p1 >> r1;
     cin >> p2 >> r2;
-    auto ans = intersection_circles(p1, r1, p2, r2);
+    auto ans = intersection(Circle(p1, r1), Circle(p2, r2));
     if (ans.size() == 1) {
         cout << ans[0].real() << " " << ans[0].imag() << " ";
         cout << ans[0].real() << " " << ans[0].imag() << "\n";

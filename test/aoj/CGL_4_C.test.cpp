@@ -1,4 +1,5 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A"
+#define ERROR 0.00001
 
 #include "../../geometry/geometry.cpp"
 
@@ -12,13 +13,13 @@ int main() {
 
     int n;
     cin >> n;
-    vector<Vec> pts(n);
-    for (auto& x : pts) cin >> x;
+    vector<Vec> poly(n);
+    for (auto& x : poly) cin >> x;
     int q;
     cin >> q;
     while (q--) {
-        Vec p;
-        cin >> p;
-        cout << intersect(pts, p) << "\n";
+        Vec p1, p2;
+        cin >> p1 >> p2;
+        cout << area(convex_cut(poly, p1, p2)) << "\n";
     }
 }

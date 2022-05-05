@@ -15,5 +15,5 @@ int main() {
     Vec p1, p2, p3;
     cin >> p1 >> p2 >> p3;
     auto c = incenter(p1, p2, p3);
-    cout << c.real() << " " << c.imag() << " " << dist_segment_point(p1, p2, c) << endl;
+    cout << c.real() << " " << c.imag() << " " << dist(Segment(p1, p2), c) << endl;
 }

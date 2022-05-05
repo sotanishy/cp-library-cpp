@@ -19,7 +19,7 @@ int main() {
     while (q--) {
         Vec p1, p2;
         cin >> p1 >> p2;
-        auto ans = intersection_circle_line(c, r, p1, p2);
+        auto ans = intersection(Circle(c, r), Line(p1, p2));
         if (ans.size() == 1) {
             cout << ans[0].real() << " " << ans[0].imag() << " ";
             cout << ans[0].real() << " " << ans[0].imag() << "\n";

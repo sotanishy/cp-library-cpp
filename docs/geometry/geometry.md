@@ -25,49 +25,54 @@ documentation_of: ../../geometry/geometry.cpp
     - $a$ を角 $ang$ だけ回転させる
     - ***NOT VERIFIED***
 
-- `Vec projection(Vec a, Vec b, Vec c)`
-    - 点 $c$ の直線 $ab$ 上の射影を求める
+- `Vec projection(Line l, Vec p)`
+    - 点 $p$ の直線 $l$ 上の射影を求める
 
-- `Vec reflection(Vec a, Vec b, Vec c)`
-    - 点 $c$ の直線 $ab$ に関して対称な点を求める
+- `Vec reflection(Line l, Vec p)`
+    - 点 $p$ の直線 $l$ に関して対称な点を求める
 
-- `bool ccw(Vec a, Vec b, Vec c)`
+- `int ccw(Vec a, Vec b, Vec c)`
     - $a,b,c$ が同一直線上にあるなら0, $a \rightarrow b \rightarrow c$ が反時計回りなら1，そうでなければ-1を返す
 
-- `bool on_segment(Vec a, Vec b, Vec c)`
-    - 点 $c$ が線分 $ab$ 上にあるか判定する
+- `Line bisector(Vec p, Vec q)`
+    - 点 $p,q$ の垂直二等分線を返す
 
-- `bool intersect_segments(Vec a, Vec b, Vec c, Vec d)`
-    - 線分 $ab$ と線分 $cd$ が交差するか判定する
+- `bool intersect(Segment s, Vec p)`
 
- - `T dist_line_point(Vec a, Vec b, Vec c)`
-    - 直線 $ab$ と点 $c$ の距離を求める
+  `int intersect(Polygon poly, Vec p)`
 
- - `T dist_segment_point(Vec a, Vec b, Vec c)`
-    - 線分 $ab$ と点 $c$ の距離を求める
+  `int intersect(Segment s, Segment t)`
 
- - `T dist_segments(Vec a, Vec b, Vec c, Vec d)`
-    - 線分 $ab$ と線分 $cd$ の距離を求める
+  `int intersect(Circle c1, Circle c2)`
+    - 引数で与えられた2つの対象が交差するか判定する．詳細な仕様はコードのコメントを参照
 
-- `Vec intersection_lines(Vec a, Vec b, Vec c, Vec d)`
-    - 直線 $ab$ と直線 $cd$ の交点を求める
+ - `T dist(Line l, Vec p)`
 
-- `vector<Vec> intersection_circle_line(Vec c, T r, Vec a, Vec b)`
-    - 中心 $c$，半径 $r$ の円と直線 $ab$ の交点を求める
+   `T dist(Segment s, Vec p)`
 
-- `vector<Vec> intersection_circles(Vec c1, T r1, Vec c2, T r2)`
-    - 中心 $c_1$，半径 $r_1$ の円と中心 $c_2$，半径 $r_2$ の円の交点を求める
+   `T dist(Segment s, Segment t)`
+    - 引数で与えられた2つの対象の距離を計算する
 
-- `T area(vector<Vec> pts)`
-    - 多角形 $pts$ の面積を求める
+- `Vec intersection_lines(Line l, Line m)`
+
+- `vector<Vec> intersection(Circle c, Line l)`
+
+  `vector<Vec> intersection(Circle c1, Circle c2)`
+    - 引数で与えられた2つの対象の交点を返す
+
+- `T area(Polygon poly)`
+    - 多角形 $poly$ の面積を求める
     - 時間計算量: $O(n)$
 
-- `T area(vector<Vec> pts)`
-    - 多角形 $pts$ が凸か判定する．`pts` は反時計回りに与えられる必要がある
+- `T area_intersection_circles(Circle c1, Circle c2)`
+    - 円 $c1,c2$ の共通部分の面積を求める
+
+- `T is_convex(Polygon poly)`
+    - 多角形 $poly$ が凸か判定する．`poly` は反時計回りに与えられる必要がある
     - 時間計算量: $O(n)$
 
-- `int contains(vector<Vec> pts, Vec q)`
-    - 多角形 $pts$ が点 $q$ を含むか判定する．内部に含むなら2，境界に含むから1，外部に含むなら0を返す
+- `vector<Vec> convex_cut(Polygon poly, Line l)`
+    - 多角形 $poly$ を直線 $l$ で切断する．詳細な仕様は [凸多角形の切断](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_C) を参照．
     - 時間計算量: $O(n)$
 
 - `Vec centroid(Vec A, Vec B, Vec C)`

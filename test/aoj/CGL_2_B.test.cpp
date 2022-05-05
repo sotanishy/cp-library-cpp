@@ -14,6 +14,6 @@ int main() {
     while (q--) {
         Vec p0, p1, p2, p3;
         cin >> p0 >> p1 >> p2 >> p3;
-        cout << intersect_segments(p0, p1, p2, p3) << "\n";
+        cout << min(1, intersect(Segment(p0, p1), Segment(p2, p3))) << "\n";
     }
 }

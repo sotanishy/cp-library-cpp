@@ -18,9 +18,9 @@ int main() {
         cin >> p2;
         switch (ccw(p0, p1, p2)) {
             case 0:
-            if (on_segment(p0, p1, p2)) cout << "ON_SEGMENT\n";
-            else if (on_segment(p1, p2, p0)) cout << "ONLINE_BACK\n";
-            else if (on_segment(p2, p0, p1)) cout << "ONLINE_FRONT\n";
+            if (intersect(Segment(p0, p1), p2)) cout << "intersect\n";
+            else if (intersect(Segment(p1, p2), p0)) cout << "ONLINE_BACK\n";
+            else if (intersect(Segment(p2, p0), p1)) cout << "ONLINE_FRONT\n";
             break;
 
             case 1:
