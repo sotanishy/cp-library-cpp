@@ -11,12 +11,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
+    ERROR: '0.000001'
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-  bundledCode: "#line 1 \"test/aoj/CGL_1_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
-    \n#define ERROR 0.00000001\n\n#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n\
+    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
+  bundledCode: "#line 1 \"test/aoj/CGL_4_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\"\
+    \n#define ERROR 0.000001\n\n#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
     #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
     \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
@@ -160,31 +160,35 @@ data:
     \ + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y,\
     \ a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std {\nT norm(const Vec&\
     \ a) { return dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a));\
-    \ }\n}\n\n*/\n#line 5 \"test/aoj/CGL_1_B.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    \ }\n}\n\n*/\n#line 5 \"test/aoj/CGL_4_B.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    Vec p1,\
-    \ p2;\n    cin >> p1 >> p2;\n    Line l(p1, p2);\n    int q;\n    cin >> q;\n\
-    \    while (q--) {\n        Vec p;\n        cin >> p;\n        auto q = reflection(l,\
-    \ p);\n        cout << q.real() << \" \" << q.imag() << endl;\n    }\n}\n\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
-    \n#define ERROR 0.00000001\n\n#include \"../../geometry/geometry.cpp\"\n\n#include\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
+    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& x : pts) cin >> x;\n \
+    \   auto ch = convex_hull(pts);\n    int j = 0;\n    T ans = 0;\n    for (int\
+    \ i = 0; i < n; ++i) {\n        j = max(i, j);\n        while (lt(abs(ch[i]-ch[j%n]),\
+    \ abs(ch[i]-ch[(j+1)%n]))) ++j;\n        ans = max(ans, abs(ch[j%n] - ch[i]));\n\
+    \    }\n    cout << ans << endl;\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\"\
+    \n#define ERROR 0.000001\n\n#include \"../../geometry/geometry.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    Vec p1,\
-    \ p2;\n    cin >> p1 >> p2;\n    Line l(p1, p2);\n    int q;\n    cin >> q;\n\
-    \    while (q--) {\n        Vec p;\n        cin >> p;\n        auto q = reflection(l,\
-    \ p);\n        cout << q.real() << \" \" << q.imag() << endl;\n    }\n}\n\n"
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
+    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& x : pts) cin >> x;\n \
+    \   auto ch = convex_hull(pts);\n    int j = 0;\n    T ans = 0;\n    for (int\
+    \ i = 0; i < n; ++i) {\n        j = max(i, j);\n        while (lt(abs(ch[i]-ch[j%n]),\
+    \ abs(ch[i]-ch[(j+1)%n]))) ++j;\n        ans = max(ans, abs(ch[j%n] - ch[i]));\n\
+    \    }\n    cout << ans << endl;\n}"
   dependsOn:
   - geometry/geometry.cpp
   isVerificationFile: true
-  path: test/aoj/CGL_1_B.test.cpp
+  path: test/aoj/CGL_4_B.test.cpp
   requiredBy: []
   timestamp: '2022-05-05 20:41:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_1_B.test.cpp
+documentation_of: test/aoj/CGL_4_B.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_1_B.test.cpp
-- /verify/test/aoj/CGL_1_B.test.cpp.html
-title: test/aoj/CGL_1_B.test.cpp
+- /verify/test/aoj/CGL_4_B.test.cpp
+- /verify/test/aoj/CGL_4_B.test.cpp.html
+title: test/aoj/CGL_4_B.test.cpp
 ---

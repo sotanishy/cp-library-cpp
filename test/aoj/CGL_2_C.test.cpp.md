@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/geometry.cpp
     title: Geometry
   _extendedRequiredBy: []
@@ -21,77 +21,97 @@ data:
     #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
     \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
     \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
-    \ < eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T\
-    \ a, T b) { return a < b + eps; }\n\nstd::istream& operator>>(std::istream& is,\
-    \ Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
-    }\n\nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
+    \ < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline\
+    \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
+    \ a < b + eps; }\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n   \
+    \ T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nstruct Line\
+    \ {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec& p1, const Vec&\
+    \ p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct\
+    \ Segment {\n    Vec p1, p2;\n    Segment() = default;\n    Segment(const Vec&\
+    \ p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1;\
+    \ }\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n  \
+    \  Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
+    \nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
     }\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
     }\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
-    }\n\nVec projection(const Vec& a, const Vec& b, const Vec& c) {\n    return a\
-    \ + dot(b - a, c - a) * (b - a) / std::norm(b - a);\n}\n\nVec reflection(const\
-    \ Vec& a, const Vec& b, const Vec& c) {\n    return T(2) * projection(a, b, c)\
-    \ - c;\n}\n\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if (eq(cross(b\
-    \ - a, c - a), 0)) return 0;  // collinear\n    if (lt(cross(b - a, c - a), 0))\
-    \ return -1;  // clockwise\n    return 1;  // counter clockwise\n}\n\nbool on_segment(const\
-    \ Vec& a, const Vec& b, const Vec& c) {\n    Vec u = a - c, v = b - c;\n    return\
-    \ eq(cross(u, v), 0) && leq(dot(u, v), 0);\n}\n\nbool intersect_segments(const\
-    \ Vec& a, const Vec& b, const Vec& c, const Vec& d) {\n    if (ccw(a, c, d) !=\
-    \ ccw(b, c, d) && ccw(a, b, c) != ccw(a, b, d)) return true;\n    if (on_segment(a,\
-    \ b, c) || on_segment(c, d, a) || on_segment(c, d, a) || on_segment(c, d, b))\
-    \ return true;\n    return false;\n}\n\nT dist_line_point(const Vec& a, const\
-    \ Vec& b, const Vec& c) {\n    return std::abs(cross(b - a, c - a)) / std::abs(b\
-    \ - a);\n}\n\nT dist_segment_point(const Vec& a, const Vec& b, const Vec& c) {\n\
-    \    if (lt(dot(b - a, c - a), 0)) return std::abs(c - a);\n    if (lt(dot(a -\
-    \ b, c - b), 0)) return std::abs(c - b);\n    return std::abs(cross(b - a, c -\
-    \ a)) / std::abs(b - a);\n}\n\nT dist_segments(const Vec& a, const Vec& b, const\
-    \ Vec& c, const Vec& d) {\n    if (intersect_segments(a, b, c, d)) return T(0);\n\
-    \    return std::min(\n        std::min(dist_segment_point(a, b, c), dist_segment_point(a,\
-    \ b, d)),\n        std::min(dist_segment_point(c, d, a), dist_segment_point(c,\
-    \ d, b))\n    );\n}\n\nVec intersection_lines(const Vec& a, const Vec& b, const\
-    \ Vec& c, const Vec& d) {\n    Vec p = b - a;\n    Vec q = d - c;\n    Vec r =\
-    \ c - a;\n    assert(!eq(cross(q, p), 0)); // not parallel\n    return a + cross(q,\
-    \ r) / cross(q, p) * p;\n}\n\nstd::vector<Vec> intersection_circle_line(const\
-    \ Vec& c, T r, const Vec& a, const Vec& b) {\n    T d = dist_line_point(a, b,\
-    \ c);\n    if (lt(r, d)) return {};  // no intersection\n    Vec e1 = (b - a)\
-    \ / std::abs(b - a);\n    Vec e2 = Vec(-e1.imag(), e1.real());\n    if (ccw(c,\
-    \ a, b) == 1) e2 *= -1;\n    if (eq(r, d)) return {c + d*e2};  // tangent\n  \
-    \  T t = std::sqrt(r*r - d*d);\n    return {c + d*e2 + t*e1, c + d*e2 - t*e1};\n\
-    }\n\nstd::vector<Vec> intersection_circles(const Vec& c1, T r1, const Vec& c2,\
-    \ T r2) {\n    T d = std::abs(c1 - c2);\n    if (lt(r1 + r2, d)) return {};  //\
-    \ outside\n    Vec e1 = (c2 - c1) / std::abs(c2 - c1);\n    Vec e2 = Vec(-e1.imag(),\
-    \ e1.real());\n    if (lt(d, std::abs(r2 - r1))) return {};  // contain\n    if\
-    \ (eq(d, std::abs(r2 - r1))) return {c1 + r1*e1};  // tangent\n    T x = (r1*r1\
-    \ - r2*r2 + d*d) / (2*d);\n    T y = std::sqrt(r1*r1 - x*x);\n    return {c1 +\
-    \ x*e1 + y*e2, c1 + x*e1 - y*e2};\n}\n\nT area(const std::vector<Vec>& pts) {\n\
-    \    int n = pts.size();\n    T res = 0;\n    for (int i = 0; i < n; ++i) {\n\
-    \        res += cross(pts[i], pts[(i + 1) % n]);\n    }\n    return std::abs(res)\
-    \ / T(2);\n}\n\nT area_intersection_circles(const Vec& c1, T r1, const Vec& c2,\
-    \ T r2) {\n    T d = std::abs(c2 - c1);\n    if (leq(r1 + r2, d)) return 0;  //\
-    \ outside\n    if (leq(d, std::abs(r2 - r1))) {  // contain\n        T r = std::min(r1,\
-    \ r2);\n        return PI * r * r;\n    }\n    T ans = 0;\n    T a;\n    a = std::acos((r1*r1+d*d-r2*r2)/(2*r1*d));\n\
-    \    ans += r1*r1*(a - std::sin(a)*std::cos(a));\n    a = std::acos((r2*r2+d*d-r1*r1)/(2*r2*d));\n\
-    \    ans += r2*r2*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n\nbool is_convex(const\
-    \ std::vector<Vec>& pts) {\n    int n = pts.size();\n    for (int i = 0; i < n;\
-    \ ++i) {\n        if (lt(cross(pts[(i+1)%n] - pts[i], pts[(i+2)%n] - pts[(i+1)%n]),\
-    \ 0)) {\n            return false;\n        }\n    }\n    return true;\n}\n\n\
-    int contains(const std::vector<Vec>& pts, const Vec& q) {\n    int n = pts.size();\n\
-    \    bool in = 0;\n    for (int i = 0; i < n; ++i) {\n        auto a = pts[i]\
-    \ - q, b = pts[(i+1)%n] - q;\n        if (eq(cross(a, b), 0) && (lt(dot(a, b),\
-    \ 0) || eq(dot(a, b), 0))) return 1;\n        if (a.imag() > b.imag()) std::swap(a,\
-    \ b);\n        if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0))\
-    \ in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\nVec centroid(const Vec& A, const\
-    \ Vec& B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return (A + B +\
-    \ C) / T(3);\n}\n\nVec incenter(const Vec& A, const Vec& B, const Vec& C) {\n\
-    \    assert(ccw(A, B, C) != 0);\n    T a = std::abs(B - C);\n    T b = std::abs(C\
-    \ - A);\n    T c = std::abs(A - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n\
-    }\n\nVec circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
-    \ B, C) != 0);\n    auto p = B - A, q = C - A;\n    return A + intersection_lines(p/T(2),\
-    \ p/T(2) + Vec(-p.imag(), p.real()),\n                                  q/T(2),\
-    \ q/T(2) + Vec(-q.imag(), q.real()));\n}\n\n// large error but beautiful\n// Vec\
-    \ circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n//     assert(ccw(A,\
-    \ B, C) != 0);\n//     Vec p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p)\
-    \ * dot(q, r);\n//     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r)\
-    \ * dot(p, q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\nstd::vector<Vec>\
+    }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p -\
+    \ l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line&\
+    \ l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n\
+    // 1: counter-clockwise\n// 2: clockwise\nint ccw(const Vec& a, const Vec& b,\
+    \ const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b\
+    \ - a, c - a), 0)) return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p,\
+    \ const Vec& q) {\n    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return\
+    \ Line(m, m + Vec(-v.imag(), v.real()));\n}\n\nbool intersect(const Segment& s,\
+    \ const Vec& p) {\n    Vec u = s.p1 - p, v = s.p2 - p;\n    return eq(cross(u,\
+    \ v), 0) && leq(dot(u, v), 0);\n}\n\n// 0: outside\n// 1: on the border\n// 2:\
+    \ inside\nint intersect(const Polygon& poly, const Vec& p) {\n    const int n\
+    \ = poly.size();\n    bool in = 0;\n    for (int i = 0; i < n; ++i) {\n      \
+    \  auto a = poly[i] - p, b = poly[(i+1)%n] - p;\n        if (eq(cross(a, b), 0)\
+    \ && (lt(dot(a, b), 0) || eq(dot(a, b), 0))) return 1;\n        if (a.imag() >\
+    \ b.imag()) std::swap(a, b);\n        if (leq(a.imag(), 0) && lt(0, b.imag())\
+    \ && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\n// 0: not\
+    \ intersect\n// 1: intersect at an end\n// 2: intersect\nint intersect(const Segment&\
+    \ s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c = t.p1, d =\
+    \ t.p2;\n    auto u = ccw(a, b, c) * ccw(a, b, d);\n    auto v = ccw(c, d, a)\
+    \ * ccw(c, d, b);\n    if (u == 0 || v == 0) return 1;\n    if (u == -1 && v ==\
+    \ -1) return 2;\n    return 0;\n}\n\n// 0: inside\n// 1: inscribe\n// 2: intersect\n\
+    // 3: circumscribe\n// 4: outside\nint intersect(const Circle& c1, const Circle&\
+    \ c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d, std::abs(c2.r - c1.r)))\
+    \ return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return 1;\n    if (eq(c1.r\
+    \ + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return 4;\n    return 2;\n\
+    }\n\nT dist(const Line& l, const Vec& p) {\n    return std::abs(cross(p - l.p1,\
+    \ l.dir())) / std::abs(l.dir());\n}\n\nT dist(const Segment& s, const Vec& p)\
+    \ {\n    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n    if\
+    \ (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return std::abs(cross(p\
+    \ - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment& s, const\
+    \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min(\n\
+    \        std::min(dist(s, t.p1), dist(s, t.p2)),\n        std::min(dist(t, s.p1),\
+    \ dist(t, s.p2))\n    );\n}\n\nVec intersection(const Line& l, const Line& m)\
+    \ {\n    Vec r = m.p1 - l.p1;\n    assert(!eq(cross(l.dir(), m.dir()), 0)); //\
+    \ not parallel\n    return l.p1 + cross(m.dir(), r) / cross(m.dir(), l.dir())\
+    \ * l.dir();\n}\n\nstd::vector<Vec> intersection(const Circle& c, const Line&\
+    \ l) {\n    T d = dist(l, c.c);\n    if (lt(c.r, d)) return {};  // no intersection\n\
+    \    Vec e1 = l.dir() / std::abs(l.dir());\n    Vec e2 = Vec(-e1.imag(), e1.real());\n\
+    \    if (ccw(c.c, l.p1, l.p2) == 1) e2 *= -1;\n    if (eq(c.r, d)) return {c.c\
+    \ + d*e2};  // tangent\n    T t = std::sqrt(c.r*c.r - d*d);\n    return {c.c +\
+    \ d*e2 + t*e1, c.c + d*e2 - t*e1};\n}\n\nstd::vector<Vec> intersection(const Circle&\
+    \ c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(c1.r +\
+    \ c2.r, d)) return {};  // outside\n    Vec e1 = (c2.c - c1.c) / std::abs(c2.c\
+    \ - c1.c);\n    Vec e2 = Vec(-e1.imag(), e1.real());\n    if (lt(d, std::abs(c2.r\
+    \ - c1.r))) return {};  // contain\n    if (eq(d, std::abs(c2.r - c1.r))) return\
+    \ {c1.c + c1.r*e1};  // tangent\n    T x = (c1.r*c1.r - c2.r*c2.r + d*d) / (2*d);\n\
+    \    T y = std::sqrt(c1.r*c1.r - x*x);\n    return {c1.c + x*e1 + y*e2, c1.c +\
+    \ x*e1 - y*e2};\n}\n\nT area(const Polygon& poly) {\n    const int n = poly.size();\n\
+    \    T res = 0;\n    for (int i = 0; i < n; ++i) {\n        res += cross(poly[i],\
+    \ poly[(i + 1) % n]);\n    }\n    return std::abs(res) / T(2);\n}\n\nT area_intersection_circles(const\
+    \ Circle& c1, const Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r\
+    \ + c2.r, d)) return 0;  // outside\n    if (leq(d, std::abs(c2.r - c1.r))) {\
+    \  // contain\n        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n\
+    \    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
+    \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
+    \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n\nbool\
+    \ is_convex(const Polygon& poly) {\n    int n = poly.size();\n    for (int i =\
+    \ 0; i < n; ++i) {\n        if (lt(cross(poly[(i+1)%n] - poly[i], poly[(i+2)%n]\
+    \ - poly[(i+1)%n]), 0)) {\n            return false;\n        }\n    }\n    return\
+    \ true;\n}\n\nstd::vector<Vec> convex_cut(const Polygon& poly, const Line& l)\
+    \ {\n    const int n = poly.size();\n    std::vector<Vec> res;\n    for (int i\
+    \ = 0; i < n; ++i) {\n        auto p = poly[i], q = poly[(i+1)%n];\n        if\
+    \ (ccw(l.p1, l.p2, p) != -1) {\n            if (res.empty() || !eq(res.back(),\
+    \ p)) {\n                res.push_back(p);\n            }\n        }\n       \
+    \ if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q) < 0) {\n            auto c = intersection(Line(p,\
+    \ q), l);\n            if (res.empty() || !eq(res.back(), c)) {\n            \
+    \    res.push_back(c);\n            }\n        }\n    }\n    return res;\n}\n\n\
+    Vec centroid(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A, B,\
+    \ C) != 0);\n    return (A + B + C) / T(3);\n}\n\nVec incenter(const Vec& A, const\
+    \ Vec& B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    T a = std::abs(B\
+    \ - C);\n    T b = std::abs(C - A);\n    T c = std::abs(A - B);\n    return (a*A\
+    \ + b*B + c*C) / (a + b + c);\n}\n\nVec circumcenter(const Vec& A, const Vec&\
+    \ B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return intersection(bisector(A,\
+    \ B), bisector(A, C));\n}\n\n// large error but beautiful\n// Vec circumcenter(const\
+    \ Vec& A, const Vec& B, const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//\
+    \     Vec p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q,\
+    \ r);\n//     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r) * dot(p,\
+    \ q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\nstd::vector<Vec>\
     \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
     \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
     \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
@@ -120,7 +140,7 @@ data:
     \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
     \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
     \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
-    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n\n/*\n// for 3d geometry\n\
+    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n/*\n// for 3d geometry\n\
     // functions that will work without any modifications\n// projection, reflection,\
     \ dist_line_point, dist_segment_point, dist_segments,\n// centroid, incenter\n\
     \nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T\
@@ -140,34 +160,25 @@ data:
     \ + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y,\
     \ a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std {\nT norm(const Vec&\
     \ a) { return dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a));\
-    \ }\n}\n\n*/\n\n/*\n// for integer coordinates\n// operations with no floating\
-    \ point error\n\nvoid sort_by_arg(std::vector<pair<Vec, int>>& pts) {\n    auto\
-    \ top = [&](auto& a) {\n        return a.real() > 0 || (a.imag() == 0 && a.real()\
-    \ > 0);\n    };\n    auto cmp = [&](auto& p, auto& q) {\n        auto a = p.first;\n\
-    \        auto b = q.first;\n        bool ta = top(a), tb = top(b);\n        if\
-    \ (ta != tb) return tb;\n        return cross(a, b) > 0;\n    };\n    std::sort(pts.begin(),\
-    \ pts.end(), cmp);\n}\n\n// watch out for overflow\nbool compare_angle(const Vec&\
-    \ a, const Vec& b, const Vec& c, const Vec& d) {\n    Vec u(dot(a, b), std::abs(cross(a,\
-    \ b)));\n    Vec v(dot(c, d), std::abs(cross(c, d)));\n    return cross(u, v)\
-    \ > 0;\n}\n\n*/\n#line 5 \"test/aoj/CGL_2_C.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    \ }\n}\n\n*/\n#line 5 \"test/aoj/CGL_2_C.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    int q;\n\
     \    cin >> q;\n    while (q--) {\n        Vec p0, p1, p2, p3;\n        cin >>\
-    \ p0 >> p1 >> p2 >> p3;\n        auto q = intersection_lines(p0, p1, p2, p3);\n\
-    \        cout << q.real() << \" \" << q.imag() << \"\\n\";\n    }\n}\n"
+    \ p0 >> p1 >> p2 >> p3;\n        auto q = intersection(Line(p0, p1), Line(p2,\
+    \ p3));\n        cout << q.real() << \" \" << q.imag() << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
     \n#define ERROR 0.00000001\n\n#include \"../../geometry/geometry.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    int q;\n\
     \    cin >> q;\n    while (q--) {\n        Vec p0, p1, p2, p3;\n        cin >>\
-    \ p0 >> p1 >> p2 >> p3;\n        auto q = intersection_lines(p0, p1, p2, p3);\n\
-    \        cout << q.real() << \" \" << q.imag() << \"\\n\";\n    }\n}"
+    \ p0 >> p1 >> p2 >> p3;\n        auto q = intersection(Line(p0, p1), Line(p2,\
+    \ p3));\n        cout << q.real() << \" \" << q.imag() << \"\\n\";\n    }\n}"
   dependsOn:
   - geometry/geometry.cpp
   isVerificationFile: true
   path: test/aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2022-03-06 22:28:09+09:00'
+  timestamp: '2022-05-05 20:41:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_C.test.cpp

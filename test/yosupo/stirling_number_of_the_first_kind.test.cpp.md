@@ -167,23 +167,15 @@ data:
     \    if (n % 2) ret = (ret << 1) + ret * (-(n - 1));  // ret *= (x - (n - 1))\n\
     \    return ret;\n}\n#line 5 \"test/yosupo/stirling_number_of_the_first_kind.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    template <typename T>\nPolynomial<T> stirling_first_table(int n) {\n    if (n\
-    \ == 0) return {1};\n    Polynomial<T> ret = stirling_first_table<T>(n / 2);\n\
-    \    ret *= ret.taylor_shift(-(n / 2));\n    if (n % 2) ret = (ret << 1) + ret\
-    \ * (-(n - 1));  // ret *= (x - (n - 1))\n    return ret;\n}\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    int N;\n    cin >> N;\n    auto ans = stirling_first_table<mint>(N);\n\
-    \    for (int i = 0; i <= N; ++i) {\n        cout << ans[i] << (i < N ? \" \"\
-    \ : \"\\n\");\n    }\n}\n"
+    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
+    \   auto ans = stirling_first_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
+    \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/stirling_first.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    template <typename T>\nPolynomial<T> stirling_first_table(int n) {\n    if (n\
-    \ == 0) return {1};\n    Polynomial<T> ret = stirling_first_table<T>(n / 2);\n\
-    \    ret *= ret.taylor_shift(-(n / 2));\n    if (n % 2) ret = (ret << 1) + ret\
-    \ * (-(n - 1));  // ret *= (x - (n - 1))\n    return ret;\n}\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    int N;\n    cin >> N;\n    auto ans = stirling_first_table<mint>(N);\n\
-    \    for (int i = 0; i <= N; ++i) {\n        cout << ans[i] << (i < N ? \" \"\
-    \ : \"\\n\");\n    }\n}"
+    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
+    \   auto ans = stirling_first_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
+    \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}"
   dependsOn:
   - math/modint.cpp
   - math/stirling_first.hpp
@@ -192,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-04-30 10:47:11+09:00'
+  timestamp: '2022-05-05 20:41:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/stirling_number_of_the_first_kind.test.cpp

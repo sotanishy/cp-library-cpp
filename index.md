@@ -190,7 +190,7 @@ data:
       title: Minimum Cost Flow
   - name: geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/geometry.cpp
       title: Geometry
   - name: graph
@@ -477,19 +477,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_B.test.cpp
       title: test/aoj/CGL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_1_C.test.cpp
       title: test/aoj/CGL_1_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_A.test.cpp
       title: test/aoj/CGL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_C.test.cpp
       title: test/aoj/CGL_2_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -505,8 +505,17 @@ data:
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_4_B.test.cpp
+      title: test/aoj/CGL_4_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_4_C.test.cpp
+      title: test/aoj/CGL_4_C.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_5_A.test.cpp
       title: test/aoj/CGL_5_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_7_A.test.cpp
+      title: test/aoj/CGL_7_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_B.test.cpp
       title: test/aoj/CGL_7_B.test.cpp
