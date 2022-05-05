@@ -66,15 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_G.test.cpp
     title: test/aoj/CGL_7_G.test.cpp
-  - icon: ':x:'
-    path: test/aoj/CGL_7_H.test.cpp
-    title: test/aoj/CGL_7_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_I.test.cpp
     title: test/aoj/CGL_7_I.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n#include\
@@ -402,7 +399,7 @@ data:
   path: geometry/geometry.cpp
   requiredBy: []
   timestamp: '2022-05-05 23:20:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_1_B.test.cpp
@@ -417,7 +414,6 @@ data:
   - test/aoj/CGL_4_A.test.cpp
   - test/aoj/CGL_7_F.test.cpp
   - test/aoj/CGL_7_A.test.cpp
-  - test/aoj/CGL_7_H.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_2_A.test.cpp

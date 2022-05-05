@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.cpp
     title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
-  bundledCode: "#line 1 \"test/aoj/CGL_7_I.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\"\
+    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I
+  bundledCode: "#line 1 \"test/aoj/CGL_7_I.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I\"\
     \n#define ERROR 0.000001\n\n#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
     #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
@@ -180,7 +180,7 @@ data:
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    Vec c1,\
     \ c2;\n    T r1, r2;\n    cin >> c1 >> r1 >> c2 >> r2;\n    cout << area_intersection(Circle(c1,\
     \ r1), Circle(c2, r2)) << endl;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\"\
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I\"\
     \n#define ERROR 0.000001\n\n#include \"../../geometry/geometry.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    Vec c1,\
@@ -191,8 +191,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_I.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 23:20:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-05 23:33:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_I.test.cpp
 layout: document

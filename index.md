@@ -190,7 +190,7 @@ data:
       title: Minimum Cost Flow
   - name: geometry
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.cpp
       title: Geometry
   - name: graph
@@ -368,7 +368,7 @@ data:
       title: Range Set
     - icon: ':warning:'
       path: misc/stable_matching.hpp
-      title: misc/stable_matching.hpp
+      title: Stable Matching
     - icon: ':warning:'
       path: misc/timer.cpp
       title: misc/timer.cpp
@@ -537,10 +537,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_G.test.cpp
       title: test/aoj/CGL_7_G.test.cpp
-    - icon: ':x:'
-      path: test/aoj/CGL_7_H.test.cpp
-      title: test/aoj/CGL_7_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_I.test.cpp
       title: test/aoj/CGL_7_I.test.cpp
     - icon: ':heavy_check_mark:'
