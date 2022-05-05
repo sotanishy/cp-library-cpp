@@ -103,14 +103,11 @@ int intersect(const Polygon& poly, const Vec& p) {
     return in ? 2 : 0;
 }
 
-// 0: not intersect
-// 1: intersect at an end
-// 2: intersect
-int intersect(const Segment& s, const Segment& t) {
+bool intersect(const Segment& s, const Segment& t) {
     auto a = s.p1, b = s.p2;
     auto c = t.p1, d = t.p2;
+    if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b)) return 2;
     if (intersect(s, c) || intersect(s, d) || intersect(t, a) || intersect(t, b)) return 1;
-    if (ccw(a, b, c) * ccw(a, b, d) < -1 && ccw(c, d, a) * ccw(c, d, b) < -1) return 2;
     return 0;
 }
 
@@ -368,7 +365,7 @@ void sort_by_arg(std::vector<Vec>& pts) {
 /*
 // for 3d geometry
 // functions that will work without any modifications
-// projection, reflection, dist_line_point, dist_segment_point, dist_segments,
+// projection, reflection, dist
 // centroid, incenter
 
 struct Vec {
