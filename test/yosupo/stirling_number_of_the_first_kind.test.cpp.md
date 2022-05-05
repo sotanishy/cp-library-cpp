@@ -20,11 +20,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
     links:
-    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
   bundledCode: "#line 1 \"test/yosupo/stirling_number_of_the_first_kind.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
     \n\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\
     /*\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
     \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
@@ -170,7 +170,7 @@ data:
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   auto ans = stirling_first_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
     \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/stirling_first.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
@@ -184,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 20:41:56+09:00'
+  timestamp: '2022-05-05 22:04:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/stirling_number_of_the_first_kind.test.cpp

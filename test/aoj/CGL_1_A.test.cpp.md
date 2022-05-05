@@ -52,25 +52,24 @@ data:
     \ && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\n// 0: not\
     \ intersect\n// 1: intersect at an end\n// 2: intersect\nint intersect(const Segment&\
     \ s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c = t.p1, d =\
-    \ t.p2;\n    auto u = ccw(a, b, c) * ccw(a, b, d);\n    auto v = ccw(c, d, a)\
-    \ * ccw(c, d, b);\n    if (u == 0 || v == 0) return 1;\n    if (u == -1 && v ==\
-    \ -1) return 2;\n    return 0;\n}\n\n// 0: inside\n// 1: inscribe\n// 2: intersect\n\
-    // 3: circumscribe\n// 4: outside\nint intersect(const Circle& c1, const Circle&\
-    \ c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d, std::abs(c2.r - c1.r)))\
-    \ return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return 1;\n    if (eq(c1.r\
-    \ + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return 4;\n    return 2;\n\
-    }\n\nT dist(const Line& l, const Vec& p) {\n    return std::abs(cross(p - l.p1,\
-    \ l.dir())) / std::abs(l.dir());\n}\n\nT dist(const Segment& s, const Vec& p)\
-    \ {\n    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n    if\
-    \ (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return std::abs(cross(p\
-    \ - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment& s, const\
-    \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min(\n\
-    \        std::min(dist(s, t.p1), dist(s, t.p2)),\n        std::min(dist(t, s.p1),\
-    \ dist(t, s.p2))\n    );\n}\n\nVec intersection(const Line& l, const Line& m)\
-    \ {\n    Vec r = m.p1 - l.p1;\n    assert(!eq(cross(l.dir(), m.dir()), 0)); //\
-    \ not parallel\n    return l.p1 + cross(m.dir(), r) / cross(m.dir(), l.dir())\
-    \ * l.dir();\n}\n\nstd::vector<Vec> intersection(const Circle& c, const Line&\
-    \ l) {\n    T d = dist(l, c.c);\n    if (lt(c.r, d)) return {};  // no intersection\n\
+    \ t.p2;\n    if (intersect(s, c) || intersect(s, d) || intersect(t, a) || intersect(t,\
+    \ b)) return 1;\n    if (ccw(a, b, c) * ccw(a, b, d) < -1 && ccw(c, d, a) * ccw(c,\
+    \ d, b) < -1) return 2;\n    return 0;\n}\n\n// 0: inside\n// 1: inscribe\n//\
+    \ 2: intersect\n// 3: circumscribe\n// 4: outside\nint intersect(const Circle&\
+    \ c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d, std::abs(c2.r\
+    \ - c1.r))) return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return 1;\n    if\
+    \ (eq(c1.r + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return 4;\n    return\
+    \ 2;\n}\n\nT dist(const Line& l, const Vec& p) {\n    return std::abs(cross(p\
+    \ - l.p1, l.dir())) / std::abs(l.dir());\n}\n\nT dist(const Segment& s, const\
+    \ Vec& p) {\n    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n\
+    \    if (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return\
+    \ std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment&\
+    \ s, const Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min({dist(s,\
+    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n\nVec intersection(const\
+    \ Line& l, const Line& m) {\n    Vec r = m.p1 - l.p1;\n    assert(!eq(cross(l.dir(),\
+    \ m.dir()), 0)); // not parallel\n    return l.p1 + cross(m.dir(), r) / cross(m.dir(),\
+    \ l.dir()) * l.dir();\n}\n\nstd::vector<Vec> intersection(const Circle& c, const\
+    \ Line& l) {\n    T d = dist(l, c.c);\n    if (lt(c.r, d)) return {};  // no intersection\n\
     \    Vec e1 = l.dir() / std::abs(l.dir());\n    Vec e2 = Vec(-e1.imag(), e1.real());\n\
     \    if (ccw(c.c, l.p1, l.p2) == 1) e2 *= -1;\n    if (eq(c.r, d)) return {c.c\
     \ + d*e2};  // tangent\n    T t = std::sqrt(c.r*c.r - d*d);\n    return {c.c +\
@@ -83,10 +82,10 @@ data:
     \    T y = std::sqrt(c1.r*c1.r - x*x);\n    return {c1.c + x*e1 + y*e2, c1.c +\
     \ x*e1 - y*e2};\n}\n\nT area(const Polygon& poly) {\n    const int n = poly.size();\n\
     \    T res = 0;\n    for (int i = 0; i < n; ++i) {\n        res += cross(poly[i],\
-    \ poly[(i + 1) % n]);\n    }\n    return std::abs(res) / T(2);\n}\n\nT area_intersection_circles(const\
+    \ poly[(i + 1) % n]);\n    }\n    return std::abs(res) / T(2);\n}\n\nT area_intersection(const\
     \ Circle& c1, const Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r\
     \ + c2.r, d)) return 0;  // outside\n    if (leq(d, std::abs(c2.r - c1.r))) {\
-    \  // contain\n        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n\
+    \  // inside\n        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n\
     \    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
     \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
     \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n\nbool\
@@ -111,7 +110,25 @@ data:
     \ Vec& A, const Vec& B, const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//\
     \     Vec p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q,\
     \ r);\n//     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r) * dot(p,\
-    \ q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\nstd::vector<Vec>\
+    \ q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\nstd::pair<Vec,\
+    \ Vec> tangent_points(const Circle& c, const Vec& p) {\n    auto m = (p + c.c)\
+    \ / T(2);\n    auto is = intersection(c, Circle(m, std::abs(p - m)));\n    return\
+    \ {is[0], is[1]};\n}\n\n// for each l, l.p1 is a tangent point of c1\nstd::vector<Line>\
+    \ common_tangents(Circle c1, Circle c2) {\n    assert(!eq(c1.c, c2.c) || !eq(c1.r,\
+    \ c2.r));\n    int cnt = intersect(c1, c2);  // number of common tangents\n  \
+    \  std::vector<Line> ret;\n    if (cnt == 0) {\n        return ret;\n    }\n\n\
+    \    // external\n    if (eq(c1.r, c2.r)) {\n        auto d = c2.c - c1.c;\n \
+    \       Vec e(-d.imag(), d.real());\n        e = e / std::abs(e) * c1.r;\n   \
+    \     ret.push_back(Line(c1.c + e, c1.c + e + d));\n        ret.push_back(Line(c1.c\
+    \ - e, c1.c - e + d));\n    } else {\n        auto p = (-c2.r*c1.c + c1.r*c2.c)\
+    \ / (c1.r - c2.r);\n        if (cnt == 1) {\n            Vec q(-p.imag(), p.real());\n\
+    \            return {Line(p, q)};\n        } else {\n            auto [a, b] =\
+    \ tangent_points(c1, p);\n            ret.push_back(Line(a, p));\n           \
+    \ ret.push_back(Line(b, p));\n        }\n    }\n\n    // internal\n    auto p\
+    \ = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);\n    if (cnt == 3) {\n        Vec\
+    \ q(-p.imag(), p.real());\n        ret.push_back(Line(p, q));\n    } else if (cnt\
+    \ == 4) {\n        auto [a, b] = tangent_points(c1, p);\n        ret.push_back(Line(a,\
+    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nstd::vector<Vec>\
     \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
     \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
     \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
@@ -178,7 +195,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 20:41:56+09:00'
+  timestamp: '2022-05-05 22:04:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_A.test.cpp
