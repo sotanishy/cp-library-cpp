@@ -6,16 +6,16 @@ data:
     title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
+    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
-  bundledCode: "#line 1 \"test/aoj/CGL_4_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
+    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
+  bundledCode: "#line 1 \"test/aoj/CGL_4_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\"\
     \n#define ERROR 0.00001\n\n#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
     #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
@@ -184,7 +184,7 @@ data:
     \    int q;\n    cin >> q;\n    while (q--) {\n        Vec p1, p2;\n        cin\
     \ >> p1 >> p2;\n        cout << area(convex_cut(poly, Line(p1, p2))) << \"\\n\"\
     ;\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\"\
     \n#define ERROR 0.00001\n\n#include \"../../geometry/geometry.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
@@ -197,8 +197,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_C.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 22:04:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-05 23:09:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_C.test.cpp
 layout: document
