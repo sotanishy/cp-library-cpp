@@ -49,13 +49,12 @@ data:
     \  auto a = poly[i] - p, b = poly[(i+1)%n] - p;\n        if (eq(cross(a, b), 0)\
     \ && (lt(dot(a, b), 0) || eq(dot(a, b), 0))) return 1;\n        if (a.imag() >\
     \ b.imag()) std::swap(a, b);\n        if (leq(a.imag(), 0) && lt(0, b.imag())\
-    \ && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\n// 0: not\
-    \ intersect\n// 1: intersect at an end\n// 2: intersect\nint intersect(const Segment&\
-    \ s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c = t.p1, d =\
-    \ t.p2;\n    if (intersect(s, c) || intersect(s, d) || intersect(t, a) || intersect(t,\
-    \ b)) return 1;\n    if (ccw(a, b, c) * ccw(a, b, d) < -1 && ccw(c, d, a) * ccw(c,\
-    \ d, b) < -1) return 2;\n    return 0;\n}\n\n// 0: inside\n// 1: inscribe\n//\
-    \ 2: intersect\n// 3: circumscribe\n// 4: outside\nint intersect(const Circle&\
+    \ && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\nbool intersect(const\
+    \ Segment& s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c =\
+    \ t.p1, d = t.p2;\n    if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c,\
+    \ d, b)) return 2;\n    if (intersect(s, c) || intersect(s, d) || intersect(t,\
+    \ a) || intersect(t, b)) return 1;\n    return 0;\n}\n\n// 0: inside\n// 1: inscribe\n\
+    // 2: intersect\n// 3: circumscribe\n// 4: outside\nint intersect(const Circle&\
     \ c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d, std::abs(c2.r\
     \ - c1.r))) return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return 1;\n    if\
     \ (eq(c1.r + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return 4;\n    return\
@@ -159,26 +158,25 @@ data:
     \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
     \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n/*\n// for 3d geometry\n\
     // functions that will work without any modifications\n// projection, reflection,\
-    \ dist_line_point, dist_segment_point, dist_segments,\n// centroid, incenter\n\
-    \nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n    constexpr Vec(T x, T\
-    \ y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const Vec& r) {\
-    \ x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec& operator-=(const\
-    \ Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n    constexpr Vec&\
-    \ operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n    constexpr Vec&\
-    \ operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n    constexpr Vec\
-    \ operator-() const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const\
-    \ Vec& r) const { return Vec(*this) += r; }\n    constexpr Vec operator-(const\
-    \ Vec& r) const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r)\
-    \ const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const {\
-    \ return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r, const Vec&\
-    \ v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream& is, Vec&\
-    \ p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n    return\
-    \ is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x + a.y*b.y\
-    \ + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return Vec(a.y*b.z-a.z*b.y,\
-    \ a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std {\nT norm(const Vec&\
-    \ a) { return dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a));\
-    \ }\n}\n\n*/\n#line 5 \"test/aoj/CGL_7_E.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ dist\n// centroid, incenter\n\nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n\
+    \    constexpr Vec(T x, T y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const\
+    \ Vec& r) { x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec&\
+    \ operator-=(const Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n \
+    \   constexpr Vec& operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n\
+    \    constexpr Vec& operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n\
+    \    constexpr Vec operator-() const { return Vec(-x, -y, -z); }\n    constexpr\
+    \ Vec operator+(const Vec& r) const { return Vec(*this) += r; }\n    constexpr\
+    \ Vec operator-(const Vec& r) const { return Vec(*this) -= r; }\n    constexpr\
+    \ Vec operator*(T r) const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T\
+    \ r) const { return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r,\
+    \ const Vec& v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream&\
+    \ is, Vec& p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n\
+    \    return is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x\
+    \ + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return\
+    \ Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std\
+    \ {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const Vec& a) { return\
+    \ std::sqrt(std::norm(a)); }\n}\n\n*/\n#line 5 \"test/aoj/CGL_7_E.test.cpp\"\n\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    Vec p1,\
     \ p2;\n    double r1, r2;\n    cin >> p1 >> r1;\n    cin >> p2 >> r2;\n    auto\
     \ ans = intersection(Circle(p1, r1), Circle(p2, r2));\n    if (ans.size() == 1)\
@@ -205,7 +203,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_E.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 22:04:46+09:00'
+  timestamp: '2022-05-05 23:20:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_E.test.cpp
