@@ -53,7 +53,7 @@ documentation_of: ../../geometry/geometry.cpp
    `T dist(Segment s, Segment t)`
     - 引数で与えられた2つの対象の距離を計算する
 
-- `Vec intersection_lines(Line l, Line m)`
+- `Vec intersection(Line l, Line m)`
 
 - `vector<Vec> intersection(Circle c, Line l)`
 
@@ -64,8 +64,8 @@ documentation_of: ../../geometry/geometry.cpp
     - 多角形 $poly$ の面積を求める
     - 時間計算量: $O(n)$
 
-- `T area_intersection_circles(Circle c1, Circle c2)`
-    - 円 $c1,c2$ の共通部分の面積を求める
+- `T area_intersection(Circle c1, Circle c2)`
+    - 円 $c_1,c_2$ の共通部分の面積を求める
 
 - `T is_convex(Polygon poly)`
     - 多角形 $poly$ が凸か判定する．`poly` は反時計回りに与えられる必要がある
@@ -84,6 +84,12 @@ documentation_of: ../../geometry/geometry.cpp
 
 - `Vec circumcenter(Vec A, Vec B, Vec C)`
     - 三角形 $ABC$ の外心を返す
+
+- `pair<Vec, Vec> tangent_ponints(Circle c, Vec p)`
+    - 点 $p$ を通り円 $c$ に接する接線と $c$ の接点を返す
+
+- `vector<Line> common_tangents(Circle c1, Circle c2)`
+    - 円 $c_1,c_2$ の共通接線を返す
 
 - `vector<Vec> convex_hull(vector<Vec> pts)`
     - 与えられた点の凸包を返す

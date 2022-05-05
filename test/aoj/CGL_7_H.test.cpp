@@ -1,12 +1,11 @@
-#pragma once
-#include <algorithm>
-#include <cassert>
-#include <cmath>
-#include <complex>
-#include <iostream>
-#include <vector>
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F"
+#define ERROR 0.00001
 
-// note that if T is of an integer type, std::abs does not work
+// #include "../../geometry/geometry.cpp"
+
+#include <bits/stdc++.h>
+using namespace std;
+
 using T = double;
 using Vec = std::complex<T>;
 
@@ -109,8 +108,10 @@ int intersect(const Polygon& poly, const Vec& p) {
 int intersect(const Segment& s, const Segment& t) {
     auto a = s.p1, b = s.p2;
     auto c = t.p1, d = t.p2;
-    if (intersect(s, c) || intersect(s, d) || intersect(t, a) || intersect(t, b)) return 1;
-    if (ccw(a, b, c) * ccw(a, b, d) < -1 && ccw(c, d, a) * ccw(c, d, b) < -1) return 2;
+    auto u = ccw(a, b, c) * ccw(a, b, d);
+    auto v = ccw(c, d, a) * ccw(c, d, b);
+    if (u == 0 || v == 0) return 1;
+    if (u == -1 && v == -1) return 2;
     return 0;
 }
 
@@ -140,7 +141,10 @@ T dist(const Segment& s, const Vec& p) {
 
 T dist(const Segment& s, const Segment& t) {
     if (intersect(s, t)) return T(0);
-    return std::min({dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});
+    return std::min(
+        std::min(dist(s, t.p1), dist(s, t.p2)),
+        std::min(dist(t, s.p1), dist(t, s.p2))
+    );
 }
 
 Vec intersection(const Line& l, const Line& m) {
@@ -181,10 +185,10 @@ T area(const Polygon& poly) {
     return std::abs(res) / T(2);
 }
 
-T area_intersection(const Circle& c1, const Circle& c2) {
+T area_intersection_circles(const Circle& c1, const Circle& c2) {
     T d = std::abs(c2.c - c1.c);
     if (leq(c1.r + c2.r, d)) return 0;  // outside
-    if (leq(d, std::abs(c2.r - c1.r))) {  // inside
+    if (leq(d, std::abs(c2.r - c1.r))) {  // contain
         T r = std::min(c1.r, c2.r);
         return PI * r * r;
     }
@@ -254,54 +258,6 @@ Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
 //     T c = std::norm(r) * dot(p, q);
 //     return (a*A + b*B + c*C) / (a + b + c);
 // }
-
-std::pair<Vec, Vec> tangent_points(const Circle& c, const Vec& p) {
-    auto m = (p + c.c) / T(2);
-    auto is = intersection(c, Circle(m, std::abs(p - m)));
-    return {is[0], is[1]};
-}
-
-// for each l, l.p1 is a tangent point of c1
-std::vector<Line> common_tangents(Circle c1, Circle c2) {
-    assert(!eq(c1.c, c2.c) || !eq(c1.r, c2.r));
-    int cnt = intersect(c1, c2);  // number of common tangents
-    std::vector<Line> ret;
-    if (cnt == 0) {
-        return ret;
-    }
-
-    // external
-    if (eq(c1.r, c2.r)) {
-        auto d = c2.c - c1.c;
-        Vec e(-d.imag(), d.real());
-        e = e / std::abs(e) * c1.r;
-        ret.push_back(Line(c1.c + e, c1.c + e + d));
-        ret.push_back(Line(c1.c - e, c1.c - e + d));
-    } else {
-        auto p = (-c2.r*c1.c + c1.r*c2.c) / (c1.r - c2.r);
-        if (cnt == 1) {
-            Vec q(-p.imag(), p.real());
-            return {Line(p, q)};
-        } else {
-            auto [a, b] = tangent_points(c1, p);
-            ret.push_back(Line(a, p));
-            ret.push_back(Line(b, p));
-        }
-    }
-
-    // internal
-    auto p = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);
-    if (cnt == 3) {
-        Vec q(-p.imag(), p.real());
-        ret.push_back(Line(p, q));
-    } else if (cnt == 4) {
-        auto [a, b] = tangent_points(c1, p);
-        ret.push_back(Line(a, p));
-        ret.push_back(Line(b, p));
-    }
-
-    return ret;
-}
 
 std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
     int n = pts.size();
@@ -408,3 +364,23 @@ T abs(const Vec& a) { return std::sqrt(std::norm(a)); }
 }
 
 */
+
+std::pair<Vec, Vec> tangent(const Circle& c, const Vec& p) {
+    auto is =  intersection(c, Circle(p, std::abs(c.c - p)));
+    return {is[0], is[1]};
+}
+
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout << fixed << setprecision(15);
+
+    Vec p, c;
+    T r;
+    cin >> p >> c >> r;
+    auto [p1, p2] = tangent(Circle(c, r), p);
+    if (p1.real() > p2.real() || (p1.real() == p2.real() && p1.imag() > p2.imag())) swap(p1, p2);
+    cout << p1.real() << " " << p1.imag() << endl;
+    cout << p2.real() << " " << p2.imag() << endl;
+}

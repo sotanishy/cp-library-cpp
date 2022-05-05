@@ -20,6 +20,6 @@ int main() {
     while (q--) {
         Vec p1, p2;
         cin >> p1 >> p2;
-        cout << area(convex_cut(poly, p1, p2)) << "\n";
+        cout << area(convex_cut(poly, Line(p1, p2))) << "\n";
     }
 }
