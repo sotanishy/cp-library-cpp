@@ -193,7 +193,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/closest_pair.hpp
       title: Closest Pair
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/convex_hull.hpp
       title: geometry/convex_hull.hpp
     - icon: ':warning:'
@@ -201,7 +201,7 @@ data:
       title: geometry/delaunay_diagram.hpp
     - icon: ':question:'
       path: geometry/geometry.hpp
-      title: geometry/geometry.hpp
+      title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
@@ -656,6 +656,9 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
+    - icon: ':x:'
+      path: test/yosupo/assignment.test.cpp
+      title: test/yosupo/assignment.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp

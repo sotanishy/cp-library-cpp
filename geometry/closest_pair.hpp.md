@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: geometry/geometry.hpp
-    title: geometry/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'

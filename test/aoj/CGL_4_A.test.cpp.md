@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/convex_hull.hpp
     title: geometry/convex_hull.hpp
   - icon: ':question:'
     path: geometry/geometry.hpp
-    title: geometry/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

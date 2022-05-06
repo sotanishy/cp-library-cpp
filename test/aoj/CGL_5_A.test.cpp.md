@@ -6,7 +6,7 @@ data:
     title: Closest Pair
   - icon: ':question:'
     path: geometry/geometry.hpp
-    title: geometry/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: geometry/geometry.hpp
-    title: geometry/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -134,7 +134,7 @@ data:
     \ int>> delaunay_diagram(std::vector<Vec> pts) {\n    const int n = pts.size();\n\
     \    constexpr T INF = 1e20;\n    // stores delaunay edges\n    std::vector<std::pair<int,\
     \ int>> edges;\n    // the sweep line moves from left to right\n    // x coordinate\
-    \ of the sweepline\n    static T sweepx;\n\n\n    // check if all points are collinear\n\
+    \ of the sweepline\n    static T sweepx;\n\n    // check if all points are collinear\n\
     \    bool ok = false;\n    for (int i = 2; i < n; ++i) {\n        if (ccw(pts[0],\
     \ pts[1], pts[i]) != 0) {\n            ok = true;\n            break;\n      \
     \  }\n    }\n    // handle degenerate cases\n    if (!ok) {\n        // connect\
@@ -193,7 +193,7 @@ data:
     \ pts) {\n    const int n = pts.size();\n    constexpr T INF = 1e20;\n    // stores\
     \ delaunay edges\n    std::vector<std::pair<int, int>> edges;\n    // the sweep\
     \ line moves from left to right\n    // x coordinate of the sweepline\n    static\
-    \ T sweepx;\n\n\n    // check if all points are collinear\n    bool ok = false;\n\
+    \ T sweepx;\n\n    // check if all points are collinear\n    bool ok = false;\n\
     \    for (int i = 2; i < n; ++i) {\n        if (ccw(pts[0], pts[1], pts[i]) !=\
     \ 0) {\n            ok = true;\n            break;\n        }\n    }\n    // handle\
     \ degenerate cases\n    if (!ok) {\n        // connect all points by a path\n\
@@ -252,7 +252,7 @@ data:
   isVerificationFile: false
   path: geometry/delaunay_diagram.hpp
   requiredBy: []
-  timestamp: '2022-05-06 13:09:22+09:00'
+  timestamp: '2022-05-06 13:22:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/delaunay_diagram.hpp

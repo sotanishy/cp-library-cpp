@@ -3,15 +3,18 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: geometry/geometry.hpp
-    title: geometry/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/CGL_4_B.test.cpp
+    title: test/aoj/CGL_4_B.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/convex_hull.hpp\"\n#include <vector>\n#line 2 \"\
@@ -161,9 +164,10 @@ data:
   path: geometry/convex_hull.hpp
   requiredBy: []
   timestamp: '2022-05-06 13:09:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_4_B.test.cpp
 documentation_of: geometry/convex_hull.hpp
 layout: document
 redirect_from:
