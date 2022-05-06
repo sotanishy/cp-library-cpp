@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: geometry/convex_hull.hpp
-    title: geometry/convex_hull.hpp
+    title: Convex Hull
   - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry

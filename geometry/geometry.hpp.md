@@ -7,10 +7,10 @@ data:
     title: Closest Pair
   - icon: ':question:'
     path: geometry/convex_hull.hpp
-    title: geometry/convex_hull.hpp
+    title: Convex Hull
   - icon: ':warning:'
     path: geometry/delaunay_diagram.hpp
-    title: geometry/delaunay_diagram.hpp
+    title: Delaunay Diagram
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp

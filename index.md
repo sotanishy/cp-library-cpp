@@ -195,10 +195,10 @@ data:
       title: Closest Pair
     - icon: ':question:'
       path: geometry/convex_hull.hpp
-      title: geometry/convex_hull.hpp
+      title: Convex Hull
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
-      title: geometry/delaunay_diagram.hpp
+      title: Delaunay Diagram
     - icon: ':question:'
       path: geometry/geometry.hpp
       title: Geometry
@@ -656,9 +656,6 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':x:'
-      path: test/yosupo/assignment.test.cpp
-      title: test/yosupo/assignment.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
