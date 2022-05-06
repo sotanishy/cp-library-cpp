@@ -1,7 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A"
 #define ERROR 0.000001
 
-#include "../../geometry/geometry.cpp"
+#include "../../geometry/geometry.hpp"
+#include "../../geometry/closest_pair.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

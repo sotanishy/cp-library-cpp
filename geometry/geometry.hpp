@@ -300,56 +300,6 @@ std::vector<Line> common_tangents(Circle c1, Circle c2) {
     return ret;
 }
 
-std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
-    int n = pts.size();
-    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {
-        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());
-    });
-    int k = 0; // the number of vertices in the convex hull
-    std::vector<Vec> ch(2 * n);
-    // right
-    for (int i = 0; i < n; ++i) {
-        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;
-        ch[k++] = pts[i];
-    }
-    int t = k;
-    // left
-    for (int i = n - 2; i >= 0; --i) {
-        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;
-        ch[k++] = pts[i];
-    }
-    ch.resize(k - 1);
-    return ch;
-}
-
-T closest_pair(std::vector<Vec>& pts) {
-    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {
-        return v1.real() < v2.real();
-    });
-
-    auto rec = [&](const auto& rec, int l, int r) -> T {
-        if (r - l <= 1) return std::numeric_limits<T>::max();
-        int m = (l + r) / 2;
-        T x = pts[m].real();
-        T d = std::min(rec(rec, l, m), rec(rec, m, r));
-        std::inplace_merge(pts.begin() + l, pts.begin() + m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {
-            return v1.imag() < v2.imag();
-        });
-        std::vector<Vec> b;
-        for (int i = l; i < r; ++i) {
-            if (leq(d, std::abs(pts[i].real() - x))) continue;
-            for (int j = (int) b.size() - 1; j >= 0; --j) {
-                if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;
-                d = std::min(d, std::abs(pts[i] - b[j]));
-            }
-            b.push_back(pts[i]);
-        }
-        return d;
-    };
-
-    return rec(rec, 0, pts.size());
-}
-
 void sort_by_arg(std::vector<Vec>& pts) {
     std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {
         if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);
@@ -361,47 +311,3 @@ void sort_by_arg(std::vector<Vec>& pts) {
         return (cross(p, q) > 0);
     });
 }
-
-/*
-// for 3d geometry
-// functions that will work without any modifications
-// projection, reflection, dist
-// centroid, incenter
-
-struct Vec {
-    T x, y, z;
-    Vec() = default;
-    constexpr Vec(T x, T y, T z) : x(x), y(y), z(z) {}
-    constexpr Vec& operator+=(const Vec& r) { x += r.x; y += r.y; z += r.z; return *this; }
-    constexpr Vec& operator-=(const Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }
-    constexpr Vec& operator*=(T r) { x *= r; y *= r; z *= r; return *this; }
-    constexpr Vec& operator/=(T r) { x /= r; y /= r; z /= r; return *this; }
-    constexpr Vec operator-() const { return Vec(-x, -y, -z); }
-    constexpr Vec operator+(const Vec& r) const { return Vec(*this) += r; }
-    constexpr Vec operator-(const Vec& r) const { return Vec(*this) -= r; }
-    constexpr Vec operator*(T r) const { return Vec(*this) *= r; }
-    constexpr Vec operator/(T r) const { return Vec(*this) /= r; }
-    friend constexpr Vec operator*(T r, const Vec& v) { return v * r; }
-};
-
-std::istream& operator>>(std::istream& is, Vec& p) {
-    T x, y, z;
-    is >> x >> y >> z;
-    p = {x, y, z};
-    return is;
-}
-
-T dot(const Vec& a, const Vec& b) {
-    return a.x*b.x + a.y*b.y + a.z*b.z;
-}
-
-Vec cross(const Vec& a, const Vec& b) {
-    return Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);
-}
-
-namespace std {
-T norm(const Vec& a) { return dot(a, a); }
-T abs(const Vec& a) { return std::sqrt(std::norm(a)); }
-}
-
-*/

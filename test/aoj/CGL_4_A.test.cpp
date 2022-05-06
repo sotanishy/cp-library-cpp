@@ -1,6 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A"
 
-#include "../../geometry/geometry.cpp"
+#include "../../geometry/geometry.hpp"
+#include "../../geometry/convex_hull.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
