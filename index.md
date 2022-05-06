@@ -191,8 +191,20 @@ data:
   - name: geometry
     pages:
     - icon: ':heavy_check_mark:'
-      path: geometry/geometry.cpp
-      title: Geometry
+      path: geometry/closest_pair.hpp
+      title: Closest Pair
+    - icon: ':heavy_check_mark:'
+      path: geometry/convex_hull.hpp
+      title: geometry/convex_hull.hpp
+    - icon: ':warning:'
+      path: geometry/delaunay_diagram.hpp
+      title: geometry/delaunay_diagram.hpp
+    - icon: ':question:'
+      path: geometry/geometry.hpp
+      title: geometry/geometry.hpp
+    - icon: ':warning:'
+      path: geometry/geometry3d.hpp
+      title: 3D Geometry
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -507,7 +519,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_4_B.test.cpp
       title: test/aoj/CGL_4_B.test.cpp
     - icon: ':heavy_check_mark:'

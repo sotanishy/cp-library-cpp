@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: geometry/geometry.cpp
-    title: Geometry
+  - icon: ':question:'
+    path: geometry/geometry.hpp
+    title: geometry/geometry.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,7 +16,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F
   bundledCode: "#line 1 \"test/aoj/CGL_7_F.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\"\
-    \n#define ERROR 0.00001\n\n#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n\
+    \n#define ERROR 0.00001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
     #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
     \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
@@ -127,63 +127,22 @@ data:
     \ = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);\n    if (cnt == 3) {\n        Vec\
     \ q(-p.imag(), p.real());\n        ret.push_back(Line(p, q));\n    } else if (cnt\
     \ == 4) {\n        auto [a, b] = tangent_points(c1, p);\n        ret.push_back(Line(a,\
-    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nstd::vector<Vec>\
-    \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
-    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
-    \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
-    \   int k = 0; // the number of vertices in the convex hull\n    std::vector<Vec>\
-    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
-    \ > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++]\
-    \ = pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >=\
-    \ 0; --i) {\n        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]),\
-    \ 0)) --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return\
-    \ ch;\n}\n\nT closest_pair(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
-    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return v1.real() < v2.real();\n\
-    \    });\n\n    auto rec = [&](const auto& rec, int l, int r) -> T {\n       \
-    \ if (r - l <= 1) return std::numeric_limits<T>::max();\n        int m = (l +\
-    \ r) / 2;\n        T x = pts[m].real();\n        T d = std::min(rec(rec, l, m),\
-    \ rec(rec, m, r));\n        std::inplace_merge(pts.begin() + l, pts.begin() +\
-    \ m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {\n            return\
-    \ v1.imag() < v2.imag();\n        });\n        std::vector<Vec> b;\n        for\
-    \ (int i = l; i < r; ++i) {\n            if (leq(d, std::abs(pts[i].real() - x)))\
-    \ continue;\n            for (int j = (int) b.size() - 1; j >= 0; --j) {\n   \
-    \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
-    \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
-    \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n \
-    \   std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
-    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
-    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
-    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
-    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
-    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n/*\n// for 3d geometry\n\
-    // functions that will work without any modifications\n// projection, reflection,\
-    \ dist\n// centroid, incenter\n\nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n\
-    \    constexpr Vec(T x, T y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const\
-    \ Vec& r) { x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec&\
-    \ operator-=(const Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n \
-    \   constexpr Vec& operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n\
-    \    constexpr Vec& operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n\
-    \    constexpr Vec operator-() const { return Vec(-x, -y, -z); }\n    constexpr\
-    \ Vec operator+(const Vec& r) const { return Vec(*this) += r; }\n    constexpr\
-    \ Vec operator-(const Vec& r) const { return Vec(*this) -= r; }\n    constexpr\
-    \ Vec operator*(T r) const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T\
-    \ r) const { return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r,\
-    \ const Vec& v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream&\
-    \ is, Vec& p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n\
-    \    return is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x\
-    \ + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return\
-    \ Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std\
-    \ {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const Vec& a) { return\
-    \ std::sqrt(std::norm(a)); }\n}\n\n*/\n#line 5 \"test/aoj/CGL_7_F.test.cpp\"\n\
-    \n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nvoid\
+    \ sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(), pts.end(),\
+    \ [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag() < 0)) return\
+    \ (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if (p == Vec(0,\
+    \ 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n           \
+    \ if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
+    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
+    \ q) > 0);\n    });\n}\n#line 5 \"test/aoj/CGL_7_F.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    Vec p, c;\n\
     \    T r;\n    cin >> p >> c >> r;\n    auto [p1, p2] = tangent_points(Circle(c,\
     \ r), p);\n    if (p1.real() > p2.real() || (p1.real() == p2.real() && p1.imag()\
     \ > p2.imag())) swap(p1, p2);\n    cout << p1.real() << \" \" << p1.imag() <<\
     \ endl;\n    cout << p2.real() << \" \" << p2.imag() << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\"\
-    \n#define ERROR 0.00001\n\n#include \"../../geometry/geometry.cpp\"\n\n#include\
+    \n#define ERROR 0.00001\n\n#include \"../../geometry/geometry.hpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    Vec p, c;\n\
     \    T r;\n    cin >> p >> c >> r;\n    auto [p1, p2] = tangent_points(Circle(c,\
@@ -191,11 +150,11 @@ data:
     \ > p2.imag())) swap(p1, p2);\n    cout << p1.real() << \" \" << p1.imag() <<\
     \ endl;\n    cout << p2.real() << \" \" << p2.imag() << endl;\n}\n"
   dependsOn:
-  - geometry/geometry.cpp
+  - geometry/geometry.hpp
   isVerificationFile: true
   path: test/aoj/CGL_7_F.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 23:20:44+09:00'
+  timestamp: '2022-05-06 13:09:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_F.test.cpp

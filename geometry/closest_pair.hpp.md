@@ -5,32 +5,32 @@ data:
     path: geometry/geometry.hpp
     title: geometry/geometry.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_5_A.test.cpp
+    title: test/aoj/CGL_5_A.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D
-    links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D
-  bundledCode: "#line 1 \"test/aoj/CGL_7_D.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D\"\
-    \n#define ERROR 0.00000001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
-    \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
-    \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
-    \ < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline\
-    \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
-    \ a < b + eps; }\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n   \
-    \ T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nstruct Line\
-    \ {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec& p1, const Vec&\
-    \ p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct\
-    \ Segment {\n    Vec p1, p2;\n    Segment() = default;\n    Segment(const Vec&\
+    document_title: Closest Pair
+    links: []
+  bundledCode: "#line 2 \"geometry/closest_pair.hpp\"\n#include <numeric>\n#include\
+    \ <vector>\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#line\
+    \ 8 \"geometry/geometry.hpp\"\n\n// note that if T is of an integer type, std::abs\
+    \ does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI\
+    \ = std::acos(-1);\n\nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return\
+    \ std::abs(a - b) < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a -\
+    \ b) < eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T\
+    \ a, T b) { return a < b + eps; }\n\nstd::istream& operator>>(std::istream& is,\
+    \ Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
+    }\n\nstruct Line {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec&\
     \ p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1;\
-    \ }\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n  \
-    \  Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
+    \ }\n};\n\nstruct Segment {\n    Vec p1, p2;\n    Segment() = default;\n    Segment(const\
+    \ Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2\
+    \ - p1; }\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n\
+    \    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
     \nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
     }\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
     }\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
@@ -134,43 +134,49 @@ data:
     \ 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n           \
     \ if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
     \            return (p.real() > q.real());\n        }\n        return (cross(p,\
-    \ q) > 0);\n    });\n}\n#line 5 \"test/aoj/CGL_7_D.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    Vec c;\n\
-    \    double r;\n    cin >> c >> r;\n    int q;\n    cin >> q;\n    while (q--)\
-    \ {\n        Vec p1, p2;\n        cin >> p1 >> p2;\n        auto ans = intersection(Circle(c,\
-    \ r), Line(p1, p2));\n        if (ans.size() == 1) {\n            cout << ans[0].real()\
-    \ << \" \" << ans[0].imag() << \" \";\n            cout << ans[0].real() << \"\
-    \ \" << ans[0].imag() << \"\\n\";\n        } else {\n            if (make_pair(ans[0].real(),\
-    \ ans[0].imag()) > make_pair(ans[1].real(), ans[1].imag())) swap(ans[0], ans[1]);\n\
-    \            cout << ans[0].real() << \" \" << ans[0].imag() << \" \";\n     \
-    \       cout << ans[1].real() << \" \" << ans[1].imag() << \"\\n\";\n        }\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D\"\
-    \n#define ERROR 0.00000001\n\n#include \"../../geometry/geometry.hpp\"\n\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(10);\n\n    Vec c;\n\
-    \    double r;\n    cin >> c >> r;\n    int q;\n    cin >> q;\n    while (q--)\
-    \ {\n        Vec p1, p2;\n        cin >> p1 >> p2;\n        auto ans = intersection(Circle(c,\
-    \ r), Line(p1, p2));\n        if (ans.size() == 1) {\n            cout << ans[0].real()\
-    \ << \" \" << ans[0].imag() << \" \";\n            cout << ans[0].real() << \"\
-    \ \" << ans[0].imag() << \"\\n\";\n        } else {\n            if (make_pair(ans[0].real(),\
-    \ ans[0].imag()) > make_pair(ans[1].real(), ans[1].imag())) swap(ans[0], ans[1]);\n\
-    \            cout << ans[0].real() << \" \" << ans[0].imag() << \" \";\n     \
-    \       cout << ans[1].real() << \" \" << ans[1].imag() << \"\\n\";\n        }\n\
-    \    }\n}\n"
+    \ q) > 0);\n    });\n}\n#line 5 \"geometry/closest_pair.hpp\"\n\n/**\n * @brief\
+    \ Closest Pair\n */\nT closest_pair(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
+    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return v1.real() < v2.real();\n\
+    \    });\n\n    auto rec = [&](const auto& rec, int l, int r) -> T {\n       \
+    \ if (r - l <= 1) return std::numeric_limits<T>::max();\n        int m = (l +\
+    \ r) / 2;\n        T x = pts[m].real();\n        T d = std::min(rec(rec, l, m),\
+    \ rec(rec, m, r));\n        std::inplace_merge(pts.begin() + l, pts.begin() +\
+    \ m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {\n            return\
+    \ v1.imag() < v2.imag();\n        });\n        std::vector<Vec> b;\n        for\
+    \ (int i = l; i < r; ++i) {\n            if (leq(d, std::abs(pts[i].real() - x)))\
+    \ continue;\n            for (int j = (int) b.size() - 1; j >= 0; --j) {\n   \
+    \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
+    \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
+    \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
+    \ rec(rec, 0, pts.size());\n}\n"
+  code: "#pragma once\n#include <numeric>\n#include <vector>\n#include \"geometry.hpp\"\
+    \n\n/**\n * @brief Closest Pair\n */\nT closest_pair(std::vector<Vec>& pts) {\n\
+    \    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {\n  \
+    \      return v1.real() < v2.real();\n    });\n\n    auto rec = [&](const auto&\
+    \ rec, int l, int r) -> T {\n        if (r - l <= 1) return std::numeric_limits<T>::max();\n\
+    \        int m = (l + r) / 2;\n        T x = pts[m].real();\n        T d = std::min(rec(rec,\
+    \ l, m), rec(rec, m, r));\n        std::inplace_merge(pts.begin() + l, pts.begin()\
+    \ + m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {\n            return\
+    \ v1.imag() < v2.imag();\n        });\n        std::vector<Vec> b;\n        for\
+    \ (int i = l; i < r; ++i) {\n            if (leq(d, std::abs(pts[i].real() - x)))\
+    \ continue;\n            for (int j = (int) b.size() - 1; j >= 0; --j) {\n   \
+    \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
+    \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
+    \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
+    \ rec(rec, 0, pts.size());\n}\n"
   dependsOn:
   - geometry/geometry.hpp
-  isVerificationFile: true
-  path: test/aoj/CGL_7_D.test.cpp
+  isVerificationFile: false
+  path: geometry/closest_pair.hpp
   requiredBy: []
   timestamp: '2022-05-06 13:09:22+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/CGL_7_D.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/CGL_5_A.test.cpp
+documentation_of: geometry/closest_pair.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_7_D.test.cpp
-- /verify/test/aoj/CGL_7_D.test.cpp.html
-title: test/aoj/CGL_7_D.test.cpp
+- /library/geometry/closest_pair.hpp
+- /library/geometry/closest_pair.hpp.html
+title: Closest Pair
 ---

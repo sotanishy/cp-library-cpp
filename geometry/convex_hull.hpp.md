@@ -5,19 +5,19 @@ data:
     path: geometry/geometry.hpp
     title: geometry/geometry.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_4_A.test.cpp
+    title: test/aoj/CGL_4_A.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
-    links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
-  bundledCode: "#line 1 \"test/aoj/CGL_3_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\"\
-    \n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <iostream>\n#include <vector>\n\
-    \n// note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
+    links: []
+  bundledCode: "#line 2 \"geometry/convex_hull.hpp\"\n#include <vector>\n#line 2 \"\
+    geometry/geometry.hpp\"\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
+    #include <complex>\n#include <iostream>\n#line 8 \"geometry/geometry.hpp\"\n\n\
+    // note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
     using Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\nconstexpr T eps\
     \ = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b) < eps; }\ninline\
     \ bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline bool lt(T a,\
@@ -133,29 +133,41 @@ data:
     \ 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n           \
     \ if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
     \            return (p.real() > q.real());\n        }\n        return (cross(p,\
-    \ q) > 0);\n    });\n}\n#line 4 \"test/aoj/CGL_3_A.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(1);\n\n    int n;\n\
-    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& x : pts) cin >> x;\n \
-    \   cout << area(pts) << endl;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\"\
-    \n\n#include \"../../geometry/geometry.hpp\"\n\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(1);\n\n    int n;\n    cin >> n;\n    vector<Vec>\
-    \ pts(n);\n    for (auto& x : pts) cin >> x;\n    cout << area(pts) << endl;\n\
-    }"
+    \ q) > 0);\n    });\n}\n#line 4 \"geometry/convex_hull.hpp\"\n\nstd::vector<Vec>\
+    \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
+    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
+    \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
+    \   int k = 0; // the number of vertices in the convex hull\n    std::vector<Vec>\
+    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
+    \ > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++]\
+    \ = pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >=\
+    \ 0; --i) {\n        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]),\
+    \ 0)) --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return\
+    \ ch;\n}\n\n"
+  code: "#pragma once\n#include <vector>\n#include \"geometry.hpp\"\n\nstd::vector<Vec>\
+    \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
+    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
+    \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
+    \   int k = 0; // the number of vertices in the convex hull\n    std::vector<Vec>\
+    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
+    \ > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++]\
+    \ = pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >=\
+    \ 0; --i) {\n        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]),\
+    \ 0)) --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return\
+    \ ch;\n}\n\n"
   dependsOn:
   - geometry/geometry.hpp
-  isVerificationFile: true
-  path: test/aoj/CGL_3_A.test.cpp
+  isVerificationFile: false
+  path: geometry/convex_hull.hpp
   requiredBy: []
   timestamp: '2022-05-06 13:09:22+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/CGL_3_A.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/CGL_4_A.test.cpp
+documentation_of: geometry/convex_hull.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_3_A.test.cpp
-- /verify/test/aoj/CGL_3_A.test.cpp.html
-title: test/aoj/CGL_3_A.test.cpp
+- /library/geometry/convex_hull.hpp
+- /library/geometry/convex_hull.hpp.html
+title: geometry/convex_hull.hpp
 ---

@@ -1,7 +1,16 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: geometry/closest_pair.hpp
+    title: Closest Pair
+  - icon: ':heavy_check_mark:'
+    path: geometry/convex_hull.hpp
+    title: geometry/convex_hull.hpp
+  - icon: ':warning:'
+    path: geometry/delaunay_diagram.hpp
+    title: geometry/delaunay_diagram.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
@@ -36,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_4_B.test.cpp
     title: test/aoj/CGL_4_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,12 +78,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_I.test.cpp
     title: test/aoj/CGL_7_I.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geometry/geometry.cpp\"\n#include <algorithm>\n#include\
+  bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
     \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#include\
     \ <vector>\n\n// note that if T is of an integer type, std::abs does not work\n\
     using T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
@@ -185,55 +194,14 @@ data:
     \ = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);\n    if (cnt == 3) {\n        Vec\
     \ q(-p.imag(), p.real());\n        ret.push_back(Line(p, q));\n    } else if (cnt\
     \ == 4) {\n        auto [a, b] = tangent_points(c1, p);\n        ret.push_back(Line(a,\
-    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nstd::vector<Vec>\
-    \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
-    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
-    \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
-    \   int k = 0; // the number of vertices in the convex hull\n    std::vector<Vec>\
-    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
-    \ > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++]\
-    \ = pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >=\
-    \ 0; --i) {\n        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]),\
-    \ 0)) --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return\
-    \ ch;\n}\n\nT closest_pair(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
-    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return v1.real() < v2.real();\n\
-    \    });\n\n    auto rec = [&](const auto& rec, int l, int r) -> T {\n       \
-    \ if (r - l <= 1) return std::numeric_limits<T>::max();\n        int m = (l +\
-    \ r) / 2;\n        T x = pts[m].real();\n        T d = std::min(rec(rec, l, m),\
-    \ rec(rec, m, r));\n        std::inplace_merge(pts.begin() + l, pts.begin() +\
-    \ m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {\n            return\
-    \ v1.imag() < v2.imag();\n        });\n        std::vector<Vec> b;\n        for\
-    \ (int i = l; i < r; ++i) {\n            if (leq(d, std::abs(pts[i].real() - x)))\
-    \ continue;\n            for (int j = (int) b.size() - 1; j >= 0; --j) {\n   \
-    \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
-    \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
-    \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n \
-    \   std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
-    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
-    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
-    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
-    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
-    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n/*\n// for 3d geometry\n\
-    // functions that will work without any modifications\n// projection, reflection,\
-    \ dist\n// centroid, incenter\n\nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n\
-    \    constexpr Vec(T x, T y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const\
-    \ Vec& r) { x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec&\
-    \ operator-=(const Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n \
-    \   constexpr Vec& operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n\
-    \    constexpr Vec& operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n\
-    \    constexpr Vec operator-() const { return Vec(-x, -y, -z); }\n    constexpr\
-    \ Vec operator+(const Vec& r) const { return Vec(*this) += r; }\n    constexpr\
-    \ Vec operator-(const Vec& r) const { return Vec(*this) -= r; }\n    constexpr\
-    \ Vec operator*(T r) const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T\
-    \ r) const { return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r,\
-    \ const Vec& v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream&\
-    \ is, Vec& p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n\
-    \    return is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x\
-    \ + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return\
-    \ Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std\
-    \ {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const Vec& a) { return\
-    \ std::sqrt(std::norm(a)); }\n}\n\n*/\n"
+    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nvoid\
+    \ sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(), pts.end(),\
+    \ [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag() < 0)) return\
+    \ (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if (p == Vec(0,\
+    \ 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n           \
+    \ if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
+    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
+    \ q) > 0);\n    });\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
     #include <complex>\n#include <iostream>\n#include <vector>\n\n// note that if\
     \ T is of an integer type, std::abs does not work\nusing T = double;\nusing Vec\
@@ -345,61 +313,23 @@ data:
     \ = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);\n    if (cnt == 3) {\n        Vec\
     \ q(-p.imag(), p.real());\n        ret.push_back(Line(p, q));\n    } else if (cnt\
     \ == 4) {\n        auto [a, b] = tangent_points(c1, p);\n        ret.push_back(Line(a,\
-    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nstd::vector<Vec>\
-    \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    std::sort(pts.begin(),\
-    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return (v1.imag() !=\
-    \ v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());\n    });\n \
-    \   int k = 0; // the number of vertices in the convex hull\n    std::vector<Vec>\
-    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
-    \ > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++]\
-    \ = pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >=\
-    \ 0; --i) {\n        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]),\
-    \ 0)) --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return\
-    \ ch;\n}\n\nT closest_pair(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
-    \ pts.end(), [](const Vec& v1, const Vec& v2) {\n        return v1.real() < v2.real();\n\
-    \    });\n\n    auto rec = [&](const auto& rec, int l, int r) -> T {\n       \
-    \ if (r - l <= 1) return std::numeric_limits<T>::max();\n        int m = (l +\
-    \ r) / 2;\n        T x = pts[m].real();\n        T d = std::min(rec(rec, l, m),\
-    \ rec(rec, m, r));\n        std::inplace_merge(pts.begin() + l, pts.begin() +\
-    \ m, pts.begin() + r, [&](const Vec& v1, const Vec& v2) {\n            return\
-    \ v1.imag() < v2.imag();\n        });\n        std::vector<Vec> b;\n        for\
-    \ (int i = l; i < r; ++i) {\n            if (leq(d, std::abs(pts[i].real() - x)))\
-    \ continue;\n            for (int j = (int) b.size() - 1; j >= 0; --j) {\n   \
-    \             if (leq(d, std::abs(pts[i].imag() - b[j].imag()))) break;\n    \
-    \            d = std::min(d, std::abs(pts[i] - b[j]));\n            }\n      \
-    \      b.push_back(pts[i]);\n        }\n        return d;\n    };\n\n    return\
-    \ rec(rec, 0, pts.size());\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n \
-    \   std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
-    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
-    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
-    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
-    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
-    \ }\n        return (cross(p, q) > 0);\n    });\n}\n\n/*\n// for 3d geometry\n\
-    // functions that will work without any modifications\n// projection, reflection,\
-    \ dist\n// centroid, incenter\n\nstruct Vec {\n    T x, y, z;\n    Vec() = default;\n\
-    \    constexpr Vec(T x, T y, T z) : x(x), y(y), z(z) {}\n    constexpr Vec& operator+=(const\
-    \ Vec& r) { x += r.x; y += r.y; z += r.z; return *this; }\n    constexpr Vec&\
-    \ operator-=(const Vec& r) { x -= r.x; y -= r.y; z -= r.z; return *this; }\n \
-    \   constexpr Vec& operator*=(T r) { x *= r; y *= r; z *= r; return *this; }\n\
-    \    constexpr Vec& operator/=(T r) { x /= r; y /= r; z /= r; return *this; }\n\
-    \    constexpr Vec operator-() const { return Vec(-x, -y, -z); }\n    constexpr\
-    \ Vec operator+(const Vec& r) const { return Vec(*this) += r; }\n    constexpr\
-    \ Vec operator-(const Vec& r) const { return Vec(*this) -= r; }\n    constexpr\
-    \ Vec operator*(T r) const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T\
-    \ r) const { return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r,\
-    \ const Vec& v) { return v * r; }\n};\n\nstd::istream& operator>>(std::istream&\
-    \ is, Vec& p) {\n    T x, y, z;\n    is >> x >> y >> z;\n    p = {x, y, z};\n\
-    \    return is;\n}\n\nT dot(const Vec& a, const Vec& b) {\n    return a.x*b.x\
-    \ + a.y*b.y + a.z*b.z;\n}\n\nVec cross(const Vec& a, const Vec& b) {\n    return\
-    \ Vec(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);\n}\n\nnamespace std\
-    \ {\nT norm(const Vec& a) { return dot(a, a); }\nT abs(const Vec& a) { return\
-    \ std::sqrt(std::norm(a)); }\n}\n\n*/\n"
+    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nvoid\
+    \ sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(), pts.end(),\
+    \ [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag() < 0)) return\
+    \ (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if (p == Vec(0,\
+    \ 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n           \
+    \ if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
+    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
+    \ q) > 0);\n    });\n}"
   dependsOn: []
   isVerificationFile: false
-  path: geometry/geometry.cpp
-  requiredBy: []
-  timestamp: '2022-05-05 23:20:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  path: geometry/geometry.hpp
+  requiredBy:
+  - geometry/delaunay_diagram.hpp
+  - geometry/convex_hull.hpp
+  - geometry/closest_pair.hpp
+  timestamp: '2022-05-06 13:09:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_1_B.test.cpp
@@ -423,107 +353,10 @@ data:
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_4_C.test.cpp
-documentation_of: geometry/geometry.cpp
+documentation_of: geometry/geometry.hpp
 layout: document
-title: Geometry
+redirect_from:
+- /library/geometry/geometry.hpp
+- /library/geometry/geometry.hpp.html
+title: geometry/geometry.hpp
 ---
-
-## Description
-
-幾何アルゴリズム詰め合わせ
-
-`Vec` は `std::complex<T>` のエイリアスである．
-
-できるだけ整数だけの計算も扱えるようにした
-
-## Operations
-
-時間計算量は明示しない限り $O(1)$．
-
-- `T dot(Vec a, Vec b)`
-    - 内積を計算する
-
-- `T cross(Vec a, Vec b)`
-    - 外積の $z$ 座標を計算する
-
-- `Vec rot(Vec a, T ang)`
-    - $a$ を角 $ang$ だけ回転させる
-    - ***NOT VERIFIED***
-
-- `Vec projection(Line l, Vec p)`
-    - 点 $p$ の直線 $l$ 上の射影を求める
-
-- `Vec reflection(Line l, Vec p)`
-    - 点 $p$ の直線 $l$ に関して対称な点を求める
-
-- `int ccw(Vec a, Vec b, Vec c)`
-    - $a,b,c$ が同一直線上にあるなら0, $a \rightarrow b \rightarrow c$ が反時計回りなら1，そうでなければ-1を返す
-
-- `Line bisector(Vec p, Vec q)`
-    - 点 $p,q$ の垂直二等分線を返す
-
-- `bool intersect(Segment s, Vec p)`
-
-  `int intersect(Polygon poly, Vec p)`
-
-  `int intersect(Segment s, Segment t)`
-
-  `int intersect(Circle c1, Circle c2)`
-    - 引数で与えられた2つの対象が交差するか判定する．詳細な仕様はコードのコメントを参照
-
- - `T dist(Line l, Vec p)`
-
-   `T dist(Segment s, Vec p)`
-
-   `T dist(Segment s, Segment t)`
-    - 引数で与えられた2つの対象の距離を計算する
-
-- `Vec intersection(Line l, Line m)`
-
-- `vector<Vec> intersection(Circle c, Line l)`
-
-  `vector<Vec> intersection(Circle c1, Circle c2)`
-    - 引数で与えられた2つの対象の交点を返す
-
-- `T area(Polygon poly)`
-    - 多角形 $poly$ の面積を求める
-    - 時間計算量: $O(n)$
-
-- `T area_intersection(Circle c1, Circle c2)`
-    - 円 $c_1,c_2$ の共通部分の面積を求める
-
-- `T is_convex(Polygon poly)`
-    - 多角形 $poly$ が凸か判定する．`poly` は反時計回りに与えられる必要がある
-    - 時間計算量: $O(n)$
-
-- `vector<Vec> convex_cut(Polygon poly, Line l)`
-    - 多角形 $poly$ を直線 $l$ で切断する．詳細な仕様は [凸多角形の切断](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_C) を参照．
-    - 時間計算量: $O(n)$
-
-- `Vec centroid(Vec A, Vec B, Vec C)`
-    - 三角形 $ABC$ の重心を返す
-    - ***NOT VERIFIED***
-
-- `Vec incenter(Vec A, Vec B, Vec C)`
-    - 三角形 $ABC$ の内心を返す
-
-- `Vec circumcenter(Vec A, Vec B, Vec C)`
-    - 三角形 $ABC$ の外心を返す
-
-- `pair<Vec, Vec> tangent_ponints(Circle c, Vec p)`
-    - 点 $p$ を通り円 $c$ に接する接線と $c$ の接点を返す
-
-- `vector<Line> common_tangents(Circle c1, Circle c2)`
-    - 円 $c_1,c_2$ の共通接線を返す
-
-- `vector<Vec> convex_hull(vector<Vec> pts)`
-    - 与えられた点の凸包を返す
-    - 時間計算量: $O(n\log n)$
-
-- `T closest_pair(vector<Vec> pts)`
-    - 与えられた点のうち最も近い2点の距離を分割統治法で求める
-    - 時間計算量: $O(n\log n)$
-
-- `void sort_by_arg(vector<Vec> pts)`
-  - 与えられた点を偏角ソートする (ソート順は[この問題](https://judge.yosupo.jp/problem/sort_points_by_argument)に準拠)
-  - 時間計算量: $O(n\log n)$
