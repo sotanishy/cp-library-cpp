@@ -193,13 +193,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/closest_pair.hpp
       title: Closest Pair
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/convex_hull.hpp
       title: Convex Hull
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
@@ -366,6 +366,9 @@ data:
     - icon: ':warning:'
       path: misc/median_set.cpp
       title: Median Set
+    - icon: ':warning:'
+      path: misc/memo.hpp
+      title: Memo
     - icon: ':heavy_check_mark:'
       path: misc/mo.cpp
       title: Mo's Algorithm
@@ -519,7 +522,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_B.test.cpp
       title: test/aoj/CGL_4_B.test.cpp
     - icon: ':heavy_check_mark:'
