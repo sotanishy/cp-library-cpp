@@ -14,7 +14,6 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
     // x coordinate of the sweepline
     static T sweepx;
 
-
     // check if all points are collinear
     bool ok = false;
     for (int i = 2; i < n; ++i) {

@@ -2,6 +2,7 @@
 #define ERROR 0.000001
 
 #include "../../geometry/geometry.hpp"
+#include "../../geometry/convex_hull.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
