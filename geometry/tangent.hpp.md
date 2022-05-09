@@ -16,19 +16,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-    links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n#define ERROR 0.00000001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
-    \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
+    links: []
+  bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#include\
+    \ <vector>\n\n// note that if T is of an integer type, std::abs does not work\n\
+    using T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
     \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
     \ < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline\
     \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
@@ -109,35 +104,60 @@ data:
     \ ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
     \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
     \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
-    \ 6 \"test/aoj/CGL_2_C.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n\
-    \        auto q = intersection(Line(p0, p1), Line(p2, p3));\n        cout << q.real()\
-    \ << \" \" << q.imag() << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n#define ERROR 0.00000001\n\n#include \"../../geometry/geometry.hpp\"\n#include\
-    \ \"../../geometry/intersection.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n\
-    \        auto q = intersection(Line(p0, p1), Line(p2, p3));\n        cout << q.real()\
-    \ << \" \" << q.imag() << \"\\n\";\n    }\n}"
+    \ 5 \"geometry/tangent.hpp\"\n\nstd::pair<Vec, Vec> tangent_points(const Circle&\
+    \ c, const Vec& p) {\n    auto m = (p + c.c) / T(2);\n    auto is = intersection(c,\
+    \ Circle(m, std::abs(p - m)));\n    return {is[0], is[1]};\n}\n\n// for each l,\
+    \ l.p1 is a tangent point of c1\nstd::vector<Line> common_tangents(Circle c1,\
+    \ Circle c2) {\n    assert(!eq(c1.c, c2.c) || !eq(c1.r, c2.r));\n    int cnt =\
+    \ intersect(c1, c2);  // number of common tangents\n    std::vector<Line> ret;\n\
+    \    if (cnt == 0) {\n        return ret;\n    }\n\n    // external\n    if (eq(c1.r,\
+    \ c2.r)) {\n        auto d = c2.c - c1.c;\n        Vec e(-d.imag(), d.real());\n\
+    \        e = e / std::abs(e) * c1.r;\n        ret.push_back(Line(c1.c + e, c1.c\
+    \ + e + d));\n        ret.push_back(Line(c1.c - e, c1.c - e + d));\n    } else\
+    \ {\n        auto p = (-c2.r*c1.c + c1.r*c2.c) / (c1.r - c2.r);\n        if (cnt\
+    \ == 1) {\n            Vec q(-p.imag(), p.real());\n            return {Line(p,\
+    \ q)};\n        } else {\n            auto [a, b] = tangent_points(c1, p);\n \
+    \           ret.push_back(Line(a, p));\n            ret.push_back(Line(b, p));\n\
+    \        }\n    }\n\n    // internal\n    auto p = (c2.r*c1.c + c1.r*c2.c) / (c1.r\
+    \ + c2.r);\n    if (cnt == 3) {\n        Vec q(-p.imag(), p.real());\n       \
+    \ ret.push_back(Line(p, q));\n    } else if (cnt == 4) {\n        auto [a, b]\
+    \ = tangent_points(c1, p);\n        ret.push_back(Line(a, p));\n        ret.push_back(Line(b,\
+    \ p));\n    }\n\n    return ret;\n}\n"
+  code: "#pragma once\n#include \"geometry.hpp\"\n#include \"intersect.hpp\"\n#include\
+    \ \"intersection.hpp\"\n\nstd::pair<Vec, Vec> tangent_points(const Circle& c,\
+    \ const Vec& p) {\n    auto m = (p + c.c) / T(2);\n    auto is = intersection(c,\
+    \ Circle(m, std::abs(p - m)));\n    return {is[0], is[1]};\n}\n\n// for each l,\
+    \ l.p1 is a tangent point of c1\nstd::vector<Line> common_tangents(Circle c1,\
+    \ Circle c2) {\n    assert(!eq(c1.c, c2.c) || !eq(c1.r, c2.r));\n    int cnt =\
+    \ intersect(c1, c2);  // number of common tangents\n    std::vector<Line> ret;\n\
+    \    if (cnt == 0) {\n        return ret;\n    }\n\n    // external\n    if (eq(c1.r,\
+    \ c2.r)) {\n        auto d = c2.c - c1.c;\n        Vec e(-d.imag(), d.real());\n\
+    \        e = e / std::abs(e) * c1.r;\n        ret.push_back(Line(c1.c + e, c1.c\
+    \ + e + d));\n        ret.push_back(Line(c1.c - e, c1.c - e + d));\n    } else\
+    \ {\n        auto p = (-c2.r*c1.c + c1.r*c2.c) / (c1.r - c2.r);\n        if (cnt\
+    \ == 1) {\n            Vec q(-p.imag(), p.real());\n            return {Line(p,\
+    \ q)};\n        } else {\n            auto [a, b] = tangent_points(c1, p);\n \
+    \           ret.push_back(Line(a, p));\n            ret.push_back(Line(b, p));\n\
+    \        }\n    }\n\n    // internal\n    auto p = (c2.r*c1.c + c1.r*c2.c) / (c1.r\
+    \ + c2.r);\n    if (cnt == 3) {\n        Vec q(-p.imag(), p.real());\n       \
+    \ ret.push_back(Line(p, q));\n    } else if (cnt == 4) {\n        auto [a, b]\
+    \ = tangent_points(c1, p);\n        ret.push_back(Line(a, p));\n        ret.push_back(Line(b,\
+    \ p));\n    }\n\n    return ret;\n}\n"
   dependsOn:
   - geometry/geometry.hpp
+  - geometry/intersect.hpp
   - geometry/intersection.hpp
   - geometry/dist.hpp
-  - geometry/intersect.hpp
-  isVerificationFile: true
-  path: test/aoj/CGL_2_C.test.cpp
+  isVerificationFile: false
+  path: geometry/tangent.hpp
   requiredBy: []
   timestamp: '2022-05-09 11:09:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/aoj/CGL_2_C.test.cpp
+documentation_of: geometry/tangent.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_2_C.test.cpp
-- /verify/test/aoj/CGL_2_C.test.cpp.html
-title: test/aoj/CGL_2_C.test.cpp
+- /library/geometry/tangent.hpp
+- /library/geometry/tangent.hpp.html
+title: geometry/tangent.hpp
 ---

@@ -199,12 +199,30 @@ data:
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
+      path: geometry/dist.hpp
+      title: geometry/dist.hpp
+    - icon: ':question:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
+    - icon: ':question:'
+      path: geometry/intersect.hpp
+      title: geometry/intersect.hpp
+    - icon: ':heavy_check_mark:'
+      path: geometry/intersection.hpp
+      title: geometry/intersection.hpp
+    - icon: ':heavy_check_mark:'
+      path: geometry/polygon.hpp
+      title: geometry/polygon.hpp
+    - icon: ':warning:'
+      path: geometry/tangent.hpp
+      title: geometry/tangent.hpp
+    - icon: ':heavy_check_mark:'
+      path: geometry/triangle.hpp
+      title: geometry/triangle.hpp
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -231,6 +249,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.cpp
       title: Maximum Independent Set
+    - icon: ':warning:'
+      path: graph/maximum_weight_independent_set.hpp
+      title: graph/maximum_weight_independent_set.hpp
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_arborescence.cpp
       title: Minimum Spanning Arborescence
@@ -460,6 +481,9 @@ data:
   - name: test/aoj
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/aoj/1298.test.cpp
+      title: test/aoj/1298.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1508.rbst.test.cpp
       title: test/aoj/1508.rbst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -534,7 +558,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_A.test.cpp
       title: test/aoj/CGL_7_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_7_B.test.cpp
       title: test/aoj/CGL_7_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -546,10 +570,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_E.test.cpp
       title: test/aoj/CGL_7_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_7_F.test.cpp
       title: test/aoj/CGL_7_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_7_G.test.cpp
       title: test/aoj/CGL_7_G.test.cpp
     - icon: ':heavy_check_mark:'

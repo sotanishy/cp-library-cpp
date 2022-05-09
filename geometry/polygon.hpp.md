@@ -14,21 +14,25 @@ data:
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_3_A.test.cpp
+    title: test/aoj/CGL_3_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_3_B.test.cpp
+    title: test/aoj/CGL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_4_C.test.cpp
+    title: test/aoj/CGL_4_C.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-    links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n#define ERROR 0.00000001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
-    \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
+    links: []
+  bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#include\
+    \ <vector>\n\n// note that if T is of an integer type, std::abs does not work\n\
+    using T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
     \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
     \ < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline\
     \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
@@ -109,35 +113,53 @@ data:
     \ ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
     \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
     \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
-    \ 6 \"test/aoj/CGL_2_C.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n\
-    \        auto q = intersection(Line(p0, p1), Line(p2, p3));\n        cout << q.real()\
-    \ << \" \" << q.imag() << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n#define ERROR 0.00000001\n\n#include \"../../geometry/geometry.hpp\"\n#include\
-    \ \"../../geometry/intersection.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n\
-    \        auto q = intersection(Line(p0, p1), Line(p2, p3));\n        cout << q.real()\
-    \ << \" \" << q.imag() << \"\\n\";\n    }\n}"
+    \ 4 \"geometry/polygon.hpp\"\n\nT area(const Polygon& poly) {\n    const int n\
+    \ = poly.size();\n    T res = 0;\n    for (int i = 0; i < n; ++i) {\n        res\
+    \ += cross(poly[i], poly[(i + 1) % n]);\n    }\n    return std::abs(res) / T(2);\n\
+    }\n\nbool is_convex(const Polygon& poly) {\n    int n = poly.size();\n    for\
+    \ (int i = 0; i < n; ++i) {\n        if (lt(cross(poly[(i+1)%n] - poly[i], poly[(i+2)%n]\
+    \ - poly[(i+1)%n]), 0)) {\n            return false;\n        }\n    }\n    return\
+    \ true;\n}\n\nstd::vector<Vec> convex_cut(const Polygon& poly, const Line& l)\
+    \ {\n    const int n = poly.size();\n    std::vector<Vec> res;\n    for (int i\
+    \ = 0; i < n; ++i) {\n        auto p = poly[i], q = poly[(i+1)%n];\n        if\
+    \ (ccw(l.p1, l.p2, p) != -1) {\n            if (res.empty() || !eq(res.back(),\
+    \ p)) {\n                res.push_back(p);\n            }\n        }\n       \
+    \ if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q) < 0) {\n            auto c = intersection(Line(p,\
+    \ q), l);\n            if (res.empty() || !eq(res.back(), c)) {\n            \
+    \    res.push_back(c);\n            }\n        }\n    }\n    return res;\n}\n"
+  code: "#pragma once\n#include \"geometry.hpp\"\n#include \"intersection.hpp\"\n\n\
+    T area(const Polygon& poly) {\n    const int n = poly.size();\n    T res = 0;\n\
+    \    for (int i = 0; i < n; ++i) {\n        res += cross(poly[i], poly[(i + 1)\
+    \ % n]);\n    }\n    return std::abs(res) / T(2);\n}\n\nbool is_convex(const Polygon&\
+    \ poly) {\n    int n = poly.size();\n    for (int i = 0; i < n; ++i) {\n     \
+    \   if (lt(cross(poly[(i+1)%n] - poly[i], poly[(i+2)%n] - poly[(i+1)%n]), 0))\
+    \ {\n            return false;\n        }\n    }\n    return true;\n}\n\nstd::vector<Vec>\
+    \ convex_cut(const Polygon& poly, const Line& l) {\n    const int n = poly.size();\n\
+    \    std::vector<Vec> res;\n    for (int i = 0; i < n; ++i) {\n        auto p\
+    \ = poly[i], q = poly[(i+1)%n];\n        if (ccw(l.p1, l.p2, p) != -1) {\n   \
+    \         if (res.empty() || !eq(res.back(), p)) {\n                res.push_back(p);\n\
+    \            }\n        }\n        if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q)\
+    \ < 0) {\n            auto c = intersection(Line(p, q), l);\n            if (res.empty()\
+    \ || !eq(res.back(), c)) {\n                res.push_back(c);\n            }\n\
+    \        }\n    }\n    return res;\n}\n"
   dependsOn:
   - geometry/geometry.hpp
   - geometry/intersection.hpp
   - geometry/dist.hpp
   - geometry/intersect.hpp
-  isVerificationFile: true
-  path: test/aoj/CGL_2_C.test.cpp
+  isVerificationFile: false
+  path: geometry/polygon.hpp
   requiredBy: []
   timestamp: '2022-05-09 11:09:22+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/CGL_2_C.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/CGL_3_A.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_4_C.test.cpp
+documentation_of: geometry/polygon.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_2_C.test.cpp
-- /verify/test/aoj/CGL_2_C.test.cpp.html
-title: test/aoj/CGL_2_C.test.cpp
+- /library/geometry/polygon.hpp
+- /library/geometry/polygon.hpp.html
+title: geometry/polygon.hpp
 ---

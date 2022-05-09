@@ -1,9 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: geometry/dist.hpp
+    title: geometry/dist.hpp
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
+  - icon: ':question:'
+    path: geometry/intersect.hpp
+    title: geometry/intersect.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/intersection.hpp
+    title: geometry/intersection.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/triangle.hpp
+    title: geometry/triangle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -37,100 +49,137 @@ data:
     \ const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b\
     \ - a, c - a), 0)) return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p,\
     \ const Vec& q) {\n    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return\
-    \ Line(m, m + Vec(-v.imag(), v.real()));\n}\n\nbool intersect(const Segment& s,\
-    \ const Vec& p) {\n    Vec u = s.p1 - p, v = s.p2 - p;\n    return eq(cross(u,\
-    \ v), 0) && leq(dot(u, v), 0);\n}\n\n// 0: outside\n// 1: on the border\n// 2:\
-    \ inside\nint intersect(const Polygon& poly, const Vec& p) {\n    const int n\
-    \ = poly.size();\n    bool in = 0;\n    for (int i = 0; i < n; ++i) {\n      \
-    \  auto a = poly[i] - p, b = poly[(i+1)%n] - p;\n        if (eq(cross(a, b), 0)\
-    \ && (lt(dot(a, b), 0) || eq(dot(a, b), 0))) return 1;\n        if (a.imag() >\
-    \ b.imag()) std::swap(a, b);\n        if (leq(a.imag(), 0) && lt(0, b.imag())\
-    \ && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\nbool intersect(const\
-    \ Segment& s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c =\
-    \ t.p1, d = t.p2;\n    if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c,\
-    \ d, b)) return 2;\n    if (intersect(s, c) || intersect(s, d) || intersect(t,\
-    \ a) || intersect(t, b)) return 1;\n    return 0;\n}\n\n// 0: inside\n// 1: inscribe\n\
-    // 2: intersect\n// 3: circumscribe\n// 4: outside\nint intersect(const Circle&\
-    \ c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d, std::abs(c2.r\
-    \ - c1.r))) return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return 1;\n    if\
-    \ (eq(c1.r + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return 4;\n    return\
-    \ 2;\n}\n\nT dist(const Line& l, const Vec& p) {\n    return std::abs(cross(p\
-    \ - l.p1, l.dir())) / std::abs(l.dir());\n}\n\nT dist(const Segment& s, const\
-    \ Vec& p) {\n    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n\
-    \    if (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return\
-    \ std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment&\
-    \ s, const Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min({dist(s,\
-    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n\nVec intersection(const\
-    \ Line& l, const Line& m) {\n    Vec r = m.p1 - l.p1;\n    assert(!eq(cross(l.dir(),\
-    \ m.dir()), 0)); // not parallel\n    return l.p1 + cross(m.dir(), r) / cross(m.dir(),\
-    \ l.dir()) * l.dir();\n}\n\nstd::vector<Vec> intersection(const Circle& c, const\
-    \ Line& l) {\n    T d = dist(l, c.c);\n    if (lt(c.r, d)) return {};  // no intersection\n\
-    \    Vec e1 = l.dir() / std::abs(l.dir());\n    Vec e2 = Vec(-e1.imag(), e1.real());\n\
-    \    if (ccw(c.c, l.p1, l.p2) == 1) e2 *= -1;\n    if (eq(c.r, d)) return {c.c\
-    \ + d*e2};  // tangent\n    T t = std::sqrt(c.r*c.r - d*d);\n    return {c.c +\
-    \ d*e2 + t*e1, c.c + d*e2 - t*e1};\n}\n\nstd::vector<Vec> intersection(const Circle&\
-    \ c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(c1.r +\
-    \ c2.r, d)) return {};  // outside\n    Vec e1 = (c2.c - c1.c) / std::abs(c2.c\
-    \ - c1.c);\n    Vec e2 = Vec(-e1.imag(), e1.real());\n    if (lt(d, std::abs(c2.r\
-    \ - c1.r))) return {};  // contain\n    if (eq(d, std::abs(c2.r - c1.r))) return\
-    \ {c1.c + c1.r*e1};  // tangent\n    T x = (c1.r*c1.r - c2.r*c2.r + d*d) / (2*d);\n\
-    \    T y = std::sqrt(c1.r*c1.r - x*x);\n    return {c1.c + x*e1 + y*e2, c1.c +\
-    \ x*e1 - y*e2};\n}\n\nT area(const Polygon& poly) {\n    const int n = poly.size();\n\
-    \    T res = 0;\n    for (int i = 0; i < n; ++i) {\n        res += cross(poly[i],\
-    \ poly[(i + 1) % n]);\n    }\n    return std::abs(res) / T(2);\n}\n\nT area_intersection(const\
-    \ Circle& c1, const Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r\
-    \ + c2.r, d)) return 0;  // outside\n    if (leq(d, std::abs(c2.r - c1.r))) {\
-    \  // inside\n        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n\
-    \    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
+    \ Line(m, m + Vec(-v.imag(), v.real()));\n}\n\nvoid sort_by_arg(std::vector<Vec>&\
+    \ pts) {\n    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n    \
+    \    if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if\
+    \ (cross(p, q) == 0) {\n            if (p == Vec(0, 0)) return !(q.imag() < 0\
+    \ || (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0, 0)) return\
+    \  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n            return (p.real()\
+    \ > q.real());\n        }\n        return (cross(p, q) > 0);\n    });\n}\n#line\
+    \ 3 \"geometry/intersect.hpp\"\n\nbool intersect(const Segment& s, const Vec&\
+    \ p) {\n    Vec u = s.p1 - p, v = s.p2 - p;\n    return eq(cross(u, v), 0) &&\
+    \ leq(dot(u, v), 0);\n}\n\n// 0: outside\n// 1: on the border\n// 2: inside\n\
+    int intersect(const Polygon& poly, const Vec& p) {\n    const int n = poly.size();\n\
+    \    bool in = 0;\n    for (int i = 0; i < n; ++i) {\n        auto a = poly[i]\
+    \ - p, b = poly[(i+1)%n] - p;\n        if (eq(cross(a, b), 0) && (lt(dot(a, b),\
+    \ 0) || eq(dot(a, b), 0))) return 1;\n        if (a.imag() > b.imag()) std::swap(a,\
+    \ b);\n        if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0))\
+    \ in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\nbool intersect(const Segment&\
+    \ s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c = t.p1, d =\
+    \ t.p2;\n    if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b))\
+    \ return 2;\n    if (intersect(s, c) || intersect(s, d) || intersect(t, a) ||\
+    \ intersect(t, b)) return 1;\n    return 0;\n}\n\n// true if they have positive\
+    \ area in common or touch on the border\nbool intersect(const Polygon& poly1,\
+    \ const Polygon& poly2) {\n    const int n = poly1.size();\n    const int m =\
+    \ poly2.size();\n    for (int i = 0; i < n; ++i) {\n        for (int j = 0; j\
+    \ < m; ++j) {\n            if (intersect(Segment(poly1[i], poly1[(i+1)%n]), Segment(poly2[j],\
+    \ poly2[(j+1)%n]))) {\n                return true;\n            }\n        }\n\
+    \    }\n    return intersect(poly1, poly2[0]) || intersect(poly2, poly1[0]);\n\
+    }\n\n// 0: inside\n// 1: inscribe\n// 2: intersect\n// 3: circumscribe\n// 4:\
+    \ outside\nint intersect(const Circle& c1, const Circle& c2) {\n    T d = std::abs(c1.c\
+    \ - c2.c);\n    if (lt(d, std::abs(c2.r - c1.r))) return 0;\n    if (eq(d, std::abs(c2.r\
+    \ - c1.r))) return 1;\n    if (eq(c1.r + c2.r, d)) return 3;\n    if (lt(c1.r\
+    \ + c2.r, d)) return 4;\n    return 2;\n}\n#line 4 \"geometry/dist.hpp\"\n\nT\
+    \ dist(const Line& l, const Vec& p) {\n    return std::abs(cross(p - l.p1, l.dir()))\
+    \ / std::abs(l.dir());\n}\n\nT dist(const Segment& s, const Vec& p) {\n    if\
+    \ (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n    if (lt(dot(p\
+    \ - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return std::abs(cross(p\
+    \ - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment& s, const\
+    \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min({dist(s,\
+    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n#line 4 \"geometry/intersection.hpp\"\
+    \n\nVec intersection(const Line& l, const Line& m) {\n    Vec r = m.p1 - l.p1;\n\
+    \    assert(!eq(cross(l.dir(), m.dir()), 0)); // not parallel\n    return l.p1\
+    \ + cross(m.dir(), r) / cross(m.dir(), l.dir()) * l.dir();\n}\n\nstd::vector<Vec>\
+    \ intersection(const Circle& c, const Line& l) {\n    T d = dist(l, c.c);\n  \
+    \  if (lt(c.r, d)) return {};  // no intersection\n    Vec e1 = l.dir() / std::abs(l.dir());\n\
+    \    Vec e2 = Vec(-e1.imag(), e1.real());\n    if (ccw(c.c, l.p1, l.p2) == 1)\
+    \ e2 *= -1;\n    if (eq(c.r, d)) return {c.c + d*e2};  // tangent\n    T t = std::sqrt(c.r*c.r\
+    \ - d*d);\n    return {c.c + d*e2 + t*e1, c.c + d*e2 - t*e1};\n}\n\nstd::vector<Vec>\
+    \ intersection(const Circle& c1, const Circle& c2) {\n    T d = std::abs(c1.c\
+    \ - c2.c);\n    if (lt(c1.r + c2.r, d)) return {};  // outside\n    Vec e1 = (c2.c\
+    \ - c1.c) / std::abs(c2.c - c1.c);\n    Vec e2 = Vec(-e1.imag(), e1.real());\n\
+    \    if (lt(d, std::abs(c2.r - c1.r))) return {};  // contain\n    if (eq(d, std::abs(c2.r\
+    \ - c1.r))) return {c1.c + c1.r*e1};  // tangent\n    T x = (c1.r*c1.r - c2.r*c2.r\
+    \ + d*d) / (2*d);\n    T y = std::sqrt(c1.r*c1.r - x*x);\n    return {c1.c + x*e1\
+    \ + y*e2, c1.c + x*e1 - y*e2};\n}\n\nT area_intersection(const Circle& c1, const\
+    \ Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r + c2.r, d))\
+    \ return 0;  // outside\n    if (leq(d, std::abs(c2.r - c1.r))) {  // inside\n\
+    \        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n    }\n    T\
+    \ ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
     \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
-    \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n\nbool\
-    \ is_convex(const Polygon& poly) {\n    int n = poly.size();\n    for (int i =\
-    \ 0; i < n; ++i) {\n        if (lt(cross(poly[(i+1)%n] - poly[i], poly[(i+2)%n]\
-    \ - poly[(i+1)%n]), 0)) {\n            return false;\n        }\n    }\n    return\
-    \ true;\n}\n\nstd::vector<Vec> convex_cut(const Polygon& poly, const Line& l)\
-    \ {\n    const int n = poly.size();\n    std::vector<Vec> res;\n    for (int i\
-    \ = 0; i < n; ++i) {\n        auto p = poly[i], q = poly[(i+1)%n];\n        if\
-    \ (ccw(l.p1, l.p2, p) != -1) {\n            if (res.empty() || !eq(res.back(),\
-    \ p)) {\n                res.push_back(p);\n            }\n        }\n       \
-    \ if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q) < 0) {\n            auto c = intersection(Line(p,\
-    \ q), l);\n            if (res.empty() || !eq(res.back(), c)) {\n            \
-    \    res.push_back(c);\n            }\n        }\n    }\n    return res;\n}\n\n\
-    Vec centroid(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A, B,\
-    \ C) != 0);\n    return (A + B + C) / T(3);\n}\n\nVec incenter(const Vec& A, const\
-    \ Vec& B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    T a = std::abs(B\
-    \ - C);\n    T b = std::abs(C - A);\n    T c = std::abs(A - B);\n    return (a*A\
-    \ + b*B + c*C) / (a + b + c);\n}\n\nVec circumcenter(const Vec& A, const Vec&\
-    \ B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return intersection(bisector(A,\
-    \ B), bisector(A, C));\n}\n\n// large error but beautiful\n// Vec circumcenter(const\
-    \ Vec& A, const Vec& B, const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//\
-    \     Vec p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q,\
-    \ r);\n//     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r) * dot(p,\
-    \ q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\nstd::pair<Vec,\
-    \ Vec> tangent_points(const Circle& c, const Vec& p) {\n    auto m = (p + c.c)\
-    \ / T(2);\n    auto is = intersection(c, Circle(m, std::abs(p - m)));\n    return\
-    \ {is[0], is[1]};\n}\n\n// for each l, l.p1 is a tangent point of c1\nstd::vector<Line>\
-    \ common_tangents(Circle c1, Circle c2) {\n    assert(!eq(c1.c, c2.c) || !eq(c1.r,\
-    \ c2.r));\n    int cnt = intersect(c1, c2);  // number of common tangents\n  \
-    \  std::vector<Line> ret;\n    if (cnt == 0) {\n        return ret;\n    }\n\n\
-    \    // external\n    if (eq(c1.r, c2.r)) {\n        auto d = c2.c - c1.c;\n \
-    \       Vec e(-d.imag(), d.real());\n        e = e / std::abs(e) * c1.r;\n   \
-    \     ret.push_back(Line(c1.c + e, c1.c + e + d));\n        ret.push_back(Line(c1.c\
-    \ - e, c1.c - e + d));\n    } else {\n        auto p = (-c2.r*c1.c + c1.r*c2.c)\
-    \ / (c1.r - c2.r);\n        if (cnt == 1) {\n            Vec q(-p.imag(), p.real());\n\
-    \            return {Line(p, q)};\n        } else {\n            auto [a, b] =\
-    \ tangent_points(c1, p);\n            ret.push_back(Line(a, p));\n           \
-    \ ret.push_back(Line(b, p));\n        }\n    }\n\n    // internal\n    auto p\
-    \ = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);\n    if (cnt == 3) {\n        Vec\
-    \ q(-p.imag(), p.real());\n        ret.push_back(Line(p, q));\n    } else if (cnt\
-    \ == 4) {\n        auto [a, b] = tangent_points(c1, p);\n        ret.push_back(Line(a,\
-    \ p));\n        ret.push_back(Line(b, p));\n    }\n\n    return ret;\n}\n\nvoid\
-    \ sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(), pts.end(),\
-    \ [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag() < 0)) return\
-    \ (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if (p == Vec(0,\
-    \ 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n           \
-    \ if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
-    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
-    \ q) > 0);\n    });\n}\n#line 7 \"geometry/delaunay_diagram.hpp\"\n\nstd::vector<std::pair<int,\
+    \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
+    \ 4 \"geometry/triangle.hpp\"\n\nVec centroid(const Vec& A, const Vec& B, const\
+    \ Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return (A + B + C) / T(3);\n\
+    }\n\nVec incenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ B, C) != 0);\n    T a = std::abs(B - C);\n    T b = std::abs(C - A);\n    T\
+    \ c = std::abs(A - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n}\n\nVec\
+    \ circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ B, C) != 0);\n    return intersection(bisector(A, B), bisector(A, C));\n}\n\n\
+    // large error but beautiful\n// Vec circumcenter(const Vec& A, const Vec& B,\
+    \ const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//     Vec p = C - B, q\
+    \ = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q, r);\n//     T b = std::norm(q)\
+    \ * dot(r, p);\n//     T c = std::norm(r) * dot(p, q);\n//     return (a*A + b*B\
+    \ + c*C) / (a + b + c);\n// }\n\n#line 8 \"geometry/delaunay_diagram.hpp\"\n\n\
+    std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {\n  \
+    \  const int n = pts.size();\n    constexpr T INF = 1e20;\n    // stores delaunay\
+    \ edges\n    std::vector<std::pair<int, int>> edges;\n    // the sweep line moves\
+    \ from left to right\n    // x coordinate of the sweepline\n    static T sweepx;\n\
+    \n    // check if all points are collinear\n    bool ok = false;\n    for (int\
+    \ i = 2; i < n; ++i) {\n        if (ccw(pts[0], pts[1], pts[i]) != 0) {\n    \
+    \        ok = true;\n            break;\n        }\n    }\n    // handle degenerate\
+    \ cases\n    if (!ok) {\n        // connect all points by a path\n        std::vector<std::pair<Vec,\
+    \ int>> pi(n);\n        for (int i = 0; i < n; ++i) pi[i] = {pts[i], i};\n   \
+    \     std::sort(pi.begin(), pi.end(), [&](auto& p, auto& q) {\n            return\
+    \ std::make_pair(p.first.real(), p.first.imag()) < std::make_pair(q.first.real(),\
+    \ q.first.imag());\n        });\n        for (int k = 0; k < n - 1; ++k) {\n \
+    \           edges.emplace_back(pi[k].second, pi[k + 1].second);\n        }\n \
+    \       return edges;\n    }\n\n    // represents a parabola given by the focus\
+    \ p\n    // and the focus q of the next parabola\n    struct Parabola {\n    \
+    \    Vec p;\n        mutable Vec q;\n        int i;\n        mutable int id =\
+    \ 0;\n        Parabola(const Vec& p, const Vec& q, int i) : p(p), q(q), i(i) {}\n\
+    \n        T gety(T x) const {\n            if (q.imag() == INF) return INF;\n\
+    \            x += eps;\n            Vec m = (p + q) / T(2);\n            Vec dir\
+    \ = rot(p - m, PI/2);\n            T D = (x-p.real()) * (x-q.real());\n      \
+    \      return m.imag() + ((m.real() - x) * dir.real() + std::sqrt(D) * std::abs(dir))\
+    \ / dir.imag();\n        }\n        bool operator<(T y) const { return gety(sweepx)\
+    \ < y; }\n        bool operator<(const Parabola& o) const { return gety(sweepx)\
+    \ < o.gety(sweepx); }\n    };\n\n    // maintains a list of parabola\n    std::multiset<Parabola,\
+    \ std::less<>> beach;\n    using iterator = decltype(beach)::iterator;\n\n   \
+    \ // represents an event\n    // id >= 0: point event\n    // id < 0: vertex event\n\
+    \    struct Event {\n        T x;\n        int id;\n        iterator it;\n   \
+    \     Event(T x, int id, iterator it) : x(x), id(id), it(it) {}\n        bool\
+    \ operator>(const Event& e) const { return x > e.x; }\n    };\n\n    // maintains\
+    \ a list of events\n    std::priority_queue<Event, std::vector<Event>, std::greater<>>\
+    \ pq;\n    // true if the i-th vertex event is still valid\n    std::vector<bool>\
+    \ valid(1);\n\n    int k = 1; // next id\n\n    // create vertex events\n    auto\
+    \ update = [&](const iterator& it) {\n        if (it->i <= -1 || it == beach.begin())\
+    \ return; // sentinels\n        valid[it->id] = false;\n        auto a = std::prev(it);\n\
+    \        // handle a vertex event that occurs\n        // when 3 parabolas at\
+    \ (a->p, it->p, it->q) coincide\n        if (eq(ccw(a->p, it->p, it->q), 0)) return;\
+    \  // never coincide when collinear\n        //create a new event\n        it->id\
+    \ = k++;\n        valid.push_back(true);\n        Vec c = circumcenter(a->p, it->p,\
+    \ it->q);\n        // coordinate of the vertex event\n        T x = c.real() +\
+    \ std::abs(c - it->p);\n        if (leq(sweepx, x) && leq(it->gety(x), a->gety(x)))\
+    \ {\n            pq.emplace(x, -it->id, it);\n        }\n    };\n\n    auto add_edge\
+    \ = [&](int i, int j) {\n        if (i != -1 && j != -1) edges.emplace_back(i,\
+    \ j);\n    };\n\n    // rotate all points by a radian\n    // so that x coordinates\
+    \ are distinct\n    for (auto& p : pts) p = rot(p, 1);\n\n    // sentinel\n  \
+    \  beach.emplace(Vec(-INF, INF), Vec(-INF*2, INF), -1);\n\n    // add all point\
+    \ events\n    for (int i = 0; i < n; ++i) {\n        pq.emplace(pts[i].real(),\
+    \ i, beach.end());\n    }\n\n    while (!pq.empty()) {\n        auto e = pq.top();\
+    \ pq.pop();\n        sweepx = e.x;\n        if (e.id >= 0) {\n            // point\
+    \ event\n            int i = e.id;\n            auto p = pts[i];\n           \
+    \ // (c) -> (c, p, c)\n            auto c = beach.lower_bound(p.imag());\n   \
+    \         auto b = beach.insert(c, Parabola(p, c->p, i));\n            auto a\
+    \ = beach.insert(b, Parabola(c->p, p, c->i));\n            add_edge(i, c->i);\n\
+    \            update(a); update(b); update(c);\n        } else if (valid[-e.id])\
+    \ {\n            // vertex event\n            // (a, e, b) -> (a, b)\n       \
+    \     auto a = std::prev(e.it);\n            auto b = std::next(e.it);\n     \
+    \       beach.erase(e.it);\n            a->q = b->p;\n            add_edge(a->i,\
+    \ b->i);\n            update(a); update(b);\n        }\n    }\n\n    return edges;\n\
+    }\n"
+  code: "#pragma once\n#include <queue>\n#include <set>\n#include <utility>\n#include\
+    \ <vector>\n#include \"geometry.hpp\"\n#include \"triangle.hpp\"\n\nstd::vector<std::pair<int,\
     \ int>> delaunay_diagram(std::vector<Vec> pts) {\n    const int n = pts.size();\n\
     \    constexpr T INF = 1e20;\n    // stores delaunay edges\n    std::vector<std::pair<int,\
     \ int>> edges;\n    // the sweep line moves from left to right\n    // x coordinate\
@@ -188,71 +237,16 @@ data:
     \       beach.erase(e.it);\n            a->q = b->p;\n            add_edge(a->i,\
     \ b->i);\n            update(a); update(b);\n        }\n    }\n\n    return edges;\n\
     }\n"
-  code: "#pragma once\n#include <queue>\n#include <set>\n#include <utility>\n#include\
-    \ <vector>\n#include \"geometry.hpp\"\n\nstd::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec>\
-    \ pts) {\n    const int n = pts.size();\n    constexpr T INF = 1e20;\n    // stores\
-    \ delaunay edges\n    std::vector<std::pair<int, int>> edges;\n    // the sweep\
-    \ line moves from left to right\n    // x coordinate of the sweepline\n    static\
-    \ T sweepx;\n\n    // check if all points are collinear\n    bool ok = false;\n\
-    \    for (int i = 2; i < n; ++i) {\n        if (ccw(pts[0], pts[1], pts[i]) !=\
-    \ 0) {\n            ok = true;\n            break;\n        }\n    }\n    // handle\
-    \ degenerate cases\n    if (!ok) {\n        // connect all points by a path\n\
-    \        std::vector<std::pair<Vec, int>> pi(n);\n        for (int i = 0; i <\
-    \ n; ++i) pi[i] = {pts[i], i};\n        std::sort(pi.begin(), pi.end(), [&](auto&\
-    \ p, auto& q) {\n            return std::make_pair(p.first.real(), p.first.imag())\
-    \ < std::make_pair(q.first.real(), q.first.imag());\n        });\n        for\
-    \ (int k = 0; k < n - 1; ++k) {\n            edges.emplace_back(pi[k].second,\
-    \ pi[k + 1].second);\n        }\n        return edges;\n    }\n\n    // represents\
-    \ a parabola given by the focus p\n    // and the focus q of the next parabola\n\
-    \    struct Parabola {\n        Vec p;\n        mutable Vec q;\n        int i;\n\
-    \        mutable int id = 0;\n        Parabola(const Vec& p, const Vec& q, int\
-    \ i) : p(p), q(q), i(i) {}\n\n        T gety(T x) const {\n            if (q.imag()\
-    \ == INF) return INF;\n            x += eps;\n            Vec m = (p + q) / T(2);\n\
-    \            Vec dir = rot(p - m, PI/2);\n            T D = (x-p.real()) * (x-q.real());\n\
-    \            return m.imag() + ((m.real() - x) * dir.real() + std::sqrt(D) * std::abs(dir))\
-    \ / dir.imag();\n        }\n        bool operator<(T y) const { return gety(sweepx)\
-    \ < y; }\n        bool operator<(const Parabola& o) const { return gety(sweepx)\
-    \ < o.gety(sweepx); }\n    };\n\n    // maintains a list of parabola\n    std::multiset<Parabola,\
-    \ std::less<>> beach;\n    using iterator = decltype(beach)::iterator;\n\n   \
-    \ // represents an event\n    // id >= 0: point event\n    // id < 0: vertex event\n\
-    \    struct Event {\n        T x;\n        int id;\n        iterator it;\n   \
-    \     Event(T x, int id, iterator it) : x(x), id(id), it(it) {}\n        bool\
-    \ operator>(const Event& e) const { return x > e.x; }\n    };\n\n    // maintains\
-    \ a list of events\n    std::priority_queue<Event, std::vector<Event>, std::greater<>>\
-    \ pq;\n    // true if the i-th vertex event is still valid\n    std::vector<bool>\
-    \ valid(1);\n\n    int k = 1; // next id\n\n    // create vertex events\n    auto\
-    \ update = [&](const iterator& it) {\n        if (it->i <= -1 || it == beach.begin())\
-    \ return; // sentinels\n        valid[it->id] = false;\n        auto a = std::prev(it);\n\
-    \        // handle a vertex event that occurs\n        // when 3 parabolas at\
-    \ (a->p, it->p, it->q) coincide\n        if (eq(ccw(a->p, it->p, it->q), 0)) return;\
-    \  // never coincide when collinear\n        //create a new event\n        it->id\
-    \ = k++;\n        valid.push_back(true);\n        Vec c = circumcenter(a->p, it->p,\
-    \ it->q);\n        // coordinate of the vertex event\n        T x = c.real() +\
-    \ std::abs(c - it->p);\n        if (leq(sweepx, x) && leq(it->gety(x), a->gety(x)))\
-    \ {\n            pq.emplace(x, -it->id, it);\n        }\n    };\n\n    auto add_edge\
-    \ = [&](int i, int j) {\n        if (i != -1 && j != -1) edges.emplace_back(i,\
-    \ j);\n    };\n\n    // rotate all points by a radian\n    // so that x coordinates\
-    \ are distinct\n    for (auto& p : pts) p = rot(p, 1);\n\n    // sentinel\n  \
-    \  beach.emplace(Vec(-INF, INF), Vec(-INF*2, INF), -1);\n\n    // add all point\
-    \ events\n    for (int i = 0; i < n; ++i) {\n        pq.emplace(pts[i].real(),\
-    \ i, beach.end());\n    }\n\n    while (!pq.empty()) {\n        auto e = pq.top();\
-    \ pq.pop();\n        sweepx = e.x;\n        if (e.id >= 0) {\n            // point\
-    \ event\n            int i = e.id;\n            auto p = pts[i];\n           \
-    \ // (c) -> (c, p, c)\n            auto c = beach.lower_bound(p.imag());\n   \
-    \         auto b = beach.insert(c, Parabola(p, c->p, i));\n            auto a\
-    \ = beach.insert(b, Parabola(c->p, p, c->i));\n            add_edge(i, c->i);\n\
-    \            update(a); update(b); update(c);\n        } else if (valid[-e.id])\
-    \ {\n            // vertex event\n            // (a, e, b) -> (a, b)\n       \
-    \     auto a = std::prev(e.it);\n            auto b = std::next(e.it);\n     \
-    \       beach.erase(e.it);\n            a->q = b->p;\n            add_edge(a->i,\
-    \ b->i);\n            update(a); update(b);\n        }\n    }\n\n    return edges;\n\
-    }\n"
   dependsOn:
   - geometry/geometry.hpp
+  - geometry/triangle.hpp
+  - geometry/intersection.hpp
+  - geometry/dist.hpp
+  - geometry/intersect.hpp
   isVerificationFile: false
   path: geometry/delaunay_diagram.hpp
   requiredBy: []
-  timestamp: '2022-05-06 13:22:10+09:00'
+  timestamp: '2022-05-09 11:09:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/delaunay_diagram.hpp

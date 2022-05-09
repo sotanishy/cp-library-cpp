@@ -13,22 +13,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: geometry/delaunay_diagram.hpp
+    title: Delaunay Diagram
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_C.test.cpp
+    title: test/aoj/CGL_7_C.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-    links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n#define ERROR 0.00000001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
-    \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
+    links: []
+  bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#include\
+    \ <vector>\n\n// note that if T is of an integer type, std::abs does not work\n\
+    using T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
     \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
     \ < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline\
     \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
@@ -109,35 +110,47 @@ data:
     \ ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
     \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
     \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
-    \ 6 \"test/aoj/CGL_2_C.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n\
-    \        auto q = intersection(Line(p0, p1), Line(p2, p3));\n        cout << q.real()\
-    \ << \" \" << q.imag() << \"\\n\";\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n#define ERROR 0.00000001\n\n#include \"../../geometry/geometry.hpp\"\n#include\
-    \ \"../../geometry/intersection.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(10);\n\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n\
-    \        auto q = intersection(Line(p0, p1), Line(p2, p3));\n        cout << q.real()\
-    \ << \" \" << q.imag() << \"\\n\";\n    }\n}"
+    \ 4 \"geometry/triangle.hpp\"\n\nVec centroid(const Vec& A, const Vec& B, const\
+    \ Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return (A + B + C) / T(3);\n\
+    }\n\nVec incenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ B, C) != 0);\n    T a = std::abs(B - C);\n    T b = std::abs(C - A);\n    T\
+    \ c = std::abs(A - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n}\n\nVec\
+    \ circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ B, C) != 0);\n    return intersection(bisector(A, B), bisector(A, C));\n}\n\n\
+    // large error but beautiful\n// Vec circumcenter(const Vec& A, const Vec& B,\
+    \ const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//     Vec p = C - B, q\
+    \ = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q, r);\n//     T b = std::norm(q)\
+    \ * dot(r, p);\n//     T c = std::norm(r) * dot(p, q);\n//     return (a*A + b*B\
+    \ + c*C) / (a + b + c);\n// }\n\n"
+  code: "#pragma once\n#include \"geometry.hpp\"\n#include \"intersection.hpp\"\n\n\
+    Vec centroid(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A, B,\
+    \ C) != 0);\n    return (A + B + C) / T(3);\n}\n\nVec incenter(const Vec& A, const\
+    \ Vec& B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    T a = std::abs(B\
+    \ - C);\n    T b = std::abs(C - A);\n    T c = std::abs(A - B);\n    return (a*A\
+    \ + b*B + c*C) / (a + b + c);\n}\n\nVec circumcenter(const Vec& A, const Vec&\
+    \ B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return intersection(bisector(A,\
+    \ B), bisector(A, C));\n}\n\n// large error but beautiful\n// Vec circumcenter(const\
+    \ Vec& A, const Vec& B, const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//\
+    \     Vec p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q,\
+    \ r);\n//     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r) * dot(p,\
+    \ q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\n"
   dependsOn:
   - geometry/geometry.hpp
   - geometry/intersection.hpp
   - geometry/dist.hpp
   - geometry/intersect.hpp
-  isVerificationFile: true
-  path: test/aoj/CGL_2_C.test.cpp
-  requiredBy: []
+  isVerificationFile: false
+  path: geometry/triangle.hpp
+  requiredBy:
+  - geometry/delaunay_diagram.hpp
   timestamp: '2022-05-09 11:09:22+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/CGL_2_C.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/CGL_7_C.test.cpp
+documentation_of: geometry/triangle.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_2_C.test.cpp
-- /verify/test/aoj/CGL_2_C.test.cpp.html
-title: test/aoj/CGL_2_C.test.cpp
+- /library/geometry/triangle.hpp
+- /library/geometry/triangle.hpp.html
+title: geometry/triangle.hpp
 ---
