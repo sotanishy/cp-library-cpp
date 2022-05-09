@@ -8,7 +8,7 @@ std::vector<int> maximum_independent_set(const std::vector<std::vector<int>>& G)
     for (int i = 0; i < n; ++i) deg[i] = G[i].size();
     int res = 0, cnt = 0, alive = n;
 
-    auto dfs = [&](const auto& self) {
+    auto dfs = [&](const auto& dfs) {
         if (cnt + alive <= res) return;
 
         int v = -1;
@@ -28,7 +28,7 @@ std::vector<int> maximum_independent_set(const std::vector<std::vector<int>>& G)
             --alive;
             for (int u : G[v]) --deg[u];
 
-            self(self);
+            dfs(dfs);
 
             dead[v] = false;
             ++alive;
@@ -48,7 +48,7 @@ std::vector<int> maximum_independent_set(const std::vector<std::vector<int>>& G)
             res = cnt;
         }
 
-        self(self);
+        dfs(dfs);
 
         used[v] = false;
         ++alive;

@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #include "geometry.hpp"
+#include "triangle.hpp"
 
 std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
     const int n = pts.size();

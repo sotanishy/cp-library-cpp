@@ -2,6 +2,7 @@
 #define ERROR 0.00001
 
 #include "../../geometry/geometry.hpp"
+#include "../../geometry/polygon.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

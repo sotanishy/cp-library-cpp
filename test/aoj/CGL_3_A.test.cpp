@@ -1,6 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A"
 
 #include "../../geometry/geometry.hpp"
+#include "../../geometry/polygon.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

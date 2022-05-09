@@ -5,9 +5,9 @@
 /**
  * @brief 3D Geometry
  */
-// following functions from the 2d library also work for 3d without any modification
-// projection, reflection, dist
-// centroid, incenter
+// following structs and functions from the 2d library also work for 3d without any modification
+// Line, Segment, Circle (should be renamed "Sphere" for 3D)
+// projection, reflection, dist, centroid, incenter
 
 using T = double;
 

@@ -1,6 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B"
 
 #include "../../geometry/geometry.hpp"
+#include "../../geometry/intersect.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

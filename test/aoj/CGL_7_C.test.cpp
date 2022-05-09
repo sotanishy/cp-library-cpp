@@ -2,6 +2,7 @@
 #define ERROR 0.000001
 
 #include "../../geometry/geometry.hpp"
+#include "../../geometry/triangle.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

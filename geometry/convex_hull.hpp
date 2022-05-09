@@ -4,6 +4,7 @@
 
 std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
     int n = pts.size();
+    if (n == 1) return pts;
     std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {
         return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());
     });

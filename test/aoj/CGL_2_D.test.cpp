@@ -2,6 +2,7 @@
 #define ERROR 0.00000001
 
 #include "../../geometry/geometry.hpp"
+#include "../../geometry/dist.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
