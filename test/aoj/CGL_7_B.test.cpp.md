@@ -1,20 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/intersection.hpp
+    title: geometry/intersection.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/triangle.hpp
+    title: geometry/triangle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -84,28 +90,64 @@ data:
     \ - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return std::abs(cross(p\
     \ - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment& s, const\
     \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min({dist(s,\
-    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n#line 6 \"test/aoj/CGL_7_B.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n#line 4 \"geometry/intersection.hpp\"\
+    \n\nVec intersection(const Line& l, const Line& m) {\n    Vec r = m.p1 - l.p1;\n\
+    \    assert(!eq(cross(l.dir(), m.dir()), 0)); // not parallel\n    return l.p1\
+    \ + cross(m.dir(), r) / cross(m.dir(), l.dir()) * l.dir();\n}\n\nstd::vector<Vec>\
+    \ intersection(const Circle& c, const Line& l) {\n    T d = dist(l, c.c);\n  \
+    \  if (lt(c.r, d)) return {};  // no intersection\n    Vec e1 = l.dir() / std::abs(l.dir());\n\
+    \    Vec e2 = Vec(-e1.imag(), e1.real());\n    if (ccw(c.c, l.p1, l.p2) == 1)\
+    \ e2 *= -1;\n    if (eq(c.r, d)) return {c.c + d*e2};  // tangent\n    T t = std::sqrt(c.r*c.r\
+    \ - d*d);\n    return {c.c + d*e2 + t*e1, c.c + d*e2 - t*e1};\n}\n\nstd::vector<Vec>\
+    \ intersection(const Circle& c1, const Circle& c2) {\n    T d = std::abs(c1.c\
+    \ - c2.c);\n    if (lt(c1.r + c2.r, d)) return {};  // outside\n    Vec e1 = (c2.c\
+    \ - c1.c) / std::abs(c2.c - c1.c);\n    Vec e2 = Vec(-e1.imag(), e1.real());\n\
+    \    if (lt(d, std::abs(c2.r - c1.r))) return {};  // contain\n    if (eq(d, std::abs(c2.r\
+    \ - c1.r))) return {c1.c + c1.r*e1};  // tangent\n    T x = (c1.r*c1.r - c2.r*c2.r\
+    \ + d*d) / (2*d);\n    T y = std::sqrt(c1.r*c1.r - x*x);\n    return {c1.c + x*e1\
+    \ + y*e2, c1.c + x*e1 - y*e2};\n}\n\nT area_intersection(const Circle& c1, const\
+    \ Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r + c2.r, d))\
+    \ return 0;  // outside\n    if (leq(d, std::abs(c2.r - c1.r))) {  // inside\n\
+    \        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n    }\n    T\
+    \ ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
+    \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
+    \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
+    \ 4 \"geometry/triangle.hpp\"\n\nVec centroid(const Vec& A, const Vec& B, const\
+    \ Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return (A + B + C) / T(3);\n\
+    }\n\nVec incenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ B, C) != 0);\n    T a = std::abs(B - C);\n    T b = std::abs(C - A);\n    T\
+    \ c = std::abs(A - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n}\n\nVec\
+    \ circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ B, C) != 0);\n    return intersection(bisector(A, B), bisector(A, C));\n}\n\n\
+    // large error but beautiful\n// Vec circumcenter(const Vec& A, const Vec& B,\
+    \ const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//     Vec p = C - B, q\
+    \ = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q, r);\n//     T b = std::norm(q)\
+    \ * dot(r, p);\n//     T c = std::norm(r) * dot(p, q);\n//     return (a*A + b*B\
+    \ + c*C) / (a + b + c);\n// }\n\n#line 7 \"test/aoj/CGL_7_B.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n\n    Vec p1,\
     \ p2, p3;\n    cin >> p1 >> p2 >> p3;\n    auto c = incenter(p1, p2, p3);\n  \
     \  cout << c.real() << \" \" << c.imag() << \" \" << dist(Segment(p1, p2), c)\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\"\
     \n#define ERROR 0.000001\n\n#include \"../../geometry/geometry.hpp\"\n#include\
-    \ \"../../geometry/dist.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(15);\n\n\n    Vec p1, p2, p3;\n    cin >> p1\
-    \ >> p2 >> p3;\n    auto c = incenter(p1, p2, p3);\n    cout << c.real() << \"\
-    \ \" << c.imag() << \" \" << dist(Segment(p1, p2), c) << endl;\n}"
+    \ \"../../geometry/dist.hpp\"\n#include \"../../geometry/triangle.hpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n\n    Vec p1,\
+    \ p2, p3;\n    cin >> p1 >> p2 >> p3;\n    auto c = incenter(p1, p2, p3);\n  \
+    \  cout << c.real() << \" \" << c.imag() << \" \" << dist(Segment(p1, p2), c)\
+    \ << endl;\n}"
   dependsOn:
   - geometry/geometry.hpp
   - geometry/dist.hpp
   - geometry/intersect.hpp
+  - geometry/triangle.hpp
+  - geometry/intersection.hpp
   isVerificationFile: true
   path: test/aoj/CGL_7_B.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 11:09:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-09 11:42:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_B.test.cpp
 layout: document

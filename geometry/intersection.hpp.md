@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
   _extendedRequiredBy:
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geometry/tangent.hpp
     title: geometry/tangent.hpp
   - icon: ':heavy_check_mark:'
@@ -37,6 +37,9 @@ data:
     path: test/aoj/CGL_4_C.test.cpp
     title: test/aoj/CGL_4_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_B.test.cpp
+    title: test/aoj/CGL_7_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_E.test.cpp
     title: test/aoj/CGL_7_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_F.test.cpp
+    title: test/aoj/CGL_7_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_G.test.cpp
+    title: test/aoj/CGL_7_G.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_I.test.cpp
     title: test/aoj/CGL_7_I.test.cpp
@@ -174,11 +183,14 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_7_G.test.cpp
   - test/aoj/CGL_3_A.test.cpp
   - test/aoj/CGL_7_I.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
   - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_4_C.test.cpp
 documentation_of: geometry/intersection.hpp

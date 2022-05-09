@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,9 @@ data:
     path: geometry/delaunay_diagram.hpp
     title: Delaunay Diagram
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_B.test.cpp
+    title: test/aoj/CGL_7_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
@@ -147,6 +150,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
 documentation_of: geometry/triangle.hpp
 layout: document
 redirect_from:

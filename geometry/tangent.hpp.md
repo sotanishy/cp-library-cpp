@@ -1,23 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_F.test.cpp
+    title: test/aoj/CGL_7_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_G.test.cpp
+    title: test/aoj/CGL_7_G.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
@@ -152,8 +158,10 @@ data:
   path: geometry/tangent.hpp
   requiredBy: []
   timestamp: '2022-05-09 11:09:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
 documentation_of: geometry/tangent.hpp
 layout: document
 redirect_from:

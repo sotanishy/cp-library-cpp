@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/convex_hull.hpp
     title: Convex Hull
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
   _extendedRequiredBy: []
