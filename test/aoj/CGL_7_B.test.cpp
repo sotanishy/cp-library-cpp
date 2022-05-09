@@ -3,6 +3,7 @@
 
 #include "../../geometry/geometry.hpp"
 #include "../../geometry/dist.hpp"
+#include "../../geometry/triangle.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
