@@ -13,7 +13,7 @@ data:
     document_title: Largest Rectangle
     links: []
   bundledCode: "#line 2 \"dp/largest_rectangle.cpp\"\n#include <algorithm>\n#include\
-    \ <stack>\n#include <utility>\n#include <vector>\n\n/*\n * @brief Largest Rectangle\n\
+    \ <stack>\n#include <utility>\n#include <vector>\n\n/**\n * @brief Largest Rectangle\n\
     \ */\ntemplate <typename T>\nT largest_rectangle(const std::vector<T>& h) {\n\
     \    int n = h.size();\n    std::vector<int> left(n), right(n);\n    std::stack<std::pair<T,\
     \ int>> st;\n    st.emplace(-1, -1);\n    for (int i = 0; i < n; ++i) {\n    \
@@ -24,7 +24,7 @@ data:
     \      st.emplace(h[i], i);\n    }\n    T ret = 0;\n    for (int i = 0; i < n;\
     \ ++i) ret = std::max(ret, h[i] * (right[i] - left[i]));\n    return ret;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <stack>\n#include <utility>\n\
-    #include <vector>\n\n/*\n * @brief Largest Rectangle\n */\ntemplate <typename\
+    #include <vector>\n\n/**\n * @brief Largest Rectangle\n */\ntemplate <typename\
     \ T>\nT largest_rectangle(const std::vector<T>& h) {\n    int n = h.size();\n\
     \    std::vector<int> left(n), right(n);\n    std::stack<std::pair<T, int>> st;\n\
     \    st.emplace(-1, -1);\n    for (int i = 0; i < n; ++i) {\n        while (st.top().first\
@@ -38,7 +38,7 @@ data:
   isVerificationFile: false
   path: dp/largest_rectangle.cpp
   requiredBy: []
-  timestamp: '2021-02-05 21:57:07+09:00'
+  timestamp: '2022-05-10 23:59:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_3_C.test.cpp

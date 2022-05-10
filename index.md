@@ -159,12 +159,21 @@ data:
       title: Weighted Union Find
   - name: dp
     pages:
+    - icon: ':warning:'
+      path: dp/edit_distance.hpp
+      title: Edit Distance
     - icon: ':heavy_check_mark:'
       path: dp/hu_tucker.cpp
       title: Hu-Tucker Algorithm
     - icon: ':heavy_check_mark:'
       path: dp/largest_rectangle.cpp
       title: Largest Rectangle
+    - icon: ':warning:'
+      path: dp/lcs.hpp
+      title: Longest Common Subsequence
+    - icon: ':warning:'
+      path: dp/lis.hpp
+      title: Longest Increasing Subsequence
     - icon: ':warning:'
       path: dp/monotone_minima.cpp
       title: Monotone Minima

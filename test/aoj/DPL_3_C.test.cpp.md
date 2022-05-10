@@ -16,7 +16,7 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C
   bundledCode: "#line 1 \"test/aoj/DPL_3_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C\"\
     \n\n#line 2 \"dp/largest_rectangle.cpp\"\n#include <algorithm>\n#include <stack>\n\
-    #include <utility>\n#include <vector>\n\n/*\n * @brief Largest Rectangle\n */\n\
+    #include <utility>\n#include <vector>\n\n/**\n * @brief Largest Rectangle\n */\n\
     template <typename T>\nT largest_rectangle(const std::vector<T>& h) {\n    int\
     \ n = h.size();\n    std::vector<int> left(n), right(n);\n    std::stack<std::pair<T,\
     \ int>> st;\n    st.emplace(-1, -1);\n    for (int i = 0; i < n; ++i) {\n    \
@@ -40,7 +40,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2021-02-05 21:57:07+09:00'
+  timestamp: '2022-05-10 23:59:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_3_C.test.cpp
