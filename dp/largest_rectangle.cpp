@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-/*
+/**
  * @brief Largest Rectangle
  */
 template <typename T>
