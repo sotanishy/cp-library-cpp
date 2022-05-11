@@ -13,40 +13,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: geometry/delaunay_diagram.hpp
-    title: Delaunay Diagram
-  - icon: ':warning:'
-    path: geometry/minimum_bounding_circle.hpp
-    title: Minimum Bounding Circle
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_B.test.cpp
-    title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_C.test.cpp
-    title: test/aoj/CGL_7_C.test.cpp
+    path: geometry/triangle.hpp
+    title: geometry/triangle.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#include\
-    \ <vector>\n\n// note that if T is of an integer type, std::abs does not work\n\
-    using T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
-    \nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b)\
-    \ < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline\
-    \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
-    \ a < b + eps; }\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n   \
-    \ T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nstruct Line\
-    \ {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec& p1, const Vec&\
-    \ p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct\
-    \ Segment {\n    Vec p1, p2;\n    Segment() = default;\n    Segment(const Vec&\
+  bundledCode: "#line 2 \"geometry/minimum_bounding_circle.hpp\"\n#include <random>\n\
+    #include <vector>\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#line\
+    \ 8 \"geometry/geometry.hpp\"\n\n// note that if T is of an integer type, std::abs\
+    \ does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\nconst T PI\
+    \ = std::acos(-1);\n\nconstexpr T eps = 1e-12;\ninline bool eq(T a, T b) { return\
+    \ std::abs(a - b) < eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a -\
+    \ b) < eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T\
+    \ a, T b) { return a < b + eps; }\n\nstd::istream& operator>>(std::istream& is,\
+    \ Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
+    }\n\nstruct Line {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec&\
     \ p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1;\
-    \ }\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n  \
-    \  Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
+    \ }\n};\n\nstruct Segment {\n    Vec p1, p2;\n    Segment() = default;\n    Segment(const\
+    \ Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2\
+    \ - p1; }\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n\
+    \    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
     \nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
     }\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
     }\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
@@ -127,38 +119,67 @@ data:
     \ const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//     Vec p = C - B, q\
     \ = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q, r);\n//     T b = std::norm(q)\
     \ * dot(r, p);\n//     T c = std::norm(r) * dot(p, q);\n//     return (a*A + b*B\
-    \ + c*C) / (a + b + c);\n// }\n\n"
-  code: "#pragma once\n#include \"geometry.hpp\"\n#include \"intersection.hpp\"\n\n\
-    Vec centroid(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A, B,\
-    \ C) != 0);\n    return (A + B + C) / T(3);\n}\n\nVec incenter(const Vec& A, const\
-    \ Vec& B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    T a = std::abs(B\
-    \ - C);\n    T b = std::abs(C - A);\n    T c = std::abs(A - B);\n    return (a*A\
-    \ + b*B + c*C) / (a + b + c);\n}\n\nVec circumcenter(const Vec& A, const Vec&\
-    \ B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return intersection(bisector(A,\
-    \ B), bisector(A, C));\n}\n\n// large error but beautiful\n// Vec circumcenter(const\
-    \ Vec& A, const Vec& B, const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//\
-    \     Vec p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q,\
-    \ r);\n//     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r) * dot(p,\
-    \ q);\n//     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\n"
+    \ + c*C) / (a + b + c);\n// }\n\n#line 6 \"geometry/minimum_bounding_circle.hpp\"\
+    \n\nCircle minimum_bounding_circle(std::vector<Vec> pts) {\n    std::random_device\
+    \ rd;\n    std::mt19937_64 rng(rd());\n    std::shuffle(pts.begin(), pts.end(),\
+    \ rng);\n\n    std::vector<Vec> boundary;\n\n    auto trivial = [&]() {\n    \
+    \    if (boundary.size() == 0) {\n            return Circle(Vec(0, 0), 0);\n \
+    \       } else if (boundary.size() ==  1) {\n            return Circle(boundary[0],\
+    \ 0);\n        }\n        Vec c;\n        if (boundary.size() == 2) {\n      \
+    \      c = (boundary[0] + boundary[1]) / T(2);\n        } else {\n           \
+    \ c = circumcenter(boundary[0], boundary[1], boundary[2]);\n        }\n      \
+    \  return Circle(c, std::abs(boundary[0] - c));\n    };\n\n    auto rec = [&](auto&\
+    \ rec, int n) -> Circle {\n        if (n == 0 || boundary.size() == 3) {\n   \
+    \         return trivial();\n        }\n        auto c = rec(rec, n - 1);\n  \
+    \      auto p = pts[n - 1];\n        if (leq(std::abs(p - c.c), c.r)) {\n    \
+    \        return c;\n        }\n        boundary.push_back(p);\n        c = rec(rec,\
+    \ n - 1);\n        boundary.pop_back();\n        return c;\n    };\n\n    return\
+    \ rec(rec, pts.size());\n}\n"
+  code: "#pragma once\n#include <random>\n#include <vector>\n#include \"geometry.hpp\"\
+    \n#include \"triangle.hpp\"\n\nCircle minimum_bounding_circle(std::vector<Vec>\
+    \ pts) {\n    std::random_device rd;\n    std::mt19937_64 rng(rd());\n    std::shuffle(pts.begin(),\
+    \ pts.end(), rng);\n\n    std::vector<Vec> boundary;\n\n    auto trivial = [&]()\
+    \ {\n        if (boundary.size() == 0) {\n            return Circle(Vec(0, 0),\
+    \ 0);\n        } else if (boundary.size() ==  1) {\n            return Circle(boundary[0],\
+    \ 0);\n        }\n        Vec c;\n        if (boundary.size() == 2) {\n      \
+    \      c = (boundary[0] + boundary[1]) / T(2);\n        } else {\n           \
+    \ c = circumcenter(boundary[0], boundary[1], boundary[2]);\n        }\n      \
+    \  return Circle(c, std::abs(boundary[0] - c));\n    };\n\n    auto rec = [&](auto&\
+    \ rec, int n) -> Circle {\n        if (n == 0 || boundary.size() == 3) {\n   \
+    \         return trivial();\n        }\n        auto c = rec(rec, n - 1);\n  \
+    \      auto p = pts[n - 1];\n        if (leq(std::abs(p - c.c), c.r)) {\n    \
+    \        return c;\n        }\n        boundary.push_back(p);\n        c = rec(rec,\
+    \ n - 1);\n        boundary.pop_back();\n        return c;\n    };\n\n    return\
+    \ rec(rec, pts.size());\n}"
   dependsOn:
   - geometry/geometry.hpp
+  - geometry/triangle.hpp
   - geometry/intersection.hpp
   - geometry/dist.hpp
   - geometry/intersect.hpp
   isVerificationFile: false
-  path: geometry/triangle.hpp
-  requiredBy:
-  - geometry/delaunay_diagram.hpp
-  - geometry/minimum_bounding_circle.hpp
-  timestamp: '2022-05-09 11:09:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-documentation_of: geometry/triangle.hpp
+  path: geometry/minimum_bounding_circle.hpp
+  requiredBy: []
+  timestamp: '2022-05-11 11:15:13+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: geometry/minimum_bounding_circle.hpp
 layout: document
-redirect_from:
-- /library/geometry/triangle.hpp
-- /library/geometry/triangle.hpp.html
-title: geometry/triangle.hpp
+title: Minimum Bounding Circle
 ---
+
+## Description
+
+与えられた点群の最小包含円を求める．Welzl のアルゴリズムを用いている．
+
+## Operations
+
+- `Circle minimum_bounding_circle(vector<Vec> pts)`
+    - `pts` の最小包含円を返す
+    - 時間計算量: $\mathrm{expected}\ O(n)$
+
+## Reference
+
+- [Smallest circle problem - Wikipedia](https://en.wikipedia.org/wiki/Smallest-circle_problem)
+- verify: [https://atcoder.jp/contests/abc151/submissions/31596027](https://atcoder.jp/contests/abc151/submissions/31596027)
+

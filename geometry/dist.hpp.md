@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
+  - icon: ':warning:'
+    path: geometry/minimum_bounding_circle.hpp
+    title: Minimum Bounding Circle
   - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
@@ -146,6 +149,7 @@ data:
   - geometry/polygon.hpp
   - geometry/tangent.hpp
   - geometry/triangle.hpp
+  - geometry/minimum_bounding_circle.hpp
   - geometry/intersection.hpp
   timestamp: '2022-05-09 11:09:22+09:00'
   verificationStatus: LIBRARY_ALL_AC

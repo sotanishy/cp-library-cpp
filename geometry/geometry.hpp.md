@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
+  - icon: ':warning:'
+    path: geometry/minimum_bounding_circle.hpp
+    title: Minimum Bounding Circle
   - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
@@ -178,6 +181,7 @@ data:
   - geometry/convex_hull.hpp
   - geometry/intersect.hpp
   - geometry/triangle.hpp
+  - geometry/minimum_bounding_circle.hpp
   - geometry/intersection.hpp
   - geometry/closest_pair.hpp
   - geometry/dist.hpp

@@ -14,6 +14,9 @@ data:
   - icon: ':warning:'
     path: geometry/delaunay_diagram.hpp
     title: Delaunay Diagram
+  - icon: ':warning:'
+    path: geometry/minimum_bounding_circle.hpp
+    title: Minimum Bounding Circle
   - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
@@ -179,6 +182,7 @@ data:
   - geometry/polygon.hpp
   - geometry/tangent.hpp
   - geometry/triangle.hpp
+  - geometry/minimum_bounding_circle.hpp
   timestamp: '2022-05-09 11:09:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

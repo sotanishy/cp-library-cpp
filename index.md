@@ -223,6 +223,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/intersection.hpp
       title: geometry/intersection.hpp
+    - icon: ':warning:'
+      path: geometry/minimum_bounding_circle.hpp
+      title: Minimum Bounding Circle
     - icon: ':heavy_check_mark:'
       path: geometry/polygon.hpp
       title: geometry/polygon.hpp
@@ -260,7 +263,7 @@ data:
       title: Maximum Independent Set
     - icon: ':warning:'
       path: graph/maximum_weight_independent_set.hpp
-      title: graph/maximum_weight_independent_set.hpp
+      title: Maximum Weight Independent Set
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_arborescence.cpp
       title: Minimum Spanning Arborescence
@@ -271,8 +274,8 @@ data:
       path: graph/offline_dynamic_connectivity.cpp
       title: Offline Dynamic Connectivity
     - icon: ':warning:'
-      path: graph/pseudoforest_cycle.cpp
-      title: Pseudoforest Cycle
+      path: graph/pseudotree_cycle.hpp
+      title: Pseudotree Cycle
     - icon: ':warning:'
       path: graph/range_edge_graph.cpp
       title: Range Edge Graph

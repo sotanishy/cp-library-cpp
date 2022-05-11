@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: Pseudoforest Cycle
+    document_title: Pseudotree Cycle
     links: []
-  bundledCode: "#line 2 \"graph/pseudoforest_cycle.cpp\"\n#include <stack>\n#include\
-    \ <vector>\n\n/**\n * @brief Pseudoforest Cycle\n */\nstd::vector<int> pseudoforest_cycle(const\
+  bundledCode: "#line 2 \"graph/pseudotree_cycle.hpp\"\n#include <stack>\n#include\
+    \ <vector>\n\n/**\n * @brief Pseudotree Cycle\n */\nstd::vector<int> pseudotree_cycle(const\
     \ std::vector<std::vector<int>>& G) {\n    int n = G.size();\n    std::vector<int>\
     \ deg(n);\n    std::stack<int> st;\n    for (int i = 0; i < n; ++i) {\n      \
     \  deg[i] = G[i].size();\n        if (deg[i] == 1) st.push(i);\n    }\n    while\
@@ -23,8 +23,8 @@ data:
     \        for (int u : G[v]) {\n            if (u != p && deg[u] == 2) {\n    \
     \            p = v;\n                v = u;\n                break;\n        \
     \    }\n        }\n    } while (v != cycle[0]);\n    return cycle;\n}\n"
-  code: "#pragma once\n#include <stack>\n#include <vector>\n\n/**\n * @brief Pseudoforest\
-    \ Cycle\n */\nstd::vector<int> pseudoforest_cycle(const std::vector<std::vector<int>>&\
+  code: "#pragma once\n#include <stack>\n#include <vector>\n\n/**\n * @brief Pseudotree\
+    \ Cycle\n */\nstd::vector<int> pseudotree_cycle(const std::vector<std::vector<int>>&\
     \ G) {\n    int n = G.size();\n    std::vector<int> deg(n);\n    std::stack<int>\
     \ st;\n    for (int i = 0; i < n; ++i) {\n        deg[i] = G[i].size();\n    \
     \    if (deg[i] == 1) st.push(i);\n    }\n    while (!st.empty()) {\n        int\
@@ -39,15 +39,15 @@ data:
     \        }\n    } while (v != cycle[0]);\n    return cycle;\n}"
   dependsOn: []
   isVerificationFile: false
-  path: graph/pseudoforest_cycle.cpp
+  path: graph/pseudotree_cycle.hpp
   requiredBy: []
-  timestamp: '2022-03-06 22:28:09+09:00'
+  timestamp: '2022-05-11 11:15:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/pseudoforest_cycle.cpp
+documentation_of: graph/pseudotree_cycle.hpp
 layout: document
 redirect_from:
-- /library/graph/pseudoforest_cycle.cpp
-- /library/graph/pseudoforest_cycle.cpp.html
-title: Pseudoforest Cycle
+- /library/graph/pseudotree_cycle.hpp
+- /library/graph/pseudotree_cycle.hpp.html
+title: Pseudotree Cycle
 ---
