@@ -13,27 +13,26 @@ data:
     links: []
   bundledCode: "#line 2 \"string/aho_corasick.cpp\"\n#include <algorithm>\n#include\
     \ <iterator>\n#include <map>\n#include <queue>\n#include <string>\n#include <vector>\n\
-    #line 2 \"string/trie.cpp\"\n#include <memory>\n#line 5 \"string/trie.cpp\"\n\n\
-    template <int Size, int Offset>\nclass Trie {\npublic:\n    Trie() : root(std::make_shared<Node>())\
-    \ {}\n\n    void insert(const std::string& s, int id) { insert(root, s, id, 0);\
-    \ }\n\nprotected:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
-    \n    struct Node {\n        std::vector<node_ptr> ch;\n        std::vector<int>\
-    \ accept;\n        int sz = 0;\n\n        Node() : ch(Size) {}\n    };\n\n   \
-    \ const node_ptr root;\n\n    void insert(const node_ptr& t, const std::string&\
-    \ s, int id, int k) {\n        ++t->sz;\n        if (k == (int) s.size()) {\n\
-    \            t->accept.push_back(id);\n            return;\n        }\n      \
-    \  int c = s[k] - Offset;\n        if (!t->ch[c]) t->ch[c] = std::make_shared<Node>();\n\
-    \        insert(t->ch[c], s, id, k + 1);\n    }\n};\n#line 9 \"string/aho_corasick.cpp\"\
-    \n\ntemplate <int Size, int Offset>\nclass AhoCorasick : public Trie<Size + 1,\
-    \ Offset> {\n    using node_ptr = typename Trie<Size + 1, Offset>::node_ptr;\n\
-    \    using Trie<Size + 1, Offset>::root;\n\n    static const int FAIL = Size;\n\
-    \npublic:\n    void build() {\n        std::queue<node_ptr> que;\n        for\
-    \ (int i = 0; i <= Size; ++i) {\n            if (root->ch[i]) {\n            \
-    \    root->ch[i]->ch[FAIL] = root;\n                que.push(root->ch[i]);\n \
-    \           } else {\n                root->ch[i] = root;\n            }\n   \
-    \     }\n        while (!que.empty()) {\n            auto t = que.front();\n \
-    \           que.pop();\n            for (int i = 0; i < Size; ++i) {\n       \
-    \         if (!t->ch[i]) continue;\n                auto fail = t->ch[FAIL];\n\
+    #line 3 \"string/trie.cpp\"\n#include <memory>\n#line 6 \"string/trie.cpp\"\n\n\
+    class Trie {\npublic:\n    Trie() : root(std::make_shared<Node>()) {}\n\n    void\
+    \ insert(const std::string& s, int id) { insert(root, s, id, 0); }\n\nprotected:\n\
+    \    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\n    struct Node\
+    \ {\n        std::map<char, node_ptr> ch;\n        std::vector<int> accept;\n\
+    \        int sz = 0;\n\n        Node() = default;\n    };\n\n    const node_ptr\
+    \ root;\n\n    void insert(const node_ptr& t, const std::string& s, int id, int\
+    \ k) {\n        ++t->sz;\n        if (k == (int) s.size()) {\n            t->accept.push_back(id);\n\
+    \            return;\n        }\n        int c = s[k];\n        if (!t->ch.count(c))\
+    \ t->ch[c] = std::make_shared<Node>();\n        insert(t->ch[c], s, id, k + 1);\n\
+    \    }\n};\n#line 9 \"string/aho_corasick.cpp\"\n\ntemplate <int Size, int Offset>\n\
+    class AhoCorasick : public Trie<Size + 1, Offset> {\n    using node_ptr = typename\
+    \ Trie<Size + 1, Offset>::node_ptr;\n    using Trie<Size + 1, Offset>::root;\n\
+    \n    static const int FAIL = Size;\n\npublic:\n    void build() {\n        std::queue<node_ptr>\
+    \ que;\n        for (int i = 0; i <= Size; ++i) {\n            if (root->ch[i])\
+    \ {\n                root->ch[i]->ch[FAIL] = root;\n                que.push(root->ch[i]);\n\
+    \            } else {\n                root->ch[i] = root;\n            }\n  \
+    \      }\n        while (!que.empty()) {\n            auto t = que.front();\n\
+    \            que.pop();\n            for (int i = 0; i < Size; ++i) {\n      \
+    \          if (!t->ch[i]) continue;\n                auto fail = t->ch[FAIL];\n\
     \                while (!fail->ch[i]) fail = fail->ch[FAIL];\n               \
     \ t->ch[i]->ch[FAIL] = fail->ch[i];\n\n                auto& u = t->ch[i]->accept;\n\
     \                auto& v = fail->ch[i]->accept;\n                std::vector<int>\
@@ -72,7 +71,7 @@ data:
   isVerificationFile: false
   path: string/aho_corasick.cpp
   requiredBy: []
-  timestamp: '2021-10-07 18:08:23+09:00'
+  timestamp: '2022-05-11 13:44:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/aho_corasick.cpp

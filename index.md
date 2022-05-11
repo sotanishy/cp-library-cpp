@@ -443,6 +443,9 @@ data:
       path: string/manacher.cpp
       title: Manacher's Algorithm
     - icon: ':heavy_check_mark:'
+      path: string/palindromic_tree.hpp
+      title: string/palindromic_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
     - icon: ':heavy_check_mark:'
@@ -504,6 +507,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2292.test.cpp
+      title: test/aoj/2292.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/2306.test.cpp
       title: test/aoj/2306.test.cpp
