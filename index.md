@@ -444,7 +444,7 @@ data:
       title: Manacher's Algorithm
     - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
-      title: string/palindromic_tree.hpp
+      title: Palindromic Tree
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
