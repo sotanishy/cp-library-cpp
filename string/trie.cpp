@@ -1,9 +1,9 @@
 #pragma once
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
 
-template <int Size, int Offset>
 class Trie {
 public:
     Trie() : root(std::make_shared<Node>()) {}
@@ -15,11 +15,11 @@ protected:
     using node_ptr = std::shared_ptr<Node>;
 
     struct Node {
-        std::vector<node_ptr> ch;
+        std::map<char, node_ptr> ch;
         std::vector<int> accept;
         int sz = 0;
 
-        Node() : ch(Size) {}
+        Node() = default;
     };
 
     const node_ptr root;
@@ -30,8 +30,8 @@ protected:
             t->accept.push_back(id);
             return;
         }
-        int c = s[k] - Offset;
-        if (!t->ch[c]) t->ch[c] = std::make_shared<Node>();
+        int c = s[k];
+        if (!t->ch.count(c)) t->ch[c] = std::make_shared<Node>();
         insert(t->ch[c], s, id, k + 1);
     }
 };
