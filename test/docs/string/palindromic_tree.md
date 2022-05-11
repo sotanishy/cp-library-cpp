@@ -1,6 +1,6 @@
 ---
 title: Palindromic Tree
-documentation_of: ../../string/palindromic_tree.cpp
+documentation_of: ../../string/palindromic_tree.hpp
 ---
 
 ## Description

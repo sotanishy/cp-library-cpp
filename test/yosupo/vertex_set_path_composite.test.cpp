@@ -10,6 +10,17 @@ using ll = long long;
 
 using mint = Modint<998244353>;
 
+struct AffineMonoid {
+    using T = pair<pair<mint, mint>, pair<mint, mint>>;
+    static T id() { return {{1, 0}, {1, 0}}; }
+    static T op(T a, T b) {
+        return {
+            {a.first.first * b.first.first, a.first.second * b.first.first + b.first.second},
+            {b.second.first * a.second.first, b.second.second * a.second.first + a.second.second},
+        };
+    }
+};
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
