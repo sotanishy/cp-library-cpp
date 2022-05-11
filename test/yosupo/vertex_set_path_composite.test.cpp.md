@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -126,8 +126,13 @@ data:
     \        for (int c : G[v]) {\n            if (c != par[v] && c != heavy[v]) decompose(c,\
     \ c);\n        }\n        out[v] = cur_pos;\n    }\n};\n#line 6 \"test/yosupo/vertex_set_path_composite.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    using mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<pair<mint,\
+    using mint = Modint<998244353>;\n\nstruct AffineMonoid {\n    using T = pair<pair<mint,\
+    \ mint>, pair<mint, mint>>;\n    static T id() { return {{1, 0}, {1, 0}}; }\n\
+    \    static T op(T a, T b) {\n        return {\n            {a.first.first * b.first.first,\
+    \ a.first.second * b.first.first + b.first.second},\n            {b.second.first\
+    \ * a.second.first, b.second.second * a.second.first + a.second.second},\n   \
+    \     };\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n \
+    \   cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<pair<mint,\
     \ mint>, pair<mint, mint>>> ab(N);\n    for (int i = 0; i < N; ++i) {\n      \
     \  mint a, b;\n        cin >> a >> b;\n        ab[i] = {{a, b}, {a, b}};\n   \
     \ }\n    vector<vector<int>> G(N);\n    for (int i = 0; i < N - 1; ++i) {\n  \
@@ -146,13 +151,18 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../data-structure/segtree/segment_tree.cpp\"\
     \n#include \"../../tree/hld.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N,\
-    \ Q;\n    cin >> N >> Q;\n    vector<pair<pair<mint, mint>, pair<mint, mint>>>\
-    \ ab(N);\n    for (int i = 0; i < N; ++i) {\n        mint a, b;\n        cin >>\
-    \ a >> b;\n        ab[i] = {{a, b}, {a, b}};\n    }\n    vector<vector<int>> G(N);\n\
-    \    for (int i = 0; i < N - 1; ++i) {\n        int u, v;\n        cin >> u >>\
-    \ v;\n        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n    HLD<AffineMonoid>\
+    \ std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\nstruct AffineMonoid\
+    \ {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n    static T id()\
+    \ { return {{1, 0}, {1, 0}}; }\n    static T op(T a, T b) {\n        return {\n\
+    \            {a.first.first * b.first.first, a.first.second * b.first.first +\
+    \ b.first.second},\n            {b.second.first * a.second.first, b.second.second\
+    \ * a.second.first + a.second.second},\n        };\n    }\n};\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, Q;\n\
+    \    cin >> N >> Q;\n    vector<pair<pair<mint, mint>, pair<mint, mint>>> ab(N);\n\
+    \    for (int i = 0; i < N; ++i) {\n        mint a, b;\n        cin >> a >> b;\n\
+    \        ab[i] = {{a, b}, {a, b}};\n    }\n    vector<vector<int>> G(N);\n   \
+    \ for (int i = 0; i < N - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n\
+    \        G[u].push_back(v);\n        G[v].push_back(u);\n    }\n    HLD<AffineMonoid>\
     \ hld(G, false);\n    SegmentTree<AffineMonoid> st(N);\n    auto update = [&](int\
     \ k, const AffineMonoid::T& p) {\n        st.update(k, p);\n    };\n    auto fold\
     \ = [&](int l, int r) {\n        return st.fold(l, r);\n    };\n    auto flip\
@@ -171,8 +181,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 15:34:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-11 15:46:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
 layout: document

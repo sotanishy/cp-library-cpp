@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
