@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
@@ -64,15 +64,22 @@ data:
     \ (head[u] != head[v]) {\n            if (in[head[u]] > in[head[v]]) std::swap(u,\
     \ v);\n            f(in[head[v]], in[v] + 1, x);\n            v = par[head[v]];\n\
     \        }\n        if (in[u] > in[v]) std::swap(u, v);\n        f(in[u] + edge,\
-    \ in[v] + 1, x);\n    }\n\n    template <typename F>\n    T path_fold(int u, int\
-    \ v, const F& f) const {\n        T res = M::id();\n        while (head[u] !=\
-    \ head[v]) {\n            if (in[head[u]] > in[head[v]]) std::swap(u, v);\n  \
-    \          T val = f(in[head[v]], in[v] + 1);\n            res = M::op(val, res);\n\
-    \            v = par[head[v]];\n        }\n        if (in[u] > in[v]) std::swap(u,\
-    \ v);\n        T val = f(in[u] + edge, in[v] + 1);\n        return M::op(val,\
-    \ res);\n    }\n\n    template <typename F>\n    T subtree_fold(int v, const F&\
-    \ f) const {\n        return f(in[v] + edge, out[v]);\n    }\n\n    int lca(int\
-    \ u, int v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
+    \ in[v] + 1, x);\n    }\n\n    template <typename F, typename Flip>\n    T path_fold(int\
+    \ u, int v, const F& f, const Flip& flip) const {\n        bool flipped = false;\n\
+    \        T resu = M::id(), resv = M::id();\n        while (head[u] != head[v])\
+    \ {\n            if (in[head[u]] > in[head[v]]) {\n                std::swap(u,\
+    \ v);\n                std::swap(resu, resv);\n                flipped ^= true;\n\
+    \            }\n            T val = f(in[head[v]], in[v] + 1);\n            resv\
+    \ = M::op(val, resv);\n            v = par[head[v]];\n        }\n        if (in[u]\
+    \ > in[v]) {\n            std::swap(u, v);\n            std::swap(resu, resv);\n\
+    \            flipped ^= true;\n        }\n        T val = f(in[u] + edge, in[v]\
+    \ + 1);\n        resv = M::op(val, resv);\n        resv = M::op(flip(resu), resv);\n\
+    \        if (flipped) {\n            resv = flip(resv);\n        }\n        return\
+    \ resv;\n    }\n\n    template <typename F>\n    T path_fold(int u, int v, const\
+    \ F& f) const {\n        path_fold(u, v, f, [&](auto& v) { return v; });\n   \
+    \ }\n\n    template <typename F>\n    T subtree_fold(int v, const F& f) const\
+    \ {\n        return f(in[v] + edge, out[v]);\n    }\n\n    int lca(int u, int\
+    \ v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
     \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
     \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
     \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
@@ -125,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
+  timestamp: '2022-05-11 15:34:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp
