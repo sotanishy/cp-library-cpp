@@ -37,18 +37,37 @@ public:
         f(in[u] + edge, in[v] + 1, x);
     }
 
-    template <typename F>
-    T path_fold(int u, int v, const F& f) const {
-        T res = M::id();
+    template <typename F, typename Flip>
+    T path_fold(int u, int v, const F& f, const Flip& flip) const {
+        bool flipped = false;
+        T resu = M::id(), resv = M::id();
         while (head[u] != head[v]) {
-            if (in[head[u]] > in[head[v]]) std::swap(u, v);
+            if (in[head[u]] > in[head[v]]) {
+                std::swap(u, v);
+                std::swap(resu, resv);
+                flipped ^= true;
+            }
             T val = f(in[head[v]], in[v] + 1);
-            res = M::op(val, res);
+            resv = M::op(val, resv);
             v = par[head[v]];
         }
-        if (in[u] > in[v]) std::swap(u, v);
+        if (in[u] > in[v]) {
+            std::swap(u, v);
+            std::swap(resu, resv);
+            flipped ^= true;
+        }
         T val = f(in[u] + edge, in[v] + 1);
-        return M::op(val, res);
+        resv = M::op(val, resv);
+        resv = M::op(flip(resu), resv);
+        if (flipped) {
+            resv = flip(resv);
+        }
+        return resv;
+    }
+
+    template <typename F>
+    T path_fold(int u, int v, const F& f) const {
+        path_fold(u, v, f, [&](auto& v) { return v; });
     }
 
     template <typename F>

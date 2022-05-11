@@ -10,17 +10,6 @@ using ll = long long;
 
 using mint = Modint<998244353>;
 
-struct AffineMonoid {
-    using T = pair<pair<mint, mint>, pair<mint, mint>>;
-    static T id() { return {{1, 0}, {1, 0}}; }
-    static T op(T a, T b) {
-        return {
-            {a.first.first * b.first.first, a.first.second * b.first.first + b.first.second},
-            {b.second.first * a.second.first, b.second.second * a.second.first + a.second.second},
-        };
-    }
-};
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -48,6 +37,7 @@ int main() {
     auto fold = [&](int l, int r) {
         return st.fold(l, r);
     };
+    auto flip = [&](AffineMonoid::T& a) { return make_pair(a.second, a.first); };
     for (int i = 0; i < N; ++i) hld.update(i, ab[i], update);
     for (int i = 0; i < Q; ++i) {
         int t;
@@ -59,17 +49,8 @@ int main() {
         } else {
             int u, v, x;
             cin >> u >> v >> x;
-            int p = hld.lca(u, v);
-            auto up = hld.path_fold(u, p, fold).second;
-            auto pv = hld.path_fold(v, p, fold).first;
-            auto pp = hld.path_fold(p, p, fold).first;
-
-            // inv
-            up.first /= pp.first;
-            up.second = (up.second - pp.second) / pp.first;
-
-            pair<mint, mint> ans = {up.first * pv.first, up.second * pv.first + pv.second};
-            cout << ans.first * x + ans.second << "\n";
+            auto a = hld.path_fold(u, v, fold, flip).first;
+            cout << a.first * x + a.second << "\n";
         }
     }
 }
