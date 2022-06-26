@@ -40,7 +40,7 @@ data:
     }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p -\
     \ l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line&\
     \ l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n\
-    // 1: counter-clockwise\n// 2: clockwise\nint ccw(const Vec& a, const Vec& b,\
+    // 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a, const Vec& b,\
     \ const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b\
     \ - a, c - a), 0)) return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p,\
     \ const Vec& q) {\n    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return\
@@ -85,7 +85,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 11:09:22+09:00'
+  timestamp: '2022-06-26 17:14:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_B.test.cpp

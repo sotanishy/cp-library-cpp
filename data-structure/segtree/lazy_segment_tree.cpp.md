@@ -77,9 +77,9 @@ data:
   timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
   - test/aoj/DSL_2_F.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: data-structure/segtree/lazy_segment_tree.cpp
 layout: document
 title: Segment Tree with Lazy Propagation
@@ -119,6 +119,8 @@ title: Segment Tree with Lazy Propagation
 作用が区間の長さに比例するとき (e.g. 区間加算)，作用の分配則は成り立たないが，これはモノイドを $T \times \mathbb{N}$ に拡張して区間の長さを持たせ，適切に $*$ を定義することで対処できる．
 
 また，作用素が単位元を持たない半群であるとき（e.g. 区間更新）は，適当な値を集合に添加してそれを単位元として扱うことができる．
+
+作用素の分配則が成り立たない場合，Segment tree beats を用いて高速に計算できる場合がある．
 
 ## Reference
 

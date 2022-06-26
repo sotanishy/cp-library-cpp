@@ -86,7 +86,7 @@ data:
     }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p -\
     \ l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line&\
     \ l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n\
-    // 1: counter-clockwise\n// 2: clockwise\nint ccw(const Vec& a, const Vec& b,\
+    // 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a, const Vec& b,\
     \ const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b\
     \ - a, c - a), 0)) return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p,\
     \ const Vec& q) {\n    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return\
@@ -178,25 +178,25 @@ data:
   isVerificationFile: false
   path: geometry/intersection.hpp
   requiredBy:
-  - geometry/delaunay_diagram.hpp
-  - geometry/polygon.hpp
-  - geometry/tangent.hpp
   - geometry/triangle.hpp
   - geometry/minimum_bounding_circle.hpp
-  timestamp: '2022-05-09 11:09:22+09:00'
+  - geometry/tangent.hpp
+  - geometry/polygon.hpp
+  - geometry/delaunay_diagram.hpp
+  timestamp: '2022-06-26 17:14:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_4_C.test.cpp
   - test/aoj/CGL_3_A.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_7_F.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
+  - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_7_E.test.cpp
-  - test/aoj/CGL_4_C.test.cpp
 documentation_of: geometry/intersection.hpp
 layout: document
 redirect_from:

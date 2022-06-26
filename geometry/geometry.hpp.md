@@ -128,7 +128,7 @@ data:
     }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p -\
     \ l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line&\
     \ l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n\
-    // 1: counter-clockwise\n// 2: clockwise\nint ccw(const Vec& a, const Vec& b,\
+    // 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a, const Vec& b,\
     \ const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b\
     \ - a, c - a), 0)) return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p,\
     \ const Vec& q) {\n    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return\
@@ -160,10 +160,10 @@ data:
     \ projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir())\
     \ * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec&\
     \ p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
-    // 2: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if (eq(cross(b\
-    \ - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0)) return -1;\n\
-    \    return 1;\n}\n\nLine bisector(const Vec& p, const Vec& q) {\n    auto m =\
-    \ (p + q) / T(2);\n    auto v = q - p;\n    return Line(m, m + Vec(-v.imag(),\
+    // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
+    \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
+    \ return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p, const Vec& q) {\n\
+    \    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return Line(m, m + Vec(-v.imag(),\
     \ v.real()));\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
     \ pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag()\
     \ < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if\
@@ -175,42 +175,42 @@ data:
   isVerificationFile: false
   path: geometry/geometry.hpp
   requiredBy:
-  - geometry/delaunay_diagram.hpp
-  - geometry/polygon.hpp
-  - geometry/tangent.hpp
   - geometry/convex_hull.hpp
-  - geometry/intersect.hpp
-  - geometry/triangle.hpp
-  - geometry/minimum_bounding_circle.hpp
-  - geometry/intersection.hpp
   - geometry/closest_pair.hpp
+  - geometry/intersection.hpp
+  - geometry/triangle.hpp
+  - geometry/intersect.hpp
   - geometry/dist.hpp
-  timestamp: '2022-05-09 11:09:22+09:00'
+  - geometry/minimum_bounding_circle.hpp
+  - geometry/tangent.hpp
+  - geometry/polygon.hpp
+  - geometry/delaunay_diagram.hpp
+  timestamp: '2022-06-26 17:14:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
-  - test/aoj/CGL_7_G.test.cpp
-  - test/aoj/CGL_3_A.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
-  - test/aoj/CGL_3_C.test.cpp
-  - test/aoj/CGL_4_A.test.cpp
-  - test/aoj/CGL_7_F.test.cpp
-  - test/aoj/CGL_7_A.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
-  - test/aoj/CGL_2_A.test.cpp
-  - test/aoj/CGL_1_C.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_4_B.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_7_E.test.cpp
-  - test/aoj/1298.test.cpp
   - test/aoj/CGL_4_C.test.cpp
+  - test/aoj/1298.test.cpp
+  - test/aoj/CGL_3_A.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_3_C.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
+  - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_1_C.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_E.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_7_A.test.cpp
+  - test/aoj/CGL_4_B.test.cpp
+  - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
 documentation_of: geometry/geometry.hpp
 layout: document
 title: Geometry

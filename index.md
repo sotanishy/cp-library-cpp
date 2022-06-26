@@ -137,7 +137,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
   - name: data-structure/unionfind
@@ -394,6 +394,9 @@ data:
       path: misc/fraction.cpp
       title: Fraction
     - icon: ':warning:'
+      path: misc/intervals.hpp
+      title: Intervals
+    - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
     - icon: ':warning:'
@@ -411,9 +414,6 @@ data:
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp
-    - icon: ':warning:'
-      path: misc/range_set.cpp
-      title: Range Set
     - icon: ':warning:'
       path: misc/stable_matching.hpp
       title: Stable Matching
@@ -842,7 +842,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'

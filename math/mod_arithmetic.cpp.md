@@ -123,10 +123,10 @@ data:
   timestamp: '2022-03-24 12:11:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_B.test.cpp
-  - test/yosupo/discrete_logarithm_mod.test.cpp
-  - test/yosupo/sqrt_mod.test.cpp
   - test/yosupo/tetration_mod.test.cpp
+  - test/yosupo/sqrt_mod.test.cpp
+  - test/yosupo/discrete_logarithm_mod.test.cpp
+  - test/aoj/NTL_1_B.test.cpp
 documentation_of: math/mod_arithmetic.cpp
 layout: document
 title: Modular Arithmetic
