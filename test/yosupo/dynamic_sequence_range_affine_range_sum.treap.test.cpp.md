@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/bst/lazy_treap.cpp
     title: Treap with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -85,7 +85,7 @@ data:
     \        auto s = split(std::move(t->right), k - size(t->left) - 1);\n       \
     \     t->right = std::move(s.first);\n            recalc(t);\n            return\
     \ {std::move(t), std::move(s.second)};\n        }\n    }\n};\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief Mod int\n */\ntemplate\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
     \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
     \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
@@ -160,8 +160,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 13:45:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
 layout: document

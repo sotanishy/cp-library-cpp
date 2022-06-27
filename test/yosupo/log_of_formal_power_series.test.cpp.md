@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
@@ -22,8 +22,8 @@ data:
     - https://judge.yosupo.jp/problem/log_of_formal_power_series
   bundledCode: "#line 1 \"test/yosupo/log_of_formal_power_series.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
-    \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
+    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
+    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
     \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
     \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
@@ -176,8 +176,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/log_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-04-28 21:35:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 13:45:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/log_of_formal_power_series.test.cpp
 layout: document

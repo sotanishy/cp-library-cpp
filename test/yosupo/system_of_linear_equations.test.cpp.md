@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/system_of_linear_equations.cpp
     title: System of Linear Equations
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -22,8 +22,8 @@ data:
     - https://judge.yosupo.jp/problem/system_of_linear_equations
   bundledCode: "#line 1 \"test/yosupo/system_of_linear_equations.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
-    \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
+    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
+    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
     \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
     \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
@@ -139,8 +139,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2021-03-30 13:20:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 13:45:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/system_of_linear_equations.test.cpp
 layout: document

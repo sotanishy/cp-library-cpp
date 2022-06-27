@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -22,8 +22,8 @@ data:
     - https://judge.yosupo.jp/problem/division_of_polynomials
   bundledCode: "#line 1 \"test/yosupo/division_of_polynomials.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief\
-    \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
+    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
+    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
     \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
     \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
@@ -184,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2022-04-28 21:35:03+09:00'
+  timestamp: '2022-06-27 13:45:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/division_of_polynomials.test.cpp

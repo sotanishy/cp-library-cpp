@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/gcd_lcm_convolution.hpp
     title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -19,7 +19,7 @@ data:
     - https://judge.yosupo.jp/problem/lcm_convolution
   bundledCode: "#line 1 \"test/yosupo/lcm_convolution.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief Mod int\n */\ntemplate\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
     \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
     \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
@@ -90,8 +90,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 13:03:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 13:45:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/lcm_convolution.test.cpp
 layout: document

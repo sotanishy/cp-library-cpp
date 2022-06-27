@@ -22,7 +22,7 @@ data:
     \ <limits>\n#include <queue>\n#include <tuple>\n#include <utility>\n#line 8 \"\
     graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n */\ntemplate <typename\
     \ T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s)\
-    \ {\n    constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<int>\
+    \ {\n    constexpr T INF = std::numeric_limits<T>::max();\n    std::vector<T>\
     \ dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V; ++i) {\n       \
     \ for (auto& e : G) {\n            if (dist[e.from] != INF && dist[e.to] > dist[e.from]\
     \ + e.weight) {\n                dist[e.to] = dist[e.from] + e.weight;\n     \
@@ -139,7 +139,7 @@ data:
   isVerificationFile: false
   path: graph/range_edge_graph.cpp
   requiredBy: []
-  timestamp: '2021-10-07 16:56:17+09:00'
+  timestamp: '2022-06-27 13:45:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/range_edge_graph.cpp

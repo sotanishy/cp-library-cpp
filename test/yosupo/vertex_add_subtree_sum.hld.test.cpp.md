@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []

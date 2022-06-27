@@ -1,71 +1,35 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: geometry/dist.hpp
+    title: geometry/dist.hpp
   - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
   - icon: ':question:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: geometry/bisector.hpp
-    title: geometry/bisector.hpp
-  - icon: ':warning:'
-    path: geometry/delaunay_diagram.hpp
-    title: Delaunay Diagram
   - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: geometry/delaunay_diagram.hpp
+    title: Delaunay Diagram
   - icon: ':warning:'
     path: geometry/minimum_bounding_circle.hpp
     title: Minimum Bounding Circle
   - icon: ':heavy_check_mark:'
-    path: geometry/polygon.hpp
-    title: geometry/polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/tangent.hpp
-    title: geometry/tangent.hpp
-  - icon: ':heavy_check_mark:'
     path: geometry/triangle.hpp
     title: geometry/triangle.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_C.test.cpp
-    title: test/aoj/CGL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_D.test.cpp
-    title: test/aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_3_A.test.cpp
-    title: test/aoj/CGL_3_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_3_B.test.cpp
-    title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_4_C.test.cpp
-    title: test/aoj/CGL_4_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_D.test.cpp
-    title: test/aoj/CGL_7_D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_E.test.cpp
-    title: test/aoj/CGL_7_E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_F.test.cpp
-    title: test/aoj/CGL_7_F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_G.test.cpp
-    title: test/aoj/CGL_7_G.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_I.test.cpp
-    title: test/aoj/CGL_7_I.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -132,47 +96,66 @@ data:
     \    return std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const\
     \ Segment& s, const Segment& t) {\n    if (intersect(s, t)) return T(0);\n   \
     \ return std::min({dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n\
-    }\n"
-  code: "#pragma once\n#include \"geometry.hpp\"\n#include \"intersect.hpp\"\n\nT\
-    \ dist(const Line& l, const Vec& p) {\n    return std::abs(cross(p - l.p1, l.dir()))\
-    \ / std::abs(l.dir());\n}\n\nT dist(const Segment& s, const Vec& p) {\n    if\
-    \ (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n    if (lt(dot(p\
-    \ - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return std::abs(cross(p\
-    \ - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment& s, const\
-    \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min({dist(s,\
-    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n"
+    }\n#line 4 \"geometry/intersection.hpp\"\n\nVec intersection(const Line& l, const\
+    \ Line& m) {\n    Vec r = m.p1 - l.p1;\n    assert(!eq(cross(l.dir(), m.dir()),\
+    \ 0)); // not parallel\n    return l.p1 + cross(m.dir(), r) / cross(m.dir(), l.dir())\
+    \ * l.dir();\n}\n\nstd::vector<Vec> intersection(const Circle& c, const Line&\
+    \ l) {\n    T d = dist(l, c.c);\n    if (lt(c.r, d)) return {};  // no intersection\n\
+    \    Vec e1 = l.dir() / std::abs(l.dir());\n    Vec e2 = perp(e1);\n    if (ccw(c.c,\
+    \ l.p1, l.p2) == 1) e2 *= -1;\n    if (eq(c.r, d)) return {c.c + d*e2};  // tangent\n\
+    \    T t = std::sqrt(c.r*c.r - d*d);\n    return {c.c + d*e2 + t*e1, c.c + d*e2\
+    \ - t*e1};\n}\n\nstd::vector<Vec> intersection(const Circle& c1, const Circle&\
+    \ c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(c1.r + c2.r, d)) return\
+    \ {};  // outside\n    Vec e1 = (c2.c - c1.c) / std::abs(c2.c - c1.c);\n    Vec\
+    \ e2 = perp(e1);\n    if (lt(d, std::abs(c2.r - c1.r))) return {};  // contain\n\
+    \    if (eq(d, std::abs(c2.r - c1.r))) return {c1.c + c1.r*e1};  // tangent\n\
+    \    T x = (c1.r*c1.r - c2.r*c2.r + d*d) / (2*d);\n    T y = std::sqrt(c1.r*c1.r\
+    \ - x*x);\n    return {c1.c + x*e1 + y*e2, c1.c + x*e1 - y*e2};\n}\n\nT area_intersection(const\
+    \ Circle& c1, const Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r\
+    \ + c2.r, d)) return 0;  // outside\n    if (leq(d, std::abs(c2.r - c1.r))) {\
+    \  // inside\n        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n\
+    \    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
+    \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
+    \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
+    \ 4 \"geometry/bisector.hpp\"\n\nLine bisector(const Segment& s) {\n    auto m\
+    \ = (s.p1 + s.p2) / T(2);\n    return Line(m, m + Vec(-s.dir().imag(), s.dir().real()));\n\
+    }\n\nstd::pair<Line, Line> bisector(const Line& l, const Line& m) {\n    // parallel\n\
+    \    if (eq(cross(l.dir(), m.dir()), 0)) {\n        auto n = Line(l.p1, l.p1 +\
+    \ perp(l.dir()));\n        auto p = intersection(n, m);\n        auto m = (l.p1\
+    \ + p) / T(2);\n        return {Line(m, m + l.dir()), Line()};\n    }\n    auto\
+    \ p = intersection(l, m);\n    T ang = (std::arg(l.dir()) + std::arg(m.dir()))\
+    \ / T(2);\n    auto b1 = Line(p, p + std::polar(T(1), ang));\n    auto b2 = Line(p,\
+    \ p + std::polar(T(1), ang + PI / T(2)));\n    return {b1, b2};\n}\n"
+  code: "#pragma once\n#include \"geometry.hpp\"\n#include \"intersection.hpp\"\n\n\
+    Line bisector(const Segment& s) {\n    auto m = (s.p1 + s.p2) / T(2);\n    return\
+    \ Line(m, m + Vec(-s.dir().imag(), s.dir().real()));\n}\n\nstd::pair<Line, Line>\
+    \ bisector(const Line& l, const Line& m) {\n    // parallel\n    if (eq(cross(l.dir(),\
+    \ m.dir()), 0)) {\n        auto n = Line(l.p1, l.p1 + perp(l.dir()));\n      \
+    \  auto p = intersection(n, m);\n        auto m = (l.p1 + p) / T(2);\n       \
+    \ return {Line(m, m + l.dir()), Line()};\n    }\n    auto p = intersection(l,\
+    \ m);\n    T ang = (std::arg(l.dir()) + std::arg(m.dir())) / T(2);\n    auto b1\
+    \ = Line(p, p + std::polar(T(1), ang));\n    auto b2 = Line(p, p + std::polar(T(1),\
+    \ ang + PI / T(2)));\n    return {b1, b2};\n}\n"
   dependsOn:
   - geometry/geometry.hpp
+  - geometry/intersection.hpp
+  - geometry/dist.hpp
   - geometry/intersect.hpp
   isVerificationFile: false
-  path: geometry/dist.hpp
+  path: geometry/bisector.hpp
   requiredBy:
-  - geometry/bisector.hpp
-  - geometry/intersection.hpp
   - geometry/triangle.hpp
   - geometry/minimum_bounding_circle.hpp
-  - geometry/tangent.hpp
-  - geometry/polygon.hpp
   - geometry/delaunay_diagram.hpp
   timestamp: '2022-06-27 13:45:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_4_C.test.cpp
-  - test/aoj/CGL_3_A.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
-  - test/aoj/CGL_7_G.test.cpp
-  - test/aoj/CGL_7_F.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_7_E.test.cpp
-documentation_of: geometry/dist.hpp
+documentation_of: geometry/bisector.hpp
 layout: document
 redirect_from:
-- /library/geometry/dist.hpp
-- /library/geometry/dist.hpp.html
-title: geometry/dist.hpp
+- /library/geometry/bisector.hpp
+- /library/geometry/bisector.hpp.html
+title: geometry/bisector.hpp
 ---

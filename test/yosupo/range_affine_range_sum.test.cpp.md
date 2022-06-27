@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -45,7 +45,7 @@ data:
     \        if (a <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n\
     \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
     \ 2 * k + 1, m, r));\n    }\n};\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n\
-    #line 4 \"math/modint.cpp\"\n\n/*\n * @brief Mod int\n */\ntemplate <int mod>\n\
+    #line 4 \"math/modint.cpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\n\
     class Modint {\n    using mint = Modint;\n    static_assert(mod > 0, \"Modulus\
     \ must be positive\");\n\npublic:\n    static constexpr int get_mod() noexcept\
     \ { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept : x(y >= 0\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 13:45:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document

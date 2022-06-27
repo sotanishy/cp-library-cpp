@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/garner.cpp
     title: Garner's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
@@ -44,7 +44,7 @@ data:
     \ < n; ++i) {\n            consts[i] = (consts[i] + t * coeffs[i]) % m[i];\n \
     \           coeffs[i] = coeffs[i] * m[k] % m[i];\n        }\n    }\n    return\
     \ consts.back();\n}\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#line 4\
-    \ \"math/modint.cpp\"\n\n/*\n * @brief Mod int\n */\ntemplate <int mod>\nclass\
+    \ \"math/modint.cpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass\
     \ Modint {\n    using mint = Modint;\n    static_assert(mod > 0, \"Modulus must\
     \ be positive\");\n\npublic:\n    static constexpr int get_mod() noexcept { return\
     \ mod; }\n\n    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod\
@@ -135,7 +135,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:27:27+09:00'
+  timestamp: '2022-06-27 13:45:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod_1000000007.test.cpp

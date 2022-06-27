@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/line_add_get_min.cht.test.cpp
     title: test/yosupo/line_add_get_min.cht.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"data-structure/cht/dynamic_convex_hull_trick.cpp\"\n#include\
-    \ <cassert>\n#include <limits>\n#include <set>\n#include <utility>\n\ntemplate\
-    \ <typename T>\nclass DynamicConvexHullTrick {\npublic:\n\n    void add(T a, T\
+  bundledCode: "#line 2 \"data-structure/cht/convex_hull_trick_binsearchtree.hpp\"\
+    \n#include <cassert>\n#include <limits>\n#include <set>\n#include <utility>\n\n\
+    template <typename T>\nclass ConvexHullTrick {\npublic:\n\n    void add(T a, T\
     \ b) {\n        a = -a, b = -b;\n        auto m = lines.insert({a, b, 0});\n \
     \       auto l = m, r = m;\n        ++r;\n        while (update(m, r)) {\n   \
     \         r = lines.erase(r);\n        }\n        if (l != lines.begin() && update(--l,\
@@ -33,8 +33,8 @@ data:
     \ = (x->b > y->b ? INF : -INF);\n        } else {\n            x->p = 1.0 * (y->b\
     \ - x->b) / (x->a - y->a);\n        }\n        return x->p >= y->p;\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <limits>\n#include <set>\n#include\
-    \ <utility>\n\ntemplate <typename T>\nclass DynamicConvexHullTrick {\npublic:\n\
-    \n    void add(T a, T b) {\n        a = -a, b = -b;\n        auto m = lines.insert({a,\
+    \ <utility>\n\ntemplate <typename T>\nclass ConvexHullTrick {\npublic:\n\n   \
+    \ void add(T a, T b) {\n        a = -a, b = -b;\n        auto m = lines.insert({a,\
     \ b, 0});\n        auto l = m, r = m;\n        ++r;\n        while (update(m,\
     \ r)) {\n            r = lines.erase(r);\n        }\n        if (l != lines.begin()\
     \ && update(--l, m)) {\n            m = lines.erase(m);\n            update(l,\
@@ -55,20 +55,20 @@ data:
     \    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/cht/dynamic_convex_hull_trick.cpp
+  path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
   requiredBy: []
-  timestamp: '2022-03-21 01:19:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-27 13:45:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/line_add_get_min.cht.test.cpp
-documentation_of: data-structure/cht/dynamic_convex_hull_trick.cpp
+documentation_of: data-structure/cht/convex_hull_trick_binsearchtree.hpp
 layout: document
-title: Dynamic Convex Hull Trick
+title: Convex Hull Trick (Binary Search Tree)
 ---
 
 ## Description
 
-Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエリを効率的に行う手法である．
+Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエリを効率的に行う手法である．本実装では平衡二分探索木を用いており，追加する直線の傾きの単調性が無くても動作する．
 
 空間計算量: $O(n)$
 

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
@@ -19,7 +19,7 @@ data:
     - https://judge.yosupo.jp/problem/convolution_mod
   bundledCode: "#line 1 \"test/yosupo/convolution_mod.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n/*\n * @brief Mod int\n */\ntemplate\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
     \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
     \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:27:27+09:00'
+  timestamp: '2022-06-27 13:45:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod.test.cpp

@@ -17,13 +17,14 @@ data:
   bundledCode: "#line 1 \"test/yosupo/range_chmin_chmax_add_range_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
     \n\n#line 2 \"data-structure/segtree/segment_tree_beats.cpp\"\n#include <algorithm>\n\
-    #include <limits>\n#include <vector>\n\ntemplate <typename M, typename O, std::pair<typename\
-    \ M::T, bool> (*act)(typename M::T, typename O::T)>\nclass SegmentTreeBeats {\n\
-    \    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n    SegmentTreeBeats()\
-    \ = default;\n    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n,\
-    \ M::id())) {}\n    explicit SegmentTreeBeats(const std::vector<T>& v) {\n   \
-    \     size = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
-    \ * size, M::id());\n        lazy.resize(2 * size, O::id());\n        std::copy(v.begin(),\
+    #include <cassert>\n#include <limits>\n#include <vector>\n\ntemplate <typename\
+    \ M, typename O, std::pair<typename M::T, bool> (*act)(typename M::T, typename\
+    \ O::T)>\nclass SegmentTreeBeats {\n    using T = typename M::T;\n    using E\
+    \ = typename O::T;\n\npublic:\n    SegmentTreeBeats() = default;\n    explicit\
+    \ SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n, M::id())) {}\n\
+    \    explicit SegmentTreeBeats(const std::vector<T>& v) {\n        size = 1;\n\
+    \        while (size < (int) v.size()) size <<= 1;\n        node.resize(2 * size,\
+    \ M::id());\n        lazy.resize(2 * size, O::id());\n        std::copy(v.begin(),\
     \ v.end(), node.begin() + size);\n        for (int i = size - 1; i > 0; --i) node[i]\
     \ = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int k) {\n\
     \        return fold(k, k + 1);\n    }\n\n    void update(int l, int r, const\
@@ -46,22 +47,22 @@ data:
     \ <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return\
     \ M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m,\
     \ r));\n    }\n};\n\n\n// the monoid for range chmin/chmax/add range sum query\n\
-    \nconstexpr ll INF = 1e18;\n\nstruct S {\n    ll max_val, smax_val;\n    ll min_val,\
-    \ smin_val;\n    ll sum;\n    int max_cnt, min_cnt, len;\n    S() : max_val(-INF),\
-    \ smax_val(-INF), min_val(INF), smin_val(INF),\n          sum(0), max_cnt(0),\
-    \ min_cnt(0), len(0) {}\n    S(ll x, int len) : max_val(x), smax_val(-INF), min_val(x),\
-    \ smin_val(INF),\n                       sum(x * len), max_cnt(len), min_cnt(len),\
-    \ len(len) {}\n};\n\nstruct MinMaxSumMonoid {\n    using T = S;\n    static T\
-    \ id() { return S(); }\n    static T op(T a, T b) {\n        T c;\n        c.sum\
-    \ = a.sum + b.sum;\n        c.len = a.len + b.len;\n        if (a.min_val < b.min_val)\
-    \ {\n            c.min_val = a.min_val;\n            c.min_cnt = a.min_cnt;\n\
-    \            c.smin_val = std::min(a.smin_val, b.min_val);\n        } else if\
-    \ (a.min_val > b.min_val) {\n            c.min_val = b.min_val;\n            c.min_cnt\
-    \ = b.min_cnt;\n            c.smin_val = std::min(a.min_val, b.smin_val);\n  \
-    \      } else {\n            c.min_val = a.min_val;\n            c.min_cnt = a.min_cnt\
-    \ + b.min_cnt;\n            c.smin_val = std::min(a.smin_val, b.smin_val);\n \
-    \       }\n        if (a.max_val > b.max_val) {\n            c.max_val = a.max_val;\n\
-    \            c.max_cnt = a.max_cnt;\n            c.smax_val = std::max(a.smax_val,\
+    \nusing ll = long long;\nconstexpr ll INF = 1e18;\n\nstruct S {\n    ll max_val,\
+    \ smax_val;\n    ll min_val, smin_val;\n    ll sum;\n    int max_cnt, min_cnt,\
+    \ len;\n    S() : max_val(-INF), smax_val(-INF), min_val(INF), smin_val(INF),\n\
+    \          sum(0), max_cnt(0), min_cnt(0), len(0) {}\n    S(ll x, int len) : max_val(x),\
+    \ smax_val(-INF), min_val(x), smin_val(INF),\n                       sum(x * len),\
+    \ max_cnt(len), min_cnt(len), len(len) {}\n};\n\nstruct MinMaxSumMonoid {\n  \
+    \  using T = S;\n    static T id() { return S(); }\n    static T op(T a, T b)\
+    \ {\n        T c;\n        c.sum = a.sum + b.sum;\n        c.len = a.len + b.len;\n\
+    \        if (a.min_val < b.min_val) {\n            c.min_val = a.min_val;\n  \
+    \          c.min_cnt = a.min_cnt;\n            c.smin_val = std::min(a.smin_val,\
+    \ b.min_val);\n        } else if (a.min_val > b.min_val) {\n            c.min_val\
+    \ = b.min_val;\n            c.min_cnt = b.min_cnt;\n            c.smin_val = std::min(a.min_val,\
+    \ b.smin_val);\n        } else {\n            c.min_val = a.min_val;\n       \
+    \     c.min_cnt = a.min_cnt + b.min_cnt;\n            c.smin_val = std::min(a.smin_val,\
+    \ b.smin_val);\n        }\n        if (a.max_val > b.max_val) {\n            c.max_val\
+    \ = a.max_val;\n            c.max_cnt = a.max_cnt;\n            c.smax_val = std::max(a.smax_val,\
     \ b.max_val);\n        } else if (a.max_val < b.max_val) {\n            c.max_val\
     \ = b.max_val;\n            c.max_cnt = b.max_cnt;\n            c.smax_val = std::max(a.max_val,\
     \ b.smax_val);\n        } else {\n            c.max_val = a.max_val;\n       \
@@ -118,7 +119,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 17:14:25+09:00'
+  timestamp: '2022-06-27 13:48:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp

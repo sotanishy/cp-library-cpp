@@ -90,3 +90,7 @@ Dinic のアルゴリズムは，フローネットワークの最大流を求�
 - `T max_flow(int s, int t)`
     - 始点 $s$ から終点 $t$ への最大流を求める
     - 時間計算量: $O(V^2E)$
+
+## Reference
+
+- [Dinic 法とその時間計算量 - みさわめも](https://misawa.github.io/others/flow/dinic_time_complexity.html)

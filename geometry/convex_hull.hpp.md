@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
   _extendedRequiredBy: []
@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1298.test.cpp
     title: test/aoj/1298.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_B.test.cpp
     title: test/aoj/CGL_4_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/convex_hull.hpp\"\n#include <vector>\n#line 2 \"\
@@ -25,9 +25,9 @@ data:
     #include <complex>\n#include <iostream>\n#line 8 \"geometry/geometry.hpp\"\n\n\
     // note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
     using Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\nconstexpr T eps\
-    \ = 1e-12;\ninline bool eq(T a, T b) { return std::abs(a - b) < eps; }\ninline\
-    \ bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }\ninline bool lt(T a,\
-    \ T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return a < b + eps;\
+    \ = 1e-10;\ninline bool eq(T a, T b) { return std::abs(a - b) <= eps; }\ninline\
+    \ bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }\ninline bool lt(T a,\
+    \ T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return a <= b + eps;\
     \ }\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y;\n   \
     \ is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nstruct Line {\n    Vec\
     \ p1, p2;\n    Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1),\
@@ -39,39 +39,38 @@ data:
     \ Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n}\n\nT cross(const\
     \ Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const\
     \ Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\nVec\
-    \ projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir())\
-    \ * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec&\
-    \ p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
+    \ perp(const Vec& a) {\n    return Vec(-a.imag(), a.real());\n}\n\nVec projection(const\
+    \ Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir()) * l.dir()\
+    \ / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec& p) {\n\
+    \    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
     // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
     \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
-    \ return -1;\n    return 1;\n}\n\nLine bisector(const Vec& p, const Vec& q) {\n\
-    \    auto m = (p + q) / T(2);\n    auto v = q - p;\n    return Line(m, m + Vec(-v.imag(),\
-    \ v.real()));\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
-    \ pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag()\
-    \ < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if\
-    \ (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n\
-    \            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real()\
-    \ > 0));\n            return (p.real() > q.real());\n        }\n        return\
-    \ (cross(p, q) > 0);\n    });\n}\n#line 4 \"geometry/convex_hull.hpp\"\n\nstd::vector<Vec>\
-    \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    if (n ==\
-    \ 1) return pts;\n    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const\
-    \ Vec& v2) {\n        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag())\
-    \ : (v1.real() < v2.real());\n    });\n    int k = 0; // the number of vertices\
-    \ in the convex hull\n    std::vector<Vec> ch(2 * n);\n    // right\n    for (int\
-    \ i = 0; i < n; ++i) {\n        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i]\
-    \ - ch[k-1]), 0)) --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n   \
-    \ // left\n    for (int i = n - 2; i >= 0; --i) {\n        while (k > t && lt(cross(ch[k-1]\
+    \ return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n\
+    \    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
+    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
+    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
+    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
+    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
+    \ }\n        return (cross(p, q) > 0);\n    });\n}\n#line 4 \"geometry/convex_hull.hpp\"\
+    \n\nstd::vector<Vec> convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n\
+    \    if (n == 1) return pts;\n    std::sort(pts.begin(), pts.end(), [](const Vec&\
+    \ v1, const Vec& v2) {\n        return (v1.imag() != v2.imag()) ? (v1.imag() <\
+    \ v2.imag()) : (v1.real() < v2.real());\n    });\n    int k = 0; // the number\
+    \ of vertices in the convex hull\n    std::vector<Vec> ch(2 * n);\n    // right\n\
+    \    for (int i = 0; i < n; ++i) {\n        while (k > 1 && leq(cross(ch[k-1]\
     \ - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++] = pts[i];\n    }\n \
-    \   ch.resize(k - 1);\n    return ch;\n}\n\n"
+    \   int t = k;\n    // left\n    for (int i = n - 2; i >= 0; --i) {\n        while\
+    \ (k > t && leq(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n       \
+    \ ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n\n"
   code: "#pragma once\n#include <vector>\n#include \"geometry.hpp\"\n\nstd::vector<Vec>\
     \ convex_hull(std::vector<Vec>& pts) {\n    int n = pts.size();\n    if (n ==\
     \ 1) return pts;\n    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const\
     \ Vec& v2) {\n        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag())\
     \ : (v1.real() < v2.real());\n    });\n    int k = 0; // the number of vertices\
     \ in the convex hull\n    std::vector<Vec> ch(2 * n);\n    // right\n    for (int\
-    \ i = 0; i < n; ++i) {\n        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i]\
+    \ i = 0; i < n; ++i) {\n        while (k > 1 && leq(cross(ch[k-1] - ch[k-2], pts[i]\
     \ - ch[k-1]), 0)) --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n   \
-    \ // left\n    for (int i = n - 2; i >= 0; --i) {\n        while (k > t && lt(cross(ch[k-1]\
+    \ // left\n    for (int i = n - 2; i >= 0; --i) {\n        while (k > t && leq(cross(ch[k-1]\
     \ - ch[k-2], pts[i] - ch[k-1]), 0)) --k;\n        ch[k++] = pts[i];\n    }\n \
     \   ch.resize(k - 1);\n    return ch;\n}\n\n"
   dependsOn:
@@ -79,8 +78,8 @@ data:
   isVerificationFile: false
   path: geometry/convex_hull.hpp
   requiredBy: []
-  timestamp: '2022-06-26 17:14:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-27 13:45:34+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/1298.test.cpp
   - test/aoj/CGL_4_B.test.cpp
