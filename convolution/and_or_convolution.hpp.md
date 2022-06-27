@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/subset_convolution.hpp
     title: Subset Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/and_or_convolution.hpp\"\n#include <vector>\n\
@@ -57,7 +57,7 @@ data:
   requiredBy:
   - convolution/subset_convolution.hpp
   timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/subset_convolution.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp

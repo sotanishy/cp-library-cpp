@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/and_or_convolution.hpp
       title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
     - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
     - icon: ':question:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':warning:'
@@ -128,7 +128,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -137,7 +137,7 @@ data:
     - icon: ':question:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
   - name: data-structure/unionfind
@@ -311,7 +311,7 @@ data:
     - icon: ':warning:'
       path: math/carmichael.cpp
       title: Carmichael Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
@@ -371,10 +371,10 @@ data:
     - icon: ':warning:'
       path: math/quotients.hpp
       title: Quotient Ranges
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
     - icon: ':x:'
@@ -851,13 +851,13 @@ data:
     - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -890,13 +890,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/subset_convolution.test.cpp
       title: test/yosupo/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'

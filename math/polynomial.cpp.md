@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   _extendedVerifiedWith:
@@ -33,7 +33,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   _isVerificationFailed: true

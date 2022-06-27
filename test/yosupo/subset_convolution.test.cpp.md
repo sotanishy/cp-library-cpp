@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/and_or_convolution.hpp
     title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -87,7 +87,7 @@ data:
     \    }\n    fmt(pa, true);\n\n    // convert back\n    std::vector<T> ret(n);\n\
     \    for (int i = 0; i < n; ++i) {\n        ret[i] = pa[i][__builtin_popcount(i)];\n\
     \    }\n    return ret;\n}\n\n#line 5 \"test/yosupo/subset_convolution.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   vector<mint> a(1<<N), b(1<<N);\n    for (int i = 0; i < 1 << N; ++i) cin >>\
     \ a[i];\n    for (int i = 0; i < 1 << N; ++i) cin >> b[i];\n    auto c = subset_convolution<mint,\
@@ -95,7 +95,7 @@ data:
     \ ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\n\
     #include \"../../math/modint.cpp\"\n#include \"../../convolution/subset_convolution.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   vector<mint> a(1<<N), b(1<<N);\n    for (int i = 0; i < 1 << N; ++i) cin >>\
     \ a[i];\n    for (int i = 0; i < 1 << N; ++i) cin >> b[i];\n    auto c = subset_convolution<mint,\
@@ -108,8 +108,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 17:20:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/subset_convolution.test.cpp
 layout: document
