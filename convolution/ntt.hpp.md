@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
   - icon: ':warning:'
@@ -33,13 +33,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/division_of_polynomials.test.cpp
     title: test/yosupo/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'

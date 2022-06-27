@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/berlekamp_massey.cpp
     title: Berlekamp-Massey Algorithm
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/find_linear_recurrence
@@ -61,8 +61,8 @@ data:
     \                m = 1;\n            } else {\n                ++m;\n        \
     \    }\n        }\n    }\n    std::vector<T> ret(L);\n    for (int i = 1; i <=\
     \ L; ++i) {\n        ret[i-1] = -C[i];\n    }\n    return ret;\n}\n#line 5 \"\
-    test/yosupo/find_linear_recurrence.test.cpp\"\n\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    test/yosupo/find_linear_recurrence.test.cpp\"\n\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    vector<mint> a(N);\n\
     \    for (auto& x : a) cin >> x;\n    auto ans = berlekamp_massey(a);\n    cout\
     \ << ans.size() << endl;\n    for (int i = 0; i < ans.size(); ++i) {\n       \
@@ -70,7 +70,7 @@ data:
     \    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/find_linear_recurrence\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/berlekamp_massey.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N;\n    cin >> N;\n    vector<mint> a(N);\n    for (auto& x : a) cin\
     \ >> x;\n    auto ans = berlekamp_massey(a);\n    cout << ans.size() << endl;\n\
@@ -82,8 +82,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 16:41:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/find_linear_recurrence.test.cpp
 layout: document

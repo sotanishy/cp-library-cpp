@@ -12,9 +12,9 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
@@ -158,13 +158,14 @@ data:
     \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
     \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
     };\n#line 5 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for\
-    \ (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    using namespace std;\n\n\nusing mint = Modint<998244353>;\n\nint main() {\n  \
+    \  ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n  \
+    \  cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i < N; ++i) cin\
+    \ >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i) cout << g[i]\
+    \ << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
     \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
@@ -176,8 +177,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/exp_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 16:41:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/exp_of_formal_power_series.test.cpp
 layout: document

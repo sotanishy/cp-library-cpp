@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
   - icon: ':question:'

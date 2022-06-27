@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
@@ -92,14 +92,14 @@ data:
     \ (int i = 1; i < (int) qm.size(); i += 2) qm[i] = -qm[i];\n        p = take(convolution(p,\
     \ qm), n & 1);\n        q = take(convolution(q, qm), 0);\n        n >>= 1;\n \
     \   }\n\n    return p[0] / q[0];\n}\n#line 5 \"test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\n\nusing mint = Modint<998244353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int d;\n    long long k;\n    cin >> d >> k;\n    vector<mint> a(d), c(d);\n\
     \    for (auto& x : a) cin >> x;\n    for (auto& x : c) cin >> x;\n    cout <<\
     \ bostan_mori(a, c, k) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/bostan_mori.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\n\nusing mint = Modint<998244353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int d;\n    long long k;\n    cin >> d >> k;\n    vector<mint> a(d), c(d);\n\
     \    for (auto& x : a) cin >> x;\n    for (auto& x : c) cin >> x;\n    cout <<\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:00:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 16:41:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document
