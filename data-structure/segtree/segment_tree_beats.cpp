@@ -3,174 +3,171 @@
 #include <limits>
 #include <vector>
 
-template <typename T>
+template <typename M, typename O, std::pair<typename M::T, bool> (*act)(typename M::T, typename O::T)>
 class SegmentTreeBeats {
+    using T = typename M::T;
+    using E = typename O::T;
+
 public:
     SegmentTreeBeats() = default;
-    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n)) {}
+    explicit SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n, M::id())) {}
     explicit SegmentTreeBeats(const std::vector<T>& v) {
         size = 1;
         while (size < (int) v.size()) size <<= 1;
-        sum.resize(2 * size);
-        lazy.resize(2 * size);
-        max_val.resize(2 * size, NINF);
-        smax_val.resize(2 * size, NINF);
-        max_cnt.resize(2 * size);
-        min_val.resize(2 * size, INF);
-        smin_val.resize(2 * size, INF);
-        min_cnt.resize(2 * size);
-        len.resize(2 * size);
-        len[1] = size;
-        for (int i = 2; i < 2 * size; ++i) len[i] = len[i / 2] >> 1;
-        for (int i = 0; i < (int) v.size(); ++i) {
-            sum[size + i] = max_val[size + i] = min_val[size + i] = v[i];
-            max_cnt[size + i] = min_cnt[size + i] = 1;
-        }
-        for (int i = size - 1; i > 0; --i) recalc(i);
+        node.resize(2 * size, M::id());
+        lazy.resize(2 * size, O::id());
+        std::copy(v.begin(), v.end(), node.begin() + size);
+        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
     T operator[](int k) {
-        return fold_sum(k, k + 1);
+        return fold(k, k + 1);
     }
 
-    void chmin(int l, int r, T x) { update<CHMIN>(l, r, x, 1, 0, size); }
-    void chmax(int l, int r, T x) { update<CHMAX>(l, r, x, 1, 0, size); }
-    void add(int l, int r, T x) { update<ADD>(l, r, x, 1, 0, size); }
+    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }
 
-    T fold_min(int l, int r) { return fold<MIN>(l, r, 1, 0, size); }
-    T fold_max(int l, int r) { return fold<MAX>(l, r, 1, 0, size); }
-    T fold_sum(int l, int r) { return fold<SUM>(l, r, 1, 0, size); }
+    T fold(int l, int r) { return fold(l, r, 1, 0, size); }
 
 private:
-    enum OpType {
-        CHMIN, CHMAX, ADD
-    };
-
-    enum QueryType {
-        MIN, MAX, SUM
-    };
-
-    static constexpr T INF = std::numeric_limits<T>::max();
-    static constexpr T NINF = std::numeric_limits<T>::min();
-
     int size;
-    std::vector<T> sum, lazy;
-    std::vector<T> max_val, smax_val;
-    std::vector<T> min_val, smin_val;
-    std::vector<int> len, max_cnt, min_cnt;
-
-    void recalc(int k) {
-        sum[k] = sum[2 * k] + sum[2 * k + 1];
-
-        if (max_val[2 * k] > max_val[2 * k + 1]) {
-            max_val[k] = max_val[2 * k];
-            max_cnt[k] = max_cnt[2 * k];
-            smax_val[k] = std::max(smax_val[2 * k], max_val[2 * k + 1]);
-        } else if (max_val[2 * k] < max_val[2 * k + 1]) {
-            max_val[k] = max_val[2 * k + 1];
-            max_cnt[k] = max_cnt[2 * k + 1];
-            smax_val[k] = std::max(max_val[2 * k], smax_val[2 * k + 1]);
-        } else {
-            max_val[k] = max_val[2 * k];
-            max_cnt[k] = max_cnt[2 * k] + max_cnt[2 * k + 1];
-            smax_val[k] = std::max(smax_val[2 * k], smax_val[2 * k + 1]);
-        }
-
-        if (min_val[2 * k] < min_val[2 * k + 1]) {
-            min_val[k] = min_val[2 * k];
-            min_cnt[k] = min_cnt[2 * k];
-            smin_val[k] = std::min(smin_val[2 * k], min_val[2 * k + 1]);
-        } else if (min_val[2 * k] > min_val[2 * k + 1]) {
-            min_val[k] = min_val[2 * k + 1];
-            min_cnt[k] = min_cnt[2 * k + 1];
-            smin_val[k] = std::min(min_val[2 * k], smin_val[2 * k + 1]);
-        } else {
-            min_val[k] = min_val[2 * k];
-            min_cnt[k] = min_cnt[2 * k] + min_cnt[2 * k + 1];
-            smin_val[k] = std::min(smin_val[2 * k], smin_val[2 * k + 1]);
-        }
-    }
-
-    template <OpType TYPE>
-    void tag(int k, T x) {
-        if (TYPE == CHMIN) {
-            sum[k] += (x - max_val[k]) * max_cnt[k];
-            if (max_val[k] == min_val[k]) min_val[k] = x;
-            else if (max_val[k] == smin_val[k]) smin_val[k] = x;
-            max_val[k] = x;
-        } else if (TYPE == CHMAX) {
-            sum[k] += (x - min_val[k]) * min_cnt[k];
-            if (min_val[k] == max_val[k]) max_val[k] = x;
-            else if (min_val[k] == smax_val[k]) smax_val[k] = x;
-            min_val[k] = x;
-        } else if (TYPE == ADD) {
-            min_val[k] += x;
-            if (smin_val[k] != INF) smin_val[k] += x;
-            max_val[k] += x;
-            if (smax_val[k] != NINF) smax_val[k] += x;
-            sum[k] += x * len[k];
-            lazy[k] += x;
-        }
-    }
+    std::vector<T> node;
+    std::vector<E> lazy;
 
     void push(int k) {
-        if (lazy[k] != 0) {
-            tag<ADD>(2 * k, lazy[k]);
-            tag<ADD>(2 * k + 1, lazy[k]);
-            lazy[k] = 0;
+        if (lazy[k] == O::id()) return;
+        if (k < size) {
+            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);
+            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);
         }
-        if (max_val[k] < max_val[2 * k]) tag<CHMIN>(2 * k, max_val[k]);
-        if (min_val[k] > min_val[2 * k]) tag<CHMAX>(2 * k, min_val[k]);
-        if (max_val[k] < max_val[2 * k + 1]) tag<CHMIN>(2 * k + 1, max_val[k]);
-        if (min_val[k] > min_val[2 * k + 1]) tag<CHMAX>(2 * k + 1, min_val[k]);
+        bool success;
+        std::tie(node[k], success) = act(node[k], lazy[k]);
+        if (!success) {
+            assert(k < size);
+            push(2 * k);
+            push(2 * k + 1);
+            node[k] = M::op(node[2 * k], node[2 * k + 1]);
+        }
+        lazy[k] = O::id();
     }
 
-    template <OpType TYPE>
-    inline bool break_cond(int k, T x) {
-        if (TYPE == CHMIN) return max_val[k] <= x;
-        if (TYPE == CHMAX) return min_val[k] >= x;
-        if (TYPE == ADD) return false;
-    }
-
-    template <OpType TYPE>
-    inline bool tag_cond(int k, T x) {
-        if (TYPE == CHMIN) return smax_val[k] < x;
-        if (TYPE == CHMAX) return smin_val[k] > x;
-        if (TYPE == ADD) return true;
-    }
-
-    template <OpType TYPE>
-    void update(int a, int b, T x, int k, int l, int r) {
-        if (r <= a || b <= l || break_cond<TYPE>(k, x)) return;
-        if (a <= l && r <= b && tag_cond<TYPE>(k, x)) {
-            tag<TYPE>(k, x);
+    void update(int a, int b, const E& x, int k, int l, int r) {
+        push(k);
+        if (r <= a || b <= l) return;
+        if (a <= l && r <= b) {
+            lazy[k] = O::op(lazy[k], x);
+            push(k);
             return;
         }
-        push(k);
         int m = (l + r) / 2;
-        update<TYPE>(a, b, x, 2 * k, l, m);
-        update<TYPE>(a, b, x, 2 * k + 1, m, r);
-        recalc(k);
+        update(a, b, x, 2 * k, l, m);
+        update(a, b, x, 2 * k + 1, m, r);
+        node[k] = M::op(node[2 * k], node[2 * k + 1]);
     }
 
-    template <QueryType TYPE>
     T fold(int a, int b, int k, int l, int r) {
-        if (r <= a || b <= l) {
-            if (TYPE == MIN) return INF;
-            if (TYPE == MAX) return NINF;
-            if (TYPE == SUM) return 0;
-        }
-        if (a <= l && r <= b) {
-            if (TYPE == MIN) return min_val[k];
-            if (TYPE == MAX) return max_val[k];
-            if (TYPE == SUM) return sum[k];
-        }
         push(k);
+        if (r <= a || b <= l) return M::id();
+        if (a <= l && r <= b) return node[k];
         int m = (l + r) / 2;
-        T vl = fold<TYPE>(a, b, 2 * k, l, m);
-        T vr = fold<TYPE>(a, b, 2 * k + 1, m, r);
-        if (TYPE == MIN) return std::min(vl, vr);
-        if (TYPE == MAX) return std::max(vl, vr);
-        if (TYPE == SUM) return vl + vr;
+        return M::op(fold(a, b, 2 * k, l, m),
+                     fold(a, b, 2 * k + 1, m, r));
     }
 };
+
+
+// the monoid for range chmin/chmax/add range sum query
+
+constexpr ll INF = 1e18;
+
+struct S {
+    ll max_val, smax_val;
+    ll min_val, smin_val;
+    ll sum;
+    int max_cnt, min_cnt, len;
+    S() : max_val(-INF), smax_val(-INF), min_val(INF), smin_val(INF),
+          sum(0), max_cnt(0), min_cnt(0), len(0) {}
+    S(ll x, int len) : max_val(x), smax_val(-INF), min_val(x), smin_val(INF),
+                       sum(x * len), max_cnt(len), min_cnt(len), len(len) {}
+};
+
+struct MinMaxSumMonoid {
+    using T = S;
+    static T id() { return S(); }
+    static T op(T a, T b) {
+        T c;
+        c.sum = a.sum + b.sum;
+        c.len = a.len + b.len;
+        if (a.min_val < b.min_val) {
+            c.min_val = a.min_val;
+            c.min_cnt = a.min_cnt;
+            c.smin_val = std::min(a.smin_val, b.min_val);
+        } else if (a.min_val > b.min_val) {
+            c.min_val = b.min_val;
+            c.min_cnt = b.min_cnt;
+            c.smin_val = std::min(a.min_val, b.smin_val);
+        } else {
+            c.min_val = a.min_val;
+            c.min_cnt = a.min_cnt + b.min_cnt;
+            c.smin_val = std::min(a.smin_val, b.smin_val);
+        }
+        if (a.max_val > b.max_val) {
+            c.max_val = a.max_val;
+            c.max_cnt = a.max_cnt;
+            c.smax_val = std::max(a.smax_val, b.max_val);
+        } else if (a.max_val < b.max_val) {
+            c.max_val = b.max_val;
+            c.max_cnt = b.max_cnt;
+            c.smax_val = std::max(a.max_val, b.smax_val);
+        } else {
+            c.max_val = a.max_val;
+            c.max_cnt = a.max_cnt + b.max_cnt;
+            c.smax_val = std::max(a.smax_val, b.smax_val);
+        }
+        return c;
+    }
+};
+
+struct F {
+    ll lb, ub, diff;
+    F(ll lb = -INF, ll ub = INF, ll diff = 0) : lb(lb), ub(ub), diff(diff) {}
+    static F chmin(ll x) { return F(-INF, x, 0); }
+    static F chmax(ll x) { return F(x, INF, 0); }
+    static F add(ll x) { return F(-INF, INF, x); }
+    bool operator==(const F& rhs) const { return lb == rhs.lb && ub == rhs.ub && diff == rhs.diff; }
+};
+
+struct ChminChmaxAddMonoid {
+    using T = F;
+    static T id() { return F(); }
+    static T op(T a, T b) {
+        F c;
+        c.lb = std::clamp(a.lb + a.diff, b.lb, b.ub) - a.diff;
+        c.ub = std::clamp(a.ub + a.diff, b.lb, b.ub) - a.diff;
+        c.diff = a.diff + b.diff;
+        return c;
+    }
+};
+
+std::pair<S, bool> act(S a, F b) {
+    if (a.len == 0) return {a, true};
+    if (a.min_val == a.max_val || b.lb == b.ub || a.max_val <= b.lb || b.ub < a.min_val) {
+        return {S(std::clamp(a.min_val, b.lb, b.ub) + b.diff, a.len), true};
+    }
+    if (a.smin_val == a.max_val) {
+        a.min_val = a.smax_val = std::max(a.min_val, b.lb) + b.diff;
+        a.max_val = a.smin_val = std::min(a.max_val, b.ub) + b.diff;
+        a.sum = a.min_val * a.min_cnt + a.max_val * a.max_cnt;
+        return {a, true};
+    }
+    if (b.lb < a.smin_val && a.smax_val < b.ub) {
+        ll min_nxt = std::max(a.min_val, b.lb);
+        ll max_nxt = std::min(a.max_val, b.ub);
+        a.sum += (min_nxt - a.min_val) * a.min_cnt - (a.max_val - max_nxt) * a.max_cnt + b.diff * a.len;
+        a.min_val = min_nxt + b.diff;
+        a.max_val = max_nxt + b.diff;
+        a.smin_val += b.diff;
+        a.smax_val += b.diff;
+        return {a, true};
+    }
+    return {a, false};
+}

@@ -38,6 +38,8 @@ documentation_of: ../../../data-structure/segtree/lazy_segment_tree.cpp
 
 また，作用素が単位元を持たない半群であるとき（e.g. 区間更新）は，適当な値を集合に添加してそれを単位元として扱うことができる．
 
+作用素の分配則が成り立たない場合，Segment tree beats を用いて高速に計算できる場合がある．
+
 ## Reference
 
 - [遅延評価セグメント木をソラで書きたいあなたに](https://tsutaj.hatenablog.com/entry/2017/03/30/224339)

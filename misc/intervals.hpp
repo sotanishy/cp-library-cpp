@@ -5,11 +5,11 @@
 #include <utility>
 
 template <typename T>
-class RangeSet {
+class Intervals {
 public:
     static constexpr T INF = std::numeric_limits<T>::max() / 2;
 
-    RangeSet() {
+    Intervals() {
         st.emplace(INF, INF);
         st.emplace(-INF, -INF);
     }
@@ -21,12 +21,21 @@ public:
         return it->first <= l && r <= it->second;
     }
 
-    std::pair<T, T> covered_by(T x) const { return covered_by(x, x); }
-    std::pair<T, T> covered_by(T l, T r) const {
+    std::pair<T, T> get(T x) const {
+        auto it = --(st.lower_bound({x + 1, x + 1}));
+        if (it->first <= x && x <= it->second) return *it;
+        return {-INF, -INF};
+    }
+
+    std::vector<std::pair<T, T>> get(T l, T r) const {
         assert(l <= r);
         auto it = --(st.lower_bound({l + 1, l + 1}));
-        if (it->first <= l && r <= it->second) return *it;
-        return {-INF, -INF};
+        std::vector<std::pair<T, T>> ret;
+        while (it != st.end()) {
+            if (l <= it->second && it->first <= r) ret.push_back(*it);
+            ++it;
+        }
+        return ret;
     }
 
     void insert(T x) { insert(x, x); }

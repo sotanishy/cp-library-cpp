@@ -14,20 +14,22 @@ int main() {
     cin >> N >> Q;
     vector<ll> a(N);
     for (int i = 0; i < N; i++) cin >> a[i];
-    SegmentTreeBeats<ll> st(a);
+    vector<S> init(N);
+    for (int i = 0; i < N; ++i) init[i] = S(a[i], 1);
+    SegmentTreeBeats<MinMaxSumMonoid, ChminChmaxAddMonoid, act> st(init);
     for (int i = 0; i < Q; i++) {
         int t, l, r;
         ll b;
         cin >> t >> l >> r;
         if (t != 3) cin >> b;
         if (t == 0) {
-            st.chmin(l, r, b);
+            st.update(l, r, F::chmin(b));
         } else if (t == 1) {
-            st.chmax(l, r, b);
+            st.update(l, r, F::chmax(b));
         } else if (t == 2) {
-            st.add(l, r, b);
+            st.update(l, r, F::add(b));
         } else {
-            cout << st.fold_sum(l, r) << "\n";
+            cout << st.fold(l, r).sum << "\n";
         }
     }
 }

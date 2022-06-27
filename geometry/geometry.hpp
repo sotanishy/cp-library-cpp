@@ -74,7 +74,7 @@ Vec reflection(const Line& l, const Vec& p) {
 
 // 0: collinear
 // 1: counter-clockwise
-// 2: clockwise
+// -1: clockwise
 int ccw(const Vec& a, const Vec& b, const Vec& c) {
     if (eq(cross(b - a, c - a), 0)) return 0;
     if (lt(cross(b - a, c - a), 0)) return -1;
