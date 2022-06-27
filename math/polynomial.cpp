@@ -142,6 +142,7 @@ public:
     }
 
     Poly pow(long long k, int deg = -1) const {
+        if (k == 0) return {1};
         if (deg == -1) deg = this->size();
         Poly ret(*this);
         int cnt = 0;
