@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convolution/gcd_lcm_convolution.hpp
     title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
   - icon: ':question:'
@@ -19,9 +19,9 @@ data:
     - https://judge.yosupo.jp/problem/lcm_convolution
   bundledCode: "#line 1 \"test/yosupo/lcm_convolution.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n\n/**\n * @brief Mod int\n */\n\
-    template <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
-    \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
+    \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
+    \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
     \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
     \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
@@ -70,7 +70,7 @@ data:
     \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
     \    b.resize(n);\n    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for\
     \ (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    return\
-    \ a;\n}\n#line 5 \"test/yosupo/lcm_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    \ a;\n}\n#line 5 \"test/yosupo/lcm_convolution.test.cpp\"\n\n\n#include <bits/stdc++.h>\n\
     using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(N+1), b(N+1);\n\
     \    for (int i = 1; i <= N; ++i) cin >> a[i];\n    for (int i = 1; i <= N; ++i)\
@@ -78,7 +78,7 @@ data:
     \ N; ++i) cout << c[i] << (i < N ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
     \ \"../../math/modint.cpp\"\n#include \"../../convolution/gcd_lcm_convolution.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   vector<mint> a(N+1), b(N+1);\n    for (int i = 1; i <= N; ++i) cin >> a[i];\n\
     \    for (int i = 1; i <= N; ++i) cin >> b[i];\n    auto c = lcm_convolution(a,\
@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 14:39:44+09:00'
+  timestamp: '2022-06-27 16:00:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/lcm_convolution.test.cpp

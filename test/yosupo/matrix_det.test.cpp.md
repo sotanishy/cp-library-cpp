@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
     - https://judge.yosupo.jp/problem/matrix_det
   bundledCode: "#line 1 \"test/yosupo/matrix_det.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\
     \n\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\
-    \n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
+    /**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
     \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
     \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
     \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
@@ -141,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 14:39:44+09:00'
+  timestamp: '2022-06-27 15:58:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix_det.test.cpp

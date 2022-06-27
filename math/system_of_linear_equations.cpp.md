@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
   _extendedRequiredBy: []

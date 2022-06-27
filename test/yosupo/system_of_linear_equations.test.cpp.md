@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/matrix/matrix.cpp
     title: Matrix
   - icon: ':question:'
@@ -22,44 +22,44 @@ data:
     - https://judge.yosupo.jp/problem/system_of_linear_equations
   bundledCode: "#line 1 \"test/yosupo/system_of_linear_equations.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\n/**\n\
-    \ * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint =\
-    \ Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
-    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
-    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
-    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
-    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
-    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
-    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
-    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
-    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
-    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
-    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
-    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
-    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
-    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
-    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
-    \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
-    \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
-    \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
-    \ {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n     \
-    \       std::swap(u -= t * v, v);\n        }\n        return mint(u);\n    }\n\
-    \n    constexpr mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
-    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
-    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
-    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
-    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
-    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 3 \"math/matrix/matrix.cpp\"\
-    \n#include <cassert>\n#include <cmath>\n#include <initializer_list>\n#include\
-    \ <type_traits>\n#include <vector>\n\ntemplate <typename T>\nclass Matrix {\n\
-    public:\n    static Matrix concat(const Matrix& A, const Matrix& B) {\n      \
-    \  assert(A.m == B.m);\n        Matrix C(A.m, A.n + B.n);\n        for (int i\
-    \ = 0; i < A.m; ++i) {\n            std::copy(A[i].begin(), A[i].end(), C[i].begin());\n\
-    \            std::copy(B[i].begin(), B[i].end(), C[i].begin() + A.n);\n      \
-    \  }\n        return C;\n    }\n\n    Matrix() = default;\n    Matrix(int m, int\
-    \ n) : mat(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
-    \ list) {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
+    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
+    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
+    \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
+    \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
+    \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
+    \  constexpr int value() const noexcept { return x; }\n\n    constexpr mint& operator+=(const\
+    \ mint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr\
+    \ mint& operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -=\
+    \ mod; return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept\
+    \ { x = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr\
+    \ mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\
+    \n    constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
+    \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
+    \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
+    \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
+    \ mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const noexcept\
+    \ { return mint(*this) /= r; }\n\n    constexpr bool operator==(const mint& r)\
+    \ const noexcept { return x == r.x; }\n    constexpr bool operator!=(const mint&\
+    \ r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const noexcept\
+    \ {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0) {\n    \
+    \        int t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
+    \ -= t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
+    \ pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n        while\
+    \ (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n   \
+    \         n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
+    \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
+    \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
+    \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
+    \    }\n\nprivate:\n    int x;\n};\n#line 3 \"math/matrix/matrix.cpp\"\n#include\
+    \ <cassert>\n#include <cmath>\n#include <initializer_list>\n#include <type_traits>\n\
+    #include <vector>\n\ntemplate <typename T>\nclass Matrix {\npublic:\n    static\
+    \ Matrix concat(const Matrix& A, const Matrix& B) {\n        assert(A.m == B.m);\n\
+    \        Matrix C(A.m, A.n + B.n);\n        for (int i = 0; i < A.m; ++i) {\n\
+    \            std::copy(A[i].begin(), A[i].end(), C[i].begin());\n            std::copy(B[i].begin(),\
+    \ B[i].end(), C[i].begin() + A.n);\n        }\n        return C;\n    }\n\n  \
+    \  Matrix() = default;\n    Matrix(int m, int n) : mat(m, std::vector<T>(n)),\
+    \ m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>> list)\
+    \ {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
     \        n = mat[0].size();\n    }\n\n    int row() const { return m; }\n    int\
     \ col() const { return n; }\n\n    const std::vector<T>& operator[](int i) const\
     \ { return mat[i]; }\n    std::vector<T>& operator[](int i) { return mat[i]; }\n\
@@ -139,7 +139,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 14:39:44+09:00'
+  timestamp: '2022-06-27 15:58:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/system_of_linear_equations.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/berlekamp_massey.cpp
     title: Berlekamp-Massey Algorithm
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/find_linear_recurrence
@@ -19,9 +19,9 @@ data:
     - https://judge.yosupo.jp/problem/find_linear_recurrence
   bundledCode: "#line 1 \"test/yosupo/find_linear_recurrence.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/find_linear_recurrence\"\n\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n\n/**\n * @brief Mod int\n */\n\
-    template <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
-    \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
+    \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
+    \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
     \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
     \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
@@ -82,8 +82,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 14:39:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 15:58:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/find_linear_recurrence.test.cpp
 layout: document

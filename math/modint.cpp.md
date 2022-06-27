@@ -30,19 +30,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerate_triangles.test.cpp
     title: test/yosupo/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/find_linear_recurrence.test.cpp
     title: test/yosupo/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/inverse_matrix.test.cpp
     title: test/yosupo/inverse_matrix.test.cpp
   - icon: ':x:'
@@ -94,9 +94,9 @@ data:
     document_title: Mod int
     links: []
   bundledCode: "#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\
-    \n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using\
-    \ mint = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\n\
-    public:\n    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
+    \n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
+    \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
+    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
     \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
     \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
     \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
@@ -122,7 +122,7 @@ data:
     \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
     \        return is;\n    }\n\nprivate:\n    int x;\n};\n"
-  code: "#pragma once\n#include <iostream>\n#include <algorithm>\n\n\n/**\n * @brief\
+  code: "#pragma once\n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief\
     \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
     \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
@@ -156,7 +156,7 @@ data:
   path: math/modint.cpp
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
-  timestamp: '2022-06-27 14:39:44+09:00'
+  timestamp: '2022-06-27 15:58:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp

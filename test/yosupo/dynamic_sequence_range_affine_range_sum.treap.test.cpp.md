@@ -85,9 +85,9 @@ data:
     \        auto s = split(std::move(t->right), k - size(t->left) - 1);\n       \
     \     t->right = std::move(s.first);\n            recalc(t);\n            return\
     \ {std::move(t), std::move(s.second)};\n        }\n    }\n};\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n\n/**\n * @brief Mod int\n */\n\
-    template <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
-    \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
+    \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
+    \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
     \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
     \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
@@ -160,7 +160,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 14:39:44+09:00'
+  timestamp: '2022-06-27 15:58:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
