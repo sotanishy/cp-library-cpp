@@ -157,15 +157,15 @@ data:
     \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
     \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
     \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };\n#line 5 \"test/yosupo/pow_of_formal_power_series.test.cpp\"\n\n\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\nusing mint = Modint<998244353>;\n\nint\
-    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
-    \   int N, M;\n    cin >> N >> M;\n    Polynomial<mint> f(N);\n    for (int i\
-    \ = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n    for (int i = 0; i\
-    \ < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    };\n#line 5 \"test/yosupo/pow_of_formal_power_series.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    Polynomial<mint>\
+    \ f(N);\n    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n\
+    \    for (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing mint = Modint<998244353>;\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, M;\n    cin >> N >> M;\n    Polynomial<mint> f(N);\n    for (int\
     \ i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n    for (int i = 0;\
@@ -177,7 +177,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 17:02:18+09:00'
+  timestamp: '2022-06-27 17:44:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/pow_of_formal_power_series.test.cpp

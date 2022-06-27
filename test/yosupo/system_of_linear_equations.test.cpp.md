@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.cpp
     title: Matrix
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/system_of_linear_equations.cpp
     title: System of Linear Equations
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -140,7 +140,7 @@ data:
   path: test/yosupo/system_of_linear_equations.test.cpp
   requiredBy: []
   timestamp: '2022-06-27 17:20:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/system_of_linear_equations.test.cpp
 layout: document

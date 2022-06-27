@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/system_of_linear_equations.cpp
     title: System of Linear Equations
   _extendedVerifiedWith:
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/matrix/matrix.cpp\"\n#include <algorithm>\n#include\
@@ -129,7 +129,7 @@ data:
   - math/matrix/square_matrix.cpp
   - math/system_of_linear_equations.cpp
   timestamp: '2021-03-30 13:20:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/inverse_matrix.test.cpp
   - test/yosupo/matrix_det.test.cpp

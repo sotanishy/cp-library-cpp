@@ -134,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -377,12 +377,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/system_of_linear_equations.cpp
       title: System of Linear Equations
   - name: math/matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.cpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -486,7 +486,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
       title: Euler Tour Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -905,7 +905,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
@@ -932,7 +932,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
