@@ -371,7 +371,7 @@ data:
     - icon: ':warning:'
       path: math/quotients.hpp
       title: Quotient Ranges
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
     - icon: ':heavy_check_mark:'
@@ -890,7 +890,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     - icon: ':heavy_check_mark:'

@@ -102,47 +102,48 @@ data:
     \ deg = -1) const {\n        assert((*this)[0] == mint(1));\n        if (deg ==\
     \ -1) deg = this->size();\n        return (this->diff() * this->inv(deg)).pre(deg\
     \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
-    \        if (deg == -1) deg = this->size();\n        Poly ret(*this);\n      \
-    \  int cnt = 0;\n        while (cnt < (int) ret.size() && ret[cnt] == mint(0))\
-    \ ++cnt;\n        if (cnt * k >= deg) return Poly(deg, mint(0));\n        ret.erase(ret.begin(),\
-    \ ret.begin() + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
-    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
-    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    Poly diff() const {\n\
-    \        Poly ret(std::max(0, (int) this->size() - 1));\n        for (int i =\
-    \ 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return\
-    \ ret;\n    }\n\n    Poly integral() const {\n        Poly ret(this->size() +\
-    \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
-    \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
-    \n    Poly taylor_shift(long long c) const {\n        const int n = this->size();\n\
-    \        std::vector<mint> fact(n, 1), fact_inv(n, 1);\n        for (int i = 1;\
-    \ i < n; ++i) fact[i] = fact[i-1] * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n\
-    \        for (int i = n - 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n\
-    \        auto ret = *this;\n        Poly e(n+1);\n        e[0] = 1;\n        mint\
-    \ p = c;\n        for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n\
-    \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
-    \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
-    \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };\n#line 4 \"math/interpolation.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
-    \ interpolate(const std::vector<T>& x, const std::vector<T>& y) {\n    assert(x.size()\
-    \ == y.size());\n    int n = x.size();\n    std::vector<T> prod(n + 1);\n    prod[0]\
-    \ = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T> nxt(n + 1);\n\
-    \        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] = prod[j];\n  \
-    \          nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
-    \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
-    \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
-    \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
+    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
+    \        Poly ret(*this);\n        int cnt = 0;\n        while (cnt < (int) ret.size()\
+    \ && ret[cnt] == mint(0)) ++cnt;\n        if (cnt * k >= deg) return Poly(deg,\
+    \ mint(0));\n        ret.erase(ret.begin(), ret.begin() + cnt);\n        deg -=\
+    \ cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg)\
+    \ * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(), cnt * k, mint(0));\n\
+    \        return ret;\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0,\
+    \ (int) this->size() - 1));\n        for (int i = 1; i <= (int) ret.size(); ++i)\
+    \ ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
+    \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
+    \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
+    \ / mint(i + 1);\n        return ret;\n    }\n\n    Poly taylor_shift(long long\
+    \ c) const {\n        const int n = this->size();\n        std::vector<mint> fact(n,\
+    \ 1), fact_inv(n, 1);\n        for (int i = 1; i < n; ++i) fact[i] = fact[i-1]\
+    \ * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n        for (int i = n -\
+    \ 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n        auto ret = *this;\n\
+    \        Poly e(n+1);\n        e[0] = 1;\n        mint p = c;\n        for (int\
+    \ i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n            e[i] = p *\
+    \ fact_inv[i];\n            p *= c;\n        }\n        ret = (ret.rev() * e).pre(n).rev();\n\
+    \        for (int i = n - 1; i >= 0; --i) {\n            ret[i] *= fact_inv[i];\n\
+    \        }\n        return ret;\n    }\n};\n#line 4 \"math/interpolation.cpp\"\
     \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/\n"
+    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = x.size();\n\
+    \    std::vector<T> prod(n + 1);\n    prod[0] = 1;\n    for (int i = 0; i < n;\
+    \ ++i) {\n        std::vector<T> nxt(n + 1);\n        for (int j = 0; j < n; ++j)\
+    \ {\n            nxt[j + 1] = prod[j];\n            nxt[j] -= x[i] * prod[j];\n\
+    \        }\n        prod = std::move(nxt);\n    }\n\n    Polynomial<T> poly(n);\n\
+    \    for (int i = 0; i < n; ++i) {\n        T q = 1;\n        for (int j = 0;\
+    \ j < n; ++j) {\n            if (i != j) q *= x[i] - x[j];\n        }\n      \
+    \  q = y[i] / q;\n\n        auto tmp = prod;\n        for (int j = n - 1; j >=\
+    \ 0; --j) {\n            poly[j] += q * tmp[j + 1];\n            tmp[j] += tmp[j\
+    \ + 1] * x[i];\n        }\n    }\n    return poly;\n}\n\n/*\nO(n^2 log(n)) version\n\
+    might be faster than O(n^2) algorithm\n\n\ntemplate <typename T>\nPolynomial<T>\
+    \ interpolate(const std::vector<T>& x, const std::vector<T>& y) {\n    assert(x.size()\
+    \ == y.size());\n    int n = 1;\n    while (n < (int) x.size()) n <<= 1;\n   \
+    \ std::vector<Polynomial<T>> prod(2 * n, {1});\n    for (int i = 0; i < (int)\
+    \ x.size(); ++i) prod[n + i] = {-x[i], 1};\n    for (int i = n - 1; i > 0; --i)\
+    \ prod[i] = prod[2 * i] * prod[2 * i + 1];\n    auto f = prod[1].diff();\n   \
+    \ std::vector<Polynomial<T>> poly(2 * n, {0});\n    for (int i = 0; i < (int)\
+    \ x.size(); ++i) poly[n + i] = {y[i] / f(x[i])};\n    for (int i = n - 1; i >\
+    \ 0; --i) poly[i] = poly[2 * i] * prod[2 * i + 1] + poly[2 * i + 1] * prod[2 *\
+    \ i];\n    return poly[1];\n}\n*/\n"
   code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\ntemplate\
     \ <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x, const std::vector<T>&\
     \ y) {\n    assert(x.size() == y.size());\n    int n = x.size();\n    std::vector<T>\
@@ -170,7 +171,7 @@ data:
   isVerificationFile: false
   path: math/interpolation.cpp
   requiredBy: []
-  timestamp: '2022-04-28 21:35:03+09:00'
+  timestamp: '2022-06-27 18:10:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/interpolation.cpp

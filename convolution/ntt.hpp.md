@@ -17,7 +17,7 @@ data:
   - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'

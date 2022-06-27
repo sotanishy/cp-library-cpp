@@ -137,37 +137,37 @@ data:
     \ deg = -1) const {\n        assert((*this)[0] == mint(1));\n        if (deg ==\
     \ -1) deg = this->size();\n        return (this->diff() * this->inv(deg)).pre(deg\
     \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
-    \        if (deg == -1) deg = this->size();\n        Poly ret(*this);\n      \
-    \  int cnt = 0;\n        while (cnt < (int) ret.size() && ret[cnt] == mint(0))\
-    \ ++cnt;\n        if (cnt * k >= deg) return Poly(deg, mint(0));\n        ret.erase(ret.begin(),\
-    \ ret.begin() + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
-    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
-    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    Poly diff() const {\n\
-    \        Poly ret(std::max(0, (int) this->size() - 1));\n        for (int i =\
-    \ 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return\
-    \ ret;\n    }\n\n    Poly integral() const {\n        Poly ret(this->size() +\
-    \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
-    \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
-    \n    Poly taylor_shift(long long c) const {\n        const int n = this->size();\n\
-    \        std::vector<mint> fact(n, 1), fact_inv(n, 1);\n        for (int i = 1;\
-    \ i < n; ++i) fact[i] = fact[i-1] * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n\
-    \        for (int i = n - 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n\
-    \        auto ret = *this;\n        Poly e(n+1);\n        e[0] = 1;\n        mint\
-    \ p = c;\n        for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n\
-    \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
-    \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
-    \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };\n#line 5 \"test/yosupo/polynomial_taylor_shift.test.cpp\"\n\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n#define rep(i, s, t) for (int i =\
-    \ (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1;\
-    \ i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\
-    \ bool chmax(T& a, const T& b) { return a < b ? (a = b, 1) : 0; }\ntemplate <typename\
-    \ T> bool chmin(T& a, const T& b) { return a > b ? (a = b, 1) : 0; }\n\nusing\
-    \ mint = Modint<998244353>;\nusing P = Polynomial<mint>;\n\nint main() {\n   \
-    \ ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cout << fixed\
-    \ << setprecision(15);\n\n    int N, c;\n    cin >> N >> c;\n    P a(N);\n   \
-    \ for (auto& x : a) cin >> x;\n    auto b = a.taylor_shift(c);\n    rep(i,0,N)\
-    \ cout << b[i] << (i < N-1 ? \" \" : \"\\n\");\n}\n"
+    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
+    \        Poly ret(*this);\n        int cnt = 0;\n        while (cnt < (int) ret.size()\
+    \ && ret[cnt] == mint(0)) ++cnt;\n        if (cnt * k >= deg) return Poly(deg,\
+    \ mint(0));\n        ret.erase(ret.begin(), ret.begin() + cnt);\n        deg -=\
+    \ cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg)\
+    \ * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(), cnt * k, mint(0));\n\
+    \        return ret;\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0,\
+    \ (int) this->size() - 1));\n        for (int i = 1; i <= (int) ret.size(); ++i)\
+    \ ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
+    \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
+    \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
+    \ / mint(i + 1);\n        return ret;\n    }\n\n    Poly taylor_shift(long long\
+    \ c) const {\n        const int n = this->size();\n        std::vector<mint> fact(n,\
+    \ 1), fact_inv(n, 1);\n        for (int i = 1; i < n; ++i) fact[i] = fact[i-1]\
+    \ * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n        for (int i = n -\
+    \ 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n        auto ret = *this;\n\
+    \        Poly e(n+1);\n        e[0] = 1;\n        mint p = c;\n        for (int\
+    \ i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n            e[i] = p *\
+    \ fact_inv[i];\n            p *= c;\n        }\n        ret = (ret.rev() * e).pre(n).rev();\n\
+    \        for (int i = n - 1; i >= 0; --i) {\n            ret[i] *= fact_inv[i];\n\
+    \        }\n        return ret;\n    }\n};\n#line 5 \"test/yosupo/polynomial_taylor_shift.test.cpp\"\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\
+    #define rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i,\
+    \ t, s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x),\
+    \ end(x)\ntemplate <typename T> bool chmax(T& a, const T& b) { return a < b ?\
+    \ (a = b, 1) : 0; }\ntemplate <typename T> bool chmin(T& a, const T& b) { return\
+    \ a > b ? (a = b, 1) : 0; }\n\nusing mint = Modint<998244353>;\nusing P = Polynomial<mint>;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    cout << fixed << setprecision(15);\n\n    int N, c;\n    cin >> N >> c;\n\
+    \    P a(N);\n    for (auto& x : a) cin >> x;\n    auto b = a.taylor_shift(c);\n\
+    \    rep(i,0,N) cout << b[i] << (i < N-1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
     \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 17:02:18+09:00'
+  timestamp: '2022-06-27 18:10:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/polynomial_taylor_shift.test.cpp

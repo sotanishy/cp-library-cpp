@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   _extendedVerifiedWith:
@@ -33,7 +33,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   _isVerificationFailed: true
@@ -128,27 +128,27 @@ data:
     \ deg = -1) const {\n        assert((*this)[0] == mint(1));\n        if (deg ==\
     \ -1) deg = this->size();\n        return (this->diff() * this->inv(deg)).pre(deg\
     \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
-    \        if (deg == -1) deg = this->size();\n        Poly ret(*this);\n      \
-    \  int cnt = 0;\n        while (cnt < (int) ret.size() && ret[cnt] == mint(0))\
-    \ ++cnt;\n        if (cnt * k >= deg) return Poly(deg, mint(0));\n        ret.erase(ret.begin(),\
-    \ ret.begin() + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
-    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
-    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    Poly diff() const {\n\
-    \        Poly ret(std::max(0, (int) this->size() - 1));\n        for (int i =\
-    \ 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return\
-    \ ret;\n    }\n\n    Poly integral() const {\n        Poly ret(this->size() +\
-    \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
-    \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
-    \n    Poly taylor_shift(long long c) const {\n        const int n = this->size();\n\
-    \        std::vector<mint> fact(n, 1), fact_inv(n, 1);\n        for (int i = 1;\
-    \ i < n; ++i) fact[i] = fact[i-1] * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n\
-    \        for (int i = n - 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n\
-    \        auto ret = *this;\n        Poly e(n+1);\n        e[0] = 1;\n        mint\
-    \ p = c;\n        for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n\
-    \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
-    \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
-    \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };\n"
+    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
+    \        Poly ret(*this);\n        int cnt = 0;\n        while (cnt < (int) ret.size()\
+    \ && ret[cnt] == mint(0)) ++cnt;\n        if (cnt * k >= deg) return Poly(deg,\
+    \ mint(0));\n        ret.erase(ret.begin(), ret.begin() + cnt);\n        deg -=\
+    \ cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg)\
+    \ * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(), cnt * k, mint(0));\n\
+    \        return ret;\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0,\
+    \ (int) this->size() - 1));\n        for (int i = 1; i <= (int) ret.size(); ++i)\
+    \ ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
+    \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
+    \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
+    \ / mint(i + 1);\n        return ret;\n    }\n\n    Poly taylor_shift(long long\
+    \ c) const {\n        const int n = this->size();\n        std::vector<mint> fact(n,\
+    \ 1), fact_inv(n, 1);\n        for (int i = 1; i < n; ++i) fact[i] = fact[i-1]\
+    \ * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n        for (int i = n -\
+    \ 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n        auto ret = *this;\n\
+    \        Poly e(n+1);\n        e[0] = 1;\n        mint p = c;\n        for (int\
+    \ i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n            e[i] = p *\
+    \ fact_inv[i];\n            p *= c;\n        }\n        ret = (ret.rev() * e).pre(n).rev();\n\
+    \        for (int i = n - 1; i >= 0; --i) {\n            ret[i] *= fact_inv[i];\n\
+    \        }\n        return ret;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     #include \"../convolution/ntt.hpp\"\n\ntemplate <typename mint>\nclass Polynomial\
     \ : public std::vector<mint> {\n    using Poly = Polynomial;\n\npublic:\n    using\
@@ -206,27 +206,27 @@ data:
     \ deg = -1) const {\n        assert((*this)[0] == mint(1));\n        if (deg ==\
     \ -1) deg = this->size();\n        return (this->diff() * this->inv(deg)).pre(deg\
     \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
-    \        if (deg == -1) deg = this->size();\n        Poly ret(*this);\n      \
-    \  int cnt = 0;\n        while (cnt < (int) ret.size() && ret[cnt] == mint(0))\
-    \ ++cnt;\n        if (cnt * k >= deg) return Poly(deg, mint(0));\n        ret.erase(ret.begin(),\
-    \ ret.begin() + cnt);\n        deg -= cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg)\
-    \ * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(),\
-    \ cnt * k, mint(0));\n        return ret;\n    }\n\n    Poly diff() const {\n\
-    \        Poly ret(std::max(0, (int) this->size() - 1));\n        for (int i =\
-    \ 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);\n        return\
-    \ ret;\n    }\n\n    Poly integral() const {\n        Poly ret(this->size() +\
-    \ 1);\n        ret[0] = mint(0);\n        for (int i = 0; i < (int) ret.size()\
-    \ - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);\n        return ret;\n    }\n\
-    \n    Poly taylor_shift(long long c) const {\n        const int n = this->size();\n\
-    \        std::vector<mint> fact(n, 1), fact_inv(n, 1);\n        for (int i = 1;\
-    \ i < n; ++i) fact[i] = fact[i-1] * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n\
-    \        for (int i = n - 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n\
-    \        auto ret = *this;\n        Poly e(n+1);\n        e[0] = 1;\n        mint\
-    \ p = c;\n        for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n\
-    \            e[i] = p * fact_inv[i];\n            p *= c;\n        }\n       \
-    \ ret = (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i)\
-    \ {\n            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n\
-    };"
+    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
+    \        Poly ret(*this);\n        int cnt = 0;\n        while (cnt < (int) ret.size()\
+    \ && ret[cnt] == mint(0)) ++cnt;\n        if (cnt * k >= deg) return Poly(deg,\
+    \ mint(0));\n        ret.erase(ret.begin(), ret.begin() + cnt);\n        deg -=\
+    \ cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg)\
+    \ * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(), cnt * k, mint(0));\n\
+    \        return ret;\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0,\
+    \ (int) this->size() - 1));\n        for (int i = 1; i <= (int) ret.size(); ++i)\
+    \ ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
+    \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
+    \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
+    \ / mint(i + 1);\n        return ret;\n    }\n\n    Poly taylor_shift(long long\
+    \ c) const {\n        const int n = this->size();\n        std::vector<mint> fact(n,\
+    \ 1), fact_inv(n, 1);\n        for (int i = 1; i < n; ++i) fact[i] = fact[i-1]\
+    \ * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n        for (int i = n -\
+    \ 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n        auto ret = *this;\n\
+    \        Poly e(n+1);\n        e[0] = 1;\n        mint p = c;\n        for (int\
+    \ i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n            e[i] = p *\
+    \ fact_inv[i];\n            p *= c;\n        }\n        ret = (ret.rev() * e).pre(n).rev();\n\
+    \        for (int i = n - 1; i >= 0; --i) {\n            ret[i] *= fact_inv[i];\n\
+    \        }\n        return ret;\n    }\n};"
   dependsOn:
   - convolution/ntt.hpp
   isVerificationFile: false
@@ -235,7 +235,7 @@ data:
   - math/interpolation.cpp
   - math/stirling_first.hpp
   - math/multipoint_evaluation.cpp
-  timestamp: '2022-04-28 21:35:03+09:00'
+  timestamp: '2022-06-27 18:10:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/log_of_formal_power_series.test.cpp
