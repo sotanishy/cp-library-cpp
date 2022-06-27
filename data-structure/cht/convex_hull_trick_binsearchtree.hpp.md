@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/line_add_get_min.cht.test.cpp
     title: test/yosupo/line_add_get_min.cht.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/cht/convex_hull_trick_binsearchtree.hpp\"\
@@ -58,7 +58,7 @@ data:
   path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
   requiredBy: []
   timestamp: '2022-06-27 13:45:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/line_add_get_min.cht.test.cpp
 documentation_of: data-structure/cht/convex_hull_trick_binsearchtree.hpp

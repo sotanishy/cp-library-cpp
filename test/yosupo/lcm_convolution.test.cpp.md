@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/gcd_lcm_convolution.hpp
     title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -70,7 +70,7 @@ data:
     \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
     \    b.resize(n);\n    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for\
     \ (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    return\
-    \ a;\n}\n#line 5 \"test/yosupo/lcm_convolution.test.cpp\"\n\n\n#include <bits/stdc++.h>\n\
+    \ a;\n}\n#line 5 \"test/yosupo/lcm_convolution.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(N+1), b(N+1);\n\
     \    for (int i = 1; i <= N; ++i) cin >> a[i];\n    for (int i = 1; i <= N; ++i)\
@@ -78,7 +78,7 @@ data:
     \ N; ++i) cout << c[i] << (i < N ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
     \ \"../../math/modint.cpp\"\n#include \"../../convolution/gcd_lcm_convolution.hpp\"\
-    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   vector<mint> a(N+1), b(N+1);\n    for (int i = 1; i <= N; ++i) cin >> a[i];\n\
     \    for (int i = 1; i <= N; ++i) cin >> b[i];\n    auto c = lcm_convolution(a,\
@@ -90,8 +90,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:00:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 17:02:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/lcm_convolution.test.cpp
 layout: document

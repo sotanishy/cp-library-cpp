@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -95,7 +95,7 @@ data:
     \ < 1e-8; }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) { return a == b; }\n\nprotected:\n\
     \    std::vector<std::vector<T>> mat;\n    int m, n;\n};\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N, M, K;\n    cin >> N >> M >> K;\n    Matrix<mint> A(N, M), B(M, K);\n\
     \    for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) cin >> A[i][j];\n\
@@ -104,7 +104,7 @@ data:
     \ j = 0; j < K; ++j) cout << C[i][j] << (j < K - 1 ? \" \" : \"\\n\");\n    }\n\
     }\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
-    \ \"../../math/modint.cpp\"\n#include \"../../math/matrix/matrix.cpp\"\n\n#include\
+    \ \"../../math/modint.cpp\"\n#include \"../../math/matrix/matrix.cpp\"\n\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\n\
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
     \    int N, M, K;\n    cin >> N >> M >> K;\n    Matrix<mint> A(N, M), B(M, K);\n\
@@ -119,8 +119,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 17:02:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix_product.test.cpp
 layout: document

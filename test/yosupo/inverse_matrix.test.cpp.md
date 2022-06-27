@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/matrix/matrix.cpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
   - icon: ':question:'

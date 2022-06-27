@@ -62,7 +62,7 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 5 \"test/yosupo/queue_operate_all_composite.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nstruct M {\n    using T = pair<mint, mint>;\n    static T op(T a, T b) {\n \
     \       return {a.first * b.first, a.second * b.first + b.second};\n    }\n};\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
@@ -75,7 +75,7 @@ data:
     \ << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
     \n\n#include \"../../data-structure/sliding_window_aggregation.cpp\"\n#include\
-    \ \"../../math/modint.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \ \"../../math/modint.cpp\"\n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
     \nusing mint = Modint<998244353>;\n\nstruct M {\n    using T = pair<mint, mint>;\n\
     \    static T op(T a, T b) {\n        return {a.first * b.first, a.second * b.first\
     \ + b.second};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
+  timestamp: '2022-06-27 17:02:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

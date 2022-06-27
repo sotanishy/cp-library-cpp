@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inverse_matrix.test.cpp
     title: test/yosupo/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/matrix/square_matrix.cpp\"\n#include <algorithm>\n\
@@ -121,7 +121,7 @@ data:
   path: math/matrix/square_matrix.cpp
   requiredBy: []
   timestamp: '2021-03-30 13:20:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/inverse_matrix.test.cpp
   - test/yosupo/matrix_det.test.cpp

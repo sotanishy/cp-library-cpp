@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
     - icon: ':question:'
@@ -105,7 +105,7 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.cpp
       title: Convex Hull Trick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
       title: Convex Hull Trick (Binary Search Tree)
     - icon: ':heavy_check_mark:'
@@ -385,7 +385,7 @@ data:
     - icon: ':question:'
       path: math/matrix/matrix.cpp
       title: Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/square_matrix.cpp
       title: Square Matrix
   - name: misc
@@ -800,22 +800,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.cht.test.cpp
       title: test/yosupo/line_add_get_min.cht.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_product.test.cpp
       title: test/yosupo/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
@@ -845,7 +845,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
     - icon: ':x:'

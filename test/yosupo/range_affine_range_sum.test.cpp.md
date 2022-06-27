@@ -73,7 +73,7 @@ data:
     \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
     \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nstruct M {\n    using T = pair<mint, mint>;\n    static T id() { return {0,\
     \ 0}; }\n    static T op(T a, T b) {\n        return {a.first + b.first, a.second\
     \ + b.second};\n    }\n};\n\nstruct O {\n    using T = pair<mint, mint>;\n   \
@@ -90,7 +90,7 @@ data:
     \ r).first << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n\n#include \"../../data-structure/segtree/lazy_segment_tree.cpp\"\n#include\
-    \ \"../../math/modint.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \ \"../../math/modint.cpp\"\n\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
     \nusing mint = Modint<998244353>;\n\nstruct M {\n    using T = pair<mint, mint>;\n\
     \    static T id() { return {0, 0}; }\n    static T op(T a, T b) {\n        return\
     \ {a.first + b.first, a.second + b.second};\n    }\n};\n\nstruct O {\n    using\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
+  timestamp: '2022-06-27 17:02:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
