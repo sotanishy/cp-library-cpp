@@ -3,7 +3,6 @@
 #include "../../math/modint.cpp"
 #include "../../math/polynomial.cpp"
 
-
 #include <bits/stdc++.h>
 using namespace std;
 using mint = Modint<998244353>;
