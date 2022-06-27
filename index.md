@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':x:'
+    - icon: ':question:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
     - icon: ':question:'
@@ -205,7 +205,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/closest_pair.hpp
       title: Closest Pair
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/convex_hull.hpp
       title: Convex Hull
     - icon: ':warning:'
@@ -214,7 +214,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/dist.hpp
       title: geometry/dist.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
@@ -255,7 +255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_cliques.cpp
       title: Clique Enumeration
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/enumerate_triangles.cpp
       title: Triangle Enumeration
     - icon: ':heavy_check_mark:'
@@ -302,7 +302,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/arbitrary_modint.cpp
       title: Arbitrary Mod int
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/berlekamp_massey.cpp
       title: Berlekamp-Massey Algorithm
     - icon: ':x:'
@@ -382,10 +382,10 @@ data:
       title: System of Linear Equations
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/matrix.cpp
       title: Matrix
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/square_matrix.cpp
       title: Square Matrix
   - name: misc
@@ -576,7 +576,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_C.test.cpp
       title: test/aoj/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -770,28 +770,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/factorize.test.cpp
       title: test/yosupo/factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inverse_matrix.test.cpp
       title: test/yosupo/inverse_matrix.test.cpp
     - icon: ':x:'
