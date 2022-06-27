@@ -2,7 +2,6 @@
 #include <iostream>
 #include <algorithm>
 
-
 /**
  * @brief Mod int
  */
