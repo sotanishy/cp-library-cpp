@@ -6,7 +6,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 using mint = Modint<998244353>;
 
 int main() {

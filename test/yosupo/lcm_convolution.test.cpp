@@ -3,7 +3,6 @@
 #include "../../math/modint.cpp"
 #include "../../convolution/gcd_lcm_convolution.hpp"
 
-
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
