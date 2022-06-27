@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <cassert>
 #include <limits>
 #include <vector>
 
@@ -77,6 +78,7 @@ private:
 
 // the monoid for range chmin/chmax/add range sum query
 
+using ll = long long;
 constexpr ll INF = 1e18;
 
 struct S {
