@@ -3,6 +3,7 @@
 #include "../../math/modint.cpp"
 #include "../../math/berlekamp_massey.cpp"
 
+
 #include <bits/stdc++.h>
 using namespace std;
 
