@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
@@ -75,22 +75,22 @@ data:
     }\n#line 5 \"test/aoj/CGL_2_B.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int q;\n    cin >> q;\n    while (q--) {\n        Vec p0, p1, p2, p3;\n\
-    \        cin >> p0 >> p1 >> p2 >> p3;\n        cout << intersect(Segment(p0, p1),\
-    \ Segment(p2, p3)) << \"\\n\";\n    }\n}\n"
+    \        cin >> p0 >> p1 >> p2 >> p3;\n        cout << min(1, intersect(Segment(p0,\
+    \ p1), Segment(p2, p3))) << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
     \n\n#include \"../../geometry/geometry.hpp\"\n#include \"../../geometry/intersect.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int q;\n    cin >> q;\n    while (q--) {\n     \
     \   Vec p0, p1, p2, p3;\n        cin >> p0 >> p1 >> p2 >> p3;\n        cout <<\
-    \ intersect(Segment(p0, p1), Segment(p2, p3)) << \"\\n\";\n    }\n}"
+    \ min(1, intersect(Segment(p0, p1), Segment(p2, p3))) << \"\\n\";\n    }\n}"
   dependsOn:
   - geometry/geometry.hpp
   - geometry/intersect.hpp
   isVerificationFile: true
   path: test/aoj/CGL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 14:23:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_B.test.cpp
 layout: document

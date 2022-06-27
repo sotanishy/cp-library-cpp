@@ -85,7 +85,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/lazy_treap.cpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -220,7 +220,7 @@ data:
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersect.hpp
       title: geometry/intersect.hpp
     - icon: ':heavy_check_mark:'
@@ -255,7 +255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_cliques.cpp
       title: Clique Enumeration
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/enumerate_triangles.cpp
       title: Triangle Enumeration
     - icon: ':heavy_check_mark:'
@@ -270,6 +270,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_arborescence.cpp
       title: Minimum Spanning Arborescence
+    - icon: ':heavy_check_mark:'
+      path: graph/minimum_steiner_tree.hpp
+      title: Minimum Steiner Tree
     - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
@@ -489,7 +492,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/lca.cpp
       title: Lowest Common Ancestor
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
     - icon: ':heavy_check_mark:'
@@ -504,6 +507,9 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1040.test.cpp
+      title: test/aoj/1040.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1298.test.cpp
       title: test/aoj/1298.test.cpp
@@ -552,7 +558,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_A.test.cpp
       title: test/aoj/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -746,7 +752,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -758,16 +764,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'

@@ -6,6 +6,9 @@ data:
     path: graph/minimum_spanning_arborescence.cpp
     title: Minimum Spanning Arborescence
   - icon: ':heavy_check_mark:'
+    path: graph/minimum_steiner_tree.hpp
+    title: Minimum Steiner Tree
+  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   - icon: ':warning:'
@@ -21,6 +24,9 @@ data:
     path: tree/tree_hash.hpp
     title: Tree Hashing
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1040.test.cpp
+    title: test/aoj/1040.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2821.test.cpp
     title: test/aoj/2821.test.cpp
@@ -73,6 +79,7 @@ data:
   - graph/minimum_spanning_arborescence.cpp
   - graph/mst.cpp
   - graph/range_edge_graph.cpp
+  - graph/minimum_steiner_tree.hpp
   - graph/shortest_path.cpp
   timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -83,6 +90,7 @@ data:
   - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/GRL_2_A.prim.test.cpp
+  - test/aoj/1040.test.cpp
   - test/aoj/GRL_5_A.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_1_B.test.cpp

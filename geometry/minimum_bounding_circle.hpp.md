@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
   - icon: ':heavy_check_mark:'
