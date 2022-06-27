@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
-/*
+/**
  * @brief Mod int
  */
 template <int mod>

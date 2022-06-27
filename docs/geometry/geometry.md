@@ -26,6 +26,9 @@ documentation_of: ../../geometry/geometry.hpp
 - `Vec rot(Vec a, T ang)`
     - $a$ を角 $ang$ だけ回転させる
 
+- `Vec perp(Vec a)`
+    - $a$ を角 $\pi/2$ だけ回転させる
+
 - `Vec projection(Line l, Vec p)`
     - 点 $p$ の直線 $l$ 上の射影を求める
 
@@ -34,9 +37,6 @@ documentation_of: ../../geometry/geometry.hpp
 
 - `int ccw(Vec a, Vec b, Vec c)`
     - $a,b,c$ が同一直線上にあるなら0, $a \rightarrow b \rightarrow c$ が反時計回りなら1，そうでなければ-1を返す
-
-- `Line bisector(Vec p, Vec q)`
-    - 点 $p,q$ の垂直二等分線を返す
 
 - `void sort_by_arg(vector<Vec> pts)`
   - 与えられた点を偏角ソートする (ソート順は[この問題](https://judge.yosupo.jp/problem/sort_points_by_argument)に準拠)
@@ -75,6 +75,14 @@ documentation_of: ../../geometry/geometry.hpp
 
 - `T area_intersection(Circle c1, Circle c2)`
     - 円 $c_1,c_2$ の共通部分の面積を求める
+
+### `bisector.hpp`
+
+- `Line bisector(Segment s)`
+    - 線分 $s$ の垂直二等分線を返す
+
+- `pair<Line, Line> bisector(Line l, Line m)`
+    - 直線 $l,m$ の角二等分線を返す．$l,m$ が平行なら，両者の中間の線を返す (つまり，$l,m$ から等距離にある点の集合を返す)
 
 ### `triangle.hpp`
 

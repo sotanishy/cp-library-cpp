@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
-#include "../../data-structure/cht/dynamic_convex_hull_trick.cpp"
+#include "../../data-structure/cht/convex_hull_trick_binsearchtree.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -13,7 +13,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    DynamicConvexHullTrick<ll> cht;
+    ConvexHullTrick<ll> cht;
     for (int i = 0; i < N; ++i) {
         ll a, b;
         cin >> a >> b;

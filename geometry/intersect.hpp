@@ -21,7 +21,7 @@ int intersect(const Polygon& poly, const Vec& p) {
     return in ? 2 : 0;
 }
 
-bool intersect(const Segment& s, const Segment& t) {
+int intersect(const Segment& s, const Segment& t) {
     auto a = s.p1, b = s.p2;
     auto c = t.p1, d = t.p2;
     if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b)) return 2;
@@ -35,7 +35,7 @@ bool intersect(const Polygon& poly1, const Polygon& poly2) {
     const int m = poly2.size();
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            if (intersect(Segment(poly1[i], poly1[(i+1)%n]), Segment(poly2[j], poly2[(j+1)%n]))) {
+            if (intersect(Segment(poly1[i], poly1[(i+1)%n]), Segment(poly2[j], poly2[(j+1)%m]))) {
                 return true;
             }
         }

@@ -12,7 +12,7 @@
 template <typename T>
 std::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {
     constexpr T INF = std::numeric_limits<T>::max();
-    std::vector<int> dist(V, INF);
+    std::vector<T> dist(V, INF);
     dist[s] = 0;
     for (int i = 0; i < V; ++i) {
         for (auto& e : G) {

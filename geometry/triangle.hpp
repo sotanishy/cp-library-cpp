@@ -1,6 +1,7 @@
 #pragma once
 #include "geometry.hpp"
 #include "intersection.hpp"
+#include "bisector.hpp"
 
 Vec centroid(const Vec& A, const Vec& B, const Vec& C) {
     assert(ccw(A, B, C) != 0);
@@ -17,7 +18,7 @@ Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
 
 Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
     assert(ccw(A, B, C) != 0);
-    return intersection(bisector(A, B), bisector(A, C));
+    return intersection(bisector(Segment(A, B)), bisector(Segment(A, C)));
 }
 
 // large error but beautiful

@@ -5,7 +5,7 @@
 #include <utility>
 
 template <typename T>
-class DynamicConvexHullTrick {
+class ConvexHullTrick {
 public:
 
     void add(T a, T b) {

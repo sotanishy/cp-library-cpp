@@ -7,7 +7,7 @@ documentation_of: ../../../data-structure/cht/convex_hull_trick.cpp
 
 Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエリを効率的に行う手法である．
 
-この実装では，追加する直線の傾きが単調非増加である必要がある．傾きに単調性がないときは動的 CHT または Li Chao tree を使用せよ．
+この実装では，追加する直線の傾きが単調非増加である必要がある．傾きに単調性がないときは平衡二分探索木を用いた CHT または Li Chao tree を使用せよ．
 
 空間計算量: $O(n)$
 

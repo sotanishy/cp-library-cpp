@@ -12,11 +12,11 @@ using Vec = std::complex<T>;
 
 const T PI = std::acos(-1);
 
-constexpr T eps = 1e-12;
-inline bool eq(T a, T b) { return std::abs(a - b) < eps; }
-inline bool eq(Vec a, Vec b) { return std::abs(a - b) < eps; }
+constexpr T eps = 1e-10;
+inline bool eq(T a, T b) { return std::abs(a - b) <= eps; }
+inline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }
 inline bool lt(T a, T b) { return a < b - eps; }
-inline bool leq(T a, T b) { return a < b + eps; }
+inline bool leq(T a, T b) { return a <= b + eps; }
 
 std::istream& operator>>(std::istream& is, Vec& p) {
     T x, y;
@@ -60,6 +60,10 @@ Vec rot(const Vec& a, T ang) {
     return a * Vec(std::cos(ang), std::sin(ang));
 }
 
+Vec perp(const Vec& a) {
+    return Vec(-a.imag(), a.real());
+}
+
 Vec projection(const Line& l, const Vec& p) {
     return l.p1 + dot(p - l.p1, l.dir()) * l.dir() / std::norm(l.dir());
 }
@@ -75,12 +79,6 @@ int ccw(const Vec& a, const Vec& b, const Vec& c) {
     if (eq(cross(b - a, c - a), 0)) return 0;
     if (lt(cross(b - a, c - a), 0)) return -1;
     return 1;
-}
-
-Line bisector(const Vec& p, const Vec& q) {
-    auto m = (p + q) / T(2);
-    auto v = q - p;
-    return Line(m, m + Vec(-v.imag(), v.real()));
 }
 
 void sort_by_arg(std::vector<Vec>& pts) {
