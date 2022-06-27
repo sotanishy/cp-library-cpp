@@ -255,7 +255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_cliques.cpp
       title: Clique Enumeration
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/enumerate_triangles.cpp
       title: Triangle Enumeration
     - icon: ':heavy_check_mark:'
@@ -770,10 +770,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'

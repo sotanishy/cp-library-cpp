@@ -33,8 +33,8 @@ data:
     \        if (front.empty()) return back.top().second;\n        if (back.empty())\
     \ return front.top().second;\n        return S::op(front.top().second, back.top().second);\n\
     \    }\n\nprivate:\n    std::stack<std::pair<T, T>> front, back;\n};\n#line 2\
-    \ \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief\
-    \ Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
+    \ \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\n/**\n *\
+    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
     \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
     \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:26+09:00'
+  timestamp: '2022-06-27 14:39:44+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

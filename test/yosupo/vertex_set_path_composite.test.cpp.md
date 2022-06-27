@@ -22,35 +22,35 @@ data:
     - https://judge.yosupo.jp/problem/vertex_set_path_composite
   bundledCode: "#line 1 \"test/yosupo/vertex_set_path_composite.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
-    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
-    \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
-    \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
-    \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
-    \  constexpr int value() const noexcept { return x; }\n\n    constexpr mint& operator+=(const\
-    \ mint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr\
-    \ mint& operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -=\
-    \ mod; return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept\
-    \ { x = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr\
-    \ mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\
-    \n    constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
-    \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
-    \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
-    \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
-    \ mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const noexcept\
-    \ { return mint(*this) /= r; }\n\n    constexpr bool operator==(const mint& r)\
-    \ const noexcept { return x == r.x; }\n    constexpr bool operator!=(const mint&\
-    \ r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const noexcept\
-    \ {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0) {\n    \
-    \        int t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
-    \ -= t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
-    \ pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n        while\
-    \ (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n   \
-    \         n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
-    \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
-    \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\nprivate:\n    int x;\n};\n#line 3 \"data-structure/segtree/segment_tree.cpp\"\
+    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\n/**\n\
+    \ * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint =\
+    \ Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
+    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
+    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
+    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
+    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
+    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
+    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
+    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
+    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
+    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
+    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
+    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
+    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
+    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
+    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
+    \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
+    \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
+    \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
+    \ {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n     \
+    \       std::swap(u -= t * v, v);\n        }\n        return mint(u);\n    }\n\
+    \n    constexpr mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
+    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
+    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 3 \"data-structure/segtree/segment_tree.cpp\"\
     \n#include <vector>\n\ntemplate <typename M>\nclass SegmentTree {\n    using T\
     \ = typename M::T;\n\npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int\
     \ n): SegmentTree(std::vector<T>(n, M::id())) {}\n    explicit SegmentTree(const\
@@ -181,7 +181,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:26+09:00'
+  timestamp: '2022-06-27 14:39:44+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
