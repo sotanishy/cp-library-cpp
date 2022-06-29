@@ -68,7 +68,7 @@ Ford-Fulkerson のアルゴリズムを用いて二部グラフの最大マッ�
 
 ## Operations
 
-- `BipartiteMatching(int n)`‘
+- `BipartiteMatching(int n)`
     - 二部グラフを $n$ 頂点で初期化する
     - 時間計算量: $O(n)$
 - `void add_edge(int u, int v)`

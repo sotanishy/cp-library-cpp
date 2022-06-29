@@ -195,6 +195,9 @@ data:
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
     - icon: ':heavy_check_mark:'
+      path: flow/hopcroft_karp.hpp
+      title: Hopcroft-Karp Algorithm
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
   - name: geometry
@@ -244,6 +247,9 @@ data:
       path: graph/biconnected_components.cpp
       title: Biconnected Components
     - icon: ':heavy_check_mark:'
+      path: graph/bipartite_edge_coloring.hpp
+      title: Bipartite Edge Coloring
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.cpp
       title: Chromatic Number
     - icon: ':heavy_check_mark:'
@@ -258,6 +264,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_triangles.cpp
       title: Triangle Enumeration
+    - icon: ':heavy_check_mark:'
+      path: graph/eulerian_path.hpp
+      title: Eulerian Path
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
@@ -719,6 +728,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/bipartite_edge_coloring.test.cpp
+      title: test/yosupo/bipartite_edge_coloring.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/bipartitematching.test.cpp
+      title: test/yosupo/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp

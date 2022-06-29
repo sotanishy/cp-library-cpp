@@ -63,7 +63,7 @@ a^{\phi(n)} \equiv 1 \pmod n
 $$
 
 
-## Combinatorics
+## Enumeration
 
 ### Cayley's Formula
 
@@ -106,6 +106,8 @@ $$
 | あり | なし | $B(n,k)$ | $S(n,k)$ |
 | なし | なし | $P(n,k)$ | $P(n-k,k)$ |
 
+## Graph
+
 ### Hall's Marriage Theorem
 
 頂点集合 $U,V$ からなる二部グラフ $G$ において，$U$ の全頂点をカバーするマッチングが存在する必要十分条件は，任意の $A\subset U$ に対して $|A|\leq |N(A)|$ が成り立つこと．ここで $N(A)$ は $A$ の隣接頂点の集合．
@@ -119,6 +121,12 @@ $$
 ### Kőnig's Theorem
 
 二部グラフにおいて，最大マッチングと最小点カバーの大きさは等しい．
+
+### Vizing's Theorem
+
+任意のグラフは，最大次数を $D$ とすると，$D+1$ 色で辺彩色可能．
+
+下界は明らかに $D$ 色なので，任意のグラフは $D$ 色または $D+1$ 色で辺彩色できることになる．二部グラフの場合はかならず $D$ 色で辺彩色可能である (Kőnig's Line Coloring Theorem)．
 
 ## Geometry
 
