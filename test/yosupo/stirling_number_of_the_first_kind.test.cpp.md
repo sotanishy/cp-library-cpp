@@ -25,8 +25,8 @@ data:
     - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
   bundledCode: "#line 1 \"test/yosupo/stirling_number_of_the_first_kind.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
-    \n\n\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\
-    \n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
+    \n\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n\
+    /**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint\
     \ = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
     \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
     \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
@@ -165,13 +165,13 @@ data:
     \n\ntemplate <typename T>\nPolynomial<T> stirling_first_table(int n) {\n    if\
     \ (n == 0) return {1};\n    Polynomial<T> ret = stirling_first_table<T>(n / 2);\n\
     \    ret *= ret.taylor_shift(-(n / 2));\n    if (n % 2) ret = (ret << 1) + ret\
-    \ * (-(n - 1));  // ret *= (x - (n - 1))\n    return ret;\n}\n#line 6 \"test/yosupo/stirling_number_of_the_first_kind.test.cpp\"\
+    \ * (-(n - 1));  // ret *= (x - (n - 1))\n    return ret;\n}\n#line 5 \"test/yosupo/stirling_number_of_the_first_kind.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   auto ans = stirling_first_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
     \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
-    \n\n\n#include \"../../math/modint.cpp\"\n#include \"../../math/stirling_first.hpp\"\
+    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/stirling_first.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
     \   auto ans = stirling_first_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
@@ -184,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 18:10:09+09:00'
+  timestamp: '2022-06-30 19:57:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/stirling_number_of_the_first_kind.test.cpp

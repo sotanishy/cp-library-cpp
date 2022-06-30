@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: string/enumerate_runs.hpp
+    title: Enumerate Runs
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/runenumerate.test.cpp
+    title: test/yosupo/runenumerate.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/zalgorithm.test.cpp
     title: test/yosupo/zalgorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/z_array.cpp\"\n#include <string>\n#include <vector>\n\
@@ -29,10 +35,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/z_array.cpp
-  requiredBy: []
+  requiredBy:
+  - string/enumerate_runs.hpp
   timestamp: '2021-01-17 18:23:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/runenumerate.test.cpp
   - test/yosupo/zalgorithm.test.cpp
 documentation_of: string/z_array.cpp
 layout: document

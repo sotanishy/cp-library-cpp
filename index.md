@@ -128,7 +128,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -457,6 +457,9 @@ data:
     - icon: ':warning:'
       path: string/aho_corasick.cpp
       title: Aho-Corasick Algorithm
+    - icon: ':x:'
+      path: string/enumerate_runs.hpp
+      title: Enumerate Runs
     - icon: ':heavy_check_mark:'
       path: string/kmp.cpp
       title: Knuth-Morris-Pratt Algorithm
@@ -478,7 +481,7 @@ data:
     - icon: ':warning:'
       path: string/trie.cpp
       title: Trie
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/z_array.cpp
       title: Z Array
   - name: tree
@@ -872,7 +875,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -884,6 +887,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/runenumerate.test.cpp
+      title: test/yosupo/runenumerate.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp
