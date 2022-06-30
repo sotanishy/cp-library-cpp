@@ -27,6 +27,18 @@ public:
 
     T fold(int l, int r) { return fold(l, r, 1, 0, size); }
 
+    template <typename F>
+    int find_first(int l, F cond) {
+        T v = M::id();
+        return find_first(l, size, 1, 0, size, v, cond);
+    }
+
+    template <typename F>
+    int find_last(int r, F cond) {
+        T v = M::id();
+        return find_last(0, r, 1, 0, size, v, cond);
+    }
+
 private:
     int size;
     std::vector<T> node;
@@ -63,5 +75,37 @@ private:
         int m = (l + r) / 2;
         return M::op(fold(a, b, 2 * k, l, m),
                      fold(a, b, 2 * k + 1, m, r));
+    }
+
+    template <typename F>
+    int find_first(int a, int b, int k, int l, int r, T& v, F cond) {
+        push(k);
+        if (r <= a) return -1;
+        if (b <= l) return l;
+        if (a <= l && r <= b && !cond(M::op(v, node[k]))) {
+            v = M::op(v, node[k]);
+            return -1;
+        }
+        if (r - l == 1) return r;
+        int m = (l + r) / 2;
+        int res = find_first(a, b, 2 * k, l, m, v, cond);
+        if (res != -1) return res;
+        return find_first(a, b, 2 * k + 1, m, r, v, cond);
+    }
+
+    template <typename F>
+    int find_last(int a, int b, int k, int l, int r, T& v, F cond) {
+        push(k);
+        if (b <= l) return -1;
+        if (r <= a) return r;
+        if (a <= l && r <= b && !cond(M::op(node[k], v))) {
+            v = M::op(node[k], v);
+            return -1;
+        }
+        if (r - l == 1) return l;
+        int m = (l + r) / 2;
+        int res = find_last(a, b, 2 * k + 1, m, r, v, cond);
+        if (res != -1) return res;
+        return find_last(a, b, 2 * k, l, m, v, cond);
     }
 };

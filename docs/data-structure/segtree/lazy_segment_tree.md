@@ -31,6 +31,12 @@ documentation_of: ../../../data-structure/segtree/lazy_segment_tree.cpp
 - `T fold(int l, int r)`
     - 区間 $[l, r)$ の値を fold する
     - 時間計算量: $O(\log n)$
+- `int find_first(int l, F cond)`
+    - `fold(l, r)` が条件 `cond` を満たすような最小の $r (> l)$ 返す．列の単調性を仮定する．そのような $r$ が存在しない場合は `-1` を返す
+    - 時間計算量: $O(\log n)$
+- `int find_last(int r, F cond)`
+    - `fold(l, r)` が条件 `cond` を満たすような最大の $l (< r)$ 返す．列の単調性を仮定する．そのような $l$ が存在しない場合は `-1` を返す
+    - 時間計算量: $O(\log n)$
 
 ## Note
 

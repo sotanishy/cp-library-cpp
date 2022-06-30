@@ -15,8 +15,8 @@ documentation_of: ../../data-structure/bit_vector.cpp
 - `BitVector(vector<bool> v)`
     - ビット列 `v` の完備辞書を構築する
     - 時間計算量: $O(n)$
-- `bool access(int k)`
-    - $k$ 番目の要素を取得する
+- `bool operator[](int k)`
+    - $k$ 番目のビットを取得する
     - 時間計算量: $O(1)$
 - `int rank(int k)`
     - 区間 $[0, k)$ 中の1の数を返す

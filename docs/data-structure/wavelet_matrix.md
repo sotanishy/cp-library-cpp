@@ -11,22 +11,22 @@ Wavelet 行列は，静的な整数列に対する様々なクエリが処理で
 
 ## Operations
 
-- `WaveletMatrix(vector<int> v)`
+- `WaveletMatrix(vector<T> v)`
     - `v` からウェーブレット行列を構築する
     - 時間計算量: $O(n \log m)$
-- `int access(int k)`
+- `T operator[](int k)`
     - $k$ 番目の要素を取得する
     - 時間計算量: $O(\log m)$
-- `int rank(int k, int x)`
+- `int rank(int k, T x)`
     - $[0, k)$ での $x$ の個数を返す
     - 時間計算量: $O(\log m)$
-- `int rank_less(int k, int x)`
+- `int rank_less(int k, T x)`
     - $[0, k)$ で $x$ より小さい要素の個数を返す
     - 時間計算量: $O(\log m)$
-- `int select(int k, int x)`
+- `int select(int k, T x)`
     - $k$ 番目の $x$ の位置を返す
     - 時間計算量: $O(\log n \log m)$
-- `int quantile(int l, int r, int k)`
+- `T quantile(int l, int r, int k)`
     - $[l, r)$ で $k$ 番目に小さい値を返す
     - 時間計算量: $O(\log m)$
 

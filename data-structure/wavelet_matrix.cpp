@@ -30,10 +30,10 @@ public:
         for (int i = 0; i < n; ++i) if (!start.count(v[i])) start[v[i]] = i;
     }
 
-    T access(int k) const {
+    T operator[](int k) const {
         T ret = 0;
         for (int d = mat.size() - 1; d >= 0; --d) {
-            bool b = mat[d].access(k);
+            bool b = mat[d][k];
             ret |= T(b) << d;
             k = cnt0[d] * b + mat[d].rank(k, b);
         }

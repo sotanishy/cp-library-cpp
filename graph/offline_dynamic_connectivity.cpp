@@ -13,7 +13,7 @@ class OfflineDynamicConnectivity {
 
 public:
     OfflineDynamicConnectivity() = default;
-    explicit OfflineDynamicConnectivity(int n) : OfflineDynamicConnectivity(std::vector<T>(n, M::id)) {}
+    explicit OfflineDynamicConnectivity(int n) : OfflineDynamicConnectivity(std::vector<T>(n, M::id())) {}
     explicit OfflineDynamicConnectivity(const std::vector<T>& v) : val(v) {}
 
     void link(int u, int v) {
