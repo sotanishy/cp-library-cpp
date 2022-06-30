@@ -46,19 +46,19 @@ data:
     #line 9 \"graph/offline_dynamic_connectivity.cpp\"\n\ntemplate <typename M>\n\
     class OfflineDynamicConnectivity {\n    using T = typename M::T;\n\npublic:\n\
     \    OfflineDynamicConnectivity() = default;\n    explicit OfflineDynamicConnectivity(int\
-    \ n) : OfflineDynamicConnectivity(std::vector<T>(n, M::id)) {}\n    explicit OfflineDynamicConnectivity(const\
-    \ std::vector<T>& v) : val(v) {}\n\n    void link(int u, int v) {\n        ++now;\n\
-    \        auto edge = std::minmax(u, v);\n        assert(!open.count(edge));\n\
-    \        open[edge] = now;\n    }\n\n    void cut(int u, int v) {\n        ++now;\n\
-    \        auto edge = std::minmax(u, v);\n        assert(open.count(edge));\n \
-    \       closed.emplace_back(edge.first, edge.second, open[edge], now);\n     \
-    \   open.erase(edge);\n    }\n\n    void update(int v, const T& x) {\n       \
-    \ ++now;\n        query_update.emplace_back(now, v, x);\n    }\n\n    void component_fold(int\
-    \ v) {\n        ++now;\n        query_fold[now] = v;\n    }\n\n    std::vector<T>\
-    \ run() {\n        ++now;\n\n        // cut edges\n        for (auto [edge, s]\
-    \ : open) {\n            closed.emplace_back(edge.first, edge.second, s, now);\n\
-    \        }\n\n        // build a segment tree\n        int size = 1;\n       \
-    \ while (size < now) size <<= 1;\n        std::vector<std::vector<std::pair<int,\
+    \ n) : OfflineDynamicConnectivity(std::vector<T>(n, M::id())) {}\n    explicit\
+    \ OfflineDynamicConnectivity(const std::vector<T>& v) : val(v) {}\n\n    void\
+    \ link(int u, int v) {\n        ++now;\n        auto edge = std::minmax(u, v);\n\
+    \        assert(!open.count(edge));\n        open[edge] = now;\n    }\n\n    void\
+    \ cut(int u, int v) {\n        ++now;\n        auto edge = std::minmax(u, v);\n\
+    \        assert(open.count(edge));\n        closed.emplace_back(edge.first, edge.second,\
+    \ open[edge], now);\n        open.erase(edge);\n    }\n\n    void update(int v,\
+    \ const T& x) {\n        ++now;\n        query_update.emplace_back(now, v, x);\n\
+    \    }\n\n    void component_fold(int v) {\n        ++now;\n        query_fold[now]\
+    \ = v;\n    }\n\n    std::vector<T> run() {\n        ++now;\n\n        // cut\
+    \ edges\n        for (auto [edge, s] : open) {\n            closed.emplace_back(edge.first,\
+    \ edge.second, s, now);\n        }\n\n        // build a segment tree\n      \
+    \  int size = 1;\n        while (size < now) size <<= 1;\n        std::vector<std::vector<std::pair<int,\
     \ int>>> edges(2 * size);\n        std::vector<std::vector<std::pair<int, T>>>\
     \ updates(2 * size);\n\n        for (auto [u, v, s, t] : closed) {\n         \
     \   for (s += size, t += size; s < t; s >>= 1, t >>= 1) {\n                if\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
+  timestamp: '2022-06-30 16:20:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp

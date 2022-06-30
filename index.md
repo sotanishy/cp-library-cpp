@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
@@ -80,7 +80,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -128,7 +128,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.cpp
       title: Dynamic Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/segtree/lazy_segment_tree.cpp
       title: Segment Tree with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -411,6 +411,9 @@ data:
     - icon: ':warning:'
       path: misc/fraction.cpp
       title: Fraction
+    - icon: ':warning:'
+      path: misc/interval_set.hpp
+      title: misc/interval_set.hpp
     - icon: ':warning:'
       path: misc/intervals.hpp
       title: Intervals
@@ -869,13 +872,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -893,7 +896,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_frequency.test.cpp
       title: test/yosupo/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'

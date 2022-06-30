@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: string/aho_corasick.cpp
-    title: Aho-Corasick Algorithm
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
@@ -36,8 +33,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/trie.cpp
-  requiredBy:
-  - string/aho_corasick.cpp
+  requiredBy: []
   timestamp: '2022-05-11 13:44:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

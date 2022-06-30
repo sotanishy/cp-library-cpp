@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/lazy_segment_tree.cpp\"\n#include\
@@ -29,21 +29,39 @@ data:
     \ = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int k) {\n\
     \        return fold(k, k + 1);\n    }\n\n    void update(int l, int r, const\
     \ E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r) { return\
-    \ fold(l, r, 1, 0, size); }\n\nprivate:\n    int size;\n    std::vector<T> node;\n\
-    \    std::vector<E> lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id())\
-    \ return;\n        if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k],\
-    \ lazy[k]);\n            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n\
-    \        }\n        node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n\
-    \    }\n\n    void update(int a, int b, const E& x, int k, int l, int r) {\n \
-    \       push(k);\n        if (r <= a || b <= l) return;\n        if (a <= l &&\
-    \ r <= b) {\n            lazy[k] = O::op(lazy[k], x);\n            push(k);\n\
-    \            return;\n        }\n        int m = (l + r) / 2;\n        update(a,\
-    \ b, x, 2 * k, l, m);\n        update(a, b, x, 2 * k + 1, m, r);\n        node[k]\
-    \ = M::op(node[2 * k], node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int\
-    \ k, int l, int r) {\n        push(k);\n        if (r <= a || b <= l) return M::id();\n\
-    \        if (a <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n\
-    \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
-    \ 2 * k + 1, m, r));\n    }\n};\n"
+    \ fold(l, r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int\
+    \ l, F cond) {\n        T v = M::id();\n        return find_first(l, size, 1,\
+    \ 0, size, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size,\
+    \ v, cond);\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n    std::vector<E>\
+    \ lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id()) return;\n \
+    \       if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n\
+    \            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n \
+    \       node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n    }\n\n\
+    \    void update(int a, int b, const E& x, int k, int l, int r) {\n        push(k);\n\
+    \        if (r <= a || b <= l) return;\n        if (a <= l && r <= b) {\n    \
+    \        lazy[k] = O::op(lazy[k], x);\n            push(k);\n            return;\n\
+    \        }\n        int m = (l + r) / 2;\n        update(a, b, x, 2 * k, l, m);\n\
+    \        update(a, b, x, 2 * k + 1, m, r);\n        node[k] = M::op(node[2 * k],\
+    \ node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int k, int l, int r) {\n\
+    \        push(k);\n        if (r <= a || b <= l) return M::id();\n        if (a\
+    \ <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return\
+    \ M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m,\
+    \ r));\n    }\n\n    template <typename F>\n    int find_first(int a, int b, int\
+    \ k, int l, int r, T& v, F cond) {\n        push(k);\n        if (r <= a) return\
+    \ -1;\n        if (b <= l) return l;\n        if (a <= l && r <= b && !cond(M::op(v,\
+    \ node[k]))) {\n            v = M::op(v, node[k]);\n            return -1;\n \
+    \       }\n        if (r - l == 1) return r;\n        int m = (l + r) / 2;\n \
+    \       int res = find_first(a, b, 2 * k, l, m, v, cond);\n        if (res !=\
+    \ -1) return res;\n        return find_first(a, b, 2 * k + 1, m, r, v, cond);\n\
+    \    }\n\n    template <typename F>\n    int find_last(int a, int b, int k, int\
+    \ l, int r, T& v, F cond) {\n        push(k);\n        if (b <= l) return -1;\n\
+    \        if (r <= a) return r;\n        if (a <= l && r <= b && !cond(M::op(node[k],\
+    \ v))) {\n            v = M::op(node[k], v);\n            return -1;\n       \
+    \ }\n        if (r - l == 1) return l;\n        int m = (l + r) / 2;\n       \
+    \ int res = find_last(a, b, 2 * k + 1, m, r, v, cond);\n        if (res != -1)\
+    \ return res;\n        return find_last(a, b, 2 * k, l, m, v, cond);\n    }\n\
+    };\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n\ntemplate <typename\
     \ M, typename O, typename M::T (*act)(typename M::T, typename O::T)>\nclass LazySegmentTree\
     \ {\n    using T = typename M::T;\n    using E = typename O::T;\n\npublic:\n \
@@ -55,27 +73,45 @@ data:
     \ = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int k) {\n\
     \        return fold(k, k + 1);\n    }\n\n    void update(int l, int r, const\
     \ E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r) { return\
-    \ fold(l, r, 1, 0, size); }\n\nprivate:\n    int size;\n    std::vector<T> node;\n\
-    \    std::vector<E> lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id())\
-    \ return;\n        if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k],\
-    \ lazy[k]);\n            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n\
-    \        }\n        node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n\
-    \    }\n\n    void update(int a, int b, const E& x, int k, int l, int r) {\n \
-    \       push(k);\n        if (r <= a || b <= l) return;\n        if (a <= l &&\
-    \ r <= b) {\n            lazy[k] = O::op(lazy[k], x);\n            push(k);\n\
-    \            return;\n        }\n        int m = (l + r) / 2;\n        update(a,\
-    \ b, x, 2 * k, l, m);\n        update(a, b, x, 2 * k + 1, m, r);\n        node[k]\
-    \ = M::op(node[2 * k], node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int\
-    \ k, int l, int r) {\n        push(k);\n        if (r <= a || b <= l) return M::id();\n\
-    \        if (a <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n\
-    \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
-    \ 2 * k + 1, m, r));\n    }\n};"
+    \ fold(l, r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int\
+    \ l, F cond) {\n        T v = M::id();\n        return find_first(l, size, 1,\
+    \ 0, size, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size,\
+    \ v, cond);\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n    std::vector<E>\
+    \ lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id()) return;\n \
+    \       if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n\
+    \            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n \
+    \       node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n    }\n\n\
+    \    void update(int a, int b, const E& x, int k, int l, int r) {\n        push(k);\n\
+    \        if (r <= a || b <= l) return;\n        if (a <= l && r <= b) {\n    \
+    \        lazy[k] = O::op(lazy[k], x);\n            push(k);\n            return;\n\
+    \        }\n        int m = (l + r) / 2;\n        update(a, b, x, 2 * k, l, m);\n\
+    \        update(a, b, x, 2 * k + 1, m, r);\n        node[k] = M::op(node[2 * k],\
+    \ node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int k, int l, int r) {\n\
+    \        push(k);\n        if (r <= a || b <= l) return M::id();\n        if (a\
+    \ <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return\
+    \ M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m,\
+    \ r));\n    }\n\n    template <typename F>\n    int find_first(int a, int b, int\
+    \ k, int l, int r, T& v, F cond) {\n        push(k);\n        if (r <= a) return\
+    \ -1;\n        if (b <= l) return l;\n        if (a <= l && r <= b && !cond(M::op(v,\
+    \ node[k]))) {\n            v = M::op(v, node[k]);\n            return -1;\n \
+    \       }\n        if (r - l == 1) return r;\n        int m = (l + r) / 2;\n \
+    \       int res = find_first(a, b, 2 * k, l, m, v, cond);\n        if (res !=\
+    \ -1) return res;\n        return find_first(a, b, 2 * k + 1, m, r, v, cond);\n\
+    \    }\n\n    template <typename F>\n    int find_last(int a, int b, int k, int\
+    \ l, int r, T& v, F cond) {\n        push(k);\n        if (b <= l) return -1;\n\
+    \        if (r <= a) return r;\n        if (a <= l && r <= b && !cond(M::op(node[k],\
+    \ v))) {\n            v = M::op(node[k], v);\n            return -1;\n       \
+    \ }\n        if (r - l == 1) return l;\n        int m = (l + r) / 2;\n       \
+    \ int res = find_last(a, b, 2 * k + 1, m, r, v, cond);\n        if (res != -1)\
+    \ return res;\n        return find_last(a, b, 2 * k, l, m, v, cond);\n    }\n\
+    };"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-30 16:20:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
@@ -112,6 +148,12 @@ title: Segment Tree with Lazy Propagation
     - 時間計算量: $O(\log n)$
 - `T fold(int l, int r)`
     - 区間 $[l, r)$ の値を fold する
+    - 時間計算量: $O(\log n)$
+- `int find_first(int l, F cond)`
+    - `fold(l, r)` が条件 `cond` を満たすような最小の $r (> l)$ 返す．列の単調性を仮定する．そのような $r$ が存在しない場合は `-1` を返す
+    - 時間計算量: $O(\log n)$
+- `int find_last(int r, F cond)`
+    - `fold(l, r)` が条件 `cond` を満たすような最大の $l (< r)$ 返す．列の単調性を仮定する．そのような $l$ が存在しない場合は `-1` を返す
     - 時間計算量: $O(\log n)$
 
 ## Note

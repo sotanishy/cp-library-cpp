@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/segtree/lazy_segment_tree.cpp
     title: Segment Tree with Lazy Propagation
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -30,37 +30,55 @@ data:
     \ = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int k) {\n\
     \        return fold(k, k + 1);\n    }\n\n    void update(int l, int r, const\
     \ E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r) { return\
-    \ fold(l, r, 1, 0, size); }\n\nprivate:\n    int size;\n    std::vector<T> node;\n\
-    \    std::vector<E> lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id())\
-    \ return;\n        if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k],\
-    \ lazy[k]);\n            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n\
-    \        }\n        node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n\
-    \    }\n\n    void update(int a, int b, const E& x, int k, int l, int r) {\n \
-    \       push(k);\n        if (r <= a || b <= l) return;\n        if (a <= l &&\
-    \ r <= b) {\n            lazy[k] = O::op(lazy[k], x);\n            push(k);\n\
-    \            return;\n        }\n        int m = (l + r) / 2;\n        update(a,\
-    \ b, x, 2 * k, l, m);\n        update(a, b, x, 2 * k + 1, m, r);\n        node[k]\
-    \ = M::op(node[2 * k], node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int\
-    \ k, int l, int r) {\n        push(k);\n        if (r <= a || b <= l) return M::id();\n\
-    \        if (a <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n\
-    \        return M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b,\
-    \ 2 * k + 1, m, r));\n    }\n};\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n\
-    #line 4 \"math/modint.cpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\n\
-    class Modint {\n    using mint = Modint;\n    static_assert(mod > 0, \"Modulus\
-    \ must be positive\");\n\npublic:\n    static constexpr int get_mod() noexcept\
-    \ { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept : x(y >= 0\
-    \ ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value() const noexcept\
-    \ { return x; }\n\n    constexpr mint& operator+=(const mint& r) noexcept { if\
-    \ ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator-=(const\
-    \ mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod; return *this; }\n\
-    \    constexpr mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL\
-    \ * x * r.x % mod); return *this; }\n    constexpr mint& operator/=(const mint&\
-    \ r) noexcept { *this *= r.inv(); return *this; }\n\n    constexpr mint operator-()\
-    \ const noexcept { return mint(-x); }\n\n    constexpr mint operator+(const mint&\
-    \ r) const noexcept { return mint(*this) += r; }\n    constexpr mint operator-(const\
-    \ mint& r) const noexcept { return mint(*this) -= r; }\n    constexpr mint operator*(const\
-    \ mint& r) const noexcept { return mint(*this) *= r; }\n    constexpr mint operator/(const\
-    \ mint& r) const noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
+    \ fold(l, r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int\
+    \ l, F cond) {\n        T v = M::id();\n        return find_first(l, size, 1,\
+    \ 0, size, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size,\
+    \ v, cond);\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n    std::vector<E>\
+    \ lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id()) return;\n \
+    \       if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n\
+    \            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n \
+    \       node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n    }\n\n\
+    \    void update(int a, int b, const E& x, int k, int l, int r) {\n        push(k);\n\
+    \        if (r <= a || b <= l) return;\n        if (a <= l && r <= b) {\n    \
+    \        lazy[k] = O::op(lazy[k], x);\n            push(k);\n            return;\n\
+    \        }\n        int m = (l + r) / 2;\n        update(a, b, x, 2 * k, l, m);\n\
+    \        update(a, b, x, 2 * k + 1, m, r);\n        node[k] = M::op(node[2 * k],\
+    \ node[2 * k + 1]);\n    }\n\n    T fold(int a, int b, int k, int l, int r) {\n\
+    \        push(k);\n        if (r <= a || b <= l) return M::id();\n        if (a\
+    \ <= l && r <= b) return node[k];\n        int m = (l + r) / 2;\n        return\
+    \ M::op(fold(a, b, 2 * k, l, m),\n                     fold(a, b, 2 * k + 1, m,\
+    \ r));\n    }\n\n    template <typename F>\n    int find_first(int a, int b, int\
+    \ k, int l, int r, T& v, F cond) {\n        push(k);\n        if (r <= a) return\
+    \ -1;\n        if (b <= l) return l;\n        if (a <= l && r <= b && !cond(M::op(v,\
+    \ node[k]))) {\n            v = M::op(v, node[k]);\n            return -1;\n \
+    \       }\n        if (r - l == 1) return r;\n        int m = (l + r) / 2;\n \
+    \       int res = find_first(a, b, 2 * k, l, m, v, cond);\n        if (res !=\
+    \ -1) return res;\n        return find_first(a, b, 2 * k + 1, m, r, v, cond);\n\
+    \    }\n\n    template <typename F>\n    int find_last(int a, int b, int k, int\
+    \ l, int r, T& v, F cond) {\n        push(k);\n        if (b <= l) return -1;\n\
+    \        if (r <= a) return r;\n        if (a <= l && r <= b && !cond(M::op(node[k],\
+    \ v))) {\n            v = M::op(node[k], v);\n            return -1;\n       \
+    \ }\n        if (r - l == 1) return l;\n        int m = (l + r) / 2;\n       \
+    \ int res = find_last(a, b, 2 * k + 1, m, r, v, cond);\n        if (res != -1)\
+    \ return res;\n        return find_last(a, b, 2 * k, l, m, v, cond);\n    }\n\
+    };\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#line 4 \"math/modint.cpp\"\
+    \n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using\
+    \ mint = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\n\
+    public:\n    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
+    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
+    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
+    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
+    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
+    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
+    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
+    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
+    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
+    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
+    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
+    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
+    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
+    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
     \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
     \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
     \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
@@ -111,8 +129,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 17:02:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-30 16:20:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document

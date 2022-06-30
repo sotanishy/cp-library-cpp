@@ -9,81 +9,58 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"misc/intervals.hpp\"\n#include <cassert>\n#include <limits>\n\
-    #include <set>\n#include <utility>\n\ntemplate <typename T>\nclass Intervals {\n\
-    public:\n    static constexpr T INF = std::numeric_limits<T>::max() / 2;\n\n \
-    \   Intervals() {\n        st.emplace(INF, INF);\n        st.emplace(-INF, -INF);\n\
-    \    }\n\n    bool covered(T x) const { return covered(x, x); }\n    bool covered(T\
-    \ l, T r) const {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l\
-    \ + 1, l + 1}));\n        return it->first <= l && r <= it->second;\n    }\n\n\
-    \    std::pair<T, T> get(T x) const {\n        auto it = --(st.lower_bound({x\
-    \ + 1, x + 1}));\n        if (it->first <= x && x <= it->second) return *it;\n\
-    \        return {-INF, -INF};\n    }\n\n    std::vector<std::pair<T, T>> get(T\
-    \ l, T r) const {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l\
-    \ + 1, l + 1}));\n        std::vector<std::pair<T, T>> ret;\n        while (it\
-    \ != st.end()) {\n            if (l <= it->second && it->first <= r) ret.push_back(*it);\n\
-    \            ++it;\n        }\n        return ret;\n    }\n\n    void insert(T\
-    \ x) { insert(x, x); }\n    void insert(T l, T r) {\n        assert(l <= r);\n\
-    \        auto it = --(st.lower_bound({l + 1, l + 1}));\n        if (it->first\
-    \ <= l && r <= it->second) return;\n        if (it->first <= l && l <= it->second\
-    \ + 1) {\n            l = it->first;\n            it = st.erase(it);\n       \
-    \ } else {\n            ++it;\n        }\n        while (it->second < r) {\n \
-    \           it = st.erase(it);\n        }\n        if (it->first - 1 <= r && r\
-    \ <= it->second) {\n            r = it->second;\n            st.erase(it);\n \
-    \       }\n        st.emplace(l, r);\n    }\n\n    void erase(T x) { erase(x,\
-    \ x); }\n    void erase(T l, T r) {\n        assert(l <= r);\n        auto it\
-    \ = --(st.lower_bound({l + 1, l + 1}));\n        if (it->first <= l && r <= it->second)\
-    \ {\n            if (it->first < l) st.emplace(it->first, l - 1);\n          \
-    \  if (r < it->second) st.emplace(r + 1, it->second);\n            st.erase(it);\n\
-    \            return;\n        }\n        if (it->first <= l && l <= it->second)\
-    \ {\n            if (it->first < l) st.emplace(it->first, l - 1);\n          \
-    \  it = st.erase(it);\n        } else {\n            ++it;\n        }\n      \
-    \  while (it->second <= r) {\n            it = st.erase(it);\n        }\n    \
-    \    if (it->first <= r && r <= it->second) {\n            if (r < it->second)\
-    \ st.emplace(r + 1, it->second);\n            st.erase(it);\n        }\n    }\n\
-    \n    std::set<std::pair<T, T>> ranges() const { return st; }\n\n    T mex(T x)\
-    \ const {\n        auto it = --(st.lower_bound({x + 1, x + 1}));\n        if (it->first\
-    \ <= x && x <= it->second) return it->second + 1;\n        return x;\n    }\n\n\
-    private:\n    std::set<std::pair<T, T>> st;\n};\n"
+    #include <set>\n#include <utility>\n#include <vector>\n\ntemplate <typename X,\
+    \ typename T>\nclass Intervals {\npublic:\n    static constexpr X INF = std::numeric_limits<T>::max()\
+    \ / 2;\n\n    Intervals(T default_val) : default_val(default_val) {\n        st.emplace(INF,\
+    \ INF, default_val);\n        st.emplace(-INF, -INF, default_val);\n    }\n\n\
+    \    T get(X x) const {\n        auto it = --(st.lower_bound({x + 1, x, default_val}));\n\
+    \        auto [l, r, v] = *it;\n        if (l <= x && x <= r) return v;\n    \
+    \    return default_val;\n    }\n\n    std::vector<std::tuple<X, X, T>> get(X\
+    \ l, X r) const {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l\
+    \ + 1, l, default_val}));\n        std::vector<std::tuple<X, X, T>> ret;\n   \
+    \     while (it != st.end()) {\n            auto [l_, r_, v_] = *it;\n       \
+    \     if (r < l_) break;\n            l_ = std::max(l_, l);\n            r_ =\
+    \ std::min(r_, r);\n            if (l_ <= r_) ret.emplace_back(l_, r_, v_);\n\
+    \            ++it;\n        }\n        return ret;\n    }\n\n    void set(X l,\
+    \ X r, T v) {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l\
+    \ + 1, l, default_val}));\n        std::vector<std::tuple<X, X, T>> intervals;\n\
+    \        if (v != default_val) intervals.emplace_back(l, r, v);\n        while\
+    \ (it != st.end()) {\n            auto [l_, r_, v_] = *it;\n            if (r\
+    \ < l_) break;\n            if (l_ < l) {\n                intervals.emplace_back(l_,\
+    \ std::min(r_, l - 1), v_);\n            }\n            if (r < r_) {\n      \
+    \          intervals.emplace_back(r + 1, r_, v_);\n            }\n           \
+    \ it = st.erase(it);\n        }\n        for (auto [l_, r_, v_] : intervals) st.emplace(l_,\
+    \ r_, v_);\n    }\n\n    void erase(X l, X r) { set(l, r, default_val); }\n\n\
+    private:\n    std::set<std::tuple<X, X, T>> st;\n    T default_val;\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <limits>\n#include <set>\n#include\
-    \ <utility>\n\ntemplate <typename T>\nclass Intervals {\npublic:\n    static constexpr\
-    \ T INF = std::numeric_limits<T>::max() / 2;\n\n    Intervals() {\n        st.emplace(INF,\
-    \ INF);\n        st.emplace(-INF, -INF);\n    }\n\n    bool covered(T x) const\
-    \ { return covered(x, x); }\n    bool covered(T l, T r) const {\n        assert(l\
-    \ <= r);\n        auto it = --(st.lower_bound({l + 1, l + 1}));\n        return\
-    \ it->first <= l && r <= it->second;\n    }\n\n    std::pair<T, T> get(T x) const\
-    \ {\n        auto it = --(st.lower_bound({x + 1, x + 1}));\n        if (it->first\
-    \ <= x && x <= it->second) return *it;\n        return {-INF, -INF};\n    }\n\n\
-    \    std::vector<std::pair<T, T>> get(T l, T r) const {\n        assert(l <= r);\n\
-    \        auto it = --(st.lower_bound({l + 1, l + 1}));\n        std::vector<std::pair<T,\
-    \ T>> ret;\n        while (it != st.end()) {\n            if (l <= it->second\
-    \ && it->first <= r) ret.push_back(*it);\n            ++it;\n        }\n     \
-    \   return ret;\n    }\n\n    void insert(T x) { insert(x, x); }\n    void insert(T\
-    \ l, T r) {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l +\
-    \ 1, l + 1}));\n        if (it->first <= l && r <= it->second) return;\n     \
-    \   if (it->first <= l && l <= it->second + 1) {\n            l = it->first;\n\
-    \            it = st.erase(it);\n        } else {\n            ++it;\n       \
-    \ }\n        while (it->second < r) {\n            it = st.erase(it);\n      \
-    \  }\n        if (it->first - 1 <= r && r <= it->second) {\n            r = it->second;\n\
-    \            st.erase(it);\n        }\n        st.emplace(l, r);\n    }\n\n  \
-    \  void erase(T x) { erase(x, x); }\n    void erase(T l, T r) {\n        assert(l\
-    \ <= r);\n        auto it = --(st.lower_bound({l + 1, l + 1}));\n        if (it->first\
-    \ <= l && r <= it->second) {\n            if (it->first < l) st.emplace(it->first,\
-    \ l - 1);\n            if (r < it->second) st.emplace(r + 1, it->second);\n  \
-    \          st.erase(it);\n            return;\n        }\n        if (it->first\
-    \ <= l && l <= it->second) {\n            if (it->first < l) st.emplace(it->first,\
-    \ l - 1);\n            it = st.erase(it);\n        } else {\n            ++it;\n\
-    \        }\n        while (it->second <= r) {\n            it = st.erase(it);\n\
-    \        }\n        if (it->first <= r && r <= it->second) {\n            if (r\
-    \ < it->second) st.emplace(r + 1, it->second);\n            st.erase(it);\n  \
-    \      }\n    }\n\n    std::set<std::pair<T, T>> ranges() const { return st; }\n\
-    \n    T mex(T x) const {\n        auto it = --(st.lower_bound({x + 1, x + 1}));\n\
-    \        if (it->first <= x && x <= it->second) return it->second + 1;\n     \
-    \   return x;\n    }\n\nprivate:\n    std::set<std::pair<T, T>> st;\n};"
+    \ <utility>\n#include <vector>\n\ntemplate <typename X, typename T>\nclass Intervals\
+    \ {\npublic:\n    static constexpr X INF = std::numeric_limits<T>::max() / 2;\n\
+    \n    Intervals(T default_val) : default_val(default_val) {\n        st.emplace(INF,\
+    \ INF, default_val);\n        st.emplace(-INF, -INF, default_val);\n    }\n\n\
+    \    T get(X x) const {\n        auto it = --(st.lower_bound({x + 1, x, default_val}));\n\
+    \        auto [l, r, v] = *it;\n        if (l <= x && x <= r) return v;\n    \
+    \    return default_val;\n    }\n\n    std::vector<std::tuple<X, X, T>> get(X\
+    \ l, X r) const {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l\
+    \ + 1, l, default_val}));\n        std::vector<std::tuple<X, X, T>> ret;\n   \
+    \     while (it != st.end()) {\n            auto [l_, r_, v_] = *it;\n       \
+    \     if (r < l_) break;\n            l_ = std::max(l_, l);\n            r_ =\
+    \ std::min(r_, r);\n            if (l_ <= r_) ret.emplace_back(l_, r_, v_);\n\
+    \            ++it;\n        }\n        return ret;\n    }\n\n    void set(X l,\
+    \ X r, T v) {\n        assert(l <= r);\n        auto it = --(st.lower_bound({l\
+    \ + 1, l, default_val}));\n        std::vector<std::tuple<X, X, T>> intervals;\n\
+    \        if (v != default_val) intervals.emplace_back(l, r, v);\n        while\
+    \ (it != st.end()) {\n            auto [l_, r_, v_] = *it;\n            if (r\
+    \ < l_) break;\n            if (l_ < l) {\n                intervals.emplace_back(l_,\
+    \ std::min(r_, l - 1), v_);\n            }\n            if (r < r_) {\n      \
+    \          intervals.emplace_back(r + 1, r_, v_);\n            }\n           \
+    \ it = st.erase(it);\n        }\n        for (auto [l_, r_, v_] : intervals) st.emplace(l_,\
+    \ r_, v_);\n    }\n\n    void erase(X l, X r) { set(l, r, default_val); }\n\n\
+    private:\n    std::set<std::tuple<X, X, T>> st;\n    T default_val;\n};"
   dependsOn: []
   isVerificationFile: false
   path: misc/intervals.hpp
   requiredBy: []
-  timestamp: '2022-06-26 17:14:25+09:00'
+  timestamp: '2022-06-30 16:20:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/intervals.hpp
@@ -93,38 +70,23 @@ title: Intervals
 
 ## Description
 
-整数の閉区間の集合を管理する．
+整数の閉区間を管理する．
+
+機能的には range update point get の双対セグメント木の上位互換である (`long long` 型の座標を扱える + 区間の列挙が可能である)．
 
 ## Operations
 
-- `bool covered(T x)`
-- `bool covered(T l, T r)`
-    - 区間 $[l, r]$ が含まれているか判定する
+- `Intervals(T default_val)`
+    - デフォルトの値 `default_val` を受け取り，初期化する
+- `T get(X x)`
+    - 点 $x$ での値を返す
     - 時間計算量: $O(\log n)$
-- `vector<pair<T, T>> get(T x)`
-    - $x$ を含む区間を返す．そのような区間がない場合 $(-\infty, \infty)$ を返す．
-    - 時間計算量: $O(\log n)$
-- `vector<pair<T, T>> get(T l, T r)`
-    - 区間 $[l, r]$ と交わる区間を返す．
-    - 時間計算量: $O(\log n)$
-- `void insert(T x)`
-- `void insert(T l, T r)`
-    - 区間 $[l, r]$ を集合に追加する
+- `vector<tuple<X, X, T>> get(X l, X r, T v)`
+    - 区間 $[l, r]$ と交わる区間を返す
+    - 時間計算量: $O(k\log n)$, $k$ は $[l, r]$ と交わる区間の数
+- `void insert(X l, X y, T v)`
+    - 区間 $[l, r]$ の値を $v$ に更新する．
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `void erase(T x)`
-- `void erase(T l, T r)`
-    - 区間 $[l, r]$ を集合から削除する
+- `void erase(X l, X r)`
+    - 区間 $[l, r]$ の値をデフォルトの値に戻す
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `T mex(T x)`
-    - $x$ 以上の整数のうち，集合に含まれない最小のものを返す
-    - 時間計算量: $O(\log n)$
-
-## Note
-
-隣り合う区間はマージされるので，マージしたくない場合は座標を2倍するなどして適当に処理する．
-
-## Reference
-
-- [区間をsetで管理するやつでもうバグらせたくない](https://mugen1337.hatenablog.com/entry/2020/10/14/134022)
-- [要素の追加・削除と mex を対数時間で処理するよ](https://rsk0315.hatenablog.com/entry/2020/10/11/125049)
-

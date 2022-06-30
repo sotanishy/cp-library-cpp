@@ -2,57 +2,57 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/wavelet_matrix.cpp
     title: Wavelet Matrix
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_kth_smallest.test.cpp
     title: test/yosupo/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_frequency.test.cpp
     title: test/yosupo/static_range_frequency.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/bit_vector.cpp\"\n#include <cstdint>\n#include\
     \ <vector>\n\nclass BitVector {\npublic:\n    BitVector() = default;\n    explicit\
-    \ BitVector(const std::vector<bool>& v) {\n        int n = (v.size() + sz - 1)\
-    \ / sz;\n        data.resize(n);\n        sum.resize(n + 1);\n        for (int\
+    \ BitVector(const std::vector<bool>& v) {\n        const int n = v.size() / sz\
+    \ + 1;\n        data.resize(n);\n        sum.resize(n + 1);\n        for (int\
     \ i = 0; i < (int) v.size(); ++i) data[i / sz] |= v[i] << (i % sz);\n        for\
     \ (int i = 0; i < n; ++i) sum[i + 1] = sum[i] + __builtin_popcount(data[i]);\n\
-    \    }\n\n    bool access(int k) const {\n        return data[k / sz] >> (k %\
-    \ sz) & 1;\n    }\n\n    int rank(int k, bool b) const {\n        int mask = (1\
-    \ << (k % sz)) - 1;\n        int r = sum[k / sz] + __builtin_popcount(data[k /\
-    \ sz] & mask);\n        return b ? r : k - r;\n    }\n\n    int select(int k,\
+    \    }\n\n    bool operator[](int k) const { return data[k / sz] >> (k % sz) &\
+    \ 1; }\n\n    int rank(int k, bool b) const {\n        int mask = (1U << (k %\
+    \ sz)) - 1;\n        int r = sum[k / sz] + __builtin_popcount(data[k / sz] & mask);\n\
+    \        return b ? r : k - r;\n    }\n\n    int select(int k, bool b) const {\n\
+    \        int lb = 0, ub = data.size();\n        while (ub - lb > 1) {\n      \
+    \      int m = (lb + ub) / 2;\n            if (rank(m, b) <= k) lb = m;\n    \
+    \        else ub = m;\n        }\n        return lb;\n    }\n\nprivate:\n    static\
+    \ constexpr int sz = 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int>\
+    \ sum;\n};\n"
+  code: "#pragma once\n#include <cstdint>\n#include <vector>\n\nclass BitVector {\n\
+    public:\n    BitVector() = default;\n    explicit BitVector(const std::vector<bool>&\
+    \ v) {\n        const int n = v.size() / sz + 1;\n        data.resize(n);\n  \
+    \      sum.resize(n + 1);\n        for (int i = 0; i < (int) v.size(); ++i) data[i\
+    \ / sz] |= v[i] << (i % sz);\n        for (int i = 0; i < n; ++i) sum[i + 1] =\
+    \ sum[i] + __builtin_popcount(data[i]);\n    }\n\n    bool operator[](int k) const\
+    \ { return data[k / sz] >> (k % sz) & 1; }\n\n    int rank(int k, bool b) const\
+    \ {\n        int mask = (1U << (k % sz)) - 1;\n        int r = sum[k / sz] + __builtin_popcount(data[k\
+    \ / sz] & mask);\n        return b ? r : k - r;\n    }\n\n    int select(int k,\
     \ bool b) const {\n        int lb = 0, ub = data.size();\n        while (ub -\
     \ lb > 1) {\n            int m = (lb + ub) / 2;\n            if (rank(m, b) <=\
     \ k) lb = m;\n            else ub = m;\n        }\n        return lb;\n    }\n\
     \nprivate:\n    static constexpr int sz = 32;\n\n    std::vector<uint32_t> data;\n\
-    \    std::vector<int> sum;\n};\n"
-  code: "#pragma once\n#include <cstdint>\n#include <vector>\n\nclass BitVector {\n\
-    public:\n    BitVector() = default;\n    explicit BitVector(const std::vector<bool>&\
-    \ v) {\n        int n = (v.size() + sz - 1) / sz;\n        data.resize(n);\n \
-    \       sum.resize(n + 1);\n        for (int i = 0; i < (int) v.size(); ++i) data[i\
-    \ / sz] |= v[i] << (i % sz);\n        for (int i = 0; i < n; ++i) sum[i + 1] =\
-    \ sum[i] + __builtin_popcount(data[i]);\n    }\n\n    bool access(int k) const\
-    \ {\n        return data[k / sz] >> (k % sz) & 1;\n    }\n\n    int rank(int k,\
-    \ bool b) const {\n        int mask = (1 << (k % sz)) - 1;\n        int r = sum[k\
-    \ / sz] + __builtin_popcount(data[k / sz] & mask);\n        return b ? r : k -\
-    \ r;\n    }\n\n    int select(int k, bool b) const {\n        int lb = 0, ub =\
-    \ data.size();\n        while (ub - lb > 1) {\n            int m = (lb + ub) /\
-    \ 2;\n            if (rank(m, b) <= k) lb = m;\n            else ub = m;\n   \
-    \     }\n        return lb;\n    }\n\nprivate:\n    static constexpr int sz =\
-    \ 32;\n\n    std::vector<uint32_t> data;\n    std::vector<int> sum;\n};"
+    \    std::vector<int> sum;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/bit_vector.cpp
   requiredBy:
   - data-structure/wavelet_matrix.cpp
-  timestamp: '2021-10-30 12:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-30 16:20:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/range_kth_smallest.test.cpp
   - test/yosupo/static_range_frequency.test.cpp
@@ -73,8 +73,8 @@ title: Rank/Select Dictionary
 - `BitVector(vector<bool> v)`
     - ビット列 `v` の完備辞書を構築する
     - 時間計算量: $O(n)$
-- `bool access(int k)`
-    - $k$ 番目の要素を取得する
+- `bool operator[](int k)`
+    - $k$ 番目のビットを取得する
     - 時間計算量: $O(1)$
 - `int rank(int k)`
     - 区間 $[0, k)$ 中の1の数を返す
