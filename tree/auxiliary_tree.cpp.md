@@ -31,11 +31,11 @@ data:
     \ parent(int v, int k) const {\n        for (int i = LOG - 1; i >= 0; --i) {\n\
     \            if (k >= (1 << i)) {\n                v = table[i][v];\n        \
     \        k -= 1 << i;\n            }\n        }\n        return v;\n    }\n\n\
-    private:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n  \
-    \  std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n    void\
-    \ dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v] = d;\n\
-    \        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n   \
-    \     }\n    }\n};\n#line 6 \"tree/auxiliary_tree.cpp\"\n\nclass AuxiliaryTree\
+    protected:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n\
+    \    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n   \
+    \ void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
+    \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
+    \        }\n    }\n};\n#line 6 \"tree/auxiliary_tree.cpp\"\n\nclass AuxiliaryTree\
     \ {\npublic:\n    AuxiliaryTree() = default;\n    AuxiliaryTree(std::vector<std::vector<int>>&\
     \ G, int root) : G(G), lca(G, root), ord(G.size()), depth(G.size()) {\n      \
     \  dfs(root, -1);\n    }\n\n    std::vector<std::pair<int, int>> query(std::vector<int>\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: tree/auxiliary_tree.cpp
   requiredBy: []
-  timestamp: '2022-03-20 18:18:25+09:00'
+  timestamp: '2022-07-02 23:35:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: tree/auxiliary_tree.cpp

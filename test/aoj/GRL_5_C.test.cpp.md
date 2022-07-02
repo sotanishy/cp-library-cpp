@@ -34,11 +34,11 @@ data:
     \ parent(int v, int k) const {\n        for (int i = LOG - 1; i >= 0; --i) {\n\
     \            if (k >= (1 << i)) {\n                v = table[i][v];\n        \
     \        k -= 1 << i;\n            }\n        }\n        return v;\n    }\n\n\
-    private:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n  \
-    \  std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n    void\
-    \ dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v] = d;\n\
-    \        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n   \
-    \     }\n    }\n};\n#line 4 \"test/aoj/GRL_5_C.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    protected:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n\
+    \    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n   \
+    \ void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
+    \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
+    \        }\n    }\n};\n#line 4 \"test/aoj/GRL_5_C.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> G(n);\n\
     \    for (int i = 0; i < n; i++) {\n        int k;\n        cin >> k;\n      \
@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2021-10-07 16:56:17+09:00'
+  timestamp: '2022-07-02 23:35:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_C.test.cpp

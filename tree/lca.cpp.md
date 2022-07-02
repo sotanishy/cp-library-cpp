@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: tree/auxiliary_tree.cpp
     title: Auxiliary Tree
+  - icon: ':warning:'
+    path: tree/binary_lifting.hpp
+    title: Binary Lifting
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_C.test.cpp
@@ -36,11 +39,11 @@ data:
     \ parent(int v, int k) const {\n        for (int i = LOG - 1; i >= 0; --i) {\n\
     \            if (k >= (1 << i)) {\n                v = table[i][v];\n        \
     \        k -= 1 << i;\n            }\n        }\n        return v;\n    }\n\n\
-    private:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n  \
-    \  std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n    void\
-    \ dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v] = d;\n\
-    \        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n   \
-    \     }\n    }\n};\n"
+    protected:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n\
+    \    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n   \
+    \ void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
+    \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
+    \        }\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n\nclass LCA {\npublic:\n\
     \    LCA() = default;\n    LCA(const std::vector<std::vector<int>>& G, int root)\
     \ : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n        int V\
@@ -60,17 +63,18 @@ data:
     \ parent(int v, int k) const {\n        for (int i = LOG - 1; i >= 0; --i) {\n\
     \            if (k >= (1 << i)) {\n                v = table[i][v];\n        \
     \        k -= 1 << i;\n            }\n        }\n        return v;\n    }\n\n\
-    private:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n  \
-    \  std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n    void\
-    \ dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v] = d;\n\
-    \        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n   \
-    \     }\n    }\n};"
+    protected:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n\
+    \    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n   \
+    \ void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
+    \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
+    \        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: tree/lca.cpp
   requiredBy:
   - tree/auxiliary_tree.cpp
-  timestamp: '2021-10-07 16:56:17+09:00'
+  - tree/binary_lifting.hpp
+  timestamp: '2022-07-02 23:35:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lca.test.cpp

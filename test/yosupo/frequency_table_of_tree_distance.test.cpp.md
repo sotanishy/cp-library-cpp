@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/fft.hpp
     title: Fast Fourier Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/centroid_decomposition.hpp
     title: Centroid Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -19,20 +19,21 @@ data:
     - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
   bundledCode: "#line 1 \"test/yosupo/frequency_table_of_tree_distance.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
-    \n\n#line 2 \"tree/centroid_decomposition.hpp\"\n#include <vector>\n\nstd::pair<std::vector<int>,\
-    \ std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
-    \ G) {\n    int N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N);\n\
-    \n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n        sz[v]\
-    \ = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c] == -1)\
-    \ sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n    };\n\
-    \n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n) -> int\
-    \ {\n        for (int c : G[v]) {\n            if (c != p && level[c] == -1 &&\
-    \ sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n    \
-    \    return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v, int\
-    \ k) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n        int s = dfs_centroid(dfs_centroid,\
-    \ v, -1, n);\n        level[s] = k;\n        sz_comp[s] = n;\n        for (int\
-    \ c : G[s]) {\n            if (level[c] == -1) decompose(decompose, c, k + 1);\n\
-    \        }\n    };\n\n    decompose(decompose, 0, 0);\n    return {level, sz_comp};\n\
+    \n\n#line 2 \"tree/centroid_decomposition.hpp\"\n#include <vector>\n\nstd::tuple<std::vector<int>,\
+    \ std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
+    \ G) {\n    int N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N),\
+    \ par(N);\n\n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n\
+    \        sz[v] = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c]\
+    \ == -1) sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n\
+    \    };\n\n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n)\
+    \ -> int {\n        for (int c : G[v]) {\n            if (c != p && level[c] ==\
+    \ -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n\
+    \        return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v,\
+    \ int k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n      \
+    \  int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n    \
+    \    sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s]) {\n    \
+    \        if (level[c] == -1) decompose(decompose, c, k + 1, s);\n        }\n \
+    \   };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp, par};\n\
     }\n#line 2 \"convolution/fft.hpp\"\n#include <complex>\n#line 4 \"convolution/fft.hpp\"\
     \n\nconstexpr double PI = 3.14159265358979323846;\n\ntemplate <typename T>\nvoid\
     \ bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n    for (int i = 0,\
@@ -70,7 +71,7 @@ data:
     \   cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int N;\n\
     \    cin >> N;\n    vector<vector<int>> G(N);\n    rep(i,0,N-1) {\n        int\
     \ a, b;\n        cin >> a >> b;\n        G[a].push_back(b);\n        G[b].push_back(a);\n\
-    \    }\n\n    vector<int> level, sz;\n    tie(level, sz) = centroid_decomposition(G);\n\
+    \    }\n\n    vector<int> level, sz, par;\n    tie(level, sz, par) = centroid_decomposition(G);\n\
     \n    vector<ll> ans(N);\n    vector<double> cnt;\n\n    auto dfs = [&](auto&\
     \ dfs, int v, int p, int d, int l) -> void {\n        if (cnt.size() <= d) cnt.push_back(0);\n\
     \        ++cnt[d];\n        for (int c : G[v]) {\n            if (c != p && level[c]\
@@ -99,7 +100,7 @@ data:
     \   cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int N;\n\
     \    cin >> N;\n    vector<vector<int>> G(N);\n    rep(i,0,N-1) {\n        int\
     \ a, b;\n        cin >> a >> b;\n        G[a].push_back(b);\n        G[b].push_back(a);\n\
-    \    }\n\n    vector<int> level, sz;\n    tie(level, sz) = centroid_decomposition(G);\n\
+    \    }\n\n    vector<int> level, sz, par;\n    tie(level, sz, par) = centroid_decomposition(G);\n\
     \n    vector<ll> ans(N);\n    vector<double> cnt;\n\n    auto dfs = [&](auto&\
     \ dfs, int v, int p, int d, int l) -> void {\n        if (cnt.size() <= d) cnt.push_back(0);\n\
     \        ++cnt[d];\n        for (int c : G[v]) {\n            if (c != p && level[c]\
@@ -123,8 +124,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2022-04-17 14:21:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-02 23:35:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/frequency_table_of_tree_distance.test.cpp
 layout: document

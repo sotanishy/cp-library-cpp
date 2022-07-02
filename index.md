@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
@@ -489,10 +489,13 @@ data:
     - icon: ':warning:'
       path: tree/auxiliary_tree.cpp
       title: Auxiliary Tree
+    - icon: ':warning:'
+      path: tree/binary_lifting.hpp
+      title: Binary Lifting
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: Cartesian Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/centroid_decomposition.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
@@ -803,7 +806,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
