@@ -1,4 +1,5 @@
 #pragma once
+#include <tuple>
 #include <vector>
 
 std::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>& G) {
