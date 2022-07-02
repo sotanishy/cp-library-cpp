@@ -11,8 +11,11 @@ documentation_of: ../../tree/centroid_decomposition.hpp
 
 ## Operations
 
-- `pair<vector<int>, vector<int>> centroid_decomposition(vector<vector<int>> G)`
-  - 木 $G$ の隣接リストが与えられたとき，$G$ を重心分解したときの各頂点のレベル (何回目の分割でそれが重心となるか) と，各頂点が重心となるときにそれが含まれる部分木のサイズを返す
+- `tuple<vector<int>, vector<int>, vector<int>> centroid_decomposition(vector<vector<int>> G)`
+  - 木 $G$ の隣接リストが与えられたとき，3つ組 `(level, sz, par)` を返す．
+    - `level`: $G$ を重心分解したときの各頂点のレベル (何回目の分割でそれが重心となるか)
+    - `sz`: 各頂点が重心となるときにそれが含まれる部分木のサイズ
+    - `par`: 各頂点が重心となる直前に属していた部分木の重心
   - 時間計算量: $O(n\log n)$
 
 ## Reference

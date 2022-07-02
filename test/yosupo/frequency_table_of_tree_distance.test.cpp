@@ -27,8 +27,8 @@ int main() {
         G[b].push_back(a);
     }
 
-    vector<int> level, sz;
-    tie(level, sz) = centroid_decomposition(G);
+    vector<int> level, sz, par;
+    tie(level, sz, par) = centroid_decomposition(G);
 
     vector<ll> ans(N);
     vector<double> cnt;

@@ -54,7 +54,7 @@ public:
         return v;
     }
 
-private:
+protected:
     const std::vector<std::vector<int>>& G;
     const int LOG;
     std::vector<std::vector<int>> table;
