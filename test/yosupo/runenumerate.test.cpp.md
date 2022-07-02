@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/enumerate_runs.hpp
     title: Enumerate Runs
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/z_array.cpp
     title: Z Array
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/runenumerate
@@ -77,7 +77,7 @@ data:
   path: test/yosupo/runenumerate.test.cpp
   requiredBy: []
   timestamp: '2022-06-30 19:57:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/runenumerate.test.cpp
 layout: document

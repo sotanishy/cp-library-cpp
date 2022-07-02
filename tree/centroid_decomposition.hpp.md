@@ -3,32 +3,32 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"tree/centroid_decomposition.hpp\"\n#include <vector>\n\n\
-    std::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const\
-    \ std::vector<std::vector<int>>& G) {\n    int N = G.size();\n    std::vector<int>\
-    \ sz(N), level(N, -1), sz_comp(N), par(N);\n\n    auto dfs_size = [&](auto& dfs_size,\
-    \ int v, int p) -> int {\n        sz[v] = 1;\n        for (int c : G[v]) {\n \
-    \           if (c != p && level[c] == -1) sz[v] += dfs_size(dfs_size, c, v);\n\
-    \        }\n        return sz[v];\n    };\n\n    auto dfs_centroid = [&](auto&\
-    \ dfs_centroid, int v, int p, int n) -> int {\n        for (int c : G[v]) {\n\
-    \            if (c != p && level[c] == -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid,\
-    \ c, v, n);\n        }\n        return v;\n    };\n\n    auto decompose = [&](auto&\
-    \ decompose, int v, int k, int p) -> void {\n        int n = dfs_size(dfs_size,\
-    \ v, -1);\n        int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s]\
-    \ = k;\n        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s])\
-    \ {\n            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n    \
-    \    }\n    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp,\
-    \ par};\n}\n"
-  code: "#pragma once\n#include <vector>\n\nstd::tuple<std::vector<int>, std::vector<int>,\
-    \ std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
+  bundledCode: "#line 2 \"tree/centroid_decomposition.hpp\"\n#include <tuple>\n#include\
+    \ <vector>\n\nstd::tuple<std::vector<int>, std::vector<int>, std::vector<int>>\
+    \ centroid_decomposition(const std::vector<std::vector<int>>& G) {\n    int N\
+    \ = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N), par(N);\n\
+    \n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n        sz[v]\
+    \ = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c] == -1)\
+    \ sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n    };\n\
+    \n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n) -> int\
+    \ {\n        for (int c : G[v]) {\n            if (c != p && level[c] == -1 &&\
+    \ sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n    \
+    \    return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v, int\
+    \ k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n        int\
+    \ s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n        sz_comp[s]\
+    \ = n;\n        par[s] = p;\n        for (int c : G[s]) {\n            if (level[c]\
+    \ == -1) decompose(decompose, c, k + 1, s);\n        }\n    };\n\n    decompose(decompose,\
+    \ 0, 0, -1);\n    return {level, sz_comp, par};\n}\n"
+  code: "#pragma once\n#include <tuple>\n#include <vector>\n\nstd::tuple<std::vector<int>,\
+    \ std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
     \ G) {\n    int N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N),\
     \ par(N);\n\n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n\
     \        sz[v] = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c]\
@@ -47,8 +47,8 @@ data:
   isVerificationFile: false
   path: tree/centroid_decomposition.hpp
   requiredBy: []
-  timestamp: '2022-07-02 23:35:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-02 23:54:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/frequency_table_of_tree_distance.test.cpp
 documentation_of: tree/centroid_decomposition.hpp
