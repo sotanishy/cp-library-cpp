@@ -1,9 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "suffix_array.cpp"
 
-std::vector<int> lcp_array(const std::string& s, const SuffixArray& sa) {
+std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
     int n = s.size();
     std::vector<int> rank(n);
     for (int i = 0; i < n; ++i) rank[sa[i]] = i;
