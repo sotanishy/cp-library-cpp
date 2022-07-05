@@ -463,7 +463,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/kmp.cpp
       title: Knuth-Morris-Pratt Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/lcp_array.cpp
       title: Longest Common Prefix Array
     - icon: ':heavy_check_mark:'
@@ -475,7 +475,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/suffix_array.cpp
       title: Suffix Array
     - icon: ':warning:'
@@ -851,7 +851,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/nim_product_64.test.cpp
       title: test/yosupo/nim_product_64.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
