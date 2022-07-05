@@ -1,23 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: string/lcp_array.cpp
-    title: Longest Common Prefix Array
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
     title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/number_of_substrings.test.cpp
-    title: test/yosupo/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/suffixarray.test.cpp
     title: test/yosupo/suffixarray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.cpp\"\n#include <algorithm>\n#include\
@@ -73,13 +67,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/suffix_array.cpp
-  requiredBy:
-  - string/lcp_array.cpp
+  requiredBy: []
   timestamp: '2022-07-05 13:04:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/suffixarray.test.cpp
-  - test/yosupo/number_of_substrings.test.cpp
   - test/aoj/ALDS1_14_B.suffix_array.test.cpp
 documentation_of: string/suffix_array.cpp
 layout: document

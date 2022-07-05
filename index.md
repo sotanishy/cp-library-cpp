@@ -475,7 +475,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_array.cpp
       title: Suffix Array
     - icon: ':warning:'
