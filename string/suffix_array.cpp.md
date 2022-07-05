@@ -7,6 +7,9 @@ data:
     path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
     title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_of_substrings.test.cpp
+    title: test/yosupo/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/suffixarray.test.cpp
     title: test/yosupo/suffixarray.test.cpp
   _isVerificationFailed: false
@@ -72,6 +75,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/suffixarray.test.cpp
+  - test/yosupo/number_of_substrings.test.cpp
   - test/aoj/ALDS1_14_B.suffix_array.test.cpp
 documentation_of: string/suffix_array.cpp
 layout: document
