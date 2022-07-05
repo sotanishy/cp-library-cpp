@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
 
+#include "../../string/suffix_array.cpp"
 #include "../../string/lcp_array.cpp"
 
 #include <bits/stdc++.h>
