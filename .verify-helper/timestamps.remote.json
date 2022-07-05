@@ -107,6 +107,7 @@
 "test/yosupo/maximum_independent_set.test.cpp": "2022-05-09 11:09:22 +0900",
 "test/yosupo/montmort_number_mod.test.cpp": "2022-04-28 21:35:03 +0900",
 "test/yosupo/nim_product_64.test.cpp": "2022-04-18 22:20:33 +0900",
+"test/yosupo/number_of_substrings.test.cpp": "2022-07-05 18:35:48 +0900",
 "test/yosupo/persistent_queue.test.cpp": "2021-10-30 12:57:24 +0900",
 "test/yosupo/persistent_unionfind.test.cpp": "2021-10-30 12:57:24 +0900",
 "test/yosupo/point_add_range_sum.test.cpp": "2022-03-06 20:10:50 +0900",
