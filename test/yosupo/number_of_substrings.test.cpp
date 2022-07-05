@@ -12,8 +12,8 @@ int main() {
     string S;
     cin >> S;
     int N = S.size();
-    SuffixArray sa(S);
-    vector<int> lcp = lcp_array(S, sa);
+    auto sa = suffix_array(S);
+    auto lcp = lcp_array(S, sa);
     long long ans = 1LL * N * (N + 1) / 2;
     for (int i = 0; i < lcp.size(); ++i) ans -= lcp[i];
     cout << ans << endl;

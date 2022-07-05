@@ -13,9 +13,20 @@ int main() {
     cin >> T;
     string P;
     cin >> P;
-    SuffixArray sa(T);
-    int lb = sa.lower_bound(P);
-    int ub = sa.upper_bound(P);
+    auto sa = suffix_array(T);
+
+    auto cmp = [&](int si, const string& t) {
+        int sn = T.size(), tn = t.size();
+        int ti = 0;
+        for (; si < sn && ti < tn; ++si, ++ti) {
+            if (T[si] < t[ti]) return true;
+            if (T[si] > t[ti]) return false;
+        }
+        return si == sn && ti < tn;
+    };
+
+    int lb = lower_bound(sa.begin(), sa.end(), P, cmp) - sa.begin();
+    int ub = lower_bound(sa.begin(), sa.end(), P + '~', cmp) - sa.begin();
     vector<int> ans;
     for (int i = lb; i < ub; i++) ans.push_back(sa[i]);
     sort(ans.begin(), ans.end());

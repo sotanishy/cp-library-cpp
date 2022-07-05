@@ -13,18 +13,9 @@ documentation_of: ../../string/suffix_array.cpp
 
 ## Operations
 
-- `SuffixArray(string str)`
-    - `str` から接尾辞配列を構築する
+- `vector<int> suffix_array(string s)`
+    - `s` の接尾辞配列を構築する
     - 時間計算量: $O(n\log n)$
-- `int operator[](int k)`
-    - 接尾辞配列の $k$ 番目の要素を返す
-    - 時間計算量: $O(1)$
-- `int lower_bound(string t)`
-    - $k$ 番目の接尾辞が `t` より辞書順で等しいか大きくなるような最小の $k$ を返す
-    - 時間計算量: $O(m\log n)$
-- `int upper_bound(string t)`
-    - $k$ 番目の接尾辞が `t` より辞書順で大きくなるような最小の $k$ を返す
-    - 時間計算量: $O(m\log n)$
 
 ## Reference
 

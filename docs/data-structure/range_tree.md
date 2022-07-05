@@ -5,22 +5,18 @@ documentation_of: ../../data-structure/range_tree.cpp
 
 ## Description
 
-領域木は，2次元平面の長方形領域内の点の個数を効率的に数えるデータ構造である．
+領域木は，2次元平面の長方形領域内の点に対する値の総和クエリを扱うデータ構造である．
 
 空間計算量: $O(n\log n)$
 
 ## Operations
 
-- `void add_point(int x, int y)`
-    - 点 $(x, y)$ を追加する
-    - 時間計算量: $O(1)$
-- `void build()`
-    - 領域木を構築する
-    - 点 $(x, y)$ を追加する
+- `RangeTree(int n, vector<tuple<int, Y, T>>> pts)`
+    - `pts` の点から領域木を構築する．点は $(x, y, v)$ の形式で与えられる．
     - 時間計算量: $O(n\log n)$
-- `int count(int sx, int tx, int sy, int ty)`
-    - 長方形領域 $[sx, tx) \times [sy, ty)$ 内の点の個数を返す
-    - 時間計算量: $O(\log^2 n)$
+- `T fold(int sx, int tx, Y sy, Y ty)`
+    - 長方形領域 $[sx, tx) \times [sy, ty)$ 内の点に対する値の総和を計算する
+    - 時間計算量: $O((\log n)^2)$
 
 ## Reference
 
