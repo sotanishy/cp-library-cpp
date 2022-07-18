@@ -1,5 +1,6 @@
 {
 "test/aoj/1040.test.cpp": "2022-06-27 14:23:07 +0900",
+"test/aoj/1208.test.cpp": "2022-07-18 21:37:47 +0900",
 "test/aoj/1298.test.cpp": "2022-06-27 14:44:07 +0900",
 "test/aoj/1508.rbst.test.cpp": "2022-03-06 20:10:50 +0900",
 "test/aoj/1508.splay_tree.test.cpp": "2022-03-06 20:10:50 +0900",
@@ -77,6 +78,7 @@
 "test/yosupo/chromatic_number.test.cpp": "2022-03-20 23:18:32 +0900",
 "test/yosupo/convolution_mod.test.cpp": "2022-06-27 15:58:35 +0900",
 "test/yosupo/convolution_mod_1000000007.test.cpp": "2022-06-27 15:58:35 +0900",
+"test/yosupo/counting_primes.test.cpp": "2022-07-18 21:37:47 +0900",
 "test/yosupo/directedmst.test.cpp": "2021-09-11 15:28:38 +0900",
 "test/yosupo/discrete_logarithm_mod.test.cpp": "2022-03-24 12:11:41 +0900",
 "test/yosupo/division_of_polynomials.test.cpp": "2022-06-27 18:10:09 +0900",
