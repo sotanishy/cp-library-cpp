@@ -348,6 +348,9 @@ data:
       path: math/interpolation.cpp
       title: Polynomial Interpolation
     - icon: ':warning:'
+      path: math/isqrt.hpp
+      title: math/isqrt.hpp
+    - icon: ':warning:'
       path: math/kitamasa.cpp
       title: Kitamasa's Algorithm
     - icon: ':warning:'
@@ -377,9 +380,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime.cpp
       title: Prime Number Algorithms
+    - icon: ':heavy_check_mark:'
+      path: math/prime_count.hpp
+      title: Prime Counting Function
     - icon: ':warning:'
       path: math/quotients.hpp
       title: Quotient Ranges
+    - icon: ':heavy_check_mark:'
+      path: math/stern_brocot_tree.hpp
+      title: math/stern_brocot_tree.hpp
     - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
@@ -528,6 +537,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1040.test.cpp
       title: test/aoj/1040.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1208.test.cpp
+      title: test/aoj/1208.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1298.test.cpp
       title: test/aoj/1298.test.cpp
@@ -761,6 +773,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution_mod_1000000007.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/counting_primes.test.cpp
+      title: test/yosupo/counting_primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/directedmst.test.cpp
       title: test/yosupo/directedmst.test.cpp
