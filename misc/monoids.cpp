@@ -52,6 +52,9 @@ struct AffineMonoid {
 };
 
 // actions
+MaxMonoid::T act(MaxMonoid::T a, AddMonoid::T b) {
+    return a + b;
+}
 
 AddRangeMonoid::T act(AddRangeMonoid::T a, AffineMonoid::T b) {
     return {a.first * b.first + a.second * b.second, a.second};
