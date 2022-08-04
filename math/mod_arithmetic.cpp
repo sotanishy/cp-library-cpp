@@ -127,3 +127,14 @@ long long mod_tetration(long long a, long long b, int mod) {
 
     return rec(rec, b, mod) % mod;
 }
+
+/**
+ * Table of Modular Inverses
+ */
+std::vector<int> mod_inv_table(int n, int mod) {
+    std::vector<int> inv(n + 1, 1);
+    for (int i = 2; i <= n; ++i) {
+        inv[i] = mod - 1LL * inv[mod % i] * (mod / i) % mod;
+    }
+    return inv;
+}

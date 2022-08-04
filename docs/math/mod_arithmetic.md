@@ -48,3 +48,11 @@ $a \uparrow \uparrow b \mod mod$ を再帰的に計算する．
 - `long long mod_tetration(long long a, long long b, int mod)`
   - $a \uparrow \uparrow b \mod mod$ を計算する
   - 時間計算量: $O(\sqrt{mod})$
+
+## Table of Modular Inverses
+
+$1, 2, \dots, n$ の $\mathrm{mod}\, mod$ での逆元を計算する．
+
+- `vector<int> mod_inv_table(int n, int mod)`
+  - $1, 2, \dots, n$ の $\mathrm{mod}\,mod$ での逆元を計算する．
+  - 時間計算量: $O(n)$

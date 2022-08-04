@@ -1,6 +1,10 @@
-#pragma once
-#include <algorithm>
-#include <vector>
+#define PROBLEM "https://judge.yosupo.jp/problem/jump_on_tree"
+
+// #include "../../tree/lca.cpp"
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
 
 class LCA {
 public:
@@ -63,7 +67,6 @@ public:
         return parent(v, du + dv - k);
     }
 
-
 protected:
     const std::vector<std::vector<int>>& G;
     const int LOG;
@@ -78,3 +81,24 @@ protected:
         }
     }
 };
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int N, Q;
+    cin >> N >> Q;
+    vector<vector<int>> G(N);
+    for (int i = 1; i < N; ++i) {
+        int a, b;
+        cin >> a >> b;
+        G[a].push_back(b);
+        G[b].push_back(a);
+    }
+    LCA lca(G, 0);
+    for (int q = 0; q < Q; ++q) {
+        int s, t, i;
+        cin >> s >> t >> i;
+        cout << lca.jump(s, t, i) << "\n";
+    }
+}

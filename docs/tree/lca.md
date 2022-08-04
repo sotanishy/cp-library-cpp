@@ -20,6 +20,8 @@ documentation_of: ../../tree/lca.cpp
     - 時間計算量: $O(\log n)$
 - `int parent(int v, int k)`
     - 頂点 $v$ の $k$ 個上の頂点を求める
+- `int jump(int u, int v, int k)`
+    - $uv$ パス上の $k$ 番目の頂点を返す．$k=0$ のとき $u$ を，$k>dist(u,v)$ のとき $-1$ を返す．
     - 時間計算量: $O(\log n)$
 
 ## Reference
