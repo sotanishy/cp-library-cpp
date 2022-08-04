@@ -165,8 +165,8 @@ data:
   timestamp: '2022-06-27 13:45:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
 documentation_of: geometry/triangle.hpp
 layout: document
 redirect_from:

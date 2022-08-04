@@ -335,6 +335,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
+    - icon: ':warning:'
+      path: math/farey_sequence.hpp
+      title: math/farey_sequence.hpp
     - icon: ':heavy_check_mark:'
       path: math/fast_prime.cpp
       title: Fast Prime Number Algorithms
@@ -834,6 +837,9 @@ data:
       path: test/yosupo/inverse_matrix.test.cpp
       title: test/yosupo/inverse_matrix.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/jump_on_tree.test.cpp
+      title: test/yosupo/jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -867,6 +873,9 @@ data:
       path: test/yosupo/nim_product_64.test.cpp
       title: test/yosupo/nim_product_64.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/number_of_subsequences.test.cpp
+      title: test/yosupo/number_of_subsequences.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
@@ -890,6 +899,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/range_affine_point_get.test.cpp
+      title: test/yosupo/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp

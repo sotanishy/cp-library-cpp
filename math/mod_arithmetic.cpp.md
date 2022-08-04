@@ -73,7 +73,10 @@ data:
     \n    auto rec = [&](auto& rec, long long b, int mod) -> long long {\n       \
     \ if (b == 1) return a;\n        if (mod == 1) return 1;\n        return pow(a,\
     \ rec(rec, b - 1, euler_totient(mod)), mod);\n    };\n\n    return rec(rec, b,\
-    \ mod) % mod;\n}\n"
+    \ mod) % mod;\n}\n\n/**\n * Table of Modular Inverses\n */\nstd::vector<int> mod_inv_table(int\
+    \ n, int mod) {\n    std::vector<int> inv(n + 1, 1);\n    for (int i = 2; i <=\
+    \ n; ++i) {\n        inv[i] = mod - 1LL * inv[mod % i] * (mod / i) % mod;\n  \
+    \  }\n    return inv;\n}\n"
   code: "#pragma once\n#include <cmath>\n#include <numeric>\n#include <unordered_map>\n\
     #include \"euler_totient.cpp\"\n\n/*\n * Modular Exponentiation\n */\nlong long\
     \ mod_pow(long long a, long long e, int mod) {\n    long long ret = 1;\n    while\
@@ -114,19 +117,22 @@ data:
     \n    auto rec = [&](auto& rec, long long b, int mod) -> long long {\n       \
     \ if (b == 1) return a;\n        if (mod == 1) return 1;\n        return pow(a,\
     \ rec(rec, b - 1, euler_totient(mod)), mod);\n    };\n\n    return rec(rec, b,\
-    \ mod) % mod;\n}"
+    \ mod) % mod;\n}\n\n/**\n * Table of Modular Inverses\n */\nstd::vector<int> mod_inv_table(int\
+    \ n, int mod) {\n    std::vector<int> inv(n + 1, 1);\n    for (int i = 2; i <=\
+    \ n; ++i) {\n        inv[i] = mod - 1LL * inv[mod % i] * (mod / i) % mod;\n  \
+    \  }\n    return inv;\n}"
   dependsOn:
   - math/euler_totient.cpp
   isVerificationFile: false
   path: math/mod_arithmetic.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
+  timestamp: '2022-08-04 12:02:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_B.test.cpp
-  - test/yosupo/tetration_mod.test.cpp
-  - test/yosupo/sqrt_mod.test.cpp
   - test/yosupo/discrete_logarithm_mod.test.cpp
+  - test/yosupo/sqrt_mod.test.cpp
+  - test/yosupo/tetration_mod.test.cpp
 documentation_of: math/mod_arithmetic.cpp
 layout: document
 title: Modular Arithmetic
@@ -177,3 +183,11 @@ $a \uparrow \uparrow b \mod mod$ を再帰的に計算する．
 - `long long mod_tetration(long long a, long long b, int mod)`
   - $a \uparrow \uparrow b \mod mod$ を計算する
   - 時間計算量: $O(\sqrt{mod})$
+
+## Table of Modular Inverses
+
+$1, 2, \dots, n$ の $\mathrm{mod}\, mod$ での逆元を計算する．
+
+- `vector<int> mod_inv_table(int n, int mod)`
+  - $1, 2, \dots, n$ の $\mathrm{mod}\,mod$ での逆元を計算する．
+  - 時間計算量: $O(n)$

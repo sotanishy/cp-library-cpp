@@ -62,7 +62,6 @@ $$
 a^{\phi(n)} \equiv 1 \pmod n
 $$
 
-
 ## Enumeration
 
 ### Cayley's Formula
@@ -105,6 +104,24 @@ $$
 | なし | あり | $\binom{n+k-1}{n}$ | $\binom{n-1}{k-1}$ |
 | あり | なし | $B(n,k)$ | $S(n,k)$ |
 | なし | なし | $P(n,k)$ | $P(n-k,k)$ |
+
+### Lagrange Inversion Formula
+
+形式的べき級数 $F(x), G(x)$ が互いに逆関数である，すなわち $G(F(x)) = x$ のとき，
+
+$$
+[x^n] G(x)=\frac{1}{n} [x^{-1}] \frac{1}{F(x)^n}
+$$
+
+例えば，$G(x) = x\phi(G(x))$ という関数方程式を満たす $G(x)$ の係数を求めたいとき，$F(x) = x/\phi(x)$ と置けば $F, G$ は互いに逆関数になる．これらに Lagrange の反転公式を適用すると，
+
+$$
+[x^n] G(x) = \frac{1}{n} [x^{n-1}] \phi(x)^n
+$$
+
+が得られる．
+
+- [H - Beautiful Binary Tree 解説](https://atcoder.jp/contests/abc222/editorial/2742)
 
 ## Graph
 

@@ -124,26 +124,26 @@ data:
   isVerificationFile: false
   path: convolution/ntt.hpp
   requiredBy:
-  - math/polynomial.cpp
   - math/bostan_mori.hpp
   - math/stirling_first.hpp
-  - math/multipoint_evaluation.cpp
+  - math/polynomial.cpp
   - math/interpolation.cpp
+  - math/multipoint_evaluation.cpp
   - math/stirling_second.hpp
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2022-03-24 12:27:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
-  - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
-  - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/convolution_mod_1000000007.test.cpp
-  - test/yosupo/polynomial_taylor_shift.test.cpp
-  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/log_of_formal_power_series.test.cpp
 documentation_of: convolution/ntt.hpp
 layout: document
 title: Number Theoretic Transform

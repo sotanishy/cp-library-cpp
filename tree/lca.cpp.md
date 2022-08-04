@@ -39,11 +39,14 @@ data:
     \ parent(int v, int k) const {\n        for (int i = LOG - 1; i >= 0; --i) {\n\
     \            if (k >= (1 << i)) {\n                v = table[i][v];\n        \
     \        k -= 1 << i;\n            }\n        }\n        return v;\n    }\n\n\
-    protected:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n\
-    \    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n   \
-    \ void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
-    \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
-    \        }\n    }\n};\n"
+    \    int jump(int u, int v, int k) const {\n        int l = query(u, v);\n   \
+    \     int du = depth[u] - depth[l];\n        int dv = depth[v] - depth[l];\n \
+    \       if (du + dv < k) return -1;\n        if (k < du) return parent(u, k);\n\
+    \        return parent(v, du + dv - k);\n    }\n\n\nprotected:\n    const std::vector<std::vector<int>>&\
+    \ G;\n    const int LOG;\n    std::vector<std::vector<int>> table;\n    std::vector<int>\
+    \ depth;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
+    \      depth[v] = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c,\
+    \ v, d + 1);\n        }\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n\nclass LCA {\npublic:\n\
     \    LCA() = default;\n    LCA(const std::vector<std::vector<int>>& G, int root)\
     \ : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {\n        int V\
@@ -63,18 +66,21 @@ data:
     \ parent(int v, int k) const {\n        for (int i = LOG - 1; i >= 0; --i) {\n\
     \            if (k >= (1 << i)) {\n                v = table[i][v];\n        \
     \        k -= 1 << i;\n            }\n        }\n        return v;\n    }\n\n\
-    protected:\n    const std::vector<std::vector<int>>& G;\n    const int LOG;\n\
-    \    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\n   \
-    \ void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
-    \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
-    \        }\n    }\n};"
+    \    int jump(int u, int v, int k) const {\n        int l = query(u, v);\n   \
+    \     int du = depth[u] - depth[l];\n        int dv = depth[v] - depth[l];\n \
+    \       if (du + dv < k) return -1;\n        if (k < du) return parent(u, k);\n\
+    \        return parent(v, du + dv - k);\n    }\n\n\nprotected:\n    const std::vector<std::vector<int>>&\
+    \ G;\n    const int LOG;\n    std::vector<std::vector<int>> table;\n    std::vector<int>\
+    \ depth;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
+    \      depth[v] = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c,\
+    \ v, d + 1);\n        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: tree/lca.cpp
   requiredBy:
-  - tree/binary_lifting.hpp
   - tree/auxiliary_tree.cpp
-  timestamp: '2022-07-02 23:35:57+09:00'
+  - tree/binary_lifting.hpp
+  timestamp: '2022-08-04 12:02:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_C.test.cpp
@@ -101,6 +107,8 @@ title: Lowest Common Ancestor
     - 時間計算量: $O(\log n)$
 - `int parent(int v, int k)`
     - 頂点 $v$ の $k$ 個上の頂点を求める
+- `int jump(int u, int v, int k)`
+    - $uv$ パス上の $k$ 番目の頂点を返す．$k=0$ のとき $u$ を，$k>dist(u,v)$ のとき $-1$ を返す．
     - 時間計算量: $O(\log n)$
 
 ## Reference

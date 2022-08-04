@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/range_affine_point_get.test.cpp
+    title: test/yosupo/range_affine_point_get.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -51,8 +54,9 @@ data:
   timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DSL_2_D.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
+  - test/yosupo/range_affine_point_get.test.cpp
 documentation_of: data-structure/segtree/dual_segment_tree.cpp
 layout: document
 title: Dual Segment Tree

@@ -7,6 +7,9 @@ data:
     path: test/aoj/DSL_2_B.test.cpp
     title: test/aoj/DSL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_of_subsequences.test.cpp
+    title: test/yosupo/number_of_subsequences.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +60,7 @@ data:
   - test/aoj/DSL_2_B.test.cpp
   - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+  - test/yosupo/number_of_subsequences.test.cpp
 documentation_of: data-structure/fenwick_tree.cpp
 layout: document
 title: Fenwick Tree

@@ -56,9 +56,9 @@ data:
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/NTL_1_B.test.cpp
-  - test/yosupo/tetration_mod.test.cpp
-  - test/yosupo/sqrt_mod.test.cpp
   - test/yosupo/discrete_logarithm_mod.test.cpp
+  - test/yosupo/sqrt_mod.test.cpp
+  - test/yosupo/tetration_mod.test.cpp
 documentation_of: math/euler_totient.cpp
 layout: document
 title: Euler's Totient Function

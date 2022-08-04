@@ -68,7 +68,10 @@ data:
     \ 1;\n        }\n        return ret;\n    };\n\n    auto rec = [&](auto& rec,\
     \ long long b, int mod) -> long long {\n        if (b == 1) return a;\n      \
     \  if (mod == 1) return 1;\n        return pow(a, rec(rec, b - 1, euler_totient(mod)),\
-    \ mod);\n    };\n\n    return rec(rec, b, mod) % mod;\n}\n#line 4 \"test/yosupo/discrete_logarithm_mod.test.cpp\"\
+    \ mod);\n    };\n\n    return rec(rec, b, mod) % mod;\n}\n\n/**\n * Table of Modular\
+    \ Inverses\n */\nstd::vector<int> mod_inv_table(int n, int mod) {\n    std::vector<int>\
+    \ inv(n + 1, 1);\n    for (int i = 2; i <= n; ++i) {\n        inv[i] = mod - 1LL\
+    \ * inv[mod % i] * (mod / i) % mod;\n    }\n    return inv;\n}\n#line 4 \"test/yosupo/discrete_logarithm_mod.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    for (int i = 0; i < T;\
     \ ++i) {\n        int X, Y, M;\n        cin >> X >> Y >> M;\n        cout << mod_log(X,\
@@ -85,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-03-24 12:11:41+09:00'
+  timestamp: '2022-08-04 12:02:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/discrete_logarithm_mod.test.cpp
