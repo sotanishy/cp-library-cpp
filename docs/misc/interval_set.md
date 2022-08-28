@@ -1,6 +1,6 @@
 ---
 title: Interval Set
-documentation_of: ../../misc/interval_set.cpp
+documentation_of: ../../misc/interval_set.hpp
 ---
 
 ## Description
