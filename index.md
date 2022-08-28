@@ -137,6 +137,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
+    - icon: ':warning:'
+      path: data-structure/segtree/segment_tree_2d.hpp
+      title: 2D Segment Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
@@ -425,7 +428,7 @@ data:
       title: Fraction
     - icon: ':warning:'
       path: misc/interval_set.hpp
-      title: misc/interval_set.hpp
+      title: Interval Set
     - icon: ':warning:'
       path: misc/intervals.hpp
       title: Intervals

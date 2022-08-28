@@ -37,23 +37,25 @@ data:
     \              ++cnt;\n                n /= i;\n            }\n            ret[i]\
     \ = cnt;\n        }\n    }\n    if (n != 1) ret[n] = 1;\n    return ret;\n}\n\
     #line 3 \"math/moebius_table.cpp\"\n\n/*\n * @brief Table of Moebius Function\n\
-    \ */\nstd::vector<int> mobius_table(int n) {\n    auto prime = prime_table(n);\n\
-    \    std::vector<int> ret(n + 1, 1);\n    for (int i = 2; i <= n; ++i) {\n   \
-    \     if (prime[i]) {\n            for (int j = i; j <= n; j += i) {\n       \
-    \         if ((j / i) % i == 0) ret[j] = 0;\n                else ret[j] *= -1;\n\
-    \            }\n        }\n    }\n    return ret;\n}\n"
+    \ */\nstd::vector<int> moebius_table(int n) {\n    std::vector<bool> prime(n +\
+    \ 1, true);\n    std::vector<int> ret(n + 1, 1);\n    for (int i = 2; i <= n;\
+    \ ++i) {\n        if (!prime[i]) continue;\n        for (int j = i; j <= n; j\
+    \ += i) {\n            if (j > i) prime[j] = false;\n            if ((j / i) %\
+    \ i == 0) ret[j] = 0;\n            else ret[j] *= -1;\n        }\n    }\n    return\
+    \ ret;\n}\n"
   code: "#include <vector>\n#include \"prime.cpp\"\n\n/*\n * @brief Table of Moebius\
-    \ Function\n */\nstd::vector<int> mobius_table(int n) {\n    auto prime = prime_table(n);\n\
-    \    std::vector<int> ret(n + 1, 1);\n    for (int i = 2; i <= n; ++i) {\n   \
-    \     if (prime[i]) {\n            for (int j = i; j <= n; j += i) {\n       \
-    \         if ((j / i) % i == 0) ret[j] = 0;\n                else ret[j] *= -1;\n\
-    \            }\n        }\n    }\n    return ret;\n}"
+    \ Function\n */\nstd::vector<int> moebius_table(int n) {\n    std::vector<bool>\
+    \ prime(n + 1, true);\n    std::vector<int> ret(n + 1, 1);\n    for (int i = 2;\
+    \ i <= n; ++i) {\n        if (!prime[i]) continue;\n        for (int j = i; j\
+    \ <= n; j += i) {\n            if (j > i) prime[j] = false;\n            if ((j\
+    \ / i) % i == 0) ret[j] = 0;\n            else ret[j] *= -1;\n        }\n    }\n\
+    \    return ret;\n}"
   dependsOn:
   - math/prime.cpp
   isVerificationFile: false
   path: math/moebius_table.cpp
   requiredBy: []
-  timestamp: '2021-12-04 19:51:00+09:00'
+  timestamp: '2022-08-28 10:49:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/moebius_table.cpp

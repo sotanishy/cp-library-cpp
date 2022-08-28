@@ -74,9 +74,9 @@ data:
   timestamp: '2022-07-05 13:04:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_14_B.suffix_array.test.cpp
   - test/yosupo/suffixarray.test.cpp
   - test/yosupo/number_of_substrings.test.cpp
+  - test/aoj/ALDS1_14_B.suffix_array.test.cpp
 documentation_of: string/suffix_array.cpp
 layout: document
 title: Suffix Array

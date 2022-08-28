@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-structure/segtree/segment_tree_2d.hpp
+    title: 2D Segment Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
@@ -94,16 +97,17 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/segment_tree.cpp
-  requiredBy: []
+  requiredBy:
+  - data-structure/segtree/segment_tree_2d.hpp
   timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_A.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/aoj/DSL_2_A.test.cpp
 documentation_of: data-structure/segtree/segment_tree.cpp
 layout: document
 title: Segment Tree
