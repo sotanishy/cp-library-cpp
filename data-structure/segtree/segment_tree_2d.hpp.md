@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
+  bundledCode: "#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
     #include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
@@ -44,7 +44,7 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
-    #line 5 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
+    #line 6 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
     \ typename Y, typename M>\nclass SegmentTree2D {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree2D() = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X,\
     \ Y>>& pts) {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n\
@@ -77,12 +77,12 @@ data:
     \ hi));\n            }\n        }\n        return ret;\n    }\n\nprivate:\n  \
     \  int size;\n    std::vector<X> xs;\n    std::vector<std::vector<Y>> ys;\n  \
     \  std::vector<SegmentTree<M>> seg;\n};\n"
-  code: "#include <algorithm>\n#include <utility>\n#include <vector>\n#include \"\
-    segment_tree.cpp\"\n\ntemplate <typename X, typename Y, typename M>\nclass SegmentTree2D\
-    \ {\n    using T = typename M::T;\n\npublic:\n    SegmentTree2D() = default;\n\
-    \    explicit SegmentTree2D(const std::vector<std::pair<X, Y>>& pts) {\n     \
-    \   for (auto& [x, y] : pts) {\n            xs.push_back(x);\n        }\n    \
-    \    std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
+  code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
+    #include \"segment_tree.cpp\"\n\ntemplate <typename X, typename Y, typename M>\n\
+    class SegmentTree2D {\n    using T = typename M::T;\n\npublic:\n    SegmentTree2D()\
+    \ = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X, Y>>& pts)\
+    \ {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n      \
+    \  }\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
     \ xs.end()), xs.end());\n\n        const int n = xs.size();\n        size = 1;\n\
     \        while (size < n) size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2\
     \ * size);\n\n        for (auto& [x, y] : pts) {\n            int k = std::lower_bound(xs.begin(),\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_2d.hpp
   requiredBy: []
-  timestamp: '2022-08-28 10:49:32+09:00'
+  timestamp: '2022-08-29 11:20:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/segtree/segment_tree_2d.hpp

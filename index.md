@@ -41,6 +41,9 @@ data:
     - icon: ':warning:'
       path: data-structure/fenwick_tree_2d.cpp
       title: 2D Fenwick Tree
+    - icon: ':warning:'
+      path: data-structure/foldable_deque.hpp
+      title: Foldable Deque
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
@@ -68,7 +71,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':warning:'
@@ -174,7 +177,7 @@ data:
     - icon: ':warning:'
       path: dp/lcs.hpp
       title: Longest Common Subsequence
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/lis.hpp
       title: Longest Increasing Subsequence
     - icon: ':warning:'
@@ -365,7 +368,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -782,6 +785,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/counting_primes.test.cpp
       title: test/yosupo/counting_primes.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/deque_operate_all_composite.test.cpp
+      title: test/yosupo/deque_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/directedmst.test.cpp
       title: test/yosupo/directedmst.test.cpp
@@ -812,6 +818,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/enumerate_cliques.test.cpp
+      title: test/yosupo/enumerate_cliques.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
@@ -861,6 +870,9 @@ data:
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/longest_increasing_subsequence.test.cpp
+      title: test/yosupo/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
@@ -899,7 +911,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'

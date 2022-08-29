@@ -28,6 +28,9 @@ data:
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/enumerate_cliques.test.cpp
+    title: test/yosupo/enumerate_cliques.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerate_triangles.test.cpp
     title: test/yosupo/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,9 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Mod int
     links: []
@@ -160,7 +163,7 @@ data:
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2022-06-27 15:58:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/matrix_product.test.cpp
@@ -183,6 +186,7 @@ data:
   - test/yosupo/subset_convolution.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/find_linear_recurrence.test.cpp
+  - test/yosupo/enumerate_cliques.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/bitwise_xor_convolution.test.cpp
