@@ -14,9 +14,8 @@ public:
     }
 
     void pop() {
-        assert(!empty())
+        assert(!empty());
         if (front.empty()) {
-            if (back.empty()) return;
             T x = back.top().first;
             back.pop();
             front.emplace(x, x);
