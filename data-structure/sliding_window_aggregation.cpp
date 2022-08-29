@@ -14,6 +14,7 @@ public:
     }
 
     void pop() {
+        assert(!empty())
         if (front.empty()) {
             if (back.empty()) return;
             T x = back.top().first;
