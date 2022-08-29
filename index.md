@@ -41,7 +41,7 @@ data:
     - icon: ':warning:'
       path: data-structure/fenwick_tree_2d.cpp
       title: 2D Fenwick Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/foldable_deque.hpp
       title: Foldable Deque
     - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':warning:'
@@ -368,7 +368,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -785,7 +785,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/counting_primes.test.cpp
       title: test/yosupo/counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/deque_operate_all_composite.test.cpp
       title: test/yosupo/deque_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -911,7 +911,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'

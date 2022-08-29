@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/deque_operate_all_composite.test.cpp
+    title: test/yosupo/deque_operate_all_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/foldable_deque.hpp\"\n#include <cassert>\n\
@@ -58,8 +61,9 @@ data:
   path: data-structure/foldable_deque.hpp
   requiredBy: []
   timestamp: '2022-08-29 11:20:27+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/deque_operate_all_composite.test.cpp
 documentation_of: data-structure/foldable_deque.hpp
 layout: document
 title: Foldable Deque
