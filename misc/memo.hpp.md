@@ -88,7 +88,7 @@ $$
 
 ### Burnside's Lemma
 
-群 $G$ が集合 $X$ に作用しているとき，軌道の数 $|X/G|$ は，
+群 $G$ が集合 $X$ に作用しているとき，軌道の数 $\vert X/G\vert$ は，
 
 $$
 |X/G|=\frac{1}{|G|}\sum_{g\in G}|X^g|
@@ -127,7 +127,7 @@ $$
 
 ### Hall's Marriage Theorem
 
-頂点集合 $U,V$ からなる二部グラフ $G$ において，$U$ の全頂点をカバーするマッチングが存在する必要十分条件は，任意の $A\subset U$ に対して $|A|\leq |N(A)|$ が成り立つこと．ここで $N(A)$ は $A$ の隣接頂点の集合．
+頂点集合 $U,V$ からなる二部グラフ $G$ において，$U$ の全頂点をカバーするマッチングが存在する必要十分条件は，任意の $A\subset U$ に対して $\vert A\vert \leq \vert N(A)\vert$ が成り立つこと．ここで $N(A)$ は $A$ の隣接頂点の集合．
 
 ### Covering/Packing-Problem Pairs
 
@@ -203,6 +203,12 @@ $$
 \text{subject to } \quad & \boldsymbol{y}^\intercal A = \boldsymbol{c} \\
 & \boldsymbol{y}^\intercal \geq \boldsymbol{0}
 \end{aligned}
+$$
+
+### Matroid Intersection Duality Theorem
+
+$$
+\max \{|S| \mid S \in \mathcal{I}(M_1) \cap \mathcal{I}(M_2) \} = \min \{r_{M_1}(E_1) + r_{M_2}(E_2) \mid E_1 \cup E_2 = E \}
 $$
 
 ### Euler's Polyhedron Theorem
