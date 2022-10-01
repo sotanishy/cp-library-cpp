@@ -9,9 +9,12 @@ Bostan-Mori algorithm は，$d$ 階線形漸化式の第 $n$ 項を高速に求�
 
 ## Operations
 
-- `T bostan_mori(vector<T> a, vector<T> c, long long n)`
-    - 初めの $k$ 項 $a_0, \dots, a_{k-1}$ と漸化式 $a_n = c_0 a_{n-1} + \dots + c_{k-1} a_{n-k}$ によって定まる数列 $(a_n)$ の第 $n$ 項を求める．
+- `T bostan_mori_division(Polynomial<T> p, Polynomial<T> q, long long n)`
+    - $p(x)/q(x)$ の第 $n$ 項を求める．
     - 時間計算量: $O(\mathsf{M}(k) \log n)$, $\mathsf{M(k)}$ は$k$次多項式乗算の計算量 (FFT なら $O(k\log k)$)
+- `T bostan_mori_recurrence(vector<T> a, vector<T> c, long long n)`
+    - 初めの $k$ 項 $a_0, \dots, a_{k-1}$ と漸化式 $a_n = c_0 a_{n-1} + \dots + c_{k-1} a_{n-k}$ によって定まる数列 $(a_n)$ の第 $n$ 項を求める．
+    - 時間計算量: 同上
 
 ## Reference
 

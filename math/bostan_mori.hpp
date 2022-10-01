@@ -1,9 +1,33 @@
 #pragma once
 #include <vector>
 #include "../convolution/ntt.hpp"
+#include "../math/polynomial.cpp"
 
 template <typename T>
-T bostan_mori(const std::vector<T>& a, const std::vector<T>& c, long long n) {
+T bostan_mori_division(Polynomial<T> p, Polynomial<T> q, long long n) {
+    auto take = [&](const std::vector<T>& p, int s) {
+        std::vector<T> r((p.size() + 1) / 2);
+        for (int i = 0; i < (int) r.size(); ++i) {
+            if (2 * i + s < (int) p.size()) {
+                r[i] = p[2 * i + s];
+            }
+        }
+        return r;
+    };
+
+    while (n > 0) {
+        auto qm = q;
+        for (int i = 1; i < (int) qm.size(); i += 2) qm[i] = -qm[i];
+        p = take(p * qm, n & 1);
+        q = take(q * qm, 0);
+        n >>= 1;
+    }
+
+    return p[0] / q[0];
+}
+
+template <typename T>
+T bostan_mori_recurrence(const std::vector<T>& a, const std::vector<T>& c, long long n) {
     const int d = c.size();
     if (n < d) return a[n];
 

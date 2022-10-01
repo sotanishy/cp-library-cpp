@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <map>
 #include <memory>
 #include <queue>
@@ -9,13 +10,14 @@ class AhoCorasick {
 public:
     explicit AhoCorasick() : root(std::make_shared<Node>()) {}
 
-    void insert(const std::string& s) {
+    void insert(const std::string& s, int id = -1) {
         auto t = root;
         for (char c : s) {
             if (!t->ch.count(c)) t->ch[c] = std::make_shared<Node>();
             t = t->ch[c];
         }
         ++t->cnt;
+        t->accept.push_back(id);
     }
 
     void clear() { root = std::make_shared<Node>(); }
@@ -28,11 +30,16 @@ public:
             que.pop();
 
             for (auto [c, v] : t->ch) {
-                auto u = t->link;
-                while (u && !u->ch.count(c)) u = u->link;
-                v->link = u ? u->ch[c] : root;
+                v->link = get_next(t->link, c);
 
                 v->cnt += v->link->cnt;
+
+                auto& a = v->accept;
+                auto& b = v->link->accept;
+                std::vector<int> accept;
+                std::set_union(a.begin(), a.end(), b.begin(), b.end(), std::back_inserter(accept));
+                a = accept;
+
                 que.push(v);
             }
         }
@@ -42,9 +49,22 @@ public:
         long long ret = 0;
         auto t = root;
         for (auto c : str) {
-            while (t && !t->ch.count(c)) t = t->link;
-            t = t ? t->ch[c] : root;
+            t = get_next(t, c);
             ret += t->cnt;
+        }
+        return ret;
+    }
+
+    // list of (id, index)
+    std::vector<std::pair<int, int>> match(const std::string& str) const {
+        std::vector<std::pair<int, int>> ret;
+        auto t = root;
+        for (int i = 0; i < (int) str.size(); ++i) {
+            char c = str[i];
+            t = get_next(t, c);
+            for (auto j : t->accept) {
+                ret.emplace_back(j, i);
+            }
         }
         return ret;
     }
@@ -55,6 +75,7 @@ private:
 
     struct Node {
         std::map<char, node_ptr> ch;
+        std::vector<int> accept;
         node_ptr link;
         int cnt = 0;
 
@@ -62,8 +83,12 @@ private:
     };
 
     node_ptr root;
-};
 
+    node_ptr get_next(node_ptr t, char c) const {
+        while (t && !t->ch.count(c)) t = t->link;
+        return t ? t->ch[c] : root;
+    }
+};
 
 class DynamicAhoCorasick {
     std::vector<std::vector<std::string>> dict;

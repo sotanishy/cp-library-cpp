@@ -25,7 +25,7 @@ Aho-Corasick 法は，入力文字列に対して複数のパターンを高速�
 
 - `void insert(string p)`
     - パターン $p$ を挿入する
-    - 時間計算量: $\mathrm{\amortized}\,O(\vert p\vert\log n)$
+    - 時間計算量: $\mathrm{amortized}\,O(\vert p\vert\log n)$
 - `map<int, int> match(string s)`
     - 文字列 $s$ に対する各パターンのマッチ回数を返す
     - 時間計算量: $O((\vert s\vert + \sum \vert p\vert)\log n)$

@@ -18,5 +18,5 @@ int main() {
     vector<mint> a(d), c(d);
     for (auto& x : a) cin >> x;
     for (auto& x : c) cin >> x;
-    cout << bostan_mori(a, c, k) << endl;
+    cout << bostan_mori_recurrence(a, c, k) << endl;
 }
