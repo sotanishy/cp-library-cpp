@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
   - icon: ':heavy_check_mark:'

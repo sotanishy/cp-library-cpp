@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: tree/permutation_tree.hpp
+    title: Permutation Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/common_interval_decomposition_tree.test.cpp
+    title: test/yosupo/common_interval_decomposition_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
@@ -109,10 +115,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/lazy_segment_tree.cpp
-  requiredBy: []
+  requiredBy:
+  - tree/permutation_tree.hpp
   timestamp: '2022-06-30 16:20:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/common_interval_decomposition_tree.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_G.lazy_segment_tree.test.cpp

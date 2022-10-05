@@ -273,7 +273,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/eulerian_path.hpp
       title: Eulerian Path
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -535,6 +535,9 @@ data:
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
     - icon: ':heavy_check_mark:'
+      path: tree/permutation_tree.hpp
+      title: Permutation Tree
+    - icon: ':heavy_check_mark:'
       path: tree/rerooting.cpp
       title: Rerooting
     - icon: ':heavy_check_mark:'
@@ -717,10 +720,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A.prim.test.cpp
       title: test/aoj/GRL_2_A.prim.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_A.test.cpp
       title: test/aoj/GRL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -779,6 +782,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/common_interval_decomposition_tree.test.cpp
+      title: test/yosupo/common_interval_decomposition_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.cpp
     title: Lowlink
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
@@ -38,26 +38,26 @@ data:
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n   \
     \ int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int i\
     \ = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
-    \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    vector<pair<int,\
-    \ int>> bridges = lowlink.get_bridges();\n    sort(bridges.begin(), bridges.end());\n\
-    \    for (auto& p : bridges) {\n        cout << p.first << \" \" << p.second <<\
-    \ \"\\n\";\n    }\n}\n"
+    \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    auto bridges\
+    \ = lowlink.bridge;\n    sort(bridges.begin(), bridges.end());\n    for (auto&\
+    \ p : bridges) {\n        cout << p.first << \" \" << p.second << \"\\n\";\n \
+    \   }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B\"\
     \n\n#include \"../../graph/lowlink.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
     \n    int V, E;\n    cin >> V >> E;\n    vector<vector<int>> G(V);\n    for (int\
     \ i = 0; i < E; ++i) {\n        int s, t;\n        cin >> s >> t;\n        G[s].push_back(t);\n\
-    \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    vector<pair<int,\
-    \ int>> bridges = lowlink.get_bridges();\n    sort(bridges.begin(), bridges.end());\n\
-    \    for (auto& p : bridges) {\n        cout << p.first << \" \" << p.second <<\
-    \ \"\\n\";\n    }\n}"
+    \        G[t].push_back(s);\n    }\n    Lowlink lowlink(G);\n    auto bridges\
+    \ = lowlink.bridge;\n    sort(bridges.begin(), bridges.end());\n    for (auto&\
+    \ p : bridges) {\n        cout << p.first << \" \" << p.second << \"\\n\";\n \
+    \   }\n}"
   dependsOn:
   - graph/lowlink.cpp
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2022-10-05 11:03:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-05 11:09:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp
 layout: document
