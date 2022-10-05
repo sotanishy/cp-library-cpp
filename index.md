@@ -273,7 +273,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/eulerian_path.hpp
       title: Eulerian Path
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/lowlink.cpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -717,10 +717,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A.prim.test.cpp
       title: test/aoj/GRL_2_A.prim.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_A.test.cpp
       title: test/aoj/GRL_3_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
