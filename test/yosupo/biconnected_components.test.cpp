@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
 
+#include "../../graph/lowlink.cpp"
 #include "../../graph/biconnected_components.cpp"
 
 #include <bits/stdc++.h>
@@ -13,26 +14,34 @@ int main() {
     int N, M;
     cin >> N >> M;
     vector<vector<int>> G(N);
-    map<pair<int, int>, vector<int>> id;
+    set<pair<int, int>> st;
+    vector<bool> alone(N, true);
     for (int i = 0; i < M; ++i) {
         int a, b;
         cin >> a >> b;
-        if (!id.count(minmax(a, b))) {
+        if (!st.count(minmax(a, b))) {
             G[a].push_back(b);
             G[b].push_back(a);
+            alone[a] = alone[b] = false;
         }
-        id[minmax(a, b)].push_back(i);
+        st.insert(minmax(a, b));
     }
-    BiconnectedComponents bc(G);
-    auto comps = bc.get_biconnected_components();
+    Lowlink low(G);
+    auto comps = biconnected_components(G, low);
+    for (int i = 0; i < N; ++i) {
+        if (alone[i]) {
+            comps.push_back({{i, i}});
+        }
+    }
     cout << comps.size() << endl;
     for (auto& comp : comps) {
-        vector<int> c;
+        set<int> st;
         for (auto [u, v] : comp) {
-            for (int i : id[minmax(u, v)]) c.push_back(i);
+            st.insert(u);
+            st.insert(v);
         }
-        cout << c.size();
-        for (int i : c) cout << " " << i;
+        cout << st.size();
+        for (int i : st) cout << " " << i;
         cout << "\n";
     }
 }

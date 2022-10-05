@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_edge_connected_components"
 
+#include "../../graph/lowlink.cpp"
 #include "../../graph/two_edge_connected_components.cpp"
 
 #include <bits/stdc++.h>
@@ -18,7 +19,8 @@ int main() {
         G[a].push_back(b);
         G[b].push_back(a);
     }
-    auto comp = two_edge_connected_components(G);
+    Lowlink low(G);
+    auto comp = two_edge_connected_components(G, low);
     vector<vector<int>> ans(*max_element(comp.begin(), comp.end()) + 1);
     for (int i = 0; i < N; ++i) ans[comp[i]].push_back(i);
     cout << ans.size() << "\n";

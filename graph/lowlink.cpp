@@ -5,19 +5,15 @@
 
 class Lowlink {
 public:
+    std::vector<int> ord, low;
+    std::vector<std::pair<int, int>> bridge;
+    std::vector<int> articulation;
+
     Lowlink() = default;
-    explicit Lowlink(const std::vector<std::vector<int>>& G) : G(G), ord(G.size(), -1), low(G.size()) {
+    explicit Lowlink(const std::vector<std::vector<int>>& G) : ord(G.size(), -1), low(G.size()), G(G) {
         for (int i = 0; i < (int) G.size(); ++i) {
             if (ord[i] == -1) dfs(i, -1);
         }
-    }
-
-    std::vector<std::pair<int, int>> get_bridges() const {
-        return bridge;
-    }
-
-    std::vector<int> get_articulation_points() const {
-        return articulation;
     }
 
     bool is_bridge(int u, int v) const {
@@ -25,13 +21,8 @@ public:
         return ord[u] < low[v];
     }
 
-protected:
-    std::vector<std::vector<int>> G;
-    std::vector<int> ord, low;
-    std::vector<std::pair<int, int>> bridge;
-    std::vector<int> articulation;
-
 private:
+    std::vector<std::vector<int>> G;
     int k = 0;
 
     void dfs(int v, int p) {
