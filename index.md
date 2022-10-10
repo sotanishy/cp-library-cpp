@@ -436,6 +436,9 @@ data:
       path: misc/intervals.hpp
       title: Intervals
     - icon: ':warning:'
+      path: misc/majority.hpp
+      title: Boyer-Moore Majority Vote Algorithm
+    - icon: ':warning:'
       path: misc/marathon_template.cpp
       title: misc/marathon_template.cpp
     - icon: ':warning:'
