@@ -478,7 +478,7 @@ data:
       title: 2-SAT
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/aho_corasick.cpp
       title: Aho-Corasick Algorithm
     - icon: ':heavy_check_mark:'
@@ -496,6 +496,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: Palindromic Tree
+    - icon: ':heavy_check_mark:'
+      path: string/pattern_search_2d.hpp
+      title: 2D Pattern Search (Baker-Bird Algorithm)
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.cpp
       title: Rolling Hash
@@ -594,6 +597,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
       title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_14_C.test.cpp
+      title: test/aoj/ALDS1_14_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
