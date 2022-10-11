@@ -5,6 +5,9 @@ data:
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/bostan_mori.hpp
+    title: Bostan-Mori Algorithm
   - icon: ':warning:'
     path: math/interpolation.cpp
     title: Polynomial Interpolation
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
@@ -230,12 +236,14 @@ data:
   path: math/polynomial.cpp
   requiredBy:
   - math/stirling_first.hpp
+  - math/bostan_mori.hpp
   - math/multipoint_evaluation.cpp
   - math/interpolation.cpp
   timestamp: '2022-06-27 18:10:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp

@@ -10,6 +10,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
+  - icon: ':heavy_check_mark:'
+    path: math/polynomial.cpp
+    title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -80,38 +83,125 @@ data:
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
     \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
     \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
-    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 4\
-    \ \"math/bostan_mori.hpp\"\n\ntemplate <typename T>\nT bostan_mori(const std::vector<T>&\
-    \ a, const std::vector<T>& c, long long n) {\n    const int d = c.size();\n  \
-    \  if (n < d) return a[n];\n\n    std::vector<T> q(d + 1);\n    q[0] = 1;\n  \
-    \  for (int i = 0; i < d; ++i) q[i + 1] = -c[i];\n    auto p = convolution(a,\
-    \ q);\n    p.resize(d);\n\n    auto take = [&](const std::vector<T>& p, int s)\
-    \ {\n        std::vector<T> r((p.size() + 1) / 2);\n        for (int i = 0; i\
-    \ < (int) r.size(); ++i) {\n            r[i] = p[2 * i + s];\n        }\n    \
-    \    return r;\n    };\n\n    while (n > 0) {\n        auto qm = q;\n        for\
-    \ (int i = 1; i < (int) qm.size(); i += 2) qm[i] = -qm[i];\n        p = take(convolution(p,\
+    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 3\
+    \ \"math/polynomial.cpp\"\n#include <cassert>\n#line 6 \"math/polynomial.cpp\"\
+    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
+    \    using Poly = Polynomial;\n\npublic:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const { return\
+    \ Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }\n\
+    \n    Poly rev(int deg = -1) const {\n        Poly ret(*this);\n        if (deg\
+    \ != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(), ret.rend());\n\
+    \    }\n\n    Poly& operator+=(const Poly& rhs) {\n        if (this->size() <\
+    \ rhs.size()) this->resize(rhs.size());\n        for (int i = 0; i < (int) rhs.size();\
+    \ ++i) (*this)[i] += rhs[i];\n        return *this;\n    }\n\n    Poly& operator+=(const\
+    \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
+    \ += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const Poly& rhs)\
+    \ {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n      \
+    \  for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] -= rhs[i];\n        return\
+    \ *this;\n    }\n\n    Poly& operator-=(const mint& rhs) {\n        if (this->empty())\
+    \ this->resize(1);\n        (*this)[0] -= rhs;\n        return *this;\n    }\n\
+    \n    Poly& operator*=(const Poly& rhs) {\n        *this = convolution(*this,\
+    \ rhs);\n        // // naive convolution O(N^2)\n        // std::vector<mint>\
+    \ res(this->size() + rhs.size() - 1);\n        // for (int i = 0; i < (int) this->size();\
+    \ ++i) {\n        //     for (int j = 0; j < (int) rhs.size(); ++j) {\n      \
+    \  //         res[i + j] += (*this)[i] * rhs[j];\n        //     }\n        //\
+    \ }\n        // *this = res;\n        return *this;\n    }\n\n    Poly& operator*=(const\
+    \ mint& rhs) {\n        for (int i = 0; i < (int) this->size(); ++i) (*this)[i]\
+    \ *= rhs;\n        return *this;\n    }\n\n    Poly& operator/=(const Poly& rhs)\
+    \ {\n        if(this->size() < rhs.size()) {\n            this->clear();\n   \
+    \         return *this;\n        }\n        int n = this->size() - rhs.size()\
+    \ + 1;\n        return *this = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n\
+    \    }\n\n    Poly& operator%=(const Poly& rhs) {\n        *this -= *this / rhs\
+    \ * rhs;\n        while (!this->empty() && this->back() == 0) this->pop_back();\n\
+    \        return *this;\n    }\n\n    Poly& operator-() const {\n        Poly ret(this->size());\n\
+    \        for (int i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];\n\
+    \        return ret;\n    }\n\n    Poly operator+(const Poly& rhs) const { return\
+    \ Poly(*this) += rhs; }\n    Poly operator+(const mint& rhs) const { return Poly(*this)\
+    \ += rhs; }\n    Poly operator-(const Poly& rhs) const { return Poly(*this) -=\
+    \ rhs; }\n    Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs;\
+    \ }\n    Poly operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n\
+    \    Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }\n  \
+    \  Poly operator/(const Poly& rhs) const { return Poly(*this) /= rhs; }\n    Poly\
+    \ operator%(const Poly& rhs) const { return Poly(*this) %= rhs; }\n\n    Poly\
+    \ operator<<(int n) const {\n        Poly ret(*this);\n        ret.insert(ret.begin(),\
+    \ n, 0);\n        return ret;\n    }\n\n    Poly operator>>(int n) const {\n \
+    \       if (this->size() <= n) return {};\n        Poly ret(*this);\n        ret.erase(ret.begin(),\
+    \ ret.begin() + n);\n        return ret;\n    }\n\n\n    mint operator()(const\
+    \ mint& x) {\n        mint y = 0, powx = 1;\n        for (int i = 0; i < (int)\
+    \ this->size(); ++i) {\n            y += (*this)[i] * powx;\n            powx\
+    \ *= x;\n        }\n        return y;\n    }\n\n    Poly inv(int deg = -1) const\
+    \ {\n        assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
+    \        Poly ret({mint(1) / (*this)[0]});\n        for (int i = 1; i < deg; i\
+    \ <<= 1) {\n            ret = (ret * mint(2) - ret * ret * this->pre(i << 1)).pre(i\
+    \ << 1);\n        }\n        return ret;\n    }\n\n    Poly exp(int deg = -1)\
+    \ const {\n        assert((*this)[0] == mint(0));\n        if (deg == -1) deg\
+    \ = this->size();\n        Poly ret({mint(1)});\n        for (int i = 1; i < deg;\
+    \ i <<= 1) {\n            ret = (ret * (this->pre(i << 1) + mint(1) - ret.log(i\
+    \ << 1))).pre(i << 1);\n        }\n        return ret;\n    }\n\n    Poly log(int\
+    \ deg = -1) const {\n        assert((*this)[0] == mint(1));\n        if (deg ==\
+    \ -1) deg = this->size();\n        return (this->diff() * this->inv(deg)).pre(deg\
+    \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
+    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
+    \        Poly ret(*this);\n        int cnt = 0;\n        while (cnt < (int) ret.size()\
+    \ && ret[cnt] == mint(0)) ++cnt;\n        if (cnt * k >= deg) return Poly(deg,\
+    \ mint(0));\n        ret.erase(ret.begin(), ret.begin() + cnt);\n        deg -=\
+    \ cnt * k;\n        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg)\
+    \ * mint(ret[0]).pow(k);\n        ret.insert(ret.begin(), cnt * k, mint(0));\n\
+    \        return ret;\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0,\
+    \ (int) this->size() - 1));\n        for (int i = 1; i <= (int) ret.size(); ++i)\
+    \ ret[i - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
+    \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
+    \      for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i]\
+    \ / mint(i + 1);\n        return ret;\n    }\n\n    Poly taylor_shift(long long\
+    \ c) const {\n        const int n = this->size();\n        std::vector<mint> fact(n,\
+    \ 1), fact_inv(n, 1);\n        for (int i = 1; i < n; ++i) fact[i] = fact[i-1]\
+    \ * i;\n        fact_inv[n-1] = mint(1) / fact[n-1];\n        for (int i = n -\
+    \ 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;\n\n        auto ret = *this;\n\
+    \        Poly e(n+1);\n        e[0] = 1;\n        mint p = c;\n        for (int\
+    \ i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n            e[i] = p *\
+    \ fact_inv[i];\n            p *= c;\n        }\n        ret = (ret.rev() * e).pre(n).rev();\n\
+    \        for (int i = n - 1; i >= 0; --i) {\n            ret[i] *= fact_inv[i];\n\
+    \        }\n        return ret;\n    }\n};\n#line 5 \"math/bostan_mori.hpp\"\n\
+    \ntemplate <typename T>\nT bostan_mori_division(Polynomial<T> p, Polynomial<T>\
+    \ q, long long n) {\n    auto take = [&](const std::vector<T>& p, int s) {\n \
+    \       std::vector<T> r((p.size() + 1) / 2);\n        for (int i = 0; i < (int)\
+    \ r.size(); ++i) {\n            if (2 * i + s < (int) p.size()) {\n          \
+    \      r[i] = p[2 * i + s];\n            }\n        }\n        return r;\n   \
+    \ };\n\n    while (n > 0) {\n        auto qm = q;\n        for (int i = 1; i <\
+    \ (int) qm.size(); i += 2) qm[i] = -qm[i];\n        p = take(p * qm, n & 1);\n\
+    \        q = take(q * qm, 0);\n        n >>= 1;\n    }\n\n    return p[0] / q[0];\n\
+    }\n\ntemplate <typename T>\nT bostan_mori_recurrence(const std::vector<T>& a,\
+    \ const std::vector<T>& c, long long n) {\n    const int d = c.size();\n    if\
+    \ (n < d) return a[n];\n\n    std::vector<T> q(d + 1);\n    q[0] = 1;\n    for\
+    \ (int i = 0; i < d; ++i) q[i + 1] = -c[i];\n    auto p = convolution(a, q);\n\
+    \    p.resize(d);\n\n    auto take = [&](const std::vector<T>& p, int s) {\n \
+    \       std::vector<T> r((p.size() + 1) / 2);\n        for (int i = 0; i < (int)\
+    \ r.size(); ++i) {\n            r[i] = p[2 * i + s];\n        }\n        return\
+    \ r;\n    };\n\n    while (n > 0) {\n        auto qm = q;\n        for (int i\
+    \ = 1; i < (int) qm.size(); i += 2) qm[i] = -qm[i];\n        p = take(convolution(p,\
     \ qm), n & 1);\n        q = take(convolution(q, qm), 0);\n        n >>= 1;\n \
     \   }\n\n    return p[0] / q[0];\n}\n#line 5 \"test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int d;\n    long long k;\n    cin >> d >> k;\n    vector<mint> a(d), c(d);\n\
     \    for (auto& x : a) cin >> x;\n    for (auto& x : c) cin >> x;\n    cout <<\
-    \ bostan_mori(a, c, k) << endl;\n}\n"
+    \ bostan_mori_recurrence(a, c, k) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/bostan_mori.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int d;\n    long long k;\n    cin >> d >> k;\n    vector<mint> a(d), c(d);\n\
     \    for (auto& x : a) cin >> x;\n    for (auto& x : c) cin >> x;\n    cout <<\
-    \ bostan_mori(a, c, k) << endl;\n}\n"
+    \ bostan_mori_recurrence(a, c, k) << endl;\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/bostan_mori.hpp
   - convolution/ntt.hpp
+  - math/polynomial.cpp
   isVerificationFile: true
   path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:41:31+09:00'
+  timestamp: '2022-10-01 22:18:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp

@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: tree/range_contour_aggregation.hpp
+    title: Range Contour Aggregation
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -46,11 +52,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: tree/centroid_decomposition.hpp
-  requiredBy: []
+  requiredBy:
+  - tree/range_contour_aggregation.hpp
   timestamp: '2022-07-02 23:54:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: tree/centroid_decomposition.hpp
 layout: document
 title: Centroid Decomposition

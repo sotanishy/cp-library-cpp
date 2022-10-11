@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: tree/range_contour_aggregation.hpp
+    title: Range Contour Aggregation
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_B.test.cpp
@@ -12,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
@@ -53,12 +59,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/fenwick_tree.cpp
-  requiredBy: []
+  requiredBy:
+  - tree/range_contour_aggregation.hpp
   timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
+  - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/number_of_subsequences.test.cpp
   - test/aoj/DSL_2_B.test.cpp
 documentation_of: data-structure/fenwick_tree.cpp

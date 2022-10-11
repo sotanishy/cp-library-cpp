@@ -541,6 +541,9 @@ data:
       path: tree/permutation_tree.hpp
       title: Permutation Tree
     - icon: ':heavy_check_mark:'
+      path: tree/range_contour_aggregation.hpp
+      title: Range Contour Aggregation
+    - icon: ':heavy_check_mark:'
       path: tree/rerooting.cpp
       title: Rerooting
     - icon: ':heavy_check_mark:'
@@ -1004,6 +1007,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
