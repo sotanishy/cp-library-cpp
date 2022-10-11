@@ -13,6 +13,6 @@ int main() {
     cin >> T;
     string P;
     cin >> P;
-    auto ans = kmp(T, P);
+    auto ans = kmp(T, P, prefix_function(P));
     for (int i : ans) cout << i << "\n";
 }

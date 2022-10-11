@@ -2,7 +2,8 @@
 #include <string>
 #include <vector>
 
-std::vector<int> prefix_function(const std::string& s) {
+template <typename T>
+std::vector<int> prefix_function(const std::vector<T>& s) {
     const int n = s.size();
     std::vector<int> ret(n);
     int len = 0;
@@ -22,9 +23,9 @@ std::vector<int> prefix_function(const std::string& s) {
     return ret;
 }
 
-std::vector<int> kmp(const std::string txt, const std::string pat) {
+template <typename T>
+std::vector<int> kmp(const std::vector<T>& txt, const std::vector<T>& pat, const std::vector<int>& pf) {
     int n = txt.size(), m = pat.size();
-    auto lps = prefix_function(pat);
     std::vector<int> match;
     int i = 0, j = 0;
     while (i < n) {
@@ -34,16 +35,24 @@ std::vector<int> kmp(const std::string txt, const std::string pat) {
         }
         if (j == m) {
             match.push_back(i - j);
-            j = lps[j - 1];
+            j = pf[j - 1];
         } else if (i < n && pat[j] != txt[i]) {
             if (j != 0) {
-                j = lps[j - 1];
+                j = pf[j - 1];
             } else {
                 ++i;
             }
         }
     }
     return match;
+}
+
+std::vector<int> prefix_function(const std::string& s) {
+    return prefix_function(std::vector<char>(s.begin(), s.end()));
+}
+
+std::vector<int> kmp(const std::string& txt, const std::string& pat, const std::vector<int>& pf) {
+    return kmp(std::vector<char>(txt.begin(), txt.end()), std::vector<char>(pat.begin(), pat.end()), pf);
 }
 
 template <int AlphabetSize, int Offset>

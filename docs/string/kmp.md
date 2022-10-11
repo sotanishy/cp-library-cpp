@@ -11,10 +11,12 @@ Knuth-Morris-Pratt のアルゴリズムは，文字列中のパターンの出�
 
 ## Operations
 
+- `vector<int> prefix_function(vector<T> s)`
 - `vector<int> prefix_function(string s)`
-    - 文字列 `s` の prefix function を計算する
+    - 数列 `s` の prefix function を計算する
     - 時間計算量: $O(n)$
-- `vector<int> kmp(string txt, string pat)`
+- `vector<int> kmp(vector<T> txt, vector<T> pat, vector<int> pf)`
+- `vector<int> kmp(string txt, string pat, vector<int> pf)`
     - `txt`中の`pat`の出現位置を列挙する
     - 時間計算量: $O(n + m)$
 - `vector<vector<pair<int, bool>>> matching_automaton(string s)`

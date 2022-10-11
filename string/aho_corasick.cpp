@@ -1,56 +1,78 @@
 #pragma once
 #include <algorithm>
 #include <map>
-#include <memory>
 #include <queue>
 #include <string>
 #include <vector>
 
 class AhoCorasick {
 public:
-    explicit AhoCorasick() : root(std::make_shared<Node>()) {}
+    struct Node {
+        std::map<char, int> ch;
+        std::vector<int> accept;
+        int link = -1;
+        int cnt = 0;
+
+        Node() = default;
+    };
+
+    std::vector<Node> states;
+    std::map<int, int> accept_state;
+
+    explicit AhoCorasick() : states(1) {}
 
     void insert(const std::string& s, int id = -1) {
-        auto t = root;
+        int i = 0;
         for (char c : s) {
-            if (!t->ch.count(c)) t->ch[c] = std::make_shared<Node>();
-            t = t->ch[c];
+            if (!states[i].ch.count(c)) {
+                states[i].ch[c] = states.size();
+                states.emplace_back();
+            }
+            i = states[i].ch[c];
         }
-        ++t->cnt;
-        t->accept.push_back(id);
+        ++states[i].cnt;
+        states[i].accept.push_back(id);
+        accept_state[id] = i;
     }
 
-    void clear() { root = std::make_shared<Node>(); }
+    void clear() {
+        states.clear();
+        states.emplace_back();
+    }
+
+    int get_next(int i, char c) const {
+        while (i != -1 && !states[i].ch.count(c)) i = states[i].link;
+        return i != -1 ? states[i].ch.at(c) : 0;
+    }
 
     void build() {
-        std::queue<node_ptr> que;
-        que.push(root);
+        std::queue<int> que;
+        que.push(0);
         while (!que.empty()) {
-            auto t = que.front();
+            int i = que.front();
             que.pop();
 
-            for (auto [c, v] : t->ch) {
-                v->link = get_next(t->link, c);
+            for (auto [c, j] : states[i].ch) {
+                states[j].link = get_next(states[i].link, c);
+                states[j].cnt += states[states[j].link].cnt;
 
-                v->cnt += v->link->cnt;
-
-                auto& a = v->accept;
-                auto& b = v->link->accept;
+                auto& a = states[j].accept;
+                auto& b = states[states[j].link].accept;
                 std::vector<int> accept;
                 std::set_union(a.begin(), a.end(), b.begin(), b.end(), std::back_inserter(accept));
                 a = accept;
 
-                que.push(v);
+                que.push(j);
             }
         }
     }
 
     long long count(const std::string& str) const {
         long long ret = 0;
-        auto t = root;
+        int i = 0;
         for (auto c : str) {
-            t = get_next(t, c);
-            ret += t->cnt;
+            i = get_next(i, c);
+            ret += states[i].cnt;
         }
         return ret;
     }
@@ -58,35 +80,15 @@ public:
     // list of (id, index)
     std::vector<std::pair<int, int>> match(const std::string& str) const {
         std::vector<std::pair<int, int>> ret;
-        auto t = root;
-        for (int i = 0; i < (int) str.size(); ++i) {
-            char c = str[i];
-            t = get_next(t, c);
-            for (auto j : t->accept) {
-                ret.emplace_back(j, i);
+        int i = 0;
+        for (int k = 0; k < (int) str.size(); ++k) {
+            char c = str[k];
+            i = get_next(i, c);
+            for (auto id : states[i].accept) {
+                ret.emplace_back(id, k);
             }
         }
         return ret;
-    }
-
-private:
-    struct Node;
-    using node_ptr = std::shared_ptr<Node>;
-
-    struct Node {
-        std::map<char, node_ptr> ch;
-        std::vector<int> accept;
-        node_ptr link;
-        int cnt = 0;
-
-        Node() = default;
-    };
-
-    node_ptr root;
-
-    node_ptr get_next(node_ptr t, char c) const {
-        while (t && !t->ch.count(c)) t = t->link;
-        return t ? t->ch[c] : root;
     }
 };
 
