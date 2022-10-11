@@ -13,9 +13,13 @@ documentation_of: ../../graph/biconnected_components.cpp
 
 ## Operations
 
-- `BiconnectedComponents(vector<vector<int>> G)`
-    - グラフ $G$ の隣接リストが与えられたとき，$G$ を二重頂点連結成分分解する
-    - 時間計算量: $O(V + E)$
-- `vector<vector<pair<int, int>>> get_biconnected_components()`
+- `vector<vector<pair<int, int>>> biconnected_components(vector<vector<int>> G, Lowlink low)`
+    - グラフ $G$ の隣接リストと，$G$ の lowlink 構造体が与えられたとき，$G$ を二重頂点連結成分分解する
     - $G$ の二重頂点連結成分を返す
-    - 時間計算量: $O(V)$
+    - 時間計算量: $O(V + E)$
+
+## Note
+
+多重辺は予め取り除いておく必要がある (多重辺を取り除いても二重頂点連結成分は変化しない)．
+
+また，孤立点にも注意する (孤立点はそれで一つの二重頂点連結成分となるが，この関数は辺を返すため，孤立点からなる成分は含まれない)．

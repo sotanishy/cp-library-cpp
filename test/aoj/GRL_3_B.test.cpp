@@ -19,7 +19,7 @@ int main() {
         G[t].push_back(s);
     }
     Lowlink lowlink(G);
-    vector<pair<int, int>> bridges = lowlink.get_bridges();
+    auto bridges = lowlink.bridge;
     sort(bridges.begin(), bridges.end());
     for (auto& p : bridges) {
         cout << p.first << " " << p.second << "\n";

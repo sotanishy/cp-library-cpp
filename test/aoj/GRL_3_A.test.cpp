@@ -19,7 +19,7 @@ int main() {
         G[t].push_back(s);
     }
     Lowlink lowlink(G);
-    vector<int> pts = lowlink.get_articulation_points();
+    auto pts = lowlink.articulation;
     sort(pts.begin(), pts.end());
     for (int v : pts) cout << v << "\n";
 }

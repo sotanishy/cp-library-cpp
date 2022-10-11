@@ -2,15 +2,14 @@
 #include <vector>
 #include "lowlink.cpp"
 
-std::vector<int> two_edge_connected_components(const std::vector<std::vector<int>>& G) {
+std::vector<int> two_edge_connected_components(const std::vector<std::vector<int>>& G, const Lowlink& low) {
     int k = 0;
     std::vector<int> comp(G.size(), -1);
-    auto lowlink = Lowlink(G);
 
     auto dfs = [&](const auto& dfs, int u) -> void {
         comp[u] = k;
         for (int v : G[u]) {
-            if (comp[v] == -1 && !lowlink.is_bridge(u, v)) dfs(dfs, v);
+            if (comp[v] == -1 && !low.is_bridge(u, v)) dfs(dfs, v);
         }
     };
 
@@ -21,4 +20,21 @@ std::vector<int> two_edge_connected_components(const std::vector<std::vector<int
         }
     }
     return comp;
+}
+
+std::vector<std::vector<int>> contract(const std::vector<std::vector<int>>& G, const std::vector<int>& comp) {
+    const int n = *max_element(comp.begin(), comp.end()) + 1;
+    std::vector<std::vector<int>> G2(n);
+    for (int i = 0; i < (int) G.size(); ++i) {
+        for (int j : G[i]) {
+            if (comp[i] != comp[j]) {
+                G2[comp[i]].push_back(comp[j]);
+            }
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        std::sort(G2[i].begin(), G2[i].end());
+        G2[i].erase(std::unique(G2[i].begin(), G2[i].end()), G2[i].end());
+    }
+    return G2;
 }

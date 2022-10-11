@@ -13,8 +13,8 @@ documentation_of: ../../graph/two_edge_connected_components.cpp
 
 ## Operations
 
-- `vector<int> two_edge_connected_components(vector<vector<int>> G)`
-    - グラフ $G$ の隣接リストが与えられたとき，$G$ を二辺連結成分分解する
+- `vector<int> two_edge_connected_components(vector<vector<int>> G, Lowlink low)`
+    - グラフ $G$ の隣接リストと，$G$ の lowlink 構造体が与えられたとき，$G$ を二辺連結成分分解する
     - 時間計算量: $O(V + E)$
 
 ## Note
