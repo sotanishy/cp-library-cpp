@@ -50,6 +50,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/leftist_heap.cpp
       title: Leftist Heap
+    - icon: ':warning:'
+      path: data-structure/min_max_heap.hpp
+      title: Min-Max Heap
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
@@ -821,6 +824,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dominatortree.test.cpp
       title: test/yosupo/dominatortree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/double_ended_priority_queue.test.cpp
+      title: test/yosupo/double_ended_priority_queue.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
