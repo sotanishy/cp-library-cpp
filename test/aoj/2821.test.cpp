@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821"
 
-#include "../../tree/tree_hash.hpp"
+#include "../../tree/tree_isomorphism.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,7 +43,8 @@ int main() {
         G2[x].push_back(w);
     }
 
-    ll h2 = tree_hash(G2);
+    TreeHasher hasher;
+    ll h2 = hasher.hash_all(G2);
 
     vector<int> num(N1, -1);
     int ans = 0;
@@ -64,7 +65,7 @@ int main() {
         };
         dfs(dfs, i, -1);
 
-        if (G.size() == G2.size() && tree_hash(G) == h2) {
+        if (G.size() == G2.size() && hasher.hash_all(G) == h2) {
             ++ans;
         }
     }
