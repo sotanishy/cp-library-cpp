@@ -83,8 +83,8 @@ data:
   timestamp: '2022-08-04 12:02:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/lca.test.cpp
   - test/aoj/GRL_5_C.test.cpp
+  - test/yosupo/lca.test.cpp
 documentation_of: tree/lca.cpp
 layout: document
 title: Lowest Common Ancestor

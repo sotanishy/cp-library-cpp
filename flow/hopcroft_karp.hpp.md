@@ -77,8 +77,8 @@ data:
   timestamp: '2022-06-29 12:22:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bipartitematching.test.cpp
   - test/yosupo/bipartite_edge_coloring.test.cpp
+  - test/yosupo/bipartitematching.test.cpp
 documentation_of: flow/hopcroft_karp.hpp
 layout: document
 title: Hopcroft-Karp Algorithm

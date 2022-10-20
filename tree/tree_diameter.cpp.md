@@ -6,8 +6,8 @@ data:
     title: graph/edge.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: tree/tree_hash.hpp
-    title: Tree Hashing
+    path: tree/tree_isomorphism.hpp
+    title: tree/tree_isomorphism.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2821.test.cpp
@@ -15,6 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+    title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
+    title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
@@ -76,13 +82,15 @@ data:
   isVerificationFile: false
   path: tree/tree_diameter.cpp
   requiredBy:
-  - tree/tree_hash.hpp
+  - tree/tree_isomorphism.hpp
   timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/tree_diameter.test.cpp
   - test/aoj/2821.test.cpp
   - test/aoj/GRL_5_A.test.cpp
+  - test/yosupo/tree_diameter.test.cpp
+  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+  - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
 documentation_of: tree/tree_diameter.cpp
 layout: document
 title: Diameter of a Tree

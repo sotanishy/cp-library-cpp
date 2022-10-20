@@ -17,10 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821
+    PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821
-  bundledCode: "#line 1 \"test/aoj/2821.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821\"\
+    - https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
+  bundledCode: "#line 1 \"test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#line 2 \"tree/tree_isomorphism.hpp\"\n#include <algorithm>\n#include <map>\n\
     #include <random>\n#include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
@@ -88,67 +89,35 @@ data:
     \ val, c, v);\n                ch.push_back(val[c]);\n            }\n        }\n\
     \        std::sort(ch.begin(), ch.end());\n        if (!mp.count(ch)) {\n    \
     \        mp[ch] = mp.size();\n        }\n        val[v] = mp[ch];\n    }\n};\n\
-    #line 4 \"test/aoj/2821.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\nusing ll = long long;\n#define rep(i, s, t) for (int i = (int)(s); i <\
-    \ (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1; i >= (int)(s);\
-    \ --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\nbool chmax(T&\
-    \ a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate <typename\
-    \ T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1) : 0;\n}\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n \
-    \   cout << fixed << setprecision(15);\n\n    int N1, M1;\n    cin >> N1 >> M1;\n\
-    \    vector<vector<int>> G1(N1);\n    rep(i, 0, M1) {\n        int u, v;\n   \
-    \     cin >> u >> v;\n        --u, --v;\n        G1[u].push_back(v);\n       \
-    \ G1[v].push_back(u);\n    }\n    int N2;\n    cin >> N2;\n    vector<vector<int>>\
-    \ G2(N2);\n    rep(i, 0, N2 - 1) {\n        int w, x;\n        cin >> w >> x;\n\
-    \        --w, --x;\n        G2[w].push_back(x);\n        G2[x].push_back(w);\n\
-    \    }\n\n    TreeHasher hasher;\n    ll h2 = hasher.hash_all(G2);\n\n    vector<int>\
-    \ num(N1, -1);\n    int ans = 0;\n    rep(i, 0, N1) {\n        if (num[i] != -1)\
-    \ continue;\n        int k = 0;\n        vector<vector<int>> G;\n        auto\
-    \ dfs = [&](auto& dfs, int v, int p) -> void {\n            num[v] = k++;\n  \
-    \          G.emplace_back();\n            if (p != -1) {\n                G[num[p]].push_back(num[v]);\n\
-    \                G[num[v]].push_back(num[p]);\n            }\n            for\
-    \ (int c : G1[v]) {\n                if (c != p) dfs(dfs, c, v);\n           \
-    \ }\n        };\n        dfs(dfs, i, -1);\n\n        if (G.size() == G2.size()\
-    \ && hasher.hash_all(G) == h2) {\n            ++ans;\n        }\n    }\n    cout\
-    \ << ans << endl;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821\"\
+    #line 4 \"test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp\"\n\n\
+    #include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int N;\n    cin >> N;\n    vector<vector<int>> G(N);\n\
+    \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
+    \  G[p].push_back(i);\n    }\n    TreeEncoder enc;\n    auto val = enc.encode(G,\
+    \ 0);\n    cout << *max_element(val.begin(), val.end()) + 1 << endl;\n    for\
+    \ (int i = 0; i < N; ++i) cout << val[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"../../tree/tree_isomorphism.hpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n#define rep(i, s, t) for (int i =\
-    \ (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1;\
-    \ i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\n\
-    bool chmax(T& a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate\
-    \ <typename T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1)\
-    \ : 0;\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(15);\n\n    int N1, M1;\n    cin >> N1 >> M1;\n\
-    \    vector<vector<int>> G1(N1);\n    rep(i, 0, M1) {\n        int u, v;\n   \
-    \     cin >> u >> v;\n        --u, --v;\n        G1[u].push_back(v);\n       \
-    \ G1[v].push_back(u);\n    }\n    int N2;\n    cin >> N2;\n    vector<vector<int>>\
-    \ G2(N2);\n    rep(i, 0, N2 - 1) {\n        int w, x;\n        cin >> w >> x;\n\
-    \        --w, --x;\n        G2[w].push_back(x);\n        G2[x].push_back(w);\n\
-    \    }\n\n    TreeHasher hasher;\n    ll h2 = hasher.hash_all(G2);\n\n    vector<int>\
-    \ num(N1, -1);\n    int ans = 0;\n    rep(i, 0, N1) {\n        if (num[i] != -1)\
-    \ continue;\n        int k = 0;\n        vector<vector<int>> G;\n        auto\
-    \ dfs = [&](auto& dfs, int v, int p) -> void {\n            num[v] = k++;\n  \
-    \          G.emplace_back();\n            if (p != -1) {\n                G[num[p]].push_back(num[v]);\n\
-    \                G[num[v]].push_back(num[p]);\n            }\n            for\
-    \ (int c : G1[v]) {\n                if (c != p) dfs(dfs, c, v);\n           \
-    \ }\n        };\n        dfs(dfs, i, -1);\n\n        if (G.size() == G2.size()\
-    \ && hasher.hash_all(G) == h2) {\n            ++ans;\n        }\n    }\n    cout\
-    \ << ans << endl;\n}\n"
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int N;\n    cin >> N;\n    vector<vector<int>> G(N);\n\
+    \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
+    \  G[p].push_back(i);\n    }\n    TreeEncoder enc;\n    auto val = enc.encode(G,\
+    \ 0);\n    cout << *max_element(val.begin(), val.end()) + 1 << endl;\n    for\
+    \ (int i = 0; i < N; ++i) cout << val[i] << (i < N - 1 ? \" \" : \"\\n\");\n}"
   dependsOn:
   - tree/tree_isomorphism.hpp
   - tree/tree_diameter.cpp
   - graph/edge.cpp
   isVerificationFile: true
-  path: test/aoj/2821.test.cpp
+  path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   requiredBy: []
   timestamp: '2022-10-20 22:01:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/2821.test.cpp
+documentation_of: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/2821.test.cpp
-- /verify/test/aoj/2821.test.cpp.html
-title: test/aoj/2821.test.cpp
+- /verify/test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+- /verify/test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp.html
+title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
 ---

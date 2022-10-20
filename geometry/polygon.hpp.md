@@ -151,9 +151,9 @@ data:
   timestamp: '2022-06-27 13:45:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL_4_C.test.cpp
   - test/aoj/CGL_3_A.test.cpp
   - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_4_C.test.cpp
 documentation_of: geometry/polygon.hpp
 layout: document
 redirect_from:

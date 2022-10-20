@@ -556,8 +556,8 @@ data:
       path: tree/tree_diameter.cpp
       title: Diameter of a Tree
     - icon: ':heavy_check_mark:'
-      path: tree/tree_hash.hpp
-      title: Tree Hashing
+      path: tree/tree_isomorphism.hpp
+      title: tree/tree_isomorphism.hpp
   verificationCategories:
   - name: test/aoj
     pages:
@@ -911,6 +911,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/multipoint_evaluation.test.cpp
+      title: test/yosupo/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/nim_product_64.test.cpp
       title: test/yosupo/nim_product_64.test.cpp
@@ -956,6 +959,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+      title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
+      title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/runenumerate.test.cpp
       title: test/yosupo/runenumerate.test.cpp

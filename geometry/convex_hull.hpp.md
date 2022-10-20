@@ -82,8 +82,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_4_B.test.cpp
-  - test/aoj/1298.test.cpp
   - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/1298.test.cpp
 documentation_of: geometry/convex_hull.hpp
 layout: document
 title: Convex Hull
