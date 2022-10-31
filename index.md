@@ -192,20 +192,11 @@ data:
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
-      path: flow/bipartite_matching.cpp
-      title: Bipartite Matching
-    - icon: ':heavy_check_mark:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
-    - icon: ':warning:'
-      path: flow/dm_decomposition.cpp
-      title: Dulmage-Mendelsohn Decomposition
     - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
-    - icon: ':heavy_check_mark:'
-      path: flow/hopcroft_karp.hpp
-      title: Hopcroft-Karp Algorithm
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
@@ -259,8 +250,14 @@ data:
       path: graph/bipartite_edge_coloring.hpp
       title: Bipartite Edge Coloring
     - icon: ':heavy_check_mark:'
+      path: graph/bipartite_matching.hpp
+      title: Bipartite Matching
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.cpp
       title: Chromatic Number
+    - icon: ':warning:'
+      path: graph/dm_decomposition.cpp
+      title: Dulmage-Mendelsohn Decomposition
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.cpp
       title: Dominator Tree
@@ -276,6 +273,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/eulerian_path.hpp
       title: Eulerian Path
+    - icon: ':x:'
+      path: graph/general_matching.hpp
+      title: General Matching
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
@@ -346,7 +346,7 @@ data:
       title: Extended Euclidean Algorithm
     - icon: ':warning:'
       path: math/farey_sequence.hpp
-      title: math/farey_sequence.hpp
+      title: Farey Sequence
     - icon: ':heavy_check_mark:'
       path: math/fast_prime.cpp
       title: Fast Prime Number Algorithms
@@ -400,7 +400,7 @@ data:
       title: Quotient Ranges
     - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
-      title: math/stern_brocot_tree.hpp
+      title: Stern Brocot Tree
     - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
@@ -869,6 +869,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/general_matching.test.cpp
+      title: test/yosupo/general_matching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp

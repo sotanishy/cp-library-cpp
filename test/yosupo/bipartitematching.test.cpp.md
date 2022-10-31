@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: flow/hopcroft_karp.hpp
-    title: Hopcroft-Karp Algorithm
+    path: graph/bipartite_matching.hpp
+    title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,15 +15,15 @@ data:
     links:
     - https://judge.yosupo.jp/problem/bipartitematching
   bundledCode: "#line 1 \"test/yosupo/bipartitematching.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n#line 2 \"flow/hopcroft_karp.hpp\"\
+    \ \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n#line 2 \"graph/bipartite_matching.hpp\"\
     \n#include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\
-    \n\nclass HopcroftKarp {\npublic:\n    HopcroftKarp() = default;\n    HopcroftKarp(int\
-    \ U, int V) : U(U), V(V), NIL(U + V), G(U), level(U + V + 1), match(U + V + 1,\
-    \ NIL) {}\n\n    void add_edge(int u, int v) {\n        G[u].emplace_back(U +\
-    \ v);\n    }\n\n    std::vector<std::pair<int, int>> bipartite_matching() {\n\
-    \        while (bfs()) {\n            for (int u = 0; u < U; ++u) {\n        \
-    \        if (match[u] == NIL) {\n                    dfs(u);\n               \
-    \ }\n            }\n        }\n        std::vector<std::pair<int, int>> ret;\n\
+    \nclass BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n   \
+    \ BipartiteMatching(int U, int V) : U(U), V(V), NIL(U + V), G(U), level(U + V\
+    \ + 1), match(U + V + 1, NIL) {}\n\n    void add_edge(int u, int v) {\n      \
+    \  G[u].emplace_back(U + v);\n    }\n\n    std::vector<std::pair<int, int>> max_matching()\
+    \ {\n        while (bfs()) {\n            for (int u = 0; u < U; ++u) {\n    \
+    \            if (match[u] == NIL) {\n                    dfs(u);\n           \
+    \     }\n            }\n        }\n        std::vector<std::pair<int, int>> ret;\n\
     \        for (int u = 0; u < U; ++u) {\n            if (match[u] != NIL) ret.emplace_back(u,\
     \ match[u] - U);\n        }\n        return ret;\n    }\n\nprivate:\n    static\
     \ constexpr int INF = std::numeric_limits<int>::max() / 2;\n\n    const int U,\
@@ -41,27 +41,43 @@ data:
     \         if (level[match[v]] == level[u] + 1 && dfs(match[v])) {\n          \
     \      match[v] = u;\n                match[u] = v;\n                return true;\n\
     \            }\n        }\n        level[u] = INF;\n        return false;\n  \
-    \  }\n};\n#line 4 \"test/yosupo/bipartitematching.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int L, R, M;\n    cin >> L >> R >> M;\n    HopcroftKarp\
-    \ hk(L, R);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin\
-    \ >> a >> b;\n        hk.add_edge(a, b);\n    }\n    auto ans = hk.bipartite_matching();\n\
+    \  }\n};\n\n\n/*\n * Bipartite matching using Ford-Fulkerson algorithm\n * Time\
+    \ complexity: O(VE)\n */\nclass BipartiteMatchingFF {\npublic:\n    BipartiteMatchingFF()\
+    \ = default;\n    explicit BipartiteMatchingFF(int n) : G(n), used(n), match(n)\
+    \ {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n      \
+    \  G[v].push_back(u);\n    }\n\n    std::vector<std::pair<int, int>> max_matching()\
+    \ {\n        int res = 0;\n        std::fill(match.begin(), match.end(), -1);\n\
+    \        for (int v = 0; v < (int) G.size(); ++v) {\n            if (match[v]\
+    \ == -1) {\n                std::fill(used.begin(), used.end(), false);\n    \
+    \            if (dfs(v)) ++res;\n            }\n        }\n\n        std::vector<std::pair<int,\
+    \ int>> ret;\n        for (int i = 0; i < (int) G.size(); ++i) {\n           \
+    \ if (i < match[i]) ret.emplace_back(i, match[i]);\n        }\n        return\
+    \ ret;\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<bool>\
+    \ used;\n    std::vector<int> match;\n\n    bool dfs(int u) {\n        used[u]\
+    \ = true;\n        for (int v : G[u]) {\n            int w = match[v];\n     \
+    \       if (w == -1 || (!used[w] && dfs(w))) {\n                match[u] = v;\n\
+    \                match[v] = u;\n                return true;\n            }\n\
+    \        }\n        return false;\n    }\n};\n#line 4 \"test/yosupo/bipartitematching.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int L, R, M;\n    cin >> L >> R >> M;\n    BipartiteMatching\
+    \ bm(L, R);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin\
+    \ >> a >> b;\n        bm.add_edge(a, b);\n    }\n    auto ans = bm.max_matching();\n\
     \    cout << ans.size() << \"\\n\";\n    for (auto [c, d] : ans) cout << c <<\
     \ \" \" << d << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n\
-    #include \"../../flow/hopcroft_karp.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int L, R, M;\n    cin >> L >> R >> M;\n    HopcroftKarp hk(L, R);\n    for\
-    \ (int i = 0; i < M; ++i) {\n        int a, b;\n        cin >> a >> b;\n     \
-    \   hk.add_edge(a, b);\n    }\n    auto ans = hk.bipartite_matching();\n    cout\
-    \ << ans.size() << \"\\n\";\n    for (auto [c, d] : ans) cout << c << \" \" <<\
-    \ d << \"\\n\";\n}"
+    #include \"../../graph/bipartite_matching.hpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int L, R, M;\n    cin >> L >> R >> M;\n    BipartiteMatching\
+    \ bm(L, R);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin\
+    \ >> a >> b;\n        bm.add_edge(a, b);\n    }\n    auto ans = bm.max_matching();\n\
+    \    cout << ans.size() << \"\\n\";\n    for (auto [c, d] : ans) cout << c <<\
+    \ \" \" << d << \"\\n\";\n}"
   dependsOn:
-  - flow/hopcroft_karp.hpp
+  - graph/bipartite_matching.hpp
   isVerificationFile: true
   path: test/yosupo/bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2022-06-29 12:22:34+09:00'
+  timestamp: '2022-10-31 15:58:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bipartitematching.test.cpp

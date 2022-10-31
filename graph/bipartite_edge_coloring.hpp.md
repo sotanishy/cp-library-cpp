@@ -5,8 +5,8 @@ data:
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
   - icon: ':heavy_check_mark:'
-    path: flow/hopcroft_karp.hpp
-    title: Hopcroft-Karp Algorithm
+    path: graph/bipartite_matching.hpp
+    title: Bipartite Matching
   - icon: ':heavy_check_mark:'
     path: graph/eulerian_path.hpp
     title: Eulerian Path
@@ -30,40 +30,57 @@ data:
     \ std::swap(x, y);\n        data[x] += data[y];\n        data[y] = x;\n    }\n\
     \n    bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n\n\
     \    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n  \
-    \  std::vector<int> data;\n};\n#line 2 \"flow/hopcroft_karp.hpp\"\n#include <limits>\n\
-    #line 6 \"flow/hopcroft_karp.hpp\"\n\n\nclass HopcroftKarp {\npublic:\n    HopcroftKarp()\
-    \ = default;\n    HopcroftKarp(int U, int V) : U(U), V(V), NIL(U + V), G(U), level(U\
-    \ + V + 1), match(U + V + 1, NIL) {}\n\n    void add_edge(int u, int v) {\n  \
-    \      G[u].emplace_back(U + v);\n    }\n\n    std::vector<std::pair<int, int>>\
-    \ bipartite_matching() {\n        while (bfs()) {\n            for (int u = 0;\
-    \ u < U; ++u) {\n                if (match[u] == NIL) {\n                    dfs(u);\n\
-    \                }\n            }\n        }\n        std::vector<std::pair<int,\
-    \ int>> ret;\n        for (int u = 0; u < U; ++u) {\n            if (match[u]\
-    \ != NIL) ret.emplace_back(u, match[u] - U);\n        }\n        return ret;\n\
-    \    }\n\nprivate:\n    static constexpr int INF = std::numeric_limits<int>::max()\
-    \ / 2;\n\n    const int U, V, NIL;\n    std::vector<std::vector<int>> G;\n   \
-    \ std::vector<int> level, match;\n\n    bool bfs() {\n        std::fill(level.begin(),\
-    \ level.end(), INF);\n        std::queue<int> q;\n        for (int u = 0; u <\
-    \ U; ++u) {\n            if (match[u] == NIL) {\n                level[u] = 0;\n\
-    \                q.push(u);\n            }\n        }\n        while (!q.empty())\
-    \ {\n            int u = q.front();\n            q.pop();\n            if (level[u]\
-    \ < level[NIL]) {\n                for (int v : G[u]) {\n                    if\
-    \ (level[match[v]] == INF) {\n                        level[match[v]] = level[u]\
-    \ + 1;\n                        q.push(match[v]);\n                    }\n   \
-    \             }\n            }\n        }\n        return level[NIL] != INF;\n\
-    \    }\n\n    bool dfs(int u) {\n        if (u == NIL) return true;\n        for\
-    \ (int v : G[u]) {\n            if (level[match[v]] == level[u] + 1 && dfs(match[v]))\
-    \ {\n                match[v] = u;\n                match[u] = v;\n          \
-    \      return true;\n            }\n        }\n        level[u] = INF;\n     \
-    \   return false;\n    }\n};\n#line 2 \"graph/eulerian_path.hpp\"\n#include <stack>\n\
-    #line 5 \"graph/eulerian_path.hpp\"\n\nstd::vector<int> eulerian_path(const std::vector<std::pair<int,\
-    \ int>>& edges, int V) {\n    std::vector<std::vector<std::pair<int, int>>> G(V);\n\
-    \    std::vector<int> deg(V);\n    for (int i = 0; i < (int) edges.size(); ++i)\
-    \ {\n        auto [a, b] = edges[i];\n        G[a].push_back({b, i});\n      \
-    \  G[b].push_back({a, i});\n        ++deg[a];\n        ++deg[b];\n    }\n    int\
-    \ s = 0;\n    int cnt = 0;\n    for (int i = 0; i < V; ++i) {\n        if (deg[i]\
-    \ % 2) {\n            ++cnt;\n            s = i;\n        }\n    }\n    if (cnt\
-    \ != 0 && cnt != 2) return {};\n    std::vector<int> ret;\n    std::stack<int>\
+    \  std::vector<int> data;\n};\n#line 2 \"graph/bipartite_matching.hpp\"\n#include\
+    \ <limits>\n#line 6 \"graph/bipartite_matching.hpp\"\n\nclass BipartiteMatching\
+    \ {\npublic:\n    BipartiteMatching() = default;\n    BipartiteMatching(int U,\
+    \ int V) : U(U), V(V), NIL(U + V), G(U), level(U + V + 1), match(U + V + 1, NIL)\
+    \ {}\n\n    void add_edge(int u, int v) {\n        G[u].emplace_back(U + v);\n\
+    \    }\n\n    std::vector<std::pair<int, int>> max_matching() {\n        while\
+    \ (bfs()) {\n            for (int u = 0; u < U; ++u) {\n                if (match[u]\
+    \ == NIL) {\n                    dfs(u);\n                }\n            }\n \
+    \       }\n        std::vector<std::pair<int, int>> ret;\n        for (int u =\
+    \ 0; u < U; ++u) {\n            if (match[u] != NIL) ret.emplace_back(u, match[u]\
+    \ - U);\n        }\n        return ret;\n    }\n\nprivate:\n    static constexpr\
+    \ int INF = std::numeric_limits<int>::max() / 2;\n\n    const int U, V, NIL;\n\
+    \    std::vector<std::vector<int>> G;\n    std::vector<int> level, match;\n\n\
+    \    bool bfs() {\n        std::fill(level.begin(), level.end(), INF);\n     \
+    \   std::queue<int> q;\n        for (int u = 0; u < U; ++u) {\n            if\
+    \ (match[u] == NIL) {\n                level[u] = 0;\n                q.push(u);\n\
+    \            }\n        }\n        while (!q.empty()) {\n            int u = q.front();\n\
+    \            q.pop();\n            if (level[u] < level[NIL]) {\n            \
+    \    for (int v : G[u]) {\n                    if (level[match[v]] == INF) {\n\
+    \                        level[match[v]] = level[u] + 1;\n                   \
+    \     q.push(match[v]);\n                    }\n                }\n          \
+    \  }\n        }\n        return level[NIL] != INF;\n    }\n\n    bool dfs(int\
+    \ u) {\n        if (u == NIL) return true;\n        for (int v : G[u]) {\n   \
+    \         if (level[match[v]] == level[u] + 1 && dfs(match[v])) {\n          \
+    \      match[v] = u;\n                match[u] = v;\n                return true;\n\
+    \            }\n        }\n        level[u] = INF;\n        return false;\n  \
+    \  }\n};\n\n\n/*\n * Bipartite matching using Ford-Fulkerson algorithm\n * Time\
+    \ complexity: O(VE)\n */\nclass BipartiteMatchingFF {\npublic:\n    BipartiteMatchingFF()\
+    \ = default;\n    explicit BipartiteMatchingFF(int n) : G(n), used(n), match(n)\
+    \ {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n      \
+    \  G[v].push_back(u);\n    }\n\n    std::vector<std::pair<int, int>> max_matching()\
+    \ {\n        int res = 0;\n        std::fill(match.begin(), match.end(), -1);\n\
+    \        for (int v = 0; v < (int) G.size(); ++v) {\n            if (match[v]\
+    \ == -1) {\n                std::fill(used.begin(), used.end(), false);\n    \
+    \            if (dfs(v)) ++res;\n            }\n        }\n\n        std::vector<std::pair<int,\
+    \ int>> ret;\n        for (int i = 0; i < (int) G.size(); ++i) {\n           \
+    \ if (i < match[i]) ret.emplace_back(i, match[i]);\n        }\n        return\
+    \ ret;\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<bool>\
+    \ used;\n    std::vector<int> match;\n\n    bool dfs(int u) {\n        used[u]\
+    \ = true;\n        for (int v : G[u]) {\n            int w = match[v];\n     \
+    \       if (w == -1 || (!used[w] && dfs(w))) {\n                match[u] = v;\n\
+    \                match[v] = u;\n                return true;\n            }\n\
+    \        }\n        return false;\n    }\n};\n#line 2 \"graph/eulerian_path.hpp\"\
+    \n#include <stack>\n#line 5 \"graph/eulerian_path.hpp\"\n\nstd::vector<int> eulerian_path(const\
+    \ std::vector<std::pair<int, int>>& edges, int V) {\n    std::vector<std::vector<std::pair<int,\
+    \ int>>> G(V);\n    std::vector<int> deg(V);\n    for (int i = 0; i < (int) edges.size();\
+    \ ++i) {\n        auto [a, b] = edges[i];\n        G[a].push_back({b, i});\n \
+    \       G[b].push_back({a, i});\n        ++deg[a];\n        ++deg[b];\n    }\n\
+    \    int s = 0;\n    int cnt = 0;\n    for (int i = 0; i < V; ++i) {\n       \
+    \ if (deg[i] % 2) {\n            ++cnt;\n            s = i;\n        }\n    }\n\
+    \    if (cnt != 0 && cnt != 2) return {};\n    std::vector<int> ret;\n    std::stack<int>\
     \ st;\n    st.push(s);\n    std::vector<bool> used(edges.size());\n    while (!st.empty())\
     \ {\n        int u = st.top();\n        while (!G[u].empty() && used[G[u].back().second])\
     \ G[u].pop_back();\n        if (G[u].empty()) {\n            ret.push_back(u);\n\
@@ -127,9 +144,9 @@ data:
     \               G2[i % 2].emplace_back(u, v);\n                }\n           \
     \ }\n            rec(rec, G2[0], D / 2);\n            rec(rec, G2[1], D / 2);\n\
     \        } else {\n            // paint the edges in a perfect matching with the\
-    \ same color\n            HopcroftKarp flow(n2, n2);\n            for (auto [a,\
-    \ b] : G) {\n                flow.add_edge(a, b);\n            }\n           \
-    \ std::vector<int> match(n2, -1);\n            for (auto [a, b] : flow.bipartite_matching())\
+    \ same color\n            BipartiteMatching bm(n2, n2);\n            for (auto\
+    \ [a, b] : G) {\n                bm.add_edge(a, b);\n            }\n         \
+    \   std::vector<int> match(n2, -1);\n            for (auto [a, b] : bm.max_matching())\
     \ {\n                match[a] = b;\n            }\n            std::vector<std::pair<int,\
     \ int>> G2;\n            for (auto [a, b] : G) {\n                if (match[a]\
     \ == b) {\n                    color[{a, b}].push_back(k);\n                 \
@@ -142,7 +159,7 @@ data:
     \        color[e].pop_back();\n    }\n\n    return ans;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <map>\n#include <queue>\n#include\
     \ <utility>\n#include <vector>\n#include \"../data-structure/unionfind/union_find.cpp\"\
-    \n#include \"../flow/hopcroft_karp.hpp\"\n#include \"../graph/eulerian_path.hpp\"\
+    \n#include \"../graph/bipartite_matching.hpp\"\n#include \"../graph/eulerian_path.hpp\"\
     \n\n\nstd::vector<int> bipartite_edge_coloring(const std::vector<std::pair<int,\
     \ int>>& G, int n, int m) {\n    // find the maximum degree\n    std::vector<int>\
     \ deg0(n), deg1(m);\n    for (auto [a, b] : G) {\n        ++deg0[a];\n       \
@@ -200,9 +217,9 @@ data:
     \               G2[i % 2].emplace_back(u, v);\n                }\n           \
     \ }\n            rec(rec, G2[0], D / 2);\n            rec(rec, G2[1], D / 2);\n\
     \        } else {\n            // paint the edges in a perfect matching with the\
-    \ same color\n            HopcroftKarp flow(n2, n2);\n            for (auto [a,\
-    \ b] : G) {\n                flow.add_edge(a, b);\n            }\n           \
-    \ std::vector<int> match(n2, -1);\n            for (auto [a, b] : flow.bipartite_matching())\
+    \ same color\n            BipartiteMatching bm(n2, n2);\n            for (auto\
+    \ [a, b] : G) {\n                bm.add_edge(a, b);\n            }\n         \
+    \   std::vector<int> match(n2, -1);\n            for (auto [a, b] : bm.max_matching())\
     \ {\n                match[a] = b;\n            }\n            std::vector<std::pair<int,\
     \ int>> G2;\n            for (auto [a, b] : G) {\n                if (match[a]\
     \ == b) {\n                    color[{a, b}].push_back(k);\n                 \
@@ -215,12 +232,12 @@ data:
     \        color[e].pop_back();\n    }\n\n    return ans;\n}\n"
   dependsOn:
   - data-structure/unionfind/union_find.cpp
-  - flow/hopcroft_karp.hpp
+  - graph/bipartite_matching.hpp
   - graph/eulerian_path.hpp
   isVerificationFile: false
   path: graph/bipartite_edge_coloring.hpp
   requiredBy: []
-  timestamp: '2022-06-29 12:22:34+09:00'
+  timestamp: '2022-10-31 15:58:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bipartite_edge_coloring.test.cpp
