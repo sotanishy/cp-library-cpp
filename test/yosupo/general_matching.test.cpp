@@ -18,9 +18,9 @@ int main() {
         cin >> u >> v;
         gm.add_edge(u, v);
     }
-    int ans = gm.maximum_cardinality_matching();
-    cout << ans << "\n";
-    for (auto [a, b] : gm.get_matches()) {
+    auto ans = gm.max_matching();
+    cout << ans.size() << "\n";
+    for (auto [a, b] : ans) {
         cout << a << " " << b << "\n";
     }
 }
