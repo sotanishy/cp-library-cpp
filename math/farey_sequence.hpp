@@ -2,6 +2,9 @@
 #include <utility>
 #include <vector>
 
+/**
+ * @brief Farey Sequence
+ */
 std::vector<std::pair<int, int>> farey_sequence(int n) {
     int a = 0, b = 1, c = 1, d = n;
     std::vector<std::pair<int, int>> seq;

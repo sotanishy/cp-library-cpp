@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 #include "../data-structure/unionfind/union_find.cpp"
-#include "../flow/hopcroft_karp.hpp"
+#include "../graph/bipartite_matching.hpp"
 #include "../graph/eulerian_path.hpp"
 
 
@@ -136,12 +136,12 @@ std::vector<int> bipartite_edge_coloring(const std::vector<std::pair<int, int>>&
             rec(rec, G2[1], D / 2);
         } else {
             // paint the edges in a perfect matching with the same color
-            HopcroftKarp flow(n2, n2);
+            BipartiteMatching bm(n2, n2);
             for (auto [a, b] : G) {
-                flow.add_edge(a, b);
+                bm.add_edge(a, b);
             }
             std::vector<int> match(n2, -1);
-            for (auto [a, b] : flow.bipartite_matching()) {
+            for (auto [a, b] : bm.max_matching()) {
                 match[a] = b;
             }
             std::vector<std::pair<int, int>> G2;

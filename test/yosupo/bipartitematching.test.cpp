@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
-#include "../../flow/hopcroft_karp.hpp"
+#include "../../graph/bipartite_matching.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -11,13 +11,13 @@ int main() {
 
     int L, R, M;
     cin >> L >> R >> M;
-    HopcroftKarp hk(L, R);
+    BipartiteMatching bm(L, R);
     for (int i = 0; i < M; ++i) {
         int a, b;
         cin >> a >> b;
-        hk.add_edge(a, b);
+        bm.add_edge(a, b);
     }
-    auto ans = hk.bipartite_matching();
+    auto ans = bm.max_matching();
     cout << ans.size() << "\n";
     for (auto [c, d] : ans) cout << c << " " << d << "\n";
 }

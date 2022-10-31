@@ -1,6 +1,6 @@
 ---
 title: Dulmage-Mendelsohn Decomposition
-documentation_of: ../../flow/dm_decomposition.cpp
+documentation_of: ../../graph/dm_decomposition.cpp
 ---
 
 ## Description
@@ -17,9 +17,9 @@ DM 分解は疎行列のブロック対角化に用いられるらしい．行�
 
 ## Operations
 
-- `vector<int> dm_decomposition(vector<vector<int>> G)`
-    - 二部グラフ $G$ を DM 分解する．0は$E$, 1は$O$, -1は$U$に属することを意味する
-    - 時間計算量: $O(VE)$
+- `vector<int> dm_decomposition(int X, int Y, vector<pair<int, int>> edges)`
+    - 二部グラフ $G$ (頂点数 $X$, $Y$，辺は `edges` ) を DM 分解する．返り値は，$0,\dots,X-1$ 番目は $X$ の頂点，$X,\dots,X+Y-1$ 番目は $Y$ の頂点が属する集合を表す．0は$E$, 1は$O$, -1は$U$に属することを意味する
+    - 時間計算量: $O(E\sqrt{X + Y})$
 
 
 ## Reference
