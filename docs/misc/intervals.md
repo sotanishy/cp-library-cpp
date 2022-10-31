@@ -16,10 +16,10 @@ documentation_of: ../../misc/intervals.hpp
 - `T get(X x)`
     - 点 $x$ での値を返す
     - 時間計算量: $O(\log n)$
-- `vector<tuple<X, X, T>> get(X l, X r, T v)`
+- `vector<tuple<X, X, T>> get(X l, X r)`
     - 区間 $[l, r]$ と交わる区間を返す
     - 時間計算量: $O(k\log n)$, $k$ は $[l, r]$ と交わる区間の数
-- `void insert(X l, X y, T v)`
+- `void set(X l, X y, T v)`
     - 区間 $[l, r]$ の値を $v$ に更新する．
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 - `void erase(X l, X r)`
