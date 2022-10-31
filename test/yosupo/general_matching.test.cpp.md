@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/general_matching.hpp
     title: General Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/general_matching
@@ -102,24 +102,24 @@ data:
     int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
     \    int N, M;\n    cin >> N >> M;\n    GeneralMatching gm(N);\n    for (int i\
     \ = 0; i < M; ++i) {\n        int u, v;\n        cin >> u >> v;\n        gm.add_edge(u,\
-    \ v);\n    }\n    int ans = gm.maximum_cardinality_matching();\n    cout << ans\
-    \ << \"\\n\";\n    for (auto [a, b] : gm.get_matches()) {\n        cout << a <<\
-    \ \" \" << b << \"\\n\";\n    }\n}\n"
+    \ v);\n    }\n    auto ans = gm.max_matching();\n    cout << ans.size() << \"\\\
+    n\";\n    for (auto [a, b] : ans) {\n        cout << a << \" \" << b << \"\\n\"\
+    ;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/general_matching\"\n\n\
     #include \"../../graph/general_matching.hpp\"\n\n#include <bits/stdc++.h>\nusing\
     \ namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    GeneralMatching\
     \ gm(N);\n    for (int i = 0; i < M; ++i) {\n        int u, v;\n        cin >>\
-    \ u >> v;\n        gm.add_edge(u, v);\n    }\n    int ans = gm.maximum_cardinality_matching();\n\
-    \    cout << ans << \"\\n\";\n    for (auto [a, b] : gm.get_matches()) {\n   \
-    \     cout << a << \" \" << b << \"\\n\";\n    }\n}\n"
+    \ u >> v;\n        gm.add_edge(u, v);\n    }\n    auto ans = gm.max_matching();\n\
+    \    cout << ans.size() << \"\\n\";\n    for (auto [a, b] : ans) {\n        cout\
+    \ << a << \" \" << b << \"\\n\";\n    }\n}\n"
   dependsOn:
   - graph/general_matching.hpp
   isVerificationFile: true
   path: test/yosupo/general_matching.test.cpp
   requiredBy: []
-  timestamp: '2022-10-31 15:58:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-31 16:11:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/general_matching.test.cpp
 layout: document
