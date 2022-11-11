@@ -375,8 +375,8 @@ data:
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
-      path: math/moebius_table.cpp
-      title: Table of Moebius Function
+      path: math/moebius.hpp
+      title: "M\xF6bius Function"
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
@@ -1007,6 +1007,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/sum_of_totient_function.test.cpp
+      title: test/yosupo/sum_of_totient_function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp

@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: math/carmichael.cpp
     title: Carmichael Function
-  - icon: ':warning:'
-    path: math/moebius_table.cpp
-    title: Table of Moebius Function
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.is_prime.test.cpp
@@ -71,7 +68,6 @@ data:
   isVerificationFile: false
   path: math/prime.cpp
   requiredBy:
-  - math/moebius_table.cpp
   - math/carmichael.cpp
   timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
