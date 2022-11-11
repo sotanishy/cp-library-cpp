@@ -147,6 +147,7 @@
 "test/yosupo/subset_convolution.test.cpp": "2022-06-27 17:20:02 +0900",
 "test/yosupo/suffixarray.test.cpp": "2022-07-05 13:04:34 +0900",
 "test/yosupo/sum_of_floor_of_linear.test.cpp": "2021-02-06 00:41:04 +0900",
+"test/yosupo/sum_of_totient_function.test.cpp": "2022-11-12 00:48:42 +0900",
 "test/yosupo/system_of_linear_equations.test.cpp": "2022-06-27 17:20:02 +0900",
 "test/yosupo/tetration_mod.test.cpp": "2022-08-04 12:02:47 +0900",
 "test/yosupo/tree_diameter.test.cpp": "2021-02-09 14:52:42 +0900",
