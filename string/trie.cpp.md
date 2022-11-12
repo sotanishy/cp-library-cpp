@@ -11,30 +11,44 @@ data:
   bundledCode: "#line 2 \"string/trie.cpp\"\n#include <map>\n#include <memory>\n#include\
     \ <string>\n#include <vector>\n\nclass Trie {\npublic:\n    Trie() : root(std::make_shared<Node>())\
     \ {}\n\n    void insert(const std::string& s, int id) { insert(root, s, id, 0);\
-    \ }\n\nprotected:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
-    \n    struct Node {\n        std::map<char, node_ptr> ch;\n        std::vector<int>\
-    \ accept;\n        int sz = 0;\n\n        Node() = default;\n    };\n\n    const\
-    \ node_ptr root;\n\n    void insert(const node_ptr& t, const std::string& s, int\
-    \ id, int k) {\n        ++t->sz;\n        if (k == (int) s.size()) {\n       \
-    \     t->accept.push_back(id);\n            return;\n        }\n        int c\
-    \ = s[k];\n        if (!t->ch.count(c)) t->ch[c] = std::make_shared<Node>();\n\
-    \        insert(t->ch[c], s, id, k + 1);\n    }\n};\n"
+    \ }\n\n    void compress() { compress(root); }\n\nprotected:\n    struct Node;\n\
+    \    using node_ptr = std::shared_ptr<Node>;\n\n    struct Node {\n        std::map<char,\
+    \ node_ptr> ch;\n        std::vector<int> accept;\n        int sz = 0;\n     \
+    \   node_ptr par;\n        std::string str;\n\n        Node() = default;\n   \
+    \ };\n\n    const node_ptr root;\n\n    void insert(const node_ptr& t, const std::string&\
+    \ s, int id, int k) {\n        ++t->sz;\n        if (k == (int) s.size()) {\n\
+    \            t->accept.push_back(id);\n            return;\n        }\n      \
+    \  int c = s[k];\n        if (!t->ch.count(c)) {\n            t->ch[c] = std::make_shared<Node>();\n\
+    \            t->ch[c]->par = t;\n            t->ch[c]->str = c;\n        }\n \
+    \       insert(t->ch[c], s, id, k + 1);\n    }\n\n    void compress(node_ptr t)\
+    \ {\n        while (t->accept.empty() && t->ch.size() == 1) {\n            auto\
+    \ u = t->ch.begin()->second;\n            t->ch = u->ch;\n            t->accept\
+    \ = u->accept;\n            t->str += u->str;\n            for (auto [c, w] :\
+    \ t->ch) w->par = t;\n            compress(t);\n        }\n        for (auto [c,\
+    \ u] : t->ch) {\n            compress(u);\n        }\n    }\n};\n"
   code: "#pragma once\n#include <map>\n#include <memory>\n#include <string>\n#include\
     \ <vector>\n\nclass Trie {\npublic:\n    Trie() : root(std::make_shared<Node>())\
     \ {}\n\n    void insert(const std::string& s, int id) { insert(root, s, id, 0);\
-    \ }\n\nprotected:\n    struct Node;\n    using node_ptr = std::shared_ptr<Node>;\n\
-    \n    struct Node {\n        std::map<char, node_ptr> ch;\n        std::vector<int>\
-    \ accept;\n        int sz = 0;\n\n        Node() = default;\n    };\n\n    const\
-    \ node_ptr root;\n\n    void insert(const node_ptr& t, const std::string& s, int\
-    \ id, int k) {\n        ++t->sz;\n        if (k == (int) s.size()) {\n       \
-    \     t->accept.push_back(id);\n            return;\n        }\n        int c\
-    \ = s[k];\n        if (!t->ch.count(c)) t->ch[c] = std::make_shared<Node>();\n\
-    \        insert(t->ch[c], s, id, k + 1);\n    }\n};"
+    \ }\n\n    void compress() { compress(root); }\n\nprotected:\n    struct Node;\n\
+    \    using node_ptr = std::shared_ptr<Node>;\n\n    struct Node {\n        std::map<char,\
+    \ node_ptr> ch;\n        std::vector<int> accept;\n        int sz = 0;\n     \
+    \   node_ptr par;\n        std::string str;\n\n        Node() = default;\n   \
+    \ };\n\n    const node_ptr root;\n\n    void insert(const node_ptr& t, const std::string&\
+    \ s, int id, int k) {\n        ++t->sz;\n        if (k == (int) s.size()) {\n\
+    \            t->accept.push_back(id);\n            return;\n        }\n      \
+    \  int c = s[k];\n        if (!t->ch.count(c)) {\n            t->ch[c] = std::make_shared<Node>();\n\
+    \            t->ch[c]->par = t;\n            t->ch[c]->str = c;\n        }\n \
+    \       insert(t->ch[c], s, id, k + 1);\n    }\n\n    void compress(node_ptr t)\
+    \ {\n        while (t->accept.empty() && t->ch.size() == 1) {\n            auto\
+    \ u = t->ch.begin()->second;\n            t->ch = u->ch;\n            t->accept\
+    \ = u->accept;\n            t->str += u->str;\n            for (auto [c, w] :\
+    \ t->ch) w->par = t;\n            compress(t);\n        }\n        for (auto [c,\
+    \ u] : t->ch) {\n            compress(u);\n        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: string/trie.cpp
   requiredBy: []
-  timestamp: '2022-05-11 13:44:03+09:00'
+  timestamp: '2022-11-12 23:03:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/trie.cpp
@@ -53,3 +67,6 @@ title: Trie
 - `void insert(string s, int id)`
     - 文字列 $s$ を挿入する
     - 時間計算量: $O(\vert s\vert)$
+- `void compress()`
+    - トライ木を圧縮して Patricia trie を構築する．これにより，木の木の深さが $O(\sqrt{\sum \vert s \vert})$ になる．
+    - 時間計算量: $O(\sum \vert s\vert)$
