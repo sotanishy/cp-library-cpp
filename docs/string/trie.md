@@ -14,3 +14,6 @@ documentation_of: ../../string/trie.cpp
 - `void insert(string s, int id)`
     - 文字列 $s$ を挿入する
     - 時間計算量: $O(\vert s\vert)$
+- `void compress()`
+    - トライ木を圧縮して Patricia trie を構築する．これにより，木の木の深さが $O(\sqrt{\sum \vert s \vert})$ になる．
+    - 時間計算量: $O(\sum \vert s\vert)$
