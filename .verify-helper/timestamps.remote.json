@@ -70,6 +70,7 @@
 "test/aoj/NTL_1_A.test.cpp": "2021-12-04 19:51:00 +0900",
 "test/aoj/NTL_1_B.test.cpp": "2022-08-04 12:02:47 +0900",
 "test/aoj/NTL_1_D.test.cpp": "2021-10-07 16:56:17 +0900",
+"test/yosupo/assignment.test.cpp": "2022-11-14 13:04:39 +0900",
 "test/yosupo/biconnected_components.test.cpp": "2022-10-05 11:03:01 +0900",
 "test/yosupo/bipartite_edge_coloring.test.cpp": "2022-10-31 15:58:21 +0900",
 "test/yosupo/bipartitematching.test.cpp": "2022-10-31 15:58:21 +0900",
