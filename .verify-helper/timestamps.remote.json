@@ -87,6 +87,7 @@
 "test/yosupo/discrete_logarithm_mod.test.cpp": "2022-08-04 12:02:47 +0900",
 "test/yosupo/division_of_polynomials.test.cpp": "2022-06-27 18:10:09 +0900",
 "test/yosupo/dominatortree.test.cpp": "2022-03-24 13:03:02 +0900",
+"test/yosupo/double_ended_priority_queue.test.cpp": "2022-11-20 20:57:04 +0900",
 "test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp": "2022-06-30 16:20:14 +0900",
 "test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp": "2022-06-27 15:58:35 +0900",
 "test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp": "2021-02-05 23:21:25 +0900",
