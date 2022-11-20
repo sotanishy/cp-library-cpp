@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/min_max_heap.hpp
     title: Min-Max Heap
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -16,12 +16,12 @@ data:
     - https://judge.yosupo.jp/problem/double_ended_priority_queue
   bundledCode: "#line 1 \"test/yosupo/double_ended_priority_queue.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\n\n\
-    #line 2 \"data-structure/min_max_heap.hpp\"\n#include <algorithm>\n#include <vector>\n\
-    \ntemplate <typename T>\nclass MinMaxHeap {\npublic:\n    MinMaxHeap() = default;\n\
-    \    explicit MinMaxHeap(const std::vector<T>& v) : heap(v) {\n        for (int\
-    \ i = (int) heap.size() / 2 - 1; i >= 0; --i) {\n            pushdown(i);\n  \
-    \      }\n    }\n\n    void insert(T x) {\n        heap.push_back(x);\n      \
-    \  pushup(heap.size() - 1);\n    }\n\n    T min_element() const {\n        assert(!heap.empty());\n\
+    #line 2 \"data-structure/min_max_heap.hpp\"\n#include <algorithm>\n#include <cassert>\n\
+    #include <vector>\n\ntemplate <typename T>\nclass MinMaxHeap {\npublic:\n    MinMaxHeap()\
+    \ = default;\n    explicit MinMaxHeap(const std::vector<T>& v) : heap(v) {\n \
+    \       for (int i = (int) heap.size() / 2 - 1; i >= 0; --i) {\n            pushdown(i);\n\
+    \        }\n    }\n\n    void insert(T x) {\n        heap.push_back(x);\n    \
+    \    pushup(heap.size() - 1);\n    }\n\n    T min_element() const {\n        assert(!heap.empty());\n\
     \        return heap[0];\n    }\n\n    T max_element() const {\n        assert(!heap.empty());\n\
     \        if (heap.size() <= 2) return heap.back();\n        return std::max(heap[1],\
     \ heap[2]);\n    }\n\n    void erase_min() {\n        assert(!heap.empty());\n\
@@ -75,8 +75,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/double_ended_priority_queue.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 12:47:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-20 20:57:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/double_ended_priority_queue.test.cpp
 layout: document
