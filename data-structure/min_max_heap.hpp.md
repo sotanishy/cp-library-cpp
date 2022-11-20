@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/double_ended_priority_queue.test.cpp
+    title: test/yosupo/double_ended_priority_queue.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/min_max_heap.hpp\"\n#include <algorithm>\n\
@@ -85,8 +88,9 @@ data:
   path: data-structure/min_max_heap.hpp
   requiredBy: []
   timestamp: '2022-10-11 15:46:00+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/double_ended_priority_queue.test.cpp
 documentation_of: data-structure/min_max_heap.hpp
 layout: document
 title: Min-Max Heap
