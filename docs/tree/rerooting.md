@@ -7,6 +7,8 @@ documentation_of: ../../tree/rerooting.cpp
 
 全方位木DP (rerooting) は，木において，各頂点を根としたときの木DPの値を求めるアルゴリズムである．
 
+DPは $dp_v = g(f(dp_{c_1}, e_1) * \dots * f(dp_{c_k}, e_k), v)$ という形の遷移で表されるとする．
+
 空間計算量: $O(n)$
 
 ## Template Parameters
@@ -15,10 +17,10 @@ documentation_of: ../../tree/rerooting.cpp
     - 可換モノイド
 - `Cost`
     - 辺のコストの型
-- `T leaf()`
-    - 葉におけるDPの値
-- `T apply(T a, int s, int t, Cost c)`
-    - 辺 $st$ のコストが $c$ で $t$ の部分木の値が $a$ であるときに $s$ の部分木の値を求める
+- `T apply_edge(T a, int s, int t, Cost c)`
+    - 遷移の $f$
+- `T apply_vertex(T x, int v)`
+    - 遷移の $g$
 
 ## Operations
 

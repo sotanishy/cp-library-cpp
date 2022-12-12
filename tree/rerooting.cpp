@@ -4,8 +4,8 @@
 
 template <typename M,
           typename Cost,
-          typename M::T (*leaf)(),
-          typename M::T (*apply)(typename M::T, int, int, Cost)>
+          typename M::T (*apply_edge)(typename M::T, int, int, Cost),
+          typename M::T (*apply_vertex)(typename M::T, int)>
 class Rerooting {
     using T = typename M::T;
 
@@ -30,31 +30,29 @@ private:
     std::vector<T> dp_sub, dp_all;
 
     void dfs_sub(int v, int p) {
-        bool is_leaf = true;
         for (auto [c, cost] : G[v]) {
             if (c == p) continue;
-            is_leaf = false;
             dfs_sub(c, v);
-            dp_sub[v] = M::op(dp_sub[v], apply(dp_sub[c], v, c, cost));
+            dp_sub[v] = M::op(dp_sub[v], apply_edge(dp_sub[c], v, c, cost));
         }
-        if (is_leaf) dp_sub[v] = leaf();
+        dp_sub[v] = apply_vertex(dp_sub[v], v);
     }
 
     void dfs_all(int v, int p, const T& val) {
         std::vector<T> ds = {val};
         for (auto [c, cost] : G[v]) {
             if (c == p) continue;
-            ds.push_back(apply(dp_sub[c], v, c, cost));
+            ds.push_back(apply_edge(dp_sub[c], v, c, cost));
         }
         int n = ds.size();
         std::vector<T> head(n + 1, M::id()), tail(n + 1, M::id());
         for (int i = 0; i < n; ++i) head[i+1] = M::op(head[i], ds[i]);
         for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i+1]);
-        dp_all[v] = head[n];
+        dp_all[v] = apply_vertex(head[n], v);
         int k = 1;
         for (auto [c, cost] : G[v]) {
             if (c == p) continue;
-            dfs_all(c, v, apply(M::op(head[k], tail[k+1]), c, v, cost));
+            dfs_all(c, v, apply_edge(apply_vertex(M::op(head[k], tail[k+1]), v), c, v, cost));
             ++k;
         }
     }
