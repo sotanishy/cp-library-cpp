@@ -336,6 +336,9 @@ data:
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
+      path: math/combination_arbitrary_mod.hpp
+      title: Combination
+    - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
     - icon: ':warning:'
