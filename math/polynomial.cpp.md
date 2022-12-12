@@ -235,20 +235,20 @@ data:
   isVerificationFile: false
   path: math/polynomial.cpp
   requiredBy:
-  - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
-  - math/bostan_mori.hpp
   - math/stirling_first.hpp
+  - math/interpolation.cpp
+  - math/bostan_mori.hpp
   timestamp: '2022-06-27 18:10:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial_taylor_shift.test.cpp
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial_taylor_shift.test.cpp
 documentation_of: math/polynomial.cpp
 layout: document
 title: Polynomial

@@ -112,9 +112,9 @@ data:
   timestamp: '2022-06-27 13:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_B.test.cpp
-  - test/aoj/GRL_1_A.test.cpp
 documentation_of: graph/shortest_path.cpp
 layout: document
 title: Shortest Path Algorithms

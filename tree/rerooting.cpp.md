@@ -12,56 +12,56 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/rerooting.cpp\"\n#include <utility>\n#include <vector>\n\
-    \ntemplate <typename M,\n          typename Cost,\n          typename M::T (*leaf)(),\n\
-    \          typename M::T (*apply)(typename M::T, int, int, Cost)>\nclass Rerooting\
-    \ {\n    using T = typename M::T;\n\npublic:\n    explicit Rerooting(int n) :\
-    \ G(n) {}\n\n    void add_edge(int u, int v, Cost c) {\n        G[u].emplace_back(v,\
-    \ c);\n        G[v].emplace_back(u, c);\n    }\n\n    std::vector<T> run() {\n\
-    \        dp_sub.resize(G.size(), M::id());\n        dp_all.resize(G.size());\n\
-    \        dfs_sub(0, -1);\n        dfs_all(0, -1, M::id());\n        return dp_all;\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<std::pair<int, Cost>>> G;\n  \
-    \  std::vector<T> dp_sub, dp_all;\n\n    void dfs_sub(int v, int p) {\n      \
-    \  bool is_leaf = true;\n        for (auto [c, cost] : G[v]) {\n            if\
-    \ (c == p) continue;\n            is_leaf = false;\n            dfs_sub(c, v);\n\
-    \            dp_sub[v] = M::op(dp_sub[v], apply(dp_sub[c], v, c, cost));\n   \
-    \     }\n        if (is_leaf) dp_sub[v] = leaf();\n    }\n\n    void dfs_all(int\
-    \ v, int p, const T& val) {\n        std::vector<T> ds = {val};\n        for (auto\
-    \ [c, cost] : G[v]) {\n            if (c == p) continue;\n            ds.push_back(apply(dp_sub[c],\
-    \ v, c, cost));\n        }\n        int n = ds.size();\n        std::vector<T>\
-    \ head(n + 1, M::id()), tail(n + 1, M::id());\n        for (int i = 0; i < n;\
-    \ ++i) head[i+1] = M::op(head[i], ds[i]);\n        for (int i = n - 1; i >= 0;\
-    \ --i) tail[i] = M::op(ds[i], tail[i+1]);\n        dp_all[v] = head[n];\n    \
-    \    int k = 1;\n        for (auto [c, cost] : G[v]) {\n            if (c == p)\
-    \ continue;\n            dfs_all(c, v, apply(M::op(head[k], tail[k+1]), c, v,\
-    \ cost));\n            ++k;\n        }\n    }\n};\n"
+    \ntemplate <typename M,\n          typename Cost,\n          typename M::T (*apply_edge)(typename\
+    \ M::T, int, int, Cost),\n          typename M::T (*apply_vertex)(typename M::T,\
+    \ int)>\nclass Rerooting {\n    using T = typename M::T;\n\npublic:\n    explicit\
+    \ Rerooting(int n) : G(n) {}\n\n    void add_edge(int u, int v, Cost c) {\n  \
+    \      G[u].emplace_back(v, c);\n        G[v].emplace_back(u, c);\n    }\n\n \
+    \   std::vector<T> run() {\n        dp_sub.resize(G.size(), M::id());\n      \
+    \  dp_all.resize(G.size());\n        dfs_sub(0, -1);\n        dfs_all(0, -1, M::id());\n\
+    \        return dp_all;\n    }\n\nprivate:\n    std::vector<std::vector<std::pair<int,\
+    \ Cost>>> G;\n    std::vector<T> dp_sub, dp_all;\n\n    void dfs_sub(int v, int\
+    \ p) {\n        for (auto [c, cost] : G[v]) {\n            if (c == p) continue;\n\
+    \            dfs_sub(c, v);\n            dp_sub[v] = M::op(dp_sub[v], apply_edge(dp_sub[c],\
+    \ v, c, cost));\n        }\n        dp_sub[v] = apply_vertex(dp_sub[v], v);\n\
+    \    }\n\n    void dfs_all(int v, int p, const T& val) {\n        std::vector<T>\
+    \ ds = {val};\n        for (auto [c, cost] : G[v]) {\n            if (c == p)\
+    \ continue;\n            ds.push_back(apply_edge(dp_sub[c], v, c, cost));\n  \
+    \      }\n        int n = ds.size();\n        std::vector<T> head(n + 1, M::id()),\
+    \ tail(n + 1, M::id());\n        for (int i = 0; i < n; ++i) head[i+1] = M::op(head[i],\
+    \ ds[i]);\n        for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i+1]);\n\
+    \        dp_all[v] = apply_vertex(head[n], v);\n        int k = 1;\n        for\
+    \ (auto [c, cost] : G[v]) {\n            if (c == p) continue;\n            dfs_all(c,\
+    \ v, apply_edge(apply_vertex(M::op(head[k], tail[k+1]), v), c, v, cost));\n  \
+    \          ++k;\n        }\n    }\n};\n"
   code: "#pragma once\n#include <utility>\n#include <vector>\n\ntemplate <typename\
-    \ M,\n          typename Cost,\n          typename M::T (*leaf)(),\n         \
-    \ typename M::T (*apply)(typename M::T, int, int, Cost)>\nclass Rerooting {\n\
-    \    using T = typename M::T;\n\npublic:\n    explicit Rerooting(int n) : G(n)\
-    \ {}\n\n    void add_edge(int u, int v, Cost c) {\n        G[u].emplace_back(v,\
-    \ c);\n        G[v].emplace_back(u, c);\n    }\n\n    std::vector<T> run() {\n\
-    \        dp_sub.resize(G.size(), M::id());\n        dp_all.resize(G.size());\n\
-    \        dfs_sub(0, -1);\n        dfs_all(0, -1, M::id());\n        return dp_all;\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<std::pair<int, Cost>>> G;\n  \
-    \  std::vector<T> dp_sub, dp_all;\n\n    void dfs_sub(int v, int p) {\n      \
-    \  bool is_leaf = true;\n        for (auto [c, cost] : G[v]) {\n            if\
-    \ (c == p) continue;\n            is_leaf = false;\n            dfs_sub(c, v);\n\
-    \            dp_sub[v] = M::op(dp_sub[v], apply(dp_sub[c], v, c, cost));\n   \
-    \     }\n        if (is_leaf) dp_sub[v] = leaf();\n    }\n\n    void dfs_all(int\
-    \ v, int p, const T& val) {\n        std::vector<T> ds = {val};\n        for (auto\
-    \ [c, cost] : G[v]) {\n            if (c == p) continue;\n            ds.push_back(apply(dp_sub[c],\
-    \ v, c, cost));\n        }\n        int n = ds.size();\n        std::vector<T>\
-    \ head(n + 1, M::id()), tail(n + 1, M::id());\n        for (int i = 0; i < n;\
-    \ ++i) head[i+1] = M::op(head[i], ds[i]);\n        for (int i = n - 1; i >= 0;\
-    \ --i) tail[i] = M::op(ds[i], tail[i+1]);\n        dp_all[v] = head[n];\n    \
-    \    int k = 1;\n        for (auto [c, cost] : G[v]) {\n            if (c == p)\
-    \ continue;\n            dfs_all(c, v, apply(M::op(head[k], tail[k+1]), c, v,\
-    \ cost));\n            ++k;\n        }\n    }\n};"
+    \ M,\n          typename Cost,\n          typename M::T (*apply_edge)(typename\
+    \ M::T, int, int, Cost),\n          typename M::T (*apply_vertex)(typename M::T,\
+    \ int)>\nclass Rerooting {\n    using T = typename M::T;\n\npublic:\n    explicit\
+    \ Rerooting(int n) : G(n) {}\n\n    void add_edge(int u, int v, Cost c) {\n  \
+    \      G[u].emplace_back(v, c);\n        G[v].emplace_back(u, c);\n    }\n\n \
+    \   std::vector<T> run() {\n        dp_sub.resize(G.size(), M::id());\n      \
+    \  dp_all.resize(G.size());\n        dfs_sub(0, -1);\n        dfs_all(0, -1, M::id());\n\
+    \        return dp_all;\n    }\n\nprivate:\n    std::vector<std::vector<std::pair<int,\
+    \ Cost>>> G;\n    std::vector<T> dp_sub, dp_all;\n\n    void dfs_sub(int v, int\
+    \ p) {\n        for (auto [c, cost] : G[v]) {\n            if (c == p) continue;\n\
+    \            dfs_sub(c, v);\n            dp_sub[v] = M::op(dp_sub[v], apply_edge(dp_sub[c],\
+    \ v, c, cost));\n        }\n        dp_sub[v] = apply_vertex(dp_sub[v], v);\n\
+    \    }\n\n    void dfs_all(int v, int p, const T& val) {\n        std::vector<T>\
+    \ ds = {val};\n        for (auto [c, cost] : G[v]) {\n            if (c == p)\
+    \ continue;\n            ds.push_back(apply_edge(dp_sub[c], v, c, cost));\n  \
+    \      }\n        int n = ds.size();\n        std::vector<T> head(n + 1, M::id()),\
+    \ tail(n + 1, M::id());\n        for (int i = 0; i < n; ++i) head[i+1] = M::op(head[i],\
+    \ ds[i]);\n        for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i+1]);\n\
+    \        dp_all[v] = apply_vertex(head[n], v);\n        int k = 1;\n        for\
+    \ (auto [c, cost] : G[v]) {\n            if (c == p) continue;\n            dfs_all(c,\
+    \ v, apply_edge(apply_vertex(M::op(head[k], tail[k+1]), v), c, v, cost));\n  \
+    \          ++k;\n        }\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: tree/rerooting.cpp
   requiredBy: []
-  timestamp: '2022-03-06 20:10:50+09:00'
+  timestamp: '2022-12-12 14:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_B.test.cpp
@@ -74,6 +74,8 @@ title: Rerooting
 
 全方位木DP (rerooting) は，木において，各頂点を根としたときの木DPの値を求めるアルゴリズムである．
 
+DPは $dp_v = g(f(dp_{c_1}, e_1) * \dots * f(dp_{c_k}, e_k), v)$ という形の遷移で表されるとする．
+
 空間計算量: $O(n)$
 
 ## Template Parameters
@@ -82,10 +84,10 @@ title: Rerooting
     - 可換モノイド
 - `Cost`
     - 辺のコストの型
-- `T leaf()`
-    - 葉におけるDPの値
-- `T apply(T a, int s, int t, Cost c)`
-    - 辺 $st$ のコストが $c$ で $t$ の部分木の値が $a$ であるときに $s$ の部分木の値を求める
+- `T apply_edge(T a, int s, int t, Cost c)`
+    - 遷移の $f$
+- `T apply_vertex(T x, int v)`
+    - 遷移の $g$
 
 ## Operations
 
