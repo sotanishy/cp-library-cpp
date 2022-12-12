@@ -10,23 +10,23 @@ class ArbitraryModint {
     using mint = ArbitraryModint;
 
 public:
-    static int& get_mod() noexcept {
-        static int mod = 1;
-        return mod;
+    static int& mod() noexcept {
+        static int mod_ = 1;
+        return mod_;
     }
 
-    static void set_mod(int mod) {
-        assert(mod > 0);
-        get_mod() = mod;
+    static void set_mod(int mod_) {
+        assert(mod_ > 0);
+        mod() = mod_;
     }
 
-    ArbitraryModint(long long y = 0) noexcept : x(y >= 0 ? y % get_mod() : (y % get_mod() + get_mod()) % get_mod()) {}
+    ArbitraryModint(long long y = 0) noexcept : x(y >= 0 ? y % mod() : (y % mod() + mod()) % mod()) {}
 
     int value() const noexcept { return x; }
 
-    mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= get_mod()) x -= get_mod(); return *this; }
-    mint& operator-=(const mint& r) noexcept { if ((x += get_mod() - r.x) >= get_mod()) x -= get_mod(); return *this; }
-    mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % get_mod()); return *this; }
+    mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod()) x -= mod(); return *this; }
+    mint& operator-=(const mint& r) noexcept { if ((x += mod() - r.x) >= mod()) x -= mod(); return *this; }
+    mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod()); return *this; }
     mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }
 
     mint operator-() const noexcept { return mint(-x); }
@@ -40,7 +40,7 @@ public:
     bool operator!=(const mint& r) const noexcept { return x != r.x; }
 
     mint inv() const noexcept {
-        int a = x, b = get_mod(), u = 1, v = 0;
+        int a = x, b = mod(), u = 1, v = 0;
         while (b > 0) {
             int t = a / b;
             std::swap(a -= t * b, b);
