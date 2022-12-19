@@ -32,11 +32,8 @@ struct Line {
     Vec dir() const { return p2 - p1; }
 };
 
-struct Segment {
-    Vec p1, p2;
-    Segment() = default;
-    Segment(const Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}
-    Vec dir() const { return p2 - p1; }
+struct Segment : Line {
+    using Line::Line;
 };
 
 struct Circle {

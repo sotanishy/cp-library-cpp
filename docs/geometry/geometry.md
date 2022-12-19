@@ -98,7 +98,7 @@ documentation_of: ../../geometry/geometry.hpp
 
 ### `tangent.hpp`
 
-- `pair<Vec, Vec> tangent_ponints(Circle c, Vec p)`
+- `pair<Vec, Vec> tangent_points(Circle c, Vec p)`
     - 点 $p$ を通り円 $c$ に接する接線と $c$ の接点を返す
 
 - `vector<Line> common_tangents(Circle c1, Circle c2)`
@@ -114,12 +114,21 @@ documentation_of: ../../geometry/geometry.hpp
     - 多角形 $poly$ が凸か判定する．`poly` は反時計回りに与えられる必要がある
     - 時間計算量: $O(n)$
 
-- `vector<Vec> convex_cut(Polygon poly, Line l)`
+- `Polygon convex_cut(Polygon poly, Line l)`
     - 多角形 $poly$ を直線 $l$ で切断する．詳細な仕様は [凸多角形の切断](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_C) を参照．
     - 時間計算量: $O(n)$
+
+- `Polygon halfplane_intersection(vector<pair<Vec, Vec>> hps)`
+    - 半平面の集合が与えられたとき，それらの共通部分 (凸多角形になる) を返す．半平面は， $\{\boldsymbol{x}\mid(\boldsymbol{x}-\boldsymbol{p})\cdot \boldsymbol{n}\geq 0\}$ で表したときに $(\boldsymbol{n},\boldsymbol{p})$ の形で与える．
+    - 時間計算量: $O(n\log n)$
 
 ### `closest_pair.hpp`
 
 - `T closest_pair(vector<Vec> pts)`
     - 与えられた点のうち最も近い2点の距離を分割統治法で求める
     - 時間計算量: $O(n\log n)$
+
+
+## Reference
+
+- [Half-plane intersection - Algorithms for Competitive Programming](https://cp-algorithms.com/geometry/halfplane-intersection.html#direct-implementation)

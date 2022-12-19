@@ -10,8 +10,8 @@ public:
     explicit FordFulkerson(int n) : G(n), used(n) {}
 
     void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, cap, (int) G[v].size());
-        G[v].emplace_back(u, 0, (int) G[u].size() - 1);
+        G[u].push_back({v, (int) G[v].size(), cap});
+        G[v].push_back({u, (int) G[u].size() - 1, 0});
     }
 
     T max_flow(int s, int t) {
@@ -24,12 +24,28 @@ public:
         }
     }
 
+    std::set<int> min_cut(int s) {
+        std::stack<int> st;
+        std::set<int> visited;
+        st.push(s);
+        visited.insert(s);
+        while (!st.empty()) {
+            int v = st.top();
+            st.pop();
+            for (auto& e : G[v]) {
+                if (e.cap > 0 && !visited.count(e.to)) {
+                    visited.insert(e.to);
+                    st.push(e.to);
+                }
+            }
+        }
+        return visited;
+    }
+
 private:
     struct Edge {
-        int to;
+        int to, rev;
         T cap;
-        int rev;
-        Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
     };
 
     const T INF = std::numeric_limits<T>::max() / 2;
