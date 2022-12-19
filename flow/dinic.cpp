@@ -13,8 +13,8 @@ public:
     explicit Dinic(int V) : G(V), level(V), iter(V) {}
 
     void add_edge(int u, int v, T cap) {
-        G[u].emplace_back(v, (int) G[v].size(), cap);
-        G[v].emplace_back(u, (int) G[u].size() - 1, 0);
+        G[u].push_back({v, (int) G[v].size(), cap});
+        G[v].push_back({u, (int) G[u].size() - 1, 0});
     }
 
     T max_flow(int s, int t) {
