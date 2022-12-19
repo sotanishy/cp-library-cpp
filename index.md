@@ -194,7 +194,7 @@ data:
     - icon: ':x:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
     - icon: ':heavy_check_mark:'
@@ -214,25 +214,25 @@ data:
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/dist.hpp
       title: geometry/dist.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersect.hpp
       title: geometry/intersect.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersection.hpp
       title: geometry/intersection.hpp
     - icon: ':warning:'
       path: geometry/minimum_bounding_circle.hpp
       title: Minimum Bounding Circle
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/polygon.hpp
       title: geometry/polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -573,7 +573,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1283.test.cpp
       title: test/aoj/1283.test.cpp
     - icon: ':heavy_check_mark:'
@@ -765,7 +765,7 @@ data:
     - icon: ':x:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     - icon: ':heavy_check_mark:'
