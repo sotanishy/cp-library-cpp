@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.dinic.test.cpp
     title: test/aoj/GRL_6_A.dinic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/dinic.cpp\"\n#include <algorithm>\n#include <limits>\n\
     #include <set>\n#include <stack>\n#include <queue>\n#include <vector>\n\ntemplate\
     \ <typename T>\nclass Dinic {\npublic:\n    Dinic() = default;\n    explicit Dinic(int\
     \ V) : G(V), level(V), iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n\
-    \        G[u].emplace_back(v, (int) G[v].size(), cap);\n        G[v].emplace_back(u,\
-    \ (int) G[u].size() - 1, 0);\n    }\n\n    T max_flow(int s, int t) {\n      \
-    \  T flow = 0;\n        while (bfs(s, t)) {\n            std::fill(iter.begin(),\
+    \        G[u].push_back({v, (int) G[v].size(), cap});\n        G[v].push_back({u,\
+    \ (int) G[u].size() - 1, 0});\n    }\n\n    T max_flow(int s, int t) {\n     \
+    \   T flow = 0;\n        while (bfs(s, t)) {\n            std::fill(iter.begin(),\
     \ iter.end(), 0);\n            T f = 0;\n            while ((f = dfs(s, t, INF))\
     \ > 0) flow += f;\n        }\n        return flow;\n    }\n\n    std::set<int>\
     \ min_cut(int s) {\n        std::stack<int> st;\n        std::set<int> visited;\n\
@@ -45,13 +45,13 @@ data:
   code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <set>\n#include\
     \ <stack>\n#include <queue>\n#include <vector>\n\ntemplate <typename T>\nclass\
     \ Dinic {\npublic:\n    Dinic() = default;\n    explicit Dinic(int V) : G(V),\
-    \ level(V), iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].emplace_back(v,\
-    \ (int) G[v].size(), cap);\n        G[v].emplace_back(u, (int) G[u].size() - 1,\
-    \ 0);\n    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n        while\
-    \ (bfs(s, t)) {\n            std::fill(iter.begin(), iter.end(), 0);\n       \
-    \     T f = 0;\n            while ((f = dfs(s, t, INF)) > 0) flow += f;\n    \
-    \    }\n        return flow;\n    }\n\n    std::set<int> min_cut(int s) {\n  \
-    \      std::stack<int> st;\n        std::set<int> visited;\n        st.push(s);\n\
+    \ level(V), iter(V) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].push_back({v,\
+    \ (int) G[v].size(), cap});\n        G[v].push_back({u, (int) G[u].size() - 1,\
+    \ 0});\n    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n       \
+    \ while (bfs(s, t)) {\n            std::fill(iter.begin(), iter.end(), 0);\n \
+    \           T f = 0;\n            while ((f = dfs(s, t, INF)) > 0) flow += f;\n\
+    \        }\n        return flow;\n    }\n\n    std::set<int> min_cut(int s) {\n\
+    \        std::stack<int> st;\n        std::set<int> visited;\n        st.push(s);\n\
     \        visited.insert(s);\n        while (!st.empty()) {\n            int v\
     \ = st.top();\n            st.pop();\n            for (auto& e : G[v]) {\n   \
     \             if (e.cap > 0 && !visited.count(e.to)) {\n                    visited.insert(e.to);\n\
@@ -76,8 +76,8 @@ data:
   isVerificationFile: false
   path: flow/dinic.cpp
   requiredBy: []
-  timestamp: '2022-12-19 17:08:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-19 19:48:21+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_A.dinic.test.cpp
 documentation_of: flow/dinic.cpp
