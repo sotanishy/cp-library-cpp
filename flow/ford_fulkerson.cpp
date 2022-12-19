@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
 #include <limits>
+#include <set>
+#include <stack>
 #include <vector>
 
 template <typename T>

@@ -1,4 +1,5 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1283"
+#define ERROR 0.00001
 
 #include "../../geometry/geometry.hpp"
 #include "../../geometry/polygon.hpp"
