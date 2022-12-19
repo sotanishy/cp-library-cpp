@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/bisector.hpp
     title: geometry/bisector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
   - icon: ':heavy_check_mark:'
@@ -38,17 +38,16 @@ data:
     \ is, Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
     }\n\nstruct Line {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec&\
     \ p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1;\
-    \ }\n};\n\nstruct Segment {\n    Vec p1, p2;\n    Segment() = default;\n    Segment(const\
-    \ Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2\
-    \ - p1; }\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n\
-    \    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
-    \nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
-    }\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
-    }\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
-    }\n\nVec perp(const Vec& a) {\n    return Vec(-a.imag(), a.real());\n}\n\nVec\
-    \ projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir())\
-    \ * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec&\
-    \ p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
+    \ }\n};\n\nstruct Segment : Line {\n    using Line::Line;\n};\n\nstruct Circle\
+    \ {\n    Vec c;\n    T r;\n    Circle() = default;\n    Circle(const Vec& c, T\
+    \ r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\nT dot(const Vec&\
+    \ a, const Vec& b) {\n    return (std::conj(a) * b).real();\n}\n\nT cross(const\
+    \ Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const\
+    \ Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\nVec\
+    \ perp(const Vec& a) {\n    return Vec(-a.imag(), a.real());\n}\n\nVec projection(const\
+    \ Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir()) * l.dir()\
+    \ / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec& p) {\n\
+    \    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
     // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
     \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
     \ return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n\
@@ -171,7 +170,7 @@ data:
   isVerificationFile: false
   path: geometry/minimum_bounding_circle.hpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:34+09:00'
+  timestamp: '2022-12-19 16:08:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/minimum_bounding_circle.hpp

@@ -191,10 +191,10 @@ data:
       title: SMAWK Algorithm
   - name: flow
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/dinic.cpp
       title: Dinic's Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
     - icon: ':heavy_check_mark:'
@@ -214,25 +214,25 @@ data:
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/dist.hpp
       title: geometry/dist.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/intersect.hpp
       title: geometry/intersect.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/intersection.hpp
       title: geometry/intersection.hpp
     - icon: ':warning:'
       path: geometry/minimum_bounding_circle.hpp
       title: Minimum Bounding Circle
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/polygon.hpp
       title: geometry/polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -573,6 +573,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
+    - icon: ':x:'
+      path: test/aoj/1283.test.cpp
+      title: test/aoj/1283.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1298.test.cpp
       title: test/aoj/1298.test.cpp
@@ -759,10 +762,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_C.test.cpp
       title: test/aoj/GRL_5_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     - icon: ':heavy_check_mark:'

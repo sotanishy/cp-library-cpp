@@ -126,8 +126,8 @@ data:
   isVerificationFile: false
   path: math/matrix/matrix.cpp
   requiredBy:
-  - math/system_of_linear_equations.cpp
   - math/matrix/square_matrix.cpp
+  - math/system_of_linear_equations.cpp
   timestamp: '2021-03-30 13:20:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -100,3 +100,4 @@ title: Combination
 ## Reference
 
 - [任意 mod で二項係数を列挙する](https://qiita.com/suisen_cp/items/d0ab7e728b98bbec818f)
+- verify: [https://atcoder.jp/contests/abc281/submissions/37229804](https://atcoder.jp/contests/abc281/submissions/37229804)

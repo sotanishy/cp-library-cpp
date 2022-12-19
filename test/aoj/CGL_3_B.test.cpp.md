@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
   _extendedRequiredBy: []
@@ -37,34 +37,33 @@ data:
     \ }\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y;\n   \
     \ is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nstruct Line {\n    Vec\
     \ p1, p2;\n    Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1),\
-    \ p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment {\n\
-    \    Vec p1, p2;\n    Segment() = default;\n    Segment(const Vec& p1, const Vec&\
-    \ p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct\
-    \ Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n    Circle(const Vec&\
-    \ c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\nT dot(const\
-    \ Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n}\n\nT cross(const\
-    \ Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const\
-    \ Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\nVec\
-    \ perp(const Vec& a) {\n    return Vec(-a.imag(), a.real());\n}\n\nVec projection(const\
-    \ Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir()) * l.dir()\
-    \ / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec& p) {\n\
-    \    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
-    // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
-    \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
-    \ return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n\
-    \    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
-    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
-    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
-    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
-    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
-    \ }\n        return (cross(p, q) > 0);\n    });\n}\n#line 3 \"geometry/intersect.hpp\"\
-    \n\nbool intersect(const Segment& s, const Vec& p) {\n    Vec u = s.p1 - p, v\
-    \ = s.p2 - p;\n    return eq(cross(u, v), 0) && leq(dot(u, v), 0);\n}\n\n// 0:\
-    \ outside\n// 1: on the border\n// 2: inside\nint intersect(const Polygon& poly,\
-    \ const Vec& p) {\n    const int n = poly.size();\n    bool in = 0;\n    for (int\
-    \ i = 0; i < n; ++i) {\n        auto a = poly[i] - p, b = poly[(i+1)%n] - p;\n\
-    \        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0))) return\
-    \ 1;\n        if (a.imag() > b.imag()) std::swap(a, b);\n        if (leq(a.imag(),\
+    \ p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line\
+    \ {\n    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
+    \ = default;\n    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon\
+    \ = std::vector<Vec>;\n\nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a)\
+    \ * b).real();\n}\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a)\
+    \ * b).imag();\n}\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang),\
+    \ std::sin(ang));\n}\n\nVec perp(const Vec& a) {\n    return Vec(-a.imag(), a.real());\n\
+    }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p -\
+    \ l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line&\
+    \ l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n\
+    // 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a, const Vec& b,\
+    \ const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b\
+    \ - a, c - a), 0)) return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>&\
+    \ pts) {\n    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n    \
+    \    if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if\
+    \ (cross(p, q) == 0) {\n            if (p == Vec(0, 0)) return !(q.imag() < 0\
+    \ || (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0, 0)) return\
+    \  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n            return (p.real()\
+    \ > q.real());\n        }\n        return (cross(p, q) > 0);\n    });\n}\n#line\
+    \ 3 \"geometry/polygon.hpp\"\n#include <deque>\n#include <utility>\n#line 3 \"\
+    geometry/intersect.hpp\"\n\nbool intersect(const Segment& s, const Vec& p) {\n\
+    \    Vec u = s.p1 - p, v = s.p2 - p;\n    return eq(cross(u, v), 0) && leq(dot(u,\
+    \ v), 0);\n}\n\n// 0: outside\n// 1: on the border\n// 2: inside\nint intersect(const\
+    \ Polygon& poly, const Vec& p) {\n    const int n = poly.size();\n    bool in\
+    \ = 0;\n    for (int i = 0; i < n; ++i) {\n        auto a = poly[i] - p, b = poly[(i+1)%n]\
+    \ - p;\n        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0)))\
+    \ return 1;\n        if (a.imag() > b.imag()) std::swap(a, b);\n        if (leq(a.imag(),\
     \ 0) && lt(0, b.imag()) && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in\
     \ ? 2 : 0;\n}\n\nint intersect(const Segment& s, const Segment& t) {\n    auto\
     \ a = s.p1, b = s.p2;\n    auto c = t.p1, d = t.p2;\n    if (ccw(a, b, c) != ccw(a,\
@@ -109,25 +108,52 @@ data:
     \    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));\n\
     \    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));\n    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));\n\
     \    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));\n    return ans;\n}\n#line\
-    \ 4 \"geometry/polygon.hpp\"\n\nT area(const Polygon& poly) {\n    const int n\
+    \ 8 \"geometry/polygon.hpp\"\n\nT area(const Polygon& poly) {\n    const int n\
     \ = poly.size();\n    T res = 0;\n    for (int i = 0; i < n; ++i) {\n        res\
     \ += cross(poly[i], poly[(i + 1) % n]);\n    }\n    return std::abs(res) / T(2);\n\
     }\n\nbool is_convex(const Polygon& poly) {\n    int n = poly.size();\n    for\
     \ (int i = 0; i < n; ++i) {\n        if (lt(cross(poly[(i+1)%n] - poly[i], poly[(i+2)%n]\
     \ - poly[(i+1)%n]), 0)) {\n            return false;\n        }\n    }\n    return\
-    \ true;\n}\n\nstd::vector<Vec> convex_cut(const Polygon& poly, const Line& l)\
-    \ {\n    const int n = poly.size();\n    std::vector<Vec> res;\n    for (int i\
-    \ = 0; i < n; ++i) {\n        auto p = poly[i], q = poly[(i+1)%n];\n        if\
-    \ (ccw(l.p1, l.p2, p) != -1) {\n            if (res.empty() || !eq(res.back(),\
-    \ p)) {\n                res.push_back(p);\n            }\n        }\n       \
-    \ if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q) < 0) {\n            auto c = intersection(Line(p,\
-    \ q), l);\n            if (res.empty() || !eq(res.back(), c)) {\n            \
-    \    res.push_back(c);\n            }\n        }\n    }\n    return res;\n}\n\
-    #line 5 \"test/aoj/CGL_3_B.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(15);\n\n    int n;\n    cin >> n;\n    vector<Vec>\
-    \ pts(n);\n    for (auto& x : pts) cin >> x;\n    cout << is_convex(pts) << endl;\n\
-    }\n"
+    \ true;\n}\n\nPolygon convex_cut(const Polygon& poly, const Line& l) {\n    const\
+    \ int n = poly.size();\n    Polygon res;\n    for (int i = 0; i < n; ++i) {\n\
+    \        auto p = poly[i], q = poly[(i+1)%n];\n        if (ccw(l.p1, l.p2, p)\
+    \ != -1) {\n            if (res.empty() || !eq(res.back(), p)) {\n           \
+    \     res.push_back(p);\n            }\n        }\n        if (ccw(l.p1, l.p2,\
+    \ p) * ccw(l.p1, l.p2, q) < 0) {\n            auto c = intersection(Line(p, q),\
+    \ l);\n            if (res.empty() || !eq(res.back(), c)) {\n                res.push_back(c);\n\
+    \            }\n        }\n    }\n    return res;\n}\n\nPolygon halfplane_intersection(std::vector<std::pair<Vec,\
+    \ Vec>> hps) {\n    using Hp = std::pair<Vec, Vec>;  // (normal vector, a point\
+    \ on the border)\n\n    auto intersection = [&](const Hp& l1, const Hp& l2) ->\
+    \ Vec {\n        auto d = l2.second - l1.second;\n        Vec e(-l1.first.imag(),\
+    \ l1.first.real());\n        return l1.second + (dot(d, l2.first) / cross(l1.first,\
+    \ l2.first)) * e;\n    };\n\n    // check if the halfplane h contains the point\
+    \ p\n    auto contains = [&](const Hp& h, const Vec& p) -> bool {\n        return\
+    \ dot(p - h.second, h.first) > 0;\n    };\n\n    constexpr T INF = 1e15;\n   \
+    \ hps.emplace_back(Vec(1, 0), Vec(-INF, 0));  // -INF <= x\n    hps.emplace_back(Vec(-1,\
+    \ 0), Vec(INF, 0));  // x <= INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));\
+    \  // -INF <= y\n    hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF\n\
+    \n    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {\n\
+    \        return std::arg(h1.first) < std::arg(h2.first);\n    });\n\n    std::deque<Hp>\
+    \ dq;\n    int len = 0;\n    for (auto& hp : hps) {\n        while (len > 1 &&\
+    \ !contains(hp, intersection(dq[len-1], dq[len-2]))) {\n            dq.pop_back();\n\
+    \            --len;\n        }\n\n        while (len > 1 && !contains(hp, intersection(dq[0],\
+    \ dq[1]))) {\n            dq.pop_front();\n            --len;\n        }\n\n \
+    \       // parallel\n        if (len > 0 && eq(cross(dq[len-1].first, hp.first),\
+    \ 0)) {\n            // opposite\n            if (lt(dot(dq[len-1].first, hp.first),\
+    \ 0)) {\n                return {};\n            }\n            // same\n    \
+    \        if (!contains(hp, dq[len-1].second)) {\n                dq.pop_back();\n\
+    \                --len;\n            } else continue;\n        }\n\n        dq.push_back(hp);\n\
+    \        ++len;\n    }\n\n    while (len > 2 && !contains(dq[0], intersection(dq[len-1],\
+    \ dq[len-2]))) {\n        dq.pop_back();\n        --len;\n    }\n\n    while (len\
+    \ > 2 && !contains(dq[len-1], intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n\
+    \        --len;\n    }\n\n    if (len < 3) return {};\n\n    std::vector<Vec>\
+    \ poly(len);\n    for (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i],\
+    \ dq[i+1]);\n    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return\
+    \ poly;\n}\n#line 5 \"test/aoj/CGL_3_B.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
+    \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& x : pts) cin >> x;\n \
+    \   cout << is_convex(pts) << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\"\
     \n\n#include \"../../geometry/geometry.hpp\"\n#include \"../../geometry/polygon.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -143,7 +169,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:34+09:00'
+  timestamp: '2022-12-19 16:08:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_3_B.test.cpp
