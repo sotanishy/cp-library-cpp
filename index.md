@@ -140,10 +140,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_2d.hpp
       title: 2D Segment Tree
     - icon: ':heavy_check_mark:'
@@ -563,7 +563,7 @@ data:
       title: Diameter of a Tree
     - icon: ':heavy_check_mark:'
       path: tree/tree_isomorphism.hpp
-      title: tree/tree_isomorphism.hpp
+      title: Tree Isomorphism
   verificationCategories:
   - name: test/aoj
     pages:
@@ -944,7 +944,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     - icon: ':heavy_check_mark:'

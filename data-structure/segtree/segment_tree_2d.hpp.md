@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
-    #include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
+    #include <cassert>\n#include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id())) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
@@ -47,7 +47,7 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
-    #line 6 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
+    #line 7 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
     \ typename Y, typename M>\nclass SegmentTree2D {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree2D() = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X,\
     \ Y>>& pts) {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n\
@@ -85,12 +85,12 @@ data:
     \n    int getx(X x) const { return std::lower_bound(xs.begin(), xs.end(), x) -\
     \ xs.begin(); }\n    int gety(int k, Y y) const { return std::lower_bound(ys[k].begin(),\
     \ ys[k].end(), y) - ys[k].begin(); }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
-    #include \"segment_tree.cpp\"\n\ntemplate <typename X, typename Y, typename M>\n\
-    class SegmentTree2D {\n    using T = typename M::T;\n\npublic:\n    SegmentTree2D()\
-    \ = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X, Y>>& pts)\
-    \ {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n      \
-    \  }\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
+  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
+    #include <vector>\n#include \"segment_tree.cpp\"\n\ntemplate <typename X, typename\
+    \ Y, typename M>\nclass SegmentTree2D {\n    using T = typename M::T;\n\npublic:\n\
+    \    SegmentTree2D() = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X,\
+    \ Y>>& pts) {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n\
+    \        }\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
     \ xs.end()), xs.end());\n\n        const int n = xs.size();\n        size = 1;\n\
     \        while (size < n) size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2\
     \ * size);\n\n        for (auto& [x, y] : pts) {\n            ys[size + getx(x)].push_back(y);\n\
@@ -129,8 +129,8 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_2d.hpp
   requiredBy: []
-  timestamp: '2022-12-25 16:20:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-25 16:38:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
 documentation_of: data-structure/segtree/segment_tree_2d.hpp

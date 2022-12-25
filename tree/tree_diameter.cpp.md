@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: tree/tree_isomorphism.hpp
-    title: tree/tree_isomorphism.hpp
+    title: Tree Isomorphism
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2821.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree_2d.hpp
     title: 2D Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -20,7 +20,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\
     \n#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
-    #include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
+    #include <cassert>\n#include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
     \ M::id())) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
@@ -52,7 +52,7 @@ data:
     \ r = 2 * r;\n                    }\n                    return r - size;\n  \
     \              }\n                vr = nxt;\n            }\n        }\n      \
     \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
-    #line 6 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
+    #line 7 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
     \ typename Y, typename M>\nclass SegmentTree2D {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree2D() = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X,\
     \ Y>>& pts) {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n\
@@ -136,8 +136,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
   requiredBy: []
-  timestamp: '2022-12-25 16:20:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-25 16:38:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
 layout: document

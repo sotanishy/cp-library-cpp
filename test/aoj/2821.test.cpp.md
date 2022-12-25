@@ -9,7 +9,7 @@ data:
     title: Diameter of a Tree
   - icon: ':heavy_check_mark:'
     path: tree/tree_isomorphism.hpp
-    title: tree/tree_isomorphism.hpp
+    title: Tree Isomorphism
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
