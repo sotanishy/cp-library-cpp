@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <cassert>
 #include <utility>
 #include <vector>
 #include "segment_tree.cpp"

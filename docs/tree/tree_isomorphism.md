@@ -1,6 +1,6 @@
 ---
 title: Tree Isomorphism
-documentation_of: ../../tree/tree_hash.hpp
+documentation_of: ../../tree/tree_isomorphism.hpp
 ---
 
 ## Description
