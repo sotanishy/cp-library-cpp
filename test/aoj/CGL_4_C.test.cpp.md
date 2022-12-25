@@ -126,38 +126,37 @@ data:
     \            }\n        }\n    }\n    return res;\n}\n\nPolygon halfplane_intersection(std::vector<std::pair<Vec,\
     \ Vec>> hps) {\n    using Hp = std::pair<Vec, Vec>;  // (normal vector, a point\
     \ on the border)\n\n    auto intersection = [&](const Hp& l1, const Hp& l2) ->\
-    \ Vec {\n        auto d = l2.second - l1.second;\n        Vec e(-l1.first.imag(),\
-    \ l1.first.real());\n        return l1.second + (dot(d, l2.first) / cross(l1.first,\
-    \ l2.first)) * e;\n    };\n\n    // check if the halfplane h contains the point\
-    \ p\n    auto contains = [&](const Hp& h, const Vec& p) -> bool {\n        return\
-    \ dot(p - h.second, h.first) > 0;\n    };\n\n    constexpr T INF = 1e15;\n   \
-    \ hps.emplace_back(Vec(1, 0), Vec(-INF, 0));  // -INF <= x\n    hps.emplace_back(Vec(-1,\
-    \ 0), Vec(INF, 0));  // x <= INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));\
-    \  // -INF <= y\n    hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF\n\
-    \n    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {\n\
-    \        return std::arg(h1.first) < std::arg(h2.first);\n    });\n\n    std::deque<Hp>\
-    \ dq;\n    int len = 0;\n    for (auto& hp : hps) {\n        while (len > 1 &&\
-    \ !contains(hp, intersection(dq[len-1], dq[len-2]))) {\n            dq.pop_back();\n\
-    \            --len;\n        }\n\n        while (len > 1 && !contains(hp, intersection(dq[0],\
-    \ dq[1]))) {\n            dq.pop_front();\n            --len;\n        }\n\n \
-    \       // parallel\n        if (len > 0 && eq(cross(dq[len-1].first, hp.first),\
-    \ 0)) {\n            // opposite\n            if (lt(dot(dq[len-1].first, hp.first),\
-    \ 0)) {\n                return {};\n            }\n            // same\n    \
-    \        if (!contains(hp, dq[len-1].second)) {\n                dq.pop_back();\n\
-    \                --len;\n            } else continue;\n        }\n\n        dq.push_back(hp);\n\
-    \        ++len;\n    }\n\n    while (len > 2 && !contains(dq[0], intersection(dq[len-1],\
-    \ dq[len-2]))) {\n        dq.pop_back();\n        --len;\n    }\n\n    while (len\
-    \ > 2 && !contains(dq[len-1], intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n\
-    \        --len;\n    }\n\n    if (len < 3) return {};\n\n    std::vector<Vec>\
-    \ poly(len);\n    for (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i],\
-    \ dq[i+1]);\n    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return\
-    \ poly;\n}\n#line 6 \"test/aoj/CGL_4_C.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
-    \    cin >> n;\n    vector<Vec> poly(n);\n    for (auto& x : poly) cin >> x;\n\
-    \    int q;\n    cin >> q;\n    while (q--) {\n        Vec p1, p2;\n        cin\
-    \ >> p1 >> p2;\n        cout << area(convex_cut(poly, Line(p1, p2))) << \"\\n\"\
-    ;\n    }\n}\n"
+    \ Vec {\n        auto d = l2.second - l1.second;\n        return l1.second + (dot(d,\
+    \ l2.first) / cross(l1.first, l2.first)) * perp(l1.first);\n    };\n\n    // check\
+    \ if the halfplane h contains the point p\n    auto contains = [&](const Hp& h,\
+    \ const Vec& p) -> bool {\n        return dot(p - h.second, h.first) > 0;\n  \
+    \  };\n\n    constexpr T INF = 1e15;\n    hps.emplace_back(Vec(1, 0), Vec(-INF,\
+    \ 0));  // -INF <= x\n    hps.emplace_back(Vec(-1, 0), Vec(INF, 0));  // x <=\
+    \ INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));  // -INF <= y\n    hps.emplace_back(Vec(0,\
+    \ -1), Vec(0, INF));  // y <= INF\n\n    std::sort(hps.begin(), hps.end(), [&](const\
+    \ auto& h1, const auto& h2) {\n        return std::arg(h1.first) < std::arg(h2.first);\n\
+    \    });\n\n    std::deque<Hp> dq;\n    int len = 0;\n    for (auto& hp : hps)\
+    \ {\n        while (len > 1 && !contains(hp, intersection(dq[len-1], dq[len-2])))\
+    \ {\n            dq.pop_back();\n            --len;\n        }\n\n        while\
+    \ (len > 1 && !contains(hp, intersection(dq[0], dq[1]))) {\n            dq.pop_front();\n\
+    \            --len;\n        }\n\n        // parallel\n        if (len > 0 &&\
+    \ eq(cross(dq[len-1].first, hp.first), 0)) {\n            // opposite\n      \
+    \      if (lt(dot(dq[len-1].first, hp.first), 0)) {\n                return {};\n\
+    \            }\n            // same\n            if (!contains(hp, dq[len-1].second))\
+    \ {\n                dq.pop_back();\n                --len;\n            } else\
+    \ continue;\n        }\n\n        dq.push_back(hp);\n        ++len;\n    }\n\n\
+    \    while (len > 2 && !contains(dq[0], intersection(dq[len-1], dq[len-2]))) {\n\
+    \        dq.pop_back();\n        --len;\n    }\n\n    while (len > 2 && !contains(dq[len-1],\
+    \ intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n        --len;\n  \
+    \  }\n\n    if (len < 3) return {};\n\n    std::vector<Vec> poly(len);\n    for\
+    \ (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i], dq[i+1]);\n\
+    \    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return poly;\n\
+    }\n#line 6 \"test/aoj/CGL_4_C.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    cout << fixed << setprecision(15);\n\n    int n;\n    cin >> n;\n    vector<Vec>\
+    \ poly(n);\n    for (auto& x : poly) cin >> x;\n    int q;\n    cin >> q;\n  \
+    \  while (q--) {\n        Vec p1, p2;\n        cin >> p1 >> p2;\n        cout\
+    \ << area(convex_cut(poly, Line(p1, p2))) << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\"\
     \n#define ERROR 0.00001\n\n#include \"../../geometry/geometry.hpp\"\n#include\
     \ \"../../geometry/polygon.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
@@ -175,7 +174,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_C.test.cpp
   requiredBy: []
-  timestamp: '2022-12-19 16:08:50+09:00'
+  timestamp: '2022-12-25 14:40:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_C.test.cpp

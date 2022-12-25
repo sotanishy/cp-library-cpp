@@ -68,7 +68,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.cpp
       title: Fenwick Tree with Range Update
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/range_tree.cpp
       title: Range Tree
     - icon: ':heavy_check_mark:'
@@ -971,6 +971,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/rectangle_sum.range_tree.test.cpp
+      title: test/yosupo/rectangle_sum.range_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
       title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp

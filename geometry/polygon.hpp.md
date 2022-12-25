@@ -130,32 +130,32 @@ data:
     \            }\n        }\n    }\n    return res;\n}\n\nPolygon halfplane_intersection(std::vector<std::pair<Vec,\
     \ Vec>> hps) {\n    using Hp = std::pair<Vec, Vec>;  // (normal vector, a point\
     \ on the border)\n\n    auto intersection = [&](const Hp& l1, const Hp& l2) ->\
-    \ Vec {\n        auto d = l2.second - l1.second;\n        Vec e(-l1.first.imag(),\
-    \ l1.first.real());\n        return l1.second + (dot(d, l2.first) / cross(l1.first,\
-    \ l2.first)) * e;\n    };\n\n    // check if the halfplane h contains the point\
-    \ p\n    auto contains = [&](const Hp& h, const Vec& p) -> bool {\n        return\
-    \ dot(p - h.second, h.first) > 0;\n    };\n\n    constexpr T INF = 1e15;\n   \
-    \ hps.emplace_back(Vec(1, 0), Vec(-INF, 0));  // -INF <= x\n    hps.emplace_back(Vec(-1,\
-    \ 0), Vec(INF, 0));  // x <= INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));\
-    \  // -INF <= y\n    hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF\n\
-    \n    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {\n\
-    \        return std::arg(h1.first) < std::arg(h2.first);\n    });\n\n    std::deque<Hp>\
-    \ dq;\n    int len = 0;\n    for (auto& hp : hps) {\n        while (len > 1 &&\
-    \ !contains(hp, intersection(dq[len-1], dq[len-2]))) {\n            dq.pop_back();\n\
-    \            --len;\n        }\n\n        while (len > 1 && !contains(hp, intersection(dq[0],\
-    \ dq[1]))) {\n            dq.pop_front();\n            --len;\n        }\n\n \
-    \       // parallel\n        if (len > 0 && eq(cross(dq[len-1].first, hp.first),\
-    \ 0)) {\n            // opposite\n            if (lt(dot(dq[len-1].first, hp.first),\
-    \ 0)) {\n                return {};\n            }\n            // same\n    \
-    \        if (!contains(hp, dq[len-1].second)) {\n                dq.pop_back();\n\
-    \                --len;\n            } else continue;\n        }\n\n        dq.push_back(hp);\n\
-    \        ++len;\n    }\n\n    while (len > 2 && !contains(dq[0], intersection(dq[len-1],\
-    \ dq[len-2]))) {\n        dq.pop_back();\n        --len;\n    }\n\n    while (len\
-    \ > 2 && !contains(dq[len-1], intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n\
-    \        --len;\n    }\n\n    if (len < 3) return {};\n\n    std::vector<Vec>\
-    \ poly(len);\n    for (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i],\
-    \ dq[i+1]);\n    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return\
-    \ poly;\n}\n"
+    \ Vec {\n        auto d = l2.second - l1.second;\n        return l1.second + (dot(d,\
+    \ l2.first) / cross(l1.first, l2.first)) * perp(l1.first);\n    };\n\n    // check\
+    \ if the halfplane h contains the point p\n    auto contains = [&](const Hp& h,\
+    \ const Vec& p) -> bool {\n        return dot(p - h.second, h.first) > 0;\n  \
+    \  };\n\n    constexpr T INF = 1e15;\n    hps.emplace_back(Vec(1, 0), Vec(-INF,\
+    \ 0));  // -INF <= x\n    hps.emplace_back(Vec(-1, 0), Vec(INF, 0));  // x <=\
+    \ INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));  // -INF <= y\n    hps.emplace_back(Vec(0,\
+    \ -1), Vec(0, INF));  // y <= INF\n\n    std::sort(hps.begin(), hps.end(), [&](const\
+    \ auto& h1, const auto& h2) {\n        return std::arg(h1.first) < std::arg(h2.first);\n\
+    \    });\n\n    std::deque<Hp> dq;\n    int len = 0;\n    for (auto& hp : hps)\
+    \ {\n        while (len > 1 && !contains(hp, intersection(dq[len-1], dq[len-2])))\
+    \ {\n            dq.pop_back();\n            --len;\n        }\n\n        while\
+    \ (len > 1 && !contains(hp, intersection(dq[0], dq[1]))) {\n            dq.pop_front();\n\
+    \            --len;\n        }\n\n        // parallel\n        if (len > 0 &&\
+    \ eq(cross(dq[len-1].first, hp.first), 0)) {\n            // opposite\n      \
+    \      if (lt(dot(dq[len-1].first, hp.first), 0)) {\n                return {};\n\
+    \            }\n            // same\n            if (!contains(hp, dq[len-1].second))\
+    \ {\n                dq.pop_back();\n                --len;\n            } else\
+    \ continue;\n        }\n\n        dq.push_back(hp);\n        ++len;\n    }\n\n\
+    \    while (len > 2 && !contains(dq[0], intersection(dq[len-1], dq[len-2]))) {\n\
+    \        dq.pop_back();\n        --len;\n    }\n\n    while (len > 2 && !contains(dq[len-1],\
+    \ intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n        --len;\n  \
+    \  }\n\n    if (len < 3) return {};\n\n    std::vector<Vec> poly(len);\n    for\
+    \ (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i], dq[i+1]);\n\
+    \    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return poly;\n\
+    }\n"
   code: "#pragma once\n#include <algorithm>\n#include <deque>\n#include <utility>\n\
     #include <vector>\n#include \"geometry.hpp\"\n#include \"intersection.hpp\"\n\n\
     T area(const Polygon& poly) {\n    const int n = poly.size();\n    T res = 0;\n\
@@ -174,32 +174,32 @@ data:
     \        }\n    }\n    return res;\n}\n\nPolygon halfplane_intersection(std::vector<std::pair<Vec,\
     \ Vec>> hps) {\n    using Hp = std::pair<Vec, Vec>;  // (normal vector, a point\
     \ on the border)\n\n    auto intersection = [&](const Hp& l1, const Hp& l2) ->\
-    \ Vec {\n        auto d = l2.second - l1.second;\n        Vec e(-l1.first.imag(),\
-    \ l1.first.real());\n        return l1.second + (dot(d, l2.first) / cross(l1.first,\
-    \ l2.first)) * e;\n    };\n\n    // check if the halfplane h contains the point\
-    \ p\n    auto contains = [&](const Hp& h, const Vec& p) -> bool {\n        return\
-    \ dot(p - h.second, h.first) > 0;\n    };\n\n    constexpr T INF = 1e15;\n   \
-    \ hps.emplace_back(Vec(1, 0), Vec(-INF, 0));  // -INF <= x\n    hps.emplace_back(Vec(-1,\
-    \ 0), Vec(INF, 0));  // x <= INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));\
-    \  // -INF <= y\n    hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF\n\
-    \n    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {\n\
-    \        return std::arg(h1.first) < std::arg(h2.first);\n    });\n\n    std::deque<Hp>\
-    \ dq;\n    int len = 0;\n    for (auto& hp : hps) {\n        while (len > 1 &&\
-    \ !contains(hp, intersection(dq[len-1], dq[len-2]))) {\n            dq.pop_back();\n\
-    \            --len;\n        }\n\n        while (len > 1 && !contains(hp, intersection(dq[0],\
-    \ dq[1]))) {\n            dq.pop_front();\n            --len;\n        }\n\n \
-    \       // parallel\n        if (len > 0 && eq(cross(dq[len-1].first, hp.first),\
-    \ 0)) {\n            // opposite\n            if (lt(dot(dq[len-1].first, hp.first),\
-    \ 0)) {\n                return {};\n            }\n            // same\n    \
-    \        if (!contains(hp, dq[len-1].second)) {\n                dq.pop_back();\n\
-    \                --len;\n            } else continue;\n        }\n\n        dq.push_back(hp);\n\
-    \        ++len;\n    }\n\n    while (len > 2 && !contains(dq[0], intersection(dq[len-1],\
-    \ dq[len-2]))) {\n        dq.pop_back();\n        --len;\n    }\n\n    while (len\
-    \ > 2 && !contains(dq[len-1], intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n\
-    \        --len;\n    }\n\n    if (len < 3) return {};\n\n    std::vector<Vec>\
-    \ poly(len);\n    for (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i],\
-    \ dq[i+1]);\n    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return\
-    \ poly;\n}\n"
+    \ Vec {\n        auto d = l2.second - l1.second;\n        return l1.second + (dot(d,\
+    \ l2.first) / cross(l1.first, l2.first)) * perp(l1.first);\n    };\n\n    // check\
+    \ if the halfplane h contains the point p\n    auto contains = [&](const Hp& h,\
+    \ const Vec& p) -> bool {\n        return dot(p - h.second, h.first) > 0;\n  \
+    \  };\n\n    constexpr T INF = 1e15;\n    hps.emplace_back(Vec(1, 0), Vec(-INF,\
+    \ 0));  // -INF <= x\n    hps.emplace_back(Vec(-1, 0), Vec(INF, 0));  // x <=\
+    \ INF\n    hps.emplace_back(Vec(0, 1), Vec(0, -INF));  // -INF <= y\n    hps.emplace_back(Vec(0,\
+    \ -1), Vec(0, INF));  // y <= INF\n\n    std::sort(hps.begin(), hps.end(), [&](const\
+    \ auto& h1, const auto& h2) {\n        return std::arg(h1.first) < std::arg(h2.first);\n\
+    \    });\n\n    std::deque<Hp> dq;\n    int len = 0;\n    for (auto& hp : hps)\
+    \ {\n        while (len > 1 && !contains(hp, intersection(dq[len-1], dq[len-2])))\
+    \ {\n            dq.pop_back();\n            --len;\n        }\n\n        while\
+    \ (len > 1 && !contains(hp, intersection(dq[0], dq[1]))) {\n            dq.pop_front();\n\
+    \            --len;\n        }\n\n        // parallel\n        if (len > 0 &&\
+    \ eq(cross(dq[len-1].first, hp.first), 0)) {\n            // opposite\n      \
+    \      if (lt(dot(dq[len-1].first, hp.first), 0)) {\n                return {};\n\
+    \            }\n            // same\n            if (!contains(hp, dq[len-1].second))\
+    \ {\n                dq.pop_back();\n                --len;\n            } else\
+    \ continue;\n        }\n\n        dq.push_back(hp);\n        ++len;\n    }\n\n\
+    \    while (len > 2 && !contains(dq[0], intersection(dq[len-1], dq[len-2]))) {\n\
+    \        dq.pop_back();\n        --len;\n    }\n\n    while (len > 2 && !contains(dq[len-1],\
+    \ intersection(dq[0], dq[1]))) {\n        dq.pop_front();\n        --len;\n  \
+    \  }\n\n    if (len < 3) return {};\n\n    std::vector<Vec> poly(len);\n    for\
+    \ (int i = 0; i < len - 1; ++i) {\n        poly[i] = intersection(dq[i], dq[i+1]);\n\
+    \    }\n    poly[len-1] = intersection(dq[len-1], dq[0]);\n    return poly;\n\
+    }\n"
   dependsOn:
   - geometry/geometry.hpp
   - geometry/intersection.hpp
@@ -208,7 +208,7 @@ data:
   isVerificationFile: false
   path: geometry/polygon.hpp
   requiredBy: []
-  timestamp: '2022-12-19 16:08:50+09:00'
+  timestamp: '2022-12-25 14:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_3_A.test.cpp

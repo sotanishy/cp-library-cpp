@@ -29,48 +29,46 @@ data:
     \     T ret = M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
     \        return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
     \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
-    \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
-    \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
-    \        T v = M::id();\n        for (; k > 0; k >>= 1) {\n            if (i +\
-    \ k <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if\
-    \ (cmp(nv, x)) {\n                v = nv;\n                i += k;\n         \
-    \   }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
-    \ data;\n};\n#line 2 \"tree/centroid_decomposition.hpp\"\n#include <tuple>\n#line\
-    \ 4 \"tree/centroid_decomposition.hpp\"\n\nstd::tuple<std::vector<int>, std::vector<int>,\
-    \ std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
-    \ G) {\n    int N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N),\
-    \ par(N);\n\n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n\
-    \        sz[v] = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c]\
-    \ == -1) sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n\
-    \    };\n\n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n)\
-    \ -> int {\n        for (int c : G[v]) {\n            if (c != p && level[c] ==\
-    \ -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n\
-    \        return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v,\
-    \ int k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n      \
-    \  int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n    \
-    \    sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s]) {\n    \
-    \        if (level[c] == -1) decompose(decompose, c, k + 1, s);\n        }\n \
-    \   };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp, par};\n\
-    }\n#line 2 \"tree/range_contour_aggregation.hpp\"\n#include <map>\n#include <queue>\n\
-    #include <utility>\n#line 8 \"tree/range_contour_aggregation.hpp\"\n\ntemplate\
-    \ <typename Group>\nclass RangeContourAggregation {\n    using T = typename Group::T;\n\
-    \npublic:\n    RangeContourAggregation() = default;\n    explicit RangeContourAggregation(const\
-    \ std::vector<std::vector<int>>& G)\n        : seg(G.size()), seg_sub(G.size()),\
-    \ dist(G.size()), idx(G.size()),\n          sub(G.size()), idx_sub(G.size()),\
-    \ first(G.size()), first_sub(G.size()) {\n\n        std::tie(level, sz_comp, par)\
-    \ = centroid_decomposition(G);\n\n        for (int v = 0; v < (int) G.size();\
-    \ ++v) {\n            // calculate for each vertex u,\n            // dist: dist\
-    \ from v\n            // idx: index in the BFS order\n            // sub: subtree\
-    \ of v that u belongs to\n            // idx_sub: index in the subtree\n\n   \
-    \         // calculate for each depth d,\n            // first: first index of\
-    \ depth d\n            // first_sub: first index of depth d in the subtree i\n\
-    \n            dist[v][v] = 0;\n            std::queue<std::pair<int, int>> que;\n\
-    \            que.push({v, -1});\n            int k = 0, sub_idx = 0;\n       \
-    \     std::vector<int> ks;\n\n            while (!que.empty()) {\n           \
-    \     auto [u, i] = que.front();\n                que.pop();\n\n             \
-    \   // update component info\n                int d = dist[v][u];\n          \
-    \      if (d >= (int) first[v].size()) {\n                    first[v].push_back(k);\n\
+    \ T& x) const {\n        if (x <= M::id()) return 0;\n        int k = 1;\n   \
+    \     while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n\
+    \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
+    \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
+    \      v = nv;\n                i += k;\n            }\n        }\n        return\
+    \ i;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n};\n#line 2 \"\
+    tree/centroid_decomposition.hpp\"\n#include <tuple>\n#line 4 \"tree/centroid_decomposition.hpp\"\
+    \n\nstd::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const\
+    \ std::vector<std::vector<int>>& G) {\n    int N = G.size();\n    std::vector<int>\
+    \ sz(N), level(N, -1), sz_comp(N), par(N);\n\n    auto dfs_size = [&](auto& dfs_size,\
+    \ int v, int p) -> int {\n        sz[v] = 1;\n        for (int c : G[v]) {\n \
+    \           if (c != p && level[c] == -1) sz[v] += dfs_size(dfs_size, c, v);\n\
+    \        }\n        return sz[v];\n    };\n\n    auto dfs_centroid = [&](auto&\
+    \ dfs_centroid, int v, int p, int n) -> int {\n        for (int c : G[v]) {\n\
+    \            if (c != p && level[c] == -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid,\
+    \ c, v, n);\n        }\n        return v;\n    };\n\n    auto decompose = [&](auto&\
+    \ decompose, int v, int k, int p) -> void {\n        int n = dfs_size(dfs_size,\
+    \ v, -1);\n        int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s]\
+    \ = k;\n        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s])\
+    \ {\n            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n    \
+    \    }\n    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp,\
+    \ par};\n}\n#line 2 \"tree/range_contour_aggregation.hpp\"\n#include <map>\n#include\
+    \ <queue>\n#include <utility>\n#line 8 \"tree/range_contour_aggregation.hpp\"\n\
+    \ntemplate <typename Group>\nclass RangeContourAggregation {\n    using T = typename\
+    \ Group::T;\n\npublic:\n    RangeContourAggregation() = default;\n    explicit\
+    \ RangeContourAggregation(const std::vector<std::vector<int>>& G)\n        : seg(G.size()),\
+    \ seg_sub(G.size()), dist(G.size()), idx(G.size()),\n          sub(G.size()),\
+    \ idx_sub(G.size()), first(G.size()), first_sub(G.size()) {\n\n        std::tie(level,\
+    \ sz_comp, par) = centroid_decomposition(G);\n\n        for (int v = 0; v < (int)\
+    \ G.size(); ++v) {\n            // calculate for each vertex u,\n            //\
+    \ dist: dist from v\n            // idx: index in the BFS order\n            //\
+    \ sub: subtree of v that u belongs to\n            // idx_sub: index in the subtree\n\
+    \n            // calculate for each depth d,\n            // first: first index\
+    \ of depth d\n            // first_sub: first index of depth d in the subtree\
+    \ i\n\n            dist[v][v] = 0;\n            std::queue<std::pair<int, int>>\
+    \ que;\n            que.push({v, -1});\n            int k = 0, sub_idx = 0;\n\
+    \            std::vector<int> ks;\n\n            while (!que.empty()) {\n    \
+    \            auto [u, i] = que.front();\n                que.pop();\n\n      \
+    \          // update component info\n                int d = dist[v][u];\n   \
+    \             if (d >= (int) first[v].size()) {\n                    first[v].push_back(k);\n\
     \                }\n                idx[v][u] = k++;\n                // enter\
     \ subtree\n                if (d == 1) {\n                    i = sub_idx++;\n\
     \                    ks.push_back(0);\n                    first_sub[v].emplace_back();\n\
@@ -138,7 +136,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-10-01 22:18:51+09:00'
+  timestamp: '2022-12-25 14:40:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp

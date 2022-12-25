@@ -33,14 +33,12 @@ data:
     \     T ret = M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
     \        return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
     \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        return lower_bound(x, std::less<>());\n    }\n\n    template\
-    \ <typename Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n \
-    \       int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n\
-    \        T v = M::id();\n        for (; k > 0; k >>= 1) {\n            if (i +\
-    \ k <= n) continue;\n            T nv = M::op(v, data[i + k]);\n            if\
-    \ (cmp(nv, x)) {\n                v = nv;\n                i += k;\n         \
-    \   }\n        }\n        return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T>\
-    \ data;\n};\n"
+    \ T& x) const {\n        if (x <= M::id()) return 0;\n        int k = 1;\n   \
+    \     while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n\
+    \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
+    \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
+    \      v = nv;\n                i += k;\n            }\n        }\n        return\
+    \ i;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n};\n"
   code: "#pragma once\n#include <functional>\n#include <vector>\n\ntemplate <typename\
     \ M>\nclass FenwickTree {\n    using T = typename M::T;\n\npublic:\n    FenwickTree()\
     \ = default;\n    explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}\n\
@@ -48,20 +46,18 @@ data:
     \ > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return ret;\n    }\n\n\
     \    void update(int i, const T& x) {\n        for (++i; i <= n; i += i & -i)\
     \ data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const T& x) const\
-    \ {\n        return lower_bound(x, std::less<>());\n    }\n\n    template <typename\
-    \ Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n        int\
-    \ k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v\
-    \ = M::id();\n        for (; k > 0; k >>= 1) {\n            if (i + k <= n) continue;\n\
-    \            T nv = M::op(v, data[i + k]);\n            if (cmp(nv, x)) {\n  \
-    \              v = nv;\n                i += k;\n            }\n        }\n  \
-    \      return i + 1;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n\
-    };"
+    \ {\n        if (x <= M::id()) return 0;\n        int k = 1;\n        while (k\
+    \ * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n        for\
+    \ (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n            T nv\
+    \ = M::op(v, data[i + k]);\n            if (nv < x) {\n                v = nv;\n\
+    \                i += k;\n            }\n        }\n        return i;\n    }\n\
+    \nprivate:\n    int n;\n    std::vector<T> data;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/fenwick_tree.cpp
   requiredBy:
   - tree/range_contour_aggregation.hpp
-  timestamp: '2022-03-06 20:10:50+09:00'
+  timestamp: '2022-12-25 14:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_B.test.cpp

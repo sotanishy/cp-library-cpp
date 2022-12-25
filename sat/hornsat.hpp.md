@@ -62,7 +62,7 @@ title: Horn-SAT
 
 ## Description
 
-2-SAT は，節内の肯定リテラル数が高々1つであるような乗法標準形の論理式に対する充足可能性問題 (SAT) である．
+Horn-SAT は，節内の肯定リテラル数が高々1つであるような乗法標準形の論理式に対する充足可能性問題 (SAT) である．
 
 $(a_1 \land a_2 \land \dots \land a_n \rightarrow b)$ や $(a_1 \land a_2 \land \dots \land a_n \rightarrow \lnot b)$ といった論理式は，高々1つの肯定リテラルからなる節 (Horn 節) に変換できる．
 
