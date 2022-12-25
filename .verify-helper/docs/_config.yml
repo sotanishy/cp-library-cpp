@@ -7,5 +7,7 @@ title: sotanishy's competitive programming library
 author: sotanishy
 description: sotanishy's code snippets for competitive programming
 
+exclude: ["icpc-document"]
+
 header_pages:
   - null
