@@ -124,6 +124,7 @@
 "test/yosupo/persistent_queue.test.cpp": "2021-10-30 12:57:24 +0900",
 "test/yosupo/persistent_unionfind.test.cpp": "2021-10-30 12:57:24 +0900",
 "test/yosupo/point_add_range_sum.test.cpp": "2022-03-06 20:10:50 +0900",
+"test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp": "2022-12-25 16:38:59 +0900",
 "test/yosupo/point_add_rectangle_sum.quadtree.test.cpp": "2022-12-25 16:20:49 +0900",
 "test/yosupo/point_set_range_composite.test.cpp": "2022-03-06 20:10:50 +0900",
 "test/yosupo/polynomial_taylor_shift.test.cpp": "2022-06-27 18:10:09 +0900",
