@@ -1,0 +1,309 @@
+\section{flow}
+
+\subsection{Ford-Fulkerson Algorithm}
+
+\begin{small}
+時間計算量: $O(Ef)$
+\end{small}
+
+\begin{lstlisting}
+template <typename T>
+class FordFulkerson {
+public:
+    FordFulkerson() = default;
+    explicit FordFulkerson(int n) : G(n), used(n) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].push_back({v, (int) G[v].size(), cap});
+        G[v].push_back({u, (int) G[u].size() - 1, 0});
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (true) {
+            std::fill(used.begin(), used.end(), false);
+            T f = dfs(s, t, INF);
+            if (f == 0) return flow;
+            flow += f;
+        }
+    }
+
+    std::set<int> min_cut(int s) {
+        std::stack<int> st;
+        std::set<int> visited;
+        st.push(s);
+        visited.insert(s);
+        while (!st.empty()) {
+            int v = st.top();
+            st.pop();
+            for (auto& e : G[v]) {
+                if (e.cap > 0 && !visited.count(e.to)) {
+                    visited.insert(e.to);
+                    st.push(e.to);
+                }
+            }
+        }
+        return visited;
+    }
+
+private:
+    struct Edge {
+        int to, rev;
+        T cap;
+    };
+
+    const T INF = std::numeric_limits<T>::max() / 2;
+
+    std::vector<std::vector<Edge>> G;
+    std::vector<bool> used;
+
+    T dfs(int v, int t, T f) {
+        if (v == t) return f;
+        used[v] = true;
+        for (auto& e : G[v]) {
+            if (!used[e.to] && e.cap > 0) {
+                T d = dfs(e.to, t, std::min(f, e.cap));
+                if (d > 0) {
+                    e.cap -= d;
+                    G[e.to][e.rev].cap += d;
+                    return d;
+                }
+            }
+        }
+        return 0;
+    }
+};
+\end{lstlisting}
+
+\subsection{Dinic's Algorithm}
+
+\begin{small}
+時間計算量: $O(V^2E)$
+\end{small}
+
+\begin{lstlisting}
+template <typename T>
+class Dinic {
+public:
+    Dinic() = default;
+    explicit Dinic(int V) : G(V), level(V), iter(V) {}
+
+    void add_edge(int u, int v, T cap) {
+        G[u].push_back({v, (int) G[v].size(), cap});
+        G[v].push_back({u, (int) G[u].size() - 1, 0});
+    }
+
+    T max_flow(int s, int t) {
+        T flow = 0;
+        while (bfs(s, t)) {
+            std::fill(iter.begin(), iter.end(), 0);
+            T f = 0;
+            while ((f = dfs(s, t, INF)) > 0) flow += f;
+        }
+        return flow;
+    }
+
+    std::set<int> min_cut(int s) {
+        std::stack<int> st;
+        std::set<int> visited;
+        st.push(s);
+        visited.insert(s);
+        while (!st.empty()) {
+            int v = st.top();
+            st.pop();
+            for (auto& e : G[v]) {
+                if (e.cap > 0 && !visited.count(e.to)) {
+                    visited.insert(e.to);
+                    st.push(e.to);
+                }
+            }
+        }
+        return visited;
+    }
+
+private:
+    struct Edge {
+        int to, rev;
+        T cap;
+    };
+
+    static constexpr T INF = std::numeric_limits<T>::max() / 2;
+
+    std::vector<std::vector<Edge>> G;
+    std::vector<int> level, iter;
+
+    bool bfs(int s, int t) {
+        std::fill(level.begin(), level.end(), -1);
+        level[s] = 0;
+        std::queue<int> q;
+        q.push(s);
+        while (!q.empty() && level[t] == -1) {
+            int v = q.front();
+            q.pop();
+            for (auto& e : G[v]) {
+                if (e.cap > 0 && level[e.to] == -1) {
+                    level[e.to] = level[v] + 1;
+                    q.push(e.to);
+                }
+            }
+        }
+        return level[t] != -1;
+    }
+
+    T dfs(int v, int t, T f) {
+        if (v == t) return f;
+        for (int& i = iter[v]; i < (int) G[v].size(); ++i) {
+            Edge& e = G[v][i];
+            if (e.cap > 0 && level[v] < level[e.to]) {
+                T d = dfs(e.to, t, std::min(f, e.cap));
+                if (d > 0) {
+                    e.cap -= d;
+                    G[e.to][e.rev].cap += d;
+                    return d;
+                }
+            }
+        }
+        return 0;
+    }
+};
+\end{lstlisting}
+
+\subsection{Minimum Cost Flow}
+
+\begin{small}
+\begin{markdown}
+- `void add\_edge(int u, int v, Cap cap, Cost cost)`
+    - 容量 $cap$，コスト $cost$ の辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
+- `void add\_edge(int u, int v, Cap lb, Cap ub, Cost cost)`
+    - 最小流量 $lb$, 容量 $ub$，コスト $cost$ の辺 $(u, v)$ を追加する
+    - 時間計算量: $O(1)$
+- `Cost min\_cost\_flow(int s, int t, Cap f, bool arbitrary)`
+    - 始点 $s$ から終点 $t$ への流量 $f$ の最小費用流を求める．`arbitrary == true` の場合，流量は $f$ 以下の任意の値とする．
+    - 時間計算量: $O(fE\log V)$
+
+**Note**
+
+このライブラリがそのまま使える場合は，すべての辺のコストが非負である普通の最小費用流のとき．以下，いろいろな状況での使い方を説明する．
+
+- 負辺がある場合
+    - ポテンシャルの初期値の計算に，負辺があっても動作する最短路アルゴリズムを用いる必要がある．Bellman-Ford algorithm を用いることができる．また，グラフがDAGである場合は，トポロジカルソートしてDPすることができる．`calculate\_initial\_potential()`という private メソッドを用意しているのでその中を自分で書き換える．
+    - 蟻本に載っているテク（超頂点を作って頑張る）を用いて負辺を除去することもできる．
+- 負閉路がある場合
+    - Bellman-Ford algorithm で負閉路を見つけてそこに流せるだけ流しておけば良い．書いたことがないのでピンときていない．
+- 流量が任意の場合
+    - 負辺がある場合に任意の流量を流して最小費用を求めたい場合がある．これは s-t 最短路が負である限り流せば良い．ここの処理がコメントアウトしてあるので，適宜外す．引数の `f` には適当に大きな値を設定しておけば良い．
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+template <typename Cap, typename Cost>
+class MinCostFlow {
+public:
+    MinCostFlow() = default;
+    explicit MinCostFlow(int V) : V(V), G(V), add(0) {}
+
+    void add_edge(int u, int v, Cap cap, Cost cost) {
+        G[u].emplace_back(v, cap, cost, (int) G[v].size());
+        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);
+    }
+
+    void add_edge(int u, int v, Cap lb, Cap ub, Cost cost) {
+        add_edge(u, v, ub - lb, cost);
+        add_edge(u, v, lb, cost - M);
+        add += M * lb;
+    }
+
+    Cost min_cost_flow(int s, int t, Cap f, bool arbitrary = false) {
+        Cost ret = add;
+        std::vector<Cost> dist(V);
+        std::vector<int> prevv(V), preve(V);
+        using P = std::pair<Cost, int>;
+        std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
+
+        auto h = calculate_initial_potential(s);
+
+        while (f > 0) {
+            // update h using dijkstra
+            std::fill(dist.begin(), dist.end(), INF);
+            dist[s] = 0;
+            pq.emplace(0, s);
+            while (!pq.empty()) {
+                Cost d;
+                int v;
+                std::tie(d, v) = pq.top();
+                pq.pop();
+                if (dist[v] < d) continue;
+                for (int i = 0; i < (int) G[v].size(); ++i) {
+                    Edge& e = G[v][i];
+                    Cost ndist = dist[v] + e.cost + h[v] - h[e.to];
+                    if (e.cap > 0 && dist[e.to] > ndist) {
+                        dist[e.to] = ndist;
+                        prevv[e.to] = v;
+                        preve[e.to] = i;
+                        pq.emplace(dist[e.to], e.to);
+                    }
+                }
+            }
+
+            if (!arbitrary && dist[t] == INF) return -1;
+            for (int v = 0; v < V; ++v) h[v] += dist[v];
+
+            if (arbitrary && h[t] >= 0) break;
+
+            Cap d = f;
+            for (int v = t; v != s; v = prevv[v]) {
+                d = std::min(d, G[prevv[v]][preve[v]].cap);
+            }
+            f -= d;
+            ret += d * h[t];
+            for (int v = t; v != s; v = prevv[v]) {
+                Edge& e = G[prevv[v]][preve[v]];
+                e.cap -= d;
+                G[v][e.rev].cap += d;
+            }
+        }
+        return ret;
+    }
+
+private:
+    struct Edge {
+        int to;
+        Cap cap;
+        Cost cost;
+        int rev;
+        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+    };
+
+    static constexpr Cost INF = std::numeric_limits<Cost>::max() / 2;
+    static constexpr Cost M = INF / 1e9;  // large constant used for minimum flow requirement for edges
+
+    int V;
+    std::vector<std::vector<Edge>> G;
+    Cost add;
+
+
+    std::vector<Cost> calculate_initial_potential(int s) {
+        std::vector<Cost> h(V);
+        // if all costs are nonnegative, then do nothing
+        return h;
+
+        // if there is a negative edge,
+        // use Bellman-Ford or topological sort and a DP (for DAG)
+        // std::fill(h.begin(), h.end(), INF);
+        // h[s] = 0;
+        // for (int i = 0; i < V - 1; ++i) {
+        //     for (int v = 0; v < V; ++v) {
+        //         for (auto& e : G[v]) {
+        //             if (e.cap > 0 && h[v] != INF && h[e.to] > h[v] + e.cost) {
+        //                 h[e.to] = h[v] + e.cost;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return h;
+    }
+};
+
+\end{lstlisting}

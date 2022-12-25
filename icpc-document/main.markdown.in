@@ -1,0 +1,23 @@
+森の辺の追加，削除，根の変更，頂点の値の更新，パスクエリ
+
+- `LinkCutTree(int n)`
+    - 頂点数 $n$ で初期化する
+    - 時間計算量: $O(n)$
+- `void link(int u, int v)`
+    - 辺 $uv$ を追加する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void cut(int v)`
+    - 頂点 $v$ とその親を結ぶ辺を削除する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void evert(int v)`
+    - 頂点 $v$ を木の根にする
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void get(int v)`
+    - 頂点 $v$ の値を取得する
+    - 時間計算量: $O(1)$
+- `void set(int v, T x)`
+    - 頂点 $v$ の値を $x$ に変更する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `T fold(int u, int v)`
+    - $uv$ パス上の頂点の値を fold する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$

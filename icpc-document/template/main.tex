@@ -1,0 +1,19 @@
+\documentclass[9pt,a4paper,landscape,twocolumn,dvipdfmx]{jsarticle}  % 用紙横向き、二段組
+
+\input{preamble.tex}
+
+\begin{document}
+
+% 目次の出力
+\tableofcontents
+\clearpage
+
+% 本文
+\input{template.tex}
+\input{antbook.tex}
+{%- for sec in sections %}
+\input{ {{-sec}}.tex}
+{%- endfor %}
+
+\end{document}
+

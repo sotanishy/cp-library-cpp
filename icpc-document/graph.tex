@@ -1,0 +1,98 @@
+\section{graph}
+
+\subsection{Strongly Connected Components}
+
+\begin{small}
+強連結成分のラベルはトポロジカル順序になっている．
+\end{small}
+
+\begin{lstlisting}
+std::vector<int> scc(const std::vector<std::vector<int>>& G) {
+    const int n = G.size();
+    std::vector<std::vector<int>> G_rev(n);
+    for (int u = 0; u < n; ++u) {
+        for (int v : G[u]) G_rev[v].push_back(u);
+    }
+    std::vector<int> comp(n, -1), order(n);
+    std::vector<bool> visited(n);
+
+    auto dfs = [&](const auto& self, int u) -> void {
+        if (visited[u]) return;
+        visited[u] = true;
+        for (int v : G[u]) self(self, v);
+        order.push_back(u);
+    };
+
+    for (int v = 0; v < n; ++v) dfs(dfs, v);
+    std::reverse(order.begin(), order.end());
+    int c = 0;
+
+    auto rdfs = [&](const auto& self, int u, int c) -> void {
+        if (comp[u] != -1) return;
+        comp[u] = c;
+        for (int v : G_rev[u]) self(self, v, c);
+    };
+
+    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);
+    return comp;
+}
+\end{lstlisting}
+
+\subsection{Lowlink}
+
+\begin{small}
+\begin{markdown}
+橋，関節点を求めるのに使う
+
+グラフの DFS tree において，頂点 $v$ の訪問時刻を `ord[v]` としたとき，$v$ から後退辺 (DFS tree に含まれない辺) を高々1回用いて到達することができる頂点の `ord` の最小値 `low[v]` を lowlink という．
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+class Lowlink {
+public:
+    std::vector<int> ord, low;
+    std::vector<std::pair<int, int>> bridge;
+    std::vector<int> articulation;
+
+    Lowlink() = default;
+    explicit Lowlink(const std::vector<std::vector<int>>& G) : ord(G.size(), -1), low(G.size()), G(G) {
+        for (int i = 0; i < (int) G.size(); ++i) {
+            if (ord[i] == -1) dfs(i, -1);
+        }
+    }
+
+    bool is_bridge(int u, int v) const {
+        if (ord[u] > ord[v]) std::swap(u, v);
+        return ord[u] < low[v];
+    }
+
+private:
+    std::vector<std::vector<int>> G;
+    int k = 0;
+
+    void dfs(int v, int p) {
+        ord[v] = k++;
+        low[v] = ord[v];
+        bool is_articulation = false, checked = false;
+        int cnt = 0;
+        for (int c : G[v]) {
+            if (c == p && !checked) {
+                checked = true;
+                continue;
+            }
+            if (ord[c] == -1) {
+                ++cnt;
+                dfs(c, v);
+                low[v] = std::min(low[v], low[c]);
+                if (p != -1 && ord[v] <= low[c]) is_articulation = true;
+                if (ord[v] < low[c]) bridge.push_back(std::minmax(v, c));
+            } else {
+                low[v] = std::min(low[v], ord[c]);
+            }
+        }
+        if (p == -1 && cnt > 1) is_articulation = true;
+        if (is_articulation) articulation.push_back(v);
+    }
+};
+\end{lstlisting}

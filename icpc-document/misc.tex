@@ -1,0 +1,223 @@
+\section{misc}
+
+\subsection{Mo's Algorithm}
+
+\begin{small}
+\begin{markdown}
+- `Mo(int n)`
+    - 長さ $n$ の列に対するクエリを処理する
+    - 時間計算量: $O(1)$
+- `void query(int l, int r)`
+    - 区間 $[l, r)$ に対してクエリをする
+    - 時間計算量: $O(1)$
+- `void run(ExL exl, ShL shl, ExR exr, ShR shr, Out out)`
+    - 以下の関数を引数に取り，クエリを実行する
+        - `exl`: 区間を左に1マス伸ばしたときの状態を更新する
+        - `shl`: 区間を左に1マス縮めたときの状態を更新する
+        - `exr`: 区間を右に1マス伸ばしたときの状態を更新する
+        - `shr`: 区間を右に1マス縮めたときの状態を更新する
+        - `out`: $i$ 番目のクエリの結果を計算する
+    - 時間計算量: $O(f(n)n\sqrt{n})$, $f(n)$ は状態の更新にかかる計算量
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+class Mo {
+public:
+    Mo() = default;
+    explicit Mo(int n) : n(n), cnt(0) {}
+
+    void query(int l, int r) {
+        queries.emplace_back(cnt++, l, r);
+    }
+
+    template <typename ExL, typename ShL, typename ExR, typename ShR, typename Out>
+    void run(ExL exl, ShL shl, ExR exr, ShR shr, Out out) {
+        int s = sqrt(n);
+        std::sort(queries.begin(), queries.end(), [&](const auto& a, const auto& b) {
+            if (a.l / s != b.l / s) return a.l < b.l;
+            return a.r < b.r;
+        });
+        int curL = 0, curR = 0;
+        for (auto [id, l, r] : queries) {
+            while (curL > l) exl(--curL);
+            while (curR < r) exr(curR++);
+            while (curL < l) shl(curL++);
+            while (curR > r) shr(--curR);
+            out(id);
+        }
+    }
+
+private:
+    struct Query {
+        int id, l, r;
+        Query(int id, int l, int r) : id(id), l(l), r(r) {}
+    };
+
+    int n, cnt;
+    std::vector<Query> queries;
+};
+\end{lstlisting}
+
+\subsection{Interval Set}
+
+\begin{small}
+\begin{markdown}
+**Description**
+
+整数の閉区間の集合を管理する．
+
+**Operations**
+
+- `bool covered(T x)`
+- `bool covered(T l, T r)`
+    - 区間 $[l, r]$ が含まれているか判定する
+    - 時間計算量: $O(\log n)$
+- `pair<T, T> covered\_by(T x)`
+- `pair<T, T> covered\_by(T l, T r)`
+    - 区間 $[l, r]$ を含む区間を返す．そのような区間がない場合は $(-\infty, \infty)$ を返す
+    - 時間計算量: $O(\log n)$
+- `void insert(T x)`
+- `void insert(T l, T r)`
+    - 区間 $[l, r]$ を集合に追加する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void erase(T x)`
+- `void erase(T l, T r)`
+    - 区間 $[l, r]$ を集合から削除する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `T mex(T x)`
+    - $x$ 以上の整数のうち，集合に含まれない最小のものを返す
+    - 時間計算量: $O(\log n)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+template <typename T>
+class IntervalSet {
+public:
+    static constexpr T INF = std::numeric_limits<T>::max() / 2;
+
+    IntervalSet() {
+        st.emplace(INF, INF);
+        st.emplace(-INF, -INF);
+    }
+
+    bool covered(T x) const { return covered(x, x); }
+    bool covered(T l, T r) const {
+        assert(l <= r);
+        auto it = --(st.lower_bound({l + 1, l + 1}));
+        return it->first <= l && r <= it->second;
+    }
+
+    std::pair<T, T> covered_by(T x) const { return covered_by(x, x); }
+    std::pair<T, T> covered_by(T l, T r) const {
+        assert(l <= r);
+        auto it = --(st.lower_bound({l + 1, l + 1}));
+        if (it->first <= l && r <= it->second) return *it;
+        return {-INF, -INF};
+    }
+
+    void insert(T x) { insert(x, x); }
+    void insert(T l, T r) {
+        assert(l <= r);
+        auto it = --(st.lower_bound({l + 1, l + 1}));
+        if (it->first <= l && r <= it->second) return;
+        if (it->first <= l && l <= it->second + 1) {
+            l = it->first;
+            it = st.erase(it);
+        } else {
+            ++it;
+        }
+        while (it->second < r) {
+            it = st.erase(it);
+        }
+        if (it->first - 1 <= r && r <= it->second) {
+            r = it->second;
+            st.erase(it);
+        }
+        st.emplace(l, r);
+    }
+
+    void erase(T x) { erase(x, x); }
+    void erase(T l, T r) {
+        assert(l <= r);
+        auto it = --(st.lower_bound({l + 1, l + 1}));
+        if (it->first <= l && r <= it->second) {
+            if (it->first < l) st.emplace(it->first, l - 1);
+            if (r < it->second) st.emplace(r + 1, it->second);
+            st.erase(it);
+            return;
+        }
+        if (it->first <= l && l <= it->second) {
+            if (it->first < l) st.emplace(it->first, l - 1);
+            it = st.erase(it);
+        } else {
+            ++it;
+        }
+        while (it->second <= r) {
+            it = st.erase(it);
+        }
+        if (it->first <= r && r <= it->second) {
+            if (r < it->second) st.emplace(r + 1, it->second);
+            st.erase(it);
+        }
+    }
+
+    std::set<std::pair<T, T>> ranges() const { return st; }
+
+    T mex(T x) const {
+        auto it = --(st.lower_bound({x + 1, x + 1}));
+        if (it->first <= x && x <= it->second) return it->second + 1;
+        return x;
+    }
+
+private:
+    std::set<std::pair<T, T>> st;
+};
+\end{lstlisting}
+
+\subsection{2-SAT}
+
+\begin{small}
+\begin{markdown}
+- `vector<bool> two\_sat(int n, vector<tuple<int, bool, int, bool>> clauses)`
+    - $n$ リテラルを含む節のリストが与えられた時，すべての節を充足するリテラルの真偽値の組み合わせを一つ返す．節は `{i, f, j, g}` の形で与え，$((x\_i = f) \lor (x\_j = g))$ を追加する．問題が充足可能でない場合，空リストを返す．
+    - 時間計算量: $O(n)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+#include "../graph/scc.cpp"
+
+std::vector<bool> two_sat(int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses) {
+    std::vector<std::vector<int>> G(2 * n);
+    std::vector<bool> val(n);
+
+    for (auto& [i, f, j, g] : clauses) {
+        G[n * f + i].push_back(n * (!g) + j);
+        G[n * g + j].push_back(n * (!f) + i);
+    }
+
+    auto comp = scc(G);
+    for (int i = 0; i < n; ++i) {
+        if (comp[i] == comp[n + i]) {
+            // not satisfiable
+            return {};
+        }
+        val[i] = comp[i] > comp[n + i];
+    }
+    return val;
+}
+\end{lstlisting}
+
+\subsection{Horn-SAT}
+
+
+
+\begin{small}
+Horn-SAT は，節内の肯定リテラル数が高々1つであるような乗法標準形の論理式に対する充足可能性問題 (SAT) である．
+
+$(a_1 \land a_2 \land \dots \land a_n \rightarrow b)$ や $(a_1 \land a_2 \land \dots \land a_n \rightarrow \lnot b)$ といった論理式は，高々1つの肯定リテラルからなる節 (Horn 節) に変換できる．
+
+この問題は unit-propagation によって解ける．肯定リテラルのみからなる節がない場合はすべてのリテラルを `false` にし，そのような節があればそのリテラルの値を `true` に確定し残りのリテラルについて同じ問題を解けば良い．
+\end{small}

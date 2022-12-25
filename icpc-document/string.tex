@@ -1,0 +1,423 @@
+\section{string}
+
+\subsection{Rolling Hash}
+
+\begin{small}
+\begin{markdown}
+$\mod 2^{61} - 1$
+
+- `RollingHash(string s, long long base)`
+- `RollingHash(vector<T> s, long long base)`
+    - `s` のハッシュ値を計算する
+    - 時間計算量: $O(n)$
+- `static long long generate\_base()`
+    - ランダムな基数を返す
+    - 時間計算量: $O(1)$
+- `long long query(int l, int r)`
+    - 区間 $[l, r)$ のハッシュ値を返す
+    - 時間計算量: $O(1)$
+- `long long combine(long long h1, long long h2, int len2)`
+    - ハッシュ値 $h1$ と $h2$ を結合する．$h2$ の長さを $len2$ である
+    - 時間計算量: $O(1)$
+- `void push\_back(char c)`
+    - 文字 $c$ を末尾に結合する
+    - 時間計算量: $O(1)$
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+class RollingHash {
+public:
+    static long long generate_base() {
+        std::random_device rd;
+        std::mt19937_64 rng(rd());
+        std::uniform_int_distribution<long long> rand(1, mod - 1);
+        return rand(rng);
+    }
+
+    RollingHash() = default;
+    RollingHash(const std::string& s, long long base) : RollingHash(std::vector<char>(s.begin(), s.end()), base) {}
+    template <typename T>
+    RollingHash(const std::vector<T>& s, long long base)
+        : base(base), hashed(s.size() + 1), power(s.size() + 1) {
+        power[0] = 1;
+        for (int i = 0; i < (int) s.size(); ++i) {
+            power[i + 1] = mul(power[i], base);
+            hashed[i + 1] = add(mul(hashed[i], base), s[i]);
+        }
+    }
+
+    long long query(int l, int r) const {
+        return add(hashed[r], mod - mul(hashed[l], power[r - l]));
+    }
+
+    long long combine(long long h1, long long h2, int len2) const {
+        return add(mul(h1, power[len2]), h2);
+    }
+
+    void push_back(char c) {
+        power.push_back(mul(power.back(), base));
+        hashed.push_back(add(mul(hashed.back(), base), c));
+    }
+
+private:
+    static constexpr long long mod = (1LL << 61) - 1;
+
+    static inline long long add(long long a, long long b) {
+        if ((a += b) >= mod) a -= mod;
+        return a;
+    }
+
+    static inline long long mul(long long a, long long b) {
+        __int128_t c = (__int128_t) a * b;
+        return add(c >> 61, c & mod);
+    }
+
+    const long long base;
+    std::vector<long long> hashed, power;
+};
+\end{lstlisting}
+
+\subsection{Suffix Array}
+
+\begin{small}
+時間計算量: $O(n\log n)$
+\end{small}
+
+\begin{lstlisting}
+std::vector<int> suffix_array(const std::string& s) {
+    int n = s.size();
+    std::vector<int> sa(n);
+    std::iota(sa.begin(), sa.end(), 0);
+    std::sort(sa.begin(), sa.end(), [&](int i, int j) {
+        return s[i] < s[j];
+    });
+    int cl = 0;
+    std::vector<int> rank(n);
+    for (int i = 1; i < n; ++i) {
+        if (s[sa[i - 1]] != s[sa[i]]) ++cl;
+        rank[sa[i]] = cl;
+    }
+    std::vector<int> tmp(n), nrank(n), cnt(n);
+    for (int k = 1; k < n; k <<= 1) {
+        // sort by second half
+        int cnt1 = 0, cnt2 = k;
+        for (int i = 0; i < n; ++i) {
+            int j = sa[i] - k;
+            if (j >= 0) tmp[cnt2++] = j;
+            else tmp[cnt1++] = j + n;
+        }
+
+        // sort by first half
+        std::fill(cnt.begin(), cnt.end(), 0);
+        for (int i = 0; i < n; ++i) ++cnt[rank[tmp[i]]];
+        for (int i = 1; i < n; ++i) cnt[i] += cnt[i - 1];
+        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]] = tmp[i];
+
+        // assign new rank
+        nrank[sa[0]] = 0;
+        cl = 0;
+        for (int i = 1; i < n; ++i) {
+            if (rank[sa[i - 1]] != rank[sa[i]]
+                || (sa[i - 1] + k < n ? rank[sa[i - 1] + k] : -1) != (sa[i] + k < n ? rank[sa[i] + k] : -1)) {
+                ++cl;
+            }
+            nrank[sa[i]] = cl;
+        }
+        std::swap(rank, nrank);
+    }
+    return sa;
+}
+
+/*
+// comparator for substrings
+// used for string matching with the suffix array
+
+auto cmp = [&](int si, const string& t) {
+    int sn = S.size(), tn = t.size();
+    int ti = 0;
+    for (; si < sn && ti < tn; ++si, ++ti) {
+        if (T[si] < t[ti]) return true;
+        if (T[si] > t[ti]) return false;
+    }
+    return si == sn && ti < tn;
+};
+*/
+\end{lstlisting}
+
+\subsection{Longest Common Prefix Array}
+
+\begin{small}
+\begin{markdown}
+高さ配列 (LCP array) は，接尾辞配列における隣同士の接尾辞で，先頭何文字が共通しているかを表す配列である．`lcp[i]` は接尾辞 `s[sa[i]..]` と接尾辞 `s[sa[i + 1]..]` の先頭で共通している文字数になる．
+
+時間計算量: $O(n)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
+    int n = s.size();
+    std::vector<int> rank(n);
+    for (int i = 0; i < n; ++i) rank[sa[i]] = i;
+    int h = 0;
+    std::vector<int> lcp(n - 1);
+    for (int i = 0; i < n; ++i) {
+        if (h > 0) --h;
+        if (rank[i] == 0) continue;
+        int j = sa[rank[i] - 1];
+        while (j + h < n && i + h < n && s[j + h] == s[i + h]) ++h;
+        lcp[rank[i] - 1] = h;
+    }
+    return lcp;
+}
+\end{lstlisting}
+
+\subsection{Z Array}
+
+\begin{small}
+\begin{markdown}
+Z array は，文字列 `S` と `S[i:]` の最長共通接頭辞の長さを表す配列である
+
+Z array を用いると文字列中のパターンをすべて検索することができる．文字列を `S`，パターンを `P` とし，`P$S` (`$` は `S` にも `P` にも含まれない文字) の Z array を構築すると，値が `P` の長さと一致するところで `P` が現れる．
+
+時間計算量: $O(n)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+std::vector<int> z_array(const std::string& s) {
+    int n = s.size();
+    std::vector<int> z(n);
+    z[0] = n;
+    int l = 0, r = 0;
+    for (int i = 1; i < n; ++i) {
+        int k = i - l;
+        if (i <= r && z[k] < r - i + 1) {
+            z[i] = z[k];
+        } else {
+            l = i;
+            if (i > r) r = i;
+            while (r < n && s[r - l] == s[r]) ++r;
+            --r;
+            z[i] = r - l + 1;
+        }
+    }
+    return z;
+}
+\end{lstlisting}
+
+\subsection{Trie}
+
+\begin{small}
+\begin{markdown}
+トライ木
+
+- `void insert(string s, int id)`
+    - 文字列 $s$ を挿入する
+    - 時間計算量: $O(\vert s\vert)$
+- `void compress()`
+    - トライ木を圧縮して Patricia trie を構築する．これにより，木の木の深さが $O(\sqrt{\sum \vert s \vert})$ になる．
+    - 時間計算量: $O(\sum \vert s\vert)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+class Trie {
+public:
+    Trie() : root(std::make_shared<Node>()) {}
+
+    void insert(const std::string& s, int id) { insert(root, s, id, 0); }
+
+    void compress() { compress(root); }
+
+protected:
+    struct Node;
+    using node_ptr = std::shared_ptr<Node>;
+
+    struct Node {
+        std::map<char, node_ptr> ch;
+        std::vector<int> accept;
+        int sz = 0;
+        node_ptr par;
+        std::string str;
+
+        Node() = default;
+    };
+
+    const node_ptr root;
+
+    void insert(const node_ptr& t, const std::string& s, int id, int k) {
+        ++t->sz;
+        if (k == (int) s.size()) {
+            t->accept.push_back(id);
+            return;
+        }
+        int c = s[k];
+        if (!t->ch.count(c)) {
+            t->ch[c] = std::make_shared<Node>();
+            t->ch[c]->par = t;
+            t->ch[c]->str = c;
+        }
+        insert(t->ch[c], s, id, k + 1);
+    }
+
+    void compress(node_ptr t) {
+        while (t->accept.empty() && t->ch.size() == 1) {
+            auto u = t->ch.begin()->second;
+            t->ch = u->ch;
+            t->accept = u->accept;
+            t->str += u->str;
+            for (auto [c, w] : t->ch) w->par = t;
+            compress(t);
+        }
+        for (auto [c, u] : t->ch) {
+            compress(u);
+        }
+    }
+};
+\end{lstlisting}
+
+\subsection{Prefix Function}
+
+\begin{small}
+\begin{markdown}
+`P[:i]` の接尾辞でもある最長の proper prefix
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+template <typename T>
+std::vector<int> prefix_function(const std::vector<T>& s) {
+    const int n = s.size();
+    std::vector<int> ret(n);
+    int len = 0;
+    for (int i = 1; i < n; ++i) {
+        if (s[i] == s[len]) {
+            ++len;
+            ret[i] = len;
+        } else {
+            if (len != 0) {
+                len = ret[len - 1];
+                --i;
+            } else {
+                ret[i] = 0;
+            }
+        }
+    }
+    return ret;
+}
+\end{lstlisting}
+
+\subsection{Aho-Corasick Algorithm}
+
+\begin{small}
+\begin{markdown}
+Aho-Corasick 法は，入力文字列に対して複数のパターンを高速にマッチするアルゴリズムである．
+
+- `void insert(string p)`
+    - パターン $p$ を挿入する
+    - 時間計算量: $O(\vert p\vert)$
+- `void build()`
+    - オートマトンを構築する
+    - 時間計算量: $O(\sum \vert p\vert)$
+- `int get\_next(int i, char c)`
+    - 状態 $i$ にいるときに文字 $c$ が出現したときの遷移先の状態を返す
+- `long long count(string s)`
+    - 文字列 $s$ に対する各パターンのマッチ回数の合計を返す
+    - 時間計算量: $O(\vert s\vert + \sum \vert p\vert)$
+- `vector<pair<int, int>> match(string s)`
+    - 文字列 $s$ に対する各パターンのマッチ位置を返す
+    - 時間計算量: $O(\vert s\vert + \sum \vert p\vert)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+class AhoCorasick {
+public:
+    struct Node {
+        std::map<char, int> ch;
+        std::vector<int> accept;
+        int link = -1;
+        int cnt = 0;
+
+        Node() = default;
+    };
+
+    std::vector<Node> states;
+    std::map<int, int> accept_state;
+
+    explicit AhoCorasick() : states(1) {}
+
+    void insert(const std::string& s, int id = -1) {
+        int i = 0;
+        for (char c : s) {
+            if (!states[i].ch.count(c)) {
+                states[i].ch[c] = states.size();
+                states.emplace_back();
+            }
+            i = states[i].ch[c];
+        }
+        ++states[i].cnt;
+        states[i].accept.push_back(id);
+        accept_state[id] = i;
+    }
+
+    void clear() {
+        states.clear();
+        states.emplace_back();
+    }
+
+    int get_next(int i, char c) const {
+        while (i != -1 && !states[i].ch.count(c)) i = states[i].link;
+        return i != -1 ? states[i].ch.at(c) : 0;
+    }
+
+    void build() {
+        std::queue<int> que;
+        que.push(0);
+        while (!que.empty()) {
+            int i = que.front();
+            que.pop();
+
+            for (auto [c, j] : states[i].ch) {
+                states[j].link = get_next(states[i].link, c);
+                states[j].cnt += states[states[j].link].cnt;
+
+                auto& a = states[j].accept;
+                auto& b = states[states[j].link].accept;
+                std::vector<int> accept;
+                std::set_union(a.begin(), a.end(), b.begin(), b.end(), std::back_inserter(accept));
+                a = accept;
+
+                que.push(j);
+            }
+        }
+    }
+
+    long long count(const std::string& str) const {
+        long long ret = 0;
+        int i = 0;
+        for (auto c : str) {
+            i = get_next(i, c);
+            ret += states[i].cnt;
+        }
+        return ret;
+    }
+
+    // list of (id, index)
+    std::vector<std::pair<int, int>> match(const std::string& str) const {
+        std::vector<std::pair<int, int>> ret;
+        int i = 0;
+        for (int k = 0; k < (int) str.size(); ++k) {
+            char c = str[k];
+            i = get_next(i, c);
+            for (auto id : states[i].accept) {
+                ret.emplace_back(id, k);
+            }
+        }
+        return ret;
+    }
+};
+\end{lstlisting}

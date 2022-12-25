@@ -1,0 +1,40 @@
+\usepackage[a4paper,left=7mm,right=7mm,bottom=7mm,top=12mm,headsep=0.5mm]{geometry}  % 余白調整
+\usepackage{fancyhdr}  % ヘッダー・フッターの書式
+\usepackage{listings,jlisting}  % コードブロック
+\usepackage{color}  % 文字に色をつける
+\usepackage{amsmath,amssymb}  % 数式
+\usepackage{lastpage}  % 総ページ数の取得
+\usepackage[hybrid]{markdown} % markdown 埋め込み
+
+% ヘッダー・フッターの設定
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage/\pageref{LastPage}}  % ヘッダー右
+\lhead{suzukaze\_Aobayama}  % ヘッダー左
+% \rfoot{}  % フッター右
+
+% コードブロックの設定
+\lstset{
+  language={C++},
+  backgroundcolor={\color[RGB]{250,250,250}}, % 背景色
+  basicstyle={\ttfamily\footnotesize}, % 標準の書式. フォントサイズなど
+  identifierstyle={}, % キーワード以外の書式
+  commentstyle={\itshape \color[RGB]{0,128,0}},% コメントの書式
+  keywordstyle={\bfseries \color{blue}},% キーワードの書式
+  otherkeywords={constexpr}, % キーワードの追加
+  stringstyle={\ttfamily \color[RGB]{163,21,21}}, % 文字列の書式
+  directivestyle={\color[RGB]{128,128,128}},
+  showstringspaces=false, % 文字列中の空白の表示
+  frame=single, % 枠の追加
+  breaklines=true, % 自動改行
+  columns=fixed,%
+  basewidth=0.5em,
+  xrightmargin=0zw, %
+  xleftmargin=1zw,%
+  numbers=left, % 行番号表示位置
+  numberstyle={\scriptsize}, % 行番号の書式
+  stepnumber=1, % 行番号の表示行数間隔
+  numbersep=1zw, % 行番号と本文の間隔
+  lineskip=-0.6ex, % 行間隔
+  tabsize=4,
+}

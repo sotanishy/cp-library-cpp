@@ -1,0 +1,18 @@
+\section{ {{-section.title-}} }
+
+{%- for file in section.files %}
+
+\subsection{ {{-file.title-}} }
+
+\begin{small}
+\begin{markdown}
+{{ file.doc }}
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+{{ file.src }}
+\end{lstlisting}
+
+
+{%- endfor %}

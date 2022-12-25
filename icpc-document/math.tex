@@ -1,0 +1,473 @@
+\section{math}
+
+\subsection{知識}
+\begin{small}
+\begin{itemize}
+    \item Euler のトーシェント関数:
+    $n$ の相異なる素因数を $p_1,p_2,\dots$ として，
+    \[\varphi(n)=n\prod_{p_i} \frac{p_i-1}{p_i}\]
+
+    \item Möbius 関数:
+    \[\mu(n)=\begin{cases} 0 & \text{if $n$ has a square divisor} \\ (-1)^k & \text{if $n$ has $k$ prime factors} \end{cases}\]
+
+    \item Monmort 数 (撹乱順列の個数):
+    \[W_1=0,\,W_2=1,\,W_k=(k-1)(W_{k-1}+W_{k-2})\]
+
+    \item 第1種 Stirling 数 $s(n,k)$
+    \begin{itemize}
+        \item 定義: \[x(x-1)\cdots(x-(n-1)) = \sum_{k=0}^n s(n,k) x^k\]
+        \item $s(n,k)$ の絶対値 (${n \brack k}$ と書く) は，$n$ 要素の置換のうち，$k$ 個のサイクルに分解されるものの個数である．
+        \item 漸化式: \[{n\brack k} = {n-1\brack k-1} + (n-1){n-1 \brack k}\]
+    \end{itemize}
+
+    \item 第2種 Stirling 数 ${n \brace k}$
+    \begin{itemize}
+        \item 定義: \[{n \brace k} = \frac{1}{k!} \sum_{i=0}^n (-1)^{k-i} \binom{k}{i} i^n\]
+        \item ${n \brace k}$ は，$n$ 個の区別できるボールを， $k$ 個の区別できない箱に，すべての箱に1つ以上のボールが入るように分配する方法の数である．
+        \item 漸化式: \[{n\brace k} = {n-1\brace k-1} + k{n-1 \brace k}\]
+    \end{itemize}
+
+    \item Lagrange 補間:
+    $(x_1,y_1),\dots,(x_n,y_n)$ を通る $n+1$ 次多項式は，
+    \[\delta_i(x)=\frac{(x-x_1)\cdots(x-x_{i-1})(x-x_{i+1})\cdot(x_i-x_n)}{(x_i-x_1)\cdots(x_i-x_{i-1})(x_i-x_{i+1})\cdot(x_i-x_n)}\]
+    として，
+    \[\sum_i y_i \delta_i(x)\]
+\end{itemize}
+\end{small}
+
+\subsection{行列}
+
+\begin{small}
+\begin{itemize}
+    \item 掃き出し法: 以下のコードを参照
+    \item 行列式: 掃き出して対角要素の積．swap のたびに $-1$ をかけることに注意
+    \item 逆行列: $\begin{pmatrix}A & I\end{pmatrix}$ を掃き出す
+    \item 連立一次方程式: $\begin{pmatrix}A & \boldsymbol{b}\end{pmatrix}$ を掃き出す
+\end{itemize}
+\end{small}
+
+\begin{lstlisting}
+int pivot = 0;
+for (int j = 0; j < n; ++j) {
+    int i = pivot;
+    while (i < m && eq(A[i][j], T(0))) ++i;
+    if (i == m) continue;
+
+    if (i != pivot) A[i].swap(A[pivot]);
+
+    T p = A[pivot][j];
+    for (int l = j; l < n; ++l) A[pivot][l] /= p;
+
+    for (int k = 0; k < m; ++k) {
+        if (k == pivot) continue;
+        T v = A[k][j];
+        for (int l = j; l < n; ++l) {
+            A[k][l] -= A[pivot][l] * v;
+        }
+    }
+
+    ++pivot;
+}
+return A;
+\end{lstlisting}
+
+\subsection{商が一定の区間の列挙}
+
+\begin{lstlisting}
+ll i = 1;
+while (i <= n) {
+    ll q = n / i;
+    ll j = n / q + 1;
+    // [i, j) では n/k の値が一定
+    i = j;
+}
+\end{lstlisting}
+
+\subsection{Extended Euclidean Algorithm}
+
+\begin{small}
+$ax + by = \gcd(a, b)$ の解 $(x, y)$ を1組求める．これを利用して，与えられた整数 $a$ の法 $mod$ での逆元を求めることができる．
+\end{small}
+
+\begin{lstlisting}
+std::pair<long long, long long> extgcd(long long a, long long b) {
+    long long s = a, sx = 1, sy = 0, t = b, tx = 0, ty = 1;
+    while (t) {
+        long long q = s / t;
+        std::swap(s -= t * q, t);
+        std::swap(sx -= tx * q, tx);
+        std::swap(sy -= ty * q, ty);
+    }
+    return {sx, sy};
+}
+
+long long mod_inv(long long a, long long mod) {
+    long long inv = extgcd(a, mod).first;
+    return (inv % mod + mod) % mod;
+}
+\end{lstlisting}
+
+\subsection{Garner's Algorithm}
+
+\begin{small}
+\begin{markdown}
+連立合同式 $x \equiv b\_i \mod m\_i \quad (i=1,\dots,n)$ の解を求める．
+$m\_i$が pairwise coprime であるとき，この連立合同式には法$m = m\_1\dots m\_n$のもとでただ一つの解が存在することが中国の剰余定理によって保証される．
+
+- `long long garner(vector<long long> b, vector<long long> m, long long mod)`
+    - 連立合同式を満たす最小の非負整数を法$mod$で求める．
+    - 時間計算量: $O(n^2)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+#include "extgcd.cpp"
+
+long long garner(const std::vector<long long>& b, std::vector<long long> m, long long mod) {
+    m.push_back(mod);
+    int n = m.size();
+    std::vector<long long> coeffs(n, 1);
+    std::vector<long long> consts(n, 0);
+    for (int k = 0; k < n - 1; ++k) {
+        long long t = (b[k] - consts[k]) * mod_inv(coeffs[k], m[k]) % m[k];
+        if (t < 0) t += m[k];
+        for (int i = k + 1; i < n; ++i) {
+            consts[i] = (consts[i] + t * coeffs[i]) % m[i];
+            coeffs[i] = coeffs[i] * m[k] % m[i];
+        }
+    }
+    return consts.back();
+}
+\end{lstlisting}
+
+\subsection{Modular Arithmetic}
+
+\begin{small}
+\begin{markdown}
+**Modular Exponentiation**
+
+$a^e \mod mod$
+
+- `long long mod\_pow(long long a, long long e, int mod)`
+    - $a^e \mod mod$ を計算する
+
+**Discrete Logarithm**
+
+$a^x \equiv b \mod mod$ を満たす $x$ を求める．
+
+- `int mod\_log(long long a, long long b, int mod)`
+    - $a^x \equiv b \mod mod$ を満たす $x$ を求める．存在しない場合は $-1$ を返す．
+    - 時間計算量: $O(\sqrt{mod})$
+
+**Quadratic Residue**
+
+$r^2 \equiv n \mod mod$ を満たす $r$ を求める．
+
+- `long long mod\_sqrt(long long n, int mod)`
+    - $r^2 \equiv n \mod mod$ を満たす $r$ を求める．$n = 0$ のときは $0$ を返す．$n$ と $mod$ が互いに素でないときと $r$ が存在しないときは$-1$ を返す．
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+long long mod_pow(long long a, long long e, int mod) {
+    long long ret = 1;
+    while (e > 0) {
+        if (e & 1) ret = ret * a % mod;
+        a = a * a % mod;
+        e >>= 1;
+    }
+    return ret;
+}
+
+long long mod_inv(long long a, int mod) {
+    return mod_pow(a, mod - 2, mod);
+}
+
+int mod_log(long long a, long long b, int mod) {
+    // make a and mod coprime
+    a %= mod;
+    b %= mod;
+    long long k = 1, add = 0, g;
+    while ((g = std::gcd(a, mod)) > 1) {
+        if (b == k) return add;
+        if (b % g) return -1;
+        b /= g;
+        mod /= g;
+        ++add;
+        k = k * a / g % mod;
+    }
+
+    // baby-step
+    const int m = sqrt(mod) + 1;
+    std::unordered_map<long long, int> baby_index;
+    long long baby = b;
+    for (int i = 0; i <= m; ++i) {
+        baby_index[baby] = i;
+        baby = baby * a % mod;
+    }
+
+    // giant-step
+    long long am = 1;
+    for (int i = 0; i < m; ++i) am = am * a % mod;
+    long long giant = k;
+    for (int i = 1; i <= m; ++i) {
+        giant = giant * am % mod;
+        if (baby_index.count(giant)) {
+            return i * m - baby_index[giant] + add;
+        }
+    }
+    return -1;
+}
+
+long long mod_sqrt(long long n, int mod) {
+    if (n == 0) return 0;
+    if (mod == 2) return 1;
+    if (std::gcd(n, mod) != 1) return -1;
+    if (mod_pow(n, (mod - 1) / 2, mod) == mod - 1) return -1;
+
+    int Q = mod - 1, S = 0;
+    while (!(Q & 1)) Q >>= 1, ++S;
+    long long z = 2;
+    while (true) {
+        if (mod_pow(z, (mod - 1) / 2, mod) == mod - 1) break;
+        ++z;
+    }
+    int M = S;
+    long long c = mod_pow(z, Q, mod);
+    long long t = mod_pow(n, Q, mod);
+    long long R = mod_pow(n, (Q + 1) / 2, mod);
+    while (t != 1) {
+        int i = 0;
+        long long s = t;
+        while (s != 1) {
+            s = s * s % mod;
+            ++i;
+        }
+        long long b = mod_pow(c, 1 << (M - i - 1), mod);
+        M = i;
+        c = b * b % mod;
+        t = t * c % mod;
+        R = R * b % mod;
+    }
+    return R;
+}
+
+\end{lstlisting}
+
+\subsection{Sum of Floor of Linear}
+
+\begin{small}
+一次関数の床関数の和 $\sum\_{i=0}^{N-1} \left\lfloor \frac{Ai + B}{M} \right\rfloor$ を再帰的に計算する．
+\end{small}
+
+\begin{lstlisting}
+long long floor_sum(long long n, long long m, long long a, long long b) {
+    long long sum = 0;
+    if (a >= m) {
+        sum += (a / m) * n * (n - 1) / 2;
+        a %= m;
+    }
+    if (b >= m) {
+        sum += (b / m) * n;
+        b %= m;
+    }
+    long long y = (a * n + b) / m;
+    if (y == 0) return sum;
+    long long x = (m * y - b + a - 1) / a;
+    sum += (n - x) * y + floor_sum(y, a, m, a * x - m * y + b);
+    return sum;
+}
+\end{lstlisting}
+
+
+\subsection{Polynomial}
+
+\begin{lstlisting}
+template <typename mint>
+class Polynomial : public std::vector<mint> {
+    using Poly = Polynomial;
+
+public:
+    using std::vector<mint>::vector;
+    using std::vector<mint>::operator=;
+
+    Poly pre(int size) const { return Poly(this->begin(), this->begin() + std::min((int) this->size(), size)); }
+
+    Poly rev(int deg = -1) const {
+        Poly ret(*this);
+        if (deg != -1) ret.resize(deg, 0);
+        return Poly(ret.rbegin(), ret.rend());
+    }
+
+    Poly& operator+=(const Poly& rhs) {
+        if (this->size() < rhs.size()) this->resize(rhs.size());
+        for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] += rhs[i];
+        return *this;
+    }
+
+    Poly& operator+=(const mint& rhs) {
+        if (this->empty()) this->resize(1);
+        (*this)[0] += rhs;
+        return *this;
+    }
+
+    Poly& operator-=(const Poly& rhs) {
+        if (this->size() < rhs.size()) this->resize(rhs.size());
+        for (int i = 0; i < (int) rhs.size(); ++i) (*this)[i] -= rhs[i];
+        return *this;
+    }
+
+    Poly& operator-=(const mint& rhs) {
+        if (this->empty()) this->resize(1);
+        (*this)[0] -= rhs;
+        return *this;
+    }
+
+    Poly& operator*=(const Poly& rhs) {
+        *this = convolution(*this, rhs);
+        // // naive convolution O(N^2)
+        // std::vector<mint> res(this->size() + rhs.size() - 1);
+        // for (int i = 0; i < (int) this->size(); ++i) {
+        //     for (int j = 0; j < (int) rhs.size(); ++j) {
+        //         res[i + j] += (*this)[i] * rhs[j];
+        //     }
+        // }
+        // *this = res;
+        return *this;
+    }
+
+    Poly& operator*=(const mint& rhs) {
+        for (int i = 0; i < (int) this->size(); ++i) (*this)[i] *= rhs;
+        return *this;
+    }
+
+    Poly& operator/=(const Poly& rhs) {
+        if(this->size() < rhs.size()) {
+            this->clear();
+            return *this;
+        }
+        int n = this->size() - rhs.size() + 1;
+        return *this = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);
+    }
+
+    Poly& operator%=(const Poly& rhs) {
+        *this -= *this / rhs * rhs;
+        while (!this->empty() && this->back() == 0) this->pop_back();
+        return *this;
+    }
+
+    Poly& operator-() const {
+        Poly ret(this->size());
+        for (int i = 0; i < (int) this->size(); ++i) ret[i] = -(*this)[i];
+        return ret;
+    }
+
+    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs; }
+    Poly operator+(const mint& rhs) const { return Poly(*this) += rhs; }
+    Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }
+    Poly operator-(const mint& rhs) const { return Poly(*this) -= rhs; }
+    Poly operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }
+    Poly operator*(const mint& rhs) const { return Poly(*this) *= rhs; }
+    Poly operator/(const Poly& rhs) const { return Poly(*this) /= rhs; }
+    Poly operator%(const Poly& rhs) const { return Poly(*this) %= rhs; }
+
+    Poly operator<<(int n) const {
+        Poly ret(*this);
+        ret.insert(ret.begin(), n, 0);
+        return ret;
+    }
+
+    Poly operator>>(int n) const {
+        if (this->size() <= n) return {};
+        Poly ret(*this);
+        ret.erase(ret.begin(), ret.begin() + n);
+        return ret;
+    }
+
+
+    mint operator()(const mint& x) {
+        mint y = 0, powx = 1;
+        for (int i = 0; i < (int) this->size(); ++i) {
+            y += (*this)[i] * powx;
+            powx *= x;
+        }
+        return y;
+    }
+
+    Poly inv(int deg = -1) const {
+        assert((*this)[0] != mint(0));
+        if (deg == -1) deg = this->size();
+        Poly ret({mint(1) / (*this)[0]});
+        for (int i = 1; i < deg; i <<= 1) {
+            ret = (ret * mint(2) - ret * ret * this->pre(i << 1)).pre(i << 1);
+        }
+        return ret;
+    }
+
+    Poly exp(int deg = -1) const {
+        assert((*this)[0] == mint(0));
+        if (deg == -1) deg = this->size();
+        Poly ret({mint(1)});
+        for (int i = 1; i < deg; i <<= 1) {
+            ret = (ret * (this->pre(i << 1) + mint(1) - ret.log(i << 1))).pre(i << 1);
+        }
+        return ret;
+    }
+
+    Poly log(int deg = -1) const {
+        assert((*this)[0] == mint(1));
+        if (deg == -1) deg = this->size();
+        return (this->diff() * this->inv(deg)).pre(deg - 1).integral();
+    }
+
+    Poly pow(long long k, int deg = -1) const {
+        if (k == 0) return {1};
+        if (deg == -1) deg = this->size();
+        Poly ret(*this);
+        int cnt = 0;
+        while (cnt < (int) ret.size() && ret[cnt] == mint(0)) ++cnt;
+        if (cnt * k >= deg) return Poly(deg, mint(0));
+        ret.erase(ret.begin(), ret.begin() + cnt);
+        deg -= cnt * k;
+        ret = ((ret * mint(ret[0]).inv()).log(deg) * mint(k)).pre(deg).exp(deg) * mint(ret[0]).pow(k);
+        ret.insert(ret.begin(), cnt * k, mint(0));
+        return ret;
+    }
+
+    Poly diff() const {
+        Poly ret(std::max(0, (int) this->size() - 1));
+        for (int i = 1; i <= (int) ret.size(); ++i) ret[i - 1] = (*this)[i] * mint(i);
+        return ret;
+    }
+
+    Poly integral() const {
+        Poly ret(this->size() + 1);
+        ret[0] = mint(0);
+        for (int i = 0; i < (int) ret.size() - 1; ++i) ret[i + 1] = (*this)[i] / mint(i + 1);
+        return ret;
+    }
+
+    Poly taylor_shift(long long c) const {
+        const int n = this->size();
+        std::vector<mint> fact(n, 1), fact_inv(n, 1);
+        for (int i = 1; i < n; ++i) fact[i] = fact[i-1] * i;
+        fact_inv[n-1] = mint(1) / fact[n-1];
+        for (int i = n - 1; i > 0; --i) fact_inv[i-1] = fact_inv[i] * i;
+
+        auto ret = *this;
+        Poly e(n+1);
+        e[0] = 1;
+        mint p = c;
+        for (int i = 1; i < n; ++i) {
+            ret[i] *= fact[i];
+            e[i] = p * fact_inv[i];
+            p *= c;
+        }
+        ret = (ret.rev() * e).pre(n).rev();
+        for (int i = n - 1; i >= 0; --i) {
+            ret[i] *= fact_inv[i];
+        }
+        return ret;
+    }
+};
+\end{lstlisting}
