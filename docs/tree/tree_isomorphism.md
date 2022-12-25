@@ -1,5 +1,5 @@
 ---
-title: Tree Hashing
+title: Tree Isomorphism
 documentation_of: ../../tree/tree_hash.hpp
 ---
 

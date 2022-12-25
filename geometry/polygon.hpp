@@ -50,8 +50,7 @@ Polygon halfplane_intersection(std::vector<std::pair<Vec, Vec>> hps) {
 
     auto intersection = [&](const Hp& l1, const Hp& l2) -> Vec {
         auto d = l2.second - l1.second;
-        Vec e(-l1.first.imag(), l1.first.real());
-        return l1.second + (dot(d, l2.first) / cross(l1.first, l2.first)) * e;
+        return l1.second + (dot(d, l2.first) / cross(l1.first, l2.first)) * perp(l1.first);
     };
 
     // check if the halfplane h contains the point p
