@@ -318,6 +318,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.cpp
       title: 2-Edge-Connected Components
+  - name: icpc-document
+    pages:
+    - icon: ':warning:'
+      path: icpc-document/file_list.py
+      title: icpc-document/file_list.py
+    - icon: ':warning:'
+      path: icpc-document/generate.py
+      title: icpc-document/generate.py
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
