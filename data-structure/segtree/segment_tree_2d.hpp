@@ -24,8 +24,7 @@ public:
         seg.resize(2 * size);
 
         for (auto& [x, y] : pts) {
-            int k = std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();
-            ys[size + k].push_back(y);
+            ys[size + getx(x)].push_back(y);
         }
 
         for (int i = 0; i < n; ++i) {
@@ -34,37 +33,48 @@ public:
         }
         for (int i = size - 1; i > 0; --i) {
             std::merge(ys[2*i].begin(), ys[2*i].end(), ys[2*i+1].begin(), ys[2*i+1].end(), std::back_inserter(ys[i]));
+            ys[i].erase(std::unique(ys[i].begin(), ys[i].end()), ys[i].end());
         }
         for (int i = 0; i < size + n; ++i) {
             seg[i] = SegmentTree<M>(ys[i].size());
         }
     }
 
+    T get(X x, Y y) const {
+        int kx = getx(x);
+        assert(kx < (int) xs.size() && xs[kx] == x);
+        kx += size;
+        int ky = gety(kx, y);
+        assert(ky < (int) ys[kx].size() && ys[kx][ky] == y);
+        return seg[kx][ky];
+    }
+
     void update(X x, Y y, T val) {
-        int k = std::lower_bound(xs.begin(), xs.end(), x) - xs.begin() + size;
-        while (k) {
-            int i = std::lower_bound(ys[k].begin(), ys[k].end(), y) - ys[k].begin();
-            seg[k].update(i, val);
-            k >>= 1;
+        int kx = getx(x);
+        assert(kx < (int) xs.size() && xs[kx] == x);
+        kx += size;
+        int ky = gety(kx, y);
+        assert(ky < (int) ys[kx].size() && ys[kx][ky] == y);
+        seg[kx].update(ky, val);
+        while (kx >>= 1) {
+            ky = gety(kx, y);
+            int kl = gety(2*kx, y), kr = gety(2*kx+1, y);
+            T vl = (kl < (int) ys[2*kx].size() && ys[2*kx][kl] == y ? seg[2*kx][kl] : M::id());
+            T vr = (kr < (int) ys[2*kx+1].size() && ys[2*kx+1][kr] == y ? seg[2*kx+1][kr] : M::id());
+            seg[kx].update(ky, M::op(vl, vr));
         }
     }
 
     T fold(X sx, X tx, Y sy, Y ty) const {
         T ret = M::id();
-        int l = std::lower_bound(xs.begin(), xs.end(), sx) - xs.begin();
-        int r = std::lower_bound(xs.begin(), xs.end(), tx) - xs.begin();
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        for (int l = size + getx(sx), r = size + getx(tx); l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
-                int hi = std::lower_bound(ys[l].begin(), ys[l].end(), ty) - ys[l].begin();
-                int lo = std::lower_bound(ys[l].begin(), ys[l].end(), sy) - ys[l].begin();
-                ret = M::op(ret, seg[l].fold(lo, hi));
+                ret = M::op(ret, seg[l].fold(gety(l, sy), gety(l, ty)));
                 ++l;
             }
             if (r & 1) {
                 --r;
-                int hi = std::lower_bound(ys[r].begin(), ys[r].end(), ty) - ys[r].begin();
-                int lo = std::lower_bound(ys[r].begin(), ys[r].end(), sy) - ys[r].begin();
-                ret = M::op(ret, seg[r].fold(lo, hi));
+                ret = M::op(ret, seg[r].fold(gety(r, sy), gety(r, ty)));
             }
         }
         return ret;
@@ -75,4 +85,7 @@ private:
     std::vector<X> xs;
     std::vector<std::vector<Y>> ys;
     std::vector<SegmentTree<M>> seg;
+
+    int getx(X x) const { return std::lower_bound(xs.begin(), xs.end(), x) - xs.begin(); }
+    int gety(int k, Y y) const { return std::lower_bound(ys[k].begin(), ys[k].end(), y) - ys[k].begin(); }
 };
