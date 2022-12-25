@@ -140,10 +140,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data-structure/segtree/segment_tree_2d.hpp
       title: 2D Segment Tree
     - icon: ':heavy_check_mark:'
@@ -944,9 +944,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
+      title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/point_add_rectangle_sum.test.cpp
-      title: test/yosupo/point_add_rectangle_sum.test.cpp
+      path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
+      title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp

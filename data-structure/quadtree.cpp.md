@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/point_add_rectangle_sum.test.cpp
+    path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
+    title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,7 +70,7 @@ data:
   timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/point_add_rectangle_sum.test.cpp
+  - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
 documentation_of: data-structure/quadtree.cpp
 layout: document
 title: Quadtree

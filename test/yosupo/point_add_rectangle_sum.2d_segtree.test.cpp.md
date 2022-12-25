@@ -4,17 +4,22 @@ data:
   - icon: ':question:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-    title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
+    path: data-structure/segtree/segment_tree_2d.hpp
+    title: 2D Segment Tree
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
+    links:
+    - https://judge.yosupo.jp/problem/point_add_rectangle_sum
+  bundledCode: "#line 1 \"test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\
+    \n#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
     #include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
     \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
@@ -84,80 +89,60 @@ data:
     \ xs;\n    std::vector<std::vector<Y>> ys;\n    std::vector<SegmentTree<M>> seg;\n\
     \n    int getx(X x) const { return std::lower_bound(xs.begin(), xs.end(), x) -\
     \ xs.begin(); }\n    int gety(int k, Y y) const { return std::lower_bound(ys[k].begin(),\
-    \ ys[k].end(), y) - ys[k].begin(); }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
-    #include \"segment_tree.cpp\"\n\ntemplate <typename X, typename Y, typename M>\n\
-    class SegmentTree2D {\n    using T = typename M::T;\n\npublic:\n    SegmentTree2D()\
-    \ = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X, Y>>& pts)\
-    \ {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n      \
-    \  }\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n\n        const int n = xs.size();\n        size = 1;\n\
-    \        while (size < n) size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2\
-    \ * size);\n\n        for (auto& [x, y] : pts) {\n            ys[size + getx(x)].push_back(y);\n\
-    \        }\n\n        for (int i = 0; i < n; ++i) {\n            std::sort(ys[size\
-    \ + i].begin(), ys[size + i].end());\n            ys[size + i].erase(std::unique(ys[size\
-    \ + i].begin(), ys[size + i].end()), ys[size + i].end());\n        }\n       \
-    \ for (int i = size - 1; i > 0; --i) {\n            std::merge(ys[2*i].begin(),\
-    \ ys[2*i].end(), ys[2*i+1].begin(), ys[2*i+1].end(), std::back_inserter(ys[i]));\n\
-    \            ys[i].erase(std::unique(ys[i].begin(), ys[i].end()), ys[i].end());\n\
-    \        }\n        for (int i = 0; i < size + n; ++i) {\n            seg[i] =\
-    \ SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X x, Y y) const\
-    \ {\n        int kx = getx(x);\n        assert(kx < (int) xs.size() && xs[kx]\
-    \ == x);\n        kx += size;\n        int ky = gety(kx, y);\n        assert(ky\
-    \ < (int) ys[kx].size() && ys[kx][ky] == y);\n        return seg[kx][ky];\n  \
-    \  }\n\n    void update(X x, Y y, T val) {\n        int kx = getx(x);\n      \
-    \  assert(kx < (int) xs.size() && xs[kx] == x);\n        kx += size;\n       \
-    \ int ky = gety(kx, y);\n        assert(ky < (int) ys[kx].size() && ys[kx][ky]\
-    \ == y);\n        seg[kx].update(ky, val);\n        while (kx >>= 1) {\n     \
-    \       ky = gety(kx, y);\n            int kl = gety(2*kx, y), kr = gety(2*kx+1,\
-    \ y);\n            T vl = (kl < (int) ys[2*kx].size() && ys[2*kx][kl] == y ? seg[2*kx][kl]\
-    \ : M::id());\n            T vr = (kr < (int) ys[2*kx+1].size() && ys[2*kx+1][kr]\
-    \ == y ? seg[2*kx+1][kr] : M::id());\n            seg[kx].update(ky, M::op(vl,\
-    \ vr));\n        }\n    }\n\n    T fold(X sx, X tx, Y sy, Y ty) const {\n    \
-    \    T ret = M::id();\n        for (int l = size + getx(sx), r = size + getx(tx);\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                ret =\
-    \ M::op(ret, seg[l].fold(gety(l, sy), gety(l, ty)));\n                ++l;\n \
-    \           }\n            if (r & 1) {\n                --r;\n              \
-    \  ret = M::op(ret, seg[r].fold(gety(r, sy), gety(r, ty)));\n            }\n \
-    \       }\n        return ret;\n    }\n\nprivate:\n    int size;\n    std::vector<X>\
-    \ xs;\n    std::vector<std::vector<Y>> ys;\n    std::vector<SegmentTree<M>> seg;\n\
-    \n    int getx(X x) const { return std::lower_bound(xs.begin(), xs.end(), x) -\
-    \ xs.begin(); }\n    int gety(int k, Y y) const { return std::lower_bound(ys[k].begin(),\
-    \ ys[k].end(), y) - ys[k].begin(); }\n};"
+    \ ys[k].end(), y) - ys[k].begin(); }\n};\n#line 4 \"test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
+    \ T op(T a, T b) { return a + b; }\n};\n\nstruct Query {\n    int t, x, y, w,\
+    \ l, d, r, u;\n    Query(int t, int x, int y, int w) : t(t), x(x), y(y), w(w)\
+    \ {}\n    Query(int t, int l, int d, int r, int u) : t(t), l(l), d(d), r(r), u(u)\
+    \ {}\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> x(N), y(N), w(N);\n    vector<pair<int,\
+    \ int>> pts;\n    for (int i = 0; i < N; ++i) {\n        cin >> x[i] >> y[i] >>\
+    \ w[i];\n        pts.push_back({x[i], y[i]});\n    }\n    vector<Query> queries;\n\
+    \    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n      \
+    \  if (t == 0) {\n            int x, y, w;\n            cin >> x >> y >> w;\n\
+    \            queries.emplace_back(t, x, y, w);\n            pts.push_back({x,\
+    \ y});\n        } else {\n            int l, d, r, u;\n            cin >> l >>\
+    \ d >> r >> u;\n            queries.emplace_back(t, l, d, r, u);\n        }\n\
+    \    }\n    SegmentTree2D<int, int, AddMonoid> st(pts);\n    for (int i = 0; i\
+    \ < N; ++i) {\n        st.update(x[i], y[i], st.get(x[i], y[i]) + w[i]);\n   \
+    \ }\n\n    for (auto& q : queries) {\n        if (q.t == 0) {\n            st.update(q.x,\
+    \ q.y, st.get(q.x, q.y) + q.w);\n        } else {\n            cout << st.fold(q.l,\
+    \ q.r, q.d, q.u) << \"\\n\";\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
+    \n\n#include \"../../data-structure/segtree/segment_tree_2d.hpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid\
+    \ {\n    using T = ll;\n    static T id() { return 0; }\n    static T op(T a,\
+    \ T b) { return a + b; }\n};\n\nstruct Query {\n    int t, x, y, w, l, d, r, u;\n\
+    \    Query(int t, int x, int y, int w) : t(t), x(x), y(y), w(w) {}\n    Query(int\
+    \ t, int l, int d, int r, int u) : t(t), l(l), d(d), r(r), u(u) {}\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
+    \   int N, Q;\n    cin >> N >> Q;\n    vector<int> x(N), y(N), w(N);\n    vector<pair<int,\
+    \ int>> pts;\n    for (int i = 0; i < N; ++i) {\n        cin >> x[i] >> y[i] >>\
+    \ w[i];\n        pts.push_back({x[i], y[i]});\n    }\n    vector<Query> queries;\n\
+    \    for (int i = 0; i < Q; ++i) {\n        int t;\n        cin >> t;\n      \
+    \  if (t == 0) {\n            int x, y, w;\n            cin >> x >> y >> w;\n\
+    \            queries.emplace_back(t, x, y, w);\n            pts.push_back({x,\
+    \ y});\n        } else {\n            int l, d, r, u;\n            cin >> l >>\
+    \ d >> r >> u;\n            queries.emplace_back(t, l, d, r, u);\n        }\n\
+    \    }\n    SegmentTree2D<int, int, AddMonoid> st(pts);\n    for (int i = 0; i\
+    \ < N; ++i) {\n        st.update(x[i], y[i], st.get(x[i], y[i]) + w[i]);\n   \
+    \ }\n\n    for (auto& q : queries) {\n        if (q.t == 0) {\n            st.update(q.x,\
+    \ q.y, st.get(q.x, q.y) + q.w);\n        } else {\n            cout << st.fold(q.l,\
+    \ q.r, q.d, q.u) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
+  - data-structure/segtree/segment_tree_2d.hpp
   - data-structure/segtree/segment_tree.cpp
-  isVerificationFile: false
-  path: data-structure/segtree/segment_tree_2d.hpp
+  isVerificationFile: true
+  path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
   requiredBy: []
   timestamp: '2022-12-25 16:20:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-documentation_of: data-structure/segtree/segment_tree_2d.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
 layout: document
-title: 2D Segment Tree
+redirect_from:
+- /verify/test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
+- /verify/test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp.html
+title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
 ---
-
-## Description
-
-2D セグメント木は，モノイド $(T, \cdot, e)$ の重みを持つ2次元平面上の点集合に対する一点更新と矩形領域積取得を提供するデータ構造である．
-
-この実装では，重みをもたせる点を先読みして初期化時に渡す必要がある．
-
-空間計算量: $O(n)$
-
-## Operations
-
-- `SegmentTree2D(vector<pair<X, Y>> pts)`
-    - `pts` の点に対する 2D セグメント木を初期化する
-    - 時間計算量: $O(n\log n)$
-- `void update(X x, Y y, T val)`
-    - 点 $(x, y)$ の重みを $val$ に更新する
-    - 時間計算量: $O((\log n)^2)$
-- `T fold(X sx, X tx, Y sy, Y ty)`
-    - 矩形領域 $[sx, tx) \times [sy, ty)$ 内の点の重みの積を取得する
-    - 時間計算量: $O((\log n)^2)$
-
-## Reference
-
-- verify: [https://atcoder.jp/contests/abc266/submissions/34414646](https://atcoder.jp/contests/abc266/submissions/34414646)
