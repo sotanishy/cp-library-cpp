@@ -198,6 +198,9 @@ data:
       path: flow/ford_fulkerson.cpp
       title: Ford-Fulkerson Algorithm
     - icon: ':heavy_check_mark:'
+      path: flow/min_cost_b_flow.hpp
+      title: flow/min_cost_b_flow.hpp
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
   - name: geometry
@@ -923,6 +926,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/min_cost_b_flow.test.cpp
+      title: test/yosupo/min_cost_b_flow.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
