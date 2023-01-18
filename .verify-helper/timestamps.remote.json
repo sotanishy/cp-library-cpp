@@ -107,6 +107,7 @@
 "test/yosupo/inv_of_formal_power_series.test.cpp": "2022-06-27 18:10:09 +0900",
 "test/yosupo/inverse_matrix.test.cpp": "2022-06-27 16:41:31 +0900",
 "test/yosupo/jump_on_tree.test.cpp": "2022-08-04 12:02:47 +0900",
+"test/yosupo/kth_root_integer.test.cpp": "2023-01-18 15:33:22 +0900",
 "test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp": "2022-10-01 22:18:51 +0900",
 "test/yosupo/lca.test.cpp": "2022-08-04 12:02:47 +0900",
 "test/yosupo/lcm_convolution.test.cpp": "2022-06-27 17:02:18 +0900",
