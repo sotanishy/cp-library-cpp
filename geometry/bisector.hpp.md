@@ -143,14 +143,14 @@ data:
   isVerificationFile: false
   path: geometry/bisector.hpp
   requiredBy:
-  - geometry/minimum_bounding_circle.hpp
-  - geometry/delaunay_diagram.hpp
   - geometry/triangle.hpp
+  - geometry/delaunay_diagram.hpp
+  - geometry/minimum_bounding_circle.hpp
   timestamp: '2022-12-19 16:08:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
 documentation_of: geometry/bisector.hpp
 layout: document
 redirect_from:

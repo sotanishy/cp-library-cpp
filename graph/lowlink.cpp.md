@@ -75,8 +75,8 @@ data:
   verifiedWith:
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp
-  - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/biconnected_components.test.cpp
+  - test/yosupo/two_edge_connected_components.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document
 title: Lowlink

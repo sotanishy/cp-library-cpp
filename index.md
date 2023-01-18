@@ -374,6 +374,9 @@ data:
     - icon: ':warning:'
       path: math/kitamasa.cpp
       title: Kitamasa's Algorithm
+    - icon: ':heavy_check_mark:'
+      path: math/kth_root.hpp
+      title: math/kth_root.hpp
     - icon: ':warning:'
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
@@ -896,6 +899,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/jump_on_tree.test.cpp
       title: test/yosupo/jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/kth_root_integer.test.cpp
+      title: test/yosupo/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
