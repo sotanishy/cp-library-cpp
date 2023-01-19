@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <deque>
 #include <utility>
 #include <vector>
 
@@ -18,10 +19,10 @@ public:
 
     T get(T x) {
         if (monotone_query) {
-            while (lines.size() - head >= 2 && lines[head](x) > lines[head + 1](x)) {
-                ++head;
+            while (lines.size() >= 2 && lines.front()(x) > lines[1](x)) {
+                lines.pop_front();
             }
-            return lines[head](x);
+            return lines.front()(x);
         } else {
             int lb = -1, ub = lines.size() - 1;
             while (ub - lb > 1) {
@@ -43,7 +44,7 @@ private:
         T operator()(T x) const { return a * x + b; }
     };
 
-    std::vector<Line> lines;
+    std::deque<Line> lines;
     bool monotone_query;
     int head = 0;
 
