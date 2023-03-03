@@ -46,7 +46,6 @@ private:
 
     std::deque<Line> lines;
     bool monotone_query;
-    int head = 0;
 
     static bool check(Line l1, Line l2, Line l3) {
         if (l2.a == l3.a) return l2.b >= l3.b;

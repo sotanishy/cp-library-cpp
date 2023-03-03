@@ -1,6 +1,6 @@
 ---
 title: Minimum Cost b-flow
-documentation_of: ../../flow/min_cost_b_flow.cpp
+documentation_of: ../../flow/min_cost_b_flow.hpp
 ---
 
 ## Description
