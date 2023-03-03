@@ -86,8 +86,8 @@ data:
   timestamp: '2021-10-10 23:27:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/segment_add_get_min.test.cpp
   - test/yosupo/line_add_get_min.lct.test.cpp
+  - test/yosupo/segment_add_get_min.test.cpp
 documentation_of: data-structure/cht/li_chao_tree.cpp
 layout: document
 title: Li Chao Tree

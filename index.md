@@ -199,7 +199,7 @@ data:
       title: Ford-Fulkerson Algorithm
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_b_flow.hpp
-      title: flow/min_cost_b_flow.hpp
+      title: Minimum Cost b-flow
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_flow.cpp
       title: Minimum Cost Flow
@@ -474,6 +474,9 @@ data:
     - icon: ':warning:'
       path: misc/monoids.cpp
       title: misc/monoids.cpp
+    - icon: ':warning:'
+      path: misc/permutation.hpp
+      title: misc/permutation.hpp
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: flow/min_cost_b_flow.hpp
-    title: flow/min_cost_b_flow.hpp
+    title: Minimum Cost b-flow
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
