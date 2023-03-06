@@ -60,6 +60,10 @@ AddRangeMonoid::T act(AddRangeMonoid::T a, AffineMonoid::T b) {
     return {a.first * b.first + a.second * b.second, a.second};
 }
 
+AddRangeMonoid::T act(AddRangeMonoid::T a, AddMonoid::T b) {
+    return {a.first + a.second * b, a.second};
+}
+
 AddRangeMonoid::T act(AddRangeMonoid::T a, UpdateMonoid::T b) {
     if (b == UpdateMonoid::id()) return a;
     return {b * a.second, a.second};
