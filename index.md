@@ -53,6 +53,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/min_max_heap.hpp
       title: Min-Max Heap
+    - icon: ':warning:'
+      path: data-structure/partition_refinement.hpp
+      title: Partition Refinement
     - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.cpp
       title: Persistent Array
@@ -480,6 +483,9 @@ data:
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp
+    - icon: ':warning:'
+      path: misc/sorting.hpp
+      title: Sorting Algorithms
     - icon: ':warning:'
       path: misc/stable_matching.hpp
       title: Stable Matching
