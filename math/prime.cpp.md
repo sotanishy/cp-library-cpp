@@ -71,13 +71,13 @@ data:
   isVerificationFile: false
   path: math/prime.cpp
   requiredBy:
-  - math/carmichael.cpp
   - math/combination_arbitrary_mod.hpp
+  - math/carmichael.cpp
   timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_A.test.cpp
   - test/aoj/ALDS1_1_C.is_prime.test.cpp
+  - test/aoj/NTL_1_A.test.cpp
 documentation_of: math/prime.cpp
 layout: document
 title: Prime Number Algorithms

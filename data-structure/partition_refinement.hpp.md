@@ -1,58 +1,84 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/chordal_graph_recognition.hpp
+    title: graph/chordal_graph_recognition.hpp
+  - icon: ':x:'
+    path: graph/lex_bfs.hpp
+    title: Lexicographic BFS
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/chordal_graph_recognition.test.cpp
+    title: test/yosupo/chordal_graph_recognition.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/partition_refinement.hpp\"\n#include <algorithm>\n\
-    #include <map>\n#include <set>\n#include <vector>\n\nclass PartitionRefinement\
-    \ {\n   public:\n    PartitionRefinement() = default;\n    explicit PartitionRefinement(int\
-    \ n) : sets(1), cls(n, 0) {\n        for (int i = 0; i < n; ++i) sets[0].insert(i);\n\
-    \    }\n\n    int find(int x) { return cls[x]; }\n\n    bool same(int x, int y)\
-    \ { return find(x) == find(y); }\n\n    int size(int i) { return sets[i].size();\
-    \ }\n\n    std::vector<int> members(int i) {\n        return std::vector<int>(sets[i].begin(),\
+    #include <cassert>\n#include <map>\n#include <set>\n#include <vector>\n\nclass\
+    \ PartitionRefinement {\n   public:\n    PartitionRefinement() = default;\n  \
+    \  explicit PartitionRefinement(int n) : sets(1), cls(n, 0) {\n        for (int\
+    \ i = 0; i < n; ++i) sets[0].insert(i);\n    }\n\n    int find(int x) const {\
+    \ return cls[x]; }\n\n    bool same(int x, int y) const {\n        int cx = find(x),\
+    \ cy = find(y);\n        return cx != -1 && cy != -1 && cx == cy;\n    }\n\n \
+    \   bool contains(int x) const { return cls[x] != -1; }\n\n    void erase(int\
+    \ x) {\n        if (contains(x)) {\n            sets[cls[x]].erase(x);\n     \
+    \       cls[x] = -1;\n        }\n    }\n\n    int size(int i) const { return sets[i].size();\
+    \ }\n\n    int member(int i) const {\n        assert(0 <= i && i < (int)sets.size());\n\
+    \        return *sets[i].begin();\n    }\n\n    std::vector<int> members(int i)\
+    \ const {\n        assert(0 <= i && i < (int)sets.size());\n        return std::vector<int>(sets[i].begin(),\
     \ sets[i].end());\n    }\n\n    std::vector<std::pair<int, int>> refine(const\
     \ std::vector<int>& pivot) {\n        std::map<int, std::vector<int>> split;\n\
-    \        for (auto x : pivot) {\n            int i = cls[x];\n            split[i].push_back(x);\n\
-    \            sets[i].erase(x);\n        }\n        std::vector<std::pair<int,\
-    \ int>> updated;\n        for (auto& [i, s] : split) {\n            int ni = sets.size();\n\
-    \            sets.emplace_back(s.begin(), s.end());\n            if (sets[i].size()\
-    \ < sets[ni].size()) {\n                std::swap(sets[i], sets[ni]);\n      \
-    \      }\n            if (sets[ni].empty()) {\n                sets.pop_back();\n\
-    \                continue;\n            }\n            for (auto x : sets[ni])\
-    \ {\n                cls[x] = ni;\n            }\n            updated.push_back({i,\
-    \ ni});\n        }\n        return updated;\n    }\n\n   private:\n    std::vector<std::set<int>>\
-    \ sets;\n    std::vector<int> cls;\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <map>\n#include <set>\n#include\
-    \ <vector>\n\nclass PartitionRefinement {\n   public:\n    PartitionRefinement()\
-    \ = default;\n    explicit PartitionRefinement(int n) : sets(1), cls(n, 0) {\n\
-    \        for (int i = 0; i < n; ++i) sets[0].insert(i);\n    }\n\n    int find(int\
-    \ x) { return cls[x]; }\n\n    bool same(int x, int y) { return find(x) == find(y);\
-    \ }\n\n    int size(int i) { return sets[i].size(); }\n\n    std::vector<int>\
-    \ members(int i) {\n        return std::vector<int>(sets[i].begin(), sets[i].end());\n\
+    \        for (auto x : pivot) {\n            if (!contains(x)) continue;\n   \
+    \         int i = cls[x];\n            split[i].push_back(x);\n            sets[i].erase(x);\n\
+    \        }\n        std::vector<std::pair<int, int>> updated;\n        for (auto&\
+    \ [i, s] : split) {\n            int ni = sets.size();\n            sets.emplace_back(s.begin(),\
+    \ s.end());\n            if (sets[i].size() < sets[ni].size()) {\n           \
+    \     std::swap(sets[i], sets[ni]);\n            }\n            if (sets[ni].empty())\
+    \ {\n                sets.pop_back();\n                continue;\n           \
+    \ }\n            for (auto x : sets[ni]) {\n                cls[x] = ni;\n   \
+    \         }\n            updated.push_back({i, ni});\n        }\n        return\
+    \ updated;\n    }\n\n   private:\n    std::vector<std::set<int>> sets;\n    std::vector<int>\
+    \ cls;\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <map>\n\
+    #include <set>\n#include <vector>\n\nclass PartitionRefinement {\n   public:\n\
+    \    PartitionRefinement() = default;\n    explicit PartitionRefinement(int n)\
+    \ : sets(1), cls(n, 0) {\n        for (int i = 0; i < n; ++i) sets[0].insert(i);\n\
+    \    }\n\n    int find(int x) const { return cls[x]; }\n\n    bool same(int x,\
+    \ int y) const {\n        int cx = find(x), cy = find(y);\n        return cx !=\
+    \ -1 && cy != -1 && cx == cy;\n    }\n\n    bool contains(int x) const { return\
+    \ cls[x] != -1; }\n\n    void erase(int x) {\n        if (contains(x)) {\n   \
+    \         sets[cls[x]].erase(x);\n            cls[x] = -1;\n        }\n    }\n\
+    \n    int size(int i) const { return sets[i].size(); }\n\n    int member(int i)\
+    \ const {\n        assert(0 <= i && i < (int)sets.size());\n        return *sets[i].begin();\n\
+    \    }\n\n    std::vector<int> members(int i) const {\n        assert(0 <= i &&\
+    \ i < (int)sets.size());\n        return std::vector<int>(sets[i].begin(), sets[i].end());\n\
     \    }\n\n    std::vector<std::pair<int, int>> refine(const std::vector<int>&\
     \ pivot) {\n        std::map<int, std::vector<int>> split;\n        for (auto\
-    \ x : pivot) {\n            int i = cls[x];\n            split[i].push_back(x);\n\
-    \            sets[i].erase(x);\n        }\n        std::vector<std::pair<int,\
-    \ int>> updated;\n        for (auto& [i, s] : split) {\n            int ni = sets.size();\n\
-    \            sets.emplace_back(s.begin(), s.end());\n            if (sets[i].size()\
-    \ < sets[ni].size()) {\n                std::swap(sets[i], sets[ni]);\n      \
-    \      }\n            if (sets[ni].empty()) {\n                sets.pop_back();\n\
-    \                continue;\n            }\n            for (auto x : sets[ni])\
-    \ {\n                cls[x] = ni;\n            }\n            updated.push_back({i,\
-    \ ni});\n        }\n        return updated;\n    }\n\n   private:\n    std::vector<std::set<int>>\
-    \ sets;\n    std::vector<int> cls;\n};"
+    \ x : pivot) {\n            if (!contains(x)) continue;\n            int i = cls[x];\n\
+    \            split[i].push_back(x);\n            sets[i].erase(x);\n        }\n\
+    \        std::vector<std::pair<int, int>> updated;\n        for (auto& [i, s]\
+    \ : split) {\n            int ni = sets.size();\n            sets.emplace_back(s.begin(),\
+    \ s.end());\n            if (sets[i].size() < sets[ni].size()) {\n           \
+    \     std::swap(sets[i], sets[ni]);\n            }\n            if (sets[ni].empty())\
+    \ {\n                sets.pop_back();\n                continue;\n           \
+    \ }\n            for (auto x : sets[ni]) {\n                cls[x] = ni;\n   \
+    \         }\n            updated.push_back({i, ni});\n        }\n        return\
+    \ updated;\n    }\n\n   private:\n    std::vector<std::set<int>> sets;\n    std::vector<int>\
+    \ cls;\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/partition_refinement.hpp
-  requiredBy: []
-  timestamp: '2023-03-06 14:13:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - graph/chordal_graph_recognition.hpp
+  - graph/lex_bfs.hpp
+  timestamp: '2023-03-09 17:45:18+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/chordal_graph_recognition.test.cpp
 documentation_of: data-structure/partition_refinement.hpp
 layout: document
 title: Partition Refinement
