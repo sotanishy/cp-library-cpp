@@ -25,7 +25,7 @@ data:
     - https://judge.yosupo.jp/problem/multipoint_evaluation.test.cpp
   bundledCode: "#line 1 \"test/yosupo/multipoint_evaluation.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/multipoint_evaluation.test.cpp\"\n\n#line\
-    \ 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n#line 2 \"math/polynomial.cpp\"\
+    \ 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n\n#line 2 \"math/polynomial.cpp\"\
     \n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n\
     #line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
     \    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n  \
@@ -63,10 +63,11 @@ data:
     \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
     \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
     \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
-    \ ret.rend());\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
-    \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with constant\n\n    Poly&\
-    \ operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
+    \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
+    \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with constant\n\
+    \n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -91,46 +92,48 @@ data:
     \ < rhs.size()) {\n            this->clear();\n            return *this;\n   \
     \     }\n        int n = this->size() - rhs.size() + 1;\n        return *this\
     \ = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n    }\n\n    Poly& operator%=(const\
-    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        while ((int)this->size()\
-    \ > 1 && this->back() == 0) this->pop_back();\n        return *this;\n    }\n\n\
-    \    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs; }\n  \
-    \  Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
-    \ operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n    Poly operator/(const\
-    \ Poly& rhs) const { return Poly(*this) /= rhs; }\n    Poly operator%(const Poly&\
-    \ rhs) const { return Poly(*this) %= rhs; }\n\n    // --- shift operation ---\n\
-    \n    Poly operator<<(int n) const {\n        auto ret = *this;\n        ret.insert(ret.begin(),\
-    \ n, 0);\n        return ret;\n    }\n\n    Poly operator>>(int n) const {\n \
-    \       if ((int)this->size() <= n) return {};\n        auto ret = *this;\n  \
-    \      ret.erase(ret.begin(), ret.begin() + n);\n        return ret;\n    }\n\n\
-    \    // --- evaluation ---\n\n    mint operator()(const mint& x) {\n        mint\
-    \ y = 0, powx = 1;\n        for (int i = 0; i < (int)this->size(); ++i) {\n  \
-    \          for (auto c : *this) {\n                y += c * powx;\n          \
-    \      powx *= x;\n            }\n            return y;\n        }\n    }\n\n\
-    \    // --- other operations ---\n\n    Poly inv(int deg = -1) const {\n     \
-    \   assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
-    \        Poly res = {(*this)[0].inv()};\n        for (int d = 1; d < deg; d <<=\
-    \ 1) {\n            auto f = pre(2 * d);\n            auto g = res;\n        \
-    \    f.resize(2 * d);\n            g.resize(2 * d);\n\n            // g_{n+1}\
-    \ = g_n * (2 - g_n * f) mod x^{2^{n+1}}\n\n            ntt(f);\n            ntt(g);\n\
-    \            for (int i = 0; i < 2 * d; ++i) f[i] *= g[i];\n            intt(f);\n\
-    \n            for (int i = 0; i < d; ++i) f[i] = 0;\n\n            ntt(f);\n \
-    \           for (int i = 0; i < 2 * d; ++i) f[i] *= g[i];\n            intt(f);\n\
-    \n            res.resize(2 * d);\n            auto coef = mint(2 * d).inv().pow(2);\n\
-    \            for (int i = d; i < 2 * d; ++i) res[i] = -f[i] * coef;\n        }\n\
-    \        return res.pre(deg);\n    }\n\n    Poly exp(int deg = -1) const {\n \
-    \       assert((*this)[0] == mint(0));\n        if (deg == -1) deg = this->size();\n\
-    \        Poly ret = {mint(1)};\n        for (int i = 1; i < deg; i <<= 1) {\n\
-    \            ret = (ret * (this->pre(i << 1) + mint(1) - ret.log(i << 1)))\n \
-    \                     .pre(i << 1);\n        }\n        return ret;\n    }\n\n\
-    \    Poly log(int deg = -1) const {\n        assert((*this)[0] == mint(1));\n\
-    \        if (deg == -1) deg = this->size();\n        return (diff() * inv(deg)).pre(deg\
-    \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
-    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
-    \        auto ret = *this;\n        int cnt0 = 0;\n        while (cnt0 < (int)ret.size()\
-    \ && ret[cnt0] == 0) ++cnt0;\n        if (cnt0 > (deg - 1) / k) return {};\n \
-    \       ret = ret >> cnt0;\n        deg -= cnt0 * k;\n        ret = ((ret / ret[0]).log(deg)\
-    \ * k).exp(deg) * ret[0].pow(k);\n        ret = ret << (cnt0 * k);\n        return\
-    \ ret.deg();\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0, (int)this->size()\
+    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        trim();\n       \
+    \ return *this;\n    }\n\n    std::pair<Poly, Poly> divmod(const Poly& rhs) {\n\
+    \        auto q = *this / rhs;\n        auto r = *this - q * rhs;\n        r.trim();\n\
+    \        return {q, r};\n    }\n\n    Poly operator+(const Poly& rhs) const {\
+    \ return Poly(*this) += rhs; }\n    Poly operator-(const Poly& rhs) const { return\
+    \ Poly(*this) -= rhs; }\n    Poly operator*(const Poly& rhs) const { return Poly(*this)\
+    \ *= rhs; }\n    Poly operator/(const Poly& rhs) const { return Poly(*this) /=\
+    \ rhs; }\n    Poly operator%(const Poly& rhs) const { return Poly(*this) %= rhs;\
+    \ }\n\n    // --- shift operation ---\n\n    Poly operator<<(int n) const {\n\
+    \        auto ret = *this;\n        ret.insert(ret.begin(), n, 0);\n        return\
+    \ ret;\n    }\n\n    Poly operator>>(int n) const {\n        if ((int)this->size()\
+    \ <= n) return {};\n        auto ret = *this;\n        ret.erase(ret.begin(),\
+    \ ret.begin() + n);\n        return ret;\n    }\n\n    // --- evaluation ---\n\
+    \n    mint operator()(const mint& x) {\n        mint y = 0, powx = 1;\n      \
+    \  for (int i = 0; i < (int)this->size(); ++i) {\n            for (auto c : *this)\
+    \ {\n                y += c * powx;\n                powx *= x;\n            }\n\
+    \            return y;\n        }\n    }\n\n    // --- other operations ---\n\n\
+    \    Poly inv(int deg = -1) const {\n        assert((*this)[0] != mint(0));\n\
+    \        if (deg == -1) deg = this->size();\n        Poly res = {(*this)[0].inv()};\n\
+    \        for (int d = 1; d < deg; d <<= 1) {\n            auto f = pre(2 * d);\n\
+    \            auto g = res;\n            f.resize(2 * d);\n            g.resize(2\
+    \ * d);\n\n            // g_{n+1} = g_n * (2 - g_n * f) mod x^{2^{n+1}}\n\n  \
+    \          ntt(f);\n            ntt(g);\n            for (int i = 0; i < 2 * d;\
+    \ ++i) f[i] *= g[i];\n            intt(f);\n\n            for (int i = 0; i <\
+    \ d; ++i) f[i] = 0;\n\n            ntt(f);\n            for (int i = 0; i < 2\
+    \ * d; ++i) f[i] *= g[i];\n            intt(f);\n\n            res.resize(2 *\
+    \ d);\n            auto coef = mint(2 * d).inv().pow(2);\n            for (int\
+    \ i = d; i < 2 * d; ++i) res[i] = -f[i] * coef;\n        }\n        return res.pre(deg);\n\
+    \    }\n\n    Poly exp(int deg = -1) const {\n        assert((*this)[0] == mint(0));\n\
+    \        if (deg == -1) deg = this->size();\n        Poly ret = {mint(1)};\n \
+    \       for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * (this->pre(i\
+    \ << 1) + mint(1) - ret.log(i << 1)))\n                      .pre(i << 1);\n \
+    \       }\n        return ret;\n    }\n\n    Poly log(int deg = -1) const {\n\
+    \        assert((*this)[0] == mint(1));\n        if (deg == -1) deg = this->size();\n\
+    \        return (diff() * inv(deg)).pre(deg - 1).integral();\n    }\n\n    Poly\
+    \ pow(long long k, int deg = -1) const {\n        if (k == 0) return {1};\n  \
+    \      if (deg == -1) deg = this->size();\n        auto ret = *this;\n       \
+    \ int cnt0 = 0;\n        while (cnt0 < (int)ret.size() && ret[cnt0] == 0) ++cnt0;\n\
+    \        if (cnt0 > (deg - 1) / k) return {};\n        ret = ret >> cnt0;\n  \
+    \      deg -= cnt0 * k;\n        ret = ((ret / ret[0]).log(deg) * k).exp(deg)\
+    \ * ret[0].pow(k);\n        ret = ret << (cnt0 * k);\n        return ret.deg();\n\
+    \    }\n\n    Poly diff() const {\n        Poly ret(std::max(0, (int)this->size()\
     \ - 1));\n        for (int i = 1; i <= (int)ret.size(); ++i)\n            ret[i\
     \ - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
     \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
@@ -145,31 +148,31 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 4 \"math/multipoint_evaluation.cpp\"\n\ntemplate <typename T>\nstd::vector<T>\
+    #line 5 \"math/multipoint_evaluation.cpp\"\n\ntemplate <typename T>\nstd::vector<T>\
     \ multipoint_evaluation(const Polynomial<T>& p,\n                            \
     \         const std::vector<T>& x) {\n    int m = x.size();\n    int n = 1;\n\
     \    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n, {1});\n \
     \   for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int i = n - 1;\
     \ i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int\
     \ i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n \
-    \   for (int i = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n}\n#line 2\
-    \ \"math/modint.cpp\"\n#include <iostream>\n#line 4 \"math/modint.cpp\"\n\n/**\n\
-    \ * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint =\
-    \ Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
-    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
-    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
-    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
-    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
-    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
-    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
-    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
-    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
-    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
-    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
-    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
-    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
-    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
-    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
+    \   for (int i = 0; i < m; ++i) y[i] = q[n + i].empty() ? 0 : q[n + i][0];\n \
+    \   return y;\n}\n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#line 4 \"\
+    math/modint.cpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint\
+    \ {\n    using mint = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\"\
+    );\n\npublic:\n    static constexpr int get_mod() noexcept { return mod; }\n\n\
+    \    constexpr Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod\
+    \ + mod) % mod) {}\n\n    constexpr int value() const noexcept { return x; }\n\
+    \n    constexpr mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod)\
+    \ x -= mod; return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept\
+    \ { if ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint&\
+    \ operator*=(const mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod);\
+    \ return *this; }\n    constexpr mint& operator/=(const mint& r) noexcept { *this\
+    \ *= r.inv(); return *this; }\n\n    constexpr mint operator-() const noexcept\
+    \ { return mint(-x); }\n\n    constexpr mint operator+(const mint& r) const noexcept\
+    \ { return mint(*this) += r; }\n    constexpr mint operator-(const mint& r) const\
+    \ noexcept { return mint(*this) -= r; }\n    constexpr mint operator*(const mint&\
+    \ r) const noexcept { return mint(*this) *= r; }\n    constexpr mint operator/(const\
+    \ mint& r) const noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
     \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
     \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
     \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
@@ -214,7 +217,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-03-10 21:04:21+09:00'
+  timestamp: '2023-03-11 01:50:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/multipoint_evaluation.test.cpp

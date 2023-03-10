@@ -52,10 +52,11 @@ data:
     \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
     \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
     \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
-    \ ret.rend());\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
-    \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with constant\n\n    Poly&\
-    \ operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
+    \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
+    \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with constant\n\
+    \n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -80,46 +81,48 @@ data:
     \ < rhs.size()) {\n            this->clear();\n            return *this;\n   \
     \     }\n        int n = this->size() - rhs.size() + 1;\n        return *this\
     \ = (rev().pre(n) * rhs.rev().inv(n)).pre(n).rev(n);\n    }\n\n    Poly& operator%=(const\
-    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        while ((int)this->size()\
-    \ > 1 && this->back() == 0) this->pop_back();\n        return *this;\n    }\n\n\
-    \    Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs; }\n  \
-    \  Poly operator-(const Poly& rhs) const { return Poly(*this) -= rhs; }\n    Poly\
-    \ operator*(const Poly& rhs) const { return Poly(*this) *= rhs; }\n    Poly operator/(const\
-    \ Poly& rhs) const { return Poly(*this) /= rhs; }\n    Poly operator%(const Poly&\
-    \ rhs) const { return Poly(*this) %= rhs; }\n\n    // --- shift operation ---\n\
-    \n    Poly operator<<(int n) const {\n        auto ret = *this;\n        ret.insert(ret.begin(),\
-    \ n, 0);\n        return ret;\n    }\n\n    Poly operator>>(int n) const {\n \
-    \       if ((int)this->size() <= n) return {};\n        auto ret = *this;\n  \
-    \      ret.erase(ret.begin(), ret.begin() + n);\n        return ret;\n    }\n\n\
-    \    // --- evaluation ---\n\n    mint operator()(const mint& x) {\n        mint\
-    \ y = 0, powx = 1;\n        for (int i = 0; i < (int)this->size(); ++i) {\n  \
-    \          for (auto c : *this) {\n                y += c * powx;\n          \
-    \      powx *= x;\n            }\n            return y;\n        }\n    }\n\n\
-    \    // --- other operations ---\n\n    Poly inv(int deg = -1) const {\n     \
-    \   assert((*this)[0] != mint(0));\n        if (deg == -1) deg = this->size();\n\
-    \        Poly res = {(*this)[0].inv()};\n        for (int d = 1; d < deg; d <<=\
-    \ 1) {\n            auto f = pre(2 * d);\n            auto g = res;\n        \
-    \    f.resize(2 * d);\n            g.resize(2 * d);\n\n            // g_{n+1}\
-    \ = g_n * (2 - g_n * f) mod x^{2^{n+1}}\n\n            ntt(f);\n            ntt(g);\n\
-    \            for (int i = 0; i < 2 * d; ++i) f[i] *= g[i];\n            intt(f);\n\
-    \n            for (int i = 0; i < d; ++i) f[i] = 0;\n\n            ntt(f);\n \
-    \           for (int i = 0; i < 2 * d; ++i) f[i] *= g[i];\n            intt(f);\n\
-    \n            res.resize(2 * d);\n            auto coef = mint(2 * d).inv().pow(2);\n\
-    \            for (int i = d; i < 2 * d; ++i) res[i] = -f[i] * coef;\n        }\n\
-    \        return res.pre(deg);\n    }\n\n    Poly exp(int deg = -1) const {\n \
-    \       assert((*this)[0] == mint(0));\n        if (deg == -1) deg = this->size();\n\
-    \        Poly ret = {mint(1)};\n        for (int i = 1; i < deg; i <<= 1) {\n\
-    \            ret = (ret * (this->pre(i << 1) + mint(1) - ret.log(i << 1)))\n \
-    \                     .pre(i << 1);\n        }\n        return ret;\n    }\n\n\
-    \    Poly log(int deg = -1) const {\n        assert((*this)[0] == mint(1));\n\
-    \        if (deg == -1) deg = this->size();\n        return (diff() * inv(deg)).pre(deg\
-    \ - 1).integral();\n    }\n\n    Poly pow(long long k, int deg = -1) const {\n\
-    \        if (k == 0) return {1};\n        if (deg == -1) deg = this->size();\n\
-    \        auto ret = *this;\n        int cnt0 = 0;\n        while (cnt0 < (int)ret.size()\
-    \ && ret[cnt0] == 0) ++cnt0;\n        if (cnt0 > (deg - 1) / k) return {};\n \
-    \       ret = ret >> cnt0;\n        deg -= cnt0 * k;\n        ret = ((ret / ret[0]).log(deg)\
-    \ * k).exp(deg) * ret[0].pow(k);\n        ret = ret << (cnt0 * k);\n        return\
-    \ ret.deg();\n    }\n\n    Poly diff() const {\n        Poly ret(std::max(0, (int)this->size()\
+    \ Poly& rhs) {\n        *this -= *this / rhs * rhs;\n        trim();\n       \
+    \ return *this;\n    }\n\n    std::pair<Poly, Poly> divmod(const Poly& rhs) {\n\
+    \        auto q = *this / rhs;\n        auto r = *this - q * rhs;\n        r.trim();\n\
+    \        return {q, r};\n    }\n\n    Poly operator+(const Poly& rhs) const {\
+    \ return Poly(*this) += rhs; }\n    Poly operator-(const Poly& rhs) const { return\
+    \ Poly(*this) -= rhs; }\n    Poly operator*(const Poly& rhs) const { return Poly(*this)\
+    \ *= rhs; }\n    Poly operator/(const Poly& rhs) const { return Poly(*this) /=\
+    \ rhs; }\n    Poly operator%(const Poly& rhs) const { return Poly(*this) %= rhs;\
+    \ }\n\n    // --- shift operation ---\n\n    Poly operator<<(int n) const {\n\
+    \        auto ret = *this;\n        ret.insert(ret.begin(), n, 0);\n        return\
+    \ ret;\n    }\n\n    Poly operator>>(int n) const {\n        if ((int)this->size()\
+    \ <= n) return {};\n        auto ret = *this;\n        ret.erase(ret.begin(),\
+    \ ret.begin() + n);\n        return ret;\n    }\n\n    // --- evaluation ---\n\
+    \n    mint operator()(const mint& x) {\n        mint y = 0, powx = 1;\n      \
+    \  for (int i = 0; i < (int)this->size(); ++i) {\n            for (auto c : *this)\
+    \ {\n                y += c * powx;\n                powx *= x;\n            }\n\
+    \            return y;\n        }\n    }\n\n    // --- other operations ---\n\n\
+    \    Poly inv(int deg = -1) const {\n        assert((*this)[0] != mint(0));\n\
+    \        if (deg == -1) deg = this->size();\n        Poly res = {(*this)[0].inv()};\n\
+    \        for (int d = 1; d < deg; d <<= 1) {\n            auto f = pre(2 * d);\n\
+    \            auto g = res;\n            f.resize(2 * d);\n            g.resize(2\
+    \ * d);\n\n            // g_{n+1} = g_n * (2 - g_n * f) mod x^{2^{n+1}}\n\n  \
+    \          ntt(f);\n            ntt(g);\n            for (int i = 0; i < 2 * d;\
+    \ ++i) f[i] *= g[i];\n            intt(f);\n\n            for (int i = 0; i <\
+    \ d; ++i) f[i] = 0;\n\n            ntt(f);\n            for (int i = 0; i < 2\
+    \ * d; ++i) f[i] *= g[i];\n            intt(f);\n\n            res.resize(2 *\
+    \ d);\n            auto coef = mint(2 * d).inv().pow(2);\n            for (int\
+    \ i = d; i < 2 * d; ++i) res[i] = -f[i] * coef;\n        }\n        return res.pre(deg);\n\
+    \    }\n\n    Poly exp(int deg = -1) const {\n        assert((*this)[0] == mint(0));\n\
+    \        if (deg == -1) deg = this->size();\n        Poly ret = {mint(1)};\n \
+    \       for (int i = 1; i < deg; i <<= 1) {\n            ret = (ret * (this->pre(i\
+    \ << 1) + mint(1) - ret.log(i << 1)))\n                      .pre(i << 1);\n \
+    \       }\n        return ret;\n    }\n\n    Poly log(int deg = -1) const {\n\
+    \        assert((*this)[0] == mint(1));\n        if (deg == -1) deg = this->size();\n\
+    \        return (diff() * inv(deg)).pre(deg - 1).integral();\n    }\n\n    Poly\
+    \ pow(long long k, int deg = -1) const {\n        if (k == 0) return {1};\n  \
+    \      if (deg == -1) deg = this->size();\n        auto ret = *this;\n       \
+    \ int cnt0 = 0;\n        while (cnt0 < (int)ret.size() && ret[cnt0] == 0) ++cnt0;\n\
+    \        if (cnt0 > (deg - 1) / k) return {};\n        ret = ret >> cnt0;\n  \
+    \      deg -= cnt0 * k;\n        ret = ((ret / ret[0]).log(deg) * k).exp(deg)\
+    \ * ret[0].pow(k);\n        ret = ret << (cnt0 * k);\n        return ret.deg();\n\
+    \    }\n\n    Poly diff() const {\n        Poly ret(std::max(0, (int)this->size()\
     \ - 1));\n        for (int i = 1; i <= (int)ret.size(); ++i)\n            ret[i\
     \ - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
     \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
@@ -182,7 +185,7 @@ data:
   isVerificationFile: false
   path: math/interpolation.cpp
   requiredBy: []
-  timestamp: '2023-03-10 20:58:06+09:00'
+  timestamp: '2023-03-11 01:50:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/interpolation.cpp
