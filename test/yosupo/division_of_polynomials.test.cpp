@@ -17,15 +17,14 @@ int main() {
     Polynomial<mint> f(N), g(M);
     for (int i = 0; i < N; ++i) cin >> f[i];
     for (int i = 0; i < M; ++i) cin >> g[i];
-    auto q = f / g;
-    auto r = f % g;
+    auto [q, r] = f.divmod(g);
     cout << q.size() << " " << r.size() << endl;
-    for (int i = 0; i < q.size(); ++i) {
+    for (int i = 0; i < (int)q.size(); ++i) {
         if (i > 0) cout << " ";
         cout << q[i];
     }
     cout << endl;
-    for (int i = 0; i < r.size(); ++i) {
+    for (int i = 0; i < (int)r.size(); ++i) {
         if (i > 0) cout << " ";
         cout << r[i];
     }

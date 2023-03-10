@@ -24,6 +24,10 @@ class Polynomial : public std::vector<mint> {
         return Poly(ret.rbegin(), ret.rend());
     }
 
+    void trim() {
+        while (!this->empty() && this->back() == 0) this->pop_back();
+    }
+
     // --- unary operation ---
 
     Poly& operator-() const {
@@ -96,8 +100,15 @@ class Polynomial : public std::vector<mint> {
 
     Poly& operator%=(const Poly& rhs) {
         *this -= *this / rhs * rhs;
-        while ((int)this->size() > 1 && this->back() == 0) this->pop_back();
+        trim();
         return *this;
+    }
+
+    std::pair<Poly, Poly> divmod(const Poly& rhs) {
+        auto q = *this / rhs;
+        auto r = *this - q * rhs;
+        r.trim();
+        return {q, r};
     }
 
     Poly operator+(const Poly& rhs) const { return Poly(*this) += rhs; }

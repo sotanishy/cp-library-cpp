@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+
 #include "polynomial.cpp"
 
 template <typename T>
@@ -14,6 +15,6 @@ std::vector<T> multipoint_evaluation(const Polynomial<T>& p,
     q[1] = p % q[1];
     for (int i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];
     std::vector<T> y(m);
-    for (int i = 0; i < m; ++i) y[i] = q[n + i][0];
+    for (int i = 0; i < m; ++i) y[i] = q[n + i].empty() ? 0 : q[n + i][0];
     return y;
 }
