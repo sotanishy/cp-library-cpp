@@ -78,6 +78,7 @@
 "test/yosupo/bitwise_and_convolution.test.cpp": "2022-06-27 15:58:35 +0900",
 "test/yosupo/bitwise_xor_convolution.test.cpp": "2022-06-27 15:58:35 +0900",
 "test/yosupo/cartesian_tree.test.cpp": "2022-03-20 19:41:35 +0900",
+"test/yosupo/chordal_graph_recognition.test.cpp": "2023-03-10 11:13:40 +0900",
 "test/yosupo/chromatic_number.test.cpp": "2022-03-20 23:18:32 +0900",
 "test/yosupo/common_interval_decomposition_tree.test.cpp": "2022-10-05 11:07:43 +0900",
 "test/yosupo/convolution_mod.test.cpp": "2022-06-27 15:58:35 +0900",
