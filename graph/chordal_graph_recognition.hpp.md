@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/partition_refinement.hpp
     title: Partition Refinement
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/lex_bfs.hpp
     title: Lexicographic BFS
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/chordal_graph_recognition.test.cpp
+    title: test/yosupo/chordal_graph_recognition.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/chordal_graph_recognition.hpp\"\n#include <algorithm>\n\
@@ -127,8 +130,9 @@ data:
   path: graph/chordal_graph_recognition.hpp
   requiredBy: []
   timestamp: '2023-03-09 17:45:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/chordal_graph_recognition.test.cpp
 documentation_of: graph/chordal_graph_recognition.hpp
 layout: document
 redirect_from:

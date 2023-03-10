@@ -53,7 +53,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/min_max_heap.hpp
       title: Min-Max Heap
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/partition_refinement.hpp
       title: Partition Refinement
     - icon: ':heavy_check_mark:'
@@ -261,7 +261,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bipartite_matching.hpp
       title: Bipartite Matching
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/chordal_graph_recognition.hpp
       title: graph/chordal_graph_recognition.hpp
     - icon: ':heavy_check_mark:'
@@ -288,7 +288,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/general_matching.hpp
       title: General Matching
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/lex_bfs.hpp
       title: Lexicographic BFS
     - icon: ':heavy_check_mark:'
@@ -827,7 +827,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cartesian_tree.test.cpp
       title: test/yosupo/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/chordal_graph_recognition.test.cpp
       title: test/yosupo/chordal_graph_recognition.test.cpp
     - icon: ':heavy_check_mark:'
