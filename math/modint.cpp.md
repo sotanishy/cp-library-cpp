@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/deque_operate_all_composite.test.cpp
     title: test/yosupo/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/division_of_polynomials.test.cpp
     title: test/yosupo/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,12 +66,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/multipoint_evaluation.test.cpp
+    title: test/yosupo/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_of_subsequences.test.cpp
     title: test/yosupo/number_of_subsequences.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/pow_of_formal_power_series.test.cpp
+    title: test/yosupo/pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
@@ -81,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,9 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Mod int
     links: []
@@ -166,7 +172,7 @@ data:
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2022-06-27 15:58:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
@@ -174,6 +180,7 @@ data:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/enumerate_cliques.test.cpp
   - test/yosupo/enumerate_triangles.test.cpp
+  - test/yosupo/pow_of_formal_power_series.test.cpp
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/matrix_product.test.cpp
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
@@ -187,6 +194,7 @@ data:
   - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/number_of_subsequences.test.cpp
+  - test/yosupo/multipoint_evaluation.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/find_linear_recurrence.test.cpp

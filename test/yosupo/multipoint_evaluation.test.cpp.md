@@ -5,21 +5,32 @@ data:
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
+    path: math/modint.cpp
+    title: Mod int
+  - icon: ':x:'
+    path: math/multipoint_evaluation.cpp
+    title: Multipoint Evaluation
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"math/interpolation.cpp\"\n#include <vector>\n#line 2 \"\
-    math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\
-    \n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod)\
-    \ {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n\
-    \    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n \
-    \   if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation.test.cpp
+    links:
+    - https://judge.yosupo.jp/problem/multipoint_evaluation.test.cpp
+  bundledCode: "#line 1 \"test/yosupo/multipoint_evaluation.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/multipoint_evaluation.test.cpp\"\n\n#line\
+    \ 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n#line 2 \"math/polynomial.cpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n\
+    #line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
+    \    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n  \
+    \  if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n   \
+    \ if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
     \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
@@ -134,68 +145,82 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 4 \"math/interpolation.cpp\"\n\ntemplate <typename T>\nPolynomial<T> interpolate(const\
-    \ std::vector<T>& x, const std::vector<T>& y) {\n    assert(x.size() == y.size());\n\
-    \    int n = x.size();\n    std::vector<T> prod(n + 1);\n    prod[0] = 1;\n  \
-    \  for (int i = 0; i < n; ++i) {\n        std::vector<T> nxt(n + 1);\n       \
-    \ for (int j = 0; j < n; ++j) {\n            nxt[j + 1] = prod[j];\n         \
-    \   nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n   \
-    \ }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n       \
-    \ T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j) q *=\
-    \ x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
-    \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/\n"
-  code: "#pragma once\n#include <vector>\n#include \"polynomial.cpp\"\n\ntemplate\
-    \ <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x, const std::vector<T>&\
-    \ y) {\n    assert(x.size() == y.size());\n    int n = x.size();\n    std::vector<T>\
-    \ prod(n + 1);\n    prod[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        std::vector<T>\
-    \ nxt(n + 1);\n        for (int j = 0; j < n; ++j) {\n            nxt[j + 1] =\
-    \ prod[j];\n            nxt[j] -= x[i] * prod[j];\n        }\n        prod = std::move(nxt);\n\
-    \    }\n\n    Polynomial<T> poly(n);\n    for (int i = 0; i < n; ++i) {\n    \
-    \    T q = 1;\n        for (int j = 0; j < n; ++j) {\n            if (i != j)\
-    \ q *= x[i] - x[j];\n        }\n        q = y[i] / q;\n\n        auto tmp = prod;\n\
-    \        for (int j = n - 1; j >= 0; --j) {\n            poly[j] += q * tmp[j\
-    \ + 1];\n            tmp[j] += tmp[j + 1] * x[i];\n        }\n    }\n    return\
-    \ poly;\n}\n\n/*\nO(n^2 log(n)) version\nmight be faster than O(n^2) algorithm\n\
-    \n\ntemplate <typename T>\nPolynomial<T> interpolate(const std::vector<T>& x,\
-    \ const std::vector<T>& y) {\n    assert(x.size() == y.size());\n    int n = 1;\n\
-    \    while (n < (int) x.size()) n <<= 1;\n    std::vector<Polynomial<T>> prod(2\
-    \ * n, {1});\n    for (int i = 0; i < (int) x.size(); ++i) prod[n + i] = {-x[i],\
-    \ 1};\n    for (int i = n - 1; i > 0; --i) prod[i] = prod[2 * i] * prod[2 * i\
-    \ + 1];\n    auto f = prod[1].diff();\n    std::vector<Polynomial<T>> poly(2 *\
-    \ n, {0});\n    for (int i = 0; i < (int) x.size(); ++i) poly[n + i] = {y[i] /\
-    \ f(x[i])};\n    for (int i = n - 1; i > 0; --i) poly[i] = poly[2 * i] * prod[2\
-    \ * i + 1] + poly[2 * i + 1] * prod[2 * i];\n    return poly[1];\n}\n*/"
+    #line 4 \"math/multipoint_evaluation.cpp\"\n\ntemplate <typename T>\nstd::vector<T>\
+    \ multipoint_evaluation(const Polynomial<T>& p,\n                            \
+    \         const std::vector<T>& x) {\n    int m = x.size();\n    int n = 1;\n\
+    \    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n, {1});\n \
+    \   for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int i = n - 1;\
+    \ i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int\
+    \ i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n \
+    \   for (int i = 0; i < m; ++i) y[i] = q[n + i][0];\n    return y;\n}\n#line 2\
+    \ \"math/modint.cpp\"\n#include <iostream>\n#line 4 \"math/modint.cpp\"\n\n/**\n\
+    \ * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint =\
+    \ Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
+    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
+    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
+    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
+    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
+    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
+    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
+    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
+    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
+    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
+    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
+    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
+    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
+    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
+    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
+    \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
+    \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
+    \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
+    \ {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n     \
+    \       std::swap(u -= t * v, v);\n        }\n        return mint(u);\n    }\n\
+    \n    constexpr mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
+    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
+    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 6 \"test/yosupo/multipoint_evaluation.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\n\nusing namespace std;\nusing ll = long long;\n\
+    #define rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i,\
+    \ t, s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x),\
+    \ end(x)\ntemplate <typename T>\nbool chmax(T& a, const T& b) {\n    return a\
+    \ < b ? (a = b, 1) : 0;\n}\ntemplate <typename T>\nbool chmin(T& a, const T& b)\
+    \ {\n    return a > b ? (a = b, 1) : 0;\n}\n\nusing mint = Modint<998244353>;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    cout << fixed << setprecision(15);\n\n    int N, M;\n    cin >> N >> M;\n\
+    \    Polynomial<mint> c(N);\n    vector<mint> p(M);\n    for (auto& x : c) cin\
+    \ >> x;\n    for (auto& x : p) cin >> x;\n\n    auto ans = multipoint_evaluation(c,\
+    \ p);\n    rep(i, 0, M) cout << ans[i] << (i < M - 1 ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation.test.cpp\"\
+    \n\n#include \"../../math/multipoint_evaluation.cpp\"\n#include \"../../math/modint.cpp\"\
+    \n#include \"../../math/polynomial.cpp\"\n\n#include <bits/stdc++.h>\n\nusing\
+    \ namespace std;\nusing ll = long long;\n#define rep(i, s, t) for (int i = (int)(s);\
+    \ i < (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1; i >= (int)(s);\
+    \ --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\nbool chmax(T&\
+    \ a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate <typename\
+    \ T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1) : 0;\n}\n\n\
+    using mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int N, M;\n\
+    \    cin >> N >> M;\n    Polynomial<mint> c(N);\n    vector<mint> p(M);\n    for\
+    \ (auto& x : c) cin >> x;\n    for (auto& x : p) cin >> x;\n\n    auto ans = multipoint_evaluation(c,\
+    \ p);\n    rep(i, 0, M) cout << ans[i] << (i < M - 1 ? \" \" : \"\\n\");\n}\n"
   dependsOn:
+  - math/multipoint_evaluation.cpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
-  isVerificationFile: false
-  path: math/interpolation.cpp
+  - math/modint.cpp
+  isVerificationFile: true
+  path: test/yosupo/multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-03-10 20:58:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-03-10 21:04:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: math/interpolation.cpp
+documentation_of: test/yosupo/multipoint_evaluation.test.cpp
 layout: document
-title: Polynomial Interpolation
+redirect_from:
+- /verify/test/yosupo/multipoint_evaluation.test.cpp
+- /verify/test/yosupo/multipoint_evaluation.test.cpp.html
+title: test/yosupo/multipoint_evaluation.test.cpp
 ---
-
-## Description
-
-多項式補間をする．
-
-## Operations
-
-- `Polynomial interpolate(vector<T> x, vector<T> y)`
-    - 与えられた点の補間多項式を計算する
-    - 時間計算量: $O(n^2)$

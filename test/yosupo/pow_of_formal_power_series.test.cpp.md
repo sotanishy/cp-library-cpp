@@ -12,16 +12,16 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
     links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\n\n#line\
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
+  bundledCode: "#line 1 \"test/yosupo/pow_of_formal_power_series.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\n\n#line\
     \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
     \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
@@ -170,33 +170,35 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 5 \"test/yosupo/exp_of_formal_power_series.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\n\nusing mint = Modint<998244353>;\n\nint main() {\n  \
-    \  ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n  \
-    \  cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i < N; ++i) cin\
-    \ >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i) cout << g[i]\
-    \ << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\n\nusing mint = Modint<998244353>;\n\
+    #line 5 \"test/yosupo/pow_of_formal_power_series.test.cpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.exp();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    \n    int N;\n    ll M;\n    cin >> N >> M;\n    Polynomial<mint> f(N);\n    for\
+    \ (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n    g.resize(N);\n\
+    \    for (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\"\
+    );\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    using mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N;\n    ll M;\n    cin >> N >> M;\n    Polynomial<mint>\
+    \ f(N);\n    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.pow(M);\n\
+    \    g.resize(N);\n    for (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1\
+    \ ? \" \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: true
-  path: test/yosupo/exp_of_formal_power_series.test.cpp
+  path: test/yosupo/pow_of_formal_power_series.test.cpp
   requiredBy: []
   timestamp: '2023-03-10 20:58:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/exp_of_formal_power_series.test.cpp
+documentation_of: test/yosupo/pow_of_formal_power_series.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp
-- /verify/test/yosupo/exp_of_formal_power_series.test.cpp.html
-title: test/yosupo/exp_of_formal_power_series.test.cpp
+- /verify/test/yosupo/pow_of_formal_power_series.test.cpp
+- /verify/test/yosupo/pow_of_formal_power_series.test.cpp.html
+title: test/yosupo/pow_of_formal_power_series.test.cpp
 ---
