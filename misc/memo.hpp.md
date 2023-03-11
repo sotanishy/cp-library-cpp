@@ -123,6 +123,29 @@ $$
 
 - [H - Beautiful Binary Tree 解説](https://atcoder.jp/contests/abc222/editorial/2742)
 
+### LGV Formula
+
+LGV 公式は，DAG の非交差経路の数え上げに用いられる公式である．
+
+- $\mathcal{N}(S,T)$: 頂点集合 $S=\{s_1,s_2,\dots,s_k\}$ から $T=\{t_1,t_2,\dots,t_k\}$ の非交差経路の数
+- $M$: $k \times k$ 行列で，$M_{ij}$ は $s_i$ から $t_j$ への経路数
+
+のもと，
+
+$$
+\det(M)=\sum_{\sigma(T)} \mathrm{sgn}(\sigma)\vert N(S,\sigma(T))\vert
+$$
+
+が成り立つ．特に，$\sigma$ が恒等置換でないとき，必ず $N(S,\sigma(T))=0$ となるとすると，
+
+$$
+\det(M)=\vert N(S,T)\vert
+$$
+
+である．
+
+- [離散数理工学 第 6 回 離散代数：非交差経路の数え上げ](http://dopal.cs.uec.ac.jp/okamotoy/lect/2020/dme/handout06.pdf)
+
 ## Graph
 
 ### Hall's Marriage Theorem

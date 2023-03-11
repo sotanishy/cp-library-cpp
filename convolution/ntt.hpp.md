@@ -11,13 +11,13 @@ data:
   - icon: ':warning:'
     path: math/interpolation.cpp
     title: Polynomial Interpolation
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   - icon: ':heavy_check_mark:'
@@ -42,19 +42,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
