@@ -1,7 +1,7 @@
 plugins:
   - jemoji
   - jekyll-remote-theme
-remote_theme: jekyll/minima
+# remote_theme: jekyll/minima
 
 title: sotanishy's competitive programming library
 author: sotanishy
