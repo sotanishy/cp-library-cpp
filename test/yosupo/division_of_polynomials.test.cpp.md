@@ -157,8 +157,8 @@ data:
     \ int cnt0 = 0;\n        while (cnt0 < (int)ret.size() && ret[cnt0] == 0) ++cnt0;\n\
     \        if (cnt0 > (deg - 1) / k) return {};\n        ret = ret >> cnt0;\n  \
     \      deg -= cnt0 * k;\n        ret = ((ret / ret[0]).log(deg) * k).exp(deg)\
-    \ * ret[0].pow(k);\n        ret = ret << (cnt0 * k);\n        return ret.deg();\n\
-    \    }\n\n    Poly diff() const {\n        Poly ret(std::max(0, (int)this->size()\
+    \ * ret[0].pow(k);\n        ret = ret << (cnt0 * k);\n        return ret;\n  \
+    \  }\n\n    Poly diff() const {\n        Poly ret(std::max(0, (int)this->size()\
     \ - 1));\n        for (int i = 1; i <= (int)ret.size(); ++i)\n            ret[i\
     \ - 1] = (*this)[i] * mint(i);\n        return ret;\n    }\n\n    Poly integral()\
     \ const {\n        Poly ret(this->size() + 1);\n        ret[0] = mint(0);\n  \
@@ -200,7 +200,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2023-03-11 01:50:47+09:00'
+  timestamp: '2023-03-13 15:40:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/division_of_polynomials.test.cpp
