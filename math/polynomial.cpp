@@ -205,7 +205,7 @@ class Polynomial : public std::vector<mint> {
         deg -= cnt0 * k;
         ret = ((ret / ret[0]).log(deg) * k).exp(deg) * ret[0].pow(k);
         ret = ret << (cnt0 * k);
-        return ret.deg();
+        return ret;
     }
 
     Poly diff() const {
