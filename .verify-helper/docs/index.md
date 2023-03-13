@@ -39,13 +39,19 @@ function collapseAll() {
 }
 
 window.addEventListener('load', function(){
-  // add a link to GitHub in the header
-  let link = document.getElementsByClassName('page-link')[0];
-  link.href = 'https://github.com/sotanishy/cp-library-cpp';
-  link.textContent = 'GitHub';
+  // if using jekyll/minima theme
+  try {
+    // add a link to GitHub in the header
+    let link = document.getElementsByClassName('page-link')[0];
+    link.href = 'https://github.com/sotanishy/cp-library-cpp';
+    link.textContent = 'GitHub';
 
-  // remove footer
-  document.getElementsByTagName('footer')[0].style.display = 'none';
+    // remove footer
+    document.getElementsByTagName('footer')[0].style.display = 'none';
+  } catch (error) {
+    console.error(error);
+  }
+
 
   // toggle sections
   let sections = document.getElementsByTagName('h3');
