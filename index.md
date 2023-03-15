@@ -152,6 +152,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
+    - icon: ':warning:'
+      path: data-structure/segtree/xor_segment_tree.hpp
+      title: Xor Segment Tree
   - name: data-structure/unionfind
     pages:
     - icon: ':warning:'
