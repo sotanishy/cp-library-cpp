@@ -112,8 +112,8 @@ data:
   isVerificationFile: false
   path: graph/bipartite_matching.hpp
   requiredBy:
-  - graph/dm_decomposition.cpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/dm_decomposition.cpp
   timestamp: '2022-10-31 15:58:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

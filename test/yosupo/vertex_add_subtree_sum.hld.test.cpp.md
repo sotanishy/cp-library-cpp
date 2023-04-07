@@ -57,14 +57,14 @@ data:
     \    }\n        T val = f(in[u] + edge, in[v] + 1);\n        resv = M::op(val,\
     \ resv);\n        resv = M::op(flip(resu), resv);\n        if (flipped) {\n  \
     \          resv = flip(resv);\n        }\n        return resv;\n    }\n\n    template\
-    \ <typename F>\n    T path_fold(int u, int v, const F& f) const {\n        path_fold(u,\
-    \ v, f, [&](auto& v) { return v; });\n    }\n\n    template <typename F>\n   \
-    \ T subtree_fold(int v, const F& f) const {\n        return f(in[v] + edge, out[v]);\n\
-    \    }\n\n    int lca(int u, int v) const {\n        while (true) {\n        \
-    \    if (in[u] > in[v]) std::swap(u, v);\n            if (head[u] == head[v])\
-    \ return u;\n            v = par[head[v]];\n        }\n    }\n\n    int dist(int\
-    \ u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u, v)];\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ <typename F>\n    T path_fold(int u, int v, const F& f) const {\n        return\
+    \ path_fold(u, v, f, [&](auto& v) { return v; });\n    }\n\n    template <typename\
+    \ F>\n    T subtree_fold(int v, const F& f) const {\n        return f(in[v] +\
+    \ edge, out[v]);\n    }\n\n    int lca(int u, int v) const {\n        while (true)\
+    \ {\n            if (in[u] > in[v]) std::swap(u, v);\n            if (head[u]\
+    \ == head[v]) return u;\n            v = par[head[v]];\n        }\n    }\n\n \
+    \   int dist(int u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u,\
+    \ v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
     \ size, depth, par, in, out, head, heavy;\n    bool edge;\n    int cur_pos = 0;\n\
     \n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n   \
     \     for (int c : G[v]) {\n            if (c == par[v]) continue;\n         \
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   requiredBy: []
-  timestamp: '2022-12-25 14:40:01+09:00'
+  timestamp: '2023-04-08 00:55:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.hld.test.cpp

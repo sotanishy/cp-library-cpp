@@ -180,27 +180,27 @@ data:
   isVerificationFile: false
   path: geometry/intersection.hpp
   requiredBy:
-  - geometry/polygon.hpp
-  - geometry/triangle.hpp
+  - geometry/minimum_bounding_circle.hpp
   - geometry/delaunay_diagram.hpp
   - geometry/bisector.hpp
-  - geometry/minimum_bounding_circle.hpp
+  - geometry/triangle.hpp
   - geometry/tangent.hpp
+  - geometry/polygon.hpp
   timestamp: '2022-12-19 16:08:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_3_A.test.cpp
+  - test/aoj/1283.test.cpp
   - test/aoj/CGL_4_C.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_7_F.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_G.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/1283.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
-  - test/aoj/CGL_3_A.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
 documentation_of: geometry/intersection.hpp
 layout: document
 redirect_from:

@@ -61,8 +61,8 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.cpp
   requiredBy:
-  - graph/mst.cpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/mst.cpp
   - graph/minimum_spanning_arborescence.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -70,10 +70,10 @@ data:
   - test/yosupo/bipartite_edge_coloring.test.cpp
   - test/yosupo/directedmst.test.cpp
   - test/yosupo/unionfind.test.cpp
-  - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
-  - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.prim.test.cpp
+  - test/aoj/DSL_1_A.test.cpp
+  - test/aoj/GRL_2_A.kruskal.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 title: Union Find

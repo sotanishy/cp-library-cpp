@@ -43,8 +43,8 @@ data:
     \ + 1);\n        resv = M::op(val, resv);\n        resv = M::op(flip(resu), resv);\n\
     \        if (flipped) {\n            resv = flip(resv);\n        }\n        return\
     \ resv;\n    }\n\n    template <typename F>\n    T path_fold(int u, int v, const\
-    \ F& f) const {\n        path_fold(u, v, f, [&](auto& v) { return v; });\n   \
-    \ }\n\n    template <typename F>\n    T subtree_fold(int v, const F& f) const\
+    \ F& f) const {\n        return path_fold(u, v, f, [&](auto& v) { return v; });\n\
+    \    }\n\n    template <typename F>\n    T subtree_fold(int v, const F& f) const\
     \ {\n        return f(in[v] + edge, out[v]);\n    }\n\n    int lca(int u, int\
     \ v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
     \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
@@ -86,14 +86,14 @@ data:
     \    }\n        T val = f(in[u] + edge, in[v] + 1);\n        resv = M::op(val,\
     \ resv);\n        resv = M::op(flip(resu), resv);\n        if (flipped) {\n  \
     \          resv = flip(resv);\n        }\n        return resv;\n    }\n\n    template\
-    \ <typename F>\n    T path_fold(int u, int v, const F& f) const {\n        path_fold(u,\
-    \ v, f, [&](auto& v) { return v; });\n    }\n\n    template <typename F>\n   \
-    \ T subtree_fold(int v, const F& f) const {\n        return f(in[v] + edge, out[v]);\n\
-    \    }\n\n    int lca(int u, int v) const {\n        while (true) {\n        \
-    \    if (in[u] > in[v]) std::swap(u, v);\n            if (head[u] == head[v])\
-    \ return u;\n            v = par[head[v]];\n        }\n    }\n\n    int dist(int\
-    \ u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u, v)];\n\
-    \    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ <typename F>\n    T path_fold(int u, int v, const F& f) const {\n        return\
+    \ path_fold(u, v, f, [&](auto& v) { return v; });\n    }\n\n    template <typename\
+    \ F>\n    T subtree_fold(int v, const F& f) const {\n        return f(in[v] +\
+    \ edge, out[v]);\n    }\n\n    int lca(int u, int v) const {\n        while (true)\
+    \ {\n            if (in[u] > in[v]) std::swap(u, v);\n            if (head[u]\
+    \ == head[v]) return u;\n            v = par[head[v]];\n        }\n    }\n\n \
+    \   int dist(int u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u,\
+    \ v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
     \ size, depth, par, in, out, head, heavy;\n    bool edge;\n    int cur_pos = 0;\n\
     \n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n   \
     \     for (int c : G[v]) {\n            if (c == par[v]) continue;\n         \
@@ -108,7 +108,7 @@ data:
   isVerificationFile: false
   path: tree/hld.cpp
   requiredBy: []
-  timestamp: '2022-05-11 15:34:48+09:00'
+  timestamp: '2023-04-08 00:55:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
@@ -134,6 +134,9 @@ HL 分解 (重軽分解) は，木をいくつかのパスに分解する手法�
     - 時間計算量: $O(n)$
 - `void update(int v, T x, F update)`
     - 頂点 $v$ に対して `update(x)` を実行する
+    - 時間計算量: $O(f(n) \log n)$
+- `void update_edge(int u, int v, T x, F update)`
+    - 辺 $(u, v)$ に対して `update(x)` を実行する
     - 時間計算量: $O(f(n) \log n)$
 - `void update(int u, int v, T x, F update)`
     - $uv$ パス上の頂点/辺に対して `update(x)` を実行する．

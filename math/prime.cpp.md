@@ -71,8 +71,8 @@ data:
   isVerificationFile: false
   path: math/prime.cpp
   requiredBy:
-  - math/combination_arbitrary_mod.hpp
   - math/carmichael.cpp
+  - math/combination_arbitrary_mod.hpp
   timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

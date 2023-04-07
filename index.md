@@ -422,9 +422,9 @@ data:
     - icon: ':warning:'
       path: math/quotients.hpp
       title: Quotient Ranges
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/stern_brocot_tree.hpp
-      title: Stern Brocot Tree
+      title: Stern-Brocot Tree
     - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
@@ -594,7 +594,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1040.test.cpp
       title: test/aoj/1040.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
     - icon: ':heavy_check_mark:'

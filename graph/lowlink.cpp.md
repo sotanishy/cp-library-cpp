@@ -68,8 +68,8 @@ data:
   isVerificationFile: false
   path: graph/lowlink.cpp
   requiredBy:
-  - graph/biconnected_components.cpp
   - graph/two_edge_connected_components.cpp
+  - graph/biconnected_components.cpp
   timestamp: '2022-10-05 11:03:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
