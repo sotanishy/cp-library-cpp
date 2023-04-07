@@ -67,7 +67,7 @@ public:
 
     template <typename F>
     T path_fold(int u, int v, const F& f) const {
-        path_fold(u, v, f, [&](auto& v) { return v; });
+        return path_fold(u, v, f, [&](auto& v) { return v; });
     }
 
     template <typename F>

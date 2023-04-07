@@ -7,7 +7,7 @@ documentation_of: ../../string/kmp.cpp
 
 Knuth-Morris-Pratt のアルゴリズムは，文字列中のパターンの出現位置を列挙するアルゴリズムである．
 
-パターンの prefix function (`P[:i]` の接尾辞でもある最長の proper prefix) を各$i$について前計算することで， 文字の比較の回数を減らしている．
+パターンの prefix function (`P[:i+1]` の接尾辞でもある最長の proper prefix) を各$i$について前計算することで， 文字の比較の回数を減らしている．
 
 ## Operations
 

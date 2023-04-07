@@ -27,3 +27,7 @@ XOR セグメント木は，通常のセグメント木の操作の際に， ind
 ## Note
 
 モノイドが可換であるバージョン `XorSegmentTreeCommutative` は，通常のセグメント木と同じ計算量で各種操作を実行することができる．
+
+## Reference
+
+- verify: [https://yukicoder.me/submissions/847011](https://yukicoder.me/submissions/847011)

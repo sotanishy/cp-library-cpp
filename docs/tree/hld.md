@@ -19,6 +19,9 @@ HL 分解 (重軽分解) は，木をいくつかのパスに分解する手法�
 - `void update(int v, T x, F update)`
     - 頂点 $v$ に対して `update(x)` を実行する
     - 時間計算量: $O(f(n) \log n)$
+- `void update_edge(int u, int v, T x, F update)`
+    - 辺 $(u, v)$ に対して `update(x)` を実行する
+    - 時間計算量: $O(f(n) \log n)$
 - `void update(int u, int v, T x, F update)`
     - $uv$ パス上の頂点/辺に対して `update(x)` を実行する．
     - 時間計算量: $O(f(n) \log n)$
