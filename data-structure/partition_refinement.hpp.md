@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/chordal_graph_recognition.hpp
-    title: graph/chordal_graph_recognition.hpp
+    title: Chordal Graph Recognition
   - icon: ':heavy_check_mark:'
     path: graph/lex_bfs.hpp
     title: Lexicographic BFS

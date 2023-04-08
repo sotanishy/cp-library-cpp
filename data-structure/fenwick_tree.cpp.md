@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: misc/permutation.hpp
-    title: misc/permutation.hpp
+    title: Lexicographic Index of Permutations (in Factorial Number System)
   - icon: ':heavy_check_mark:'
     path: tree/range_contour_aggregation.hpp
     title: Range Contour Aggregation

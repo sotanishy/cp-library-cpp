@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/chordal_graph_recognition.hpp
-    title: graph/chordal_graph_recognition.hpp
+    title: Chordal Graph Recognition
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/chordal_graph_recognition.test.cpp
@@ -95,20 +95,33 @@ title: Lexicographic BFS
 
 ## Description
 
-Chordal graph は，任意の長さ $4$ 以上のサイクルが弧 (chord) を持つようなグラフである．
+辞書順最小幅優先探索 (Lex-BFS) は，グラフ $G$ の頂点の並べ方 $(v_1,v_2,\dots,v_n)$ であって，以下の性質を持つものである．
 
-Chordal graph である必要十分条件は perfect elimination ordering (PEO) を持つことである．PEO は，頂点の列 $(v_1,v_2,\dots,v_n)$ であって，次の性質を持つものである．
-- 各 $i=1,2,\dots,n$ について，$N(v_i) \cap \{v_{i+1},v_{i+2},\dots,v_n\}$ が clique となる (ここで， $N(v)$ は頂点 $v$ の隣接頂点の集合である)
+- 各 $i=1,2,\dots,n$ について，集合 $S_i$ を $S_i=\{j \mid j \lt i, v_j \in N(v_i) \}$ と定義する (ここで， $N(v)$ は頂点 $v$ の隣接頂点の集合である)．列 $(S_1,S_2,\dots,S_n)$ は辞書順の昇順に並んでいる．
 
-PEO が存在するならば， Lex-BFS の逆順が PEO になっている．
+Partition refinement を用いて線形時間で実行できる．
 
 ## Operations
 
-- `pair<bool, vector<int>> recognize_chordal_graph(vector<vector<int>> G)`
-    - $G$ が chordal graph か判定し，そうならば PEO を，そうでないならば長さ $4$ 以上の induced cycle を一つ返す
+- `vector<int> lex_bfs(vector<vector<int>> G)`
+    - $G$ の頂点を Lex-BFS 順に並べたリストを返す
     - 時間計算量: $O((n+m)\log n)$
+
+## Note
+
+Partition refinement の実装をサボって log をつけているので，この実装でも時間計算量に log がついている．
+
+Lex-BFS はいくつかのグラフクラスの認識のサブルーチンとして用いられる．
+- chordal graph
+    - [Chordal Graph Recognition](chordal_graph_recognition.md) を参照
+    - 任意の長さ $4$ 以上のサイクルが弧 (chord) を持つグラフ
+    - Perfect Elimination Ordering を持つ (参考文献参照)
+    - Lex-BFS の逆順が PEO になる
+- cograph
+    - よくわかっていないが，参考文献 (hos さんのスライド) には色々な応用例が載っている
 
 ## Reference
 
-- [Chordal Graph: Perfect elimination ordering -kazu0x17’s diary](https://chocobaby-aporo.hatenablog.com/entry/2017/11/04/180325)
 - [辞書順幅優先探索Lex BFS（Chordal Graph 5回）- kazu0x17’s diary](https://chocobaby-aporo.hatenablog.com/entry/2018/12/25/011447)
+- [Lexicographic breadth-first search - Wikipedia](https://en.wikipedia.org/wiki/Lexicographic_breadth-first_search)
+- [グラフ探索アルゴリズムとその応用](http://hos.ac/slides/20110504_graph.pdf)

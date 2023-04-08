@@ -269,7 +269,7 @@ data:
       title: Bipartite Matching
     - icon: ':heavy_check_mark:'
       path: graph/chordal_graph_recognition.hpp
-      title: graph/chordal_graph_recognition.hpp
+      title: Chordal Graph Recognition
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.cpp
       title: Chromatic Number
@@ -427,8 +427,8 @@ data:
       title: Prime Counting Function
     - icon: ':warning:'
       path: math/quotients.hpp
-      title: Quotient Ranges
-    - icon: ':x:'
+      title: Intervals with Equal Quotients
+    - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
       title: Stern-Brocot Tree
     - icon: ':heavy_check_mark:'
@@ -458,7 +458,7 @@ data:
       title: Coordinate Compression
     - icon: ':warning:'
       path: misc/discrete_log_monoid_action.hpp
-      title: misc/discrete_log_monoid_action.hpp
+      title: Discrete Logarithm of Monoid Action
     - icon: ':warning:'
       path: misc/enumerate_subsets.hpp
       title: Enumerate Subsets
@@ -497,7 +497,7 @@ data:
       title: misc/monoids.cpp
     - icon: ':warning:'
       path: misc/permutation.hpp
-      title: misc/permutation.hpp
+      title: Lexicographic Index of Permutations (in Factorial Number System)
     - icon: ':warning:'
       path: misc/random.cpp
       title: misc/random.cpp
@@ -603,7 +603,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1040.test.cpp
       title: test/aoj/1040.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
     - icon: ':heavy_check_mark:'
