@@ -15,7 +15,7 @@ int main() {
         int p, n;
         cin >> p >> n;
         if (p == 0 && n == 0) break;
-        auto ans = stern_brocot_tree(n, [&](ll a, ll b) {
+        auto ans = stern_brocot_tree_search(n, [&](ll a, ll b) {
             return a * a < p * b * b;
         });
         auto [u, v] = ans.first;
