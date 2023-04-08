@@ -2,7 +2,7 @@
 #include <vector>
 
 /**
- * @brief Quotient Ranges
+ * @brief Intervals with Equal Quotients
  */
 template <typename T>
 std::vector<std::pair<T, T>> quotient_ranges(T n) {

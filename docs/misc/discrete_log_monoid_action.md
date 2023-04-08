@@ -1,6 +1,6 @@
 ---
 title: Discrete Logarithm of Monoid Action
-documentation_of: ../../math/discrete_log_monoid_action.hpp
+documentation_of: ../../misc/discrete_log_monoid_action.hpp
 ---
 
 ## Description

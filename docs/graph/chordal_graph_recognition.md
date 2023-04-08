@@ -1,6 +1,6 @@
 ---
-title: Lexicographic BFS
-documentation_of: ../../graph/lex_bfs.hpp
+title: Chordal Graph Recognition
+documentation_of: ../../graph/chordal_graph_recognition.hpp
 ---
 
 ## Description

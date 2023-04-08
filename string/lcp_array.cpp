@@ -2,7 +2,9 @@
 #include <string>
 #include <vector>
 
-std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
+template <typename T>
+std::vector<int> lcp_array(const std::vector<T>& s,
+                           const std::vector<int>& sa) {
     int n = s.size();
     std::vector<int> rank(n);
     for (int i = 0; i < n; ++i) rank[sa[i]] = i;
@@ -16,4 +18,8 @@ std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
         lcp[rank[i] - 1] = h;
     }
     return lcp;
+}
+
+std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
+    return lcp_array(std::vector<char>(s.begin(), s.end()), sa);
 }

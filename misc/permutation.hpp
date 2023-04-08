@@ -3,6 +3,10 @@
 
 #include "../data-structure/fenwick_tree.cpp"
 
+/**
+ * @brief Lexicographic Index of Permutations (in Factorial Number System)
+ */
+
 struct AddMonoid {
     using T = int;
     static T id() { return 0; }
