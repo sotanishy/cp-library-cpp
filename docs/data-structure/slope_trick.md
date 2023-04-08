@@ -42,7 +42,21 @@ Slope Trick は，区分線形凸関数 $f: T \mapsto T$ を管理するテク�
     - $f(x)$ を返す
     - 時間計算量: $O(n)$
 
+## Note
+
+slope trick では，
+- $a$ だけ平行移動: $O(1)$
+- 傾き $c$ の関数を加算: $O(\vert c \vert \log n)$
+
+となる．凸共役を取ることで，
+- $a$ だけ平行移動: $O(\vert a \vert \log n)$
+- 傾き $c$ の関数を加算: $O(1)$
+
+にできる．(参考文献参照)
+
+
 ## Reference
 
 - [slope trick (1) 解説編](https://maspypy.com/slope-trick-1-%e8%a7%a3%e8%aa%ac%e7%b7%a8)
+- [slope trick (3) slope trick の凸共役](https://maspypy.com/slope-trick-3-slope-trick-%e3%81%ae%e5%87%b8%e5%85%b1%e5%bd%b9)
 - verify: [https://atcoder.jp/contests/abc217/submissions/25616122](https://atcoder.jp/contests/abc217/submissions/25616122)
