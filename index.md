@@ -44,6 +44,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/foldable_deque.hpp
       title: Foldable Deque
+    - icon: ':warning:'
+      path: data-structure/inner_product_search.hpp
+      title: Inner-Product Search
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
@@ -393,6 +396,9 @@ data:
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
     - icon: ':heavy_check_mark:'
+      path: math/lagrange_polynomial.hpp
+      title: Lagrange Polynomial
+    - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
     - icon: ':heavy_check_mark:'
@@ -450,6 +456,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/compress.cpp
       title: Coordinate Compression
+    - icon: ':warning:'
+      path: misc/discrete_log_monoid_action.hpp
+      title: misc/discrete_log_monoid_action.hpp
     - icon: ':warning:'
       path: misc/enumerate_subsets.hpp
       title: Enumerate Subsets
@@ -989,6 +998,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial_interpolation.test.cpp
+      title: test/yosupo/polynomial_interpolation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp

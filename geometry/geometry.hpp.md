@@ -338,6 +338,10 @@ title: Geometry
     - 半平面の集合が与えられたとき，それらの共通部分 (凸多角形になる) を返す．半平面は， $\{\boldsymbol{x}\mid(\boldsymbol{x}-\boldsymbol{p})\cdot \boldsymbol{n}\geq 0\}$ で表したときに $(\boldsymbol{n},\boldsymbol{p})$ の形で与える．
     - 時間計算量: $O(n\log n)$
 
+- `class PolygonContainment`
+    - 多角形と点の包含関係に関するクエリを処理するデータ構造
+    - 時間計算量: $O(\log n)$ per query
+
 ### `closest_pair.hpp`
 
 - `T closest_pair(vector<Vec> pts)`

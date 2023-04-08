@@ -73,6 +73,9 @@ data:
     path: test/yosupo/number_of_subsequences.test.cpp
     title: test/yosupo/number_of_subsequences.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial_interpolation.test.cpp
+    title: test/yosupo/polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,6 +180,7 @@ data:
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/enumerate_triangles.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/polynomial_interpolation.test.cpp
   - test/yosupo/matrix_product.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - test/yosupo/inverse_matrix.test.cpp

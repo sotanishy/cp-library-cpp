@@ -12,6 +12,9 @@ data:
     path: math/interpolation.cpp
     title: Polynomial Interpolation
   - icon: ':heavy_check_mark:'
+    path: math/lagrange_polynomial.hpp
+    title: Lagrange Polynomial
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':heavy_check_mark:'
@@ -36,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial_interpolation.test.cpp
+    title: test/yosupo/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
@@ -274,10 +280,12 @@ data:
   - math/multipoint_evaluation.cpp
   - math/stirling_first.hpp
   - math/interpolation.cpp
+  - math/lagrange_polynomial.hpp
   timestamp: '2023-03-13 15:40:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp

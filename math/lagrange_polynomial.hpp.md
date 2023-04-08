@@ -5,68 +5,65 @@ data:
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
+    path: math/multipoint_evaluation.cpp
+    title: Multipoint Evaluation
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/lagrange_polynomial.hpp
-    title: Lagrange Polynomial
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/multipoint_evaluation.test.cpp
-    title: test/yosupo/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n\n\
-    #line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n#line\
-    \ 5 \"math/polynomial.cpp\"\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int\
-    \ get_primitive_root(int mod) {\n    if (mod == 167772161) return 3;\n    if (mod\
-    \ == 469762049) return 3;\n    if (mod == 754974721) return 11;\n    if (mod ==\
-    \ 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename\
-    \ T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n    for (int\
-    \ i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k > (i ^= k);\
-    \ k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\ntemplate <typename\
-    \ mint>\nvoid ntt(std::vector<mint>& a, bool ordered = true) {\n    constexpr\
-    \ int mod = mint::get_mod();\n    constexpr mint primitive_root = get_primitive_root(mod);\n\
-    \n    int n = a.size();\n    for (int m = n; m > 1; m >>= 1) {\n        mint omega\
-    \ = primitive_root.pow((mod - 1) / m);\n        for (int s = 0; s < n / m; ++s)\
-    \ {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n\
-    \                mint l = a[s * m + i];\n                mint r = a[s * m + i\
-    \ + m / 2];\n                a[s * m + i] = l + r;\n                a[s * m +\
-    \ i + m / 2] = (l - r) * w;\n                w *= omega;\n            }\n    \
-    \    }\n    }\n    if (ordered) bit_reverse(a);\n}\n\ntemplate <typename mint>\n\
-    void intt(std::vector<mint>& a, bool ordered = true) {\n    constexpr int mod\
-    \ = mint::get_mod();\n    constexpr mint primitive_root = get_primitive_root(mod);\n\
-    \n    if (ordered) bit_reverse(a);\n    int n = a.size();\n    for (int m = 2;\
-    \ m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m).inv();\n\
-    \        for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n        \
-    \    for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
-    \                mint r = a[s * m + i + m / 2] * w;\n                a[s * m +\
-    \ i] = l + r;\n                a[s * m + i + m / 2] = l - r;\n               \
-    \ w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename mint>\n\
-    std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {\n  \
-    \  int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n < size) n\
-    \ <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a, false);\n    ntt(b, false);\n\
-    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a, false);\n    a.resize(size);\n\
-    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
-    \    return a;\n}\n#line 7 \"math/polynomial.cpp\"\n\ntemplate <typename mint>\n\
-    class Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\n\
-    \   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
-    \n    Poly pre(int size) const {\n        return Poly(this->begin(),\n       \
-    \             this->begin() + std::min((int)this->size(), size));\n    }\n\n \
-    \   Poly rev(int deg = -1) const {\n        auto ret = *this;\n        if (deg\
-    \ != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(), ret.rend());\n\
-    \    }\n\n    void trim() {\n        while (!this->empty() && this->back() ==\
-    \ 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
-    \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with constant\n\n    Poly&\
-    \ operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+  bundledCode: "#line 2 \"math/lagrange_polynomial.hpp\"\n#include <utility>\n#include\
+    \ <vector>\n\n#line 3 \"math/multipoint_evaluation.cpp\"\n\n#line 2 \"math/polynomial.cpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n\
+    #line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
+    \    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n  \
+    \  if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n   \
+    \ if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
+    \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
+    \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
+    \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
+    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
+    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
+    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
+    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
+    \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
+    \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
+    \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
+    \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
+    \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
+    \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
+    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
+    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
+    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
+    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
+    \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
+    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
+    \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
+    \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
+    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7\
+    \ \"math/polynomial.cpp\"\n\ntemplate <typename mint>\nclass Polynomial : public\
+    \ std::vector<mint> {\n    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
+    \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
+    \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
+    \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
+    \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with constant\n\
+    \n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -155,43 +152,59 @@ data:
     \ i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int\
     \ i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n \
     \   for (int i = 0; i < m; ++i) y[i] = q[n + i].empty() ? 0 : q[n + i][0];\n \
-    \   return y;\n}\n"
-  code: "#pragma once\n#include <vector>\n\n#include \"polynomial.cpp\"\n\ntemplate\
-    \ <typename T>\nstd::vector<T> multipoint_evaluation(const Polynomial<T>& p,\n\
-    \                                     const std::vector<T>& x) {\n    int m =\
-    \ x.size();\n    int n = 1;\n    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>>\
-    \ q(2 * n, {1});\n    for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n   \
-    \ for (int i = n - 1; i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] =\
-    \ p % q[1];\n    for (int i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n   \
-    \ std::vector<T> y(m);\n    for (int i = 0; i < m; ++i) y[i] = q[n + i].empty()\
-    \ ? 0 : q[n + i][0];\n    return y;\n}"
+    \   return y;\n}\n#line 7 \"math/lagrange_polynomial.hpp\"\n\ntemplate <typename\
+    \ T>\nPolynomial<T> lagrange_polynomial(const std::vector<T>& x,\n           \
+    \                       const std::vector<T>& y) {\n    int n = x.size();\n  \
+    \  int sz = 1;\n    while (sz < n) sz <<= 1;\n\n    auto rec = [&](auto& rec,\
+    \ int l, int r) -> Polynomial<T> {\n        if (r - l == 1) {\n            return\
+    \ {-x[l], 1};\n        }\n        int m = (l + r) / 2;\n        return rec(rec,\
+    \ l, m) * rec(rec, m, r);\n    };\n\n    auto g = rec(rec, 0, n);\n    auto dg\
+    \ = multipoint_evaluation(g.diff(), x);\n\n    auto rec2 = [&](auto& rec2, int\
+    \ l,\n                    int r) -> std::pair<Polynomial<T>, Polynomial<T>> {\n\
+    \        if (r - l == 1) {\n            return {{y[l] / dg[l]}, {-x[l], 1}};\n\
+    \        }\n        int m = (l + r) / 2;\n        auto [pl, ql] = rec2(rec2, l,\
+    \ m);\n        auto [pr, qr] = rec2(rec2, m, r);\n        return {pl * qr + pr\
+    \ * ql, ql * qr};\n    };\n\n    return rec2(rec2, 0, n).first;\n}\n"
+  code: "#pragma once\n#include <utility>\n#include <vector>\n\n#include \"multipoint_evaluation.cpp\"\
+    \n#include \"polynomial.cpp\"\n\ntemplate <typename T>\nPolynomial<T> lagrange_polynomial(const\
+    \ std::vector<T>& x,\n                                  const std::vector<T>&\
+    \ y) {\n    int n = x.size();\n    int sz = 1;\n    while (sz < n) sz <<= 1;\n\
+    \n    auto rec = [&](auto& rec, int l, int r) -> Polynomial<T> {\n        if (r\
+    \ - l == 1) {\n            return {-x[l], 1};\n        }\n        int m = (l +\
+    \ r) / 2;\n        return rec(rec, l, m) * rec(rec, m, r);\n    };\n\n    auto\
+    \ g = rec(rec, 0, n);\n    auto dg = multipoint_evaluation(g.diff(), x);\n\n \
+    \   auto rec2 = [&](auto& rec2, int l,\n                    int r) -> std::pair<Polynomial<T>,\
+    \ Polynomial<T>> {\n        if (r - l == 1) {\n            return {{y[l] / dg[l]},\
+    \ {-x[l], 1}};\n        }\n        int m = (l + r) / 2;\n        auto [pl, ql]\
+    \ = rec2(rec2, l, m);\n        auto [pr, qr] = rec2(rec2, m, r);\n        return\
+    \ {pl * qr + pr * ql, ql * qr};\n    };\n\n    return rec2(rec2, 0, n).first;\n\
+    }\n"
   dependsOn:
+  - math/multipoint_evaluation.cpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: false
-  path: math/multipoint_evaluation.cpp
-  requiredBy:
-  - math/lagrange_polynomial.hpp
-  timestamp: '2023-03-13 15:40:19+09:00'
+  path: math/lagrange_polynomial.hpp
+  requiredBy: []
+  timestamp: '2023-04-08 13:57:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial_interpolation.test.cpp
-  - test/yosupo/multipoint_evaluation.test.cpp
-documentation_of: math/multipoint_evaluation.cpp
+documentation_of: math/lagrange_polynomial.hpp
 layout: document
-title: Multipoint Evaluation
+title: Lagrange Polynomial
 ---
 
 ## Description
 
-多点評価は，与えられた $m$ 点での多項式の値を評価する問題である．
+Lagrange 多項式は，与えられた $d+1$ 点を通る $d$ 次以下の多項式である．この多項式は存在すれば一意に定まる．
 
 ## Operations
 
-- `vector<T> multipoint_evaluation(Polynomial p, vector<T> x)`
-    - $p(x_1),p(x_2),\dots,p(x_m)$ の値を評価する
-    - 時間計算量: $O(m(\log m)^2+n\log n)$
+- `Polynomial<T> lagrange_polynomial(vector<T> x, vector<T> y)`
+    - $(x_i,y_i)\,(i=0,1,\dots,n)$ を通る Lagrange 多項式を求める
+    - 時間計算量: $O(n (\log n)^2)$
 
 ## Reference
 
-- [Multipoint Evaluation の アルゴリズム - 37zigenのHP](https://37zigen.com/multipoint-evaluation/)
+- [多項式補間：アルゴリズム](https://37zigen.com/lagrange-interpolation/)

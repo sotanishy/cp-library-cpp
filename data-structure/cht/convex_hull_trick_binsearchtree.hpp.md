@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-structure/inner_product_search.hpp
+    title: Inner-Product Search
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/line_add_get_min.cht.test.cpp
@@ -56,7 +59,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
-  requiredBy: []
+  requiredBy:
+  - data-structure/inner_product_search.hpp
   timestamp: '2022-06-27 13:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
