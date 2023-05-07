@@ -2,7 +2,7 @@
 #include <unordered_set>
 
 template <typename M, typename S, S (*act)(typename M::T, S)>
-int discrete_log_monoid_action(typename M::T x, S s, S t, long long N) {
+long long discrete_log_monoid_action(typename M::T x, S s, S t, long long N) {
     using T = typename M::T;
 
     // baby-step
@@ -30,7 +30,7 @@ int discrete_log_monoid_action(typename M::T x, S s, S t, long long N) {
             S u = giant;
             for (int j = 0; j < m; ++j) {
                 if (u == t) {
-                    return m * i + j;
+                    return 1LL * m * i + j;
                 }
                 u = act(x, u);
             }

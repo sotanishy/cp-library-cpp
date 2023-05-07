@@ -8,7 +8,7 @@ template <typename M>
 class Treap {
     using T = typename M::T;
 
-public:
+   public:
     Treap() = default;
 
     static Treap join(Treap l, Treap r) {
@@ -20,12 +20,11 @@ public:
         return {Treap(std::move(p.first)), Treap(std::move(p.second))};
     }
 
-    void update(int k, const T& x) const {
-        update(root, k, x);
-    }
+    void update(int k, const T& x) const { update(root, k, x); }
 
     T fold(int l, int r) {
-        assert(0 <= l && l < r && r <= size());
+        assert(0 <= l && l <= r && r <= size());
+        if (l == r) return M::id();
         node_ptr a, b, c;
         std::tie(a, b) = split(std::move(root), l);
         std::tie(b, c) = split(std::move(b), r - l);
@@ -35,7 +34,8 @@ public:
     }
 
     void reverse(int l, int r) {
-        assert(0 <= l && l < r && r <= size());
+        assert(0 <= l && l <= r && r <= size());
+        if (l == r) return;
         node_ptr a, b, c;
         std::tie(a, b) = split(std::move(root), l);
         std::tie(b, c) = split(std::move(b), r - l);
@@ -45,7 +45,8 @@ public:
 
     void insert(int k, const T& x) {
         auto s = split(std::move(root), k);
-        root = join(join(std::move(s.first), std::make_unique<Node>(x)), std::move(s.second));
+        root = join(join(std::move(s.first), std::make_unique<Node>(x)),
+                    std::move(s.second));
     }
 
     void erase(int k) {
@@ -62,23 +63,15 @@ public:
         root = join(std::move(root), std::make_unique<Node>(x));
     }
 
-    void pop_front() {
-        root = split(std::move(root), 1).second;
-    }
+    void pop_front() { root = split(std::move(root), 1).second; }
 
-    void pop_back() {
-        root = split(std::move(root), size() - 1).first;
-    }
+    void pop_back() { root = split(std::move(root), size() - 1).first; }
 
-    int size() const {
-        return size(root);
-    }
+    int size() const { return size(root); }
 
-    bool empty() const {
-        return size() == 0;
-    }
+    bool empty() const { return size() == 0; }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::unique_ptr<Node>;
 
@@ -96,16 +89,21 @@ private:
         bool rev;
 
         Node() : Node(M::id()) {}
-        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), pri(rand()), sz(1), rev(false) {}
+        Node(const T& x)
+            : left(nullptr),
+              right(nullptr),
+              val(x),
+              sum(val),
+              pri(rand()),
+              sz(1),
+              rev(false) {}
     };
 
     node_ptr root;
 
     explicit Treap(node_ptr root) : root(std::move(root)) {}
 
-    static int size(const node_ptr& t) {
-        return t ? t->sz : 0;
-    }
+    static int size(const node_ptr& t) { return t ? t->sz : 0; }
 
     static void recalc(const node_ptr& t) {
         if (!t) return;

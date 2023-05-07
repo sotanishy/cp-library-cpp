@@ -7,7 +7,7 @@ template <typename M>
 class SplayTree {
     using T = typename M::T;
 
-public:
+   public:
     SplayTree() = default;
 
     static SplayTree join(SplayTree l, SplayTree r) {
@@ -26,7 +26,8 @@ public:
     }
 
     T fold(int l, int r) {
-        assert(0 <= l && l < r && r <= size());
+        assert(0 <= l && l <= r && r <= size());
+        if (l == r) return M::id();
         node_ptr a, b, c;
         std::tie(a, b) = split(std::move(root), l);
         std::tie(b, c) = split(std::move(b), r - l);
@@ -36,7 +37,8 @@ public:
     }
 
     void reverse(int l, int r) {
-        assert(0 <= l && l < r && r <= size());
+        assert(0 <= l && l <= r && r <= size());
+        if (l == r) return;
         node_ptr a, b, c;
         std::tie(a, b) = split(std::move(root), l);
         std::tie(b, c) = split(std::move(b), r - l);
@@ -46,7 +48,8 @@ public:
 
     void insert(int k, const T& x) {
         auto p = split(std::move(root), k);
-        root = join(join(std::move(p.first), std::make_unique<Node>(x)), std::move(p.second));
+        root = join(join(std::move(p.first), std::make_unique<Node>(x)),
+                    std::move(p.second));
     }
 
     void erase(int k) {
@@ -62,23 +65,15 @@ public:
         root = join(std::move(root), std::make_unique<Node>(x));
     }
 
-    void pop_front() {
-        root = split(std::move(root), 1).second;
-    }
+    void pop_front() { root = split(std::move(root), 1).second; }
 
-    void pop_back() {
-        root = split(std::move(root), size() - 1).first;
-    }
+    void pop_back() { root = split(std::move(root), size() - 1).first; }
 
-    int size() const {
-        return size(root);
-    }
+    int size() const { return size(root); }
 
-    bool empty() const {
-        return size() == 0;
-    }
+    bool empty() const { return size() == 0; }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::unique_ptr<Node>;
 
@@ -89,16 +84,20 @@ private:
         bool rev;
 
         Node() : Node(M::id()) {}
-        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(x), sz(1), rev(false) {}
+        Node(const T& x)
+            : left(nullptr),
+              right(nullptr),
+              val(x),
+              sum(x),
+              sz(1),
+              rev(false) {}
     };
 
     node_ptr root;
 
     explicit SplayTree(node_ptr root) : root(std::move(root)) {}
 
-    static int size(const node_ptr& t) {
-        return t ? t->sz : 0;
-    }
+    static int size(const node_ptr& t) { return t ? t->sz : 0; }
 
     static void recalc(const node_ptr& t) {
         if (!t) return;
@@ -167,7 +166,8 @@ private:
                 t->left->left = splay(std::move(t->left->left), k);
                 t = rotate_right(std::move(t));
             } else if (llsize < k) {
-                t->left->right = splay(std::move(t->left->right), k - llsize - 1);
+                t->left->right =
+                    splay(std::move(t->left->right), k - llsize - 1);
                 t->left = rotate_left(std::move(t->left));
             }
             return rotate_right(std::move(t));
@@ -179,7 +179,8 @@ private:
                 t->right->left = splay(std::move(t->right->left), k);
                 t->right = rotate_right(std::move(t->right));
             } else if (rlsize < k) {
-                t->right->right = splay(std::move(t->right->right), k - rlsize - 1);
+                t->right->right =
+                    splay(std::move(t->right->right), k - rlsize - 1);
                 t = rotate_left(std::move(t));
             }
             return rotate_left(std::move(t));
