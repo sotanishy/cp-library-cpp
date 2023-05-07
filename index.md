@@ -109,7 +109,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.cpp
       title: Splay Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/bst/treap.cpp
       title: Treap
   - name: data-structure/cht
@@ -146,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.cpp
       title: Persistent Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/segtree/segment_tree.cpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -155,6 +155,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.cpp
       title: Segment Tree Beats
+    - icon: ':x:'
+      path: data-structure/segtree/sortable_segment_tree.hpp
+      title: Sortable Segment Tree
     - icon: ':warning:'
       path: data-structure/segtree/xor_segment_tree.hpp
       title: Xor Segment Tree
@@ -169,7 +172,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.cpp
       title: Undoable Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/unionfind/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -294,6 +297,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/general_matching.hpp
       title: General Matching
+    - icon: ':x:'
+      path: graph/junction_tree.hpp
+      title: Junction Tree (Width 2)
     - icon: ':heavy_check_mark:'
       path: graph/lex_bfs.hpp
       title: Lexicographic BFS
@@ -401,7 +407,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -425,7 +431,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_count.hpp
       title: Prime Counting Function
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/quotients.hpp
       title: Intervals with Equal Quotients
     - icon: ':heavy_check_mark:'
@@ -900,6 +906,9 @@ data:
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/enumerate_quotients.test.cpp
+      title: test/yosupo/enumerate_quotients.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -998,6 +1007,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/point_set_range_sort_range_composite.test.cpp
+      title: test/yosupo/point_set_range_sort_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial_interpolation.test.cpp
@@ -1022,6 +1034,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
+      title: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/range_reverse_range_sum.treap.test.cpp
+      title: test/yosupo/range_reverse_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
@@ -1085,6 +1103,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tetration_mod.test.cpp
       title: test/yosupo/tetration_mod.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree_decomposition_width_2.test.cpp
+      title: test/yosupo/tree_decomposition_width_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp

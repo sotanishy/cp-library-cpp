@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/enumerate_quotients.test.cpp
+    title: test/yosupo/enumerate_quotients.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Intervals with Equal Quotients
     links: []
@@ -24,8 +27,9 @@ data:
   path: math/quotients.hpp
   requiredBy: []
   timestamp: '2023-04-08 14:20:19+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/enumerate_quotients.test.cpp
 documentation_of: math/quotients.hpp
 layout: document
 redirect_from:

@@ -6,19 +6,19 @@ data:
     title: Treap
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508
+    PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
     links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508
-  bundledCode: "#line 1 \"test/aoj/1508.treap.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508\"\
-    \n\n#line 2 \"data-structure/bst/treap.cpp\"\n#include <cassert>\n#include <memory>\n\
-    #include <random>\n#include <utility>\n\ntemplate <typename M>\nclass Treap {\n\
-    \    using T = typename M::T;\n\n   public:\n    Treap() = default;\n\n    static\
-    \ Treap join(Treap l, Treap r) {\n        return Treap(join(std::move(l.root),\
+    - https://judge.yosupo.jp/problem/range_reverse_range_sum
+  bundledCode: "#line 1 \"test/yosupo/range_reverse_range_sum.treap.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\n\n#include\
+    \ <bits/stdc++.h>\n\n#line 6 \"data-structure/bst/treap.cpp\"\n\ntemplate <typename\
+    \ M>\nclass Treap {\n    using T = typename M::T;\n\n   public:\n    Treap() =\
+    \ default;\n\n    static Treap join(Treap l, Treap r) {\n        return Treap(join(std::move(l.root),\
     \ std::move(r.root)));\n    }\n\n    std::pair<Treap, Treap> split(int k) {\n\
     \        auto p = split(std::move(root), k);\n        return {Treap(std::move(p.first)),\
     \ Treap(std::move(p.second))};\n    }\n\n    void update(int k, const T& x) const\
@@ -76,41 +76,38 @@ data:
     \ x) {\n        push(t);\n        int lsize = size(t->left);\n        if (k <\
     \ lsize) {\n            update(t->left, k, x);\n        } else if (lsize < k)\
     \ {\n            update(t->right, k - lsize - 1, x);\n        } else {\n     \
-    \       t->val = x;\n        }\n        recalc(t);\n    }\n};\n#line 4 \"test/aoj/1508.treap.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nstruct MinMonoid {\n   \
-    \ using T = int;\n    static T id() { return (1u << 31) - 1; }\n    static T op(T\
-    \ a, T b) {\n        return min(a, b);\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int n, q;\n    cin >> n >> q;\n    using ST = Treap<MinMonoid>;\n\
-    \    ST st;\n    for (int i = 0; i < n; ++i) {\n        int a;\n        cin >>\
-    \ a;\n        st.push_back(a);\n    }\n    while (q--) {\n        int x, y, z;\n\
-    \        cin >> x >> y >> z;\n        if (x == 0) {\n            st.reverse(y,\
-    \ z + 1);\n            st.reverse(y + 1, z + 1);\n        } else if (x == 1) {\n\
-    \            cout << st.fold(y, z + 1) << \"\\n\";\n        } else {\n       \
-    \     st.update(y, z);\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508\"\
-    \n\n#include \"../../data-structure/bst/treap.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nstruct MinMonoid {\n    using T = int;\n    static T id()\
-    \ { return (1u << 31) - 1; }\n    static T op(T a, T b) {\n        return min(a,\
-    \ b);\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int n, q;\n    cin >> n >> q;\n    using ST = Treap<MinMonoid>;\n    ST\
-    \ st;\n    for (int i = 0; i < n; ++i) {\n        int a;\n        cin >> a;\n\
-    \        st.push_back(a);\n    }\n    while (q--) {\n        int x, y, z;\n  \
-    \      cin >> x >> y >> z;\n        if (x == 0) {\n            st.reverse(y, z\
-    \ + 1);\n            st.reverse(y + 1, z + 1);\n        } else if (x == 1) {\n\
-    \            cout << st.fold(y, z + 1) << \"\\n\";\n        } else {\n       \
-    \     st.update(y, z);\n        }\n    }\n}"
+    \       t->val = x;\n        }\n        recalc(t);\n    }\n};\n#line 6 \"test/yosupo/range_reverse_range_sum.treap.test.cpp\"\
+    \nusing namespace std;\n\nstruct AddMonoid {\n    using T = long long;\n    static\
+    \ T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    Treap<AddMonoid> st;\n    for (int i = 0; i <\
+    \ N; ++i) {\n        long long x;\n        cin >> x;\n        st.push_back(x);\n\
+    \    }\n    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        cin >>\
+    \ t >> l >> r;\n        if (t == 0) {\n            st.reverse(l, r);\n       \
+    \ } else {\n            cout << st.fold(l, r) << \"\\n\";\n        }\n    }\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
+    \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/bst/treap.cpp\"\
+    \nusing namespace std;\n\nstruct AddMonoid {\n    using T = long long;\n    static\
+    \ T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    Treap<AddMonoid> st;\n    for (int i = 0; i <\
+    \ N; ++i) {\n        long long x;\n        cin >> x;\n        st.push_back(x);\n\
+    \    }\n    for (int i = 0; i < Q; i++) {\n        int t, l, r;\n        cin >>\
+    \ t >> l >> r;\n        if (t == 0) {\n            st.reverse(l, r);\n       \
+    \ } else {\n            cout << st.fold(l, r) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
   - data-structure/bst/treap.cpp
   isVerificationFile: true
-  path: test/aoj/1508.treap.test.cpp
+  path: test/yosupo/range_reverse_range_sum.treap.test.cpp
   requiredBy: []
   timestamp: '2023-05-07 15:56:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/1508.treap.test.cpp
+documentation_of: test/yosupo/range_reverse_range_sum.treap.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/1508.treap.test.cpp
-- /verify/test/aoj/1508.treap.test.cpp.html
-title: test/aoj/1508.treap.test.cpp
+- /verify/test/yosupo/range_reverse_range_sum.treap.test.cpp
+- /verify/test/yosupo/range_reverse_range_sum.treap.test.cpp.html
+title: test/yosupo/range_reverse_range_sum.treap.test.cpp
 ---

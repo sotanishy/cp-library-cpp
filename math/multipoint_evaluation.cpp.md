@@ -175,8 +175,8 @@ data:
   timestamp: '2023-03-13 15:40:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/polynomial_interpolation.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial_interpolation.test.cpp
 documentation_of: math/multipoint_evaluation.cpp
 layout: document
 title: Multipoint Evaluation

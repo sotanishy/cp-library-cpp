@@ -9,7 +9,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"misc/discrete_log_monoid_action.hpp\"\n#include <unordered_set>\n\
-    \ntemplate <typename M, typename S, S (*act)(typename M::T, S)>\nint discrete_log_monoid_action(typename\
+    \ntemplate <typename M, typename S, S (*act)(typename M::T, S)>\nlong long discrete_log_monoid_action(typename\
     \ M::T x, S s, S t, long long N) {\n    using T = typename M::T;\n\n    // baby-step\n\
     \    const int m = sqrt(N) + 1;\n    std::unordered_set<S> babies;\n    S baby\
     \ = t;\n    for (int i = 1; i <= m; ++i) {\n        baby = act(x, baby);\n   \
@@ -18,13 +18,13 @@ data:
     \ y);\n        y = M::op(y, y);\n        m_ >>= 1;\n    }\n\n    S giant = s;\n\
     \    bool first = true;\n    for (int i = 0; i <= N / m; ++i) {\n        if (babies.count(act(xm,\
     \ giant))) {\n            S u = giant;\n            for (int j = 0; j < m; ++j)\
-    \ {\n                if (u == t) {\n                    return m * i + j;\n  \
-    \              }\n                u = act(x, u);\n            }\n            if\
-    \ (!first) return -1;\n            first = false;\n        }\n        giant =\
-    \ act(xm, giant);\n    }\n    return -1;\n}\n"
+    \ {\n                if (u == t) {\n                    return 1LL * m * i + j;\n\
+    \                }\n                u = act(x, u);\n            }\n          \
+    \  if (!first) return -1;\n            first = false;\n        }\n        giant\
+    \ = act(xm, giant);\n    }\n    return -1;\n}\n"
   code: "#pragma once\n#include <unordered_set>\n\ntemplate <typename M, typename\
-    \ S, S (*act)(typename M::T, S)>\nint discrete_log_monoid_action(typename M::T\
-    \ x, S s, S t, long long N) {\n    using T = typename M::T;\n\n    // baby-step\n\
+    \ S, S (*act)(typename M::T, S)>\nlong long discrete_log_monoid_action(typename\
+    \ M::T x, S s, S t, long long N) {\n    using T = typename M::T;\n\n    // baby-step\n\
     \    const int m = sqrt(N) + 1;\n    std::unordered_set<S> babies;\n    S baby\
     \ = t;\n    for (int i = 1; i <= m; ++i) {\n        baby = act(x, baby);\n   \
     \     babies.insert(baby);\n    }\n\n    // giant-step\n    T xm = M::id(), y\
@@ -32,15 +32,15 @@ data:
     \ y);\n        y = M::op(y, y);\n        m_ >>= 1;\n    }\n\n    S giant = s;\n\
     \    bool first = true;\n    for (int i = 0; i <= N / m; ++i) {\n        if (babies.count(act(xm,\
     \ giant))) {\n            S u = giant;\n            for (int j = 0; j < m; ++j)\
-    \ {\n                if (u == t) {\n                    return m * i + j;\n  \
-    \              }\n                u = act(x, u);\n            }\n            if\
-    \ (!first) return -1;\n            first = false;\n        }\n        giant =\
-    \ act(xm, giant);\n    }\n    return -1;\n}\n"
+    \ {\n                if (u == t) {\n                    return 1LL * m * i + j;\n\
+    \                }\n                u = act(x, u);\n            }\n          \
+    \  if (!first) return -1;\n            first = false;\n        }\n        giant\
+    \ = act(xm, giant);\n    }\n    return -1;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: misc/discrete_log_monoid_action.hpp
   requiredBy: []
-  timestamp: '2023-04-08 13:57:59+09:00'
+  timestamp: '2023-05-07 15:56:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/discrete_log_monoid_action.hpp
