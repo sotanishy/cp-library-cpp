@@ -136,3 +136,4 @@ documentation_of: ../../geometry/geometry.hpp
 ## Reference
 
 - [Half-plane intersection - Algorithms for Competitive Programming](https://cp-algorithms.com/geometry/halfplane-intersection.html#direct-implementation)
+- [Points, lines, and planes](http://paulbourke.net/geometry/pointlineplane/)

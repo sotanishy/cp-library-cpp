@@ -2,14 +2,13 @@
 #include <utility>
 #include <vector>
 
-template <typename M,
-          typename Cost,
+template <typename M, typename Cost,
           typename M::T (*apply_edge)(typename M::T, int, int, Cost),
           typename M::T (*apply_vertex)(typename M::T, int)>
 class Rerooting {
     using T = typename M::T;
 
-public:
+   public:
     explicit Rerooting(int n) : G(n) {}
 
     void add_edge(int u, int v, Cost c) {
@@ -25,7 +24,7 @@ public:
         return dp_all;
     }
 
-private:
+   private:
     std::vector<std::vector<std::pair<int, Cost>>> G;
     std::vector<T> dp_sub, dp_all;
 
@@ -46,13 +45,15 @@ private:
         }
         int n = ds.size();
         std::vector<T> head(n + 1, M::id()), tail(n + 1, M::id());
-        for (int i = 0; i < n; ++i) head[i+1] = M::op(head[i], ds[i]);
-        for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i+1]);
+        for (int i = 0; i < n; ++i) head[i + 1] = M::op(head[i], ds[i]);
+        for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i + 1]);
         dp_all[v] = apply_vertex(head[n], v);
         int k = 1;
         for (auto [c, cost] : G[v]) {
             if (c == p) continue;
-            dfs_all(c, v, apply_edge(apply_vertex(M::op(head[k], tail[k+1]), v), c, v, cost));
+            dfs_all(c, v,
+                    apply_edge(apply_vertex(M::op(head[k], tail[k + 1]), v), c,
+                               v, cost));
             ++k;
         }
     }

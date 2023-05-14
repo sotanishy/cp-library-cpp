@@ -13,8 +13,9 @@ int intersect(const Polygon& poly, const Vec& p) {
     const int n = poly.size();
     bool in = 0;
     for (int i = 0; i < n; ++i) {
-        auto a = poly[i] - p, b = poly[(i+1)%n] - p;
-        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0))) return 1;
+        auto a = poly[i] - p, b = poly[(i + 1) % n] - p;
+        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0)))
+            return 1;
         if (a.imag() > b.imag()) std::swap(a, b);
         if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0)) in ^= 1;
     }
@@ -25,7 +26,9 @@ int intersect(const Segment& s, const Segment& t) {
     auto a = s.p1, b = s.p2;
     auto c = t.p1, d = t.p2;
     if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b)) return 2;
-    if (intersect(s, c) || intersect(s, d) || intersect(t, a) || intersect(t, b)) return 1;
+    if (intersect(s, c) || intersect(s, d) || intersect(t, a) ||
+        intersect(t, b))
+        return 1;
     return 0;
 }
 
@@ -35,7 +38,8 @@ bool intersect(const Polygon& poly1, const Polygon& poly2) {
     const int m = poly2.size();
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            if (intersect(Segment(poly1[i], poly1[(i+1)%n]), Segment(poly2[j], poly2[(j+1)%m]))) {
+            if (intersect(Segment(poly1[i], poly1[(i + 1) % n]),
+                          Segment(poly2[j], poly2[(j + 1) % m]))) {
                 return true;
             }
         }
