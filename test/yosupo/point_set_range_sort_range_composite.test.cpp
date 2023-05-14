@@ -24,7 +24,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    vector<pair<int, pair<mint, mint>>> kv(N);
+    vector<pair<long long, pair<mint, mint>>> kv(N);
     for (int i = 0; i < N; ++i) {
         int p, a, b;
         cin >> p >> a >> b;
