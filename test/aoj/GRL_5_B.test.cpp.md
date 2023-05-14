@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/rerooting.cpp
     title: Rerooting
   _extendedRequiredBy: []

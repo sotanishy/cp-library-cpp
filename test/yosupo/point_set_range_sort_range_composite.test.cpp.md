@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
@@ -149,18 +149,18 @@ data:
     \ {\n    using T = pair<mint, mint>;\n    static T id() { return {1, 0}; }\n \
     \   static T op(T a, T b) {\n        return {a.first * b.first, a.second * b.first\
     \ + b.second};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<int, pair<mint,\
-    \ mint>>> kv(N);\n    for (int i = 0; i < N; ++i) {\n        int p, a, b;\n  \
-    \      cin >> p >> a >> b;\n        kv[i] = {p, {a, b}};\n    }\n    SortableSegmentTree<AffineMonoid>\
-    \ st(1e9 + 1, kv);\n    for (int i = 0; i < Q; i++) {\n        int t;\n      \
-    \  cin >> t;\n        if (t == 0) {\n            int i, p, a, b;\n           \
-    \ cin >> i >> p >> a >> b;\n            st.update(i, p, {a, b});\n        } else\
-    \ if (t == 1) {\n            int l, r, x;\n            cin >> l >> r >> x;\n \
-    \           auto [a, b] = st.fold(l, r);\n            cout << (a * x + b) << \"\
-    \\n\";\n        } else if (t == 2) {\n            int l, r;\n            cin >>\
-    \ l >> r;\n            st.sort(l, r);\n        } else {\n            int l, r;\n\
-    \            cin >> l >> r;\n            st.sort(l, r, true);\n        }\n   \
-    \ }\n}\n"
+    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<long long,\
+    \ pair<mint, mint>>> kv(N);\n    for (int i = 0; i < N; ++i) {\n        int p,\
+    \ a, b;\n        cin >> p >> a >> b;\n        kv[i] = {p, {a, b}};\n    }\n  \
+    \  SortableSegmentTree<AffineMonoid> st(1e9 + 1, kv);\n    for (int i = 0; i <\
+    \ Q; i++) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n      \
+    \      int i, p, a, b;\n            cin >> i >> p >> a >> b;\n            st.update(i,\
+    \ p, {a, b});\n        } else if (t == 1) {\n            int l, r, x;\n      \
+    \      cin >> l >> r >> x;\n            auto [a, b] = st.fold(l, r);\n       \
+    \     cout << (a * x + b) << \"\\n\";\n        } else if (t == 2) {\n        \
+    \    int l, r;\n            cin >> l >> r;\n            st.sort(l, r);\n     \
+    \   } else {\n            int l, r;\n            cin >> l >> r;\n            st.sort(l,\
+    \ r, true);\n        }\n    }\n}\n"
   code: "#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
     \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/segtree/segment_tree.cpp\"\
     \n#include \"../../data-structure/segtree/sortable_segment_tree.hpp\"\n#include\
@@ -168,18 +168,18 @@ data:
     \nstruct AffineMonoid {\n    using T = pair<mint, mint>;\n    static T id() {\
     \ return {1, 0}; }\n    static T op(T a, T b) {\n        return {a.first * b.first,\
     \ a.second * b.first + b.second};\n    }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<int, pair<mint,\
-    \ mint>>> kv(N);\n    for (int i = 0; i < N; ++i) {\n        int p, a, b;\n  \
-    \      cin >> p >> a >> b;\n        kv[i] = {p, {a, b}};\n    }\n    SortableSegmentTree<AffineMonoid>\
-    \ st(1e9 + 1, kv);\n    for (int i = 0; i < Q; i++) {\n        int t;\n      \
-    \  cin >> t;\n        if (t == 0) {\n            int i, p, a, b;\n           \
-    \ cin >> i >> p >> a >> b;\n            st.update(i, p, {a, b});\n        } else\
-    \ if (t == 1) {\n            int l, r, x;\n            cin >> l >> r >> x;\n \
-    \           auto [a, b] = st.fold(l, r);\n            cout << (a * x + b) << \"\
-    \\n\";\n        } else if (t == 2) {\n            int l, r;\n            cin >>\
-    \ l >> r;\n            st.sort(l, r);\n        } else {\n            int l, r;\n\
-    \            cin >> l >> r;\n            st.sort(l, r, true);\n        }\n   \
-    \ }\n}"
+    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<pair<long long,\
+    \ pair<mint, mint>>> kv(N);\n    for (int i = 0; i < N; ++i) {\n        int p,\
+    \ a, b;\n        cin >> p >> a >> b;\n        kv[i] = {p, {a, b}};\n    }\n  \
+    \  SortableSegmentTree<AffineMonoid> st(1e9 + 1, kv);\n    for (int i = 0; i <\
+    \ Q; i++) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n      \
+    \      int i, p, a, b;\n            cin >> i >> p >> a >> b;\n            st.update(i,\
+    \ p, {a, b});\n        } else if (t == 1) {\n            int l, r, x;\n      \
+    \      cin >> l >> r >> x;\n            auto [a, b] = st.fold(l, r);\n       \
+    \     cout << (a * x + b) << \"\\n\";\n        } else if (t == 2) {\n        \
+    \    int l, r;\n            cin >> l >> r;\n            st.sort(l, r);\n     \
+    \   } else {\n            int l, r;\n            cin >> l >> r;\n            st.sort(l,\
+    \ r, true);\n        }\n    }\n}"
   dependsOn:
   - data-structure/segtree/segment_tree.cpp
   - data-structure/segtree/sortable_segment_tree.hpp
@@ -187,8 +187,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_sort_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2023-05-07 15:56:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-14 14:50:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_sort_range_composite.test.cpp
 layout: document
