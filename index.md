@@ -109,7 +109,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.cpp
       title: Splay Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/treap.cpp
       title: Treap
   - name: data-structure/cht
@@ -172,7 +172,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.cpp
       title: Undoable Union Find
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -297,7 +297,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/general_matching.hpp
       title: General Matching
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/junction_tree.hpp
       title: Junction Tree (Width 2)
     - icon: ':heavy_check_mark:'
@@ -594,7 +594,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/range_contour_aggregation.hpp
       title: Range Contour Aggregation
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/rerooting.cpp
       title: Rerooting
     - icon: ':heavy_check_mark:'
@@ -1037,7 +1037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
       title: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1103,12 +1103,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tetration_mod.test.cpp
       title: test/yosupo/tetration_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_decomposition_width_2.test.cpp
       title: test/yosupo/tree_decomposition_width_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree_path_composite_sum.test.cpp
+      title: test/yosupo/tree_path_composite_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp

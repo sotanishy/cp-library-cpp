@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/leftist_heap.cpp
     title: Leftist Heap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
   - icon: ':heavy_check_mark:'

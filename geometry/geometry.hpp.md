@@ -116,104 +116,105 @@ data:
   bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
     \ <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n#include\
     \ <vector>\n\n// note that if T is of an integer type, std::abs does not work\n\
-    using T = double;\nusing Vec = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\
-    \nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return std::abs(a - b)\
-    \ <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }\n\
-    inline bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) {\
-    \ return a <= b + eps; }\n\nstd::istream& operator>>(std::istream& is, Vec& p)\
-    \ {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nstruct\
-    \ Line {\n    Vec p1, p2;\n    Line() = default;\n    Line(const Vec& p1, const\
-    \ Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\n\
-    struct Segment : Line {\n    using Line::Line;\n};\n\nstruct Circle {\n    Vec\
-    \ c;\n    T r;\n    Circle() = default;\n    Circle(const Vec& c, T r) : c(c),\
-    \ r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\nT dot(const Vec& a, const\
-    \ Vec& b) {\n    return (std::conj(a) * b).real();\n}\n\nT cross(const Vec& a,\
-    \ const Vec& b) {\n    return (std::conj(a) * b).imag();\n}\n\nVec rot(const Vec&\
-    \ a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n}\n\nVec perp(const\
-    \ Vec& a) {\n    return Vec(-a.imag(), a.real());\n}\n\nVec projection(const Line&\
-    \ l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n\
-    }\n\nVec reflection(const Line& l, const Vec& p) {\n    return T(2) * projection(l,\
-    \ p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n// -1: clockwise\nint\
-    \ ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if (eq(cross(b - a, c -\
-    \ a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0)) return -1;\n    return\
-    \ 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n    std::sort(pts.begin(),\
-    \ pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag() < 0) != (q.imag()\
-    \ < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0) {\n            if\
-    \ (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n\
-    \            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real()\
-    \ > 0));\n            return (p.real() > q.real());\n        }\n        return\
-    \ (cross(p, q) > 0);\n    });\n}\n"
+    using T = double;\nusing Vec = std::complex<T>;\n\nstd::istream& operator>>(std::istream&\
+    \ is, Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
+    }\n\nT dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\
+    \nT cross(const Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\n\
+    const T PI = std::acos(-1);\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b)\
+    \ { return std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
+    \ - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool\
+    \ leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n \
+    \   Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2)\
+    \ {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line {\n\
+    \    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
+    \ = default;\n    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon\
+    \ = std::vector<Vec>;\n\nVec rot(const Vec& a, T ang) { return a * Vec(std::cos(ang),\
+    \ std::sin(ang)); }\n\nVec perp(const Vec& a) { return Vec(-a.imag(), a.real());\
+    \ }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p\
+    \ - l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const\
+    \ Line& l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0:\
+    \ collinear\n// 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a,\
+    \ const Vec& b, const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n\
+    \    if (lt(cross(b - a, c - a), 0)) return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>&\
+    \ pts) {\n    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n    \
+    \    if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if\
+    \ (cross(p, q) == 0) {\n            if (p == Vec(0, 0))\n                return\
+    \ !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0,\
+    \ 0))\n                return (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
+    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
+    \ q) > 0);\n    });\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
     #include <complex>\n#include <iostream>\n#include <vector>\n\n// note that if\
     \ T is of an integer type, std::abs does not work\nusing T = double;\nusing Vec\
-    \ = std::complex<T>;\n\nconst T PI = std::acos(-1);\n\nconstexpr T eps = 1e-10;\n\
-    inline bool eq(T a, T b) { return std::abs(a - b) <= eps; }\ninline bool eq(Vec\
-    \ a, Vec b) { return std::abs(a - b) <= eps; }\ninline bool lt(T a, T b) { return\
-    \ a < b - eps; }\ninline bool leq(T a, T b) { return a <= b + eps; }\n\nstd::istream&\
-    \ operator>>(std::istream& is, Vec& p) {\n    T x, y;\n    is >> x >> y;\n   \
-    \ p = {x, y};\n    return is;\n}\n\nstruct Line {\n    Vec p1, p2;\n    Line()\
-    \ = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}\n   \
-    \ Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line {\n    using\
-    \ Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n\
-    \    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\
-    \nT dot(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).real();\n\
-    }\n\nT cross(const Vec& a, const Vec& b) {\n    return (std::conj(a) * b).imag();\n\
-    }\n\nVec rot(const Vec& a, T ang) {\n    return a * Vec(std::cos(ang), std::sin(ang));\n\
-    }\n\nVec perp(const Vec& a) {\n    return Vec(-a.imag(), a.real());\n}\n\nVec\
-    \ projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir())\
-    \ * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec&\
-    \ p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
-    // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
-    \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
-    \ return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n\
-    \    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
-    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
-    \ {\n            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 &&\
-    \ q.real() > 0));\n            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag()\
-    \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
-    \ }\n        return (cross(p, q) > 0);\n    });\n}"
+    \ = std::complex<T>;\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n\
+    \    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nT dot(const\
+    \ Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\nT cross(const\
+    \ Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\nconst T PI =\
+    \ std::acos(-1);\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return\
+    \ std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
+    \ - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool\
+    \ leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n \
+    \   Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2)\
+    \ {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line {\n\
+    \    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
+    \ = default;\n    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon\
+    \ = std::vector<Vec>;\n\nVec rot(const Vec& a, T ang) { return a * Vec(std::cos(ang),\
+    \ std::sin(ang)); }\n\nVec perp(const Vec& a) { return Vec(-a.imag(), a.real());\
+    \ }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p\
+    \ - l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const\
+    \ Line& l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0:\
+    \ collinear\n// 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a,\
+    \ const Vec& b, const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n\
+    \    if (lt(cross(b - a, c - a), 0)) return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>&\
+    \ pts) {\n    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n    \
+    \    if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if\
+    \ (cross(p, q) == 0) {\n            if (p == Vec(0, 0))\n                return\
+    \ !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0,\
+    \ 0))\n                return (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
+    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
+    \ q) > 0);\n    });\n}"
   dependsOn: []
   isVerificationFile: false
   path: geometry/geometry.hpp
   requiredBy:
-  - geometry/polygon.hpp
-  - geometry/delaunay_diagram.hpp
-  - geometry/intersect.hpp
-  - geometry/triangle.hpp
-  - geometry/tangent.hpp
-  - geometry/dist.hpp
-  - geometry/intersection.hpp
-  - geometry/closest_pair.hpp
-  - geometry/minimum_bounding_circle.hpp
   - geometry/bisector.hpp
+  - geometry/delaunay_diagram.hpp
+  - geometry/triangle.hpp
+  - geometry/polygon.hpp
   - geometry/convex_hull.hpp
-  timestamp: '2022-12-19 16:08:50+09:00'
+  - geometry/closest_pair.hpp
+  - geometry/intersection.hpp
+  - geometry/dist.hpp
+  - geometry/minimum_bounding_circle.hpp
+  - geometry/tangent.hpp
+  - geometry/intersect.hpp
+  timestamp: '2023-05-14 13:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_G.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_1_C.test.cpp
   - test/aoj/CGL_4_B.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_4_C.test.cpp
-  - test/aoj/CGL_7_F.test.cpp
-  - test/aoj/1298.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_3_A.test.cpp
-  - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/1283.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_3_C.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
-  - test/aoj/CGL_7_E.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_1_C.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
-  - test/aoj/CGL_7_A.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/1283.test.cpp
+  - test/aoj/1298.test.cpp
   - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_7_A.test.cpp
 documentation_of: geometry/geometry.hpp
 layout: document
 title: Geometry
@@ -352,3 +353,4 @@ title: Geometry
 ## Reference
 
 - [Half-plane intersection - Algorithms for Competitive Programming](https://cp-algorithms.com/geometry/halfplane-intersection.html#direct-implementation)
+- [Points, lines, and planes](http://paulbourke.net/geometry/pointlineplane/)

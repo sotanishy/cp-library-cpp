@@ -64,10 +64,10 @@ data:
   timestamp: '2022-12-25 14:40:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-  - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/number_of_subsequences.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - test/aoj/DSL_2_B.test.cpp
 documentation_of: data-structure/fenwick_tree.cpp
 layout: document

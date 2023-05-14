@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_decomposition_width_2.test.cpp
     title: test/yosupo/tree_decomposition_width_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/junction_tree.hpp\"\n#include <set>\n#include <stack>\n\
@@ -113,7 +113,7 @@ data:
   path: graph/junction_tree.hpp
   requiredBy: []
   timestamp: '2023-05-07 15:56:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree_decomposition_width_2.test.cpp
 documentation_of: graph/junction_tree.hpp

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: Bipartite Edge Coloring
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/junction_tree.hpp
     title: Junction Tree (Width 2)
   - icon: ':heavy_check_mark:'
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp
     title: test/yosupo/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_decomposition_width_2.test.cpp
     title: test/yosupo/tree_decomposition_width_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/unionfind/union_find.cpp\"\n#include <algorithm>\n\
@@ -67,21 +67,21 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.cpp
   requiredBy:
-  - graph/mst.cpp
   - graph/minimum_spanning_arborescence.cpp
   - graph/bipartite_edge_coloring.hpp
   - graph/junction_tree.hpp
+  - graph/mst.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/directedmst.test.cpp
-  - test/yosupo/unionfind.test.cpp
   - test/yosupo/tree_decomposition_width_2.test.cpp
   - test/yosupo/bipartite_edge_coloring.test.cpp
-  - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/aoj/GRL_2_A.prim.test.cpp
+  - test/yosupo/unionfind.test.cpp
+  - test/yosupo/directedmst.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
+  - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/DSL_1_A.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 title: Union Find
