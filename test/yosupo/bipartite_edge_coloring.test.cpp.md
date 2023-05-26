@@ -2,17 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-structure/unionfind/union_find.cpp
-    title: Union Find
-  - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: Bipartite Edge Coloring
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_matching.hpp
     title: Bipartite Matching
-  - icon: ':heavy_check_mark:'
-    path: graph/eulerian_path.hpp
-    title: Eulerian Path
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,45 +20,37 @@ data:
   bundledCode: "#line 1 \"test/yosupo/bipartite_edge_coloring.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/bipartite_edge_coloring\"\n\n#line\
     \ 2 \"graph/bipartite_edge_coloring.hpp\"\n#include <algorithm>\n#include <map>\n\
-    #include <queue>\n#include <utility>\n#include <vector>\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
-    \n\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
-    \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
-    \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
-    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return;\n\
-    \        if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n\
-    \        data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return\
-    \ find(x) == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
-    \    }\n\nprivate:\n    std::vector<int> data;\n};\n#line 2 \"graph/bipartite_matching.hpp\"\
-    \n#include <limits>\n#line 6 \"graph/bipartite_matching.hpp\"\n\nclass BipartiteMatching\
-    \ {\npublic:\n    BipartiteMatching() = default;\n    BipartiteMatching(int U,\
-    \ int V) : U(U), V(V), NIL(U + V), G(U), level(U + V + 1), match(U + V + 1, NIL)\
-    \ {}\n\n    void add_edge(int u, int v) {\n        G[u].emplace_back(U + v);\n\
-    \    }\n\n    std::vector<std::pair<int, int>> max_matching() {\n        while\
-    \ (bfs()) {\n            for (int u = 0; u < U; ++u) {\n                if (match[u]\
-    \ == NIL) {\n                    dfs(u);\n                }\n            }\n \
-    \       }\n        std::vector<std::pair<int, int>> ret;\n        for (int u =\
-    \ 0; u < U; ++u) {\n            if (match[u] != NIL) ret.emplace_back(u, match[u]\
-    \ - U);\n        }\n        return ret;\n    }\n\nprivate:\n    static constexpr\
-    \ int INF = std::numeric_limits<int>::max() / 2;\n\n    const int U, V, NIL;\n\
-    \    std::vector<std::vector<int>> G;\n    std::vector<int> level, match;\n\n\
-    \    bool bfs() {\n        std::fill(level.begin(), level.end(), INF);\n     \
-    \   std::queue<int> q;\n        for (int u = 0; u < U; ++u) {\n            if\
-    \ (match[u] == NIL) {\n                level[u] = 0;\n                q.push(u);\n\
-    \            }\n        }\n        while (!q.empty()) {\n            int u = q.front();\n\
-    \            q.pop();\n            if (level[u] < level[NIL]) {\n            \
-    \    for (int v : G[u]) {\n                    if (level[match[v]] == INF) {\n\
-    \                        level[match[v]] = level[u] + 1;\n                   \
-    \     q.push(match[v]);\n                    }\n                }\n          \
-    \  }\n        }\n        return level[NIL] != INF;\n    }\n\n    bool dfs(int\
-    \ u) {\n        if (u == NIL) return true;\n        for (int v : G[u]) {\n   \
-    \         if (level[match[v]] == level[u] + 1 && dfs(match[v])) {\n          \
-    \      match[v] = u;\n                match[u] = v;\n                return true;\n\
-    \            }\n        }\n        level[u] = INF;\n        return false;\n  \
-    \  }\n};\n\n\n/*\n * Bipartite matching using Ford-Fulkerson algorithm\n * Time\
-    \ complexity: O(VE)\n */\nclass BipartiteMatchingFF {\npublic:\n    BipartiteMatchingFF()\
-    \ = default;\n    explicit BipartiteMatchingFF(int n) : G(n), used(n), match(n)\
-    \ {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n      \
-    \  G[v].push_back(u);\n    }\n\n    std::vector<std::pair<int, int>> max_matching()\
+    #include <stack>\n#include <utility>\n#include <vector>\n\n#line 2 \"graph/bipartite_matching.hpp\"\
+    \n#include <limits>\n#include <queue>\n#line 6 \"graph/bipartite_matching.hpp\"\
+    \n\nclass BipartiteMatching {\npublic:\n    BipartiteMatching() = default;\n \
+    \   BipartiteMatching(int U, int V) : U(U), V(V), NIL(U + V), G(U), level(U +\
+    \ V + 1), match(U + V + 1, NIL) {}\n\n    void add_edge(int u, int v) {\n    \
+    \    G[u].emplace_back(U + v);\n    }\n\n    std::vector<std::pair<int, int>>\
+    \ max_matching() {\n        while (bfs()) {\n            for (int u = 0; u < U;\
+    \ ++u) {\n                if (match[u] == NIL) {\n                    dfs(u);\n\
+    \                }\n            }\n        }\n        std::vector<std::pair<int,\
+    \ int>> ret;\n        for (int u = 0; u < U; ++u) {\n            if (match[u]\
+    \ != NIL) ret.emplace_back(u, match[u] - U);\n        }\n        return ret;\n\
+    \    }\n\nprivate:\n    static constexpr int INF = std::numeric_limits<int>::max()\
+    \ / 2;\n\n    const int U, V, NIL;\n    std::vector<std::vector<int>> G;\n   \
+    \ std::vector<int> level, match;\n\n    bool bfs() {\n        std::fill(level.begin(),\
+    \ level.end(), INF);\n        std::queue<int> q;\n        for (int u = 0; u <\
+    \ U; ++u) {\n            if (match[u] == NIL) {\n                level[u] = 0;\n\
+    \                q.push(u);\n            }\n        }\n        while (!q.empty())\
+    \ {\n            int u = q.front();\n            q.pop();\n            if (level[u]\
+    \ < level[NIL]) {\n                for (int v : G[u]) {\n                    if\
+    \ (level[match[v]] == INF) {\n                        level[match[v]] = level[u]\
+    \ + 1;\n                        q.push(match[v]);\n                    }\n   \
+    \             }\n            }\n        }\n        return level[NIL] != INF;\n\
+    \    }\n\n    bool dfs(int u) {\n        if (u == NIL) return true;\n        for\
+    \ (int v : G[u]) {\n            if (level[match[v]] == level[u] + 1 && dfs(match[v]))\
+    \ {\n                match[v] = u;\n                match[u] = v;\n          \
+    \      return true;\n            }\n        }\n        level[u] = INF;\n     \
+    \   return false;\n    }\n};\n\n\n/*\n * Bipartite matching using Ford-Fulkerson\
+    \ algorithm\n * Time complexity: O(VE)\n */\nclass BipartiteMatchingFF {\npublic:\n\
+    \    BipartiteMatchingFF() = default;\n    explicit BipartiteMatchingFF(int n)\
+    \ : G(n), used(n), match(n) {}\n\n    void add_edge(int u, int v) {\n        G[u].push_back(v);\n\
+    \        G[v].push_back(u);\n    }\n\n    std::vector<std::pair<int, int>> max_matching()\
     \ {\n        int res = 0;\n        std::fill(match.begin(), match.end(), -1);\n\
     \        for (int v = 0; v < (int) G.size(); ++v) {\n            if (match[v]\
     \ == -1) {\n                std::fill(used.begin(), used.end(), false);\n    \
@@ -76,98 +62,119 @@ data:
     \ = true;\n        for (int v : G[u]) {\n            int w = match[v];\n     \
     \       if (w == -1 || (!used[w] && dfs(w))) {\n                match[u] = v;\n\
     \                match[v] = u;\n                return true;\n            }\n\
-    \        }\n        return false;\n    }\n};\n#line 2 \"graph/eulerian_path.hpp\"\
-    \n#include <stack>\n#line 5 \"graph/eulerian_path.hpp\"\n\nstd::vector<int> eulerian_path(const\
-    \ std::vector<std::pair<int, int>>& edges, int V) {\n    std::vector<std::vector<std::pair<int,\
-    \ int>>> G(V);\n    std::vector<int> deg(V);\n    for (int i = 0; i < (int) edges.size();\
-    \ ++i) {\n        auto [a, b] = edges[i];\n        G[a].push_back({b, i});\n \
-    \       G[b].push_back({a, i});\n        ++deg[a];\n        ++deg[b];\n    }\n\
-    \    int s = 0;\n    int cnt = 0;\n    for (int i = 0; i < V; ++i) {\n       \
-    \ if (deg[i] % 2) {\n            ++cnt;\n            s = i;\n        }\n    }\n\
-    \    if (cnt != 0 && cnt != 2) return {};\n    std::vector<int> ret;\n    std::stack<int>\
-    \ st;\n    st.push(s);\n    std::vector<bool> used(edges.size());\n    while (!st.empty())\
-    \ {\n        int u = st.top();\n        while (!G[u].empty() && used[G[u].back().second])\
-    \ G[u].pop_back();\n        if (G[u].empty()) {\n            ret.push_back(u);\n\
-    \            st.pop();\n        } else {\n            auto [v, i] = G[u].back();\n\
-    \            G[u].pop_back();\n            used[i] = true;\n            st.emplace(v);\n\
-    \        }\n    }\n    return ret;\n}\n#line 10 \"graph/bipartite_edge_coloring.hpp\"\
-    \n\n\nstd::vector<int> bipartite_edge_coloring(const std::vector<std::pair<int,\
-    \ int>>& G, int n, int m) {\n    // find the maximum degree\n    std::vector<int>\
-    \ deg0(n), deg1(m);\n    for (auto [a, b] : G) {\n        ++deg0[a];\n       \
-    \ ++deg1[b];\n    }\n    const int D = std::max(*max_element(deg0.begin(), deg0.end()),\
-    \ *max_element(deg1.begin(), deg1.end()));\n\n    // convert to D-regular bipartite\
-    \ graph\n    // merge vertices with the sum of degrees <= D\n    auto contract\
-    \ = [&](const auto& deg) {\n        using P = std::pair<int, int>;\n        const\
-    \ int n = deg.size();\n        std::priority_queue<P, std::vector<P>, std::greater<>>\
-    \ pq;\n        for (int i = 0; i < n; ++i) {\n            pq.emplace(deg[i], i);\n\
-    \        }\n        UnionFind uf(deg.size());\n        while (pq.size() > 1) {\n\
-    \            auto [p, i] = pq.top();\n            pq.pop();\n            auto\
-    \ [q, j] = pq.top();\n            pq.pop();\n            if (p + q > D) break;\n\
-    \            uf.unite(i, j);\n            pq.emplace(p + q, i);\n        }\n \
-    \       // rename vertices\n        int k = 0;\n        std::vector<int> id(n);\n\
-    \        for (int i = 0; i < n; ++i) {\n            if (uf.find(i) == i) id[i]\
-    \ = k++;\n        }\n        std::vector<int> ndeg(k);\n        for (int i = 0;\
-    \ i < n; ++i) {\n            id[i] = id[uf.find(i)];\n            ndeg[id[i]]\
-    \ += deg[i];\n        }\n        return std::make_pair(id, ndeg);\n    };\n\n\
-    \    auto [id0, ndeg0] = contract(deg0);\n    auto [id1, ndeg1] = contract(deg1);\n\
-    \n    // add dummy vertices\n    const int n2 = std::max(ndeg0.size(), ndeg1.size());\n\
-    \    ndeg0.resize(n2);\n    ndeg1.resize(n2);\n\n    // rename edges and add dummy\
-    \ edges\n    std::vector<std::pair<int, int>> G2;\n    for (auto [a, b] : G) {\n\
-    \        a = id0[a];\n        b = id1[b];\n        G2.emplace_back(a, b);\n  \
-    \  }\n    int j = 0;\n    for (int i = 0; i < n2; ++i) {\n        while (ndeg0[i]\
-    \ < D) {\n            while (ndeg1[j] == D) ++j;\n            G2.emplace_back(i,\
-    \ j);\n            ++ndeg0[i];\n            ++ndeg1[j];\n        }\n    }\n\n\
-    \    // find the edge coloring\n    std::map<std::pair<int, int>, std::vector<int>>\
-    \ color;\n    int k = 0;\n\n    auto rec = [&](auto& rec, const std::vector<std::pair<int,\
-    \ int>>& G, int D) -> void {\n        if (D == 1) {\n            for (auto& e\
-    \ : G) {\n                color[e].push_back(k);\n            }\n            ++k;\n\
+    \        }\n        return false;\n    }\n};\n#line 9 \"graph/bipartite_edge_coloring.hpp\"\
+    \n\nstd::vector<int> bipartite_edge_coloring(\n    const std::vector<std::pair<int,\
+    \ int>>& edges, int n1, int n2) {\n    const int E = edges.size();\n    // find\
+    \ the maximum degree D\n    std::vector<int> deg1(n1), deg2(n2);\n    for (auto\
+    \ [a, b] : edges) {\n        ++deg1[a], ++deg2[b];\n    }\n    const int D = std::max(*max_element(deg1.begin(),\
+    \ deg1.end()),\n                           *max_element(deg2.begin(), deg2.end()));\n\
+    \n    // convert to D-regular bipartite graph\n    // merge vertices with the\
+    \ sum of degrees <= D\n    auto contract = [&](const auto& deg) {\n        const\
+    \ int n = deg.size();\n        std::vector<std::pair<int, int>> vs(n);\n     \
+    \   for (int i = 0; i < n; ++i) vs[i] = {deg[i], i};\n        std::sort(vs.begin(),\
+    \ vs.end());\n\n        std::vector<int> id(n);\n        std::vector<int> ndeg;\n\
+    \n        int k = 0;\n        for (int i = 0; i < n;) {\n            int d = 0;\n\
+    \            int j = i;\n            while (j < n && d + vs[j].first <= D) {\n\
+    \                d += vs[j].first;\n                id[vs[j].second] = k;\n  \
+    \              ++j;\n            }\n            ndeg.push_back(d);\n         \
+    \   ++k;\n            i = j;\n        }\n\n        return std::make_pair(id, ndeg);\n\
+    \    };\n\n    auto [id1, ndeg1] = contract(deg1);\n    auto [id2, ndeg2] = contract(deg2);\n\
+    \n    using Edge = std::tuple<int, int, int>;\n    std::vector<Edge> edges2;\n\
+    \    for (int i = 0; i < E; ++i) {\n        auto [a, b] = edges[i];\n        edges2.emplace_back(id1[a],\
+    \ id2[b], i);\n    }\n\n    // add dummy vertices\n    const int n = std::max(ndeg1.size(),\
+    \ ndeg2.size());\n    ndeg1.resize(n);\n    ndeg2.resize(n);\n\n    // add dummy\
+    \ edges\n    int j = 0;\n    int nE = E;\n    for (int i = 0; i < n; ++i) {\n\
+    \        while (ndeg1[i] < D) {\n            while (ndeg2[j] == D) ++j;\n    \
+    \        edges2.emplace_back(i, j, nE++);\n            ++ndeg1[i];\n         \
+    \   ++ndeg2[j];\n        }\n    }\n\n    // find the edge coloring\n    std::vector<int>\
+    \ color(nE);\n    int k = 0;\n\n    auto rec = [&](auto& rec, const std::vector<Edge>&\
+    \ edges, int D) -> void {\n        if (D == 1) {\n            for (auto [a, b,\
+    \ i] : edges) {\n                color[i] = k;\n            }\n            ++k;\n\
     \            return;\n        } else if (D % 2 == 0) {\n            // find an\
-    \ eulerian trail for each connected component\n            // partition the graph\
-    \ into two and recurse\n            std::vector<std::vector<int>> H(n2 + n2);\n\
-    \            for (auto [a, b] : G) {\n                H[a].push_back(n2 + b);\n\
-    \                H[n2 + b].push_back(a);\n            }\n            std::vector<int>\
-    \ idx(n2 + n2, -1), invidx(n2 + n2, -1), prevv(n2 + n2, -1);\n            std::vector<std::vector<std::pair<int,\
-    \ int>>> G2(2);\n            for (int i = 0; i < n2; ++i) {\n                if\
-    \ (idx[i] != -1) continue;\n                // find the connected component\n\
-    \                std::stack<int> st;\n                st.push(i);\n          \
-    \      int k = 0;\n                idx[i] = k;\n                invidx[k] = i;\n\
-    \                ++k;\n                std::vector<std::pair<int, int>> edges2;\n\
-    \                while (!st.empty()) {\n                    int u = st.top();\n\
-    \                    st.pop();\n                    for (int v : H[u]) {\n   \
-    \                     if (idx[v] == -1) {\n                            idx[v]\
-    \ = k;\n                            invidx[k] = v;\n                         \
-    \   prevv[v] = u;\n                            ++k;\n                        \
-    \    edges2.emplace_back(idx[u], idx[v]);\n                            st.push(v);\n\
-    \                        } else if (prevv[u] != v && idx[u] < idx[v]) {\n    \
-    \                        edges2.emplace_back(idx[u], idx[v]);\n              \
-    \          }\n                    }\n                }\n                // get\
-    \ an eulerian path and partition it into two\n                auto path = eulerian_path(edges2,\
-    \ k);\n                for (int i = 0; i < (int) path.size() - 1; ++i) {\n   \
-    \                 int u = invidx[path[i]], v = invidx[path[i + 1]];\n        \
-    \            if (u > v) std::swap(u, v);\n                    v -= n2;\n     \
-    \               G2[i % 2].emplace_back(u, v);\n                }\n           \
-    \ }\n            rec(rec, G2[0], D / 2);\n            rec(rec, G2[1], D / 2);\n\
-    \        } else {\n            // paint the edges in a perfect matching with the\
-    \ same color\n            BipartiteMatching bm(n2, n2);\n            for (auto\
-    \ [a, b] : G) {\n                bm.add_edge(a, b);\n            }\n         \
-    \   std::vector<int> match(n2, -1);\n            for (auto [a, b] : bm.max_matching())\
-    \ {\n                match[a] = b;\n            }\n            std::vector<std::pair<int,\
-    \ int>> G2;\n            for (auto [a, b] : G) {\n                if (match[a]\
-    \ == b) {\n                    color[{a, b}].push_back(k);\n                 \
-    \   match[a] = -1;\n                } else {\n                    G2.emplace_back(a,\
-    \ b);\n                }\n            }\n            ++k;\n            rec(rec,\
-    \ G2, D - 1);\n        }\n    };\n\n    rec(rec, G2, D);\n\n    // get colors\
-    \ for edges in the original graph\n    std::vector<int> ans(G.size());\n    for\
-    \ (int i = 0; i < (int) G.size(); ++i) {\n        auto [a, b] = G[i];\n      \
-    \  std::pair<int, int> e(id0[a], id1[b]);\n        ans[i] = color[e].back();\n\
-    \        color[e].pop_back();\n    }\n\n    return ans;\n}\n#line 4 \"test/yosupo/bipartite_edge_coloring.test.cpp\"\
+    \ eulerian walk for each connected component\n            // partition the graph\
+    \ into two\n            std::vector<std::vector<std::pair<int, int>>> G(2 * n);\n\
+    \            for (int j = 0; j < (int)edges.size(); ++j) {\n                auto\
+    \ [a, b, i] = edges[j];\n                G[a].emplace_back(n + b, j);\n      \
+    \          G[n + b].emplace_back(a, j);\n            }\n            std::vector<bool>\
+    \ used_v(2 * n), used_e(edges.size());\n            std::vector<std::vector<Edge>>\
+    \ edges2(2);\n\n            for (int v = 0; v < n; ++v) {\n                if\
+    \ (used_v[v]) continue;\n\n                std::vector<int> walk;\n          \
+    \      std::stack<std::pair<int, int>> st;\n                st.emplace(v, -1);\n\
+    \                while (!st.empty()) {\n                    auto [u, j] = st.top();\n\
+    \                    used_v[u] = true;\n                    while (!G[u].empty()\
+    \ && used_e[G[u].back().second]) {\n                        G[u].pop_back();\n\
+    \                    }\n                    if (G[u].empty()) {\n            \
+    \            walk.push_back(j);\n                        st.pop();\n         \
+    \           } else {\n                        auto [v, k] = G[u].back();\n   \
+    \                     G[u].pop_back();\n                        used_e[k] = true;\n\
+    \                        st.emplace(v, k);\n                    }\n          \
+    \      }\n\n                for (int i = 0; i < (int)walk.size() - 1; ++i) {\n\
+    \                    edges2[i % 2].push_back(edges[walk[i]]);\n              \
+    \  }\n            }\n            rec(rec, edges2[0], D / 2);\n\n            int\
+    \ nD = 1;\n            while (nD < D / 2) nD <<= 1;\n\n            // add nD-D/2\
+    \ edges from edges2[0] to edges2[1]\n            for (auto [a, b, i] : edges2[0])\
+    \ {\n                if (color[i] >= k - (nD - D / 2)) {\n                   \
+    \ edges2[1].emplace_back(a, b, i);\n                }\n            }\n       \
+    \     k -= nD - D / 2;\n\n            rec(rec, edges2[1], nD);\n        } else\
+    \ {\n            // paint the edges in a perfect matching with the same color\n\
+    \            BipartiteMatching bm(n, n);\n            for (auto [a, b, i] : edges)\
+    \ {\n                bm.add_edge(a, b);\n            }\n            std::vector<int>\
+    \ match(n, -1);\n            for (auto [a, b] : bm.max_matching()) {\n       \
+    \         match[a] = b;\n            }\n            std::vector<Edge> edges2;\n\
+    \            for (auto [a, b, i] : edges) {\n                if (match[a] == b)\
+    \ {\n                    color[i] = k;\n                    match[a] = -1;\n \
+    \               } else {\n                    edges2.emplace_back(a, b, i);\n\
+    \                }\n            }\n            ++k;\n            rec(rec, edges2,\
+    \ D - 1);\n        }\n    };\n\n    rec(rec, edges2, D);\n    color.resize(E);\n\
+    \    return color;\n}\n\nstd::vector<std::pair<int, int>> regular_bipartite_matching(\n\
+    \    const std::vector<std::pair<int, int>>& edges, int D) {\n    const int n\
+    \ = edges.size() / D;\n\n    auto rec = [&](auto& rec, const auto& edges, int\
+    \ D) {\n        if (D == 1) {\n            return edges;\n        } else if (D\
+    \ % 2 == 0) {\n            // find an eulerian walk for each connected component\n\
+    \            // partition the graph into two\n            std::vector<std::vector<std::pair<int,\
+    \ int>>> G(2 * n);\n            for (int j = 0; j < (int)edges.size(); ++j) {\n\
+    \                auto [a, b, d] = edges[j];\n                G[a].emplace_back(n\
+    \ + b, j);\n                G[n + b].emplace_back(a, j);\n            }\n    \
+    \        std::vector<bool> used_v(2 * n), used_e(edges.size());\n            std::vector<std::vector<std::tuple<int,\
+    \ int, bool>>> edges2(2);\n            std::vector<int> dummy_cnt(2);\n\n    \
+    \        for (int v = 0; v < n; ++v) {\n                if (used_v[v]) continue;\n\
+    \n                std::vector<int> walk;\n                std::stack<std::pair<int,\
+    \ int>> st;\n                st.emplace(v, -1);\n                while (!st.empty())\
+    \ {\n                    auto [u, j] = st.top();\n                    used_v[u]\
+    \ = true;\n                    while (!G[u].empty() && used_e[G[u].back().second])\
+    \ {\n                        G[u].pop_back();\n                    }\n       \
+    \             if (G[u].empty()) {\n                        walk.push_back(j);\n\
+    \                        st.pop();\n                    } else {\n           \
+    \             auto [v, k] = G[u].back();\n                        G[u].pop_back();\n\
+    \                        used_e[k] = true;\n                        st.emplace(v,\
+    \ k);\n                    }\n                }\n\n                for (int i\
+    \ = 0; i < (int)walk.size() - 1; ++i) {\n                    edges2[i % 2].push_back(edges[walk[i]]);\n\
+    \                    dummy_cnt[i % 2] += std::get<2>(edges[walk[i]]);\n      \
+    \          }\n            }\n            return rec(rec, dummy_cnt[0] < dummy_cnt[1]\
+    \ ? edges2[0] : edges2[1],\n                       D / 2);\n        } else {\n\
+    \            int size = 1;\n            while (size < D) size <<= 1;\n\n     \
+    \       // add size-D dummy edges\n            auto edges2 = edges;\n        \
+    \    for (int i = 0; i < n; ++i) {\n                for (int j = 0; j < size -\
+    \ D; ++j) {\n                    edges2.emplace_back(i, i, true);\n          \
+    \      }\n            }\n\n            while (true) {\n                auto res\
+    \ = rec(rec, edges2, size);\n                int cnt = 0;\n                for\
+    \ (auto [a, b, d] : res) {\n                    cnt += d;\n                }\n\
+    \                if (cnt == 0) return res;\n                // add res size-D\
+    \ times\n                edges2 = edges;\n                for (auto [a, b, d]\
+    \ : res) {\n                    for (int j = 0; j < size - D; ++j) {\n       \
+    \                 edges2.emplace_back(a, b, d);\n                    }\n     \
+    \           }\n            }\n        }\n    };\n\n    std::vector<std::tuple<int,\
+    \ int, bool>> edges2;\n    for (auto [a, b] : edges) {\n        edges2.emplace_back(a,\
+    \ b, false);\n    }\n    auto res = rec(rec, edges2, D);\n    std::vector<std::pair<int,\
+    \ int>> ret;\n    for (auto [a, b, d] : res) {\n        ret.emplace_back(a, b);\n\
+    \    }\n    return ret;\n}\n#line 4 \"test/yosupo/bipartite_edge_coloring.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int L, R, M;\n    cin >> L >> R >> M;\n    vector<pair<int,\
     \ int>> edges(M);\n    map<pair<int, int>, int> idx;\n    for (int i = 0; i <\
     \ M; ++i) {\n        pair<int, int> p;\n        cin >> p.first >> p.second;\n\
     \        idx[p] = i;\n        edges[i] = p;\n    }\n    auto ans = bipartite_edge_coloring(edges,\
-    \ L, R);\n    cout << *max_element(ans.begin(), ans.end())+1 << \"\\n\";\n   \
-    \ for (int i = 0; i < M; ++i) cout << ans[i] << \"\\n\";\n}\n"
+    \ L, R);\n    cout << *max_element(ans.begin(), ans.end()) + 1 << \"\\n\";\n \
+    \   for (int i = 0; i < M; ++i) cout << ans[i] << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartite_edge_coloring\"\
     \n\n#include \"../../graph/bipartite_edge_coloring.hpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -175,17 +182,15 @@ data:
     \ int>> edges(M);\n    map<pair<int, int>, int> idx;\n    for (int i = 0; i <\
     \ M; ++i) {\n        pair<int, int> p;\n        cin >> p.first >> p.second;\n\
     \        idx[p] = i;\n        edges[i] = p;\n    }\n    auto ans = bipartite_edge_coloring(edges,\
-    \ L, R);\n    cout << *max_element(ans.begin(), ans.end())+1 << \"\\n\";\n   \
-    \ for (int i = 0; i < M; ++i) cout << ans[i] << \"\\n\";\n}"
+    \ L, R);\n    cout << *max_element(ans.begin(), ans.end()) + 1 << \"\\n\";\n \
+    \   for (int i = 0; i < M; ++i) cout << ans[i] << \"\\n\";\n}"
   dependsOn:
   - graph/bipartite_edge_coloring.hpp
-  - data-structure/unionfind/union_find.cpp
   - graph/bipartite_matching.hpp
-  - graph/eulerian_path.hpp
   isVerificationFile: true
   path: test/yosupo/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2022-10-31 15:58:21+09:00'
+  timestamp: '2023-05-27 03:55:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bipartite_edge_coloring.test.cpp

@@ -15,39 +15,39 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"math/combination.cpp\"\n#include <vector>\n\ntemplate <typename\
-    \ T>\nclass Combination {\npublic:\n    Combination() = default;\n    Combination(int\
+    \ mint>\nclass Combination {\n   public:\n    Combination() = default;\n    Combination(int\
     \ n) : fact_(n + 1), fact_inv_(n + 1) {\n        fact_[0] = 1;\n        for (int\
-    \ i = 1; i <= n; ++i) fact_[i] = fact_[i - 1] * i;\n        fact_inv_[n] = T(1)\
-    \ / fact_[n];\n        for (int i = n; i > 0; --i) fact_inv_[i - 1] = fact_inv_[i]\
-    \ * i;\n    }\n\n    T perm(int n, int r) const {\n        if (r < 0 || n < r)\
-    \ return 0;\n        return fact_[n] * fact_inv_[n - r];\n    }\n\n    T comb(int\
-    \ n, int r) const {\n        if (r < 0 || n < r) return 0;\n        return fact_[n]\
-    \ * fact_inv_[r] * fact_inv_[n - r];\n    }\n\n    T fact(int n) const { return\
-    \ fact_[n]; }\n    T fact_inv(int n) const { return fact_inv_[n]; }\n\nprivate:\n\
-    \    std::vector<T> fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(int\
-    \ n, int r) {\n    if (r < 0 || n < r) return 0;\n    T num = 1, den = 1;\n  \
-    \  for (int i = 1; i <= r; ++i) {\n        num = num * (n - i + 1);\n        den\
-    \ = den * i;\n    }\n    return num / den;\n}\n"
-  code: "#pragma once\n#include <vector>\n\ntemplate <typename T>\nclass Combination\
-    \ {\npublic:\n    Combination() = default;\n    Combination(int n) : fact_(n +\
-    \ 1), fact_inv_(n + 1) {\n        fact_[0] = 1;\n        for (int i = 1; i <=\
-    \ n; ++i) fact_[i] = fact_[i - 1] * i;\n        fact_inv_[n] = T(1) / fact_[n];\n\
+    \ i = 1; i <= n; ++i) fact_[i] = fact_[i - 1] * i;\n        fact_inv_[n]=fact_[n].inv();\n\
     \        for (int i = n; i > 0; --i) fact_inv_[i - 1] = fact_inv_[i] * i;\n  \
-    \  }\n\n    T perm(int n, int r) const {\n        if (r < 0 || n < r) return 0;\n\
-    \        return fact_[n] * fact_inv_[n - r];\n    }\n\n    T comb(int n, int r)\
-    \ const {\n        if (r < 0 || n < r) return 0;\n        return fact_[n] * fact_inv_[r]\
-    \ * fact_inv_[n - r];\n    }\n\n    T fact(int n) const { return fact_[n]; }\n\
-    \    T fact_inv(int n) const { return fact_inv_[n]; }\n\nprivate:\n    std::vector<T>\
-    \ fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(int n, int r) {\n   \
-    \ if (r < 0 || n < r) return 0;\n    T num = 1, den = 1;\n    for (int i = 1;\
-    \ i <= r; ++i) {\n        num = num * (n - i + 1);\n        den = den * i;\n \
-    \   }\n    return num / den;\n}"
+    \  }\n\n    mint perm(int n, int k) const {\n        if (k < 0 || n < k) return\
+    \ 0;\n        return fact_[n] * fact_inv_[n - k];\n    }\n\n    mint comb(int\
+    \ n, int k) const {\n        if (k < 0 || n < k) return 0;\n        return fact_[n]\
+    \ * fact_inv_[k] * fact_inv_[n - k];\n    }\n\n    mint fact(int n) const { return\
+    \ fact_[n]; }\n    mint fact_inv(int n) const { return fact_inv_[n]; }\n\n   private:\n\
+    \    std::vector<mint> fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(long\
+    \ long n, int k) {\n    if (k < 0 || n < k) return 0;\n    T num = 1, den = 1;\n\
+    \    for (int i = 1; i <= k; ++i) {\n        num = num * (n - i + 1);\n      \
+    \  den = den * i;\n    }\n    return num / den;\n}\n"
+  code: "#pragma once\n#include <vector>\n\ntemplate <typename mint>\nclass Combination\
+    \ {\n   public:\n    Combination() = default;\n    Combination(int n) : fact_(n\
+    \ + 1), fact_inv_(n + 1) {\n        fact_[0] = 1;\n        for (int i = 1; i <=\
+    \ n; ++i) fact_[i] = fact_[i - 1] * i;\n        fact_inv_[n]=fact_[n].inv();\n\
+    \        for (int i = n; i > 0; --i) fact_inv_[i - 1] = fact_inv_[i] * i;\n  \
+    \  }\n\n    mint perm(int n, int k) const {\n        if (k < 0 || n < k) return\
+    \ 0;\n        return fact_[n] * fact_inv_[n - k];\n    }\n\n    mint comb(int\
+    \ n, int k) const {\n        if (k < 0 || n < k) return 0;\n        return fact_[n]\
+    \ * fact_inv_[k] * fact_inv_[n - k];\n    }\n\n    mint fact(int n) const { return\
+    \ fact_[n]; }\n    mint fact_inv(int n) const { return fact_inv_[n]; }\n\n   private:\n\
+    \    std::vector<mint> fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(long\
+    \ long n, int k) {\n    if (k < 0 || n < k) return 0;\n    T num = 1, den = 1;\n\
+    \    for (int i = 1; i <= k; ++i) {\n        num = num * (n - i + 1);\n      \
+    \  den = den * i;\n    }\n    return num / den;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/combination.cpp
   requiredBy:
   - math/stirling_second.hpp
-  timestamp: '2021-11-04 23:22:32+09:00'
+  timestamp: '2023-05-27 03:55:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp

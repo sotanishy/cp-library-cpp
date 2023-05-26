@@ -291,9 +291,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/enumerate_triangles.cpp
       title: Triangle Enumeration
-    - icon: ':heavy_check_mark:'
-      path: graph/eulerian_path.hpp
-      title: Eulerian Path
+    - icon: ':warning:'
+      path: graph/eulerian_walk.hpp
+      title: Eulerian Walk
     - icon: ':heavy_check_mark:'
       path: graph/general_matching.hpp
       title: General Matching
@@ -362,6 +362,9 @@ data:
     - icon: ':warning:'
       path: math/combination_arbitrary_mod.hpp
       title: Combination
+    - icon: ':warning:'
+      path: math/combination_large.hpp
+      title: Combination (Large)
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
