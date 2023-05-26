@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <vector>
 
-template <typename S>
+template <typename M>
 class SparseTable {
-    using T = typename S::T;
+    using T = typename M::T;
 
-public:
+   public:
     SparseTable() = default;
     explicit SparseTable(const std::vector<T>& v) {
         int n = v.size(), b = 0;
@@ -15,16 +15,18 @@ public:
         std::copy(v.begin(), v.end(), lookup[0].begin());
         for (int i = 1; i < b; ++i) {
             for (int j = 0; j + (1 << i) <= n; ++j) {
-                lookup[i][j] = S::op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
+                lookup[i][j] =
+                    M::op(lookup[i - 1][j], lookup[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
 
     T fold(int l, int r) const {
+        if (l == r) return M::id();
         int i = 31 - __builtin_clz(r - l);
-        return S::op(lookup[i][l], lookup[i][r - (1 << i)]);
+        return M::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 
-private:
+   private:
     std::vector<std::vector<T>> lookup;
 };

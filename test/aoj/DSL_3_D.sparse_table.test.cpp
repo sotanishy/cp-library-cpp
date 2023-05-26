@@ -1,15 +1,15 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D"
-
-#include "../../data-structure/sparse_table.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D"
 
 #include <bits/stdc++.h>
+
+#include "../../data-structure/sparse_table.cpp"
 using namespace std;
 
-struct S {
+struct MinMonoid {
     using T = int;
-    static T op(T a, T b) {
-        return min(a, b);
-    }
+    static T id() { return (1u << 31) - 1; }
+    static T op(T a, T b) { return min(a, b); }
 };
 
 int main() {
@@ -20,10 +20,12 @@ int main() {
     cin >> N >> L;
     vector<int> a(N);
     for (int i = 0; i < N; i++) cin >> a[i];
-    SparseTable<S> st(a);
+    SparseTable<MinMonoid> st(a);
     for (int i = 0; i < N - L + 1; i++) {
         cout << st.fold(i, i + L);
-        if (i < N - L) cout << " ";
-        else cout << "\n";
+        if (i < N - L)
+            cout << " ";
+        else
+            cout << "\n";
     }
 }

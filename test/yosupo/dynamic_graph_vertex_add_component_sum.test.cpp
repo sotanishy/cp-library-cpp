@@ -1,8 +1,9 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
-
-#include "../../graph/offline_dynamic_connectivity.cpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
 
 #include <bits/stdc++.h>
+
+#include "../../graph/offline_dynamic_connectivity.cpp"
 using namespace std;
 
 using ll = long long;
@@ -10,9 +11,7 @@ using ll = long long;
 struct AddMonoid {
     using T = ll;
     static T id() { return 0; }
-    static T op(T a, T b) {
-        return a + b;
-    }
+    static T op(T a, T b) { return a + b; }
 };
 
 int main() {
@@ -49,5 +48,5 @@ int main() {
         }
     }
     auto ans = dc.run();
-    for (auto x : ans) cout << x << "\n";
+    for (auto x : ans) cout << x.second << "\n";
 }

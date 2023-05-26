@@ -3,10 +3,11 @@
 #include <utility>
 #include <vector>
 
-std::vector<int> eulerian_path(const std::vector<std::pair<int, int>>& edges, int V) {
+std::vector<int> eulerian_walk(const std::vector<std::pair<int, int>>& edges,
+                               int V) {
     std::vector<std::vector<std::pair<int, int>>> G(V);
     std::vector<int> deg(V);
-    for (int i = 0; i < (int) edges.size(); ++i) {
+    for (int i = 0; i < (int)edges.size(); ++i) {
         auto [a, b] = edges[i];
         G[a].push_back({b, i});
         G[b].push_back({a, i});

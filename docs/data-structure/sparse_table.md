@@ -5,7 +5,7 @@ documentation_of: ../../data-structure/sparse_table.cpp
 
 ## Description
 
-Sparse table は，冪等半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．
+Sparse table は，冪等モノイド $(T, \cdot, e)$ の静的な列の区間積を高速に計算するデータ構造である．
 
 冪等な二項演算とは， $\forall a \in T, a \cdot a = a$ が成り立つような写像 $\cdot: T \times T \rightarrow T$ である．冪等な二項演算には，max, min, gcd, bitwise and, bitwise or などがある．
 

@@ -1,15 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../data-structure/disjoint_sparse_table.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/disjoint_sparse_table.cpp"
 using namespace std;
 
-struct S {
+struct MinMonoid {
     using T = int;
-    static T op(T a, T b) {
-        return min(a, b);
-    }
+    static T id() { return (1u << 31) - 1; }
+    static T op(T a, T b) { return min(a, b); }
 };
 
 int main() {
@@ -20,7 +19,7 @@ int main() {
     cin >> N >> Q;
     vector<int> a(N);
     for (int i = 0; i < N; i++) cin >> a[i];
-    DisjointSparseTable<S> st(a);
+    DisjointSparseTable<MinMonoid> st(a);
     for (int i = 0; i < Q; i++) {
         int l, r;
         cin >> l >> r;

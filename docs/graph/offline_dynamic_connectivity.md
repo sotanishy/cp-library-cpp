@@ -8,8 +8,9 @@ documentation_of: ../../graph/offline_dynamic_connectivity.cpp
 グラフに対する以下のクエリをオフラインで処理する:
 - 辺の追加
 - 辺の削除
-- 連結成分の fold
 - 頂点の値の更新
+- 2頂点が同一の連結成分に属するかの判定
+- 連結成分の fold
 
 Undo 可能 union find を用いることでこれらの操作を実現する．
 
@@ -25,16 +26,14 @@ Undo 可能 union find を用いることでこれらの操作を実現する．
     - 時間計算量: $O(n)$
 - `void link(int u, int v)`
     - 辺 $uv$ を追加する
-    - 時間計算量: $O(\log q)$
 - `void cut(int u, int v)`
     - 辺 $uv$ を削除する
-    - 時間計算量: $O(\log q)$
 - `void update(int v, T x)`
     - $a_v$ を $a_v \cdot x$ に更新する
-    - 時間計算量: $O(1)$
+- `void same(int u, int v)`
+    - 頂点 $u,v$ が同一の連結成分に属するかどうか判定する
 - `void component_fold(int v)`
     - 頂点 $v$ が属する連結成分の頂点の値を fold する
-    - 時間計算量: $O(1)$
-- `vector<T> run()`
-    - クエリを実行し，`component_fold`の結果を返す
+- `vector<pair<bool, T>> run()`
+    - クエリを実行し， `same` と `component_fold`の結果を返す． (返り値は `{same の結果, M::id()}` または `{false, component_fold の結果}` の形式)
     - 時間計算量: $O(n + q\log q\log n)$

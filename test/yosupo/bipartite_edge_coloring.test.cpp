@@ -20,6 +20,6 @@ int main() {
         edges[i] = p;
     }
     auto ans = bipartite_edge_coloring(edges, L, R);
-    cout << *max_element(ans.begin(), ans.end())+1 << "\n";
+    cout << *max_element(ans.begin(), ans.end()) + 1 << "\n";
     for (int i = 0; i < M; ++i) cout << ans[i] << "\n";
 }

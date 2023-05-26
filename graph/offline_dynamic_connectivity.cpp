@@ -5,30 +5,32 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+
 #include "../data-structure/unionfind/undoable_union_find.cpp"
 
 template <typename M>
 class OfflineDynamicConnectivity {
     using T = typename M::T;
 
-public:
+   public:
     OfflineDynamicConnectivity() = default;
-    explicit OfflineDynamicConnectivity(int n) : OfflineDynamicConnectivity(std::vector<T>(n, M::id())) {}
+    explicit OfflineDynamicConnectivity(int n)
+        : OfflineDynamicConnectivity(std::vector<T>(n, M::id())) {}
     explicit OfflineDynamicConnectivity(const std::vector<T>& v) : val(v) {}
 
     void link(int u, int v) {
         ++now;
         auto edge = std::minmax(u, v);
-        assert(!open.count(edge));
-        open[edge] = now;
+        open.emplace(edge, now);
     }
 
     void cut(int u, int v) {
         ++now;
         auto edge = std::minmax(u, v);
-        assert(open.count(edge));
-        closed.emplace_back(edge.first, edge.second, open[edge], now);
-        open.erase(edge);
+        auto it = open.find(edge);
+        assert(it != open.end());
+        closed.emplace_back(edge.first, edge.second, it->second, now);
+        open.erase(it);
     }
 
     void update(int v, const T& x) {
@@ -36,12 +38,17 @@ public:
         query_update.emplace_back(now, v, x);
     }
 
+    void same(int u, int v) {
+        ++now;
+        query_same[now] = {u, v};
+    }
+
     void component_fold(int v) {
         ++now;
         query_fold[now] = v;
     }
 
-    std::vector<T> run() {
+    std::vector<std::pair<bool, T>> run() {
         ++now;
 
         // cut edges
@@ -72,7 +79,7 @@ public:
 
         // handle queries
         UndoableUnionFind<M> uf(val);
-        std::vector<T> ret;
+        std::vector<std::pair<bool, T>> ret;
 
         auto dfs = [&](const auto& self, int k) -> void {
             for (auto [u, v] : edges[k]) {
@@ -85,11 +92,17 @@ public:
                 self(self, 2 * k);
                 self(self, 2 * k + 1);
             } else if (k < size + now) {
+                if (query_same.count(k - size)) {
+                    auto [u, v] = query_same[k - size];
+                    ret.emplace_back(uf.same(u, v), M::id());
+                }
                 if (query_fold.count(k - size)) {
-                    ret.emplace_back(uf.component_fold(query_fold[k - size]));
+                    ret.emplace_back(false,
+                                     uf.component_fold(query_fold[k - size]));
                 }
             }
-            for (int i = 0; i < (int) (edges[k].size() + updates[k].size()); ++i) {
+            for (int i = 0; i < (int)(edges[k].size() + updates[k].size());
+                 ++i) {
                 uf.undo();
             }
         };
@@ -98,11 +111,12 @@ public:
         return ret;
     }
 
-private:
+   private:
     int now = 0;
-    std::map<std::pair<int, int>, int> open;
+    std::multimap<std::pair<int, int>, int> open;
     std::vector<std::tuple<int, int, int, int>> closed;
     std::vector<std::tuple<int, int, T>> query_update;
+    std::map<int, std::pair<int, int>> query_same;
     std::map<int, int> query_fold;
     std::vector<T> val;
 };

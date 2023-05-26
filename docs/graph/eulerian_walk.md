@@ -1,6 +1,6 @@
 ---
-title: Eulerian Path
-documentation_of: ../../graph/eulerian_path.hpp
+title: Eulerian Walk
+documentation_of: ../../graph/eulerian_walk.hpp
 ---
 
 ## Description
@@ -13,6 +13,6 @@ Euler 路 (グラフのすべての辺を通る路) を一つ見つける．
 
 ## Operations
 
-- `vector<int> eulerian_path(vector<pair<int, int>> edges, int V)`
+- `vector<int> eulerian_walk(vector<pair<int, int>> edges, int V)`
     - 頂点数 $V$ のグラフ $G$ の辺集合が与えられたとき，$G$ の Euler 路に現れる頂点を順番に返す．存在しない場合は空リストを返す．
     - 時間計算量: $O(E)$

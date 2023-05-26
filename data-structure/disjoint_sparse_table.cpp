@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <vector>
 
-template <typename S>
+template <typename M>
 class DisjointSparseTable {
-    using T = typename S::T;
+    using T = typename M::T;
 
-public:
+   public:
     DisjointSparseTable() = default;
     explicit DisjointSparseTable(const std::vector<T>& v) {
         int n = v.size(), b = 0;
@@ -19,22 +19,23 @@ public:
                 int m = l + len / 2;
                 lookup[i][m - 1] = v[m - 1];
                 for (int j = m - 2; j >= l; --j) {
-                    lookup[i][j] = S::op(lookup[i][j + 1], v[j]);
+                    lookup[i][j] = M::op(lookup[i][j + 1], v[j]);
                 }
                 lookup[i][m] = v[m];
                 for (int j = m + 1; j < std::min(l + len, n); ++j) {
-                    lookup[i][j] = S::op(lookup[i][j - 1], v[j]);
+                    lookup[i][j] = M::op(lookup[i][j - 1], v[j]);
                 }
             }
         }
     }
 
     T fold(int l, int r) const {
+        if (l == r) return M::id();
         if (r - l == 1) return lookup[0][l];
         int i = 32 - __builtin_clz(l ^ (r - 1));
-        return S::op(lookup[i][l], lookup[i][r - 1]);
+        return M::op(lookup[i][l], lookup[i][r - 1]);
     }
 
-private:
+   private:
     std::vector<std::vector<T>> lookup;
 };

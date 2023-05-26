@@ -5,9 +5,9 @@ documentation_of: ../../data-structure/disjoint_sparse_table.cpp
 
 ## Description
 
-Disjoint sparse table は，半群 $(T, \cdot)$ の静的な列の区間和を高速に計算するデータ構造である．Sparse table と違って二項演算 $\cdot$ に冪等性を要求しない．
+Disjoint sparse table は，モノイド $(T, \cdot, e)$ の静的な列の区間積を高速に計算するデータ構造である．Sparse table と違って二項演算 $\cdot$ に冪等性を要求しない．
 
-空間計算量: $O(n \lg n)$
+空間計算量: $O(n \log n)$
 
 ## Operations
 
