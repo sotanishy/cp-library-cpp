@@ -1,29 +1,28 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum"
-
-#include "../../tree/euler_tour_tree.cpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum"
 
 #include <bits/stdc++.h>
+
+#include "../../tree/euler_tour_tree.cpp"
 using namespace std;
 
 using ll = long long;
 
 struct AddRangeMonoid {
     using T = pair<ll, int>;
-    static constexpr T id = {0, 0};
-    static T op(T a, T b) {
-        return {a.first + b.first, a.second + b.second};
-    }
+    static T id() { return {0, 0}; }
+    static T op(T a, T b) { return {a.first + b.first, a.second + b.second}; }
 };
 
 struct AddMonoid {
     using T = ll;
-    static constexpr T id = 0;
-    static T op(T a, T b) {
-        return a + b;
-    }
+    static T id() { return 0; }
+    static T op(T a, T b) { return a + b; }
 };
 
-pair<ll, int> act(pair<ll, int> a, ll b) { return {a.first + a.second * b, a.second}; }
+pair<ll, int> act(pair<ll, int> a, ll b) {
+    return {a.first + a.second * b, a.second};
+}
 
 int main() {
     ios_base::sync_with_stdio(false);

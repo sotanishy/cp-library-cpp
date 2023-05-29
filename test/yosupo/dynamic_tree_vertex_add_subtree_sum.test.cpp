@@ -1,17 +1,16 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum"
-
-#include "../../tree/euler_tour_tree.cpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum"
 
 #include <bits/stdc++.h>
+
+#include "../../tree/euler_tour_tree.cpp"
 using namespace std;
 using ll = long long;
 
 struct AddMonoid {
     using T = ll;
-    static constexpr T id = 0;
-    static T op(T a, T b) {
-        return a + b;
-    }
+    static T id() { return 0; }
+    static T op(T a, T b) { return a + b; }
 };
 
 ll act(ll a, ll b) { return a + b; }

@@ -5,12 +5,13 @@
 #include <utility>
 #include <vector>
 
-template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
-class EulerTourTree{
+template <typename M, typename O,
+          typename M::T (*act)(typename M::T, typename O::T)>
+class EulerTourTree {
     using T = typename M::T;
     using E = typename O::T;
 
-public:
+   public:
     EulerTourTree() = default;
     explicit EulerTourTree(int n) {
         ptr.resize(n);
@@ -35,9 +36,7 @@ public:
         ptr[v].erase(u);
     }
 
-    bool same(int u, int v) {
-        return same(get_node(u, u), get_node(v, v));
-    }
+    bool same(int u, int v) { return same(get_node(u, u), get_node(v, v)); }
 
     T get(int v) {
         auto t = get_node(v, v);
@@ -69,7 +68,7 @@ public:
         return ret;
     }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::shared_ptr<Node>;
 
@@ -77,15 +76,16 @@ private:
         node_ptr ch[2] = {nullptr, nullptr};
         node_ptr par = nullptr;
         int from, to, sz;
-        T val = M::id, sum = M::id;
-        E lazy = O::id;
+        T val = M::id(), sum = M::id();
+        E lazy = O::id();
         Node(int from, int to) : from(from), to(to), sz(from == to) {}
     };
 
     std::vector<std::unordered_map<int, node_ptr>> ptr;
 
     node_ptr get_node(int u, int v) {
-        if (ptr[u].find(v) == ptr[u].end()) ptr[u][v] = std::make_shared<Node>(u, v);
+        if (ptr[u].find(v) == ptr[u].end())
+            ptr[u][v] = std::make_shared<Node>(u, v);
         return ptr[u][v];
     }
 
@@ -108,9 +108,7 @@ private:
 
     // splay tree
 
-    static int size(const node_ptr& t) {
-        return t ? t->sz : 0;
-    }
+    static int size(const node_ptr& t) { return t ? t->sz : 0; }
 
     static node_ptr recalc(const node_ptr& t) {
         if (!t) return t;
@@ -122,7 +120,7 @@ private:
     }
 
     static void push(const node_ptr& t) {
-        if (t->lazy != O::id) {
+        if (t->lazy != O::id()) {
             t->val = act(t->val, t->lazy);
             if (t->ch[0]) {
                 t->ch[0]->lazy = O::op(t->ch[0]->lazy, t->lazy);
@@ -132,7 +130,7 @@ private:
                 t->ch[1]->lazy = O::op(t->ch[1]->lazy, t->lazy);
                 t->ch[1]->sum = act(t->ch[1]->sum, t->lazy);
             }
-            t->lazy = O::id;
+            t->lazy = O::id();
         }
         recalc(t);
     }
@@ -155,7 +153,7 @@ private:
         return {s, recalc(t)};
     }
 
-    static std::pair<node_ptr,node_ptr> split2(node_ptr t) {
+    static std::pair<node_ptr, node_ptr> split2(node_ptr t) {
         splay(t);
         auto l = t->ch[0];
         auto r = t->ch[1];
@@ -166,7 +164,8 @@ private:
         return {l, r};
     }
 
-    static std::tuple<node_ptr, node_ptr, node_ptr> split(node_ptr s, node_ptr t) {
+    static std::tuple<node_ptr, node_ptr, node_ptr> split(node_ptr s,
+                                                          node_ptr t) {
         node_ptr a, b, c, d;
         std::tie(a, b) = split2(s);
         if (same(a, t)) {
@@ -188,8 +187,10 @@ private:
         recalc(t);
         t->par = g;
         if (t->par) {
-            if (g->ch[0] == p) g->ch[0] = t;
-            else g->ch[1] = t;
+            if (g->ch[0] == p)
+                g->ch[0] = t;
+            else
+                g->ch[1] = t;
             recalc(g);
         }
     }
