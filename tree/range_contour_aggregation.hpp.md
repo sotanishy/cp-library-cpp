@@ -18,9 +18,9 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/range_contour_aggregation.hpp\"\n#include <map>\n#include\
-    \ <queue>\n#include <utility>\n#include <vector>\n#line 2 \"data-structure/fenwick_tree.cpp\"\
+    \ <queue>\n#include <utility>\n#include <vector>\n\n#line 2 \"data-structure/fenwick_tree.cpp\"\
     \n#include <functional>\n#line 4 \"data-structure/fenwick_tree.cpp\"\n\ntemplate\
-    \ <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\npublic:\n\
+    \ <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\n   public:\n\
     \    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n), data(n\
     \ + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n        T ret = M::id();\n\
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
@@ -31,8 +31,8 @@ data:
     \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
     \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
     \      v = nv;\n                i += k;\n            }\n        }\n        return\
-    \ i;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n};\n#line 2 \"\
-    tree/centroid_decomposition.hpp\"\n#include <tuple>\n#line 4 \"tree/centroid_decomposition.hpp\"\
+    \ i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T> data;\n};\n#line\
+    \ 2 \"tree/centroid_decomposition.hpp\"\n#include <tuple>\n#line 4 \"tree/centroid_decomposition.hpp\"\
     \n\nstd::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const\
     \ std::vector<std::vector<int>>& G) {\n    int N = G.size();\n    std::vector<int>\
     \ sz(N), level(N, -1), sz_comp(N), par(N);\n\n    auto dfs_size = [&](auto& dfs_size,\
@@ -47,63 +47,15 @@ data:
     \ = k;\n        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s])\
     \ {\n            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n    \
     \    }\n    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp,\
-    \ par};\n}\n#line 8 \"tree/range_contour_aggregation.hpp\"\n\ntemplate <typename\
+    \ par};\n}\n#line 9 \"tree/range_contour_aggregation.hpp\"\n\ntemplate <typename\
     \ Group>\nclass RangeContourAggregation {\n    using T = typename Group::T;\n\n\
-    public:\n    RangeContourAggregation() = default;\n    explicit RangeContourAggregation(const\
-    \ std::vector<std::vector<int>>& G)\n        : seg(G.size()), seg_sub(G.size()),\
-    \ dist(G.size()), idx(G.size()),\n          sub(G.size()), idx_sub(G.size()),\
-    \ first(G.size()), first_sub(G.size()) {\n\n        std::tie(level, sz_comp, par)\
-    \ = centroid_decomposition(G);\n\n        for (int v = 0; v < (int) G.size();\
-    \ ++v) {\n            // calculate for each vertex u,\n            // dist: dist\
-    \ from v\n            // idx: index in the BFS order\n            // sub: subtree\
-    \ of v that u belongs to\n            // idx_sub: index in the subtree\n\n   \
-    \         // calculate for each depth d,\n            // first: first index of\
-    \ depth d\n            // first_sub: first index of depth d in the subtree i\n\
-    \n            dist[v][v] = 0;\n            std::queue<std::pair<int, int>> que;\n\
-    \            que.push({v, -1});\n            int k = 0, sub_idx = 0;\n       \
-    \     std::vector<int> ks;\n\n            while (!que.empty()) {\n           \
-    \     auto [u, i] = que.front();\n                que.pop();\n\n             \
-    \   // update component info\n                int d = dist[v][u];\n          \
-    \      if (d >= (int) first[v].size()) {\n                    first[v].push_back(k);\n\
-    \                }\n                idx[v][u] = k++;\n                // enter\
-    \ subtree\n                if (d == 1) {\n                    i = sub_idx++;\n\
-    \                    ks.push_back(0);\n                    first_sub[v].emplace_back();\n\
-    \                }\n                // update subtree info\n                if\
-    \ (i != -1) {\n                    sub[v][u] = i;\n                    if (d-1\
-    \ >= (int) first_sub[v][i].size()) {\n                        first_sub[v][i].push_back(ks[i]);\n\
-    \                    }\n                    idx_sub[v][u] = ks[i]++;\n       \
-    \         }\n\n                for (int w : G[u]) {\n                    if (level[w]\
-    \ > level[v] && !dist[v].count(w)) {\n                        dist[v][w] = d +\
-    \ 1;\n                        que.push({w, i});\n                    }\n     \
-    \           }\n            }\n\n            first[v].push_back(k);\n         \
-    \   seg[v] = FenwickTree<Group>(k);\n            for (int i = 0; i < sub_idx;\
-    \ ++i) {\n                first_sub[v][i].push_back(ks[i]);\n                seg_sub[v].emplace_back(ks[i]);\n\
-    \            }\n        }\n    }\n\n    void update(int v, T x) {\n        seg[v].update(0,\
-    \ x);\n        for (int p = par[v]; p != -1; p = par[p]) {\n            seg[p].update(idx[p][v],\
-    \ x);\n            int i = sub[p][v];\n            seg_sub[p][i].update(idx_sub[p][v],\
-    \ x);\n        }\n    }\n\n    T fold(int v, int d) const {\n        int dd =\
-    \ std::min((int) first[v].size() - 1, d);\n        T res = seg[v].prefix_fold(first[v][dd]);\n\
-    \        for (int p = par[v]; p != -1; p = par[p]) {\n            int dep = d\
-    \ - dist[p].at(v);\n            if (dep >= 0) {\n                dd = std::min((int)\
-    \ first[p].size() - 1, dep);\n                res = Group::op(res, seg[p].prefix_fold(first[p][dd]));\n\
-    \                if (dd > 0) {\n                    int i = sub[p].at(v);\n  \
-    \                  dd = std::min((int) first_sub[p][i].size() - 1, dep - 1);\n\
-    \                    res = Group::op(res, Group::inv(seg_sub[p][i].prefix_fold(first_sub[p][i][dd])));\n\
-    \                }\n            }\n        }\n        return res;\n    }\n\nprivate:\n\
-    \    std::vector<int> level, sz_comp, par;\n    std::vector<FenwickTree<Group>>\
-    \ seg;\n    std::vector<std::vector<FenwickTree<Group>>> seg_sub;\n    std::vector<std::unordered_map<int,\
-    \ int>> dist, idx, sub, idx_sub;\n    std::vector<std::vector<int>> first;\n \
-    \   std::vector<std::vector<std::vector<int>>> first_sub;\n};\n"
-  code: "#pragma once\n#include <map>\n#include <queue>\n#include <utility>\n#include\
-    \ <vector>\n#include \"../data-structure/fenwick_tree.cpp\"\n#include \"centroid_decomposition.hpp\"\
-    \n\ntemplate <typename Group>\nclass RangeContourAggregation {\n    using T =\
-    \ typename Group::T;\n\npublic:\n    RangeContourAggregation() = default;\n  \
-    \  explicit RangeContourAggregation(const std::vector<std::vector<int>>& G)\n\
-    \        : seg(G.size()), seg_sub(G.size()), dist(G.size()), idx(G.size()),\n\
-    \          sub(G.size()), idx_sub(G.size()), first(G.size()), first_sub(G.size())\
-    \ {\n\n        std::tie(level, sz_comp, par) = centroid_decomposition(G);\n\n\
-    \        for (int v = 0; v < (int) G.size(); ++v) {\n            // calculate\
-    \ for each vertex u,\n            // dist: dist from v\n            // idx: index\
+    \   public:\n    RangeContourAggregation() = default;\n    explicit RangeContourAggregation(const\
+    \ std::vector<std::vector<int>>& G)\n        : seg(G.size()),\n          seg_sub(G.size()),\n\
+    \          dist(G.size()),\n          idx(G.size()),\n          sub(G.size()),\n\
+    \          idx_sub(G.size()),\n          first(G.size()),\n          first_sub(G.size())\
+    \ {\n        std::tie(level, sz_comp, par) = centroid_decomposition(G);\n\n  \
+    \      for (int v = 0; v < (int)G.size(); ++v) {\n            // calculate for\
+    \ each vertex u,\n            // dist: dist from v\n            // idx: index\
     \ in the BFS order\n            // sub: subtree of v that u belongs to\n     \
     \       // idx_sub: index in the subtree\n\n            // calculate for each\
     \ depth d,\n            // first: first index of depth d\n            // first_sub:\
@@ -112,13 +64,13 @@ data:
     \            int k = 0, sub_idx = 0;\n            std::vector<int> ks;\n\n   \
     \         while (!que.empty()) {\n                auto [u, i] = que.front();\n\
     \                que.pop();\n\n                // update component info\n    \
-    \            int d = dist[v][u];\n                if (d >= (int) first[v].size())\
+    \            int d = dist[v][u];\n                if (d >= (int)first[v].size())\
     \ {\n                    first[v].push_back(k);\n                }\n         \
     \       idx[v][u] = k++;\n                // enter subtree\n                if\
     \ (d == 1) {\n                    i = sub_idx++;\n                    ks.push_back(0);\n\
     \                    first_sub[v].emplace_back();\n                }\n       \
     \         // update subtree info\n                if (i != -1) {\n           \
-    \         sub[v][u] = i;\n                    if (d-1 >= (int) first_sub[v][i].size())\
+    \         sub[v][u] = i;\n                    if (d - 1 >= (int)first_sub[v][i].size())\
     \ {\n                        first_sub[v][i].push_back(ks[i]);\n             \
     \       }\n                    idx_sub[v][u] = ks[i]++;\n                }\n\n\
     \                for (int w : G[u]) {\n                    if (level[w] > level[v]\
@@ -131,14 +83,65 @@ data:
     \ x);\n        for (int p = par[v]; p != -1; p = par[p]) {\n            seg[p].update(idx[p][v],\
     \ x);\n            int i = sub[p][v];\n            seg_sub[p][i].update(idx_sub[p][v],\
     \ x);\n        }\n    }\n\n    T fold(int v, int d) const {\n        int dd =\
-    \ std::min((int) first[v].size() - 1, d);\n        T res = seg[v].prefix_fold(first[v][dd]);\n\
+    \ std::min((int)first[v].size() - 1, d);\n        T res = seg[v].prefix_fold(first[v][dd]);\n\
     \        for (int p = par[v]; p != -1; p = par[p]) {\n            int dep = d\
-    \ - dist[p].at(v);\n            if (dep >= 0) {\n                dd = std::min((int)\
-    \ first[p].size() - 1, dep);\n                res = Group::op(res, seg[p].prefix_fold(first[p][dd]));\n\
+    \ - dist[p].at(v);\n            if (dep >= 0) {\n                dd = std::min((int)first[p].size()\
+    \ - 1, dep);\n                res = Group::op(res, seg[p].prefix_fold(first[p][dd]));\n\
     \                if (dd > 0) {\n                    int i = sub[p].at(v);\n  \
-    \                  dd = std::min((int) first_sub[p][i].size() - 1, dep - 1);\n\
-    \                    res = Group::op(res, Group::inv(seg_sub[p][i].prefix_fold(first_sub[p][i][dd])));\n\
-    \                }\n            }\n        }\n        return res;\n    }\n\nprivate:\n\
+    \                  dd = std::min((int)first_sub[p][i].size() - 1, dep - 1);\n\
+    \                    res = Group::op(res, Group::inv(seg_sub[p][i].prefix_fold(\n\
+    \                                             first_sub[p][i][dd])));\n      \
+    \          }\n            }\n        }\n        return res;\n    }\n\n   private:\n\
+    \    std::vector<int> level, sz_comp, par;\n    std::vector<FenwickTree<Group>>\
+    \ seg;\n    std::vector<std::vector<FenwickTree<Group>>> seg_sub;\n    std::vector<std::unordered_map<int,\
+    \ int>> dist, idx, sub, idx_sub;\n    std::vector<std::vector<int>> first;\n \
+    \   std::vector<std::vector<std::vector<int>>> first_sub;\n};\n"
+  code: "#pragma once\n#include <map>\n#include <queue>\n#include <utility>\n#include\
+    \ <vector>\n\n#include \"../data-structure/fenwick_tree.cpp\"\n#include \"centroid_decomposition.hpp\"\
+    \n\ntemplate <typename Group>\nclass RangeContourAggregation {\n    using T =\
+    \ typename Group::T;\n\n   public:\n    RangeContourAggregation() = default;\n\
+    \    explicit RangeContourAggregation(const std::vector<std::vector<int>>& G)\n\
+    \        : seg(G.size()),\n          seg_sub(G.size()),\n          dist(G.size()),\n\
+    \          idx(G.size()),\n          sub(G.size()),\n          idx_sub(G.size()),\n\
+    \          first(G.size()),\n          first_sub(G.size()) {\n        std::tie(level,\
+    \ sz_comp, par) = centroid_decomposition(G);\n\n        for (int v = 0; v < (int)G.size();\
+    \ ++v) {\n            // calculate for each vertex u,\n            // dist: dist\
+    \ from v\n            // idx: index in the BFS order\n            // sub: subtree\
+    \ of v that u belongs to\n            // idx_sub: index in the subtree\n\n   \
+    \         // calculate for each depth d,\n            // first: first index of\
+    \ depth d\n            // first_sub: first index of depth d in the subtree i\n\
+    \n            dist[v][v] = 0;\n            std::queue<std::pair<int, int>> que;\n\
+    \            que.push({v, -1});\n            int k = 0, sub_idx = 0;\n       \
+    \     std::vector<int> ks;\n\n            while (!que.empty()) {\n           \
+    \     auto [u, i] = que.front();\n                que.pop();\n\n             \
+    \   // update component info\n                int d = dist[v][u];\n          \
+    \      if (d >= (int)first[v].size()) {\n                    first[v].push_back(k);\n\
+    \                }\n                idx[v][u] = k++;\n                // enter\
+    \ subtree\n                if (d == 1) {\n                    i = sub_idx++;\n\
+    \                    ks.push_back(0);\n                    first_sub[v].emplace_back();\n\
+    \                }\n                // update subtree info\n                if\
+    \ (i != -1) {\n                    sub[v][u] = i;\n                    if (d -\
+    \ 1 >= (int)first_sub[v][i].size()) {\n                        first_sub[v][i].push_back(ks[i]);\n\
+    \                    }\n                    idx_sub[v][u] = ks[i]++;\n       \
+    \         }\n\n                for (int w : G[u]) {\n                    if (level[w]\
+    \ > level[v] && !dist[v].count(w)) {\n                        dist[v][w] = d +\
+    \ 1;\n                        que.push({w, i});\n                    }\n     \
+    \           }\n            }\n\n            first[v].push_back(k);\n         \
+    \   seg[v] = FenwickTree<Group>(k);\n            for (int i = 0; i < sub_idx;\
+    \ ++i) {\n                first_sub[v][i].push_back(ks[i]);\n                seg_sub[v].emplace_back(ks[i]);\n\
+    \            }\n        }\n    }\n\n    void update(int v, T x) {\n        seg[v].update(0,\
+    \ x);\n        for (int p = par[v]; p != -1; p = par[p]) {\n            seg[p].update(idx[p][v],\
+    \ x);\n            int i = sub[p][v];\n            seg_sub[p][i].update(idx_sub[p][v],\
+    \ x);\n        }\n    }\n\n    T fold(int v, int d) const {\n        int dd =\
+    \ std::min((int)first[v].size() - 1, d);\n        T res = seg[v].prefix_fold(first[v][dd]);\n\
+    \        for (int p = par[v]; p != -1; p = par[p]) {\n            int dep = d\
+    \ - dist[p].at(v);\n            if (dep >= 0) {\n                dd = std::min((int)first[p].size()\
+    \ - 1, dep);\n                res = Group::op(res, seg[p].prefix_fold(first[p][dd]));\n\
+    \                if (dd > 0) {\n                    int i = sub[p].at(v);\n  \
+    \                  dd = std::min((int)first_sub[p][i].size() - 1, dep - 1);\n\
+    \                    res = Group::op(res, Group::inv(seg_sub[p][i].prefix_fold(\n\
+    \                                             first_sub[p][i][dd])));\n      \
+    \          }\n            }\n        }\n        return res;\n    }\n\n   private:\n\
     \    std::vector<int> level, sz_comp, par;\n    std::vector<FenwickTree<Group>>\
     \ seg;\n    std::vector<std::vector<FenwickTree<Group>>> seg_sub;\n    std::vector<std::unordered_map<int,\
     \ int>> dist, idx, sub, idx_sub;\n    std::vector<std::vector<int>> first;\n \
@@ -149,7 +152,7 @@ data:
   isVerificationFile: false
   path: tree/range_contour_aggregation.hpp
   requiredBy: []
-  timestamp: '2022-12-25 14:40:01+09:00'
+  timestamp: '2023-06-03 23:26:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp

@@ -21,7 +21,7 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#line\
     \ 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n#include <vector>\n\
     \ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\n\
-    public:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
+    \   public:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
     \ data(n + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n        T ret =\
     \ M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n  \
     \      return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
@@ -31,14 +31,14 @@ data:
     \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
     \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
     \      v = nv;\n                i += k;\n            }\n        }\n        return\
-    \ i;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n};\n#line 2 \"\
-    tree/hld.cpp\"\n#include <algorithm>\n#line 4 \"tree/hld.cpp\"\n\ntemplate <typename\
-    \ M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD() = default;\n\
-    \    HLD(const std::vector<std::vector<int>>& G, bool edge)\n        : G(G), size(G.size()),\
-    \ depth(G.size()), par(G.size(), -1),\n          in(G.size()), out(G.size()),\
-    \ head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n       \
-    \ decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int v,\
-    \ const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \ i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T> data;\n};\n#line\
+    \ 2 \"tree/hld.cpp\"\n#include <algorithm>\n#line 4 \"tree/hld.cpp\"\n\ntemplate\
+    \ <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD()\
+    \ = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n   \
+    \     : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),\n          in(G.size()),\
+    \ out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n\
+    \        decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int\
+    \ v, const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
     \ <typename F>\n    void update_edge(int u, int v, const T& x, const F& f) const\
     \ {\n        if (in[u] > in[v]) std::swap(u, v);\n        f(in[v], x);\n    }\n\
     \n    template <typename E, typename F>\n    void update(int u, int v, const E&\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 00:55:58+09:00'
+  timestamp: '2023-06-03 23:26:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.hld.test.cpp

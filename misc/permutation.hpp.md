@@ -15,20 +15,20 @@ data:
   bundledCode: "#line 2 \"misc/permutation.hpp\"\n#include <vector>\n\n#line 2 \"\
     data-structure/fenwick_tree.cpp\"\n#include <functional>\n#line 4 \"data-structure/fenwick_tree.cpp\"\
     \n\ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\
-    \npublic:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
-    \ data(n + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n        T ret =\
-    \ M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n  \
-    \      return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
+    \n   public:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) :\
+    \ n(n), data(n + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n        T\
+    \ ret = M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
+    \        return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
     \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
     \ T& x) const {\n        if (x <= M::id()) return 0;\n        int k = 1;\n   \
     \     while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n\
     \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
     \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
     \      v = nv;\n                i += k;\n            }\n        }\n        return\
-    \ i;\n    }\n\nprivate:\n    int n;\n    std::vector<T> data;\n};\n#line 5 \"\
-    misc/permutation.hpp\"\n\n/**\n * @brief Lexicographic Index of Permutations (in\
-    \ Factorial Number System)\n */\n\nstruct AddMonoid {\n    using T = int;\n  \
-    \  static T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n\
+    \ i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T> data;\n};\n#line\
+    \ 5 \"misc/permutation.hpp\"\n\n/**\n * @brief Lexicographic Index of Permutations\
+    \ (in Factorial Number System)\n */\n\nstruct AddMonoid {\n    using T = int;\n\
+    \    static T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n\
     };\n\nstd::vector<int> perm_to_num(const std::vector<int>& P) {\n    int N = P.size();\n\
     \    std::vector<int> num(N);\n    FenwickTree<AddMonoid> ft(N);\n    for (int\
     \ i = N - 1; i >= 0; --i) {\n        ft.update(P[i], 1);\n        num[N - i -\
@@ -54,7 +54,7 @@ data:
   isVerificationFile: false
   path: misc/permutation.hpp
   requiredBy: []
-  timestamp: '2023-04-08 14:20:19+09:00'
+  timestamp: '2023-06-03 23:26:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/permutation.hpp

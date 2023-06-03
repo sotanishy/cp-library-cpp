@@ -49,8 +49,8 @@ data:
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 2 \"data-structure/fenwick_tree.cpp\"\
     \n#include <functional>\n#include <vector>\n\ntemplate <typename M>\nclass FenwickTree\
-    \ {\n    using T = typename M::T;\n\npublic:\n    FenwickTree() = default;\n \
-    \   explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}\n\n    T prefix_fold(int\
+    \ {\n    using T = typename M::T;\n\n   public:\n    FenwickTree() = default;\n\
+    \    explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}\n\n    T prefix_fold(int\
     \ i) const {\n        T ret = M::id();\n        for (; i > 0; i -= i & -i) ret\
     \ = M::op(ret, data[i]);\n        return ret;\n    }\n\n    void update(int i,\
     \ const T& x) {\n        for (++i; i <= n; i += i & -i) data[i] = M::op(data[i],\
@@ -59,8 +59,8 @@ data:
     \ int i = 0;\n        T v = M::id();\n        for (; k > 0; k >>= 1) {\n     \
     \       if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
     \            if (nv < x) {\n                v = nv;\n                i += k;\n\
-    \            }\n        }\n        return i;\n    }\n\nprivate:\n    int n;\n\
-    \    std::vector<T> data;\n};\n#line 5 \"test/yosupo/number_of_subsequences.test.cpp\"\
+    \            }\n        }\n        return i + 1;\n    }\n\n   private:\n    int\
+    \ n;\n    std::vector<T> data;\n};\n#line 5 \"test/yosupo/number_of_subsequences.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nstruct AddMonoid {\n    using T = mint;\n    static T id() { return 0; }\n \
     \   static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2022-12-25 14:40:01+09:00'
+  timestamp: '2023-06-03 23:26:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_subsequences.test.cpp

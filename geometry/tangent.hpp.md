@@ -159,8 +159,8 @@ data:
   timestamp: '2023-05-14 13:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_F.test.cpp
   - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
 documentation_of: geometry/tangent.hpp
 layout: document
 redirect_from:
