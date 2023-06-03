@@ -6,7 +6,7 @@ template <typename M>
 class FenwickTree {
     using T = typename M::T;
 
-public:
+   public:
     FenwickTree() = default;
     explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}
 
@@ -34,10 +34,10 @@ public:
                 i += k;
             }
         }
-        return i;
+        return i + 1;
     }
 
-private:
+   private:
     int n;
     std::vector<T> data;
 };

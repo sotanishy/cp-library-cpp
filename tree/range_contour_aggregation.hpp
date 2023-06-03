@@ -3,6 +3,7 @@
 #include <queue>
 #include <utility>
 #include <vector>
+
 #include "../data-structure/fenwick_tree.cpp"
 #include "centroid_decomposition.hpp"
 
@@ -10,15 +11,20 @@ template <typename Group>
 class RangeContourAggregation {
     using T = typename Group::T;
 
-public:
+   public:
     RangeContourAggregation() = default;
     explicit RangeContourAggregation(const std::vector<std::vector<int>>& G)
-        : seg(G.size()), seg_sub(G.size()), dist(G.size()), idx(G.size()),
-          sub(G.size()), idx_sub(G.size()), first(G.size()), first_sub(G.size()) {
-
+        : seg(G.size()),
+          seg_sub(G.size()),
+          dist(G.size()),
+          idx(G.size()),
+          sub(G.size()),
+          idx_sub(G.size()),
+          first(G.size()),
+          first_sub(G.size()) {
         std::tie(level, sz_comp, par) = centroid_decomposition(G);
 
-        for (int v = 0; v < (int) G.size(); ++v) {
+        for (int v = 0; v < (int)G.size(); ++v) {
             // calculate for each vertex u,
             // dist: dist from v
             // idx: index in the BFS order
@@ -41,7 +47,7 @@ public:
 
                 // update component info
                 int d = dist[v][u];
-                if (d >= (int) first[v].size()) {
+                if (d >= (int)first[v].size()) {
                     first[v].push_back(k);
                 }
                 idx[v][u] = k++;
@@ -54,7 +60,7 @@ public:
                 // update subtree info
                 if (i != -1) {
                     sub[v][u] = i;
-                    if (d-1 >= (int) first_sub[v][i].size()) {
+                    if (d - 1 >= (int)first_sub[v][i].size()) {
                         first_sub[v][i].push_back(ks[i]);
                     }
                     idx_sub[v][u] = ks[i]++;
@@ -87,24 +93,25 @@ public:
     }
 
     T fold(int v, int d) const {
-        int dd = std::min((int) first[v].size() - 1, d);
+        int dd = std::min((int)first[v].size() - 1, d);
         T res = seg[v].prefix_fold(first[v][dd]);
         for (int p = par[v]; p != -1; p = par[p]) {
             int dep = d - dist[p].at(v);
             if (dep >= 0) {
-                dd = std::min((int) first[p].size() - 1, dep);
+                dd = std::min((int)first[p].size() - 1, dep);
                 res = Group::op(res, seg[p].prefix_fold(first[p][dd]));
                 if (dd > 0) {
                     int i = sub[p].at(v);
-                    dd = std::min((int) first_sub[p][i].size() - 1, dep - 1);
-                    res = Group::op(res, Group::inv(seg_sub[p][i].prefix_fold(first_sub[p][i][dd])));
+                    dd = std::min((int)first_sub[p][i].size() - 1, dep - 1);
+                    res = Group::op(res, Group::inv(seg_sub[p][i].prefix_fold(
+                                             first_sub[p][i][dd])));
                 }
             }
         }
         return res;
     }
 
-private:
+   private:
     std::vector<int> level, sz_comp, par;
     std::vector<FenwickTree<Group>> seg;
     std::vector<std::vector<FenwickTree<Group>>> seg_sub;
