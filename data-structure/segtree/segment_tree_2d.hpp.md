@@ -17,44 +17,45 @@ data:
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
     \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
-    \npublic:\n    SegmentTree() = default;\n    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    explicit SegmentTree(const std::vector<T>& v) {\n        size\
-    \ = 1;\n        while (size < (int) v.size()) size <<= 1;\n        node.resize(2\
-    \ * size, M::id());\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
-    \        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
-    \ * i + 1]);\n    }\n\n    T operator[](int k) const {\n        return node[k\
-    \ + size];\n    }\n\n    void update(int k, const T& x) {\n        k += size;\n\
-    \        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2 * k], node[2\
-    \ * k + 1]);\n    }\n\n    T fold(int l, int r) const {\n        T vl = M::id(),\
-    \ vr = M::id();\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
-    \            if (l & 1) vl = M::op(vl, node[l++]);\n            if (r & 1) vr\
-    \ = M::op(node[--r], vr);\n        }\n        return M::op(vl, vr);\n    }\n\n\
-    \    template <typename F>\n    int find_first(int l, F cond) const {\n      \
-    \  T vl = M::id();\n        int r = size;\n        for (l += size, r += size;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                T nxt\
-    \ = M::op(vl, node[l]);\n                if (cond(nxt)) {\n                  \
-    \  while (l < size) {\n                        nxt = M::op(vl, node[2 * l]);\n\
-    \                        if (cond(nxt)) l = 2 * l;\n                        else\
-    \ vl = nxt, l = 2 * l + 1;\n                    }\n                    return\
-    \ l - size;\n                }\n                vl = nxt;\n                ++l;\n\
-    \            }\n        }\n        return -1;\n    }\n\n    template <typename\
-    \ F>\n    int find_last(int r, F cond) const {\n        T vr = M::id();\n    \
-    \    int l = 0;\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\
-    \            if (r & 1) {\n                --r;\n                T nxt = M::op(node[r],\
-    \ vr);\n                if (cond(nxt)) {\n                    while (r < size)\
-    \ {\n                        nxt = M::op(node[2 * r + 1], vr);\n             \
-    \           if (cond(nxt)) r = 2 * r + 1;\n                        else vr = nxt,\
-    \ r = 2 * r;\n                    }\n                    return r - size;\n  \
-    \              }\n                vr = nxt;\n            }\n        }\n      \
-    \  return -1;\n    }\n\nprivate:\n    int size;\n    std::vector<T> node;\n};\n\
-    #line 7 \"data-structure/segtree/segment_tree_2d.hpp\"\n\ntemplate <typename X,\
-    \ typename Y, typename M>\nclass SegmentTree2D {\n    using T = typename M::T;\n\
-    \npublic:\n    SegmentTree2D() = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X,\
-    \ Y>>& pts) {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n\
-    \        }\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n\n        const int n = xs.size();\n        size = 1;\n\
-    \        while (size < n) size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2\
-    \ * size);\n\n        for (auto& [x, y] : pts) {\n            ys[size + getx(x)].push_back(y);\n\
+    \n   public:\n    SegmentTree() = default;\n    explicit SegmentTree(int n) :\
+    \ SegmentTree(std::vector<T>(n, M::id())) {}\n    explicit SegmentTree(const std::vector<T>&\
+    \ v) {\n        size = 1;\n        while (size < (int)v.size()) size <<= 1;\n\
+    \        node.resize(2 * size, M::id());\n        std::copy(v.begin(), v.end(),\
+    \ node.begin() + size);\n        for (int i = size - 1; i > 0; --i)\n        \
+    \    node[i] = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int\
+    \ k) const { return node[k + size]; }\n\n    void update(int k, const T& x) {\n\
+    \        k += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
+    \ * k], node[2 * k + 1]);\n    }\n\n    T fold(int l, int r) const {\n       \
+    \ T vl = M::id(), vr = M::id();\n        for (l += size, r += size; l < r; l >>=\
+    \ 1, r >>= 1) {\n            if (l & 1) vl = M::op(vl, node[l++]);\n         \
+    \   if (r & 1) vr = M::op(node[--r], vr);\n        }\n        return M::op(vl,\
+    \ vr);\n    }\n\n    template <typename F>\n    int find_first(int l, F cond)\
+    \ const {\n        T v = M::id();\n        for (l += size; l > 0; l >>= 1) {\n\
+    \            if (l & 1) {\n                T nv = M::op(v, node[l]);\n       \
+    \         if (cond(nv)) {\n                    while (l < size) {\n          \
+    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\n\
+    \                            l = 2 * l;\n                        else\n      \
+    \                      v = nv, l = 2 * l + 1;\n                    }\n       \
+    \             return l + 1 - size;\n                }\n                v = nv;\n\
+    \                ++l;\n            }\n        }\n        return -1;\n    }\n\n\
+    \    template <typename F>\n    int find_last(int r, F cond) const {\n       \
+    \ T v = M::id();\n        for (r += size; r > 0; r >>= 1) {\n            if (r\
+    \ & 1) {\n                --r;\n                T nv = M::op(node[r], v);\n  \
+    \              if (cond(nv)) {\n                    while (r < size) {\n     \
+    \                   nv = M::op(node[2 * r + 1], v);\n                        if\
+    \ (cond(nv))\n                            r = 2 * r + 1;\n                   \
+    \     else\n                            v = nv, r = 2 * r;\n                 \
+    \   }\n                    return r - size;\n                }\n             \
+    \   v = nv;\n            }\n        }\n        return -1;\n    }\n\n   private:\n\
+    \    int size;\n    std::vector<T> node;\n};\n#line 7 \"data-structure/segtree/segment_tree_2d.hpp\"\
+    \n\ntemplate <typename X, typename Y, typename M>\nclass SegmentTree2D {\n   \
+    \ using T = typename M::T;\n\npublic:\n    SegmentTree2D() = default;\n    explicit\
+    \ SegmentTree2D(const std::vector<std::pair<X, Y>>& pts) {\n        for (auto&\
+    \ [x, y] : pts) {\n            xs.push_back(x);\n        }\n        std::sort(xs.begin(),\
+    \ xs.end());\n        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n\
+    \n        const int n = xs.size();\n        size = 1;\n        while (size < n)\
+    \ size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2 * size);\n\n\
+    \        for (auto& [x, y] : pts) {\n            ys[size + getx(x)].push_back(y);\n\
     \        }\n\n        for (int i = 0; i < n; ++i) {\n            std::sort(ys[size\
     \ + i].begin(), ys[size + i].end());\n            ys[size + i].erase(std::unique(ys[size\
     \ + i].begin(), ys[size + i].end()), ys[size + i].end());\n        }\n       \
@@ -129,7 +130,7 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_2d.hpp
   requiredBy: []
-  timestamp: '2022-12-25 16:38:59+09:00'
+  timestamp: '2023-06-13 22:58:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp

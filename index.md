@@ -544,6 +544,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/manacher.cpp
       title: Manacher's Algorithm
+    - icon: ':warning:'
+      path: string/min_cyclic_shift.hpp
+      title: Minimum Cyclic String
     - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: Palindromic Tree
