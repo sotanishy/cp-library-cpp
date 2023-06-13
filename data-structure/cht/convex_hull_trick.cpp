@@ -33,6 +33,7 @@ class ConvexHullTrick {
     std::deque<Line> lines;
 
     static bool check(Line l1, Line l2, Line l3) {
+        if (l1.a == l2.a) return l2.b >= l1.b;
         if (l2.a == l3.a) return l2.b >= l3.b;
         return 1.0 * (l2.b - l1.b) / (l2.a - l1.a) <=
                1.0 * (l3.b - l2.b) / (l3.a - l2.a);

@@ -6,20 +6,19 @@ template <typename M>
 class SegmentTree {
     using T = typename M::T;
 
-public:
+   public:
     SegmentTree() = default;
-    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id())) {}
+    explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}
     explicit SegmentTree(const std::vector<T>& v) {
         size = 1;
-        while (size < (int) v.size()) size <<= 1;
+        while (size < (int)v.size()) size <<= 1;
         node.resize(2 * size, M::id());
         std::copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (int i = size - 1; i > 0; --i)
+            node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](int k) const {
-        return node[k + size];
-    }
+    T operator[](int k) const { return node[k + size]; }
 
     void update(int k, const T& x) {
         k += size;
@@ -38,20 +37,21 @@ public:
 
     template <typename F>
     int find_first(int l, F cond) const {
-        T vl = M::id();
-        int r = size;
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        T v = M::id();
+        for (l += size; l > 0; l >>= 1) {
             if (l & 1) {
-                T nxt = M::op(vl, node[l]);
-                if (cond(nxt)) {
+                T nv = M::op(v, node[l]);
+                if (cond(nv)) {
                     while (l < size) {
-                        nxt = M::op(vl, node[2 * l]);
-                        if (cond(nxt)) l = 2 * l;
-                        else vl = nxt, l = 2 * l + 1;
+                        nv = M::op(v, node[2 * l]);
+                        if (cond(nv))
+                            l = 2 * l;
+                        else
+                            v = nv, l = 2 * l + 1;
                     }
-                    return l - size;
+                    return l + 1 - size;
                 }
-                vl = nxt;
+                v = nv;
                 ++l;
             }
         }
@@ -60,27 +60,28 @@ public:
 
     template <typename F>
     int find_last(int r, F cond) const {
-        T vr = M::id();
-        int l = 0;
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        T v = M::id();
+        for (r += size; r > 0; r >>= 1) {
             if (r & 1) {
                 --r;
-                T nxt = M::op(node[r], vr);
-                if (cond(nxt)) {
+                T nv = M::op(node[r], v);
+                if (cond(nv)) {
                     while (r < size) {
-                        nxt = M::op(node[2 * r + 1], vr);
-                        if (cond(nxt)) r = 2 * r + 1;
-                        else vr = nxt, r = 2 * r;
+                        nv = M::op(node[2 * r + 1], v);
+                        if (cond(nv))
+                            r = 2 * r + 1;
+                        else
+                            v = nv, r = 2 * r;
                     }
                     return r - size;
                 }
-                vr = nxt;
+                v = nv;
             }
         }
         return -1;
     }
 
-private:
+   private:
     int size;
     std::vector<T> node;
 };
