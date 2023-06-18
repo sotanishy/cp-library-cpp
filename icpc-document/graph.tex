@@ -3,7 +3,7 @@
 \subsection{Strongly Connected Components}
 
 \begin{small}
-強連結成分のラベルはトポロジカル順序になっている．
+    強連結成分のラベルはトポロジカル順序になっている．
 \end{small}
 
 \begin{lstlisting}
@@ -39,14 +39,6 @@ std::vector<int> scc(const std::vector<std::vector<int>>& G) {
 \end{lstlisting}
 
 \subsection{Lowlink}
-
-\begin{small}
-\begin{markdown}
-橋，関節点を求めるのに使う
-
-グラフの DFS tree において，頂点 $v$ の訪問時刻を `ord[v]` としたとき，$v$ から後退辺 (DFS tree に含まれない辺) を高々1回用いて到達することができる頂点の `ord` の最小値 `low[v]` を lowlink という．
-\end{markdown}
-\end{small}
 
 \begin{lstlisting}
 class Lowlink {

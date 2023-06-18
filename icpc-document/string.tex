@@ -81,12 +81,9 @@ private:
 
 \subsection{Suffix Array}
 
-\begin{small}
-時間計算量: $O(n\log n)$
-\end{small}
-
 \begin{lstlisting}
-std::vector<int> suffix_array(const std::string& s) {
+template <typename T>
+std::vector<int> suffix_array(const std::vector<T>& s) {
     int n = s.size();
     std::vector<int> sa(n);
     std::iota(sa.begin(), sa.end(), 0);
@@ -129,35 +126,20 @@ std::vector<int> suffix_array(const std::string& s) {
     }
     return sa;
 }
-
-/*
-// comparator for substrings
-// used for string matching with the suffix array
-
-auto cmp = [&](int si, const string& t) {
-    int sn = S.size(), tn = t.size();
-    int ti = 0;
-    for (; si < sn && ti < tn; ++si, ++ti) {
-        if (T[si] < t[ti]) return true;
-        if (T[si] > t[ti]) return false;
-    }
-    return si == sn && ti < tn;
-};
-*/
 \end{lstlisting}
 
 \subsection{Longest Common Prefix Array}
 
 \begin{small}
 \begin{markdown}
-高さ配列 (LCP array) は，接尾辞配列における隣同士の接尾辞で，先頭何文字が共通しているかを表す配列である．`lcp[i]` は接尾辞 `s[sa[i]..]` と接尾辞 `s[sa[i + 1]..]` の先頭で共通している文字数になる．
-
-時間計算量: $O(n)$
+`lcp[i]` は接尾辞 `s[sa[i]..]` と接尾辞 `s[sa[i + 1]..]` の先頭で共通している文字数
 \end{markdown}
 \end{small}
 
 \begin{lstlisting}
-std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
+template <typename T>
+std::vector<int> lcp_array(const std::vector<T>& s,
+                           const std::vector<int>& sa) {
     int n = s.size();
     std::vector<int> rank(n);
     for (int i = 0; i < n; ++i) rank[sa[i]] = i;
@@ -178,11 +160,7 @@ std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
 
 \begin{small}
 \begin{markdown}
-Z array は，文字列 `S` と `S[i:]` の最長共通接頭辞の長さを表す配列である
-
-Z array を用いると文字列中のパターンをすべて検索することができる．文字列を `S`，パターンを `P` とし，`P$S` (`$` は `S` にも `P` にも含まれない文字) の Z array を構築すると，値が `P` の長さと一致するところで `P` が現れる．
-
-時間計算量: $O(n)$
+文字列 `S` と `S[i:]` の最長共通接頭辞の長さ
 \end{markdown}
 \end{small}
 
@@ -208,114 +186,10 @@ std::vector<int> z_array(const std::string& s) {
 }
 \end{lstlisting}
 
-\subsection{Trie}
-
-\begin{small}
-\begin{markdown}
-トライ木
-
-- `void insert(string s, int id)`
-    - 文字列 $s$ を挿入する
-    - 時間計算量: $O(\vert s\vert)$
-- `void compress()`
-    - トライ木を圧縮して Patricia trie を構築する．これにより，木の木の深さが $O(\sqrt{\sum \vert s \vert})$ になる．
-    - 時間計算量: $O(\sum \vert s\vert)$
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-class Trie {
-public:
-    Trie() : root(std::make_shared<Node>()) {}
-
-    void insert(const std::string& s, int id) { insert(root, s, id, 0); }
-
-    void compress() { compress(root); }
-
-protected:
-    struct Node;
-    using node_ptr = std::shared_ptr<Node>;
-
-    struct Node {
-        std::map<char, node_ptr> ch;
-        std::vector<int> accept;
-        int sz = 0;
-        node_ptr par;
-        std::string str;
-
-        Node() = default;
-    };
-
-    const node_ptr root;
-
-    void insert(const node_ptr& t, const std::string& s, int id, int k) {
-        ++t->sz;
-        if (k == (int) s.size()) {
-            t->accept.push_back(id);
-            return;
-        }
-        int c = s[k];
-        if (!t->ch.count(c)) {
-            t->ch[c] = std::make_shared<Node>();
-            t->ch[c]->par = t;
-            t->ch[c]->str = c;
-        }
-        insert(t->ch[c], s, id, k + 1);
-    }
-
-    void compress(node_ptr t) {
-        while (t->accept.empty() && t->ch.size() == 1) {
-            auto u = t->ch.begin()->second;
-            t->ch = u->ch;
-            t->accept = u->accept;
-            t->str += u->str;
-            for (auto [c, w] : t->ch) w->par = t;
-            compress(t);
-        }
-        for (auto [c, u] : t->ch) {
-            compress(u);
-        }
-    }
-};
-\end{lstlisting}
-
-\subsection{Prefix Function}
-
-\begin{small}
-\begin{markdown}
-`P[:i]` の接尾辞でもある最長の proper prefix
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-template <typename T>
-std::vector<int> prefix_function(const std::vector<T>& s) {
-    const int n = s.size();
-    std::vector<int> ret(n);
-    int len = 0;
-    for (int i = 1; i < n; ++i) {
-        if (s[i] == s[len]) {
-            ++len;
-            ret[i] = len;
-        } else {
-            if (len != 0) {
-                len = ret[len - 1];
-                --i;
-            } else {
-                ret[i] = 0;
-            }
-        }
-    }
-    return ret;
-}
-\end{lstlisting}
-
 \subsection{Aho-Corasick Algorithm}
 
 \begin{small}
 \begin{markdown}
-Aho-Corasick 法は，入力文字列に対して複数のパターンを高速にマッチするアルゴリズムである．
-
 - `void insert(string p)`
     - パターン $p$ を挿入する
     - 時間計算量: $O(\vert p\vert)$
@@ -418,6 +292,172 @@ public:
             }
         }
         return ret;
+    }
+};
+
+\end{lstlisting}
+
+\subsection{Knuth-Morris-Pratt Algorithm}
+
+\begin{small}
+\begin{markdown}
+prefix function (`P[:i+1]` の接尾辞でもある最長の proper prefix)
+
+**Operations**
+
+- `vector<int> prefix\_function(vector<T> s)`
+- `vector<int> prefix\_function(string s)`
+    - 数列 `s` の prefix function を計算する
+    - 時間計算量: $O(n)$
+- `vector<int> kmp(vector<T> txt, vector<T> pat, vector<int> pf)`
+- `vector<int> kmp(string txt, string pat, vector<int> pf)`
+    - `txt`中の`pat`の出現位置を列挙する
+    - 時間計算量: $O(n + m)$
+- `vector<vector<pair<int, bool>>> matching\_automaton(string s)`
+    - `s` のマッチングオートマトンを返す．`ret[i][c]` は，$i$ 文字マッチしているときに文字 `c` が出現したときの遷移先と，全体がマッチしたか否かを返す．
+    - 時間計算量: $O(nA)$, $A$ はアルファベットサイズ
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+template <typename T>
+std::vector<int> prefix_function(const std::vector<T>& s) {
+    const int n = s.size();
+    std::vector<int> ret(n);
+    int len = 0;
+    for (int i = 1; i < n; ++i) {
+        if (s[i] == s[len]) {
+            ++len;
+            ret[i] = len;
+        } else {
+            if (len != 0) {
+                len = ret[len - 1];
+                --i;
+            } else {
+                ret[i] = 0;
+            }
+        }
+    }
+    return ret;
+}
+
+template <typename T>
+std::vector<int> kmp(const std::vector<T>& txt, const std::vector<T>& pat, const std::vector<int>& pf) {
+    int n = txt.size(), m = pat.size();
+    std::vector<int> match;
+    int i = 0, j = 0;
+    while (i < n) {
+        if (pat[j] == txt[i]) {
+            ++i;
+            ++j;
+        }
+        if (j == m) {
+            match.push_back(i - j);
+            j = pf[j - 1];
+        } else if (i < n && pat[j] != txt[i]) {
+            if (j != 0) {
+                j = pf[j - 1];
+            } else {
+                ++i;
+            }
+        }
+    }
+    return match;
+}
+
+std::vector<int> prefix_function(const std::string& s) {
+    return prefix_function(std::vector<char>(s.begin(), s.end()));
+}
+
+std::vector<int> kmp(const std::string& txt, const std::string& pat, const std::vector<int>& pf) {
+    return kmp(std::vector<char>(txt.begin(), txt.end()), std::vector<char>(pat.begin(), pat.end()), pf);
+}
+
+template <int AlphabetSize, int Offset>
+std::vector<std::vector<std::pair<int, bool>>> matching_automaton(const std::string& s) {
+    const int n = s.size();
+    auto lps = prefix_function(s);
+    std::vector<std::vector<std::pair<int, bool>>> aut(n, std::vector<std::pair<int, bool>>(AlphabetSize));
+    for (int i = 0; i < n; ++i) {
+        for (int c = 0; c < AlphabetSize; ++c) {
+            if (Offset + c == s[i]) {
+                if (i == n - 1) aut[i][c] = {lps[i], true};
+                else aut[i][c] = {i + 1, false};
+            } else {
+                aut[i][c] = {i > 0 ? aut[lps[i - 1]][c].first : 0, 0};
+            }
+        }
+    }
+    return aut;
+}
+\end{lstlisting}
+
+\subsection{Trie}
+
+\begin{small}
+\begin{markdown}
+- `void insert(string s, int id)`
+    - 文字列 $s$ を挿入する
+    - 時間計算量: $O(\vert s\vert)$
+- `void compress()`
+    - トライ木を圧縮して Patricia trie を構築する．これにより，木の木の深さが $O(\sqrt{\sum \vert s \vert})$ になる．
+    - 時間計算量: $O(\sum \vert s\vert)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+class Trie {
+public:
+    Trie() : root(std::make_shared<Node>()) {}
+
+    void insert(const std::string& s, int id) { insert(root, s, id, 0); }
+
+    void compress() { compress(root); }
+
+protected:
+    struct Node;
+    using node_ptr = std::shared_ptr<Node>;
+
+    struct Node {
+        std::map<char, node_ptr> ch;
+        std::vector<int> accept;
+        int sz = 0;
+        node_ptr par;
+        std::string str;
+
+        Node() = default;
+    };
+
+    const node_ptr root;
+
+    void insert(const node_ptr& t, const std::string& s, int id, int k) {
+        ++t->sz;
+        if (k == (int) s.size()) {
+            t->accept.push_back(id);
+            return;
+        }
+        int c = s[k];
+        if (!t->ch.count(c)) {
+            t->ch[c] = std::make_shared<Node>();
+            t->ch[c]->par = t;
+            t->ch[c]->str = c;
+        }
+        insert(t->ch[c], s, id, k + 1);
+    }
+
+    void compress(node_ptr t) {
+        while (t->accept.empty() && t->ch.size() == 1) {
+            auto u = t->ch.begin()->second;
+            t->ch = u->ch;
+            t->accept = u->accept;
+            t->str += u->str;
+            for (auto [c, w] : t->ch) w->par = t;
+            compress(t);
+        }
+        for (auto [c, u] : t->ch) {
+            compress(u);
+        }
     }
 };
 \end{lstlisting}

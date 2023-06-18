@@ -20,6 +20,7 @@
 \end{markdown}
 
 モノイドの渡し方
+
 \begin{lstlisting}
 struct Monoid {
     using T = int;  // 型
@@ -27,6 +28,7 @@ struct Monoid {
     static T op(T a, T b) { return min(a, b); }  // 二項演算 (結合的)
 };
 \end{lstlisting}
+
 \end{small}
 
 \begin{lstlisting}
@@ -34,20 +36,19 @@ template <typename M>
 class SegmentTree {
     using T = typename M::T;
 
-public:
+   public:
     SegmentTree() = default;
-    explicit SegmentTree(int n): SegmentTree(std::vector<T>(n, M::id())) {}
+    explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}
     explicit SegmentTree(const std::vector<T>& v) {
         size = 1;
-        while (size < (int) v.size()) size <<= 1;
+        while (size < (int)v.size()) size <<= 1;
         node.resize(2 * size, M::id());
         std::copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        for (int i = size - 1; i > 0; --i)
+            node[i] = M::op(node[2 * i], node[2 * i + 1]);
     }
 
-    T operator[](int k) const {
-        return node[k + size];
-    }
+    T operator[](int k) const { return node[k + size]; }
 
     void update(int k, const T& x) {
         k += size;
@@ -66,20 +67,21 @@ public:
 
     template <typename F>
     int find_first(int l, F cond) const {
-        T vl = M::id();
-        int r = size;
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        T v = M::id();
+        for (l += size; l > 0; l >>= 1) {
             if (l & 1) {
-                T nxt = M::op(vl, node[l]);
-                if (cond(nxt)) {
+                T nv = M::op(v, node[l]);
+                if (cond(nv)) {
                     while (l < size) {
-                        nxt = M::op(vl, node[2 * l]);
-                        if (cond(nxt)) l = 2 * l;
-                        else vl = nxt, l = 2 * l + 1;
+                        nv = M::op(v, node[2 * l]);
+                        if (cond(nv))
+                            l = 2 * l;
+                        else
+                            v = nv, l = 2 * l + 1;
                     }
-                    return l - size;
+                    return l + 1 - size;
                 }
-                vl = nxt;
+                v = nv;
                 ++l;
             }
         }
@@ -88,29 +90,92 @@ public:
 
     template <typename F>
     int find_last(int r, F cond) const {
-        T vr = M::id();
-        int l = 0;
-        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+        T v = M::id();
+        for (r += size; r > 0; r >>= 1) {
             if (r & 1) {
                 --r;
-                T nxt = M::op(node[r], vr);
-                if (cond(nxt)) {
+                T nv = M::op(node[r], v);
+                if (cond(nv)) {
                     while (r < size) {
-                        nxt = M::op(node[2 * r + 1], vr);
-                        if (cond(nxt)) r = 2 * r + 1;
-                        else vr = nxt, r = 2 * r;
+                        nv = M::op(node[2 * r + 1], v);
+                        if (cond(nv))
+                            r = 2 * r + 1;
+                        else
+                            v = nv, r = 2 * r;
                     }
                     return r - size;
                 }
-                vr = nxt;
+                v = nv;
             }
         }
         return -1;
     }
 
-private:
+   private:
     int size;
     std::vector<T> node;
+};
+\end{lstlisting}
+
+\subsection{Fenwick Tree}
+
+\begin{small}
+\begin{markdown}
+- `T prefix\_fold(int i)`
+    - 区間 $[0, i)$ の値を fold する
+    - 時間計算量: $O(\log n)$
+- `void update(int i, T x)`
+    - $i$ 番目の要素を $x$ と演算した値に更新する
+    - 時間計算量: $O(\log n)$
+- `int lower\_bound(T x)`
+    - `cmp(prefix\_fold(i), x) == false` となる最初の $i$ を返す．そのような $i$ が存在しない場合は $n$ を返す．`cmp` を指定しない場合は `<` で比較される．列の単調性を仮定する．
+    - 時間計算量: $O(\log n)$
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+template <typename M>
+class FenwickTree {
+    using T = typename M::T;
+
+   public:
+    FenwickTree() = default;
+    explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}
+
+    T prefix_fold(int i) const {
+        T ret = M::id();
+        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
+        return ret;
+    }
+
+    void update(int i, const T& x) {
+        for (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);
+    }
+
+    int lower_bound(const T& x) const { return lower_bound(x, std::less<>()); }
+
+    template <typename Compare>
+    int lower_bound(const T& x, Compare cmp) const {
+        if (!cmp(M::id(), x)) return 0;
+        int k = 1;
+        while (k * 2 <= n) k <<= 1;
+        int i = 0;
+        T v = M::id();
+        for (; k > 0; k >>= 1) {
+            if (i + k > n) continue;
+            T nv = M::op(v, data[i + k]);
+            if (cmp(nv, x)) {
+                v = nv;
+                i += k;
+            }
+        }
+        return i + 1;
+    }
+
+   private:
+    int n;
+    std::vector<T> data;
 };
 \end{lstlisting}
 
@@ -256,67 +321,6 @@ private:
 };
 \end{lstlisting}
 
-\subsection{Fenwick Tree}
-
-\begin{small}
-\begin{markdown}
-- `T prefix\_fold(int i)`
-    - 区間 $[0, i)$ の値を fold する
-    - 時間計算量: $O(\log n)$
-- `void update(int i, T x)`
-    - $i$ 番目の要素を $x$ と演算した値に更新する
-    - 時間計算量: $O(\log n)$
-- `int lower\_bound(T x)`
-    - `prefix\_fold(i) \geq x` となる最初の $i$ を返す．そのような $i$ が存在しない場合は $n$ を返す．`cmp` を指定しない場合は `<` で比較される．列の単調性を仮定する．
-    - 時間計算量: $O(\log n)$
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-template <typename M>
-class FenwickTree {
-    using T = typename M::T;
-
-public:
-    FenwickTree() = default;
-    explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}
-
-    T prefix_fold(int i) const {
-        T ret = M::id();
-        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);
-        return ret;
-    }
-
-    void update(int i, const T& x) {
-        for (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);
-    }
-
-    int lower_bound(const T& x) const {
-        return lower_bound(x, std::less<>());
-    }
-
-    int lower_bound(const T& x) const {
-        if (x <= M::id()) return 0;
-        int k = 1;
-        while (k * 2 <= n) k <<= 1;
-        int i = 0;
-        T v = M::id();
-        for (; k > 0; k >>= 1) {
-            if (i + k > n) continue;
-            T nv = M::op(v, data[i + k]);
-            if (nv < x) {
-                v = nv;
-                i += k;
-            }
-        }
-        return i;
-    }
-
-private:
-    int n;
-    std::vector<T> data;
-};
-\end{lstlisting}
 
 \subsection{Range Tree}
 
@@ -328,6 +332,7 @@ private:
 - `T fold(X sx, X tx, Y sy, Y ty)`
     - 長方形領域 $[sx, tx) \times [sy, ty)$ 内の点に対する値の総和を計算する
     - 時間計算量: $O((\log n)^2)$
+
 \end{markdown}
 \end{small}
 
@@ -511,72 +516,56 @@ private:
 };
 \end{lstlisting}
 
+
 \subsection{Convex Hull Trick}
 
 \begin{small}
 \begin{markdown}
-1次関数の最小値．傾きは単調非増加
+追加する直線の傾きが単調非増加である必要がある．
 
-- `ConvexHullTrick(bool monotone\_query)`
-    - 最小値クエリの $x$ が単調非減少ならば，`monotone\_query = true` とすれば計算量が改善する．デフォルトは `monotone\_query = false`
-    - 時間計算量: $O(1)$
 - `T add(T a, T b)`
     - 直線 $ax + b$ を $L$ に追加する
     - 時間計算量: $\mathrm{amortized}\ O(1)$
 - `T get(T x)`
     - 与えられた $x$ に対し，$L$ の中で最小値を取る直線の値を求める
-    - 時間計算量: `monotone\_query = true` なら $\mathrm{amortized}\ O(1)$, `false` なら $O(\log n)$
+    - 時間計算量: $\mathrm{amortized}\ O(1)$
 \end{markdown}
 \end{small}
 
 \begin{lstlisting}
 template <typename T>
 class ConvexHullTrick {
-public:
-    explicit ConvexHullTrick(bool monotone_query = false) : monotone_query(monotone_query) {}
-
+   public:
     void add(T a, T b) {
         Line line(a, b);
-        while (lines.size() >= 2 && check(*(lines.end() - 2), lines.back(), line)) {
+        while (lines.size() >= 2 &&
+               check(*(lines.end() - 2), lines.back(), line)) {
             lines.pop_back();
         }
         lines.push_back(line);
     }
 
     T get(T x) {
-        if (monotone_query) {
-            while (lines.size() - head >= 2 && lines[head](x) > lines[head + 1](x)) {
-                ++head;
-            }
-            return lines[head](x);
-        } else {
-            int lb = -1, ub = lines.size() - 1;
-            while (ub - lb > 1) {
-                int m = (lb + ub) / 2;
-                if (lines[m](x) > lines[m + 1](x)) {
-                    lb = m;
-                } else {
-                    ub = m;
-                }
-            }
-            return lines[ub](x);
+        while (lines.size() >= 2 && lines.front()(x) > lines[1](x)) {
+            lines.pop_front();
         }
+        return lines.front()(x);
     }
 
-private:
+   private:
     struct Line {
         T a, b;
         Line(T a, T b) : a(a), b(b) {}
         T operator()(T x) const { return a * x + b; }
     };
 
-    std::vector<Line> lines;
-    bool monotone_query;
-    int head = 0;
+    std::deque<Line> lines;
 
     static bool check(Line l1, Line l2, Line l3) {
+        if (l1.a == l2.a) return l2.b >= l1.b;
         if (l2.a == l3.a) return l2.b >= l3.b;
-        return 1.0 * (l2.b - l1.b) / (l2.a - l1.a) <= 1.0 * (l3.b - l2.b) / (l3.a - l2.a);
+        return 1.0 * (l2.b - l1.b) / (l2.a - l1.a) <=
+               1.0 * (l3.b - l2.b) / (l3.a - l2.a);
     }
 };
 \end{lstlisting}

@@ -4,65 +4,136 @@
 
 \begin{small}
 \begin{markdown}
+**Description**
+
+幾何アルゴリズム詰め合わせ
+
 `Vec` は `std::complex<T>` のエイリアスである．
 
-- `geometry.hpp`
-    - 基本関数群
-    - `T dot(Vec a, Vec b)`
-        - 内積を計算する
-    - `T cross(Vec a, Vec b)`
-        - 外積の $z$ 座標を計算する
-    - `Vec rot(Vec a, T ang)`
-        - $a$ を角 $ang$ だけ回転させる
-    - `Vec perp(Vec a)`
-        - $a$ を角 $\pi/2$ だけ回転させる
-    - `Vec projection(Line l, Vec p)`
-        - 点 $p$ の直線 $l$ 上の射影を求める
-    - `Vec reflection(Line l, Vec p)`
-        - 点 $p$ の直線 $l$ に関して対称な点を求める
-    - `int ccw(Vec a, Vec b, Vec c)`
-        - $a,b,c$ が同一直線上にあるなら0, $a \rightarrow b \rightarrow c$ が反時計回りなら1，そうでなければ-1を返す
-    - `void sort\_by\_arg(vector<Vec> pts)`
-        - 与えられた点を偏角ソートする (ソート順は[この問題](https://judge.yosupo.jp/problem/sort\_points\_by\_argument)に準拠)
-        - 時間計算量: $O(n\log n)$
-- `intersect.hpp`
-    - 交差判定
-- `dist.hpp`
-    - 距離
-- `intersection.hpp`
-    - 交点
-- `bisector.hpp`
-    - 二等分線
-- `triangle.hpp`
-    - 重心，内心，外心
-- `tangent.hpp`
-    - 円の接線
-- `polygon.hpp`
-    - 多角形周り．計算量は明示しない限り $O(n)$
-    - `T area(Polygon poly)`
-        - 多角形 $poly$ の面積を求める
-    - `T is\_convex(Polygon poly)`
-        - 多角形 $poly$ が凸か判定する．`poly` は反時計回りに与えられる必要がある
-    - `Polygon convex\_cut(Polygon poly, Line l)`
-        - 多角形 $poly$ を直線 $l$ で切断する．詳細な仕様は [凸多角形の切断](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL\_4\_C) を参照．
-    - `Polygon halfplane\_intersection(vector<pair<Vec, Vec>> hps)`
-        - 半平面の集合が与えられたとき，それらの共通部分 (凸多角形になる) を返す．半平面は， $\{\boldsymbol{x}\mid(\boldsymbol{x}-\boldsymbol{p})\cdot \boldsymbol{n}\geq 0\}$ で表したときに $(\boldsymbol{n},\boldsymbol{p})$ の形で与える．
-        - 時間計算量: $O(n\log n)$
+できるだけ整数だけの計算も扱えるようにした
+
+**Operations**
+
+時間計算量は明示しない限り $O(1)$．
+
+** `geometry.hpp`**
+
+- `T dot(Vec a, Vec b)`
+    - 内積を計算する
+
+- `T cross(Vec a, Vec b)`
+    - 外積の $z$ 座標を計算する
+
+- `Vec rot(Vec a, T ang)`
+    - $a$ を角 $ang$ だけ回転させる
+
+- `Vec perp(Vec a)`
+    - $a$ を角 $\pi/2$ だけ回転させる
+
+- `Vec projection(Line l, Vec p)`
+    - 点 $p$ の直線 $l$ 上の射影を求める
+
+- `Vec reflection(Line l, Vec p)`
+    - 点 $p$ の直線 $l$ に関して対称な点を求める
+
+- `int ccw(Vec a, Vec b, Vec c)`
+    - $a,b,c$ が同一直線上にあるなら0, $a \rightarrow b \rightarrow c$ が反時計回りなら1，そうでなければ-1を返す
+
+- `void sort\_by\_arg(vector<Vec> pts)`
+  - 与えられた点を偏角ソートする (ソート順は[この問題](https://judge.yosupo.jp/problem/sort\_points\_by\_argument)に準拠)
+  - 時間計算量: $O(n\log n)$
+
+** `intersect.hpp`**
+
+- `bool intersect(Segment s, Vec p)`
+
+  `int intersect(Polygon poly, Vec p)`
+
+  `bool intersect(Segment s, Segment t)`
+
+  `bool intersect(Polygon poly1, Polygon poly2)`
+
+  `int intersect(Circle c1, Circle c2)`
+    - 引数で与えられた2つの対象が交差するか判定する．詳細な仕様はコードのコメントを参照
+
+** `dist.hpp`**
+
+ - `T dist(Line l, Vec p)`
+
+   `T dist(Segment s, Vec p)`
+
+   `T dist(Segment s, Segment t)`
+    - 引数で与えられた2つの対象の距離を計算する
+
+** `intersection.hpp`**
+
+- `Vec intersection(Line l, Line m)`
+
+- `vector<Vec> intersection(Circle c, Line l)`
+
+  `vector<Vec> intersection(Circle c1, Circle c2)`
+    - 引数で与えられた2つの対象の交点を返す
+
+- `T area\_intersection(Circle c1, Circle c2)`
+    - 円 $c\_1,c\_2$ の共通部分の面積を求める
+
+** `bisector.hpp`**
+
+- `Line bisector(Segment s)`
+    - 線分 $s$ の垂直二等分線を返す
+
+- `pair<Line, Line> bisector(Line l, Line m)`
+    - 直線 $l,m$ の角二等分線を返す．$l,m$ が平行なら，両者の中間の線を返す (つまり，$l,m$ から等距離にある点の集合を返す)
+
+** `triangle.hpp`**
+
+- `Vec centroid(Vec A, Vec B, Vec C)`
+    - 三角形 $ABC$ の重心を返す
+    - ***NOT VERIFIED***
+
+- `Vec incenter(Vec A, Vec B, Vec C)`
+    - 三角形 $ABC$ の内心を返す
+
+- `Vec circumcenter(Vec A, Vec B, Vec C)`
+    - 三角形 $ABC$ の外心を返す
+
+** `tangent.hpp`**
+
+- `pair<Vec, Vec> tangent\_points(Circle c, Vec p)`
+    - 点 $p$ を通り円 $c$ に接する接線と $c$ の接点を返す
+
+- `vector<Line> common\_tangents(Circle c1, Circle c2)`
+    - 円 $c\_1,c\_2$ の共通接線を返す
+
+** `polygon.hpp`**
+
+- `T area(Polygon poly)`
+    - 多角形 $poly$ の面積を求める
+    - 時間計算量: $O(n)$
+
+- `T is\_convex(Polygon poly)`
+    - 多角形 $poly$ が凸か判定する．`poly` は反時計回りに与えられる必要がある
+    - 時間計算量: $O(n)$
+
+- `Polygon convex\_cut(Polygon poly, Line l)`
+    - 多角形 $poly$ を直線 $l$ で切断する．詳細な仕様は [凸多角形の切断](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL\_4\_C) を参照．
+    - 時間計算量: $O(n)$
+
+- `Polygon halfplane\_intersection(vector<pair<Vec, Vec>> hps)`
+    - 半平面の集合が与えられたとき，それらの共通部分 (凸多角形になる) を返す．半平面は， $\{\boldsymbol{x}\mid(\boldsymbol{x}-\boldsymbol{p})\cdot \boldsymbol{n}\geq 0\}$ で表したときに $(\boldsymbol{n},\boldsymbol{p})$ の形で与える．
+    - 時間計算量: $O(n\log n)$
+
+- `class PolygonContainment`
+    - 多角形と点の包含関係に関するクエリを処理するデータ構造
+    - 時間計算量: $O(\log n)$ per query
 
 \end{markdown}
 \end{small}
 
 \begin{lstlisting}
+// note that if T is of an integer type, std::abs does not work
 using T = double;
 using Vec = std::complex<T>;
-
-const T PI = std::acos(-1);
-
-constexpr T eps = 1e-10;
-inline bool eq(T a, T b) { return std::abs(a - b) <= eps; }
-inline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }
-inline bool lt(T a, T b) { return a < b - eps; }
-inline bool leq(T a, T b) { return a <= b + eps; }
 
 std::istream& operator>>(std::istream& is, Vec& p) {
     T x, y;
@@ -70,6 +141,17 @@ std::istream& operator>>(std::istream& is, Vec& p) {
     p = {x, y};
     return is;
 }
+
+T dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }
+
+T cross(const Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }
+
+const T PI = std::acos(-1);
+constexpr T eps = 1e-10;
+inline bool eq(T a, T b) { return std::abs(a - b) <= eps; }
+inline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }
+inline bool lt(T a, T b) { return a < b - eps; }
+inline bool leq(T a, T b) { return a <= b + eps; }
 
 struct Line {
     Vec p1, p2;
@@ -91,21 +173,9 @@ struct Circle {
 
 using Polygon = std::vector<Vec>;
 
-T dot(const Vec& a, const Vec& b) {
-    return (std::conj(a) * b).real();
-}
+Vec rot(const Vec& a, T ang) { return a * Vec(std::cos(ang), std::sin(ang)); }
 
-T cross(const Vec& a, const Vec& b) {
-    return (std::conj(a) * b).imag();
-}
-
-Vec rot(const Vec& a, T ang) {
-    return a * Vec(std::cos(ang), std::sin(ang));
-}
-
-Vec perp(const Vec& a) {
-    return Vec(-a.imag(), a.real());
-}
+Vec perp(const Vec& a) { return Vec(-a.imag(), a.real()); }
 
 Vec projection(const Line& l, const Vec& p) {
     return l.p1 + dot(p - l.p1, l.dir()) * l.dir() / std::norm(l.dir());
@@ -128,8 +198,10 @@ void sort_by_arg(std::vector<Vec>& pts) {
     std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {
         if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);
         if (cross(p, q) == 0) {
-            if (p == Vec(0, 0)) return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));
-            if (q == Vec(0, 0)) return  (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));
+            if (p == Vec(0, 0))
+                return !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));
+            if (q == Vec(0, 0))
+                return (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));
             return (p.real() > q.real());
         }
         return (cross(p, q) > 0);
@@ -137,83 +209,13 @@ void sort_by_arg(std::vector<Vec>& pts) {
 }
 \end{lstlisting}
 
-\subsection{intersection.hpp}
-
-\begin{lstlisting}
-#include "geometry.hpp"
-#include "dist.hpp"
-
-Vec intersection(const Line& l, const Line& m) {
-    Vec r = m.p1 - l.p1;
-    assert(!eq(cross(l.dir(), m.dir()), 0)); // not parallel
-    return l.p1 + cross(m.dir(), r) / cross(m.dir(), l.dir()) * l.dir();
-}
-
-std::vector<Vec> intersection(const Circle& c, const Line& l) {
-    T d = dist(l, c.c);
-    if (lt(c.r, d)) return {};  // no intersection
-    Vec e1 = l.dir() / std::abs(l.dir());
-    Vec e2 = perp(e1);
-    if (ccw(c.c, l.p1, l.p2) == 1) e2 *= -1;
-    if (eq(c.r, d)) return {c.c + d*e2};  // tangent
-    T t = std::sqrt(c.r*c.r - d*d);
-    return {c.c + d*e2 + t*e1, c.c + d*e2 - t*e1};
-}
-
-std::vector<Vec> intersection(const Circle& c1, const Circle& c2) {
-    T d = std::abs(c1.c - c2.c);
-    if (lt(c1.r + c2.r, d)) return {};  // outside
-    Vec e1 = (c2.c - c1.c) / std::abs(c2.c - c1.c);
-    Vec e2 = perp(e1);
-    if (lt(d, std::abs(c2.r - c1.r))) return {};  // contain
-    if (eq(d, std::abs(c2.r - c1.r))) return {c1.c + c1.r*e1};  // tangent
-    T x = (c1.r*c1.r - c2.r*c2.r + d*d) / (2*d);
-    T y = std::sqrt(c1.r*c1.r - x*x);
-    return {c1.c + x*e1 + y*e2, c1.c + x*e1 - y*e2};
-}
-
-T area_intersection(const Circle& c1, const Circle& c2) {
-    T d = std::abs(c2.c - c1.c);
-    if (leq(c1.r + c2.r, d)) return 0;  // outside
-    if (leq(d, std::abs(c2.r - c1.r))) {  // inside
-        T r = std::min(c1.r, c2.r);
-        return PI * r * r;
-    }
-    T ans = 0;
-    T a;
-    a = std::acos((c1.r*c1.r+d*d-c2.r*c2.r)/(2*c1.r*d));
-    ans += c1.r*c1.r*(a - std::sin(a)*std::cos(a));
-    a = std::acos((c2.r*c2.r+d*d-c1.r*c1.r)/(2*c2.r*d));
-    ans += c2.r*c2.r*(a - std::sin(a)*std::cos(a));
-    return ans;
-}
-
-\end{lstlisting}
-
-\subsection{dist.hpp}
-
-\begin{lstlisting}
-#include "geometry.hpp"
-#include "intersect.hpp"
-
-T dist(const Line& l, const Vec& p) {
-    return std::abs(cross(p - l.p1, l.dir())) / std::abs(l.dir());
-}
-
-T dist(const Segment& s, const Vec& p) {
-    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);
-    if (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);
-    return std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());
-}
-
-T dist(const Segment& s, const Segment& t) {
-    if (intersect(s, t)) return T(0);
-    return std::min({dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});
-}
-
-\end{lstlisting}
-
 \subsection{intersect.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
 
 \begin{lstlisting}
 #include "geometry.hpp"
@@ -230,8 +232,9 @@ int intersect(const Polygon& poly, const Vec& p) {
     const int n = poly.size();
     bool in = 0;
     for (int i = 0; i < n; ++i) {
-        auto a = poly[i] - p, b = poly[(i+1)%n] - p;
-        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0))) return 1;
+        auto a = poly[i] - p, b = poly[(i + 1) % n] - p;
+        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0)))
+            return 1;
         if (a.imag() > b.imag()) std::swap(a, b);
         if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0)) in ^= 1;
     }
@@ -242,7 +245,9 @@ int intersect(const Segment& s, const Segment& t) {
     auto a = s.p1, b = s.p2;
     auto c = t.p1, d = t.p2;
     if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b)) return 2;
-    if (intersect(s, c) || intersect(s, d) || intersect(t, a) || intersect(t, b)) return 1;
+    if (intersect(s, c) || intersect(s, d) || intersect(t, a) ||
+        intersect(t, b))
+        return 1;
     return 0;
 }
 
@@ -252,7 +257,8 @@ bool intersect(const Polygon& poly1, const Polygon& poly2) {
     const int m = poly2.size();
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            if (intersect(Segment(poly1[i], poly1[(i+1)%n]), Segment(poly2[j], poly2[(j+1)%m]))) {
+            if (intersect(Segment(poly1[i], poly1[(i + 1) % n]),
+                          Segment(poly2[j], poly2[(j + 1) % m]))) {
                 return true;
             }
         }
@@ -275,7 +281,306 @@ int intersect(const Circle& c1, const Circle& c2) {
 }
 \end{lstlisting}
 
+\subsection{intersection.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+#include "dist.hpp"
+#include "geometry.hpp"
+
+Vec intersection(const Line& l, const Line& m) {
+    assert(!eq(cross(l.dir(), m.dir()), 0));  // not parallel
+    Vec r = m.p1 - l.p1;
+    return l.p1 + cross(m.dir(), r) / cross(m.dir(), l.dir()) * l.dir();
+}
+
+std::vector<Vec> intersection(const Circle& c, const Line& l) {
+    T d = dist(l, c.c);
+    if (lt(c.r, d)) return {};  // no intersection
+    Vec e1 = l.dir() / std::abs(l.dir());
+    Vec e2 = perp(e1);
+    if (ccw(c.c, l.p1, l.p2) == 1) e2 *= -1;
+    if (eq(c.r, d)) return {c.c + d * e2};  // tangent
+    T t = std::sqrt(c.r * c.r - d * d);
+    return {c.c + d * e2 + t * e1, c.c + d * e2 - t * e1};
+}
+
+std::vector<Vec> intersection(const Circle& c1, const Circle& c2) {
+    T d = std::abs(c1.c - c2.c);
+    if (lt(c1.r + c2.r, d)) return {};  // outside
+    Vec e1 = (c2.c - c1.c) / std::abs(c2.c - c1.c);
+    Vec e2 = perp(e1);
+    if (lt(d, std::abs(c2.r - c1.r))) return {};                  // contain
+    if (eq(d, std::abs(c2.r - c1.r))) return {c1.c + c1.r * e1};  // tangent
+    T x = (c1.r * c1.r - c2.r * c2.r + d * d) / (2 * d);
+    T y = std::sqrt(c1.r * c1.r - x * x);
+    return {c1.c + x * e1 + y * e2, c1.c + x * e1 - y * e2};
+}
+
+T area_intersection(const Circle& c1, const Circle& c2) {
+    T d = std::abs(c2.c - c1.c);
+    if (leq(c1.r + c2.r, d)) return 0;    // outside
+    if (leq(d, std::abs(c2.r - c1.r))) {  // inside
+        T r = std::min(c1.r, c2.r);
+        return PI * r * r;
+    }
+    T ans = 0;
+    T a;
+    a = std::acos((c1.r * c1.r + d * d - c2.r * c2.r) / (2 * c1.r * d));
+    ans += c1.r * c1.r * (a - std::sin(a) * std::cos(a));
+    a = std::acos((c2.r * c2.r + d * d - c1.r * c1.r) / (2 * c2.r * d));
+    ans += c2.r * c2.r * (a - std::sin(a) * std::cos(a));
+    return ans;
+}
+
+\end{lstlisting}
+
+\subsection{dist.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+#include "geometry.hpp"
+#include "intersect.hpp"
+
+T dist(const Line& l, const Vec& p) {
+    return std::abs(cross(p - l.p1, l.dir())) / std::abs(l.dir());
+}
+
+T dist(const Segment& s, const Vec& p) {
+    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);
+    if (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);
+    return std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());
+}
+
+T dist(const Segment& s, const Segment& t) {
+    if (intersect(s, t)) return T(0);
+    return std::min({dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});
+}
+
+\end{lstlisting}
+
+\subsection{Convex Hull}
+
+\begin{small}
+\begin{markdown}
+**Description**
+
+与えられた点の凸包を求める．この実装では Graham scan アルゴリズムを用いている．
+
+**Operations**
+
+- `vector<Vec> convex\_hull(vector<Vec> pts)`
+    - `pts` の凸包の境界の頂点を返す
+    - 時間計算量: $O(n\log n)$
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+#include "geometry.hpp"
+
+std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
+    int n = pts.size();
+    if (n == 1) return pts;
+    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {
+        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());
+    });
+    int k = 0; // the number of vertices in the convex hull
+    std::vector<Vec> ch(2 * n);
+    // right
+    for (int i = 0; i < n; ++i) {
+        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;
+        ch[k++] = pts[i];
+    }
+    int t = k;
+    // left
+    for (int i = n - 2; i >= 0; --i) {
+        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;
+        ch[k++] = pts[i];
+    }
+    ch.resize(k - 1);
+    return ch;
+}
+
+\end{lstlisting}
+
+\subsection{polygon.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+#include "geometry.hpp"
+#include "intersection.hpp"
+
+T area(const Polygon& poly) {
+    const int n = poly.size();
+    T res = 0;
+    for (int i = 0; i < n; ++i) {
+        res += cross(poly[i], poly[(i + 1) % n]);
+    }
+    return std::abs(res) / T(2);
+}
+
+bool is_convex(const Polygon& poly) {
+    int n = poly.size();
+    for (int i = 0; i < n; ++i) {
+        if (lt(cross(poly[(i + 1) % n] - poly[i],
+                     poly[(i + 2) % n] - poly[(i + 1) % n]),
+               0)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+Polygon convex_cut(const Polygon& poly, const Line& l) {
+    const int n = poly.size();
+    Polygon res;
+    for (int i = 0; i < n; ++i) {
+        auto p = poly[i], q = poly[(i + 1) % n];
+        if (ccw(l.p1, l.p2, p) != -1) {
+            if (res.empty() || !eq(res.back(), p)) {
+                res.push_back(p);
+            }
+        }
+        if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q) < 0) {
+            auto c = intersection(Line(p, q), l);
+            if (res.empty() || !eq(res.back(), c)) {
+                res.push_back(c);
+            }
+        }
+    }
+    return res;
+}
+
+Polygon halfplane_intersection(std::vector<std::pair<Vec, Vec>> hps) {
+    using Hp = std::pair<Vec, Vec>;  // (normal vector, a point on the border)
+
+    auto intersection = [&](const Hp& l1, const Hp& l2) -> Vec {
+        auto d = l2.second - l1.second;
+        return l1.second +
+               (dot(d, l2.first) / cross(l1.first, l2.first)) * perp(l1.first);
+    };
+
+    // check if the halfplane h contains the point p
+    auto contains = [&](const Hp& h, const Vec& p) -> bool {
+        return dot(p - h.second, h.first) > 0;
+    };
+
+    constexpr T INF = 1e15;
+    hps.emplace_back(Vec(1, 0), Vec(-INF, 0));  // -INF <= x
+    hps.emplace_back(Vec(-1, 0), Vec(INF, 0));  // x <= INF
+    hps.emplace_back(Vec(0, 1), Vec(0, -INF));  // -INF <= y
+    hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF
+
+    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {
+        return std::arg(h1.first) < std::arg(h2.first);
+    });
+
+    std::deque<Hp> dq;
+    int len = 0;
+    for (auto& hp : hps) {
+        while (len > 1 &&
+               !contains(hp, intersection(dq[len - 1], dq[len - 2]))) {
+            dq.pop_back();
+            --len;
+        }
+
+        while (len > 1 && !contains(hp, intersection(dq[0], dq[1]))) {
+            dq.pop_front();
+            --len;
+        }
+
+        // parallel
+        if (len > 0 && eq(cross(dq[len - 1].first, hp.first), 0)) {
+            // opposite
+            if (lt(dot(dq[len - 1].first, hp.first), 0)) {
+                return {};
+            }
+            // same
+            if (!contains(hp, dq[len - 1].second)) {
+                dq.pop_back();
+                --len;
+            } else
+                continue;
+        }
+
+        dq.push_back(hp);
+        ++len;
+    }
+
+    while (len > 2 &&
+           !contains(dq[0], intersection(dq[len - 1], dq[len - 2]))) {
+        dq.pop_back();
+        --len;
+    }
+
+    while (len > 2 && !contains(dq[len - 1], intersection(dq[0], dq[1]))) {
+        dq.pop_front();
+        --len;
+    }
+
+    if (len < 3) return {};
+
+    std::vector<Vec> poly(len);
+    for (int i = 0; i < len - 1; ++i) {
+        poly[i] = intersection(dq[i], dq[i + 1]);
+    }
+    poly[len - 1] = intersection(dq[len - 1], dq[0]);
+    return poly;
+}
+
+class PolygonContainment {
+   public:
+    explicit PolygonContainment(Polygon poly) : poly(poly) {}
+
+    // 0: outside
+    // 1: on the border
+    // 2: inside
+    int query(Vec pt) {
+        auto c1 = cross(poly[1] - poly[0], pt - poly[0]);
+        auto c2 = cross(poly.back() - poly[0], pt - poly[0]);
+        if (lt(c1, 0) || lt(0, c2)) return 0;
+
+        int lb = 1, ub = (int)poly.size() - 1;
+        while (ub - lb > 1) {
+            int m = (lb + ub) / 2;
+            if (leq(0, cross(poly[m] - poly[0], pt - poly[0])))
+                lb = m;
+            else
+                ub = m;
+        }
+        auto c = cross(poly[lb] - pt, poly[ub] - pt);
+        if (lt(c, 0)) return 0;
+        if (eq(c, 0) || eq(c1, 0) || eq(c2, 0)) return 1;
+        return 2;
+    }
+
+   private:
+    Polygon poly;
+};
+\end{lstlisting}
+
 \subsection{tangent.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
 
 \begin{lstlisting}
 #include "geometry.hpp"
@@ -332,131 +637,6 @@ std::vector<Line> common_tangents(Circle c1, Circle c2) {
 
 \end{lstlisting}
 
-\subsection{polygon.hpp}
-
-\begin{lstlisting}
-#pragma once
-#include <algorithm>
-#include <deque>
-#include <utility>
-#include <vector>
-#include "geometry.hpp"
-#include "intersection.hpp"
-
-T area(const Polygon& poly) {
-    const int n = poly.size();
-    T res = 0;
-    for (int i = 0; i < n; ++i) {
-        res += cross(poly[i], poly[(i + 1) % n]);
-    }
-    return std::abs(res) / T(2);
-}
-
-bool is_convex(const Polygon& poly) {
-    int n = poly.size();
-    for (int i = 0; i < n; ++i) {
-        if (lt(cross(poly[(i+1)%n] - poly[i], poly[(i+2)%n] - poly[(i+1)%n]), 0)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-Polygon convex_cut(const Polygon& poly, const Line& l) {
-    const int n = poly.size();
-    Polygon res;
-    for (int i = 0; i < n; ++i) {
-        auto p = poly[i], q = poly[(i+1)%n];
-        if (ccw(l.p1, l.p2, p) != -1) {
-            if (res.empty() || !eq(res.back(), p)) {
-                res.push_back(p);
-            }
-        }
-        if (ccw(l.p1, l.p2, p) * ccw(l.p1, l.p2, q) < 0) {
-            auto c = intersection(Line(p, q), l);
-            if (res.empty() || !eq(res.back(), c)) {
-                res.push_back(c);
-            }
-        }
-    }
-    return res;
-}
-
-Polygon halfplane_intersection(std::vector<std::pair<Vec, Vec>> hps) {
-    using Hp = std::pair<Vec, Vec>;  // (normal vector, a point on the border)
-
-    auto intersection = [&](const Hp& l1, const Hp& l2) -> Vec {
-        auto d = l2.second - l1.second;
-        return l1.second + (dot(d, l2.first) / cross(l1.first, l2.first)) * perp(l1.first);
-    };
-
-    // check if the halfplane h contains the point p
-    auto contains = [&](const Hp& h, const Vec& p) -> bool {
-        return dot(p - h.second, h.first) > 0;
-    };
-
-    constexpr T INF = 1e15;
-    hps.emplace_back(Vec(1, 0), Vec(-INF, 0));  // -INF <= x
-    hps.emplace_back(Vec(-1, 0), Vec(INF, 0));  // x <= INF
-    hps.emplace_back(Vec(0, 1), Vec(0, -INF));  // -INF <= y
-    hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF
-
-    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {
-        return std::arg(h1.first) < std::arg(h2.first);
-    });
-
-    std::deque<Hp> dq;
-    int len = 0;
-    for (auto& hp : hps) {
-        while (len > 1 && !contains(hp, intersection(dq[len-1], dq[len-2]))) {
-            dq.pop_back();
-            --len;
-        }
-
-        while (len > 1 && !contains(hp, intersection(dq[0], dq[1]))) {
-            dq.pop_front();
-            --len;
-        }
-
-        // parallel
-        if (len > 0 && eq(cross(dq[len-1].first, hp.first), 0)) {
-            // opposite
-            if (lt(dot(dq[len-1].first, hp.first), 0)) {
-                return {};
-            }
-            // same
-            if (!contains(hp, dq[len-1].second)) {
-                dq.pop_back();
-                --len;
-            } else continue;
-        }
-
-        dq.push_back(hp);
-        ++len;
-    }
-
-    while (len > 2 && !contains(dq[0], intersection(dq[len-1], dq[len-2]))) {
-        dq.pop_back();
-        --len;
-    }
-
-    while (len > 2 && !contains(dq[len-1], intersection(dq[0], dq[1]))) {
-        dq.pop_front();
-        --len;
-    }
-
-    if (len < 3) return {};
-
-    std::vector<Vec> poly(len);
-    for (int i = 0; i < len - 1; ++i) {
-        poly[i] = intersection(dq[i], dq[i+1]);
-    }
-    poly[len-1] = intersection(dq[len-1], dq[0]);
-    return poly;
-}
-
-\end{lstlisting}
-
 \subsection{triangle.hpp}
 
 \begin{small}
@@ -487,42 +667,26 @@ Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
     assert(ccw(A, B, C) != 0);
     return intersection(bisector(Segment(A, B)), bisector(Segment(A, C)));
 }
-\end{lstlisting}
 
-\subsection{Convex Hull}
+// large error but beautiful
+// Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
+//     assert(ccw(A, B, C) != 0);
+//     Vec p = C - B, q = A - C, r = B - A;
+//     T a = std::norm(p) * dot(q, r);
+//     T b = std::norm(q) * dot(r, p);
+//     T c = std::norm(r) * dot(p, q);
+//     return (a*A + b*B + c*C) / (a + b + c);
+// }
 
-\begin{small}
-時間計算量: $O(n\log n)$
-\end{small}
-
-\begin{lstlisting}
-#include "geometry.hpp"
-
-std::vector<Vec> convex_hull(std::vector<Vec>& pts) {
-    int n = pts.size();
-    if (n == 1) return pts;
-    std::sort(pts.begin(), pts.end(), [](const Vec& v1, const Vec& v2) {
-        return (v1.imag() != v2.imag()) ? (v1.imag() < v2.imag()) : (v1.real() < v2.real());
-    });
-    int k = 0; // the number of vertices in the convex hull
-    std::vector<Vec> ch(2 * n);
-    // right
-    for (int i = 0; i < n; ++i) {
-        while (k > 1 && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;
-        ch[k++] = pts[i];
-    }
-    int t = k;
-    // left
-    for (int i = n - 2; i >= 0; --i) {
-        while (k > t && lt(cross(ch[k-1] - ch[k-2], pts[i] - ch[k-1]), 0)) --k;
-        ch[k++] = pts[i];
-    }
-    ch.resize(k - 1);
-    return ch;
-}
 \end{lstlisting}
 
 \subsection{bisector.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
 
 \begin{lstlisting}
 #include "geometry.hpp"
@@ -548,4 +712,238 @@ std::pair<Line, Line> bisector(const Line& l, const Line& m) {
     return {b1, b2};
 }
 
+\end{lstlisting}
+
+\subsection{geometry3d.hpp}
+
+\begin{small}
+\begin{markdown}
+
+\end{markdown}
+\end{small}
+
+\begin{lstlisting}
+/**
+ * @brief 3D Geometry
+ */
+// following functions from the 2d library also work for 3d without
+// any modification:
+// projection, reflection, dist, centroid, incenter
+
+using T = double;
+
+struct Vec {
+    T x, y, z;
+    Vec() = default;
+    constexpr Vec(T x, T y, T z) : x(x), y(y), z(z) {}
+    constexpr Vec& operator+=(const Vec& r) {
+        x += r.x;
+        y += r.y;
+        z += r.z;
+        return *this;
+    }
+    constexpr Vec& operator-=(const Vec& r) {
+        x -= r.x;
+        y -= r.y;
+        z -= r.z;
+        return *this;
+    }
+    constexpr Vec& operator*=(T r) {
+        x *= r;
+        y *= r;
+        z *= r;
+        return *this;
+    }
+    constexpr Vec& operator/=(T r) {
+        x /= r;
+        y /= r;
+        z /= r;
+        return *this;
+    }
+    constexpr Vec operator-() const { return Vec(-x, -y, -z); }
+    constexpr Vec operator+(const Vec& r) const { return Vec(*this) += r; }
+    constexpr Vec operator-(const Vec& r) const { return Vec(*this) -= r; }
+    constexpr Vec operator*(T r) const { return Vec(*this) *= r; }
+    constexpr Vec operator/(T r) const { return Vec(*this) /= r; }
+    friend constexpr Vec operator*(T r, const Vec& v) { return v * r; }
+};
+
+// rotation around n=(x,y,z) by theta: cos(theta/2) + (xi+yj+zk) sin(theta/2)
+struct Quarternion {
+    T x, y, z, w;
+    Quarternion() = default;
+    constexpr Quarternion(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}
+    constexpr Quarternion conj() const { return Quarternion(-x, -y, -z, w); }
+    constexpr Quarternion& operator+=(const Quarternion& r) {
+        x += r.x;
+        y += r.y;
+        z += r.z;
+        w += r.w;
+        return *this;
+    }
+    constexpr Quarternion& operator-=(const Quarternion& r) {
+        x -= r.x;
+        y -= r.y;
+        z -= r.z;
+        w -= r.w;
+        return *this;
+    }
+    constexpr Quarternion& operator*=(const Quarternion& r) {
+        *this = Quarternion(w * r.x - z * r.y + y * r.z + x * r.w,
+                            z * r.x + w * r.y - x * r.z + y * r.w,
+                            -y * r.x + x * r.y + w * r.z + z * r.w,
+                            -x * r.x - y * r.y - z * r.z + w * r.w);
+        return *this;
+    }
+    constexpr Quarternion& operator*=(T r) {
+        x *= r;
+        y *= r;
+        z *= r;
+        w *= r;
+        return *this;
+    }
+    constexpr Quarternion& operator/=(T r) {
+        x /= r;
+        y /= r;
+        z /= r;
+        w /= r;
+        return *this;
+    }
+    constexpr Quarternion operator-() const {
+        return Quarternion(-x, -y, -z, -w);
+    }
+    constexpr Quarternion operator+(const Quarternion& r) const {
+        return Quarternion(*this) += r;
+    }
+    constexpr Quarternion operator-(const Quarternion& r) const {
+        return Quarternion(*this) -= r;
+    }
+    constexpr Quarternion operator*(const Quarternion& r) const {
+        return Quarternion(*this) *= r;
+    }
+    constexpr Quarternion operator*(T r) const {
+        return Quarternion(*this) *= r;
+    }
+    constexpr Quarternion operator/(T r) const {
+        return Quarternion(*this) /= r;
+    }
+};
+
+std::istream& operator>>(std::istream& is, Vec& p) {
+    T x, y, z;
+    is >> x >> y >> z;
+    p = {x, y, z};
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const Vec& p) {
+    os << "(" << p.x << ", " << p.y << ", " << p.z << ")";
+    return os;
+}
+
+T dot(const Vec& a, const Vec& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+
+Vec cross(const Vec& a, const Vec& b) {
+    return Vec(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z,
+               a.x * b.y - a.y * b.x);
+}
+
+namespace std {
+T norm(const Vec& a) { return dot(a, a); }
+T abs(const Vec& a) { return std::sqrt(std::norm(a)); }
+}  // namespace std
+
+constexpr T eps = 1e-10;
+inline bool eq(T a, T b) { return std::abs(a - b) <= eps; }
+inline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }
+inline bool lt(T a, T b) { return a < b - eps; }
+inline bool leq(T a, T b) { return a <= b + eps; }
+
+struct Line {
+    Vec p1, p2;
+    Line() = default;
+    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}
+    Vec dir() const { return p2 - p1; }
+};
+
+struct Segment : Line {
+    using Line::Line;
+};
+
+struct Plane {
+    Vec n, p;
+    Plane() = default;
+    Plane(const Vec& n, const Vec& p) : n(n), p(p) {}
+};
+
+struct Sphere {
+    Vec c;
+    T r;
+    Sphere() = default;
+    Sphere(const Vec& c, T r) : c(c), r(r) {}
+};
+
+Vec rot(const Vec& v, const Quarternion& q) {
+    auto u = q * Quarternion(v.x, v.y, v.z, 0) * q.conj();
+    return {u.x, u.y, u.z};
+}
+
+// get the rotation that moves a to b
+Quarternion get_rotation(const Vec& a, const Vec& b) {
+    assert(eq(std::abs(a), 1));
+    assert(eq(std::abs(b), 1));
+
+    T theta = std::acos(dot(a, b));
+    Vec n = cross(a, b);
+    n /= std::abs(n);
+    T c = std::cos(theta / 2);
+    T s = std::sin(theta / 2);
+    return Quarternion(s * n.x, s * n.y, s * n.z, c);
+}
+
+bool are_collinear(const Vec& p1, const Vec& p2, const Vec& p3) {
+    return eq(std::norm(cross(p2 - p1, p3 - p1)), 0);
+}
+
+bool are_coplanar(const Vec& p1, const Vec& p2, const Vec& p3, const Vec& p4) {
+    return eq(dot(cross(p2 - p1, p4 - p1), p3 - p1), 0);
+}
+
+// --- intersect ---
+
+// 0: skew
+// 1: parallel
+// 2: intersect
+int intersect(const Line& l, const Line& m) {
+    if (!are_coplanar(l.p1, l.p2, m.p1, m.p2)) return 0;
+    if (eq(std::norm(cross(l.dir(), m.dir())), 0)) return 1;
+    return 2;
+}
+
+bool intersect(const Plane& pl, const Line& l) {
+    return !eq(dot(pl.n, l.dir()), 0);
+}
+
+// --- intersection ---
+
+Vec intersection(const Line& l, const Line& m) {
+    assert(intersect(l, m) == 2);
+
+    auto r = m.p1 - l.p1;
+    auto dlr = dot(l.dir(), r);
+    auto dmr = dot(m.dir(), r);
+    auto dlm = dot(l.dir(), m.dir());
+    auto dll = std::norm(l.dir());
+    auto dmm = std::norm(m.dir());
+
+    auto t = (dlr * dmm - dmr * dlm) / (dll * dmm - dlm * dlm);
+    return l.p1 + t * l.dir();
+}
+
+Vec intersection(const Plane& pl, const Line& l) {
+    assert(intersect(pl, l));
+    auto dir = l.dir();
+    auto d = dot(pl.p - l.p1, pl.n) / dot(dir, pl.n);
+    return l.p1 + d * dir;
+}
 \end{lstlisting}

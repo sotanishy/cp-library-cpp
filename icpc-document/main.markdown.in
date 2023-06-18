@@ -1,23 +1,25 @@
-森の辺の追加，削除，根の変更，頂点の値の更新，パスクエリ
+DPは $dp\_v = g(f(dp\_{c\_1}, e\_1) * \dots * f(dp\_{c\_k}, e\_k), v)$ という形の遷移で表されるとする．
 
-- `LinkCutTree(int n)`
-    - 頂点数 $n$ で初期化する
+**Template Parameters**
+
+- `M`
+    - 可換モノイド
+- `Cost`
+    - 辺のコストの型
+- `T apply\_edge(T a, int s, int t, Cost c)`
+    - 遷移の $f$
+- `T apply\_vertex(T x, int v)`
+    - 遷移の $g$
+
+**Operations**
+
+- `Rerooting(int n)`
+    - 頂点数 $n$ で木を初期化する
     - 時間計算量: $O(n)$
-- `void link(int u, int v)`
-    - 辺 $uv$ を追加する
-    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `void cut(int v)`
-    - 頂点 $v$ とその親を結ぶ辺を削除する
-    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `void evert(int v)`
-    - 頂点 $v$ を木の根にする
-    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `void get(int v)`
-    - 頂点 $v$ の値を取得する
+- `void add\_edge(int u, int v, Cost c)`
+    - 頂点 $uv$ 間にコスト $c$ の辺を張る
     - 時間計算量: $O(1)$
-- `void set(int v, T x)`
-    - 頂点 $v$ の値を $x$ に変更する
-    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
-- `T fold(int u, int v)`
-    - $uv$ パス上の頂点の値を fold する
-    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `vector<T> run()`
+    - 各頂点を根としたときの木DPの値を求める
+    - 時間計算量: $O(n)$
+

@@ -6,7 +6,9 @@ from file_list import paths
 
 Section = namedtuple("Section", ["title", "files"])
 File = namedtuple("File", ["title", "doc", "src"])
-skip_sections = ["convolution", "flow", "geometry", "graph", "math", "misc", "string", "tree"]
+skip_sections = ["convolution", "data-structure", "flow", "geometry", "graph", "misc", "sat", "string", "tree"]
+# skip_sections = ["convolution", "flow", "geometry",
+#                  "graph", "math", "misc", "string", "tree"]
 
 
 def fix_string(s):
@@ -15,7 +17,18 @@ def fix_string(s):
 
 def parse_file(src_path):
     with open(src_path, encoding="utf-8") as f:
-        src = "".join(f.readlines())
+        lines = []
+        for line in f.readlines():
+            # remove include and pragma
+            if line.strip().startswith("#pragma") or line.strip().startswith("#include <"):
+                continue
+            lines.append(line)
+        # remove empty lines at the beginning and the end of the document
+        while lines and lines[0].strip() == "":
+            lines.pop(0)
+        while lines and lines[-1].strip() == "":
+            lines.pop()
+        src = "".join(lines)
 
     path = src_path.split("/")
     path.insert(1, "docs")

@@ -128,7 +128,7 @@ NTT では， \texttt{omega} を \texttt{primitive\_root.pow((mod - 1) / m)} に
 \end{small}
 
 \begin{lstlisting}
-const double PI = acos(-1);
+constexpr double PI = 3.14159265358979323846;
 
 void fft(std::vector<std::complex<double>>& a) {
     int n = a.size();
@@ -174,10 +174,10 @@ std::vector<double> convolution(const std::vector<T>& a, const std::vector<T>& b
     std::vector<std::complex<double>> na(a.begin(), a.end()), nb(b.begin(), b.end());
     na.resize(n);
     nb.resize(n);
-    fft(na, false);
-    fft(nb, false);
+    fft(na);
+    fft(nb);
     for (int i = 0; i < n; ++i) na[i] *= nb[i];
-    ifft(na, false);
+    ifft(na);
     std::vector<double> ret(size);
     for (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;
     return ret;
