@@ -26,30 +26,32 @@ data:
     \        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return\
     \ ret;\n    }\n\n    void update(int i, const T& x) {\n        for (++i; i <=\
     \ n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        if (x <= M::id()) return 0;\n        int k = 1;\n   \
-    \     while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n\
-    \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
-    \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
-    \      v = nv;\n                i += k;\n            }\n        }\n        return\
-    \ i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T> data;\n};\n#line\
-    \ 2 \"tree/centroid_decomposition.hpp\"\n#include <tuple>\n#line 4 \"tree/centroid_decomposition.hpp\"\
-    \n\nstd::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const\
-    \ std::vector<std::vector<int>>& G) {\n    int N = G.size();\n    std::vector<int>\
-    \ sz(N), level(N, -1), sz_comp(N), par(N);\n\n    auto dfs_size = [&](auto& dfs_size,\
-    \ int v, int p) -> int {\n        sz[v] = 1;\n        for (int c : G[v]) {\n \
-    \           if (c != p && level[c] == -1) sz[v] += dfs_size(dfs_size, c, v);\n\
-    \        }\n        return sz[v];\n    };\n\n    auto dfs_centroid = [&](auto&\
-    \ dfs_centroid, int v, int p, int n) -> int {\n        for (int c : G[v]) {\n\
-    \            if (c != p && level[c] == -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid,\
-    \ c, v, n);\n        }\n        return v;\n    };\n\n    auto decompose = [&](auto&\
-    \ decompose, int v, int k, int p) -> void {\n        int n = dfs_size(dfs_size,\
-    \ v, -1);\n        int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s]\
-    \ = k;\n        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s])\
-    \ {\n            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n    \
-    \    }\n    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp,\
-    \ par};\n}\n#line 9 \"tree/range_contour_aggregation.hpp\"\n\ntemplate <typename\
-    \ Group>\nclass RangeContourAggregation {\n    using T = typename Group::T;\n\n\
-    \   public:\n    RangeContourAggregation() = default;\n    explicit RangeContourAggregation(const\
+    \ T& x) const { return lower_bound(x, std::less<>()); }\n\n    template <typename\
+    \ Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n        if (!cmp(M::id(),\
+    \ x)) return 0;\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n   \
+    \     int i = 0;\n        T v = M::id();\n        for (; k > 0; k >>= 1) {\n \
+    \           if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
+    \            if (cmp(nv, x)) {\n                v = nv;\n                i +=\
+    \ k;\n            }\n        }\n        return i + 1;\n    }\n\n   private:\n\
+    \    int n;\n    std::vector<T> data;\n};\n#line 2 \"tree/centroid_decomposition.hpp\"\
+    \n#include <tuple>\n#line 4 \"tree/centroid_decomposition.hpp\"\n\nstd::tuple<std::vector<int>,\
+    \ std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
+    \ G) {\n    int N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N),\
+    \ par(N);\n\n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n\
+    \        sz[v] = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c]\
+    \ == -1) sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n\
+    \    };\n\n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n)\
+    \ -> int {\n        for (int c : G[v]) {\n            if (c != p && level[c] ==\
+    \ -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n\
+    \        return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v,\
+    \ int k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n      \
+    \  int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n    \
+    \    sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s]) {\n    \
+    \        if (level[c] == -1) decompose(decompose, c, k + 1, s);\n        }\n \
+    \   };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp, par};\n\
+    }\n#line 9 \"tree/range_contour_aggregation.hpp\"\n\ntemplate <typename Group>\n\
+    class RangeContourAggregation {\n    using T = typename Group::T;\n\n   public:\n\
+    \    RangeContourAggregation() = default;\n    explicit RangeContourAggregation(const\
     \ std::vector<std::vector<int>>& G)\n        : seg(G.size()),\n          seg_sub(G.size()),\n\
     \          dist(G.size()),\n          idx(G.size()),\n          sub(G.size()),\n\
     \          idx_sub(G.size()),\n          first(G.size()),\n          first_sub(G.size())\
@@ -152,7 +154,7 @@ data:
   isVerificationFile: false
   path: tree/range_contour_aggregation.hpp
   requiredBy: []
-  timestamp: '2023-06-03 23:26:20+09:00'
+  timestamp: '2023-06-18 14:56:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp

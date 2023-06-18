@@ -146,9 +146,9 @@ data:
   isVerificationFile: false
   path: geometry/bisector.hpp
   requiredBy:
-  - geometry/triangle.hpp
   - geometry/minimum_bounding_circle.hpp
   - geometry/delaunay_diagram.hpp
+  - geometry/triangle.hpp
   timestamp: '2023-05-14 13:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

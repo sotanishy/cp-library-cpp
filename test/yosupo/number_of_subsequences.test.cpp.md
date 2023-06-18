@@ -54,16 +54,18 @@ data:
     \ i) const {\n        T ret = M::id();\n        for (; i > 0; i -= i & -i) ret\
     \ = M::op(ret, data[i]);\n        return ret;\n    }\n\n    void update(int i,\
     \ const T& x) {\n        for (++i; i <= n; i += i & -i) data[i] = M::op(data[i],\
-    \ x);\n    }\n\n    int lower_bound(const T& x) const {\n        if (x <= M::id())\
-    \ return 0;\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n       \
-    \ int i = 0;\n        T v = M::id();\n        for (; k > 0; k >>= 1) {\n     \
-    \       if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
-    \            if (nv < x) {\n                v = nv;\n                i += k;\n\
-    \            }\n        }\n        return i + 1;\n    }\n\n   private:\n    int\
-    \ n;\n    std::vector<T> data;\n};\n#line 5 \"test/yosupo/number_of_subsequences.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nstruct AddMonoid {\n    using T = mint;\n    static T id() { return 0; }\n \
-    \   static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n\
+    \ x);\n    }\n\n    int lower_bound(const T& x) const { return lower_bound(x,\
+    \ std::less<>()); }\n\n    template <typename Compare>\n    int lower_bound(const\
+    \ T& x, Compare cmp) const {\n        if (!cmp(M::id(), x)) return 0;\n      \
+    \  int k = 1;\n        while (k * 2 <= n) k <<= 1;\n        int i = 0;\n     \
+    \   T v = M::id();\n        for (; k > 0; k >>= 1) {\n            if (i + k >\
+    \ n) continue;\n            T nv = M::op(v, data[i + k]);\n            if (cmp(nv,\
+    \ x)) {\n                v = nv;\n                i += k;\n            }\n   \
+    \     }\n        return i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T>\
+    \ data;\n};\n#line 5 \"test/yosupo/number_of_subsequences.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\n\
+    struct AddMonoid {\n    using T = mint;\n    static T id() { return 0; }\n   \
+    \ static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n\
     \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N;\n    cin\
     \ >> N;\n    vector<int> A(N);\n    for (auto& x : A) cin >> x;\n    map<int,\
     \ int> last;\n    FenwickTree<AddMonoid> ft(N+1);\n    ft.update(0, 1);\n    for\
@@ -87,7 +89,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 23:26:20+09:00'
+  timestamp: '2023-06-18 14:56:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_subsequences.test.cpp

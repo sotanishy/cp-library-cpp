@@ -20,23 +20,25 @@ data:
     \ ret = M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
     \        return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
     \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        if (x <= M::id()) return 0;\n        int k = 1;\n   \
-    \     while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n\
-    \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
-    \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
-    \      v = nv;\n                i += k;\n            }\n        }\n        return\
-    \ i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T> data;\n};\n#line\
-    \ 5 \"misc/permutation.hpp\"\n\n/**\n * @brief Lexicographic Index of Permutations\
-    \ (in Factorial Number System)\n */\n\nstruct AddMonoid {\n    using T = int;\n\
-    \    static T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n\
-    };\n\nstd::vector<int> perm_to_num(const std::vector<int>& P) {\n    int N = P.size();\n\
-    \    std::vector<int> num(N);\n    FenwickTree<AddMonoid> ft(N);\n    for (int\
-    \ i = N - 1; i >= 0; --i) {\n        ft.update(P[i], 1);\n        num[N - i -\
-    \ 1] = ft.prefix_fold(P[i]);\n    }\n    return num;\n}\n\nstd::vector<int> num_to_perm(const\
-    \ std::vector<int>& num) {\n    int N = num.size();\n    std::vector<int> P(N);\n\
-    \    FenwickTree<AddMonoid> ft(N);\n    for (int i = 0; i < N; ++i) ft.update(i,\
-    \ 1);\n    for (int i = 0; i < N; ++i) {\n        P[i] = ft.lower_bound(num[N\
-    \ - i - 1] + 1);\n        ft.update(P[i], -1);\n    }\n    return P;\n}\n"
+    \ T& x) const { return lower_bound(x, std::less<>()); }\n\n    template <typename\
+    \ Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n        if (!cmp(M::id(),\
+    \ x)) return 0;\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n   \
+    \     int i = 0;\n        T v = M::id();\n        for (; k > 0; k >>= 1) {\n \
+    \           if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
+    \            if (cmp(nv, x)) {\n                v = nv;\n                i +=\
+    \ k;\n            }\n        }\n        return i + 1;\n    }\n\n   private:\n\
+    \    int n;\n    std::vector<T> data;\n};\n#line 5 \"misc/permutation.hpp\"\n\n\
+    /**\n * @brief Lexicographic Index of Permutations (in Factorial Number System)\n\
+    \ */\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return 0;\
+    \ }\n    static T op(T a, T b) { return a + b; }\n};\n\nstd::vector<int> perm_to_num(const\
+    \ std::vector<int>& P) {\n    int N = P.size();\n    std::vector<int> num(N);\n\
+    \    FenwickTree<AddMonoid> ft(N);\n    for (int i = N - 1; i >= 0; --i) {\n \
+    \       ft.update(P[i], 1);\n        num[N - i - 1] = ft.prefix_fold(P[i]);\n\
+    \    }\n    return num;\n}\n\nstd::vector<int> num_to_perm(const std::vector<int>&\
+    \ num) {\n    int N = num.size();\n    std::vector<int> P(N);\n    FenwickTree<AddMonoid>\
+    \ ft(N);\n    for (int i = 0; i < N; ++i) ft.update(i, 1);\n    for (int i = 0;\
+    \ i < N; ++i) {\n        P[i] = ft.lower_bound(num[N - i - 1] + 1);\n        ft.update(P[i],\
+    \ -1);\n    }\n    return P;\n}\n"
   code: "#pragma once\n#include <vector>\n\n#include \"../data-structure/fenwick_tree.cpp\"\
     \n\n/**\n * @brief Lexicographic Index of Permutations (in Factorial Number System)\n\
     \ */\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return 0;\
@@ -54,7 +56,7 @@ data:
   isVerificationFile: false
   path: misc/permutation.hpp
   requiredBy: []
-  timestamp: '2023-06-03 23:26:20+09:00'
+  timestamp: '2023-06-18 14:56:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/permutation.hpp

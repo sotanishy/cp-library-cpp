@@ -26,19 +26,21 @@ data:
     \ M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n  \
     \      return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
     \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const {\n        if (x <= M::id()) return 0;\n        int k = 1;\n   \
-    \     while (k * 2 <= n) k <<= 1;\n        int i = 0;\n        T v = M::id();\n\
-    \        for (; k > 0; k >>= 1) {\n            if (i + k > n) continue;\n    \
-    \        T nv = M::op(v, data[i + k]);\n            if (nv < x) {\n          \
-    \      v = nv;\n                i += k;\n            }\n        }\n        return\
-    \ i + 1;\n    }\n\n   private:\n    int n;\n    std::vector<T> data;\n};\n#line\
-    \ 2 \"tree/hld.cpp\"\n#include <algorithm>\n#line 4 \"tree/hld.cpp\"\n\ntemplate\
-    \ <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD()\
-    \ = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n   \
-    \     : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),\n          in(G.size()),\
-    \ out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n\
-    \        decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int\
-    \ v, const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \ T& x) const { return lower_bound(x, std::less<>()); }\n\n    template <typename\
+    \ Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n        if (!cmp(M::id(),\
+    \ x)) return 0;\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n   \
+    \     int i = 0;\n        T v = M::id();\n        for (; k > 0; k >>= 1) {\n \
+    \           if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
+    \            if (cmp(nv, x)) {\n                v = nv;\n                i +=\
+    \ k;\n            }\n        }\n        return i + 1;\n    }\n\n   private:\n\
+    \    int n;\n    std::vector<T> data;\n};\n#line 2 \"tree/hld.cpp\"\n#include\
+    \ <algorithm>\n#line 4 \"tree/hld.cpp\"\n\ntemplate <typename M>\nclass HLD {\n\
+    \    using T = typename M::T;\n\npublic:\n    HLD() = default;\n    HLD(const\
+    \ std::vector<std::vector<int>>& G, bool edge)\n        : G(G), size(G.size()),\
+    \ depth(G.size()), par(G.size(), -1),\n          in(G.size()), out(G.size()),\
+    \ head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n       \
+    \ decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int v,\
+    \ const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
     \ <typename F>\n    void update_edge(int u, int v, const T& x, const F& f) const\
     \ {\n        if (in[u] > in[v]) std::swap(u, v);\n        f(in[v], x);\n    }\n\
     \n    template <typename E, typename F>\n    void update(int u, int v, const E&\
@@ -111,7 +113,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 23:26:20+09:00'
+  timestamp: '2023-06-18 14:56:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.hld.test.cpp

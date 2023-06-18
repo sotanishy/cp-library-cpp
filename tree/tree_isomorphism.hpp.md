@@ -142,9 +142,9 @@ data:
   timestamp: '2022-10-20 22:01:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2821.test.cpp
-  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
+  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+  - test/aoj/2821.test.cpp
 documentation_of: tree/tree_isomorphism.hpp
 layout: document
 title: Tree Isomorphism

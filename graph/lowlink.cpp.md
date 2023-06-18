@@ -73,10 +73,10 @@ data:
   timestamp: '2022-10-05 11:03:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/two_edge_connected_components.test.cpp
+  - test/yosupo/biconnected_components.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp
-  - test/yosupo/biconnected_components.test.cpp
-  - test/yosupo/two_edge_connected_components.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document
 title: Lowlink
@@ -101,12 +101,6 @@ Lowlink はグラフの橋や関節点などを求める際に有効な概念で
 - `Lowlink(vector<vector<int>> G)`
     - グラフ $G$ の隣接リストが与えられたとき，$G$ の橋と関節点を求める
     - 時間計算量: $O(V + E)$
-- `vector<pair<int, int>> get_bridges()`
-    - $G$ の橋を返す
-    - 時間計算量: $O(n)$
-- `vector<int> get_articulation_points()`
-    - $G$ の関節点を返す
-    - 時間計算量: $O(n)$
 - `bool is_bridge(int u, int v)`
     - 辺 $uv$ が橋かどうか判定する
     - 時間計算量: $O(1)$

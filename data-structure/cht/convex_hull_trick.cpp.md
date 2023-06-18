@@ -58,15 +58,12 @@ Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエ
 
 ## Operations
 
-- `ConvexHullTrick(bool monotone_query)`
-    - 最小値クエリの $x$ が単調非減少ならば，`monotone_query = true` とすれば計算量が改善する．デフォルトは `monotone_query = false`
-    - 時間計算量: $O(1)$
 - `T add(T a, T b)`
     - 直線 $ax + b$ を $L$ に追加する
     - 時間計算量: $\mathrm{amortized}\ O(1)$
 - `T get(T x)`
     - 与えられた $x$ に対し，$L$ の中で最小値を取る直線の値を求める
-    - 時間計算量: `monotone_query = true` なら $\mathrm{amortized}\ O(1)$, `false` なら $O(\log n)$
+    - 時間計算量: $\mathrm{amortized}\ O(1)$
 
 ## Reference
 

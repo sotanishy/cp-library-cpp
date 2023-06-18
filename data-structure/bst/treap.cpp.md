@@ -145,8 +145,8 @@ data:
   timestamp: '2023-05-07 15:56:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1508.treap.test.cpp
   - test/yosupo/range_reverse_range_sum.treap.test.cpp
+  - test/aoj/1508.treap.test.cpp
 documentation_of: data-structure/bst/treap.cpp
 layout: document
 title: Treap

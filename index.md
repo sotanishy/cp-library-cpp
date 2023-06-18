@@ -475,6 +475,9 @@ data:
       path: misc/fraction.cpp
       title: Fraction
     - icon: ':warning:'
+      path: misc/golden_section_search.hpp
+      title: misc/golden_section_search.hpp
+    - icon: ':warning:'
       path: misc/interval_set.hpp
       title: Interval Set
     - icon: ':warning:'
