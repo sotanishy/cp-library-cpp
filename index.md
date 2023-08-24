@@ -18,6 +18,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
+    - icon: ':warning:'
+      path: convolution/relaxed_convolution.hpp
+      title: Relaxed Convolution
     - icon: ':heavy_check_mark:'
       path: convolution/subset_convolution.hpp
       title: Subset Convolution
@@ -306,6 +309,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
+    - icon: ':warning:'
+      path: graph/manhattan_mst.hpp
+      title: Manhattan Minimum Spanning Tree
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.cpp
       title: Maximum Independent Set
@@ -368,6 +374,9 @@ data:
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
+    - icon: ':heavy_check_mark:'
+      path: math/count_subset_sum.hpp
+      title: Count Subset Sum
     - icon: ':warning:'
       path: math/divisor.cpp
       title: Divisor
@@ -519,6 +528,9 @@ data:
     - icon: ':warning:'
       path: misc/stable_matching.hpp
       title: Stable Matching
+    - icon: ':warning:'
+      path: misc/sum_top_k.hpp
+      title: Sum of Top K Values
     - icon: ':warning:'
       path: misc/timer.cpp
       title: misc/timer.cpp
@@ -971,6 +983,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/longest_increasing_subsequence.test.cpp
       title: test/yosupo/longest_increasing_subsequence.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/manhattanmst.test.cpp
+      title: test/yosupo/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
@@ -1073,6 +1088,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/sharp_p_subset_sum.test.cpp
+      title: test/yosupo/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp

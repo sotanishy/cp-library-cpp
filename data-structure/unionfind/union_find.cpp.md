@@ -62,18 +62,18 @@ data:
   path: data-structure/unionfind/union_find.cpp
   requiredBy:
   - graph/minimum_spanning_arborescence.cpp
-  - graph/mst.cpp
   - graph/junction_tree.hpp
+  - graph/mst.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/unionfind.test.cpp
   - test/yosupo/directedmst.test.cpp
+  - test/yosupo/unionfind.test.cpp
   - test/yosupo/tree_decomposition_width_2.test.cpp
-  - test/aoj/GRL_2_A.prim.test.cpp
-  - test/aoj/DSL_1_A.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
+  - test/aoj/DSL_1_A.test.cpp
 documentation_of: data-structure/unionfind/union_find.cpp
 layout: document
 title: Union Find

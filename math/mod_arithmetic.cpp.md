@@ -130,8 +130,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/sqrt_mod.test.cpp
-  - test/yosupo/tetration_mod.test.cpp
   - test/yosupo/discrete_logarithm_mod.test.cpp
+  - test/yosupo/tetration_mod.test.cpp
   - test/aoj/NTL_1_B.test.cpp
 documentation_of: math/mod_arithmetic.cpp
 layout: document

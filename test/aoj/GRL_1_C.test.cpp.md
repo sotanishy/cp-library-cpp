@@ -19,11 +19,11 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
   bundledCode: "#line 1 \"test/aoj/GRL_1_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
     \n\n#line 2 \"graph/shortest_path.cpp\"\n#include <limits>\n#include <queue>\n\
-    #include <tuple>\n#include <utility>\n#include <vector>\n#line 2 \"graph/edge.cpp\"\
+    #include <tuple>\n#include <utility>\n#include <vector>\n\n#line 2 \"graph/edge.cpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n \
     \   Edge() = default;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight)\
     \ {}\n    Edge(int from, int to, T weight) : from(from), to(to), weight(weight)\
-    \ {}\n};\n#line 8 \"graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n\
+    \ {}\n};\n#line 9 \"graph/shortest_path.cpp\"\n\n/*\n * Bellman-Ford Algorithm\n\
     \ */\ntemplate <typename T>\nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
     \ G, int V, int s) {\n    constexpr T INF = std::numeric_limits<T>::max();\n \
     \   std::vector<T> dist(V, INF);\n    dist[s] = 0;\n    for (int i = 0; i < V;\
@@ -44,17 +44,27 @@ data:
     \  pq.pop();\n        if (dist[v] < d) continue;\n        for (auto& e : G[v])\
     \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
     \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
-    \ }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Breadth-First Search\n\
-    \ */\nstd::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {\n\
-    \    std::vector<int> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int>\
+    \ }\n        }\n    }\n\n    return dist;\n}\n\ntemplate <typename T>\nstd::pair<std::vector<T>,\
+    \ std::vector<int>> dijkstra(\n    const std::vector<std::vector<Edge<T>>>& G,\
+    \ int s, int avoid) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
+    \    std::vector<int> prv(G.size(), -1);\n    dist[s] = 0;\n    using P = std::pair<T,\
+    \ int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;\n   \
+    \ pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T d;\n        int v;\n\
+    \        std::tie(d, v) = pq.top();\n        pq.pop();\n        if (dist[v] <\
+    \ d) continue;\n        for (auto& e : G[v]) {\n            if (e.to != avoid\
+    \ && dist[e.to] > d + e.weight) {\n                dist[e.to] = d + e.weight;\n\
+    \                prv[e.to] = v;\n                pq.emplace(dist[e.to], e.to);\n\
+    \            }\n        }\n    }\n\n    return {dist, prv};\n}\n\n/*\n * Breadth-First\
+    \ Search\n */\nstd::vector<int> bfs(const std::vector<std::vector<int>>& G, int\
+    \ s) {\n    std::vector<int> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int>\
     \ que;\n    que.push(s);\n\n    while (!que.empty()) {\n        int v = que.front();\n\
     \        que.pop();\n        for (int u : G[v]) {\n            if (dist[u] ==\
     \ -1) {\n                dist[u] = dist[v] + 1;\n                que.push(u);\n\
     \            }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n\
     \ */\nstd::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int\
-    \ s, int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \ s,\n                      int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
     \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
-    \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int) buckets.size();\
+    \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int)buckets.size();\
     \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
     \            buckets[d].pop_back();\n            if (dist[v] < d) continue;\n\
     \            for (auto& e : G[v]) {\n                if (dist[e.to] > d + e.weight)\
@@ -91,7 +101,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_C.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:26+09:00'
+  timestamp: '2023-08-24 19:13:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_C.test.cpp
