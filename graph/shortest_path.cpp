@@ -4,6 +4,7 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+
 #include "edge.cpp"
 
 /*
@@ -68,6 +69,34 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
     return dist;
 }
 
+template <typename T>
+std::pair<std::vector<T>, std::vector<int>> dijkstra(
+    const std::vector<std::vector<Edge<T>>>& G, int s, int avoid) {
+    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());
+    std::vector<int> prv(G.size(), -1);
+    dist[s] = 0;
+    using P = std::pair<T, int>;
+    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
+    pq.emplace(0, s);
+
+    while (!pq.empty()) {
+        T d;
+        int v;
+        std::tie(d, v) = pq.top();
+        pq.pop();
+        if (dist[v] < d) continue;
+        for (auto& e : G[v]) {
+            if (e.to != avoid && dist[e.to] > d + e.weight) {
+                dist[e.to] = d + e.weight;
+                prv[e.to] = v;
+                pq.emplace(dist[e.to], e.to);
+            }
+        }
+    }
+
+    return {dist, prv};
+}
+
 /*
  * Breadth-First Search
  */
@@ -94,13 +123,14 @@ std::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {
 /*
  * Dial's Algorithm
  */
-std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s, int w) {
+std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s,
+                      int w) {
     std::vector<int> dist(G.size(), std::numeric_limits<int>::max());
     dist[s] = 0;
     std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());
     buckets[0].push_back(s);
 
-    for (int d = 0; d < (int) buckets.size(); ++d) {
+    for (int d = 0; d < (int)buckets.size(); ++d) {
         while (!buckets[d].empty()) {
             int v = buckets[d].back();
             buckets[d].pop_back();

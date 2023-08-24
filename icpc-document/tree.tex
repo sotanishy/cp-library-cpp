@@ -1,647 +1,228 @@
 \section{tree}
 
-\subsection{Cartesian Tree}
+\subsection{Link/Cut Tree}
 
 \begin{small}
 \begin{markdown}
 **Description**
 
-Cartesian tree は，数列から定まる二分木で，以下の条件を満たすものである．
-- 各頂点の重みは，そのどの子の重みよりも小さい
-- 木の in-order traversal がもとの数列と一致する
+Link/cut tree は，森を管理するデータ構造である．以下の機能を提供する:
+- 辺の追加
+- 辺の削除
+- 根の変更
+- 頂点の値の更新
+- パス上の頂点の値 (モノイド) の総和
+
+木をパスに分解し，それぞれのパスを splay tree で管理することでこれらの操作を実現する．
+
+空間計算量: $O(n)$
 
 **Operations**
 
-- `vector<int> cartesian\_tree(vector<int> a)`
-    - 数列 $a$ から定まる Cartesian tree を返す．それぞれの頂点の親のラベルを返す．根の親は `-1` とする．
+- `LinkCutTree(int n)`
+    - 頂点数 $n$ で初期化する
     - 時間計算量: $O(n)$
+- `void link(int u, int v)`
+    - 辺 $uv$ を追加する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void cut(int v)`
+    - 頂点 $v$ とその親を結ぶ辺を削除する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void evert(int v)`
+    - 頂点 $v$ を木の根にする
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `void get(int v)`
+    - 頂点 $v$ の値を取得する
+    - 時間計算量: $O(1)$
+- `void set(int v, T x)`
+    - 頂点 $v$ の値を $x$ に変更する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `T fold(int u, int v)`
+    - $uv$ パス上の頂点の値を fold する
+    - 時間計算量: $\mathrm{amortized}\ O(\log n)$
 
 \end{markdown}
 \end{small}
 
 \begin{lstlisting}
-template <typename T>
-std::vector<int> cartesian_tree(const std::vector<T>& a) {
-    int n = a.size();
-    std::vector<int> par(n, -1);
-    std::stack<int> st;
-    for (int i = 0; i < n; ++i) {
-        int j = -1;
-        while (!st.empty() && a[st.top()] >= a[i]) {
-            j = st.top();
-            st.pop();
-        }
-        if (!st.empty()) {
-            par[i] = st.top();
-        }
-        if (j != -1) {
-            par[j] = i;
-        }
-        st.push(i);
-    }
-    return par;
-}
-\end{lstlisting}
+template <typename M, typename M::T (*flip)(typename M::T)>
+class LinkCutTree {
+    using T = typename M::T;
 
-\subsection{Lowest Common Ancestor}
-
-\begin{small}
-\begin{markdown}
-- `int query(int u, int v)`
-    - 頂点 $u$ と頂点 $v$ の最小共通祖先を返す
-    - 時間計算量: $O(\log n)$
-- `int dist(int u, int v)`
-    - $uv$ 間の距離を計算する
-    - 時間計算量: $O(\log n)$
-- `int parent(int v, int k)`
-    - 頂点 $v$ の $k$ 個上の頂点を求める
-- `int jump(int u, int v, int k)`
-    - $uv$ パス上の $k$ 番目の頂点を返す．$k=0$ のとき $u$ を，$k>dist(u,v)$ のとき $-1$ を返す．
-    - 時間計算量: $O(\log n)$
-
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-class LCA {
 public:
-    LCA() = default;
-    LCA(const std::vector<std::vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
-        int V = G.size();
-        table.assign(LOG, std::vector<int>(V, -1));
+    LinkCutTree() = default;
+    explicit LinkCutTree(int n) {
+        for (int i = 0; i < n; ++i) {
+            vertex.push_back(std::make_shared<Node>(M::id));
+        }
+    }
 
-        dfs(root, -1, 0);
+    void link(int v, int p) {
+        evert(v);
+        expose(vertex[p]);
+        vertex[v]->par = vertex[p];
+        vertex[p]->right = vertex[v];
+        recalc(vertex[p]);
+    }
 
-        for (int k = 0; k < LOG - 1; ++k) {
-            for (int v = 0; v < V; ++v) {
-                if (table[k][v] >= 0) {
-                    table[k + 1][v] = table[k][table[k][v]];
+    void cut(int v) {
+        expose(vertex[v]);
+        auto p = vertex[v]->left;
+        vertex[v]->left = p->par = nullptr;
+        recalc(vertex[v]);
+    }
+
+    void evert(int v) {
+        expose(vertex[v]);
+        reverse(vertex[v]);
+    }
+
+    T get(int v) const {
+        return vertex[v]->val;
+    }
+
+    void set(int v, const T& x) {
+        expose(vertex[v]);
+        vertex[v]->val = x;
+        recalc(vertex[v]);
+    }
+
+    T fold(int u, int v) {
+        evert(u);
+        expose(vertex[v]);
+        return vertex[v]->sum;
+    }
+
+private:
+    struct Node;
+    using node_ptr = std::shared_ptr<Node>;
+
+    struct Node {
+        node_ptr left, right, par;
+        T val, sum;
+        int sz;
+        bool rev;
+
+        Node(const T& x)
+            : left(nullptr), right(nullptr), par(nullptr),
+              val(x), sum(x), sz(1), rev(false) {}
+    };
+
+    std::vector<node_ptr> vertex;
+
+    static void expose(node_ptr v) {
+        node_ptr prev = nullptr;
+        for (auto cur = v; cur; cur = cur->par) {
+            splay(cur);
+            cur->right = prev;
+            recalc(cur);
+            prev = cur;
+        }
+        splay(v);
+    }
+
+    // splay tree
+
+    static int size(const node_ptr& t) {
+        return t ? t->sz : 0;
+    }
+
+    static void recalc(const node_ptr& t) {
+        if (!t) return;
+        t->sz = size(t->left) + 1 + size(t->right);
+        t->sum = t->val;
+        if (t->left) t->sum = M::op(t->left->sum, t->sum);
+        if (t->right) t->sum = M::op(t->sum, t->right->sum);
+    }
+
+    static void push(const node_ptr& t) {
+        if (t->rev) {
+            if (t->left) reverse(t->left);
+            if (t->right) reverse(t->right);
+            t->rev = false;
+        }
+    }
+
+    static void reverse(const node_ptr& t) {
+        std::swap(t->left, t->right);
+        t->sum = flip(t->sum);
+        t->rev ^= true;
+    }
+
+    static void rotate_left(node_ptr t) {
+        node_ptr s = t->right;
+        t->right = s->left;
+        if (s->left) s->left->par = t;
+        s->par = t->par;
+        if (t->par) {
+            if (t->par->left == t) {
+                t->par->left = s;
+            }
+            if (t->par->right == t) {
+                t->par->right = s;
+            }
+        }
+        s->left = t;
+        t->par = s;
+        recalc(t);
+        recalc(s);
+    }
+
+    static void rotate_right(node_ptr t) {
+        node_ptr s = t->left;
+        t->left = s->right;
+        if (s->right) s->right->par = t;
+        s->par = t->par;
+        if (t->par) {
+            if (t->par->left == t) {
+                t->par->left = s;
+            }
+            if (t->par->right == t) {
+                t->par->right = s;
+            }
+        }
+        s->right = t;
+        t->par = s;
+        recalc(t);
+        recalc(s);
+    }
+
+    static bool is_root(const node_ptr& t) {
+        return !t->par || (t->par->left != t && t->par->right != t);
+    }
+
+    static void splay(node_ptr t) {
+        push(t);
+        while (!is_root(t)) {
+            auto p = t->par;
+            if (is_root(p)) {
+                push(p);
+                push(t);
+                if (t == p->left) rotate_right(p);
+                else rotate_left(p);
+            } else {
+                auto g = p->par;
+                push(g);
+                push(p);
+                push(t);
+                if (t == p->left) {
+                    if (p == g->left) {
+                        rotate_right(g);
+                        rotate_right(p);
+                    } else {
+                        rotate_right(p);
+                        rotate_left(g);
+                    }
+                } else {
+                    if (p == g->left) {
+                        rotate_left(p);
+                        rotate_right(g);
+                    } else {
+                        rotate_left(g);
+                        rotate_left(p);
+                    }
                 }
             }
-        }
-    }
-
-    int query(int u, int v) const {
-        if (depth[u] > depth[v]) std::swap(u, v);
-
-        // go up to the same depth
-        for (int k = 0; k < LOG; ++k) {
-            if ((depth[v] - depth[u]) >> k & 1) {
-                v = table[k][v];
-            }
-        }
-        if (u == v) return u;
-
-        for (int k = LOG - 1; k >= 0; --k) {
-            if (table[k][u] != table[k][v]) {
-                u = table[k][u];
-                v = table[k][v];
-            }
-        }
-        return table[0][u];
-    }
-
-    int dist(int u, int v) const {
-        return depth[u] + depth[v] - 2 * depth[query(u, v)];
-    }
-
-    int parent(int v, int k) const {
-        for (int i = LOG - 1; i >= 0; --i) {
-            if (k >= (1 << i)) {
-                v = table[i][v];
-                k -= 1 << i;
-            }
-        }
-        return v;
-    }
-
-    int jump(int u, int v, int k) const {
-        int l = query(u, v);
-        int du = depth[u] - depth[l];
-        int dv = depth[v] - depth[l];
-        if (du + dv < k) return -1;
-        if (k < du) return parent(u, k);
-        return parent(v, du + dv - k);
-    }
-
-
-protected:
-    const std::vector<std::vector<int>>& G;
-    const int LOG;
-    std::vector<std::vector<int>> table;
-    std::vector<int> depth;
-
-    void dfs(int v, int p, int d) {
-        table[0][v] = p;
-        depth[v] = d;
-        for (int c : G[v]) {
-            if (c != p) dfs(c, v, d + 1);
-        }
-    }
-};
-\end{lstlisting}
-
-\subsection{Tree Isomorphism}
-
-\begin{small}
-\begin{markdown}
-- `TreeHasher`
-    - 確率的だが高速．ハッシュを用いている．
-    - `long long hash\_all(vector<vector<int>> G, int root)`
-        - 木 $G$ の隣接リストが与えられたとき，$G$ のハッシュを計算する．`root` が与えられた場合はそれを根とする．そうでない場合は，直径の中心を根とする．直径の中心が複数ある場合は，ハッシュ値が小さくなる方を返す
-        - 時間計算量: $O(n)$
-    - `vector<long long> hash\_subtrees(vector<vector<int>> G, int root)`
-        - 木 $G$ の隣接リストが与えられたとき，$G$ の各部分木のハッシュを計算する．
-        - 時間計算量: $O(n)$
-- `TreeEncoder`
-    - 決定的だが低速．AHU algorithm を用いている．
-    - `vector<int> encode(vector<vector<int>> G, int root)`
-        - 木 $G$ の隣接リストが与えられたとき，$G$ の各部分木のラベルを計算する．
-        - 時間計算量: $O(n\log n)$
-
-
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-#include "tree_diameter.cpp"
-
-class TreeHasher {
-public:
-    TreeHasher() : rng(rd()), rand(1, mod-1) {}
-
-    long long hash_all(const std::vector<std::vector<int>>& G, int root = -1) {
-        long long res;
-        if (root == -1) {
-            auto [d, path] = tree_diameter(G);
-            res = dfs_all(G, path[d / 2], -1).first;
-            if (d % 2 == 1) {
-                res = std::min(res, dfs_all(G, path[d / 2 + 1], -1).first);
-            }
-        } else {
-            res = dfs_all(G, root, -1).first;
-        }
-        return res;
-    }
-
-    std::vector<long long> hash_subtrees(const std::vector<std::vector<int>>& G, int root) {
-        std::vector<long long> hash(G.size());
-        dfs_subtrees(G, hash, root, -1);
-        return hash;
-    }
-
-private:
-    static constexpr long long mod = (1LL << 61) - 1;
-
-    static inline long long add(long long a, long long b) {
-        if ((a += b) >= mod) a -= mod;
-        return a;
-    }
-
-    static inline long long mul(long long a, long long b) {
-        __int128_t c = (__int128_t) a * b;
-        return add(c >> 61, c & mod);
-    }
-
-    std::random_device rd;
-    std::mt19937_64 rng;
-    std::uniform_int_distribution<long long> rand;
-    std::vector<long long> R;
-
-    std::pair<long long, int> dfs_all(const std::vector<std::vector<int>>& G, int v, int p) {
-        int maxd = 0;
-        std::vector<long long> hash;
-        for (int c : G[v]) {
-            if (c != p) {
-                auto [h, d] = dfs_all(G, c, v);
-                maxd = std::max(maxd, d + 1);
-                hash.push_back(h);
-            }
-        }
-        if ((int) R.size() == maxd) {
-            R.push_back(rand(rng));
-        }
-        long long res = 1;
-        for (auto h : hash) {
-            res = mul(res, add(R[maxd], h));
-        }
-        return {res, maxd};
-    }
-
-    int dfs_subtrees(const std::vector<std::vector<int>>& G, std::vector<long long>& hash, int v, int p) {
-        int maxd = 0;
-        for (int c : G[v]) {
-            if (c != p) {
-                maxd = std::max(maxd, dfs_subtrees(G, hash, c, v) + 1);
-            }
-        }
-        if ((int) R.size() == maxd) {
-            R.push_back(rand(rng));
-        }
-        long long res = 1;
-        for (int c : G[v]) {
-            if (c != p) {
-                res = mul(res, add(R[maxd], hash[c]));
-            }
-        }
-        hash[v] = res;
-        return maxd;
-    }
-};
-
-
-class TreeEncoder {
-public:
-    TreeEncoder() {
-        mp[{}] = 0;
-    }
-
-    std::vector<int> encode(const std::vector<std::vector<int>>& G, int root) {
-        std::vector<int> val(G.size());
-        dfs(G, val, root, -1);
-        return val;
-    }
-
-private:
-    std::map<std::vector<int>, int> mp;
-    std::vector<long long> R;
-
-    void dfs(const std::vector<std::vector<int>>& G, std::vector<int>& val, int v, int p) {
-        std::vector<int> ch;
-        for (int c : G[v]) {
-            if (c != p) {
-                dfs(G, val, c, v);
-                ch.push_back(val[c]);
-            }
-        }
-        std::sort(ch.begin(), ch.end());
-        if (!mp.count(ch)) {
-            mp[ch] = mp.size();
-        }
-        val[v] = mp[ch];
-    }
-};
-\end{lstlisting}
-
-\subsection{Centroid Decomposition}
-
-\begin{small}
-\begin{markdown}
-- `tuple<vector<int>, vector<int>, vector<int>> centroid\_decomposition(vector<vector<int>> G)`
-  - 木 $G$ の隣接リストが与えられたとき，3つ組 `(level, sz, par)` を返す．
-    - `level`: $G$ を重心分解したときの各頂点のレベル (何回目の分割でそれが重心となるか)
-    - `sz`: 各頂点が重心となるときにそれが含まれる部分木のサイズ
-    - `par`: 各頂点が重心となる直前に属していた部分木の重心
-  - 時間計算量: $O(n\log n)$
-
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-std::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>& G) {
-    int N = G.size();
-    std::vector<int> sz(N), level(N, -1), sz_comp(N), par(N);
-
-    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {
-        sz[v] = 1;
-        for (int c : G[v]) {
-            if (c != p && level[c] == -1) sz[v] += dfs_size(dfs_size, c, v);
-        }
-        return sz[v];
-    };
-
-    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n) -> int {
-        for (int c : G[v]) {
-            if (c != p && level[c] == -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);
-        }
-        return v;
-    };
-
-    auto decompose = [&](auto& decompose, int v, int k, int p) -> void {
-        int n = dfs_size(dfs_size, v, -1);
-        int s = dfs_centroid(dfs_centroid, v, -1, n);
-        level[s] = k;
-        sz_comp[s] = n;
-        par[s] = p;
-        for (int c : G[s]) {
-            if (level[c] == -1) decompose(decompose, c, k + 1, s);
-        }
-    };
-
-    decompose(decompose, 0, 0, -1);
-    return {level, sz_comp, par};
-}
-\end{lstlisting}
-
-\subsection{Heavy-Light Decomposition}
-
-\begin{small}
-\begin{markdown}
-`update` および `fold` の時間計算量を $f(n)$ とする
-
-- `HLD(vector<vector<int>> G, bool edge)`
-    - 木 `G` を HL 分解する．`edge == true` ならクエリは辺に対して実行される．
-    - 時間計算量: $O(n)$
-- `void update(int v, T x, F update)`
-    - 頂点 $v$ に対して `update(x)` を実行する
-    - 時間計算量: $O(f(n) \log n)$
-- `void update\_edge(int u, int v, T x, F update)`
-    - 辺 $(u, v)$ に対して `update(x)` を実行する
-    - 時間計算量: $O(f(n) \log n)$
-- `void update(int u, int v, T x, F update)`
-    - $uv$ パス上の頂点/辺に対して `update(x)` を実行する．
-    - 時間計算量: $O(f(n) \log n)$
-- `T path\_fold(int u, int v, F fold)`
-    - $uv$ パス上の頂点/辺に対して `fold()` を実行する．
-    - 時間計算量: $O(f(n) \log n)$
-- `T path\_fold(int u, int v, F fold, Flip flip)`
-    - $uv$ パス上の頂点/辺に対して `fold()` を実行する．値が非可換なら，左から積をとったときと右から積をとったときの値を入れ替える `flip` 関数を与える必要がある．
-    - 時間計算量: $O(f(n) \log n)$
-- `T subtree\_fold(int v, F fold)`
-    - 頂点 $v$ を根とする部分木の頂点/辺に対して `fold()` を実行する．
-    - 時間計算量: $O(f(n))$
-- `int lca(int u, int v)`
-    - 頂点 $u$ と頂点 $v$ の最小共通祖先を返す
-    - 時間計算量: $O(\log n)$
-- `int dist(int u, int v)`
-    - $uv$ 間の距離を計算する
-    - 時間計算量: $O(\log n)$
-
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-template <typename M>
-class HLD {
-    using T = typename M::T;
-
-public:
-    HLD() = default;
-    HLD(const std::vector<std::vector<int>>& G, bool edge)
-        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),
-          in(G.size()), out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {
-        dfs(0);
-        decompose(0, 0);
-    }
-
-    template <typename F>
-    void update(int v, const T& x, const F& f) const {
-        f(in[v], x);
-    }
-
-    template <typename F>
-    void update_edge(int u, int v, const T& x, const F& f) const {
-        if (in[u] > in[v]) std::swap(u, v);
-        f(in[v], x);
-    }
-
-    template <typename E, typename F>
-    void update(int u, int v, const E& x, const F& f) const {
-        while (head[u] != head[v]) {
-            if (in[head[u]] > in[head[v]]) std::swap(u, v);
-            f(in[head[v]], in[v] + 1, x);
-            v = par[head[v]];
-        }
-        if (in[u] > in[v]) std::swap(u, v);
-        f(in[u] + edge, in[v] + 1, x);
-    }
-
-    template <typename F, typename Flip>
-    T path_fold(int u, int v, const F& f, const Flip& flip) const {
-        bool flipped = false;
-        T resu = M::id(), resv = M::id();
-        while (head[u] != head[v]) {
-            if (in[head[u]] > in[head[v]]) {
-                std::swap(u, v);
-                std::swap(resu, resv);
-                flipped ^= true;
-            }
-            T val = f(in[head[v]], in[v] + 1);
-            resv = M::op(val, resv);
-            v = par[head[v]];
-        }
-        if (in[u] > in[v]) {
-            std::swap(u, v);
-            std::swap(resu, resv);
-            flipped ^= true;
-        }
-        T val = f(in[u] + edge, in[v] + 1);
-        resv = M::op(val, resv);
-        resv = M::op(flip(resu), resv);
-        if (flipped) {
-            resv = flip(resv);
-        }
-        return resv;
-    }
-
-    template <typename F>
-    T path_fold(int u, int v, const F& f) const {
-        return path_fold(u, v, f, [&](auto& v) { return v; });
-    }
-
-    template <typename F>
-    T subtree_fold(int v, const F& f) const {
-        return f(in[v] + edge, out[v]);
-    }
-
-    int lca(int u, int v) const {
-        while (true) {
-            if (in[u] > in[v]) std::swap(u, v);
-            if (head[u] == head[v]) return u;
-            v = par[head[v]];
-        }
-    }
-
-    int dist(int u, int v) const {
-        return depth[u] + depth[v] - 2 * depth[lca(u, v)];
-    }
-
-private:
-    std::vector<std::vector<int>> G;
-    std::vector<int> size, depth, par, in, out, head, heavy;
-    bool edge;
-    int cur_pos = 0;
-
-    void dfs(int v) {
-        size[v] = 1;
-        int max_size = 0;
-        for (int c : G[v]) {
-            if (c == par[v]) continue;
-            par[c] = v;
-            depth[c] = depth[v] + 1;
-            dfs(c);
-            size[v] += size[c];
-            if (size[c] > max_size) {
-                max_size = size[c];
-                heavy[v] = c;
-            }
-        }
-    }
-
-    void decompose(int v, int h) {
-        head[v] = h;
-        in[v] = cur_pos++;
-        if (heavy[v] != -1) decompose(heavy[v], h);
-        for (int c : G[v]) {
-            if (c != par[v] && c != heavy[v]) decompose(c, c);
-        }
-        out[v] = cur_pos;
-    }
-};
-
-\end{lstlisting}
-
-\subsection{Diameter of a Tree}
-
-\begin{lstlisting}
-#include "../graph/edge.cpp"
-
-std::pair<int, std::vector<int>> tree_diameter(const std::vector<std::vector<int>>& G) {
-    std::vector<int> to(G.size());
-
-    auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<int, int> {
-        std::pair<int, int> ret(0, v);
-        for (int c : G[v]) {
-            if (c == p) continue;
-            auto weight = dfs(dfs, c, v);
-            ++weight.first;
-            if (ret < weight) {
-                ret = weight;
-                to[v] = c;
-            }
-        }
-        return ret;
-    };
-
-    auto p = dfs(dfs, 0, -1);
-    auto q = dfs(dfs, p.second, -1);
-    std::vector<int> path;
-    int v = p.second;
-    while (v != q.second) {
-        path.push_back(v);
-        v = to[v];
-    }
-    path.push_back(v);
-    return {q.first, path};
-}
-
-template <typename T>
-std::pair<T, std::vector<int>> tree_diameter(const std::vector<std::vector<Edge<T>>>& G) {
-    std::vector<int> to(G.size());
-
-    auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<T, int> {
-        std::pair<T, int> ret(0, v);
-        for (auto& e : G[v]) {
-            if (e.to == p) continue;
-            auto weight = dfs(dfs, e.to, v);
-            weight.first += e.weight;
-            if (ret < weight) {
-                ret = weight;
-                to[v] = e.to;
-            }
-        }
-        return ret;
-    };
-
-    auto p = dfs(dfs, 0, -1);
-    auto q = dfs(dfs, p.second, -1);
-    std::vector<int> path;
-    int v = p.second;
-    while (v != q.second) {
-        path.push_back(v);
-        v = to[v];
-    }
-    path.push_back(v);
-    return {q.first, path};
-}
-\end{lstlisting}
-
-\subsection{Rerooting}
-
-\begin{small}
-\begin{markdown}
-DPは $dp\_v = g(f(dp\_{c\_1}, e\_1) * \dots * f(dp\_{c\_k}, e\_k), v)$ という形の遷移で表されるとする．
-
-**Template Parameters**
-
-- `M`
-    - 可換モノイド
-- `Cost`
-    - 辺のコストの型
-- `T apply\_edge(T a, int s, int t, Cost c)`
-    - 遷移の $f$
-- `T apply\_vertex(T x, int v)`
-    - 遷移の $g$
-
-**Operations**
-
-- `Rerooting(int n)`
-    - 頂点数 $n$ で木を初期化する
-    - 時間計算量: $O(n)$
-- `void add\_edge(int u, int v, Cost c)`
-    - 頂点 $uv$ 間にコスト $c$ の辺を張る
-    - 時間計算量: $O(1)$
-- `vector<T> run()`
-    - 各頂点を根としたときの木DPの値を求める
-    - 時間計算量: $O(n)$
-
-\end{markdown}
-\end{small}
-
-\begin{lstlisting}
-template <typename M, typename Cost,
-          typename M::T (*apply_edge)(typename M::T, int, int, Cost),
-          typename M::T (*apply_vertex)(typename M::T, int)>
-class Rerooting {
-    using T = typename M::T;
-
-   public:
-    explicit Rerooting(int n) : G(n) {}
-
-    void add_edge(int u, int v, Cost c) {
-        G[u].emplace_back(v, c);
-        G[v].emplace_back(u, c);
-    }
-
-    std::vector<T> run() {
-        dp_sub.resize(G.size(), M::id());
-        dp_all.resize(G.size());
-        dfs_sub(0, -1);
-        dfs_all(0, -1, M::id());
-        return dp_all;
-    }
-
-   private:
-    std::vector<std::vector<std::pair<int, Cost>>> G;
-    std::vector<T> dp_sub, dp_all;
-
-    void dfs_sub(int v, int p) {
-        for (auto [c, cost] : G[v]) {
-            if (c == p) continue;
-            dfs_sub(c, v);
-            dp_sub[v] = M::op(dp_sub[v], apply_edge(dp_sub[c], v, c, cost));
-        }
-        dp_sub[v] = apply_vertex(dp_sub[v], v);
-    }
-
-    void dfs_all(int v, int p, const T& val) {
-        std::vector<T> ds = {val};
-        for (auto [c, cost] : G[v]) {
-            if (c == p) continue;
-            ds.push_back(apply_edge(dp_sub[c], v, c, cost));
-        }
-        int n = ds.size();
-        std::vector<T> head(n + 1, M::id()), tail(n + 1, M::id());
-        for (int i = 0; i < n; ++i) head[i + 1] = M::op(head[i], ds[i]);
-        for (int i = n - 1; i >= 0; --i) tail[i] = M::op(ds[i], tail[i + 1]);
-        dp_all[v] = apply_vertex(head[n], v);
-        int k = 1;
-        for (auto [c, cost] : G[v]) {
-            if (c == p) continue;
-            dfs_all(c, v,
-                    apply_edge(apply_vertex(M::op(head[k], tail[k + 1]), v), c,
-                               v, cost));
-            ++k;
         }
     }
 };

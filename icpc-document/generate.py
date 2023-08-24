@@ -6,7 +6,7 @@ from file_list import paths
 
 Section = namedtuple("Section", ["title", "files"])
 File = namedtuple("File", ["title", "doc", "src"])
-skip_sections = ["convolution", "data-structure", "flow", "geometry", "graph", "misc", "sat", "string", "tree"]
+skip_sections = ["convolution", "flow", "geometry", "graph", "misc", "sat"]
 # skip_sections = ["convolution", "flow", "geometry",
 #                  "graph", "math", "misc", "string", "tree"]
 
