@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/combination.cpp
     title: Combination
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
@@ -61,7 +61,7 @@ data:
     \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
-    \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
     \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
@@ -70,7 +70,7 @@ data:
     \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
     \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
     \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
-    \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
     \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
@@ -81,37 +81,37 @@ data:
     \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
     \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
-    \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
-    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 3\
-    \ \"math/combination.cpp\"\n\ntemplate <typename mint>\nclass Combination {\n\
-    \   public:\n    Combination() = default;\n    Combination(int n) : fact_(n +\
-    \ 1), fact_inv_(n + 1) {\n        fact_[0] = 1;\n        for (int i = 1; i <=\
-    \ n; ++i) fact_[i] = fact_[i - 1] * i;\n        fact_inv_[n]=fact_[n].inv();\n\
-    \        for (int i = n; i > 0; --i) fact_inv_[i - 1] = fact_inv_[i] * i;\n  \
-    \  }\n\n    mint perm(int n, int k) const {\n        if (k < 0 || n < k) return\
-    \ 0;\n        return fact_[n] * fact_inv_[n - k];\n    }\n\n    mint comb(int\
-    \ n, int k) const {\n        if (k < 0 || n < k) return 0;\n        return fact_[n]\
-    \ * fact_inv_[k] * fact_inv_[n - k];\n    }\n\n    mint fact(int n) const { return\
-    \ fact_[n]; }\n    mint fact_inv(int n) const { return fact_inv_[n]; }\n\n   private:\n\
-    \    std::vector<mint> fact_, fact_inv_;\n};\n\ntemplate <typename T>\nT comb(long\
-    \ long n, int k) {\n    if (k < 0 || n < k) return 0;\n    T num = 1, den = 1;\n\
-    \    for (int i = 1; i <= k; ++i) {\n        num = num * (n - i + 1);\n      \
-    \  den = den * i;\n    }\n    return num / den;\n}\n#line 5 \"math/stirling_second.hpp\"\
-    \n\ntemplate <typename T>\nstd::vector<T> stirling_second_table(int n) {\n   \
-    \ T f = 1;\n    for (int i = 1; i <= n; ++i) f *= i;\n    f = T(1) / f;\n    std::vector<T>\
-    \ a(n + 1), b(n + 1);\n    for (int i = n; i >= 0; --i) {\n        a[i] = f *\
-    \ (i % 2 ? -1 : 1);\n        b[i] = f * T(i).pow(n);\n        f *= i;\n    }\n\
-    \    auto c = convolution(a, b);\n    return std::vector(c.begin(), c.begin()\
-    \ + n + 1);\n}\n\ntemplate <typename T>\nT stirling_second(int n, int k) {\n \
-    \   Combination<T> comb(n);\n    T res = 0;\n    for (int i = 0; i <= k; ++i)\
-    \ {\n        T tmp = comb.comb(k, i) * T(i).pow(n);\n        if ((k - i) & 1)\
-    \ res -= tmp;\n        else res += tmp;\n    }\n    res /= comb.fact(k);\n   \
-    \ return res;\n}\n#line 6 \"test/yosupo/stirling_number_of_the_second_kind.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    using mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n \
-    \   auto ans = stirling_second_table<mint>(N);\n    for (int i = 0; i <= N; ++i)\
-    \ {\n        cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 3 \"math/combination.cpp\"\
+    \n\ntemplate <typename mint>\nclass Combination {\n   public:\n    Combination()\
+    \ = default;\n    Combination(int n) : fact_(n + 1), fact_inv_(n + 1) {\n    \
+    \    fact_[0] = 1;\n        for (int i = 1; i <= n; ++i) fact_[i] = fact_[i -\
+    \ 1] * i;\n        fact_inv_[n]=fact_[n].inv();\n        for (int i = n; i > 0;\
+    \ --i) fact_inv_[i - 1] = fact_inv_[i] * i;\n    }\n\n    mint perm(int n, int\
+    \ k) const {\n        if (k < 0 || n < k) return 0;\n        return fact_[n] *\
+    \ fact_inv_[n - k];\n    }\n\n    mint comb(int n, int k) const {\n        if\
+    \ (k < 0 || n < k) return 0;\n        return fact_[n] * fact_inv_[k] * fact_inv_[n\
+    \ - k];\n    }\n\n    mint fact(int n) const { return fact_[n]; }\n    mint fact_inv(int\
+    \ n) const { return fact_inv_[n]; }\n\n   private:\n    std::vector<mint> fact_,\
+    \ fact_inv_;\n};\n\ntemplate <typename T>\nT comb(long long n, int k) {\n    if\
+    \ (k < 0 || n < k) return 0;\n    T num = 1, den = 1;\n    for (int i = 1; i <=\
+    \ k; ++i) {\n        num = num * (n - i + 1);\n        den = den * i;\n    }\n\
+    \    return num / den;\n}\n#line 5 \"math/stirling_second.hpp\"\n\ntemplate <typename\
+    \ T>\nstd::vector<T> stirling_second_table(int n) {\n    T f = 1;\n    for (int\
+    \ i = 1; i <= n; ++i) f *= i;\n    f = T(1) / f;\n    std::vector<T> a(n + 1),\
+    \ b(n + 1);\n    for (int i = n; i >= 0; --i) {\n        a[i] = f * (i % 2 ? -1\
+    \ : 1);\n        b[i] = f * T(i).pow(n);\n        f *= i;\n    }\n    auto c =\
+    \ convolution(a, b);\n    return std::vector(c.begin(), c.begin() + n + 1);\n\
+    }\n\ntemplate <typename T>\nT stirling_second(int n, int k) {\n    Combination<T>\
+    \ comb(n);\n    T res = 0;\n    for (int i = 0; i <= k; ++i) {\n        T tmp\
+    \ = comb.comb(k, i) * T(i).pow(n);\n        if ((k - i) & 1) res -= tmp;\n   \
+    \     else res += tmp;\n    }\n    res /= comb.fact(k);\n    return res;\n}\n\
+    #line 6 \"test/yosupo/stirling_number_of_the_second_kind.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
+    \ Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n    auto ans\
+    \ = stirling_second_table<mint>(N);\n    for (int i = 0; i <= N; ++i) {\n    \
+    \    cout << ans[i] << (i < N ? \" \" : \"\\n\");\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
     \n\n\n#include \"../../math/modint.cpp\"\n#include \"../../math/stirling_second.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
@@ -126,8 +126,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2023-05-27 03:55:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-02 12:26:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/stirling_number_of_the_second_kind.test.cpp
 layout: document

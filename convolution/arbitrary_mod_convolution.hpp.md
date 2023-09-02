@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/garner.cpp
     title: Garner's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
@@ -73,7 +73,7 @@ data:
     \ntemplate <typename T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n\
     \    for (int i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k\
     \ > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\
-    \ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered = true)\
+    \ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered = false)\
     \ {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
     \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
     \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
@@ -83,7 +83,7 @@ data:
     \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
     \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
     }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
-    \ true) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
     \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
     \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
@@ -93,12 +93,12 @@ data:
     \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
     \ b) {\n    int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n\
-    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a, false);\n \
-    \   ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a,\
-    \ false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 6 \"convolution/arbitrary_mod_convolution.hpp\"\
-    \n\nstd::vector<int> convolution(const std::vector<int>& a, const std::vector<int>&\
-    \ b, int mod) {\n    using mint1 = Modint<167772161>;\n    using mint2 = Modint<469762049>;\n\
+    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \    return a;\n}\n#line 6 \"convolution/arbitrary_mod_convolution.hpp\"\n\nstd::vector<int>\
+    \ convolution(const std::vector<int>& a, const std::vector<int>& b, int mod) {\n\
+    \    using mint1 = Modint<167772161>;\n    using mint2 = Modint<469762049>;\n\
     \    using mint3 = Modint<754974721>;\n\n    std::vector<mint1> a1(a.begin(),\
     \ a.end()), b1(b.begin(), b.end());\n    std::vector<mint2> a2(a.begin(), a.end()),\
     \ b2(b.begin(), b.end());\n    std::vector<mint3> a3(a.begin(), a.end()), b3(b.begin(),\
@@ -129,7 +129,7 @@ data:
   isVerificationFile: false
   path: convolution/arbitrary_mod_convolution.hpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
+  timestamp: '2023-09-02 12:26:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution_mod_1000000007.test.cpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n\n\
@@ -32,7 +32,7 @@ data:
     \ T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n    for (int\
     \ i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k > (i ^= k);\
     \ k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\ntemplate <typename\
-    \ mint>\nvoid ntt(std::vector<mint>& a, bool ordered = true) {\n    constexpr\
+    \ mint>\nvoid ntt(std::vector<mint>& a, bool ordered = false) {\n    constexpr\
     \ int mod = mint::get_mod();\n    constexpr mint primitive_root = get_primitive_root(mod);\n\
     \n    int n = a.size();\n    for (int m = n; m > 1; m >>= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m);\n        for (int s = 0; s < n / m; ++s)\
@@ -41,7 +41,7 @@ data:
     \ + m / 2];\n                a[s * m + i] = l + r;\n                a[s * m +\
     \ i + m / 2] = (l - r) * w;\n                w *= omega;\n            }\n    \
     \    }\n    }\n    if (ordered) bit_reverse(a);\n}\n\ntemplate <typename mint>\n\
-    void intt(std::vector<mint>& a, bool ordered = true) {\n    constexpr int mod\
+    void intt(std::vector<mint>& a, bool ordered = false) {\n    constexpr int mod\
     \ = mint::get_mod();\n    constexpr mint primitive_root = get_primitive_root(mod);\n\
     \n    if (ordered) bit_reverse(a);\n    int n = a.size();\n    for (int m = 2;\
     \ m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m).inv();\n\
@@ -52,9 +52,9 @@ data:
     \ w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename mint>\n\
     std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {\n  \
     \  int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n < size) n\
-    \ <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a, false);\n    ntt(b, false);\n\
-    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a, false);\n    a.resize(size);\n\
-    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \ <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n    for\
+    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n \
+    \   mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
     \    return a;\n}\n#line 7 \"math/polynomial.cpp\"\n\ntemplate <typename mint>\n\
     class Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\n\
     \   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
@@ -172,8 +172,8 @@ data:
   path: math/multipoint_evaluation.cpp
   requiredBy:
   - math/lagrange_polynomial.hpp
-  timestamp: '2023-03-13 15:40:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-02 12:26:05+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial_interpolation.test.cpp

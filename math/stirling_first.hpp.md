@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -25,7 +25,7 @@ data:
     \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
-    \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
     \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
@@ -34,7 +34,7 @@ data:
     \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
     \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
     \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
-    \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
     \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
@@ -45,11 +45,11 @@ data:
     \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
     \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
-    \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
-    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7\
-    \ \"math/polynomial.cpp\"\n\ntemplate <typename mint>\nclass Polynomial : public\
-    \ std::vector<mint> {\n    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7 \"math/polynomial.cpp\"\
+    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
+    \    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
     \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
     \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
     \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
@@ -154,8 +154,8 @@ data:
   isVerificationFile: false
   path: math/stirling_first.hpp
   requiredBy: []
-  timestamp: '2023-03-13 15:40:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-02 12:26:05+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
 documentation_of: math/stirling_first.hpp

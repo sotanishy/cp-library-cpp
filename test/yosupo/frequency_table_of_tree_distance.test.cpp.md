@@ -39,7 +39,7 @@ data:
     \ bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n    for (int i = 0,\
     \ j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n\
     \        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\nvoid fft(std::vector<std::complex<double>>&\
-    \ a, bool ordered = true) {\n    int n = a.size();\n    for (int m = n; m > 1;\
+    \ a, bool ordered = false) {\n    int n = a.size();\n    for (int m = n; m > 1;\
     \ m >>= 1) {\n        double ang = 2.0 * PI / m;\n        std::complex<double>\
     \ omega(cos(ang), sin(ang));\n        for (int s = 0; s < n / m; ++s) {\n    \
     \        std::complex<double> w(1, 0);\n            for (int i = 0; i < m / 2;\
@@ -47,7 +47,7 @@ data:
     \ * m + i + m / 2];\n                a[s * m + i] = l + r;\n                a[s\
     \ * m + i + m / 2] = (l - r) * w;\n                w *= omega;\n            }\n\
     \        }\n    }\n    if (ordered) bit_reverse(a);\n}\n\nvoid ifft(std::vector<std::complex<double>>&\
-    \ a, bool ordered = true) {\n    if (ordered) bit_reverse(a);\n    int n = a.size();\n\
+    \ a, bool ordered = false) {\n    if (ordered) bit_reverse(a);\n    int n = a.size();\n\
     \    for (int m = 2; m <= n; m <<= 1) {\n        double ang = -2.0 * PI / m;\n\
     \        std::complex<double> omega(cos(ang), sin(ang));\n        for (int s =\
     \ 0; s < n / m; ++s) {\n            std::complex<double> w(1, 0);\n          \
@@ -58,13 +58,13 @@ data:
     \ convolution(const std::vector<T>& a, const std::vector<T>& b) {\n    int size\
     \ = a.size() + b.size() - 1;\n    int n = 1;\n    while (n < size) n <<= 1;\n\
     \    std::vector<std::complex<double>> na(a.begin(), a.end()), nb(b.begin(), b.end());\n\
-    \    na.resize(n);\n    nb.resize(n);\n    fft(na, false);\n    fft(nb, false);\n\
-    \    for (int i = 0; i < n; ++i) na[i] *= nb[i];\n    ifft(na, false);\n    std::vector<double>\
-    \ ret(size);\n    for (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;\n\
-    \    return ret;\n}\n#line 5 \"test/yosupo/frequency_table_of_tree_distance.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n#define\
-    \ rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t,\
-    \ s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\n\
+    \    na.resize(n);\n    nb.resize(n);\n    fft(na);\n    fft(nb);\n    for (int\
+    \ i = 0; i < n; ++i) na[i] *= nb[i];\n    ifft(na);\n    std::vector<double> ret(size);\n\
+    \    for (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;\n    return ret;\n\
+    }\n#line 5 \"test/yosupo/frequency_table_of_tree_distance.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n#define rep(i,\
+    \ s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for\
+    \ (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\n\
     template <typename T> bool chmax(T& a, const T& b) { return a < b ? (a = b, 1)\
     \ : 0; }\ntemplate <typename T> bool chmin(T& a, const T& b) { return a > b ?\
     \ (a = b, 1) : 0; }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n \
@@ -124,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2022-07-02 23:54:45+09:00'
+  timestamp: '2023-09-02 12:26:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/frequency_table_of_tree_distance.test.cpp

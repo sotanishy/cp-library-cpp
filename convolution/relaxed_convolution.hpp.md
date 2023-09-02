@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy: []
@@ -19,7 +19,7 @@ data:
     \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
-    \ bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
     \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
@@ -28,7 +28,7 @@ data:
     \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
     \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
     \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
-    \ a, bool ordered = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
     \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
@@ -39,17 +39,17 @@ data:
     \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
     \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
     \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a, false);\n    ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i]\
-    \ *= b[i];\n    intt(a, false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n\
-    \    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 5\
-    \ \"convolution/relaxed_convolution.hpp\"\n\ntemplate <typename mint>\nclass RelaxedConvolution\
-    \ {\n   public:\n    mint get(mint a, mint b) {\n        f.push_back(a);\n   \
-    \     g.push_back(b);\n        ++n;\n        int m = 1 << __builtin_ctz(n + 1);\n\
-    \        int s = 0, x = 1;\n        while (x <= m) {\n            calc(n - x,\
-    \ n, s, s + x);\n            if (n + 1 == m && x == m >> 1) break;\n         \
-    \   calc(s, s + x, n - x, n);\n            s += x;\n            x <<= 1;\n   \
-    \     }\n        return h[n - 1];\n    }\n\n   private:\n    int n = 0;\n    std::vector<mint>\
-    \ f, g, h;\n\n    void calc(int lf, int rf, int lg, int rg) {\n        if ((int)h.size()\
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 5 \"convolution/relaxed_convolution.hpp\"\
+    \n\ntemplate <typename mint>\nclass RelaxedConvolution {\n   public:\n    mint\
+    \ get(mint a, mint b) {\n        f.push_back(a);\n        g.push_back(b);\n  \
+    \      ++n;\n        int m = 1 << __builtin_ctz(n + 1);\n        int s = 0, x\
+    \ = 1;\n        while (x <= m) {\n            calc(n - x, n, s, s + x);\n    \
+    \        if (n + 1 == m && x == m >> 1) break;\n            calc(s, s + x, n -\
+    \ x, n);\n            s += x;\n            x <<= 1;\n        }\n        return\
+    \ h[n - 1];\n    }\n\n   private:\n    int n = 0;\n    std::vector<mint> f, g,\
+    \ h;\n\n    void calc(int lf, int rf, int lg, int rg) {\n        if ((int)h.size()\
     \ < rf + rg - 1) {\n            h.resize(rf + rg - 1);\n        }\n        auto\
     \ res =\n            convolution(std::vector<mint>(f.begin() + lf, f.begin() +\
     \ rf),\n                        std::vector<mint>(g.begin() + lg, g.begin() +\
@@ -73,7 +73,7 @@ data:
   isVerificationFile: false
   path: convolution/relaxed_convolution.hpp
   requiredBy: []
-  timestamp: '2023-08-24 19:13:59+09:00'
+  timestamp: '2023-09-02 12:26:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/relaxed_convolution.hpp

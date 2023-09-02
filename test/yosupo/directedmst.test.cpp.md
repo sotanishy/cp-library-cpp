@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/leftist_heap.cpp
     title: Leftist Heap
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   - icon: ':heavy_check_mark:'

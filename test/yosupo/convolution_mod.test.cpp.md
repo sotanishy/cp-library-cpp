@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []
@@ -55,7 +55,7 @@ data:
     \ n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n        for (int\
     \ k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n\
     \    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered\
-    \ = true) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
     \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
     \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
     \     for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n           \
@@ -64,7 +64,7 @@ data:
     \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
     \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
     }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
-    \ true) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
     \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
     \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
@@ -74,16 +74,16 @@ data:
     \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
     \ b) {\n    int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n\
-    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a, false);\n \
-    \   ntt(b, false);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a,\
-    \ false);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 5 \"test/yosupo/convolution_mod.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    using mint = Modint<998244353>;\n\nint main() {\n    int N, M;\n    cin >> N >>\
-    \ M;\n    vector<mint> a(N), b(M);\n    for (int i = 0; i < N; i++) cin >> a[i];\n\
-    \    for (int i = 0; i < M; i++) cin >> b[i];\n    auto c = convolution(a, b);\n\
-    \    for (int i = 0; i < N + M - 1; i++) cout << c[i] << (i < N + M - 2 ? \" \"\
-    \ : \"\\n\");\n}\n"
+    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \    return a;\n}\n#line 5 \"test/yosupo/convolution_mod.test.cpp\"\n\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
+    \ Modint<998244353>;\n\nint main() {\n    int N, M;\n    cin >> N >> M;\n    vector<mint>\
+    \ a(N), b(M);\n    for (int i = 0; i < N; i++) cin >> a[i];\n    for (int i =\
+    \ 0; i < M; i++) cin >> b[i];\n    auto c = convolution(a, b);\n    for (int i\
+    \ = 0; i < N + M - 1; i++) cout << c[i] << (i < N + M - 2 ? \" \" : \"\\n\");\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
     \ \"../../math/modint.cpp\"\n#include \"../../convolution/ntt.hpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nusing mint =\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 15:58:35+09:00'
+  timestamp: '2023-09-02 12:26:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod.test.cpp

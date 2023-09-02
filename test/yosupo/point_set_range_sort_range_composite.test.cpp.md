@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/segtree/segment_tree.cpp
     title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []

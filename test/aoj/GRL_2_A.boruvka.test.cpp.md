@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []

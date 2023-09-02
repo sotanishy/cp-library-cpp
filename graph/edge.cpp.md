@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/manhattan_mst.hpp
+    title: Manhattan Minimum Spanning Tree
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
     title: Minimum Spanning Arborescence
   - icon: ':heavy_check_mark:'
     path: graph/minimum_steiner_tree.hpp
     title: Minimum Steiner Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   - icon: ':warning:'
@@ -54,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp
     title: test/yosupo/directedmst.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/manhattanmst.test.cpp
+    title: test/yosupo/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
@@ -63,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -85,15 +91,17 @@ data:
   - graph/minimum_spanning_arborescence.cpp
   - graph/range_edge_graph.cpp
   - graph/shortest_path.cpp
+  - graph/manhattan_mst.hpp
   - graph/minimum_steiner_tree.hpp
   - graph/mst.cpp
   timestamp: '2021-02-09 14:52:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   - test/yosupo/directedmst.test.cpp
+  - test/yosupo/manhattanmst.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/2821.test.cpp
   - test/aoj/GRL_1_B.test.cpp
