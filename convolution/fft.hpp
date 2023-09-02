@@ -13,7 +13,7 @@ void bit_reverse(std::vector<T>& a) {
     }
 }
 
-void fft(std::vector<std::complex<double>>& a, bool ordered = true) {
+void fft(std::vector<std::complex<double>>& a, bool ordered = false) {
     int n = a.size();
     for (int m = n; m > 1; m >>= 1) {
         double ang = 2.0 * PI / m;
@@ -32,7 +32,7 @@ void fft(std::vector<std::complex<double>>& a, bool ordered = true) {
     if (ordered) bit_reverse(a);
 }
 
-void ifft(std::vector<std::complex<double>>& a, bool ordered = true) {
+void ifft(std::vector<std::complex<double>>& a, bool ordered = false) {
     if (ordered) bit_reverse(a);
     int n = a.size();
     for (int m = 2; m <= n; m <<= 1) {
@@ -59,10 +59,10 @@ std::vector<double> convolution(const std::vector<T>& a, const std::vector<T>& b
     std::vector<std::complex<double>> na(a.begin(), a.end()), nb(b.begin(), b.end());
     na.resize(n);
     nb.resize(n);
-    fft(na, false);
-    fft(nb, false);
+    fft(na);
+    fft(nb);
     for (int i = 0; i < n; ++i) na[i] *= nb[i];
-    ifft(na, false);
+    ifft(na);
     std::vector<double> ret(size);
     for (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;
     return ret;

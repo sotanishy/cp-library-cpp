@@ -19,7 +19,7 @@ void bit_reverse(std::vector<T>& a) {
 }
 
 template <typename mint>
-void ntt(std::vector<mint>& a, bool ordered = true) {
+void ntt(std::vector<mint>& a, bool ordered = false) {
     constexpr int mod = mint::get_mod();
     constexpr mint primitive_root = get_primitive_root(mod);
 
@@ -41,7 +41,7 @@ void ntt(std::vector<mint>& a, bool ordered = true) {
 }
 
 template <typename mint>
-void intt(std::vector<mint>& a, bool ordered = true) {
+void intt(std::vector<mint>& a, bool ordered = false) {
     constexpr int mod = mint::get_mod();
     constexpr mint primitive_root = get_primitive_root(mod);
 
@@ -69,10 +69,10 @@ std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
     while (n < size) n <<= 1;
     a.resize(n);
     b.resize(n);
-    ntt(a, false);
-    ntt(b, false);
+    ntt(a);
+    ntt(b);
     for (int i = 0; i < n; ++i) a[i] *= b[i];
-    intt(a, false);
+    intt(a);
     a.resize(size);
     mint n_inv = mint(n).inv();
     for (int i = 0; i < size; ++i) a[i] *= n_inv;

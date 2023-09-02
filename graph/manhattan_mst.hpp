@@ -3,9 +3,9 @@
 #include <limits>
 #include <vector>
 
-#include "../../data-structure/segtree/segment_tree.cpp"
-#include "../../graph/edge.cpp"
-#include "../../graph/mst.cpp"
+#include "../data-structure/segtree/segment_tree.cpp"
+#include "../graph/edge.cpp"
+#include "../graph/mst.cpp"
 
 template <typename U>
 struct MinMonoid {
