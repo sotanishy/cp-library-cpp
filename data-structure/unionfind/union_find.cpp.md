@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/junction_tree.hpp
     title: Junction Tree (Width 2)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
     title: Minimum Spanning Arborescence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedVerifiedWith:
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp
     title: test/yosupo/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/unionfind/union_find.cpp\"\n#include <algorithm>\n\
@@ -72,7 +72,7 @@ data:
   - graph/junction_tree.hpp
   - graph/mst.cpp
   timestamp: '2021-01-17 18:47:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/directedmst.test.cpp
   - test/yosupo/unionfind.test.cpp
