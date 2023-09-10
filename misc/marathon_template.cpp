@@ -2,6 +2,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
+#define rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)
+#define revrep(i, t, s) for (int i = (int)(t)-1; i >= (int)(s); --i)
+#define all(x) begin(x), end(x)
+template <typename T>
+bool chmax(T& a, const T& b) {
+    return a < b ? (a = b, 1) : 0;
+}
+template <typename T>
+bool chmin(T& a, const T& b) {
+    return a > b ? (a = b, 1) : 0;
+}
 
 #ifndef ONLINE_JUDGE
 #define DEBUG
@@ -69,12 +80,11 @@ State anneal(State cur_state, ll duration) {
 
     State best_state = cur_state;
     int iter = 0;
-    ll cur_time = 0;
-    timer.start();
+    ll start_time = timer.get_time();
 
     while (true) {
         if (iter % 100 == 0) {
-            cur_time = timer.get_time();
+            ll cur_time = timer.get_time() - start_time;
             if (cur_time > duration) break;
             double t = (double)cur_time / duration;
             temperature = pow(temp_start, 1 - t) * pow(temp_end, t);
@@ -109,4 +119,6 @@ State anneal(State cur_state, ll duration) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
+
+    timer.start();
 }
