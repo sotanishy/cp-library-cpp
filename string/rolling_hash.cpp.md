@@ -62,8 +62,8 @@ data:
   timestamp: '2021-02-05 21:57:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   - test/aoj/2292.test.cpp
+  - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
 documentation_of: string/rolling_hash.cpp
 layout: document
 title: Rolling Hash

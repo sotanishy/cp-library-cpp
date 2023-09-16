@@ -111,8 +111,8 @@ data:
   timestamp: '2023-04-08 00:55:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
 documentation_of: tree/hld.cpp
 layout: document

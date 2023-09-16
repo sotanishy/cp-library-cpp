@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':warning:'
@@ -281,7 +281,7 @@ data:
       title: Chromatic Number
     - icon: ':warning:'
       path: graph/complement_bfs.hpp
-      title: graph/complement_bfs.hpp
+      title: BFS on a Complement Graph
     - icon: ':warning:'
       path: graph/dm_decomposition.cpp
       title: Dulmage-Mendelsohn Decomposition
@@ -365,19 +365,19 @@ data:
     - icon: ':warning:'
       path: math/carmichael.cpp
       title: Carmichael Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
       path: math/combination_arbitrary_mod.hpp
-      title: Combination
+      title: Combination (Arbitrary mod)
     - icon: ':warning:'
       path: math/combination_large.hpp
       title: Combination (Large)
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/count_subset_sum.hpp
       title: Count Subset Sum
     - icon: ':warning:'
@@ -422,7 +422,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -437,7 +437,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -452,10 +452,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
       title: Stern-Brocot Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
     - icon: ':heavy_check_mark:'
@@ -1091,7 +1091,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1109,10 +1109,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     - icon: ':heavy_check_mark:'

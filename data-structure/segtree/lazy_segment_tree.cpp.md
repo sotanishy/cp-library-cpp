@@ -120,10 +120,10 @@ data:
   timestamp: '2022-06-30 16:20:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/common_interval_decomposition_tree.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
   - test/aoj/DSL_2_F.test.cpp
+  - test/yosupo/common_interval_decomposition_tree.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: data-structure/segtree/lazy_segment_tree.cpp
 layout: document
 title: Segment Tree with Lazy Propagation

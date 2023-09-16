@@ -86,7 +86,7 @@ data:
   verifiedWith: []
 documentation_of: math/combination_arbitrary_mod.hpp
 layout: document
-title: Combination
+title: Combination (Arbitrary mod)
 ---
 
 ## Description

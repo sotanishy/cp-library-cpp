@@ -55,8 +55,8 @@ data:
   isVerificationFile: false
   path: data-structure/persistent_array.cpp
   requiredBy:
-  - data-structure/persistent_queue.cpp
   - data-structure/unionfind/persistent_union_find.cpp
+  - data-structure/persistent_queue.cpp
   timestamp: '2021-10-30 12:57:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

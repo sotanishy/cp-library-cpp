@@ -112,14 +112,14 @@ data:
   isVerificationFile: false
   path: graph/bipartite_matching.hpp
   requiredBy:
-  - graph/bipartite_edge_coloring.hpp
   - graph/dm_decomposition.cpp
+  - graph/bipartite_edge_coloring.hpp
   timestamp: '2022-10-31 15:58:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bipartitematching.test.cpp
-  - test/yosupo/bipartite_edge_coloring.test.cpp
   - test/aoj/GRL_7_A.test.cpp
+  - test/yosupo/bipartite_edge_coloring.test.cpp
+  - test/yosupo/bipartitematching.test.cpp
 documentation_of: graph/bipartite_matching.hpp
 layout: document
 title: Bipartite Matching
