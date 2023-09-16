@@ -1,6 +1,6 @@
 ---
 title: BFS on a Complement Graph
-documentation_of: ../../graph/complement_bfs.cpp
+documentation_of: ../../graph/complement_bfs.hpp
 ---
 
 ## Description

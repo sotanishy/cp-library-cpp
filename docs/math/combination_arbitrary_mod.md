@@ -1,5 +1,5 @@
 ---
-title: Combination
+title: Combination (Arbitrary mod)
 documentation_of: ../../math/combination_arbitrary_mod.hpp
 ---
 
