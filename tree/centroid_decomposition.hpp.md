@@ -57,8 +57,8 @@ data:
   timestamp: '2022-07-02 23:54:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: tree/centroid_decomposition.hpp
 layout: document
 title: Centroid Decomposition

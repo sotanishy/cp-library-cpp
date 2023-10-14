@@ -53,9 +53,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_inversions_query.test.cpp
+  - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
   - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-  - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
 documentation_of: misc/compress.cpp
 layout: document
 redirect_from:

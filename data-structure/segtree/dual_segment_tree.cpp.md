@@ -54,8 +54,8 @@ data:
   timestamp: '2022-03-06 20:10:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_E.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
   - test/yosupo/range_affine_point_get.test.cpp
 documentation_of: data-structure/segtree/dual_segment_tree.cpp
 layout: document
