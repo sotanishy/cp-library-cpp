@@ -70,10 +70,10 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
 }
 
 template <typename T>
-std::pair<std::vector<T>, std::vector<int>> dijkstra(
-    const std::vector<std::vector<Edge<T>>>& G, int s, int avoid) {
+std::pair<std::vector<T>, std::vector<int>> shortest_path_tree(
+    const std::vector<std::vector<Edge<T>>>& G, int s) {
     std::vector<T> dist(G.size(), std::numeric_limits<T>::max());
-    std::vector<int> prv(G.size(), -1);
+    std::vector<int> par(G.size(), -1);
     dist[s] = 0;
     using P = std::pair<T, int>;
     std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
@@ -86,15 +86,15 @@ std::pair<std::vector<T>, std::vector<int>> dijkstra(
         pq.pop();
         if (dist[v] < d) continue;
         for (auto& e : G[v]) {
-            if (e.to != avoid && dist[e.to] > d + e.weight) {
+            if (dist[e.to] > d + e.weight) {
                 dist[e.to] = d + e.weight;
-                prv[e.to] = v;
+                par[e.to] = v;
                 pq.emplace(dist[e.to], e.to);
             }
         }
     }
 
-    return {dist, prv};
+    return {dist, par};
 }
 
 /*
