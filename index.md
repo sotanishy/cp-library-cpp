@@ -288,7 +288,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.cpp
       title: Dominator Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -342,7 +342,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest_path.cpp
       title: Shortest Path Algorithms
     - icon: ':warning:'
@@ -559,6 +559,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/lcp_array.cpp
       title: Longest Common Prefix Array
+    - icon: ':heavy_check_mark:'
+      path: string/longest_common_substring.hpp
+      title: Longest Common Substring
     - icon: ':heavy_check_mark:'
       path: string/manacher.cpp
       title: Manacher's Algorithm
@@ -930,6 +933,9 @@ data:
       path: test/yosupo/enumerate_palindromes.test.cpp
       title: test/yosupo/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/enumerate_primes.test.cpp
+      title: test/yosupo/enumerate_primes.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_quotients.test.cpp
       title: test/yosupo/enumerate_quotients.test.cpp
     - icon: ':heavy_check_mark:'
@@ -983,6 +989,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/longest_common_substring.test.cpp
+      title: test/yosupo/longest_common_substring.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/longest_increasing_subsequence.test.cpp
       title: test/yosupo/longest_increasing_subsequence.test.cpp
@@ -1047,6 +1056,9 @@ data:
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/pow_of_matrix.test.cpp
+      title: test/yosupo/pow_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1094,6 +1106,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/shortest_path.test.cpp
+      title: test/yosupo/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp

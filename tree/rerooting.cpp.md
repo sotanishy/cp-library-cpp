@@ -69,8 +69,8 @@ data:
   timestamp: '2023-05-14 13:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_5_B.test.cpp
   - test/yosupo/tree_path_composite_sum.test.cpp
+  - test/aoj/GRL_5_B.test.cpp
 documentation_of: tree/rerooting.cpp
 layout: document
 title: Rerooting

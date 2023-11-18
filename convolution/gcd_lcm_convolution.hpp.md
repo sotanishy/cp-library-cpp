@@ -68,8 +68,8 @@ data:
   timestamp: '2022-03-24 13:03:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
 documentation_of: convolution/gcd_lcm_convolution.hpp
 layout: document
 title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"

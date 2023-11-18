@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy:
@@ -86,11 +86,11 @@ data:
   timestamp: '2021-02-09 14:52:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_5_A.test.cpp
-  - test/aoj/2821.test.cpp
+  - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-  - test/yosupo/tree_diameter.test.cpp
+  - test/aoj/2821.test.cpp
+  - test/aoj/GRL_5_A.test.cpp
 documentation_of: tree/tree_diameter.cpp
 layout: document
 title: Diameter of a Tree

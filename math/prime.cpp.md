@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_A.test.cpp
     title: test/aoj/NTL_1_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/enumerate_primes.test.cpp
+    title: test/yosupo/enumerate_primes.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,11 +74,12 @@ data:
   isVerificationFile: false
   path: math/prime.cpp
   requiredBy:
-  - math/carmichael.cpp
   - math/combination_arbitrary_mod.hpp
+  - math/carmichael.cpp
   timestamp: '2021-12-04 19:51:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/enumerate_primes.test.cpp
   - test/aoj/ALDS1_1_C.is_prime.test.cpp
   - test/aoj/NTL_1_A.test.cpp
 documentation_of: math/prime.cpp

@@ -19,6 +19,9 @@ data:
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/pow_of_matrix.test.cpp
+    title: test/yosupo/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
   _isVerificationFailed: false
@@ -126,15 +129,16 @@ data:
   isVerificationFile: false
   path: math/matrix/matrix.cpp
   requiredBy:
-  - math/system_of_linear_equations.cpp
   - math/matrix/square_matrix.cpp
+  - math/system_of_linear_equations.cpp
   timestamp: '2021-03-30 13:20:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/inverse_matrix.test.cpp
-  - test/yosupo/system_of_linear_equations.test.cpp
-  - test/yosupo/matrix_product.test.cpp
   - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/pow_of_matrix.test.cpp
+  - test/yosupo/matrix_product.test.cpp
+  - test/yosupo/system_of_linear_equations.test.cpp
 documentation_of: math/matrix/matrix.cpp
 layout: document
 title: Matrix

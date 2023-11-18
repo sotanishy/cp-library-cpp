@@ -73,10 +73,10 @@ data:
   timestamp: '2022-10-05 11:03:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_3_A.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
-  - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/biconnected_components.test.cpp
+  - test/yosupo/two_edge_connected_components.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
 documentation_of: graph/lowlink.cpp
 layout: document
 title: Lowlink

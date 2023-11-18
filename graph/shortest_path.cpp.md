@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy:
@@ -18,9 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/shortest_path.test.cpp
+    title: test/yosupo/shortest_path.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/shortest_path.cpp\"\n#include <limits>\n#include <queue>\n\
@@ -50,24 +53,24 @@ data:
     \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
     \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
     \ }\n        }\n    }\n\n    return dist;\n}\n\ntemplate <typename T>\nstd::pair<std::vector<T>,\
-    \ std::vector<int>> dijkstra(\n    const std::vector<std::vector<Edge<T>>>& G,\
-    \ int s, int avoid) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
-    \    std::vector<int> prv(G.size(), -1);\n    dist[s] = 0;\n    using P = std::pair<T,\
+    \ std::vector<int>> shortest_path_tree(\n    const std::vector<std::vector<Edge<T>>>&\
+    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
+    \    std::vector<int> par(G.size(), -1);\n    dist[s] = 0;\n    using P = std::pair<T,\
     \ int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;\n   \
     \ pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T d;\n        int v;\n\
     \        std::tie(d, v) = pq.top();\n        pq.pop();\n        if (dist[v] <\
-    \ d) continue;\n        for (auto& e : G[v]) {\n            if (e.to != avoid\
-    \ && dist[e.to] > d + e.weight) {\n                dist[e.to] = d + e.weight;\n\
-    \                prv[e.to] = v;\n                pq.emplace(dist[e.to], e.to);\n\
-    \            }\n        }\n    }\n\n    return {dist, prv};\n}\n\n/*\n * Breadth-First\
-    \ Search\n */\nstd::vector<int> bfs(const std::vector<std::vector<int>>& G, int\
-    \ s) {\n    std::vector<int> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int>\
-    \ que;\n    que.push(s);\n\n    while (!que.empty()) {\n        int v = que.front();\n\
-    \        que.pop();\n        for (int u : G[v]) {\n            if (dist[u] ==\
-    \ -1) {\n                dist[u] = dist[v] + 1;\n                que.push(u);\n\
-    \            }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n\
-    \ */\nstd::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int\
-    \ s,\n                      int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \ d) continue;\n        for (auto& e : G[v]) {\n            if (dist[e.to] > d\
+    \ + e.weight) {\n                dist[e.to] = d + e.weight;\n                par[e.to]\
+    \ = v;\n                pq.emplace(dist[e.to], e.to);\n            }\n       \
+    \ }\n    }\n\n    return {dist, par};\n}\n\n/*\n * Breadth-First Search\n */\n\
+    std::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {\n    std::vector<int>\
+    \ dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n\
+    \n    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
+    \        for (int u : G[v]) {\n            if (dist[u] == -1) {\n            \
+    \    dist[u] = dist[v] + 1;\n                que.push(u);\n            }\n   \
+    \     }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\nstd::vector<int>\
+    \ dial(const std::vector<std::vector<Edge<int>>>& G, int s,\n                \
+    \      int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
     \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
     \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int)buckets.size();\
     \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
@@ -98,24 +101,24 @@ data:
     \ {\n            if (dist[e.to] > d + e.weight) {\n                dist[e.to]\
     \ = d + e.weight;\n                pq.emplace(dist[e.to], e.to);\n           \
     \ }\n        }\n    }\n\n    return dist;\n}\n\ntemplate <typename T>\nstd::pair<std::vector<T>,\
-    \ std::vector<int>> dijkstra(\n    const std::vector<std::vector<Edge<T>>>& G,\
-    \ int s, int avoid) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
-    \    std::vector<int> prv(G.size(), -1);\n    dist[s] = 0;\n    using P = std::pair<T,\
+    \ std::vector<int>> shortest_path_tree(\n    const std::vector<std::vector<Edge<T>>>&\
+    \ G, int s) {\n    std::vector<T> dist(G.size(), std::numeric_limits<T>::max());\n\
+    \    std::vector<int> par(G.size(), -1);\n    dist[s] = 0;\n    using P = std::pair<T,\
     \ int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;\n   \
     \ pq.emplace(0, s);\n\n    while (!pq.empty()) {\n        T d;\n        int v;\n\
     \        std::tie(d, v) = pq.top();\n        pq.pop();\n        if (dist[v] <\
-    \ d) continue;\n        for (auto& e : G[v]) {\n            if (e.to != avoid\
-    \ && dist[e.to] > d + e.weight) {\n                dist[e.to] = d + e.weight;\n\
-    \                prv[e.to] = v;\n                pq.emplace(dist[e.to], e.to);\n\
-    \            }\n        }\n    }\n\n    return {dist, prv};\n}\n\n/*\n * Breadth-First\
-    \ Search\n */\nstd::vector<int> bfs(const std::vector<std::vector<int>>& G, int\
-    \ s) {\n    std::vector<int> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int>\
-    \ que;\n    que.push(s);\n\n    while (!que.empty()) {\n        int v = que.front();\n\
-    \        que.pop();\n        for (int u : G[v]) {\n            if (dist[u] ==\
-    \ -1) {\n                dist[u] = dist[v] + 1;\n                que.push(u);\n\
-    \            }\n        }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n\
-    \ */\nstd::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int\
-    \ s,\n                      int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
+    \ d) continue;\n        for (auto& e : G[v]) {\n            if (dist[e.to] > d\
+    \ + e.weight) {\n                dist[e.to] = d + e.weight;\n                par[e.to]\
+    \ = v;\n                pq.emplace(dist[e.to], e.to);\n            }\n       \
+    \ }\n    }\n\n    return {dist, par};\n}\n\n/*\n * Breadth-First Search\n */\n\
+    std::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {\n    std::vector<int>\
+    \ dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n\
+    \n    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
+    \        for (int u : G[v]) {\n            if (dist[u] == -1) {\n            \
+    \    dist[u] = dist[v] + 1;\n                que.push(u);\n            }\n   \
+    \     }\n    }\n\n    return dist;\n}\n\n/*\n * Dial's Algorithm\n */\nstd::vector<int>\
+    \ dial(const std::vector<std::vector<Edge<int>>>& G, int s,\n                \
+    \      int w) {\n    std::vector<int> dist(G.size(), std::numeric_limits<int>::max());\n\
     \    dist[s] = 0;\n    std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());\n\
     \    buckets[0].push_back(s);\n\n    for (int d = 0; d < (int)buckets.size();\
     \ ++d) {\n        while (!buckets[d].empty()) {\n            int v = buckets[d].back();\n\
@@ -129,11 +132,12 @@ data:
   path: graph/shortest_path.cpp
   requiredBy:
   - graph/range_edge_graph.cpp
-  timestamp: '2023-08-24 19:13:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-18 13:57:12+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_1_C.test.cpp
+  - test/yosupo/shortest_path.test.cpp
   - test/aoj/GRL_1_A.test.cpp
+  - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_B.test.cpp
 documentation_of: graph/shortest_path.cpp
 layout: document
@@ -165,7 +169,10 @@ Floyd-Warshall のアルゴリズムは，重み付きグラフの全点対最�
 Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．
 
 - `vector<T> dijkstra(vector<vector<Edge<T>>> G, int s)`
-    - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
+    - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短距離を計算する
+    - 時間計算量: $O(E \log V)$
+- `pair<vector<T>, vector<T>> shortest_path_tree(vector<vector<Edge<T>>> G, int s)`
+    - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短距離と， $s$ を根とするある最短経路木における各頂点の親を返す
     - 時間計算量: $O(E \log V)$
 
 ## Breadth-First Search
@@ -175,7 +182,7 @@ Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単�
 幅優先探索は，重みがすべて1のグラフの単一始点最短経路問題を解くアルゴリズムである．
 
 - `vector<T> bfs(vector<vector<Edge<T>>> G, int s)`
-    - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短経路を計算する
+    - グラフ $G$ の隣接リストが与えられたとき，始点 $s$ から各頂点への最短距離を計算する
     - 時間計算量: $O(V + E)$
 
 ## Dial's Algorithm
@@ -185,5 +192,5 @@ Dijkstra のアルゴリズムは，負辺のない重み付きグラフの単�
 Dial のアルゴリズムは，負辺のない重み付きグラフの単一始点最短経路問題を解くアルゴリズムである．辺の重みが整数であり，上限が小さいときに Dijkstra のアルゴリズムより高速に動作する．
 
 - `vector<int> dial(vector<vector<Edge<int>>> G, int s, int w)`
-    - グラフ $G$ の隣接リストと辺の重みの上限 $w$ が与えられたとき，始点 $s$ から各頂点への最短経路を計算する
+    - グラフ $G$ の隣接リストと辺の重みの上限 $w$ が与えられたとき，始点 $s$ から各頂点への最短距離を計算する
     - 時間計算量: $O(E + wV)$

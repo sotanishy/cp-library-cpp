@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/longest_common_substring.hpp
+    title: Longest Common Substring
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
     title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/longest_common_substring.test.cpp
+    title: test/yosupo/longest_common_substring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_of_substrings.test.cpp
     title: test/yosupo/number_of_substrings.test.cpp
@@ -110,13 +116,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/suffix_array.cpp
-  requiredBy: []
+  requiredBy:
+  - string/longest_common_substring.hpp
   timestamp: '2023-04-08 00:55:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_14_B.suffix_array.test.cpp
-  - test/yosupo/number_of_substrings.test.cpp
   - test/yosupo/suffixarray.test.cpp
+  - test/yosupo/number_of_substrings.test.cpp
+  - test/yosupo/longest_common_substring.test.cpp
+  - test/aoj/ALDS1_14_B.suffix_array.test.cpp
 documentation_of: string/suffix_array.cpp
 layout: document
 title: Suffix Array

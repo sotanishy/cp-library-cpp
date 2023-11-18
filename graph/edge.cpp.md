@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: graph/range_edge_graph.cpp
     title: Range Edge Graph
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path.cpp
     title: Shortest Path Algorithms
   - icon: ':heavy_check_mark:'
@@ -66,12 +66,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/shortest_path.test.cpp
+    title: test/yosupo/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -88,29 +91,30 @@ data:
   requiredBy:
   - graph/manhattan_mst.hpp
   - graph/minimum_steiner_tree.hpp
-  - graph/shortest_path.cpp
   - graph/mst.cpp
   - graph/minimum_spanning_arborescence.cpp
+  - graph/shortest_path.cpp
   - graph/range_edge_graph.cpp
-  - tree/tree_isomorphism.hpp
   - tree/tree_diameter.cpp
+  - tree/tree_isomorphism.hpp
   timestamp: '2021-02-09 14:52:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_2_A.prim.test.cpp
-  - test/aoj/GRL_5_A.test.cpp
-  - test/aoj/GRL_2_A.boruvka.test.cpp
-  - test/aoj/2821.test.cpp
-  - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/aoj/1040.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
-  - test/aoj/GRL_1_A.test.cpp
-  - test/aoj/GRL_1_B.test.cpp
-  - test/yosupo/directedmst.test.cpp
-  - test/yosupo/manhattanmst.test.cpp
-  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
-  - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - test/yosupo/tree_diameter.test.cpp
+  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
+  - test/yosupo/directedmst.test.cpp
+  - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
+  - test/yosupo/manhattanmst.test.cpp
+  - test/yosupo/shortest_path.test.cpp
+  - test/aoj/GRL_1_A.test.cpp
+  - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/aoj/GRL_1_C.test.cpp
+  - test/aoj/2821.test.cpp
+  - test/aoj/GRL_2_A.boruvka.test.cpp
+  - test/aoj/GRL_1_B.test.cpp
+  - test/aoj/1040.test.cpp
+  - test/aoj/GRL_5_A.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
 documentation_of: graph/edge.cpp
 layout: document
 redirect_from:

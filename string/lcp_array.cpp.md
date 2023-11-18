@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/longest_common_substring.hpp
+    title: Longest Common Substring
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/longest_common_substring.test.cpp
+    title: test/yosupo/longest_common_substring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_of_substrings.test.cpp
     title: test/yosupo/number_of_substrings.test.cpp
@@ -34,11 +40,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/lcp_array.cpp
-  requiredBy: []
+  requiredBy:
+  - string/longest_common_substring.hpp
   timestamp: '2023-04-08 14:20:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_of_substrings.test.cpp
+  - test/yosupo/longest_common_substring.test.cpp
 documentation_of: string/lcp_array.cpp
 layout: document
 title: Longest Common Prefix Array

@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/pow_of_matrix.test.cpp
+    title: test/yosupo/pow_of_matrix.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -125,6 +128,7 @@ data:
   verifiedWith:
   - test/yosupo/inverse_matrix.test.cpp
   - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/pow_of_matrix.test.cpp
 documentation_of: math/matrix/square_matrix.cpp
 layout: document
 title: Square Matrix
