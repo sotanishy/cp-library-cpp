@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/factorize.test.cpp
     title: test/yosupo/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/primality_test.test.cpp
+    title: test/yosupo/primality_test.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -105,6 +108,7 @@ data:
   timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/primality_test.test.cpp
   - test/yosupo/factorize.test.cpp
 documentation_of: math/fast_prime.cpp
 layout: document

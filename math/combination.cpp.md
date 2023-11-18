@@ -7,6 +7,9 @@ data:
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+    title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   _isVerificationFailed: false
@@ -51,6 +54,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/binomial_coefficient_prime_mod.test.cpp
 documentation_of: math/combination.cpp
 layout: document
 title: Combination

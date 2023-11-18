@@ -288,7 +288,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.cpp
       title: Dominator Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -342,7 +342,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/scc.cpp
       title: Strongly Connected Components
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path.cpp
       title: Shortest Path Algorithms
     - icon: ':warning:'
@@ -389,6 +389,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
+    - icon: ':warning:'
+      path: math/factorial.hpp
+      title: Factorial
     - icon: ':warning:'
       path: math/farey_sequence.hpp
       title: Farey Sequence
@@ -858,6 +861,9 @@ data:
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+      title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bipartite_edge_coloring.test.cpp
       title: test/yosupo/bipartite_edge_coloring.test.cpp
     - icon: ':heavy_check_mark:'
@@ -944,6 +950,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/factorial.test.cpp
+      title: test/yosupo/factorial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/factorize.test.cpp
       title: test/yosupo/factorize.test.cpp
@@ -1059,6 +1068,9 @@ data:
       path: test/yosupo/pow_of_matrix.test.cpp
       title: test/yosupo/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/primality_test.test.cpp
+      title: test/yosupo/primality_test.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1106,7 +1118,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'

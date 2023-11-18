@@ -15,6 +15,9 @@ data:
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
   - icon: ':warning:'
+    path: math/factorial.hpp
+    title: Factorial
+  - icon: ':warning:'
     path: math/interpolation.cpp
     title: Polynomial Interpolation
   - icon: ':heavy_check_mark:'
@@ -147,31 +150,32 @@ data:
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
   - convolution/relaxed_convolution.hpp
-  - math/count_subset_sum.hpp
-  - math/bostan_mori.hpp
-  - math/stirling_first.hpp
-  - math/multipoint_evaluation.cpp
   - math/stirling_second.hpp
   - math/interpolation.cpp
-  - math/polynomial.cpp
+  - math/count_subset_sum.hpp
   - math/lagrange_polynomial.hpp
+  - math/factorial.hpp
+  - math/bostan_mori.hpp
+  - math/polynomial.cpp
+  - math/stirling_first.hpp
+  - math/multipoint_evaluation.cpp
   timestamp: '2023-09-02 12:26:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/log_of_formal_power_series.test.cpp
-  - test/yosupo/sharp_p_subset_sum.test.cpp
-  - test/yosupo/pow_of_formal_power_series.test.cpp
-  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/polynomial_interpolation.test.cpp
-  - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/convolution_mod.test.cpp
-  - test/yosupo/multipoint_evaluation.test.cpp
-  - test/yosupo/division_of_polynomials.test.cpp
-  - test/yosupo/convolution_mod_1000000007.test.cpp
+  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
-  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/convolution_mod_1000000007.test.cpp
+  - test/yosupo/polynomial_interpolation.test.cpp
+  - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/sharp_p_subset_sum.test.cpp
+  - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
+  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
 documentation_of: convolution/ntt.hpp
 layout: document
 title: Number Theoretic Transform

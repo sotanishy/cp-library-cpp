@@ -73,8 +73,8 @@ data:
   isVerificationFile: false
   path: data-structure/partition_refinement.hpp
   requiredBy:
-  - graph/chordal_graph_recognition.hpp
   - graph/lex_bfs.hpp
+  - graph/chordal_graph_recognition.hpp
   timestamp: '2023-03-09 17:45:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

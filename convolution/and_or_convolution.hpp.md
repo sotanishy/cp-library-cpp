@@ -59,8 +59,8 @@ data:
   timestamp: '2022-03-24 12:11:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/subset_convolution.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/subset_convolution.test.cpp
 documentation_of: convolution/and_or_convolution.hpp
 layout: document
 title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"

@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+    title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/montmort_number_mod.test.cpp
     title: test/yosupo/montmort_number_mod.test.cpp
   _isVerificationFailed: false
@@ -78,6 +81,7 @@ data:
   timestamp: '2022-12-12 15:48:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/montmort_number_mod.test.cpp
 documentation_of: math/arbitrary_modint.cpp
 layout: document
