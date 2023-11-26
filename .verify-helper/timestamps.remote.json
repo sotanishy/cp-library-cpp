@@ -160,6 +160,7 @@
 "test/yosupo/sharp_p_subset_sum.test.cpp": "2023-09-02 12:26:05 +0900",
 "test/yosupo/shortest_path.test.cpp": "2023-11-18 13:57:12 +0900",
 "test/yosupo/sqrt_mod.test.cpp": "2022-08-04 12:02:47 +0900",
+"test/yosupo/static_range_frequency.test.cpp": "2023-11-26 17:31:25 +0900",
 "test/yosupo/static_range_inversions_query.test.cpp": "2023-06-18 14:56:29 +0900",
 "test/yosupo/staticrmq.sqrt_tree.test.cpp": "2021-02-06 03:32:16 +0900",
 "test/yosupo/staticrmq.test.cpp": "2023-05-27 03:55:18 +0900",
@@ -183,5 +184,6 @@
 "test/yosupo/vertex_add_subtree_sum.hld.test.cpp": "2023-06-18 14:56:29 +0900",
 "test/yosupo/vertex_set_path_composite.test.cpp": "2023-06-13 22:58:26 +0900",
 "test/yosupo/zalgorithm.test.cpp": "2021-01-17 18:23:01 +0900",
+"tests/yosupo/gcd_of_gaussian_integers.test.cpp": "2023-11-26 17:31:25 +0900",
 "tests/yosupo/lyndon_factorization.test.cpp": "2023-11-26 16:39:17 +0900"
 }
