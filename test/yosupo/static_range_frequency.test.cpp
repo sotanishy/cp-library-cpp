@@ -17,7 +17,7 @@ int main() {
     }
     vector<int> a(N);
     for (auto& x : a) cin >> x;
-    WaveletMatrix<int> wm(a);
+    WaveletMatrix<int, 30> wm(a);
     while (Q--) {
         int l, r, x;
         cin >> l >> r >> x;
