@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -404,6 +404,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/garner.cpp
       title: Garner's Algorithm
+    - icon: ':heavy_check_mark:'
+      path: math/gaussian_integer.hpp
+      title: Gaussian Integer
     - icon: ':warning:'
       path: math/interpolation.cpp
       title: Polynomial Interpolation
@@ -1127,7 +1130,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_frequency.test.cpp
       title: test/yosupo/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1201,6 +1204,9 @@ data:
       title: test/yosupo/zalgorithm.test.cpp
   - name: tests/yosupo
     pages:
+    - icon: ':heavy_check_mark:'
+      path: tests/yosupo/gcd_of_gaussian_integers.test.cpp
+      title: tests/yosupo/gcd_of_gaussian_integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: tests/yosupo/lyndon_factorization.test.cpp
       title: tests/yosupo/lyndon_factorization.test.cpp
