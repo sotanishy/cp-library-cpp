@@ -111,13 +111,13 @@ LGV 公式は，DAG の非交差経路の数え上げに用いられる公式で
 のもと，
 
 $$
-\det(M)=\sum_{\sigma(T)} \mathrm{sgn}(\sigma)\vert N(S,\sigma(T))\vert
+\det(M)=\sum_{\sigma(T)} \mathrm{sgn}(\sigma)\vert \mathcal{N}(S,\sigma(T))\vert
 $$
 
-が成り立つ．特に，$\sigma$ が恒等置換でないとき，必ず $N(S,\sigma(T))=0$ となるとすると，
+が成り立つ．特に，$\sigma$ が恒等置換でないとき，必ず $\mathcal{N}(S,\sigma(T))=0$ となるとすると，
 
 $$
-\det(M)=\vert N(S,T)\vert
+\det(M)=\vert \mathcal{N}(S,T)\vert
 $$
 
 である．

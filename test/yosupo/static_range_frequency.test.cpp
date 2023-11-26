@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_frequency"
 
-#include "../../data-structure/wavelet_matrix.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/wavelet_matrix.cpp"
 using namespace std;
 
 int main() {
