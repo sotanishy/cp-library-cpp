@@ -566,6 +566,9 @@ data:
       path: string/longest_common_substring.hpp
       title: Longest Common Substring
     - icon: ':heavy_check_mark:'
+      path: string/lyndon_factorization.hpp
+      title: Lyndon Factorization
+    - icon: ':heavy_check_mark:'
       path: string/manacher.cpp
       title: Manacher's Algorithm
     - icon: ':warning:'
@@ -1196,6 +1199,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp
+  - name: tests/yosupo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: tests/yosupo/lyndon_factorization.test.cpp
+      title: tests/yosupo/lyndon_factorization.test.cpp
 layout: toppage
 ---
 <br/>

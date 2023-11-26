@@ -18,9 +18,8 @@ data:
     links:
     - https://judge.yosupo.jp/problem/static_range_frequency
   bundledCode: "#line 1 \"test/yosupo/static_range_frequency.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/static_range_frequency\"\n\n#line 2 \"data-structure/wavelet_matrix.cpp\"\
-    \n#include <algorithm>\n#include <unordered_map>\n#include <vector>\n\n#line 2\
-    \ \"data-structure/bit_vector.cpp\"\n#include <cstdint>\n#line 4 \"data-structure/bit_vector.cpp\"\
+    \ \"https://judge.yosupo.jp/problem/static_range_frequency\"\n\n#include <bits/stdc++.h>\n\
+    \n#line 5 \"data-structure/wavelet_matrix.cpp\"\n\n#line 4 \"data-structure/bit_vector.cpp\"\
     \n\nclass BitVector {\n   public:\n    BitVector() = default;\n    explicit BitVector(const\
     \ std::vector<bool>& v) {\n        const int n = v.size() / sz + 1;\n        data.resize(n);\n\
     \        sum.resize(n + 1);\n        for (int i = 0; i < (int)v.size(); ++i)\n\
@@ -70,17 +69,17 @@ data:
     \   r = cnt0[d] * b + mat[d].rank(r, b);\n            if (b) {\n             \
     \   ret |= T(1) << d;\n                k -= cnt;\n            }\n        }\n \
     \       return ret;\n    }\n\n   private:\n    std::vector<BitVector> mat;\n \
-    \   std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n#line 4\
-    \ \"test/yosupo/static_range_frequency.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    if (N == 0) {\n   \
-    \     while (Q--) cout << 0 << \"\\n\";\n        return 0;\n    }\n    vector<int>\
-    \ a(N);\n    for (auto& x : a) cin >> x;\n    WaveletMatrix<int> wm(a);\n    while\
-    \ (Q--) {\n        int l, r, x;\n        cin >> l >> r >> x;\n        cout <<\
-    \ wm.rank(r, x) - wm.rank(l, x) << \"\\n\";\n    }\n}\n"
+    \   std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n#line 6\
+    \ \"test/yosupo/static_range_frequency.test.cpp\"\nusing namespace std;\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    if (N == 0) {\n        while (Q--) cout << 0\
+    \ << \"\\n\";\n        return 0;\n    }\n    vector<int> a(N);\n    for (auto&\
+    \ x : a) cin >> x;\n    WaveletMatrix<int> wm(a);\n    while (Q--) {\n       \
+    \ int l, r, x;\n        cin >> l >> r >> x;\n        cout << wm.rank(r, x) - wm.rank(l,\
+    \ x) << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
-    \n\n#include \"../../data-structure/wavelet_matrix.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/wavelet_matrix.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    if (N == 0) {\n   \
     \     while (Q--) cout << 0 << \"\\n\";\n        return 0;\n    }\n    vector<int>\
     \ a(N);\n    for (auto& x : a) cin >> x;\n    WaveletMatrix<int> wm(a);\n    while\
@@ -92,7 +91,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 23:19:45+09:00'
+  timestamp: '2023-11-26 16:39:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_frequency.test.cpp
