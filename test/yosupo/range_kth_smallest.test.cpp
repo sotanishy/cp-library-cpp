@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 
-#include "../../data-structure/wavelet_matrix.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/wavelet_matrix.cpp"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ int main() {
     cin >> N >> Q;
     vector<int> a(N);
     for (int i = 0; i < N; ++i) cin >> a[i];
-    WaveletMatrix<int> wm(a);
+    WaveletMatrix<int, 30> wm(a);
     for (int i = 0; i < Q; ++i) {
         int l, r, k;
         cin >> l >> r >> k;
