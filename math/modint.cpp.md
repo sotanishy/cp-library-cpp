@@ -88,6 +88,9 @@ data:
     path: test/yosupo/pow_of_matrix.test.cpp
     title: test/yosupo/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/product_of_polynomial_sequence.test.cpp
+    title: test/yosupo/product_of_polynomial_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -200,6 +203,7 @@ data:
   - test/yosupo/number_of_subsequences.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/tree_path_composite_sum.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp

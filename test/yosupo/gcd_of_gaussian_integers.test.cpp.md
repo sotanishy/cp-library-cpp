@@ -14,7 +14,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/gcd_of_gaussian_integers
     links:
     - https://judge.yosupo.jp/problem/gcd_of_gaussian_integers
-  bundledCode: "#line 1 \"tests/yosupo/gcd_of_gaussian_integers.test.cpp\"\n#define\
+  bundledCode: "#line 1 \"test/yosupo/gcd_of_gaussian_integers.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/gcd_of_gaussian_integers\"\n\n#include\
     \ <bits/stdc++.h>\n\n#line 4 \"math/gaussian_integer.hpp\"\n\n/**\n * @brief Gaussian\
     \ Integer\n */\n\ntemplate <typename T>\nstruct GaussianInteger {\n    using G\
@@ -46,7 +46,7 @@ data:
     \ << r.y << \"i\";\n    }\n\n   private:\n    static constexpr std::pair<T, T>\
     \ divmod(T a, T b) {\n        assert(b > 0);\n        T q = a / b;\n        if\
     \ (a == b * q) return {q, 0};\n        if (a < 0) --q;\n        return {q, a -\
-    \ b * q};\n    }\n};\n#line 6 \"tests/yosupo/gcd_of_gaussian_integers.test.cpp\"\
+    \ b * q};\n    }\n};\n#line 6 \"test/yosupo/gcd_of_gaussian_integers.test.cpp\"\
     \nusing namespace std;\n\nusing G = GaussianInteger<long long>;\n\nint main()\
     \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int T;\n  \
     \  cin >> T;\n    while (T--) {\n        long long a1, b1, a2, b2;\n        cin\
@@ -62,15 +62,15 @@ data:
   dependsOn:
   - math/gaussian_integer.hpp
   isVerificationFile: true
-  path: tests/yosupo/gcd_of_gaussian_integers.test.cpp
+  path: test/yosupo/gcd_of_gaussian_integers.test.cpp
   requiredBy: []
-  timestamp: '2023-11-26 17:31:25+09:00'
+  timestamp: '2023-12-02 22:50:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: tests/yosupo/gcd_of_gaussian_integers.test.cpp
+documentation_of: test/yosupo/gcd_of_gaussian_integers.test.cpp
 layout: document
 redirect_from:
-- /verify/tests/yosupo/gcd_of_gaussian_integers.test.cpp
-- /verify/tests/yosupo/gcd_of_gaussian_integers.test.cpp.html
-title: tests/yosupo/gcd_of_gaussian_integers.test.cpp
+- /verify/test/yosupo/gcd_of_gaussian_integers.test.cpp
+- /verify/test/yosupo/gcd_of_gaussian_integers.test.cpp.html
+title: test/yosupo/gcd_of_gaussian_integers.test.cpp
 ---

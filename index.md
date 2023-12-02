@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.cpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -452,6 +452,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_count.hpp
       title: Prime Counting Function
+    - icon: ':heavy_check_mark:'
+      path: math/product_of_polynomial_sequence.hpp
+      title: Product of Polynomial Sequence
     - icon: ':heavy_check_mark:'
       path: math/quotients.hpp
       title: Intervals with Equal Quotients
@@ -972,6 +975,9 @@ data:
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/gcd_of_gaussian_integers.test.cpp
+      title: test/yosupo/gcd_of_gaussian_integers.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/general_matching.test.cpp
       title: test/yosupo/general_matching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1010,6 +1016,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/longest_increasing_subsequence.test.cpp
       title: test/yosupo/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/lyndon_factorization.test.cpp
+      title: test/yosupo/lyndon_factorization.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/manhattanmst.test.cpp
       title: test/yosupo/manhattanmst.test.cpp
@@ -1077,6 +1086,9 @@ data:
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/product_of_polynomial_sequence.test.cpp
+      title: test/yosupo/product_of_polynomial_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1088,7 +1100,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1202,14 +1214,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp
-  - name: tests/yosupo
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: tests/yosupo/gcd_of_gaussian_integers.test.cpp
-      title: tests/yosupo/gcd_of_gaussian_integers.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: tests/yosupo/lyndon_factorization.test.cpp
-      title: tests/yosupo/lyndon_factorization.test.cpp
 layout: toppage
 ---
 <br/>

@@ -30,6 +30,9 @@ data:
     path: math/polynomial.cpp
     title: Polynomial
   - icon: ':heavy_check_mark:'
+    path: math/product_of_polynomial_sequence.hpp
+    title: Product of Polynomial Sequence
+  - icon: ':heavy_check_mark:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   - icon: ':heavy_check_mark:'
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/product_of_polynomial_sequence.test.cpp
+    title: test/yosupo/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/sharp_p_subset_sum.test.cpp
     title: test/yosupo/sharp_p_subset_sum.test.cpp
@@ -159,12 +165,14 @@ data:
   - math/polynomial.cpp
   - math/stirling_first.hpp
   - math/multipoint_evaluation.cpp
+  - math/product_of_polynomial_sequence.hpp
   timestamp: '2023-09-02 12:26:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/polynomial_interpolation.test.cpp

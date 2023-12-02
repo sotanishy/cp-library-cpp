@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: tests/yosupo/lyndon_factorization.test.cpp
-    title: tests/yosupo/lyndon_factorization.test.cpp
+    path: test/yosupo/lyndon_factorization.test.cpp
+    title: test/yosupo/lyndon_factorization.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   timestamp: '2023-11-26 16:39:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - tests/yosupo/lyndon_factorization.test.cpp
+  - test/yosupo/lyndon_factorization.test.cpp
 documentation_of: string/lyndon_factorization.hpp
 layout: document
 title: Lyndon Factorization

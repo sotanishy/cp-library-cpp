@@ -1,26 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/wavelet_matrix.cpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
     - https://judge.yosupo.jp/problem/range_kth_smallest
   bundledCode: "#line 1 \"test/yosupo/range_kth_smallest.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n#line 2 \"data-structure/wavelet_matrix.cpp\"\
-    \n#include <algorithm>\n#include <unordered_map>\n#include <vector>\n\n#line 2\
-    \ \"data-structure/bit_vector.cpp\"\n#include <cstdint>\n#line 4 \"data-structure/bit_vector.cpp\"\
+    \ \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n#include <bits/stdc++.h>\n\
+    \n#line 5 \"data-structure/wavelet_matrix.cpp\"\n\n#line 4 \"data-structure/bit_vector.cpp\"\
     \n\nclass BitVector {\n   public:\n    BitVector() = default;\n    explicit BitVector(const\
     \ std::vector<bool>& v) {\n        const int n = v.size() / sz + 1;\n        data.resize(n);\n\
     \        sum.resize(n + 1);\n        for (int i = 0; i < (int)v.size(); ++i)\n\
@@ -70,18 +69,18 @@ data:
     \   r = cnt0[d] * b + mat[d].rank(r, b);\n            if (b) {\n             \
     \   ret |= T(1) << d;\n                k -= cnt;\n            }\n        }\n \
     \       return ret;\n    }\n\n   private:\n    std::vector<BitVector> mat;\n \
-    \   std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n#line 4\
-    \ \"test/yosupo/range_kth_smallest.test.cpp\"\n\n#include <bits/stdc++.h>\n\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> a[i];\n    WaveletMatrix<int> wm(a);\n\
-    \    for (int i = 0; i < Q; ++i) {\n        int l, r, k;\n        cin >> l >>\
-    \ r >> k;\n        cout << wm.quantile(l, r, k) << \"\\n\";\n    }\n}\n"
+    \   std::vector<int> cnt0;\n    std::unordered_map<T, int> start;\n};\n#line 6\
+    \ \"test/yosupo/range_kth_smallest.test.cpp\"\n\nusing namespace std;\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N, Q;\n\
+    \    cin >> N >> Q;\n    vector<int> a(N);\n    for (int i = 0; i < N; ++i) cin\
+    \ >> a[i];\n    WaveletMatrix<int, 30> wm(a);\n    for (int i = 0; i < Q; ++i)\
+    \ {\n        int l, r, k;\n        cin >> l >> r >> k;\n        cout << wm.quantile(l,\
+    \ r, k) << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
-    #include \"../../data-structure/wavelet_matrix.cpp\"\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    #include <bits/stdc++.h>\n\n#include \"../../data-structure/wavelet_matrix.cpp\"\
+    \n\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> a[i];\n    WaveletMatrix<int> wm(a);\n\
+    \    for (int i = 0; i < N; ++i) cin >> a[i];\n    WaveletMatrix<int, 30> wm(a);\n\
     \    for (int i = 0; i < Q; ++i) {\n        int l, r, k;\n        cin >> l >>\
     \ r >> k;\n        cout << wm.quantile(l, r, k) << \"\\n\";\n    }\n}"
   dependsOn:
@@ -90,8 +89,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 23:19:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-02 22:50:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_kth_smallest.test.cpp
 layout: document
