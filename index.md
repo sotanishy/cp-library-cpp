@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':warning:'
@@ -443,7 +443,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -472,13 +472,13 @@ data:
       title: System of Linear Equations
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
       title: math/matrix/characteristic_polynomial.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/matrix.cpp
       title: Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/square_matrix.cpp
       title: Square Matrix
   - name: misc
@@ -890,7 +890,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cartesian_tree.test.cpp
       title: test/yosupo/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/characteristic_polynomial.test.cpp
       title: test/yosupo/characteristic_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -989,7 +989,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inverse_matrix.test.cpp
       title: test/yosupo/inverse_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1028,10 +1028,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/manhattanmst.test.cpp
       title: test/yosupo/manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_product.test.cpp
       title: test/yosupo/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1085,7 +1085,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_matrix.test.cpp
       title: test/yosupo/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'

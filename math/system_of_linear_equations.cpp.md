@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/matrix/matrix.cpp
     title: Matrix
   _extendedRequiredBy: []
@@ -18,30 +18,32 @@ data:
     #include <vector>\n#line 2 \"math/matrix/matrix.cpp\"\n#include <algorithm>\n\
     #line 4 \"math/matrix/matrix.cpp\"\n#include <cmath>\n#include <initializer_list>\n\
     #include <type_traits>\n#line 8 \"math/matrix/matrix.cpp\"\n\ntemplate <typename\
-    \ T>\nclass Matrix : public std::vector<std::vector<T>> {\n   public:\n    static\
-    \ Matrix concat(const Matrix& A, const Matrix& B) {\n        assert(A.m == B.m);\n\
-    \        Matrix C(A.m, A.n + B.n);\n        for (int i = 0; i < A.m; ++i) {\n\
-    \            std::copy(A[i].begin(), A[i].end(), C[i].begin());\n            std::copy(B[i].begin(),\
-    \ B[i].end(), C[i].begin() + A.n);\n        }\n        return C;\n    }\n\n  \
-    \  Matrix() = default;\n    Matrix(int m, int n) : mat(m, std::vector<T>(n)),\
-    \ m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>> list)\
-    \ {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
-    \        n = mat[0].size();\n    }\n\n    Matrix& operator+=(const Matrix& rhs)\
-    \ {\n        assert(m == rhs.m && n == rhs.n);\n        for (int i = 0; i < m;\
-    \ ++i) {\n            for (int j = 0; j < n; ++j) {\n                mat[i][j]\
-    \ += rhs[i][j];\n            }\n        }\n        return *this;\n    }\n\n  \
-    \  Matrix& operator-=(const Matrix& rhs) {\n        assert(m == rhs.m && n ==\
-    \ rhs.n);\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0;\
-    \ j < n; ++j) {\n                mat[i][j] -= rhs[i][j];\n            }\n    \
-    \    }\n        return *this;\n    }\n\n    Matrix operator+(const Matrix& rhs)\
-    \ const { return Matrix(*this) += rhs; }\n    Matrix operator-(const Matrix& rhs)\
-    \ const { return Matrix(*this) -= rhs; }\n\n    Matrix transpose() const {\n \
-    \       Matrix ret(n, m);\n        for (int i = 0; i < n; ++i) {\n           \
-    \ for (int j = 0; j < m; ++j) {\n                ret[i][j] = mat[j][i];\n    \
-    \        }\n        }\n        return ret;\n    }\n\n    Matrix matmul(const Matrix&\
-    \ B) const {\n        assert(n == B.m);\n        Matrix ret(m, B.n);\n       \
-    \ for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < B.n; ++j) {\n\
-    \                for (int k = 0; k < n; ++k) {\n                    ret[i][j]\
+    \ T>\nclass Matrix {\n   public:\n    static Matrix concat(const Matrix& A, const\
+    \ Matrix& B) {\n        assert(A.m == B.m);\n        Matrix C(A.m, A.n + B.n);\n\
+    \        for (int i = 0; i < A.m; ++i) {\n            std::copy(A[i].begin(),\
+    \ A[i].end(), C[i].begin());\n            std::copy(B[i].begin(), B[i].end(),\
+    \ C[i].begin() + A.n);\n        }\n        return C;\n    }\n\n    Matrix() =\
+    \ default;\n    Matrix(int m, int n) : mat(m, std::vector<T>(n)), m(m), n(n) {}\n\
+    \    Matrix(std::initializer_list<std::initializer_list<T>> list) {\n        for\
+    \ (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n        n =\
+    \ mat[0].size();\n    }\n\n    int row() const { return m; }\n    int col() const\
+    \ { return n; }\n\n    const std::vector<T>& operator[](int i) const { return\
+    \ mat[i]; }\n    std::vector<T>& operator[](int i) { return mat[i]; }\n\n    Matrix&\
+    \ operator+=(const Matrix& rhs) {\n        assert(m == rhs.m && n == rhs.n);\n\
+    \        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j)\
+    \ {\n                mat[i][j] += rhs[i][j];\n            }\n        }\n     \
+    \   return *this;\n    }\n\n    Matrix& operator-=(const Matrix& rhs) {\n    \
+    \    assert(m == rhs.m && n == rhs.n);\n        for (int i = 0; i < m; ++i) {\n\
+    \            for (int j = 0; j < n; ++j) {\n                mat[i][j] -= rhs[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Matrix operator+(const\
+    \ Matrix& rhs) const { return Matrix(*this) += rhs; }\n    Matrix operator-(const\
+    \ Matrix& rhs) const { return Matrix(*this) -= rhs; }\n\n    Matrix transpose()\
+    \ const {\n        Matrix ret(n, m);\n        for (int i = 0; i < n; ++i) {\n\
+    \            for (int j = 0; j < m; ++j) {\n                ret[i][j] = mat[j][i];\n\
+    \            }\n        }\n        return ret;\n    }\n\n    Matrix matmul(const\
+    \ Matrix& B) const {\n        assert(n == B.m);\n        Matrix ret(m, B.n);\n\
+    \        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < B.n; ++j)\
+    \ {\n                for (int k = 0; k < n; ++k) {\n                    ret[i][j]\
     \ += mat[i][k] * B[k][j];\n                }\n            }\n        }\n     \
     \   return ret;\n    }\n\n    Matrix rref() const {\n        Matrix A(*this);\n\
     \        int pivot = 0;\n        for (int j = 0; j < n; ++j) {\n            int\
@@ -98,7 +100,7 @@ data:
   isVerificationFile: false
   path: math/system_of_linear_equations.cpp
   requiredBy: []
-  timestamp: '2023-12-24 14:20:30+09:00'
+  timestamp: '2023-12-24 15:05:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/system_of_linear_equations.test.cpp
