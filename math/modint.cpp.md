@@ -43,11 +43,17 @@ data:
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_set_power_series.test.cpp
+    title: test/yosupo/exp_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/find_linear_recurrence.test.cpp
     title: test/yosupo/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/hafnian_of_matrix.test.cpp
+    title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
@@ -60,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,19 +84,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_matrix.test.cpp
     title: test/yosupo/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,10 +108,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/sharp_p_subset_sum.test.cpp
     title: test/yosupo/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -204,6 +210,7 @@ data:
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/characteristic_polynomial.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/exp_of_set_power_series.test.cpp
   - test/yosupo/enumerate_triangles.test.cpp
   - test/yosupo/range_affine_point_get.test.cpp
   - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -220,6 +227,7 @@ data:
   - test/yosupo/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/number_of_subsequences.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp

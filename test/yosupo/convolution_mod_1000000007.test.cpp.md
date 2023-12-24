@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'

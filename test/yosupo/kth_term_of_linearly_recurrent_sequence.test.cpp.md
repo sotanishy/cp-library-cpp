@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -94,8 +94,8 @@ data:
     \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
     \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
     \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
-    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with constant\n\
-    \n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with scalar\
+    \ ---\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2023-09-02 12:26:05+09:00'
+  timestamp: '2023-12-24 17:02:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp

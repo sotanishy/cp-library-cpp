@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/and_or_convolution.hpp
       title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
     - icon: ':heavy_check_mark:'
@@ -15,13 +15,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':warning:'
       path: convolution/relaxed_convolution.hpp
       title: Relaxed Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -377,7 +377,7 @@ data:
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/count_subset_sum.hpp
       title: Count Subset Sum
     - icon: ':warning:'
@@ -422,7 +422,7 @@ data:
     - icon: ':warning:'
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
     - icon: ':heavy_check_mark:'
@@ -437,13 +437,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -452,16 +452,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_count.hpp
       title: Prime Counting Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
     - icon: ':heavy_check_mark:'
       path: math/quotients.hpp
       title: Intervals with Equal Quotients
+    - icon: ':question:'
+      path: math/set_power_series.hpp
+      title: math/set_power_series.hpp
     - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
       title: Stern-Brocot Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
     - icon: ':heavy_check_mark:'
@@ -475,6 +478,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
       title: math/matrix/characteristic_polynomial.hpp
+    - icon: ':x:'
+      path: math/matrix/hafnian.hpp
+      title: math/matrix/hafnian.hpp
     - icon: ':question:'
       path: math/matrix/matrix.cpp
       title: Matrix
@@ -966,6 +972,9 @@ data:
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/exp_of_set_power_series.test.cpp
+      title: test/yosupo/exp_of_set_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/factorial.test.cpp
       title: test/yosupo/factorial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -986,6 +995,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/general_matching.test.cpp
       title: test/yosupo/general_matching.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/hafnian_of_matrix.test.cpp
+      title: test/yosupo/hafnian_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
@@ -1013,7 +1025,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1043,7 +1055,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/multipoint_evaluation.test.cpp
       title: test/yosupo/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1076,13 +1088,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_sort_range_composite.test.cpp
       title: test/yosupo/point_set_range_sort_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1091,7 +1103,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/product_of_polynomial_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1139,7 +1151,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1160,7 +1172,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
   - icon: ':warning:'
@@ -17,19 +17,19 @@ data:
   - icon: ':warning:'
     path: math/interpolation.cpp
     title: Polynomial Interpolation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   - icon: ':heavy_check_mark:'
     path: math/matrix/characteristic_polynomial.hpp
     title: math/matrix/characteristic_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/product_of_polynomial_sequence.hpp
     title: Product of Polynomial Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   _extendedVerifiedWith:
@@ -48,33 +48,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/sharp_p_subset_sum.test.cpp
     title: test/yosupo/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -117,8 +117,8 @@ data:
     \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
     \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
     \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
-    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with constant\n\
-    \n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with scalar\
+    \ ---\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -210,8 +210,8 @@ data:
     \    }\n\n    void trim() {\n        while (!this->empty() && this->back() ==\
     \ 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
     \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with constant\n\n    Poly&\
-    \ operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \      return ret;\n    }\n\n    // -- binary operation with scalar ---\n\n  \
+    \  Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -306,8 +306,8 @@ data:
   - math/interpolation.cpp
   - math/product_of_polynomial_sequence.hpp
   - math/count_subset_sum.hpp
-  timestamp: '2023-09-02 12:26:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-24 17:02:48+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/product_of_polynomial_sequence.test.cpp

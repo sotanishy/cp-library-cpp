@@ -2,19 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/subset_convolution.hpp
     title: Subset Convolution
+  - icon: ':x:'
+    path: math/matrix/hafnian.hpp
+    title: math/matrix/hafnian.hpp
+  - icon: ':question:'
+    path: math/set_power_series.hpp
+    title: math/set_power_series.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_set_power_series.test.cpp
+    title: test/yosupo/exp_of_set_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/hafnian_of_matrix.test.cpp
+    title: test/yosupo/hafnian_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/and_or_convolution.hpp\"\n#include <vector>\n\
@@ -55,10 +67,14 @@ data:
   isVerificationFile: false
   path: convolution/and_or_convolution.hpp
   requiredBy:
+  - math/matrix/hafnian.hpp
+  - math/set_power_series.hpp
   - convolution/subset_convolution.hpp
   timestamp: '2022-03-24 12:11:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/exp_of_set_power_series.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/subset_convolution.test.cpp
 documentation_of: convolution/and_or_convolution.hpp

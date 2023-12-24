@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -65,8 +65,8 @@ data:
     \    }\n\n    void trim() {\n        while (!this->empty() && this->back() ==\
     \ 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
     \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with constant\n\n    Poly&\
-    \ operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \      return ret;\n    }\n\n    // -- binary operation with scalar ---\n\n  \
+    \  Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -274,7 +274,7 @@ data:
   isVerificationFile: false
   path: math/matrix/characteristic_polynomial.hpp
   requiredBy: []
-  timestamp: '2023-12-24 15:05:44+09:00'
+  timestamp: '2023-12-24 17:02:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/characteristic_polynomial.test.cpp

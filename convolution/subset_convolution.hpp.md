@@ -1,17 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/and_or_convolution.hpp
     title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: math/matrix/hafnian.hpp
+    title: math/matrix/hafnian.hpp
+  - icon: ':question:'
+    path: math/set_power_series.hpp
+    title: math/set_power_series.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_set_power_series.test.cpp
+    title: test/yosupo/exp_of_set_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/hafnian_of_matrix.test.cpp
+    title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/subset_convolution.hpp\"\n#include <array>\n\
@@ -73,10 +85,14 @@ data:
   - convolution/and_or_convolution.hpp
   isVerificationFile: false
   path: convolution/subset_convolution.hpp
-  requiredBy: []
+  requiredBy:
+  - math/matrix/hafnian.hpp
+  - math/set_power_series.hpp
   timestamp: '2022-04-06 10:49:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/exp_of_set_power_series.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/subset_convolution.test.cpp
 documentation_of: convolution/subset_convolution.hpp
 layout: document
