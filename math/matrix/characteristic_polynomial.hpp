@@ -6,7 +6,7 @@
 
 template <typename mint>
 Polynomial<mint> characteristic_polynomial(SquareMatrix<mint> mat) {
-    const int n = mat.size();
+    const int n = mat.row();
     if (n == 0) return {1};
     // stage 1: reduce mat to upper Hessenberg form
     for (int j = 0; j < n; ++j) {

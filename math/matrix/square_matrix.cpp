@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <initializer_list>
+
 #include "matrix.cpp"
 
 template <typename T>
@@ -10,7 +11,7 @@ class SquareMatrix : public Matrix<T> {
     using Matrix<T>::eq;
     using Matrix<T>::n;
 
-public:
+   public:
     static SquareMatrix I(int n) {
         SquareMatrix ret(n);
         for (int i = 0; i < n; ++i) ret[i][i] = 1;
@@ -22,7 +23,8 @@ public:
     SquareMatrix(const Matrix<T>& mat) : Matrix<T>(mat) {
         assert(Matrix<T>::m == n);
     }
-    SquareMatrix(std::initializer_list<std::initializer_list<T>> list) : Matrix<T>(list) {
+    SquareMatrix(std::initializer_list<std::initializer_list<T>> list)
+        : Matrix<T>(list) {
         assert(Matrix<T>::m == n);
     }
 

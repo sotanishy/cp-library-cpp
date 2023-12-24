@@ -7,7 +7,7 @@
 #include <vector>
 
 template <typename T>
-class Matrix : public std::vector<std::vector<T>> {
+class Matrix {
    public:
     static Matrix concat(const Matrix& A, const Matrix& B) {
         assert(A.m == B.m);
@@ -26,6 +26,12 @@ class Matrix : public std::vector<std::vector<T>> {
         m = mat.size();
         n = mat[0].size();
     }
+
+    int row() const { return m; }
+    int col() const { return n; }
+
+    const std::vector<T>& operator[](int i) const { return mat[i]; }
+    std::vector<T>& operator[](int i) { return mat[i]; }
 
     Matrix& operator+=(const Matrix& rhs) {
         assert(m == rhs.m && n == rhs.n);

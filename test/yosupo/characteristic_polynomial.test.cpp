@@ -1,10 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
 
-#include "../../math/modint.cpp"
-#include "../../math/matrix/square_matrix.cpp"
 #include "../../math/matrix/characteristic_polynomial.hpp"
 
 #include <bits/stdc++.h>
+
+#include "../../math/matrix/square_matrix.cpp"
+#include "../../math/modint.cpp"
 using namespace std;
 
 using mint = Modint<998244353>;
