@@ -4,30 +4,33 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
-    path: math/lagrange_polynomial.hpp
-    title: Lagrange Polynomial
+  - icon: ':x:'
+    path: math/matrix/characteristic_polynomial.hpp
+    title: math/matrix/characteristic_polynomial.hpp
+  - icon: ':x:'
+    path: math/matrix/matrix.cpp
+    title: Matrix
+  - icon: ':x:'
+    path: math/matrix/square_matrix.cpp
+    title: Square Matrix
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
-    path: math/multipoint_evaluation.cpp
-    title: Multipoint Evaluation
   - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation
+    PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
     links:
-    - https://judge.yosupo.jp/problem/polynomial_interpolation
-  bundledCode: "#line 1 \"test/yosupo/polynomial_interpolation.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\n\n#line\
+    - https://judge.yosupo.jp/problem/characteristic_polynomial
+  bundledCode: "#line 1 \"test/yosupo/characteristic_polynomial.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\n\n#line\
     \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
     \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
     \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
@@ -56,9 +59,79 @@ data:
     \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\nprivate:\n    int x;\n};\n#line 2 \"math/lagrange_polynomial.hpp\"\n\
-    #include <utility>\n#include <vector>\n\n#line 3 \"math/multipoint_evaluation.cpp\"\
-    \n\n#line 3 \"math/polynomial.cpp\"\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\
+    \    }\n\nprivate:\n    int x;\n};\n#line 3 \"math/matrix/square_matrix.cpp\"\n\
+    #include <cassert>\n#include <initializer_list>\n#line 4 \"math/matrix/matrix.cpp\"\
+    \n#include <cmath>\n#line 6 \"math/matrix/matrix.cpp\"\n#include <type_traits>\n\
+    #include <vector>\n\ntemplate <typename T>\nclass Matrix : public std::vector<std::vector<T>>\
+    \ {\n   public:\n    static Matrix concat(const Matrix& A, const Matrix& B) {\n\
+    \        assert(A.m == B.m);\n        Matrix C(A.m, A.n + B.n);\n        for (int\
+    \ i = 0; i < A.m; ++i) {\n            std::copy(A[i].begin(), A[i].end(), C[i].begin());\n\
+    \            std::copy(B[i].begin(), B[i].end(), C[i].begin() + A.n);\n      \
+    \  }\n        return C;\n    }\n\n    Matrix() = default;\n    Matrix(int m, int\
+    \ n) : mat(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
+    \ list) {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
+    \        n = mat[0].size();\n    }\n\n    Matrix& operator+=(const Matrix& rhs)\
+    \ {\n        assert(m == rhs.m && n == rhs.n);\n        for (int i = 0; i < m;\
+    \ ++i) {\n            for (int j = 0; j < n; ++j) {\n                mat[i][j]\
+    \ += rhs[i][j];\n            }\n        }\n        return *this;\n    }\n\n  \
+    \  Matrix& operator-=(const Matrix& rhs) {\n        assert(m == rhs.m && n ==\
+    \ rhs.n);\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0;\
+    \ j < n; ++j) {\n                mat[i][j] -= rhs[i][j];\n            }\n    \
+    \    }\n        return *this;\n    }\n\n    Matrix operator+(const Matrix& rhs)\
+    \ const { return Matrix(*this) += rhs; }\n    Matrix operator-(const Matrix& rhs)\
+    \ const { return Matrix(*this) -= rhs; }\n\n    Matrix transpose() const {\n \
+    \       Matrix ret(n, m);\n        for (int i = 0; i < n; ++i) {\n           \
+    \ for (int j = 0; j < m; ++j) {\n                ret[i][j] = mat[j][i];\n    \
+    \        }\n        }\n        return ret;\n    }\n\n    Matrix matmul(const Matrix&\
+    \ B) const {\n        assert(n == B.m);\n        Matrix ret(m, B.n);\n       \
+    \ for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < B.n; ++j) {\n\
+    \                for (int k = 0; k < n; ++k) {\n                    ret[i][j]\
+    \ += mat[i][k] * B[k][j];\n                }\n            }\n        }\n     \
+    \   return ret;\n    }\n\n    Matrix rref() const {\n        Matrix A(*this);\n\
+    \        int pivot = 0;\n        for (int j = 0; j < n; ++j) {\n            int\
+    \ i = pivot;\n            while (i < m && eq(A[i][j], T(0))) ++i;\n          \
+    \  if (i == m) continue;\n\n            if (i != pivot) A[i].swap(A[pivot]);\n\
+    \n            T p = A[pivot][j];\n            for (int l = j; l < n; ++l) A[pivot][l]\
+    \ /= p;\n\n            for (int k = 0; k < m; ++k) {\n                if (k ==\
+    \ pivot) continue;\n                T v = A[k][j];\n                for (int l\
+    \ = j; l < n; ++l) {\n                    A[k][l] -= A[pivot][l] * v;\n      \
+    \          }\n            }\n\n            ++pivot;\n        }\n        return\
+    \ A;\n    }\n\n    int rank() const {\n        auto A = rref();\n        for (int\
+    \ i = 0; i < m; ++i) {\n            bool nonzero = false;\n            for (int\
+    \ j = 0; j < n; ++j) {\n                if (!eq(A[i][j], T(0))) {\n          \
+    \          nonzero = true;\n                    break;\n                }\n  \
+    \          }\n            if (!nonzero) return i;\n        }\n        return m;\n\
+    \    }\n\n    template <typename U,\n              typename std::enable_if<std::is_floating_point<U>::value>::type*\
+    \ =\n                  nullptr>\n    static constexpr bool eq(U a, U b) {\n  \
+    \      return std::abs(a - b) < 1e-8;\n    }\n\n    template <typename U, typename\
+    \ std::enable_if<!std::is_floating_point<\n                              U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) {\n        return a == b;\n\
+    \    }\n\n   protected:\n    std::vector<std::vector<T>> mat;\n    int m, n;\n\
+    };\n#line 6 \"math/matrix/square_matrix.cpp\"\n\ntemplate <typename T>\nclass\
+    \ SquareMatrix : public Matrix<T> {\n    using Matrix<T>::Matrix;\n    using Matrix<T>::eq;\n\
+    \    using Matrix<T>::n;\n\npublic:\n    static SquareMatrix I(int n) {\n    \
+    \    SquareMatrix ret(n);\n        for (int i = 0; i < n; ++i) ret[i][i] = 1;\n\
+    \        return ret;\n    }\n\n    SquareMatrix() = default;\n    explicit SquareMatrix(int\
+    \ n) : Matrix<T>(n, n) {}\n    SquareMatrix(const Matrix<T>& mat) : Matrix<T>(mat)\
+    \ {\n        assert(Matrix<T>::m == n);\n    }\n    SquareMatrix(std::initializer_list<std::initializer_list<T>>\
+    \ list) : Matrix<T>(list) {\n        assert(Matrix<T>::m == n);\n    }\n\n   \
+    \ SquareMatrix pow(long long k) const {\n        auto ret = I(n);\n        auto\
+    \ A(*this);\n        while (k > 0) {\n            if (k & 1) ret = ret.matmul(A);\n\
+    \            A = A.matmul(A);\n            k >>= 1;\n        }\n        return\
+    \ ret;\n    }\n\n    T det() const {\n        SquareMatrix A(*this);\n       \
+    \ T ret = 1;\n        for (int j = 0; j < n; ++j) {\n            int i = j;\n\
+    \            while (i < n && eq(A[i][j], T(0))) ++i;\n            if (i == n)\
+    \ return 0;\n\n            if (i != j) {\n                A[i].swap(A[j]);\n \
+    \               ret = -ret;\n            }\n\n            T p = A[j][j];\n   \
+    \         ret *= p;\n            for (int l = j; l < n; ++l) A[j][l] /= p;\n\n\
+    \            for (int k = j + 1; k < n; ++k) {\n                T v = A[k][j];\n\
+    \                for (int l = j; l < n; ++l) {\n                    A[k][l] -=\
+    \ A[j][l] * v;\n                }\n            }\n        }\n        return ret;\n\
+    \    }\n\n    SquareMatrix inv() const {\n        assert(!eq(det(), T(0)));\n\
+    \        auto IB = Matrix<T>::concat(*this, I(n)).rref();\n        SquareMatrix\
+    \ B(n);\n        for (int i = 0; i < n; ++i) {\n            std::copy(IB[i].begin()\
+    \ + n, IB[i].end(), B[i].begin());\n        }\n        return B;\n    }\n};\n\
+    #line 3 \"math/matrix/characteristic_polynomial.hpp\"\n\n#line 5 \"math/polynomial.cpp\"\
     \n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod)\
     \ {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n\
     \    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n \
@@ -180,67 +253,61 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 5 \"math/multipoint_evaluation.cpp\"\n\ntemplate <typename T>\nstd::vector<T>\
-    \ multipoint_evaluation(const Polynomial<T>& p,\n                            \
-    \         const std::vector<T>& x) {\n    int m = x.size();\n    int n = 1;\n\
-    \    while (n < m) n <<= 1;\n    std::vector<Polynomial<T>> q(2 * n, {1});\n \
-    \   for (int i = 0; i < m; ++i) q[n + i] = {-x[i], 1};\n    for (int i = n - 1;\
-    \ i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int\
-    \ i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n \
-    \   for (int i = 0; i < m; ++i) y[i] = q[n + i].empty() ? 0 : q[n + i][0];\n \
-    \   return y;\n}\n#line 7 \"math/lagrange_polynomial.hpp\"\n\ntemplate <typename\
-    \ T>\nPolynomial<T> lagrange_polynomial(const std::vector<T>& x,\n           \
-    \                       const std::vector<T>& y) {\n    int n = x.size();\n  \
-    \  int sz = 1;\n    while (sz < n) sz <<= 1;\n\n    auto rec = [&](auto& rec,\
-    \ int l, int r) -> Polynomial<T> {\n        if (r - l == 1) {\n            return\
-    \ {-x[l], 1};\n        }\n        int m = (l + r) / 2;\n        return rec(rec,\
-    \ l, m) * rec(rec, m, r);\n    };\n\n    auto g = rec(rec, 0, n);\n    auto dg\
-    \ = multipoint_evaluation(g.diff(), x);\n\n    auto rec2 = [&](auto& rec2, int\
-    \ l,\n                    int r) -> std::pair<Polynomial<T>, Polynomial<T>> {\n\
-    \        if (r - l == 1) {\n            return {{y[l] / dg[l]}, {-x[l], 1}};\n\
-    \        }\n        int m = (l + r) / 2;\n        auto [pl, ql] = rec2(rec2, l,\
-    \ m);\n        auto [pr, qr] = rec2(rec2, m, r);\n        return {pl * qr + pr\
-    \ * ql, ql * qr};\n    };\n\n    return rec2(rec2, 0, n).first;\n}\n#line 5 \"\
-    test/yosupo/polynomial_interpolation.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n#define rep(i, s, t) for (int i =\
-    \ (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1;\
-    \ i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\n\
-    bool chmax(T& a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate\
-    \ <typename T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1)\
-    \ : 0;\n}\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int N;\n\
-    \    cin >> N;\n    vector<mint> x(N), y(N);\n    for (auto& a : x) cin >> a;\n\
-    \    for (auto& a : y) cin >> a;\n    auto p = lagrange_polynomial(x, y);\n  \
-    \  rep(i, 0, N) cout << p[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/lagrange_polynomial.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n#define\
-    \ rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t,\
-    \ s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\n\
-    template <typename T>\nbool chmax(T& a, const T& b) {\n    return a < b ? (a =\
-    \ b, 1) : 0;\n}\ntemplate <typename T>\nbool chmin(T& a, const T& b) {\n    return\
-    \ a > b ? (a = b, 1) : 0;\n}\n\nusing mint = Modint<998244353>;\n\nint main()\
-    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cout <<\
-    \ fixed << setprecision(15);\n\n    int N;\n    cin >> N;\n    vector<mint> x(N),\
-    \ y(N);\n    for (auto& a : x) cin >> a;\n    for (auto& a : y) cin >> a;\n  \
-    \  auto p = lagrange_polynomial(x, y);\n    rep(i, 0, N) cout << p[i] << (i <\
-    \ N - 1 ? \" \" : \"\\n\");\n}"
+    #line 6 \"math/matrix/characteristic_polynomial.hpp\"\n\ntemplate <typename mint>\n\
+    Polynomial<mint> characteristic_polynomial(SquareMatrix<mint> mat) {\n    const\
+    \ int n = mat.size();\n    if (n == 0) return {1};\n    // stage 1: reduce mat\
+    \ to upper Hessenberg form\n    for (int j = 0; j < n; ++j) {\n        int i =\
+    \ j + 1;\n        while (i < n && mat[i][j] == 0) ++i;\n        if (i == n) continue;\n\
+    \n        if (i != j + 1) {\n            // swap mat[i], mat[j+1]\n          \
+    \  mat[i].swap(mat[j + 1]);\n            // swap mat[:,i], mat[:,j+1]\n      \
+    \      for (int k = 0; k < n; ++k) {\n                std::swap(mat[k][i], mat[k][j\
+    \ + 1]);\n            }\n        }\n\n        mint inv = mint(1) / mat[j + 1][j];\n\
+    \        for (int k = j + 2; k < n; ++k) {\n            mint v = mat[k][j] * inv;\n\
+    \            // mat[k] -= mat[j+1] * v\n            for (int l = j; l < n; ++l)\
+    \ {\n                mat[k][l] -= mat[j + 1][l] * v;\n            }\n        \
+    \    // mat[:,j+1] += mat[:,k] * v\n            for (int l = 0; l < n; ++l) {\n\
+    \                mat[l][j + 1] += mat[l][k] * v;\n            }\n        }\n \
+    \   }\n    // stage 2: recursively compute char polys of leading principal submatrices\n\
+    \    std::vector<Polynomial<mint>> p(n + 1);\n    p[0] = {1};\n    for (int i\
+    \ = 0; i < n; ++i) {\n        p[i + 1].resize(i + 1 + 1);\n        // (x - mat[i,i])\
+    \ * p[i]\n        for (int j = 0; j <= i; ++j) {\n            p[i + 1][j] -= mat[i][i]\
+    \ * p[i][j];\n            p[i + 1][j + 1] += p[i][j];\n        }\n\n        mint\
+    \ beta = 1;\n        for (int k = i - 1; k >= 0; --k) {\n            beta *= mat[k\
+    \ + 1][k];\n            p[i + 1] -= p[k] * mat[k][i] * beta;\n        }\n    }\n\
+    \    return p[n];\n}\n#line 6 \"test/yosupo/characteristic_polynomial.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N;\n    cin >> N;\n    SquareMatrix<mint> a(N);\n    for (int i = 0;\
+    \ i < N; ++i) {\n        for (int j = 0; j < N; ++j) cin >> a[i][j];\n    }\n\
+    \    auto p = characteristic_polynomial(a);\n    for (int i = 0; i <= N; ++i)\
+    \ {\n        cout << (i >= (int)p.size() ? 0 : p[i]) << (i < N ? \" \" : \"\\\
+    n\");\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\
+    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/matrix/square_matrix.cpp\"\
+    \n#include \"../../math/matrix/characteristic_polynomial.hpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    SquareMatrix<mint> a(N);\n\
+    \    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) cin >>\
+    \ a[i][j];\n    }\n    auto p = characteristic_polynomial(a);\n    for (int i\
+    \ = 0; i <= N; ++i) {\n        cout << (i >= (int)p.size() ? 0 : p[i]) << (i <\
+    \ N ? \" \" : \"\\n\");\n    }\n}\n"
   dependsOn:
   - math/modint.cpp
-  - math/lagrange_polynomial.hpp
-  - math/multipoint_evaluation.cpp
+  - math/matrix/square_matrix.cpp
+  - math/matrix/matrix.cpp
+  - math/matrix/characteristic_polynomial.hpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: true
-  path: test/yosupo/polynomial_interpolation.test.cpp
+  path: test/yosupo/characteristic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2023-09-02 12:26:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-24 14:20:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/polynomial_interpolation.test.cpp
+documentation_of: test/yosupo/characteristic_polynomial.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/polynomial_interpolation.test.cpp
-- /verify/test/yosupo/polynomial_interpolation.test.cpp.html
-title: test/yosupo/polynomial_interpolation.test.cpp
+- /verify/test/yosupo/characteristic_polynomial.test.cpp
+- /verify/test/yosupo/characteristic_polynomial.test.cpp.html
+title: test/yosupo/characteristic_polynomial.test.cpp
 ---

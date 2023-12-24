@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/gcd_lcm_convolution.hpp
     title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []

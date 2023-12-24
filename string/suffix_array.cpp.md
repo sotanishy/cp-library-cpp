@@ -121,9 +121,9 @@ data:
   timestamp: '2023-04-08 00:55:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/suffixarray.test.cpp
   - test/yosupo/longest_common_substring.test.cpp
   - test/yosupo/number_of_substrings.test.cpp
-  - test/yosupo/suffixarray.test.cpp
   - test/aoj/ALDS1_14_B.suffix_array.test.cpp
 documentation_of: string/suffix_array.cpp
 layout: document

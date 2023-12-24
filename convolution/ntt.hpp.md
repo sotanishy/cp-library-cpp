@@ -23,10 +23,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
+  - icon: ':x:'
+    path: math/matrix/characteristic_polynomial.hpp
+    title: math/matrix/characteristic_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,9 @@ data:
     path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/characteristic_polynomial.test.cpp
+    title: test/yosupo/characteristic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
@@ -84,9 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/ntt.hpp\"\n#include <vector>\n\nconstexpr int\
@@ -154,36 +160,38 @@ data:
   isVerificationFile: false
   path: convolution/ntt.hpp
   requiredBy:
-  - convolution/arbitrary_mod_convolution.hpp
-  - convolution/relaxed_convolution.hpp
-  - math/stirling_second.hpp
-  - math/interpolation.cpp
-  - math/count_subset_sum.hpp
-  - math/lagrange_polynomial.hpp
-  - math/factorial.hpp
-  - math/bostan_mori.hpp
-  - math/polynomial.cpp
-  - math/stirling_first.hpp
   - math/multipoint_evaluation.cpp
+  - math/matrix/characteristic_polynomial.hpp
+  - math/lagrange_polynomial.hpp
+  - math/stirling_first.hpp
+  - math/polynomial.cpp
+  - math/bostan_mori.hpp
+  - math/stirling_second.hpp
+  - math/factorial.hpp
+  - math/interpolation.cpp
   - math/product_of_polynomial_sequence.hpp
+  - math/count_subset_sum.hpp
+  - convolution/relaxed_convolution.hpp
+  - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2023-09-02 12:26:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/convolution_mod.test.cpp
-  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
-  - test/yosupo/convolution_mod_1000000007.test.cpp
-  - test/yosupo/polynomial_interpolation.test.cpp
-  - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/characteristic_polynomial.test.cpp
   - test/yosupo/pow_of_formal_power_series.test.cpp
-  - test/yosupo/sharp_p_subset_sum.test.cpp
-  - test/yosupo/division_of_polynomials.test.cpp
-  - test/yosupo/inv_of_formal_power_series.test.cpp
   - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/convolution_mod_1000000007.test.cpp
+  - test/yosupo/sharp_p_subset_sum.test.cpp
+  - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/polynomial_interpolation.test.cpp
+  - test/yosupo/inv_of_formal_power_series.test.cpp
 documentation_of: convolution/ntt.hpp
 layout: document
 title: Number Theoretic Transform
