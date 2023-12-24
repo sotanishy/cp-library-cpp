@@ -7,8 +7,8 @@
 #include <vector>
 
 template <typename T>
-class Matrix {
-public:
+class Matrix : public std::vector<std::vector<T>> {
+   public:
     static Matrix concat(const Matrix& A, const Matrix& B) {
         assert(A.m == B.m);
         Matrix C(A.m, A.n + B.n);
@@ -26,12 +26,6 @@ public:
         m = mat.size();
         n = mat[0].size();
     }
-
-    int row() const { return m; }
-    int col() const { return n; }
-
-    const std::vector<T>& operator[](int i) const { return mat[i]; }
-    std::vector<T>& operator[](int i) { return mat[i]; }
 
     Matrix& operator+=(const Matrix& rhs) {
         assert(m == rhs.m && n == rhs.n);
@@ -120,13 +114,20 @@ public:
         return m;
     }
 
-    template <typename U, typename std::enable_if<std::is_floating_point<U>::value>::type* = nullptr>
-    static constexpr bool eq(U a, U b) { return std::abs(a - b) < 1e-8; }
+    template <typename U,
+              typename std::enable_if<std::is_floating_point<U>::value>::type* =
+                  nullptr>
+    static constexpr bool eq(U a, U b) {
+        return std::abs(a - b) < 1e-8;
+    }
 
-    template <typename U, typename std::enable_if<!std::is_floating_point<U>::value>::type* = nullptr>
-    static constexpr bool eq(U a, U b) { return a == b; }
+    template <typename U, typename std::enable_if<!std::is_floating_point<
+                              U>::value>::type* = nullptr>
+    static constexpr bool eq(U a, U b) {
+        return a == b;
+    }
 
-protected:
+   protected:
     std::vector<std::vector<T>> mat;
     int m, n;
 };
