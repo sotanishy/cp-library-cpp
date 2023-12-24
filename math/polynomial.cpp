@@ -36,7 +36,7 @@ class Polynomial : public std::vector<mint> {
         return ret;
     }
 
-    // -- binary operation with constant
+    // -- binary operation with scalar ---
 
     Poly& operator+=(const mint& rhs) {
         if (this->empty()) this->resize(1);
