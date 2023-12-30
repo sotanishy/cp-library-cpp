@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/lagrange_polynomial.hpp\"\n#include <utility>\n#include\
@@ -187,7 +187,7 @@ data:
   path: math/lagrange_polynomial.hpp
   requiredBy: []
   timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial_interpolation.test.cpp
 documentation_of: math/lagrange_polynomial.hpp

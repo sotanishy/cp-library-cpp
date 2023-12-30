@@ -14,25 +14,25 @@ data:
   - icon: ':x:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
   - icon: ':warning:'
     path: math/interpolation.cpp
     title: Polynomial Interpolation
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   - icon: ':heavy_check_mark:'
     path: math/matrix/characteristic_polynomial.hpp
     title: math/matrix/characteristic_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/product_of_polynomial_sequence.hpp
     title: Product of Polynomial Sequence
   - icon: ':x:'
@@ -58,27 +58,30 @@ data:
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/factorial.test.cpp
+    title: test/yosupo/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_formal_power_series.test.cpp
     title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/product_of_polynomial_sequence.test.cpp
   - icon: ':x:'
@@ -188,6 +191,7 @@ data:
   - test/yosupo/exp_of_formal_power_series.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/factorial.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/polynomial_interpolation.test.cpp

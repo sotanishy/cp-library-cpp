@@ -389,7 +389,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/factorial.hpp
       title: Factorial
     - icon: ':warning:'
@@ -422,7 +422,7 @@ data:
     - icon: ':warning:'
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
     - icon: ':heavy_check_mark:'
@@ -437,7 +437,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -452,7 +452,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_count.hpp
       title: Prime Counting Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
     - icon: ':heavy_check_mark:'
@@ -1025,7 +1025,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1055,7 +1055,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/multipoint_evaluation.test.cpp
       title: test/yosupo/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1088,13 +1088,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_sort_range_composite.test.cpp
       title: test/yosupo/point_set_range_sort_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1103,7 +1103,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/product_of_polynomial_sequence.test.cpp
     - icon: ':heavy_check_mark:'

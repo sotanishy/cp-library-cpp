@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation
@@ -235,7 +235,7 @@ data:
   path: test/yosupo/polynomial_interpolation.test.cpp
   requiredBy: []
   timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/polynomial_interpolation.test.cpp
 layout: document

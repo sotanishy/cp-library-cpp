@@ -8,22 +8,25 @@ data:
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/factorial.test.cpp
+    title: test/yosupo/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n\n\
@@ -177,8 +180,9 @@ data:
   - math/lagrange_polynomial.hpp
   - math/factorial.hpp
   timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/factorial.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial_interpolation.test.cpp
 documentation_of: math/multipoint_evaluation.cpp
