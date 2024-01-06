@@ -5,6 +5,7 @@
 #include <complex>
 #include <iostream>
 #include <vector>
+#include<numbers>
 
 // note that if T is of an integer type, std::abs does not work
 using T = double;
@@ -21,7 +22,7 @@ T dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }
 
 T cross(const Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }
 
-const T PI = std::acos(-1);
+constexpr T PI = std::numbers::pi;
 constexpr T eps = 1e-10;
 inline bool eq(T a, T b) { return std::abs(a - b) <= eps; }
 inline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }

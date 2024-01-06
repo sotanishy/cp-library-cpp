@@ -1,3 +1,4 @@
+#pragma once
 #include <cassert>
 #include <vector>
 
@@ -19,7 +20,7 @@ T hafnian(std::vector<std::vector<T>> mat) {
 
         // dp[S][v]: number of alternating paths between ui and v
         // using all edges in S
-        std::vector dp(1 << i, std::vector<mint>(2 * i));
+        std::vector dp(1 << i, std::vector<T>(2 * i));
         for (int j = 0; j < i; ++j) {
             int uj = 2 * j, vj = 2 * j + 1;
             dp[1 << j][uj] += mat[ui][vj];  // ui-vj=uj

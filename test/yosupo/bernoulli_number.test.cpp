@@ -1,8 +1,8 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation"
+#define PROBLEM "https://judge.yosupo.jp/problem/bernoulli_number"
 
-#include "../../math/multipoint_evaluation.cpp"
 #include "../../math/modint.cpp"
 #include "../../math/polynomial.cpp"
+#include "../../math/bernoulli.hpp"
 
 #include <bits/stdc++.h>
 
@@ -22,18 +22,14 @@ bool chmin(T& a, const T& b) {
 
 using mint = Modint<998244353>;
 
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout << fixed << setprecision(15);
 
-    int N, M;
-    cin >> N >> M;
-    Polynomial<mint> c(N);
-    vector<mint> p(M);
-    for (auto& x : c) cin >> x;
-    for (auto& x : p) cin >> x;
-
-    auto ans = multipoint_evaluation(c, p);
-    rep(i, 0, M) cout << ans[i] << (i < M - 1 ? " " : "\n");
+    int N;
+    cin >> N;
+    auto ans = bernoulli_number_table<mint>(N);
+    for (int i = 0; i <= N; ++i) cout << ans[i] << (i < N ? " " : "\n");
 }
