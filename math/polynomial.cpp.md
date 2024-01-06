@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: math/bernoulli.hpp
+    title: Bernoulli Number
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
@@ -33,6 +36,9 @@ data:
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/bernoulli_number.test.cpp
+    title: test/yosupo/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/characteristic_polynomial.test.cpp
     title: test/yosupo/characteristic_polynomial.test.cpp
@@ -75,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -305,14 +311,16 @@ data:
   - math/lagrange_polynomial.hpp
   - math/stirling_first.hpp
   - math/bostan_mori.hpp
+  - math/bernoulli.hpp
   - math/factorial.hpp
   - math/interpolation.cpp
   - math/product_of_polynomial_sequence.hpp
   - math/count_subset_sum.hpp
   timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/polynomial_taylor_shift.test.cpp
+  - test/yosupo/bernoulli_number.test.cpp
   - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/log_of_formal_power_series.test.cpp
   - test/yosupo/characteristic_polynomial.test.cpp

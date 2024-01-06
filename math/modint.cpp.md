@@ -6,6 +6,9 @@ data:
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/bernoulli_number.test.cpp
+    title: test/yosupo/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
@@ -54,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -206,6 +209,7 @@ data:
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
+  - test/yosupo/bernoulli_number.test.cpp
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/matrix_product.test.cpp

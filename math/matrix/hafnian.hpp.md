@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/and_or_convolution.hpp
     title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/set_power_series.hpp
     title: math/set_power_series.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/matrix/hafnian.hpp\"\n#include <cassert>\n#include\
+  bundledCode: "#line 2 \"math/matrix/hafnian.hpp\"\n#include <cassert>\n#include\
     \ <vector>\n\n#line 2 \"math/set_power_series.hpp\"\n\n#line 2 \"convolution/subset_convolution.hpp\"\
     \n#include <array>\n#line 3 \"convolution/and_or_convolution.hpp\"\n\ntemplate\
     \ <typename T>\nvoid fzt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
@@ -87,13 +87,13 @@ data:
     \ + (1 << i), this->begin() + (1 << (i + 1)));\n            SPS b(res.begin(),\
     \ res.begin() + (1 << i));\n            a *= b;\n            std::copy(a.begin(),\
     \ a.end(), res.begin() + (1 << i));\n        }\n        return res;\n    }\n};\n\
-    #line 5 \"math/matrix/hafnian.hpp\"\n\ntemplate <typename T, int N>\nT hafnian(std::vector<std::vector<T>>\
+    #line 6 \"math/matrix/hafnian.hpp\"\n\ntemplate <typename T, int N>\nT hafnian(std::vector<std::vector<T>>\
     \ mat) {\n    const int n = mat.size();\n    assert(n % 2 == 0);\n    const int\
     \ n2 = n / 2;\n\n    // cyc[S]: number of alternating cycles using all edges in\
     \ S\n    SetPowerSeries<T, N> cyc(1 << n2);\n\n    for (int i = 0; i < n2; ++i)\
     \ {\n        int ui = 2 * i, vi = 2 * i + 1;\n        // ui-vi=ui\n        cyc[1\
     \ << i] += mat[ui][vi];\n\n        // dp[S][v]: number of alternating paths between\
-    \ ui and v\n        // using all edges in S\n        std::vector dp(1 << i, std::vector<mint>(2\
+    \ ui and v\n        // using all edges in S\n        std::vector dp(1 << i, std::vector<T>(2\
     \ * i));\n        for (int j = 0; j < i; ++j) {\n            int uj = 2 * j, vj\
     \ = 2 * j + 1;\n            dp[1 << j][uj] += mat[ui][vj];  // ui-vj=uj\n    \
     \        dp[1 << j][vj] += mat[ui][uj];  // ui-uj=vj\n        }\n\n        for\
@@ -112,14 +112,14 @@ data:
     \         dp[S][vj] * mat[vj][uk];  // ui-...=vj-uk=vk\n                    }\n\
     \                }\n            }\n        }\n    }\n    return cyc.exp().back();\n\
     }\n"
-  code: "#include <cassert>\n#include <vector>\n\n#include \"../set_power_series.hpp\"\
+  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"../set_power_series.hpp\"\
     \n\ntemplate <typename T, int N>\nT hafnian(std::vector<std::vector<T>> mat) {\n\
     \    const int n = mat.size();\n    assert(n % 2 == 0);\n    const int n2 = n\
     \ / 2;\n\n    // cyc[S]: number of alternating cycles using all edges in S\n \
     \   SetPowerSeries<T, N> cyc(1 << n2);\n\n    for (int i = 0; i < n2; ++i) {\n\
     \        int ui = 2 * i, vi = 2 * i + 1;\n        // ui-vi=ui\n        cyc[1 <<\
     \ i] += mat[ui][vi];\n\n        // dp[S][v]: number of alternating paths between\
-    \ ui and v\n        // using all edges in S\n        std::vector dp(1 << i, std::vector<mint>(2\
+    \ ui and v\n        // using all edges in S\n        std::vector dp(1 << i, std::vector<T>(2\
     \ * i));\n        for (int j = 0; j < i; ++j) {\n            int uj = 2 * j, vj\
     \ = 2 * j + 1;\n            dp[1 << j][uj] += mat[ui][vj];  // ui-vj=uj\n    \
     \        dp[1 << j][vj] += mat[ui][uj];  // ui-uj=vj\n        }\n\n        for\
@@ -145,8 +145,8 @@ data:
   isVerificationFile: false
   path: math/matrix/hafnian.hpp
   requiredBy: []
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/hafnian_of_matrix.test.cpp
 documentation_of: math/matrix/hafnian.hpp

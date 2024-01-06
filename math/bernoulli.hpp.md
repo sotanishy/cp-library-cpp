@@ -9,19 +9,20 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-    title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/bernoulli_number.test.cpp
+    title: test/yosupo/bernoulli_number.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
-    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
-    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
-    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
+  bundledCode: "#line 2 \"math/bernoulli.hpp\"\n#include <vector>\n\n#line 2 \"math/polynomial.cpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n\
+    #line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
+    \    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n  \
+    \  if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n   \
+    \ if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
     \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
     \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
     \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
@@ -139,59 +140,103 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 3 \"math/stirling_first.hpp\"\n\ntemplate <typename T>\nPolynomial<T> stirling_first_table(int\
-    \ n) {\n    if (n == 0) return {1};\n    Polynomial<T> ret = stirling_first_table<T>(n\
-    \ / 2);\n    ret *= ret.taylor_shift(-(n / 2));\n    if (n % 2) ret = (ret <<\
-    \ 1) + ret * (-(n - 1));  // ret *= (x - (n - 1))\n    return ret;\n}\n"
-  code: "#pragma once\n#include \"polynomial.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
-    \ stirling_first_table(int n) {\n    if (n == 0) return {1};\n    Polynomial<T>\
-    \ ret = stirling_first_table<T>(n / 2);\n    ret *= ret.taylor_shift(-(n / 2));\n\
-    \    if (n % 2) ret = (ret << 1) + ret * (-(n - 1));  // ret *= (x - (n - 1))\n\
-    \    return ret;\n}"
+    #line 5 \"math/bernoulli.hpp\"\n\ntemplate <typename mint>\nstd::vector<mint>\
+    \ bernoulli_number_table(int n) {\n    std::vector<mint> fact(n + 2), fact_inv(n\
+    \ + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n + 1; ++i) fact[i] = fact[i\
+    \ - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n    for (int i = n + 1;\
+    \ i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n    Polynomial<mint> den(n +\
+    \ 1);\n    for (int k = 0; k <= n; ++k) den[k] = fact_inv[k + 1];\n    auto res\
+    \ = den.inv();\n    std::vector<mint> ret(n + 1);\n    for (int k = 0; k <= n;\
+    \ ++k) {\n        ret[k] = k < (int)res.size() ? res[k] * fact[k] : 0;\n    }\n\
+    \    return ret;\n}\n\ntemplate <typename mint>\nmint sum_of_powers(long long\
+    \ n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint> fact(p + 2),\
+    \ fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i) fact[i]\
+    \ = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for (int i\
+    \ = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p);\n\
+    \    mint res = 0;\n    mint pown = n;\n    for (int j = p; j >= 0; --j) {\n \
+    \       auto term = fact_inv[p + 1 - j] * fact_inv[j] * bern[j] * pown;\n    \
+    \    res += j % 2 == 0 ? term : -term;\n        pown *= n;\n    }\n    res *=\
+    \ fact[p];\n    return res;\n}\n\ntemplate <typename mint>\nstd::vector<mint>\
+    \ sum_of_powers_table(long long n, int p) {\n    std::vector<mint> fact(p + 2),\
+    \ fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i) fact[i]\
+    \ = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for (int i\
+    \ = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p\
+    \ + 1);\n    std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for\
+    \ (int k = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
+    \ * fact_inv[k];\n        g[k] = pown * fact_inv[k];\n        pown *= n;\n   \
+    \ }\n    auto h = atcoder::convolution(f, g);\n\n    std::vector<mint> res(p +\
+    \ 1);\n    res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k]\
+    \ * (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n\n"
+  code: "#pragma once\n#include <vector>\n\n#include \"polynomial.cpp\"\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> bernoulli_number_table(int n) {\n    std::vector<mint>\
+    \ fact(n + 2), fact_inv(n + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n\
+    \ + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n\
+    \    for (int i = n + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n    Polynomial<mint>\
+    \ den(n + 1);\n    for (int k = 0; k <= n; ++k) den[k] = fact_inv[k + 1];\n  \
+    \  auto res = den.inv();\n    std::vector<mint> ret(n + 1);\n    for (int k =\
+    \ 0; k <= n; ++k) {\n        ret[k] = k < (int)res.size() ? res[k] * fact[k] :\
+    \ 0;\n    }\n    return ret;\n}\n\ntemplate <typename mint>\nmint sum_of_powers(long\
+    \ long n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint> fact(p\
+    \ + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i)\
+    \ fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for\
+    \ (int i = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern\
+    \ = bernoulli_number_table<mint>(p);\n    mint res = 0;\n    mint pown = n;\n\
+    \    for (int j = p; j >= 0; --j) {\n        auto term = fact_inv[p + 1 - j] *\
+    \ fact_inv[j] * bern[j] * pown;\n        res += j % 2 == 0 ? term : -term;\n \
+    \       pown *= n;\n    }\n    res *= fact[p];\n    return res;\n}\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> sum_of_powers_table(long long n, int p) {\n\
+    \    std::vector<mint> fact(p + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for\
+    \ (int i = 1; i <= p + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1]\
+    \ = fact[p + 1].inv();\n    for (int i = p + 1; i > 0; --i) fact_inv[i - 1] =\
+    \ fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p + 1);\n \
+    \   std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for (int k\
+    \ = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
+    \ * fact_inv[k];\n        g[k] = pown * fact_inv[k];\n        pown *= n;\n   \
+    \ }\n    auto h = atcoder::convolution(f, g);\n\n    std::vector<mint> res(p +\
+    \ 1);\n    res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k]\
+    \ * (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n\n"
   dependsOn:
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: false
-  path: math/stirling_first.hpp
+  path: math/bernoulli.hpp
   requiredBy: []
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
-documentation_of: math/stirling_first.hpp
+  - test/yosupo/bernoulli_number.test.cpp
+documentation_of: math/bernoulli.hpp
 layout: document
-title: Stirling Number of the First Kind
+title: Bernoulli Number
 ---
 
 ## Description
 
-第1種 Stirling 数 $s(n,k)$ は，以下の恒等式で定義される数である．
+Bernoulli 数 $B_k$ は，以下の恒等式で定義される数である．
 
 $$
-x(x-1)\cdots(x-(n-1)) = \sum_{k=0}^n s(n,k) x^k
+\frac{x}{e^x-1} = \sum_{k=0} \frac{B_k}{k!}x^k
 $$
 
-$s(n,k)$ の絶対値 (${n \brack k}$ と書く) は，$n$ 要素の置換のうち，$k$ 個のサイクルに分解されるものの個数である．
+Bernoulli 数は，最初の $n$ 個の正整数の $p$ 乗和を与える Faulhaber の公式に現れる．
+
+$$
+\sum_{k=1}^n k^p = \frac{1}{p+1} \sum_{j=0}^p (-1)^j \binom{p+1}{j} B_j n^{p-j+1}
+$$
 
 ## Operations
 
-- `vector<T> stirling_first_table(int n)`
-    - $s(n,k)$ を各 $k=0,1,\dots,n$ について計算する
+- `vector<T> bernoulli_table(int n)`
+    - $B_k$ を各 $k=0,1,\dots,n$ について計算する
     - 時間計算量: $O(n\log n)$
-
-## Notes
-
-第1種 Stirling 数について以下の式が成り立つ．
-
-$$
-s(n,k) = (-1)^{(n-k)} {n \brack k}
-$$
-
-$$
-{n\brack k} = {n-1\brack k-1} + (n-1){n-1 \brack k}
-$$
+- `T sum_of_powers(long long n, int p)`
+    - $\sum_{k=1}^n k^p$ を計算する
+    - 時間計算量: $O(p \log p)$
+- `vector<T> sum_of_powers_table(long long n, int p)`
+    - $\sum_{k=1}^n k^r$ を各 $r = 0,1,\dots,p$ について 計算する
+    - 時間計算量: $O(p \log p)$
 
 ## Reference
 
-- [「写像12相」を総整理！ 〜 数え上げ問題の学びの宝庫 〜 - Qiita](https://qiita.com/drken/items/f2ea4b58b0d21621bd51)
+- verify: [https://atcoder.jp/contests/oupc2023-day1/submissions/49058484](https://atcoder.jp/contests/oupc2023-day1/submissions/49058484)
 

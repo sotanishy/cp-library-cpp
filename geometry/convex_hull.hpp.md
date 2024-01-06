@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/geometry.hpp
     title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1298.test.cpp
     title: test/aoj/1298.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_4_B.test.cpp
     title: test/aoj/CGL_4_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/convex_hull.hpp\"\n#include <vector>\n#line 2 \"\
     geometry/geometry.hpp\"\n#include <algorithm>\n#include <cassert>\n#include <cmath>\n\
-    #include <complex>\n#include <iostream>\n#line 8 \"geometry/geometry.hpp\"\n\n\
-    // note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
+    #include <complex>\n#include <iostream>\n#line 8 \"geometry/geometry.hpp\"\n#include<numbers>\n\
+    \n// note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
     using Vec = std::complex<T>;\n\nstd::istream& operator>>(std::istream& is, Vec&\
     \ p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\n\
     T dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\nT cross(const\
-    \ Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\nconst T PI =\
-    \ std::acos(-1);\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return\
+    \ Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\nconstexpr T PI\
+    \ = std::numbers::pi;\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return\
     \ std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
     \ - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool\
     \ leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n \
@@ -77,8 +77,8 @@ data:
   isVerificationFile: false
   path: geometry/convex_hull.hpp
   requiredBy: []
-  timestamp: '2023-05-14 13:38:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/1298.test.cpp
   - test/aoj/CGL_4_A.test.cpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00001'
@@ -30,43 +30,44 @@ data:
   bundledCode: "#line 1 \"test/aoj/CGL_4_C.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\"\
     \n#define ERROR 0.00001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n\n// note that if T is of an integer type, std::abs does not\
-    \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nstd::istream& operator>>(std::istream&\
-    \ is, Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
-    }\n\nT dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\
-    \nT cross(const Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\n\
-    const T PI = std::acos(-1);\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b)\
-    \ { return std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
-    \ - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool\
-    \ leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n \
-    \   Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2)\
-    \ {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line {\n\
-    \    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
-    \ = default;\n    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon\
-    \ = std::vector<Vec>;\n\nVec rot(const Vec& a, T ang) { return a * Vec(std::cos(ang),\
-    \ std::sin(ang)); }\n\nVec perp(const Vec& a) { return Vec(-a.imag(), a.real());\
-    \ }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p\
-    \ - l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const\
-    \ Line& l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0:\
-    \ collinear\n// 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a,\
-    \ const Vec& b, const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n\
-    \    if (lt(cross(b - a, c - a), 0)) return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>&\
-    \ pts) {\n    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n    \
-    \    if ((p.imag() < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if\
-    \ (cross(p, q) == 0) {\n            if (p == Vec(0, 0))\n                return\
-    \ !(q.imag() < 0 || (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0,\
-    \ 0))\n                return (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n\
-    \            return (p.real() > q.real());\n        }\n        return (cross(p,\
-    \ q) > 0);\n    });\n}\n#line 3 \"geometry/polygon.hpp\"\n#include <deque>\n#include\
-    \ <utility>\n#line 6 \"geometry/polygon.hpp\"\n\n#line 3 \"geometry/intersect.hpp\"\
-    \n\nbool intersect(const Segment& s, const Vec& p) {\n    Vec u = s.p1 - p, v\
-    \ = s.p2 - p;\n    return eq(cross(u, v), 0) && leq(dot(u, v), 0);\n}\n\n// 0:\
-    \ outside\n// 1: on the border\n// 2: inside\nint intersect(const Polygon& poly,\
-    \ const Vec& p) {\n    const int n = poly.size();\n    bool in = 0;\n    for (int\
-    \ i = 0; i < n; ++i) {\n        auto a = poly[i] - p, b = poly[(i + 1) % n] -\
-    \ p;\n        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0)))\n\
-    \            return 1;\n        if (a.imag() > b.imag()) std::swap(a, b);\n  \
-    \      if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0)) in ^= 1;\n\
+    #include <vector>\n#include<numbers>\n\n// note that if T is of an integer type,\
+    \ std::abs does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\n\
+    std::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y;\n    is >> x\
+    \ >> y;\n    p = {x, y};\n    return is;\n}\n\nT dot(const Vec& a, const Vec&\
+    \ b) { return (std::conj(a) * b).real(); }\n\nT cross(const Vec& a, const Vec&\
+    \ b) { return (std::conj(a) * b).imag(); }\n\nconstexpr T PI = std::numbers::pi;\n\
+    constexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return std::abs(a - b) <=\
+    \ eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }\ninline\
+    \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
+    \ a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n    Line() = default;\n \
+    \   Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const\
+    \ { return p2 - p1; }\n};\n\nstruct Segment : Line {\n    using Line::Line;\n\
+    };\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n    Circle(const\
+    \ Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\nVec\
+    \ rot(const Vec& a, T ang) { return a * Vec(std::cos(ang), std::sin(ang)); }\n\
+    \nVec perp(const Vec& a) { return Vec(-a.imag(), a.real()); }\n\nVec projection(const\
+    \ Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir()) * l.dir()\
+    \ / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec& p) {\n\
+    \    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
+    // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
+    \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
+    \ return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n\
+    \    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
+    \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
+    \ {\n            if (p == Vec(0, 0))\n                return !(q.imag() < 0 ||\
+    \ (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0, 0))\n       \
+    \         return (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n        \
+    \    return (p.real() > q.real());\n        }\n        return (cross(p, q) > 0);\n\
+    \    });\n}\n#line 3 \"geometry/polygon.hpp\"\n#include <deque>\n#include <utility>\n\
+    #line 6 \"geometry/polygon.hpp\"\n\n#line 3 \"geometry/intersect.hpp\"\n\nbool\
+    \ intersect(const Segment& s, const Vec& p) {\n    Vec u = s.p1 - p, v = s.p2\
+    \ - p;\n    return eq(cross(u, v), 0) && leq(dot(u, v), 0);\n}\n\n// 0: outside\n\
+    // 1: on the border\n// 2: inside\nint intersect(const Polygon& poly, const Vec&\
+    \ p) {\n    const int n = poly.size();\n    bool in = 0;\n    for (int i = 0;\
+    \ i < n; ++i) {\n        auto a = poly[i] - p, b = poly[(i + 1) % n] - p;\n  \
+    \      if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0)))\n   \
+    \         return 1;\n        if (a.imag() > b.imag()) std::swap(a, b);\n     \
+    \   if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0)) in ^= 1;\n\
     \    }\n    return in ? 2 : 0;\n}\n\nint intersect(const Segment& s, const Segment&\
     \ t) {\n    auto a = s.p1, b = s.p2;\n    auto c = t.p1, d = t.p2;\n    if (ccw(a,\
     \ b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b)) return 2;\n    if (intersect(s,\
@@ -190,8 +191,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_C.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 13:38:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_C.test.cpp
 layout: document

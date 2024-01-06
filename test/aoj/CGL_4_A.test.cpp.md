@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/convex_hull.hpp
     title: Convex Hull
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/geometry.hpp
     title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
@@ -20,18 +20,18 @@ data:
   bundledCode: "#line 1 \"test/aoj/CGL_4_A.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
     \n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include <cassert>\n\
     #include <cmath>\n#include <complex>\n#include <iostream>\n#include <vector>\n\
-    \n// note that if T is of an integer type, std::abs does not work\nusing T = double;\n\
-    using Vec = std::complex<T>;\n\nstd::istream& operator>>(std::istream& is, Vec&\
-    \ p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\n\
-    T dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\nT cross(const\
-    \ Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\nconst T PI =\
-    \ std::acos(-1);\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return\
-    \ std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
-    \ - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool\
-    \ leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n \
-    \   Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2)\
-    \ {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line {\n\
-    \    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
+    #include<numbers>\n\n// note that if T is of an integer type, std::abs does not\
+    \ work\nusing T = double;\nusing Vec = std::complex<T>;\n\nstd::istream& operator>>(std::istream&\
+    \ is, Vec& p) {\n    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n\
+    }\n\nT dot(const Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\
+    \nT cross(const Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\n\
+    constexpr T PI = std::numbers::pi;\nconstexpr T eps = 1e-10;\ninline bool eq(T\
+    \ a, T b) { return std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return\
+    \ std::abs(a - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\n\
+    inline bool leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1,\
+    \ p2;\n    Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1),\
+    \ p2(p2) {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line\
+    \ {\n    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
     \ = default;\n    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon\
     \ = std::vector<Vec>;\n\nVec rot(const Vec& a, T ang) { return a * Vec(std::cos(ang),\
     \ std::sin(ang)); }\n\nVec perp(const Vec& a) { return Vec(-a.imag(), a.real());\
@@ -76,8 +76,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 13:38:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_A.test.cpp
 layout: document

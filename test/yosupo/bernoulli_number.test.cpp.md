@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
+  - icon: ':x:'
+    path: math/bernoulli.hpp
+    title: Bernoulli Number
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
@@ -12,28 +15,28 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
     links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/log_of_formal_power_series.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\n\n#line\
-    \ 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n *\
-    \ @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n\
-    \    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n    static\
-    \ constexpr int get_mod() noexcept { return mod; }\n\n    constexpr Modint(long\
-    \ long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n  \
-    \  constexpr int value() const noexcept { return x; }\n\n    constexpr mint& operator+=(const\
-    \ mint& r) noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr\
-    \ mint& operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -=\
-    \ mod; return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept\
-    \ { x = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr\
-    \ mint& operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\
-    \n    constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
+    - https://judge.yosupo.jp/problem/bernoulli_number
+  bundledCode: "#line 1 \"test/yosupo/bernoulli_number.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n#line 2 \"math/modint.cpp\"\
+    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
+    \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
+    \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
+    \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
+    \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
+    \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
+    \ noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint&\
+    \ operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod;\
+    \ return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept { x\
+    \ = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr mint&\
+    \ operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\n \
+    \   constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
     \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
     \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
     \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
@@ -173,32 +176,71 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 5 \"test/yosupo/log_of_formal_power_series.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> f[i];\n    auto g = f.log();\n    for\
-    \ (int i = 0; i < N; ++i) cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
-    \n\n#include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N;\n    cin >> N;\n    Polynomial<mint> f(N);\n    for (int i = 0; i\
-    \ < N; ++i) cin >> f[i];\n    auto g = f.log();\n    for (int i = 0; i < N; ++i)\
-    \ cout << g[i] << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
+    #line 3 \"math/bernoulli.hpp\"\n\n#line 5 \"math/bernoulli.hpp\"\n\ntemplate <typename\
+    \ mint>\nstd::vector<mint> bernoulli_number_table(int n) {\n    std::vector<mint>\
+    \ fact(n + 2), fact_inv(n + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n\
+    \ + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n\
+    \    for (int i = n + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n    Polynomial<mint>\
+    \ den(n + 1);\n    for (int k = 0; k <= n; ++k) den[k] = fact_inv[k + 1];\n  \
+    \  auto res = den.inv();\n    std::vector<mint> ret(n + 1);\n    for (int k =\
+    \ 0; k <= n; ++k) {\n        ret[k] = k < (int)res.size() ? res[k] * fact[k] :\
+    \ 0;\n    }\n    return ret;\n}\n\ntemplate <typename mint>\nmint sum_of_powers(long\
+    \ long n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint> fact(p\
+    \ + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i)\
+    \ fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for\
+    \ (int i = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern\
+    \ = bernoulli_number_table<mint>(p);\n    mint res = 0;\n    mint pown = n;\n\
+    \    for (int j = p; j >= 0; --j) {\n        auto term = fact_inv[p + 1 - j] *\
+    \ fact_inv[j] * bern[j] * pown;\n        res += j % 2 == 0 ? term : -term;\n \
+    \       pown *= n;\n    }\n    res *= fact[p];\n    return res;\n}\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> sum_of_powers_table(long long n, int p) {\n\
+    \    std::vector<mint> fact(p + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for\
+    \ (int i = 1; i <= p + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1]\
+    \ = fact[p + 1].inv();\n    for (int i = p + 1; i > 0; --i) fact_inv[i - 1] =\
+    \ fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p + 1);\n \
+    \   std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for (int k\
+    \ = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
+    \ * fact_inv[k];\n        g[k] = pown * fact_inv[k];\n        pown *= n;\n   \
+    \ }\n    auto h = atcoder::convolution(f, g);\n\n    std::vector<mint> res(p +\
+    \ 1);\n    res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k]\
+    \ * (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n\n#line 6 \"test/yosupo/bernoulli_number.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\n\nusing namespace std;\nusing ll = long long;\n\
+    #define rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i,\
+    \ t, s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x),\
+    \ end(x)\ntemplate <typename T>\nbool chmax(T& a, const T& b) {\n    return a\
+    \ < b ? (a = b, 1) : 0;\n}\ntemplate <typename T>\nbool chmin(T& a, const T& b)\
+    \ {\n    return a > b ? (a = b, 1) : 0;\n}\n\nusing mint = Modint<998244353>;\n\
+    \n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    cout << fixed << setprecision(15);\n\n    int N;\n    cin >> N;\n    auto\
+    \ ans = bernoulli_number_table<mint>(N);\n    for (int i = 0; i <= N; ++i) cout\
+    \ << ans[i] << (i < N ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
+    #include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\n#include\
+    \ \"../../math/bernoulli.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\nusing ll = long long;\n#define rep(i, s, t) for (int i = (int)(s); i <\
+    \ (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1; i >= (int)(s);\
+    \ --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\nbool chmax(T&\
+    \ a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate <typename\
+    \ T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1) : 0;\n}\n\n\
+    using mint = Modint<998244353>;\n\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int N;\n\
+    \    cin >> N;\n    auto ans = bernoulli_number_table<mint>(N);\n    for (int\
+    \ i = 0; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.cpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
+  - math/bernoulli.hpp
   isVerificationFile: true
-  path: test/yosupo/log_of_formal_power_series.test.cpp
+  path: test/yosupo/bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/log_of_formal_power_series.test.cpp
+documentation_of: test/yosupo/bernoulli_number.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/log_of_formal_power_series.test.cpp
-- /verify/test/yosupo/log_of_formal_power_series.test.cpp.html
-title: test/yosupo/log_of_formal_power_series.test.cpp
+- /verify/test/yosupo/bernoulli_number.test.cpp
+- /verify/test/yosupo/bernoulli_number.test.cpp.html
+title: test/yosupo/bernoulli_number.test.cpp
 ---

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/and_or_convolution.hpp
     title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
     title: math/matrix/hafnian.hpp
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/set_power_series.hpp
     title: math/set_power_series.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -28,7 +28,7 @@ data:
     - https://judge.yosupo.jp/problem/hafnian_of_matrix
   bundledCode: "#line 1 \"test/yosupo/hafnian_of_matrix.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n#include <bits/stdc++.h>\n\
-    \n#line 3 \"math/matrix/hafnian.hpp\"\n\n#line 2 \"math/set_power_series.hpp\"\
+    \n#line 4 \"math/matrix/hafnian.hpp\"\n\n#line 2 \"math/set_power_series.hpp\"\
     \n\n#line 3 \"convolution/and_or_convolution.hpp\"\n\ntemplate <typename T>\n\
     void fzt(std::vector<T>& a, bool subset) {\n    int k = 31 - __builtin_clz(a.size());\n\
     \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
@@ -94,13 +94,13 @@ data:
     \ + (1 << i), this->begin() + (1 << (i + 1)));\n            SPS b(res.begin(),\
     \ res.begin() + (1 << i));\n            a *= b;\n            std::copy(a.begin(),\
     \ a.end(), res.begin() + (1 << i));\n        }\n        return res;\n    }\n};\n\
-    #line 5 \"math/matrix/hafnian.hpp\"\n\ntemplate <typename T, int N>\nT hafnian(std::vector<std::vector<T>>\
+    #line 6 \"math/matrix/hafnian.hpp\"\n\ntemplate <typename T, int N>\nT hafnian(std::vector<std::vector<T>>\
     \ mat) {\n    const int n = mat.size();\n    assert(n % 2 == 0);\n    const int\
     \ n2 = n / 2;\n\n    // cyc[S]: number of alternating cycles using all edges in\
     \ S\n    SetPowerSeries<T, N> cyc(1 << n2);\n\n    for (int i = 0; i < n2; ++i)\
     \ {\n        int ui = 2 * i, vi = 2 * i + 1;\n        // ui-vi=ui\n        cyc[1\
     \ << i] += mat[ui][vi];\n\n        // dp[S][v]: number of alternating paths between\
-    \ ui and v\n        // using all edges in S\n        std::vector dp(1 << i, std::vector<mint>(2\
+    \ ui and v\n        // using all edges in S\n        std::vector dp(1 << i, std::vector<T>(2\
     \ * i));\n        for (int j = 0; j < i; ++j) {\n            int uj = 2 * j, vj\
     \ = 2 * j + 1;\n            dp[1 << j][uj] += mat[ui][vj];  // ui-vj=uj\n    \
     \        dp[1 << j][vj] += mat[ui][uj];  // ui-uj=vj\n        }\n\n        for\
@@ -167,8 +167,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-06 20:26:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/hafnian_of_matrix.test.cpp
 layout: document
