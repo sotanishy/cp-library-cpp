@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
   - icon: ':heavy_check_mark:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/product_of_polynomial_sequence.hpp
     title: Product of Polynomial Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   _extendedVerifiedWith:
@@ -69,15 +69,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sharp_p_subset_sum.test.cpp
     title: test/yosupo/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -310,7 +310,7 @@ data:
   - math/product_of_polynomial_sequence.hpp
   - math/count_subset_sum.hpp
   timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/product_of_polynomial_sequence.test.cpp

@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':warning:'
@@ -377,7 +377,7 @@ data:
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/count_subset_sum.hpp
       title: Count Subset Sum
     - icon: ':warning:'
@@ -443,7 +443,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -455,6 +455,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
+    - icon: ':warning:'
+      path: math/q_analogs.hpp
+      title: q-Analogs
     - icon: ':heavy_check_mark:'
       path: math/quotients.hpp
       title: Intervals with Equal Quotients
@@ -464,13 +467,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
       title: Stern-Brocot Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
     - icon: ':heavy_check_mark:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/system_of_linear_equations.cpp
       title: System of Linear Equations
   - name: math/matrix
@@ -481,7 +484,7 @@ data:
     - icon: ':x:'
       path: math/matrix/hafnian.hpp
       title: math/matrix/hafnian.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.cpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -1151,7 +1154,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1172,7 +1175,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1190,7 +1193,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_totient_function.test.cpp
       title: test/yosupo/sum_of_totient_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
