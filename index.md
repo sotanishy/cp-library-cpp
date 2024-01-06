@@ -220,43 +220,43 @@ data:
       title: Minimum Cost Flow
   - name: geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/bisector.hpp
       title: geometry/bisector.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/closest_pair.hpp
       title: Closest Pair
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/convex_hull.hpp
       title: Convex Hull
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/dist.hpp
       title: geometry/dist.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersect.hpp
       title: geometry/intersect.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersection.hpp
       title: geometry/intersection.hpp
     - icon: ':warning:'
       path: geometry/minimum_bounding_circle.hpp
       title: Minimum Bounding Circle
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/polygon.hpp
       title: geometry/polygon.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/tangent.hpp
       title: geometry/tangent.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/triangle.hpp
       title: geometry/triangle.hpp
   - name: graph
@@ -455,6 +455,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_count.hpp
       title: Prime Counting Function
+    - icon: ':heavy_check_mark:'
+      path: math/primitive_root.hpp
+      title: math/primitive_root.hpp
     - icon: ':heavy_check_mark:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
@@ -666,10 +669,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1283.test.cpp
       title: test/aoj/1283.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1298.test.cpp
       title: test/aoj/1298.test.cpp
     - icon: ':heavy_check_mark:'
@@ -708,70 +711,70 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.is_prime.test.cpp
       title: test/aoj/ALDS1_1_C.is_prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_B.test.cpp
       title: test/aoj/CGL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_C.test.cpp
       title: test/aoj/CGL_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_A.test.cpp
       title: test/aoj/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_C.test.cpp
       title: test/aoj/CGL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_A.test.cpp
       title: test/aoj/CGL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_C.test.cpp
       title: test/aoj/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_B.test.cpp
       title: test/aoj/CGL_4_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_C.test.cpp
       title: test/aoj/CGL_4_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_5_A.test.cpp
       title: test/aoj/CGL_5_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_A.test.cpp
       title: test/aoj/CGL_7_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_B.test.cpp
       title: test/aoj/CGL_7_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_C.test.cpp
       title: test/aoj/CGL_7_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_D.test.cpp
       title: test/aoj/CGL_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_E.test.cpp
       title: test/aoj/CGL_7_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_F.test.cpp
       title: test/aoj/CGL_7_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_G.test.cpp
       title: test/aoj/CGL_7_G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_I.test.cpp
       title: test/aoj/CGL_7_I.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1113,6 +1116,9 @@ data:
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/primitive_root.test.cpp
+      title: test/yosupo/primitive_root.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/product_of_polynomial_sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1246,6 +1252,8 @@ layout: toppage
 <br/>
 
 :tada: :100: :tada:
+
+Using C++20
 
 This documentation is automatically generated by [online-judge-tools/verification-helper](https://github.com/online-judge-tools/verification-helper)
 

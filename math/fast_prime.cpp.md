@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/primitive_root.hpp
+    title: math/primitive_root.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/factorize.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/primality_test.test.cpp
     title: test/yosupo/primality_test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/primitive_root.test.cpp
+    title: test/yosupo/primitive_root.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -104,10 +110,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/fast_prime.cpp
-  requiredBy: []
+  requiredBy:
+  - math/primitive_root.hpp
   timestamp: '2021-02-06 00:41:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/primitive_root.test.cpp
   - test/yosupo/primality_test.test.cpp
   - test/yosupo/factorize.test.cpp
 documentation_of: math/fast_prime.cpp
