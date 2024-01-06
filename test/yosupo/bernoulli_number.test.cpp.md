@@ -1,60 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bernoulli.hpp
     title: Bernoulli Number
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
     links:
     - https://judge.yosupo.jp/problem/bernoulli_number
   bundledCode: "#line 1 \"test/yosupo/bernoulli_number.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n#line 2 \"math/modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n\n/**\n * @brief Mod int\n */\ntemplate\
-    \ <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod >\
-    \ 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
-    \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
-    \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
-    \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
-    \ noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint&\
-    \ operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod;\
-    \ return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept { x\
-    \ = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr mint&\
-    \ operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\n \
-    \   constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
-    \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
-    \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
-    \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
-    \ mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const noexcept\
-    \ { return mint(*this) /= r; }\n\n    constexpr bool operator==(const mint& r)\
-    \ const noexcept { return x == r.x; }\n    constexpr bool operator!=(const mint&\
-    \ r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const noexcept\
-    \ {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0) {\n    \
-    \        int t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
-    \ -= t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
-    \ pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n        while\
-    \ (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n   \
-    \         n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
-    \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
-    \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\nprivate:\n    int x;\n};\n#line 3 \"math/polynomial.cpp\"\n#include\
-    \ <cassert>\n#include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr\
+    \ \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n#include <bits/stdc++.h>\n\
+    \n#line 3 \"math/bernoulli.hpp\"\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr\
     \ int get_primitive_root(int mod) {\n    if (mod == 167772161) return 3;\n   \
     \ if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n    if\
     \ (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\ntemplate\
@@ -84,18 +55,18 @@ data:
     \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n\
     \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
     \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
-    \    return a;\n}\n#line 7 \"math/polynomial.cpp\"\n\ntemplate <typename mint>\n\
-    class Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\n\
-    \   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
-    \n    Poly pre(int size) const {\n        return Poly(this->begin(),\n       \
-    \             this->begin() + std::min((int)this->size(), size));\n    }\n\n \
-    \   Poly rev(int deg = -1) const {\n        auto ret = *this;\n        if (deg\
-    \ != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(), ret.rend());\n\
-    \    }\n\n    void trim() {\n        while (!this->empty() && this->back() ==\
-    \ 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
-    \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with scalar ---\n\n  \
-    \  Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \    return a;\n}\n#line 5 \"math/polynomial.cpp\"\n\n#line 7 \"math/polynomial.cpp\"\
+    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
+    \    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
+    \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
+    \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
+    \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
+    \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with scalar\
+    \ ---\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -176,66 +147,92 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 3 \"math/bernoulli.hpp\"\n\n#line 5 \"math/bernoulli.hpp\"\n\ntemplate <typename\
-    \ mint>\nstd::vector<mint> bernoulli_number_table(int n) {\n    std::vector<mint>\
-    \ fact(n + 2), fact_inv(n + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n\
-    \ + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n\
-    \    for (int i = n + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n    Polynomial<mint>\
-    \ den(n + 1);\n    for (int k = 0; k <= n; ++k) den[k] = fact_inv[k + 1];\n  \
-    \  auto res = den.inv();\n    std::vector<mint> ret(n + 1);\n    for (int k =\
-    \ 0; k <= n; ++k) {\n        ret[k] = k < (int)res.size() ? res[k] * fact[k] :\
-    \ 0;\n    }\n    return ret;\n}\n\ntemplate <typename mint>\nmint sum_of_powers(long\
-    \ long n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint> fact(p\
-    \ + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i)\
-    \ fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for\
-    \ (int i = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern\
-    \ = bernoulli_number_table<mint>(p);\n    mint res = 0;\n    mint pown = n;\n\
-    \    for (int j = p; j >= 0; --j) {\n        auto term = fact_inv[p + 1 - j] *\
-    \ fact_inv[j] * bern[j] * pown;\n        res += j % 2 == 0 ? term : -term;\n \
-    \       pown *= n;\n    }\n    res *= fact[p];\n    return res;\n}\n\ntemplate\
-    \ <typename mint>\nstd::vector<mint> sum_of_powers_table(long long n, int p) {\n\
-    \    std::vector<mint> fact(p + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for\
-    \ (int i = 1; i <= p + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1]\
-    \ = fact[p + 1].inv();\n    for (int i = p + 1; i > 0; --i) fact_inv[i - 1] =\
-    \ fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p + 1);\n \
-    \   std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for (int k\
-    \ = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
+    #line 6 \"math/bernoulli.hpp\"\n\ntemplate <typename mint>\nstd::vector<mint>\
+    \ bernoulli_number_table(int n) {\n    std::vector<mint> fact(n + 2), fact_inv(n\
+    \ + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n + 1; ++i) fact[i] = fact[i\
+    \ - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n    for (int i = n + 1;\
+    \ i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n    Polynomial<mint> den(n +\
+    \ 1);\n    for (int k = 0; k <= n; ++k) den[k] = fact_inv[k + 1];\n    auto res\
+    \ = den.inv();\n    std::vector<mint> ret(n + 1);\n    for (int k = 0; k <= n;\
+    \ ++k) {\n        ret[k] = k < (int)res.size() ? res[k] * fact[k] : 0;\n    }\n\
+    \    return ret;\n}\n\ntemplate <typename mint>\nmint sum_of_powers(long long\
+    \ n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint> fact(p + 2),\
+    \ fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i) fact[i]\
+    \ = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for (int i\
+    \ = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p);\n\
+    \    mint res = 0;\n    mint pown = n;\n    for (int j = p; j >= 0; --j) {\n \
+    \       auto term = fact_inv[p + 1 - j] * fact_inv[j] * bern[j] * pown;\n    \
+    \    res += j % 2 == 0 ? term : -term;\n        pown *= n;\n    }\n    res *=\
+    \ fact[p];\n    return res;\n}\n\ntemplate <typename mint>\nstd::vector<mint>\
+    \ sum_of_powers_table(long long n, int p) {\n    std::vector<mint> fact(p + 2),\
+    \ fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i) fact[i]\
+    \ = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for (int i\
+    \ = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern = bernoulli_number_table<mint>(p\
+    \ + 1);\n    std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for\
+    \ (int k = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
     \ * fact_inv[k];\n        g[k] = pown * fact_inv[k];\n        pown *= n;\n   \
-    \ }\n    auto h = atcoder::convolution(f, g);\n\n    std::vector<mint> res(p +\
-    \ 1);\n    res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k]\
-    \ * (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n\n#line 6 \"test/yosupo/bernoulli_number.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\n\nusing namespace std;\nusing ll = long long;\n\
-    #define rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i,\
-    \ t, s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x),\
-    \ end(x)\ntemplate <typename T>\nbool chmax(T& a, const T& b) {\n    return a\
-    \ < b ? (a = b, 1) : 0;\n}\ntemplate <typename T>\nbool chmin(T& a, const T& b)\
-    \ {\n    return a > b ? (a = b, 1) : 0;\n}\n\nusing mint = Modint<998244353>;\n\
-    \n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    cout << fixed << setprecision(15);\n\n    int N;\n    cin >> N;\n    auto\
-    \ ans = bernoulli_number_table<mint>(N);\n    for (int i = 0; i <= N; ++i) cout\
-    \ << ans[i] << (i < N ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
-    #include \"../../math/modint.cpp\"\n#include \"../../math/polynomial.cpp\"\n#include\
-    \ \"../../math/bernoulli.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\nusing ll = long long;\n#define rep(i, s, t) for (int i = (int)(s); i <\
-    \ (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1; i >= (int)(s);\
-    \ --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\nbool chmax(T&\
-    \ a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate <typename\
-    \ T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1) : 0;\n}\n\n\
-    using mint = Modint<998244353>;\n\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ }\n    auto h = convolution(f, g);\n\n    std::vector<mint> res(p + 1);\n  \
+    \  res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k] *\
+    \ (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n#line 4 \"math/modint.cpp\"\
+    \n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using\
+    \ mint = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\n\
+    public:\n    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
+    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
+    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
+    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
+    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
+    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
+    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
+    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
+    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
+    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
+    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
+    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
+    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
+    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
+    \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
+    \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
+    \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
+    \ {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n     \
+    \       std::swap(u -= t * v, v);\n        }\n        return mint(u);\n    }\n\
+    \n    constexpr mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
+    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
+    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 7 \"test/yosupo/bernoulli_number.test.cpp\"\
+    \n\nusing namespace std;\nusing ll = long long;\n#define rep(i, s, t) for (int\
+    \ i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for (int i = (int)(t)-1;\
+    \ i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\ntemplate <typename T>\n\
+    bool chmax(T& a, const T& b) {\n    return a < b ? (a = b, 1) : 0;\n}\ntemplate\
+    \ <typename T>\nbool chmin(T& a, const T& b) {\n    return a > b ? (a = b, 1)\
+    \ : 0;\n}\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int N;\n\
     \    cin >> N;\n    auto ans = bernoulli_number_table<mint>(N);\n    for (int\
     \ i = 0; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
+    #include <bits/stdc++.h>\n\n#include \"../../math/bernoulli.hpp\"\n#include \"\
+    ../../math/modint.cpp\"\n\nusing namespace std;\nusing ll = long long;\n#define\
+    \ rep(i, s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t,\
+    \ s) for (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\n\
+    template <typename T>\nbool chmax(T& a, const T& b) {\n    return a < b ? (a =\
+    \ b, 1) : 0;\n}\ntemplate <typename T>\nbool chmin(T& a, const T& b) {\n    return\
+    \ a > b ? (a = b, 1) : 0;\n}\n\nusing mint = Modint<998244353>;\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cout <<\
+    \ fixed << setprecision(15);\n\n    int N;\n    cin >> N;\n    auto ans = bernoulli_number_table<mint>(N);\n\
+    \    for (int i = 0; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n\
+    }\n"
   dependsOn:
-  - math/modint.cpp
-  - math/polynomial.cpp
-  - convolution/ntt.hpp
   - math/bernoulli.hpp
+  - convolution/ntt.hpp
+  - math/polynomial.cpp
+  - math/modint.cpp
   isVerificationFile: true
   path: test/yosupo/bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2024-01-06 20:26:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-06 22:27:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bernoulli_number.test.cpp
 layout: document

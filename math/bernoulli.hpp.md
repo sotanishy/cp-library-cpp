@@ -1,54 +1,54 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bernoulli_number.test.cpp
     title: test/yosupo/bernoulli_number.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/bernoulli.hpp\"\n#include <vector>\n\n#line 2 \"math/polynomial.cpp\"\
-    \n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n\
-    #line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
-    \    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n  \
-    \  if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n   \
-    \ if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
-    \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
-    \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
-    \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
-    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
-    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
-    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
-    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
-    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
-    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
-    \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
-    \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
-    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
-    \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
-    \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
-    \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
-    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
-    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
-    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
-    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
-    \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
-    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
-    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7 \"math/polynomial.cpp\"\
+  bundledCode: "#line 2 \"math/bernoulli.hpp\"\n#include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\
+    \n\nconstexpr int get_primitive_root(int mod) {\n    if (mod == 167772161) return\
+    \ 3;\n    if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n\
+    \    if (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\
+    \ntemplate <typename T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n\
+    \    for (int i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k\
+    \ > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\
+    \ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered = false)\
+    \ {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
+    \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
+    \     for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n           \
+    \ for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
+    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
+    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
+    \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
+    }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
+    \ false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
+    \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
+    \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
+    \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
+    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
+    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
+    \ b) {\n    int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n\
+    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \    return a;\n}\n#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n#line 7 \"math/polynomial.cpp\"\
     \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
     \    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
     \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
@@ -140,7 +140,7 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 5 \"math/bernoulli.hpp\"\n\ntemplate <typename mint>\nstd::vector<mint>\
+    #line 6 \"math/bernoulli.hpp\"\n\ntemplate <typename mint>\nstd::vector<mint>\
     \ bernoulli_number_table(int n) {\n    std::vector<mint> fact(n + 2), fact_inv(n\
     \ + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n + 1; ++i) fact[i] = fact[i\
     \ - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n    for (int i = n + 1;\
@@ -164,26 +164,26 @@ data:
     \ + 1);\n    std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for\
     \ (int k = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
     \ * fact_inv[k];\n        g[k] = pown * fact_inv[k];\n        pown *= n;\n   \
-    \ }\n    auto h = atcoder::convolution(f, g);\n\n    std::vector<mint> res(p +\
-    \ 1);\n    res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k]\
-    \ * (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n\n"
-  code: "#pragma once\n#include <vector>\n\n#include \"polynomial.cpp\"\n\ntemplate\
-    \ <typename mint>\nstd::vector<mint> bernoulli_number_table(int n) {\n    std::vector<mint>\
-    \ fact(n + 2), fact_inv(n + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= n\
-    \ + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[n + 1] = fact[n + 1].inv();\n\
-    \    for (int i = n + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n    Polynomial<mint>\
-    \ den(n + 1);\n    for (int k = 0; k <= n; ++k) den[k] = fact_inv[k + 1];\n  \
-    \  auto res = den.inv();\n    std::vector<mint> ret(n + 1);\n    for (int k =\
-    \ 0; k <= n; ++k) {\n        ret[k] = k < (int)res.size() ? res[k] * fact[k] :\
-    \ 0;\n    }\n    return ret;\n}\n\ntemplate <typename mint>\nmint sum_of_powers(long\
-    \ long n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint> fact(p\
-    \ + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p + 1; ++i)\
-    \ fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n    for\
-    \ (int i = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n    auto bern\
-    \ = bernoulli_number_table<mint>(p);\n    mint res = 0;\n    mint pown = n;\n\
-    \    for (int j = p; j >= 0; --j) {\n        auto term = fact_inv[p + 1 - j] *\
-    \ fact_inv[j] * bern[j] * pown;\n        res += j % 2 == 0 ? term : -term;\n \
-    \       pown *= n;\n    }\n    res *= fact[p];\n    return res;\n}\n\ntemplate\
+    \ }\n    auto h = convolution(f, g);\n\n    std::vector<mint> res(p + 1);\n  \
+    \  res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k] *\
+    \ (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n"
+  code: "#pragma once\n#include <vector>\n\n#include \"../convolution/ntt.hpp\"\n\
+    #include \"polynomial.cpp\"\n\ntemplate <typename mint>\nstd::vector<mint> bernoulli_number_table(int\
+    \ n) {\n    std::vector<mint> fact(n + 2), fact_inv(n + 2);\n    fact[0] = 1;\n\
+    \    for (int i = 1; i <= n + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[n\
+    \ + 1] = fact[n + 1].inv();\n    for (int i = n + 1; i > 0; --i) fact_inv[i -\
+    \ 1] = fact_inv[i] * i;\n    Polynomial<mint> den(n + 1);\n    for (int k = 0;\
+    \ k <= n; ++k) den[k] = fact_inv[k + 1];\n    auto res = den.inv();\n    std::vector<mint>\
+    \ ret(n + 1);\n    for (int k = 0; k <= n; ++k) {\n        ret[k] = k < (int)res.size()\
+    \ ? res[k] * fact[k] : 0;\n    }\n    return ret;\n}\n\ntemplate <typename mint>\n\
+    mint sum_of_powers(long long n, int p) {\n    if (p == 0) return n;\n\n    std::vector<mint>\
+    \ fact(p + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for (int i = 1; i <= p\
+    \ + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1] = fact[p + 1].inv();\n\
+    \    for (int i = p + 1; i > 0; --i) fact_inv[i - 1] = fact_inv[i] * i;\n\n  \
+    \  auto bern = bernoulli_number_table<mint>(p);\n    mint res = 0;\n    mint pown\
+    \ = n;\n    for (int j = p; j >= 0; --j) {\n        auto term = fact_inv[p + 1\
+    \ - j] * fact_inv[j] * bern[j] * pown;\n        res += j % 2 == 0 ? term : -term;\n\
+    \        pown *= n;\n    }\n    res *= fact[p];\n    return res;\n}\n\ntemplate\
     \ <typename mint>\nstd::vector<mint> sum_of_powers_table(long long n, int p) {\n\
     \    std::vector<mint> fact(p + 2), fact_inv(p + 2);\n    fact[0] = 1;\n    for\
     \ (int i = 1; i <= p + 1; ++i) fact[i] = fact[i - 1] * i;\n    fact_inv[p + 1]\
@@ -192,17 +192,17 @@ data:
     \   std::vector<mint> f(p + 2), g(p + 2);\n    mint pown = 1;\n    for (int k\
     \ = 0; k <= p + 1; ++k) {\n        f[k] = mint(k % 2 == 0 ? 1 : -1) * bern[k]\
     \ * fact_inv[k];\n        g[k] = pown * fact_inv[k];\n        pown *= n;\n   \
-    \ }\n    auto h = atcoder::convolution(f, g);\n\n    std::vector<mint> res(p +\
-    \ 1);\n    res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k]\
-    \ * (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n\n"
+    \ }\n    auto h = convolution(f, g);\n\n    std::vector<mint> res(p + 1);\n  \
+    \  res[0] = n;\n    for (int k = 1; k <= p; ++k) {\n        res[k] = fact[k] *\
+    \ (h[k + 1] - f[k + 1]);\n    }\n    return res;\n}\n"
   dependsOn:
-  - math/polynomial.cpp
   - convolution/ntt.hpp
+  - math/polynomial.cpp
   isVerificationFile: false
   path: math/bernoulli.hpp
   requiredBy: []
-  timestamp: '2024-01-06 20:26:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-06 22:27:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/bernoulli_number.test.cpp
 documentation_of: math/bernoulli.hpp

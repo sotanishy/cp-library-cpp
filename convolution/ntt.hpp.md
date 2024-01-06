@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bernoulli.hpp
     title: Bernoulli Number
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':question:'
+  - icon: ':warning:'
+    path: math/partition_function.hpp
+    title: Partition Function
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   - icon: ':heavy_check_mark:'
@@ -45,7 +48,7 @@ data:
     path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bernoulli_number.test.cpp
     title: test/yosupo/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,9 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/ntt.hpp\"\n#include <vector>\n\nconstexpr int\
@@ -169,6 +172,7 @@ data:
   isVerificationFile: false
   path: convolution/ntt.hpp
   requiredBy:
+  - math/partition_function.hpp
   - math/multipoint_evaluation.cpp
   - math/matrix/characteristic_polynomial.hpp
   - math/lagrange_polynomial.hpp
@@ -184,7 +188,7 @@ data:
   - convolution/relaxed_convolution.hpp
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2023-09-02 12:26:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/bernoulli_number.test.cpp

@@ -1,127 +1,80 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convolution/ntt.hpp
-    title: Number Theoretic Transform
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/bernoulli.hpp
-    title: Bernoulli Number
-  - icon: ':heavy_check_mark:'
-    path: math/bostan_mori.hpp
-    title: Bostan-Mori Algorithm
-  - icon: ':heavy_check_mark:'
-    path: math/count_subset_sum.hpp
-    title: Count Subset Sum
-  - icon: ':heavy_check_mark:'
-    path: math/factorial.hpp
-    title: Factorial
-  - icon: ':warning:'
-    path: math/interpolation.cpp
-    title: Polynomial Interpolation
-  - icon: ':heavy_check_mark:'
-    path: math/lagrange_polynomial.hpp
-    title: Lagrange Polynomial
-  - icon: ':heavy_check_mark:'
-    path: math/matrix/characteristic_polynomial.hpp
-    title: math/matrix/characteristic_polynomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multipoint_evaluation.cpp
-    title: Multipoint Evaluation
-  - icon: ':warning:'
-    path: math/partition_function.hpp
-    title: Partition Function
-  - icon: ':heavy_check_mark:'
-    path: math/product_of_polynomial_sequence.hpp
-    title: Product of Polynomial Sequence
-  - icon: ':heavy_check_mark:'
-    path: math/stirling_first.hpp
-    title: Stirling Number of the First Kind
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/bernoulli_number.test.cpp
-    title: test/yosupo/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/characteristic_polynomial.test.cpp
-    title: test/yosupo/characteristic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/division_of_polynomials.test.cpp
-    title: test/yosupo/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/exp_of_formal_power_series.test.cpp
-    title: test/yosupo/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/factorial.test.cpp
-    title: test/yosupo/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/inv_of_formal_power_series.test.cpp
-    title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/log_of_formal_power_series.test.cpp
-    title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/multipoint_evaluation.test.cpp
-    title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/polynomial_interpolation.test.cpp
-    title: test/yosupo/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/polynomial_taylor_shift.test.cpp
-    title: test/yosupo/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/pow_of_formal_power_series.test.cpp
-    title: test/yosupo/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/product_of_polynomial_sequence.test.cpp
-    title: test/yosupo/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/sharp_p_subset_sum.test.cpp
-    title: test/yosupo/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-    title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
-    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
-    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
-    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
-    \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
-    \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
-    \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
-    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
-    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
-    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
-    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
-    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
-    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
-    \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
-    \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
-    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
-    \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
-    \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
-    \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
-    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
-    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
-    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
-    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
-    \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
-    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
-    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7 \"math/polynomial.cpp\"\
-    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
-    \    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/partition_function
+    links:
+    - https://judge.yosupo.jp/problem/partition_function
+  bundledCode: "#line 1 \"test/yosupo/partition_function.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/partition_function\"\n\n// #include \"../../math/partition_function.hpp\"\
+    \n// #include \"../../math/modint.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\nusing ll = long long;\n\ntemplate <int mod>\nclass Modint {\n    using\
+    \ mint = Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\n\
+    \   public:\n    static constexpr int get_mod() noexcept { return mod; }\n\n \
+    \   constexpr Modint(long long y = 0) noexcept\n        : x(y >= 0 ? y % mod :\
+    \ (y % mod + mod) % mod) {}\n\n    constexpr int value() const noexcept { return\
+    \ x; }\n\n    constexpr mint& operator+=(const mint& r) noexcept {\n        if\
+    \ ((x += r.x) >= mod) x -= mod;\n        return *this;\n    }\n    constexpr mint&\
+    \ operator-=(const mint& r) noexcept {\n        if ((x += mod - r.x) >= mod) x\
+    \ -= mod;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
+    \ mint& r) noexcept {\n        x = static_cast<int>(1LL * x * r.x % mod);\n  \
+    \      return *this;\n    }\n    constexpr mint& operator/=(const mint& r) noexcept\
+    \ {\n        *this *= r.inv();\n        return *this;\n    }\n\n    constexpr\
+    \ mint operator-() const noexcept { return mint(-x); }\n\n    constexpr mint operator+(const\
+    \ mint& r) const noexcept {\n        return mint(*this) += r;\n    }\n    constexpr\
+    \ mint operator-(const mint& r) const noexcept {\n        return mint(*this) -=\
+    \ r;\n    }\n    constexpr mint operator*(const mint& r) const noexcept {\n  \
+    \      return mint(*this) *= r;\n    }\n    constexpr mint operator/(const mint&\
+    \ r) const noexcept {\n        return mint(*this) /= r;\n    }\n\n    constexpr\
+    \ bool operator==(const mint& r) const noexcept { return x == r.x; }\n    constexpr\
+    \ bool operator!=(const mint& r) const noexcept { return x != r.x; }\n\n    constexpr\
+    \ mint inv() const noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n   \
+    \     while (b > 0) {\n            int t = a / b;\n            std::swap(a -=\
+    \ t * b, b);\n            std::swap(u -= t * v, v);\n        }\n        return\
+    \ mint(u);\n    }\n\n    constexpr mint pow(long long n) const noexcept {\n  \
+    \      mint ret(1), mul(x);\n        while (n > 0) {\n            if (n & 1) ret\
+    \ *= mul;\n            mul *= mul;\n            n >>= 1;\n        }\n        return\
+    \ ret;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os, const mint&\
+    \ r) {\n        return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
+    \        return is;\n    }\n\n   private:\n    int x;\n};\n\nusing mint = Modint<998244353>;\n\
+    \nconstexpr int get_primitive_root(int mod) {\n    if (mod == 167772161) return\
+    \ 3;\n    if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n\
+    \    if (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\
+    \ntemplate <typename T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n\
+    \    for (int i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k\
+    \ > (i ^= k); k >>= 1)\n            ;\n        if (i < j) std::swap(a[i], a[j]);\n\
+    \    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered\
+    \ = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
+    \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
+    \     for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n           \
+    \ for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
+    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
+    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
+    \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
+    }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
+    \ false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
+    \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
+    \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
+    \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
+    \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
+    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
+    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
+    \ b) {\n    int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n\
+    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \    return a;\n}\n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint>\
+    \ {\n    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
     \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
     \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
     \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
@@ -210,11 +163,79 @@ data:
     \       for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n      \
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
-    \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
-    \n#include \"../convolution/ntt.hpp\"\n\ntemplate <typename mint>\nclass Polynomial\
-    \ : public std::vector<mint> {\n    using Poly = Polynomial;\n\n   public:\n \
-    \   using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
+    \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
+    \ntemplate <typename T>\nPolynomial<T> partition_function_table(int n) {\n   \
+    \ Polynomial<T> den(n + 1);\n    den[0] = 1;\n    for (int k = 1; k * (3 * k -\
+    \ 1) / 2 <= n; ++k) {\n        T b = k % 2 == 0 ? 1 : -1;\n        den[k * (3\
+    \ * k - 1) / 2] = b;\n        if (k * (3 * k + 1) / 2 <= n) {\n            den[k\
+    \ * (3 * k + 1) / 2] = b;\n        }\n    }\n    return den.inv();\n}\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n\
+    \    cin >> N;\n    auto ans = partition_function_table<mint>(N);\n    for (int\
+    \ i = 0; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n\n\
+    // #include \"../../math/partition_function.hpp\"\n// #include \"../../math/modint.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    template <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
+    \ > 0, \"Modulus must be positive\");\n\n   public:\n    static constexpr int\
+    \ get_mod() noexcept { return mod; }\n\n    constexpr Modint(long long y = 0)\
+    \ noexcept\n        : x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr\
+    \ int value() const noexcept { return x; }\n\n    constexpr mint& operator+=(const\
+    \ mint& r) noexcept {\n        if ((x += r.x) >= mod) x -= mod;\n        return\
+    \ *this;\n    }\n    constexpr mint& operator-=(const mint& r) noexcept {\n  \
+    \      if ((x += mod - r.x) >= mod) x -= mod;\n        return *this;\n    }\n\
+    \    constexpr mint& operator*=(const mint& r) noexcept {\n        x = static_cast<int>(1LL\
+    \ * x * r.x % mod);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
+    \ mint& r) noexcept {\n        *this *= r.inv();\n        return *this;\n    }\n\
+    \n    constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
+    \ mint operator+(const mint& r) const noexcept {\n        return mint(*this) +=\
+    \ r;\n    }\n    constexpr mint operator-(const mint& r) const noexcept {\n  \
+    \      return mint(*this) -= r;\n    }\n    constexpr mint operator*(const mint&\
+    \ r) const noexcept {\n        return mint(*this) *= r;\n    }\n    constexpr\
+    \ mint operator/(const mint& r) const noexcept {\n        return mint(*this) /=\
+    \ r;\n    }\n\n    constexpr bool operator==(const mint& r) const noexcept { return\
+    \ x == r.x; }\n    constexpr bool operator!=(const mint& r) const noexcept { return\
+    \ x != r.x; }\n\n    constexpr mint inv() const noexcept {\n        int a = x,\
+    \ b = mod, u = 1, v = 0;\n        while (b > 0) {\n            int t = a / b;\n\
+    \            std::swap(a -= t * b, b);\n            std::swap(u -= t * v, v);\n\
+    \        }\n        return mint(u);\n    }\n\n    constexpr mint pow(long long\
+    \ n) const noexcept {\n        mint ret(1), mul(x);\n        while (n > 0) {\n\
+    \            if (n & 1) ret *= mul;\n            mul *= mul;\n            n >>=\
+    \ 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream& operator<<(std::ostream&\
+    \ os, const mint& r) {\n        return os << r.x;\n    }\n\n    friend std::istream&\
+    \ operator>>(std::istream& is, mint& r) {\n        long long t;\n        is >>\
+    \ t;\n        r = mint(t);\n        return is;\n    }\n\n   private:\n    int\
+    \ x;\n};\n\nusing mint = Modint<998244353>;\n\nconstexpr int get_primitive_root(int\
+    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
+    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
+    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
+    \        for (int k = n >> 1; k > (i ^= k); k >>= 1)\n            ;\n        if\
+    \ (i < j) std::swap(a[i], a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
+    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
+    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
+    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
+    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
+    \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
+    \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
+    \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
+    \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
+    \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
+    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
+    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
+    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
+    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
+    \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
+    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n\ntemplate <typename\
+    \ mint>\nclass Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\
+    \n   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
     \n    Poly pre(int size) const {\n        return Poly(this->begin(),\n       \
     \             this->begin() + std::min((int)this->size(), size));\n    }\n\n \
     \   Poly rev(int deg = -1) const {\n        auto ret = *this;\n        if (deg\
@@ -303,77 +324,26 @@ data:
     \       for (int i = 1; i < n; ++i) {\n            ret[i] *= fact[i];\n      \
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
-    \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n"
-  dependsOn:
-  - convolution/ntt.hpp
-  isVerificationFile: false
-  path: math/polynomial.cpp
-  requiredBy:
-  - math/partition_function.hpp
-  - math/multipoint_evaluation.cpp
-  - math/matrix/characteristic_polynomial.hpp
-  - math/lagrange_polynomial.hpp
-  - math/stirling_first.hpp
-  - math/bostan_mori.hpp
-  - math/bernoulli.hpp
-  - math/factorial.hpp
-  - math/interpolation.cpp
-  - math/product_of_polynomial_sequence.hpp
-  - math/count_subset_sum.hpp
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/polynomial_taylor_shift.test.cpp
-  - test/yosupo/bernoulli_number.test.cpp
-  - test/yosupo/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/log_of_formal_power_series.test.cpp
-  - test/yosupo/characteristic_polynomial.test.cpp
-  - test/yosupo/pow_of_formal_power_series.test.cpp
-  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/sharp_p_subset_sum.test.cpp
-  - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/division_of_polynomials.test.cpp
-  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/factorial.test.cpp
-  - test/yosupo/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial_interpolation.test.cpp
-  - test/yosupo/inv_of_formal_power_series.test.cpp
-documentation_of: math/polynomial.cpp
+    \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
+    \ntemplate <typename T>\nPolynomial<T> partition_function_table(int n) {\n   \
+    \ Polynomial<T> den(n + 1);\n    den[0] = 1;\n    for (int k = 1; k * (3 * k -\
+    \ 1) / 2 <= n; ++k) {\n        T b = k % 2 == 0 ? 1 : -1;\n        den[k * (3\
+    \ * k - 1) / 2] = b;\n        if (k * (3 * k + 1) / 2 <= n) {\n            den[k\
+    \ * (3 * k + 1) / 2] = b;\n        }\n    }\n    return den.inv();\n}\n\nint main()\
+    \ {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n\
+    \    cin >> N;\n    auto ans = partition_function_table<mint>(N);\n    for (int\
+    \ i = 0; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n}"
+  dependsOn: []
+  isVerificationFile: true
+  path: test/yosupo/partition_function.test.cpp
+  requiredBy: []
+  timestamp: '2024-01-06 22:27:11+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/partition_function.test.cpp
 layout: document
-title: Polynomial
+redirect_from:
+- /verify/test/yosupo/partition_function.test.cpp
+- /verify/test/yosupo/partition_function.test.cpp.html
+title: test/yosupo/partition_function.test.cpp
 ---
-
-## Description
-
-係数が`Modint`または`ArbitraryModint`である多項式を扱う．
-
-空間計算量: $O(n)$
-
-## Operations
-
-- `Polynomial inv(int deg)`
-    - $\frac{1}{f(x)}$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \log n)$
-- `Polynomial exp(int deg)`
-    - $\exp(f(x))$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \log n)$
-- `Polynomial log(int deg)`
-    - $\log(f(x))$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \log n)$
-- `Polynomial pow(long long k, int deg)`
-    - $(f(x))^k$ を $deg - 1$ 次の項まで計算する
-    - 時間計算量: $O(n \log n)$
-- `Polynomial diff()`
-    - $f'(x)$ を計算する
-    - 時間計算量: $O(n)$
-- `Polynomial integral()`
-    - $\int f(x)$ を計算する
-    - 時間計算量: $O(n)$
-- `Polynomial taylor_shift(long long c)`
-    - $f(x+c)$ を計算する
-    - 時間計算量: $O(n \log n)$
-
-## Reference
-
-- [【競技プログラミング】形式的冪級数の応用テクニック(前編) - Qiita](https://qiita.com/hotman78/items/f0e6d2265badd84d429a)
-

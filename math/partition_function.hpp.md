@@ -8,60 +8,54 @@ data:
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/product_of_polynomial_sequence.test.cpp
-    title: test/yosupo/product_of_polynomial_sequence.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: Product of Polynomial Sequence
     links: []
-  bundledCode: "#line 1 \"math/product_of_polynomial_sequence.hpp\"\n#include <vector>\n\
-    \n#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #line 5 \"math/polynomial.cpp\"\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr\
-    \ int get_primitive_root(int mod) {\n    if (mod == 167772161) return 3;\n   \
-    \ if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n    if\
-    \ (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\ntemplate\
-    \ <typename T>\nvoid bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n\
-    \    for (int i = 0, j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k\
-    \ > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\
-    \ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a, bool ordered = false)\
-    \ {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
-    \ = get_primitive_root(mod);\n\n    int n = a.size();\n    for (int m = n; m >\
-    \ 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n   \
-    \     for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n           \
-    \ for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
-    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
-    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
-    \    w *= omega;\n            }\n        }\n    }\n    if (ordered) bit_reverse(a);\n\
-    }\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>& a, bool ordered =\
-    \ false) {\n    constexpr int mod = mint::get_mod();\n    constexpr mint primitive_root\
-    \ = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n    int n =\
-    \ a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
-    \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
-    \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
-    \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
-    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
-    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
-    \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
-    \ b) {\n    int size = a.size() + b.size() - 1;\n    int n = 1;\n    while (n\
-    \ < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n\
-    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
-    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
-    \    return a;\n}\n#line 7 \"math/polynomial.cpp\"\n\ntemplate <typename mint>\n\
-    class Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\n\
-    \   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
-    \n    Poly pre(int size) const {\n        return Poly(this->begin(),\n       \
-    \             this->begin() + std::min((int)this->size(), size));\n    }\n\n \
-    \   Poly rev(int deg = -1) const {\n        auto ret = *this;\n        if (deg\
-    \ != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(), ret.rend());\n\
-    \    }\n\n    void trim() {\n        while (!this->empty() && this->back() ==\
-    \ 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
-    \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
-    \      return ret;\n    }\n\n    // -- binary operation with scalar ---\n\n  \
-    \  Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+  bundledCode: "#line 2 \"math/polynomial.cpp\"\n#include <algorithm>\n#include <cassert>\n\
+    #include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
+    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
+    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
+    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
+    \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
+    \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
+    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
+    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
+    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
+    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
+    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
+    \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
+    \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
+    \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
+    \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
+    \ m; ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
+    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
+    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
+    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
+    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
+    \ a, std::vector<mint> b) {\n    int size = a.size() + b.size() - 1;\n    int\
+    \ n = 1;\n    while (n < size) n <<= 1;\n    a.resize(n);\n    b.resize(n);\n\
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7 \"math/polynomial.cpp\"\
+    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
+    \    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
+    \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
+    \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
+    \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
+    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
+    \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
+    \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
+    \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
+    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with scalar\
+    \ ---\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -142,34 +136,46 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 4 \"math/product_of_polynomial_sequence.hpp\"\n\n/**\n * @brief Product\
-    \ of Polynomial Sequence\n * O(n (log n)^2)\n */\ntemplate <typename T>\nPolynomial<T>\
-    \ product_of_polynomial_sequence(\n    const std::vector<Polynomial<T>> polys)\
-    \ {\n    if (polys.empty()) return {1};\n    auto dfs = [&](auto& dfs, int l,\
-    \ int r) -> Polynomial<T> {\n        if (l + 1 == r) return polys[l];\n      \
-    \  int m = (l + r) / 2;\n        return dfs(dfs, l, m) * dfs(dfs, m, r);\n   \
-    \ };\n    return dfs(dfs, 0, polys.size());\n}\n"
-  code: "#include <vector>\n\n#include \"polynomial.cpp\"\n\n/**\n * @brief Product\
-    \ of Polynomial Sequence\n * O(n (log n)^2)\n */\ntemplate <typename T>\nPolynomial<T>\
-    \ product_of_polynomial_sequence(\n    const std::vector<Polynomial<T>> polys)\
-    \ {\n    if (polys.empty()) return {1};\n    auto dfs = [&](auto& dfs, int l,\
-    \ int r) -> Polynomial<T> {\n        if (l + 1 == r) return polys[l];\n      \
-    \  int m = (l + r) / 2;\n        return dfs(dfs, l, m) * dfs(dfs, m, r);\n   \
-    \ };\n    return dfs(dfs, 0, polys.size());\n}"
+    #line 3 \"math/partition_function.hpp\"\n\ntemplate <typename T>\nPolynomial<T>\
+    \ partition_function_table(int n) {\n    Polynomial<T> den(n + 1);\n    den[0]\
+    \ = 1;\n    for (int k = 1; k * (3 * k - 1) / 2 <= n; ++k) {\n        T b = k\
+    \ % 2 == 0 ? 1 : -1;\n        den[k * (3 * k - 1) / 2] = b;\n        if (k * (3\
+    \ * k + 1) / 2 <= n) {\n            den[k * (3 * k + 1) / 2] = b;\n        }\n\
+    \    }\n    return den.inv();\n}\n"
+  code: "#pragma once\n#include \"polynomial.cpp\"\n\ntemplate <typename T>\nPolynomial<T>\
+    \ partition_function_table(int n) {\n    Polynomial<T> den(n + 1);\n    den[0]\
+    \ = 1;\n    for (int k = 1; k * (3 * k - 1) / 2 <= n; ++k) {\n        T b = k\
+    \ % 2 == 0 ? 1 : -1;\n        den[k * (3 * k - 1) / 2] = b;\n        if (k * (3\
+    \ * k + 1) / 2 <= n) {\n            den[k * (3 * k + 1) / 2] = b;\n        }\n\
+    \    }\n    return den.inv();\n}"
   dependsOn:
   - math/polynomial.cpp
   - convolution/ntt.hpp
   isVerificationFile: false
-  path: math/product_of_polynomial_sequence.hpp
+  path: math/partition_function.hpp
   requiredBy: []
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/product_of_polynomial_sequence.test.cpp
-documentation_of: math/product_of_polynomial_sequence.hpp
+  timestamp: '2024-01-06 22:27:11+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: math/partition_function.hpp
 layout: document
-redirect_from:
-- /library/math/product_of_polynomial_sequence.hpp
-- /library/math/product_of_polynomial_sequence.hpp.html
-title: Product of Polynomial Sequence
+title: Partition Function
 ---
+
+## Description
+
+非負整数 $n$ に対し，分割数 $p(n)$ とは， $n$ を順番の違いを除いて正整数の総和として表す方法の総数である．
+
+分割数 $p(n)$ の母関数は次式で与えられる．
+
+$$
+\sum_{n=0}^\infty p(n)x^n = \prod_{k=1}^\infty \frac{1}{1-x^k}
+$$
+
+右辺の分母は， Euler の五角数定理によって高速に計算できる．
+
+## Operations
+
+- `Polynomial<T> partition_function_table(int n)`
+    - $p(k)$ を各 $k=0,1,\dots,n$ について計算する
+    - 時間計算量: $O(n\log n)$

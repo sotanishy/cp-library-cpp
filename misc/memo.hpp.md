@@ -86,6 +86,12 @@ $$
 \frac{1}{(1-x)^n} = \sum_{k=0}^\infty \binom{n+k-1}{k}x^k
 $$
 
+### Euler's Pentagonal Number Theorem
+
+$$
+\prod_{n=1}^\infty (1-x^n) = \sum_{n=-\infty}^\infty (-1)^n x^{n(3n-1)/2}
+$$
+
 ### Burnside's Lemma
 
 群 $G$ が集合 $X$ に作用しているとき，軌道の数 $\vert X/G\vert$ は，
