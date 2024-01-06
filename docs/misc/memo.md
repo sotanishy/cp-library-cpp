@@ -99,7 +99,7 @@ $$
 
 が得られる．
 
-- [H - Beautiful Binary Tree 解説](https://atcoder.jp/contests/abc222/editorial/2742)
+- [ABC222 H - Beautiful Binary Tree 解説](https://atcoder.jp/contests/abc222/editorial/2742)
 
 ### LGV Formula
 
@@ -123,6 +123,14 @@ $$
 である．
 
 - [離散数理工学 第 6 回 離散代数：非交差経路の数え上げ](http://dopal.cs.uec.ac.jp/okamotoy/lect/2020/dme/handout06.pdf)
+
+## $q$-Binomial
+
+要素数 $q$ の体上の $n$ 次元ベクトル空間の， $k$ 次元部分空間の個数は， $q$-二項係数を用いて $\binom{n}{k}_2$ と表される．
+
+また， $k$ 次元部分空間 $V$ を一つ固定したとき， $m\,(m \geq k)$ 本のベクトルの順序組 $(v_1,v_2,\dots,v_m)$ で $\operatorname{span}\{v_1,v_2,\dots,v_m\}=V$ となるものの個数は $q^{k(k-1)/2} \frac{[m]_q!}{[m-k]_q!}$ である．
+
+- [ABC278 Ex - make 1 解説](https://atcoder.jp/contests/abc278/editorial/5210)
 
 ## Graph
 
