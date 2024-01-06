@@ -6,7 +6,7 @@ data:
     title: Number Theoretic Transform
   - icon: ':heavy_check_mark:'
     path: math/matrix/characteristic_polynomial.hpp
-    title: math/matrix/characteristic_polynomial.hpp
+    title: Characteristic Polynomial
   - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.cpp
     title: Matrix

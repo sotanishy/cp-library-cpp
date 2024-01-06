@@ -9,7 +9,7 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
-    title: math/matrix/hafnian.hpp
+    title: Hafnian
   - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: Mod int

@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
-    title: math/matrix/hafnian.hpp
+    title: Hafnian
   - icon: ':heavy_check_mark:'
     path: math/set_power_series.hpp
     title: math/set_power_series.hpp

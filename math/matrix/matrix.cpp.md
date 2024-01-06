@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/matrix/characteristic_polynomial.hpp
-    title: math/matrix/characteristic_polynomial.hpp
+    title: Characteristic Polynomial
   - icon: ':heavy_check_mark:'
     path: math/matrix/square_matrix.cpp
     title: Square Matrix

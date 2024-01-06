@@ -446,7 +446,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/partition_function.hpp
       title: Partition Function
     - icon: ':heavy_check_mark:'
@@ -489,10 +489,10 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
-      title: math/matrix/characteristic_polynomial.hpp
+      title: Characteristic Polynomial
     - icon: ':heavy_check_mark:'
       path: math/matrix/hafnian.hpp
-      title: math/matrix/hafnian.hpp
+      title: Hafnian
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.cpp
       title: Matrix
@@ -518,7 +518,7 @@ data:
       title: Fraction
     - icon: ':warning:'
       path: misc/golden_section_search.hpp
-      title: misc/golden_section_search.hpp
+      title: Golden-Section Search
     - icon: ':warning:'
       path: misc/interval_set.hpp
       title: Interval Set

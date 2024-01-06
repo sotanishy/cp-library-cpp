@@ -88,6 +88,9 @@ data:
     path: test/yosupo/number_of_subsequences.test.cpp
     title: test/yosupo/number_of_subsequences.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/partition_function.test.cpp
+    title: test/yosupo/partition_function.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/point_set_range_sort_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,6 +231,7 @@ data:
   - test/yosupo/inverse_matrix.test.cpp
   - test/yosupo/sharp_p_subset_sum.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/partition_function.test.cpp
   - test/yosupo/bitwise_xor_convolution.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/pow_of_matrix.test.cpp

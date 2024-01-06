@@ -28,11 +28,11 @@ data:
     title: Lagrange Polynomial
   - icon: ':heavy_check_mark:'
     path: math/matrix/characteristic_polynomial.hpp
-    title: math/matrix/characteristic_polynomial.hpp
+    title: Characteristic Polynomial
   - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/partition_function.hpp
     title: Partition Function
   - icon: ':heavy_check_mark:'
@@ -81,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/partition_function.test.cpp
+    title: test/yosupo/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
@@ -201,6 +204,7 @@ data:
   - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/sharp_p_subset_sum.test.cpp
   - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/partition_function.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/factorial.test.cpp

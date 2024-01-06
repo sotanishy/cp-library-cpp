@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/matrix/characteristic_polynomial.hpp
-    title: math/matrix/characteristic_polynomial.hpp
+    title: Characteristic Polynomial
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/characteristic_polynomial.test.cpp
