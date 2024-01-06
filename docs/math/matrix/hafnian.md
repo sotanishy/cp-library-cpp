@@ -1,6 +1,6 @@
 ---
 title: Hafnian
-documentation_of: ../../math/matrix/hafnian.hpp
+documentation_of: ../../../math/matrix/hafnian.hpp
 ---
 
 ## Description

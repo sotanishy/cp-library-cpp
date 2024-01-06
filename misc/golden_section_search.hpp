@@ -1,6 +1,9 @@
 #pragma once
 #include <cmath>
 
+/**
+ * @brief Golden-Section Search
+*/
 template <typename F>
 double golden_section_search(F f, double lb, double ub, int iter = 100) {
     constexpr double gr = (1 + std::sqrt(5)) / 2;

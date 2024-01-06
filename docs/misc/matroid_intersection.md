@@ -7,7 +7,7 @@ documentation_of: ../../misc/matroid_intersection.hpp
 
 共通の台集合 $E$ 上の 2 つのマトロイド $M_1=(E, \mathcal{I}(M_1)),\,M_2=(E, \mathcal{I}(M_2))$ が与えられたとき，$S\in \mathcal{I}(M_1) \cap \mathcal{I}(M_2)$ を満たす $S$ の中で $\vert S\vert$ が最大のものを一つ計算する．
 
-各 $k=1,2,\dots$ について $|S|=k$ の実行可能集合を保ちながら，bipartite augmentation graph 上での augmenting path に沿って augment を繰り返すアルゴリズムを用いている．
+各 $k=1,2,\dots$ について $\vert S\vert=k$ の実行可能集合を保ちながら，bipartite augmentation graph 上での augmenting path に沿って augment を繰り返すアルゴリズムを用いている．
 
 ## Operations
 

@@ -1,6 +1,6 @@
 ---
 title: Characteristic Polynomial
-documentation_of: ../../math/matrix/characteristic_polynomial.hpp
+documentation_of: ../../../math/matrix/characteristic_polynomial.hpp
 ---
 
 ## Description
