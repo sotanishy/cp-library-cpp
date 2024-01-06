@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+#include "../convolution/ntt.hpp"
 #include "polynomial.cpp"
 
 template <typename mint>
@@ -58,7 +59,7 @@ std::vector<mint> sum_of_powers_table(long long n, int p) {
         g[k] = pown * fact_inv[k];
         pown *= n;
     }
-    auto h = atcoder::convolution(f, g);
+    auto h = convolution(f, g);
 
     std::vector<mint> res(p + 1);
     res[0] = n;
@@ -67,4 +68,3 @@ std::vector<mint> sum_of_powers_table(long long n, int p) {
     }
     return res;
 }
-

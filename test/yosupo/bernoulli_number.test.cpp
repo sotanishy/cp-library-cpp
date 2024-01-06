@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bernoulli_number"
 
-#include "../../math/modint.cpp"
-#include "../../math/polynomial.cpp"
-#include "../../math/bernoulli.hpp"
-
 #include <bits/stdc++.h>
+
+#include "../../math/bernoulli.hpp"
+#include "../../math/modint.cpp"
 
 using namespace std;
 using ll = long long;
@@ -21,7 +20,6 @@ bool chmin(T& a, const T& b) {
 }
 
 using mint = Modint<998244353>;
-
 
 int main() {
     ios_base::sync_with_stdio(false);
