@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.splay_tree.test.cpp
     title: test/aoj/1508.splay_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
     title: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"data-structure/bst/splay_tree.cpp\"\n#include <cassert>\n\
+  bundledCode: "#line 2 \"data-structure/bst/splay_tree.hpp\"\n#include <cassert>\n\
     #include <memory>\n#include <utility>\n\ntemplate <typename M>\nclass SplayTree\
     \ {\n    using T = typename M::T;\n\n   public:\n    SplayTree() = default;\n\n\
     \    static SplayTree join(SplayTree l, SplayTree r) {\n        return SplayTree(join(std::move(l.root),\
@@ -157,14 +157,14 @@ data:
     \   }\n            return rotate_left(std::move(t));\n        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/bst/splay_tree.cpp
+  path: data-structure/bst/splay_tree.hpp
   requiredBy: []
-  timestamp: '2023-05-07 15:56:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-08 01:52:54+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
   - test/aoj/1508.splay_tree.test.cpp
-documentation_of: data-structure/bst/splay_tree.cpp
+documentation_of: data-structure/bst/splay_tree.hpp
 layout: document
 title: Splay Tree
 ---

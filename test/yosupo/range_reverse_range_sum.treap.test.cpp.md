@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/bst/treap.cpp
+  - icon: ':question:'
+    path: data-structure/bst/treap.hpp
     title: Treap
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
@@ -16,7 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/range_reverse_range_sum
   bundledCode: "#line 1 \"test/yosupo/range_reverse_range_sum.treap.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\n\n#include\
-    \ <bits/stdc++.h>\n\n#line 6 \"data-structure/bst/treap.cpp\"\n\ntemplate <typename\
+    \ <bits/stdc++.h>\n\n#line 6 \"data-structure/bst/treap.hpp\"\n\ntemplate <typename\
     \ M>\nclass Treap {\n    using T = typename M::T;\n\n   public:\n    Treap() =\
     \ default;\n\n    static Treap join(Treap l, Treap r) {\n        return Treap(join(std::move(l.root),\
     \ std::move(r.root)));\n    }\n\n    std::pair<Treap, Treap> split(int k) {\n\
@@ -87,7 +87,7 @@ data:
     \ } else {\n            cout << st.fold(l, r) << \"\\n\";\n        }\n    }\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
-    \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/bst/treap.cpp\"\
+    \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/bst/treap.hpp\"\
     \nusing namespace std;\n\nstruct AddMonoid {\n    using T = long long;\n    static\
     \ T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
     \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
@@ -97,12 +97,12 @@ data:
     \ t >> l >> r;\n        if (t == 0) {\n            st.reverse(l, r);\n       \
     \ } else {\n            cout << st.fold(l, r) << \"\\n\";\n        }\n    }\n}"
   dependsOn:
-  - data-structure/bst/treap.cpp
+  - data-structure/bst/treap.hpp
   isVerificationFile: true
   path: test/yosupo/range_reverse_range_sum.treap.test.cpp
   requiredBy: []
-  timestamp: '2023-05-07 15:56:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-08 01:52:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_reverse_range_sum.treap.test.cpp
 layout: document

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_3_C.test.cpp
+    title: test/aoj/DPL_3_C.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Largest Rectangle
     links: []
@@ -37,8 +40,9 @@ data:
   path: dp/largest_rectangle.hpp
   requiredBy: []
   timestamp: '2024-01-08 01:32:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DPL_3_C.test.cpp
 documentation_of: dp/largest_rectangle.hpp
 layout: document
 redirect_from:

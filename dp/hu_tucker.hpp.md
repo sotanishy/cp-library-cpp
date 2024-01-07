@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/leftist_heap.hpp
     title: Leftist Heap
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2415.test.cpp
+    title: test/aoj/2415.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"dp/hu_tucker.hpp\"\n#include <functional>\n#include <limits>\n\
@@ -109,8 +112,9 @@ data:
   path: dp/hu_tucker.hpp
   requiredBy: []
   timestamp: '2024-01-08 01:32:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/2415.test.cpp
 documentation_of: dp/hu_tucker.hpp
 layout: document
 title: Hu-Tucker Algorithm

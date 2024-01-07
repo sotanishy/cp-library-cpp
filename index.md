@@ -47,7 +47,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/leftist_heap.hpp
       title: Leftist Heap
     - icon: ':heavy_check_mark:'
@@ -94,20 +94,20 @@ data:
       title: data-structure/wavelet_matrix.cpp
   - name: data-structure/bst
     pages:
-    - icon: ':heavy_check_mark:'
-      path: data-structure/bst/lazy_treap.cpp
+    - icon: ':x:'
+      path: data-structure/bst/lazy_treap.hpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
-      path: data-structure/bst/rbst.cpp
+      path: data-structure/bst/rbst.hpp
       title: Randomized Binary Search Tree
     - icon: ':warning:'
-      path: data-structure/bst/red_black_tree.cpp
+      path: data-structure/bst/red_black_tree.hpp
       title: Red Black Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/bst/splay_tree.cpp
+    - icon: ':question:'
+      path: data-structure/bst/splay_tree.hpp
       title: Splay Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/bst/treap.cpp
+    - icon: ':question:'
+      path: data-structure/bst/treap.hpp
       title: Treap
   - name: data-structure/cht
     pages:
@@ -180,10 +180,10 @@ data:
     - icon: ':warning:'
       path: dp/edit_distance.hpp
       title: Edit Distance
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/hu_tucker.hpp
       title: Hu-Tucker Algorithm
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/largest_rectangle.hpp
       title: Largest Rectangle
     - icon: ':warning:'
@@ -315,7 +315,7 @@ data:
     - icon: ':warning:'
       path: graph/maximum_weight_independent_set.hpp
       title: Maximum Weight Independent Set
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_arborescence.cpp
       title: Minimum Spanning Arborescence
     - icon: ':heavy_check_mark:'
@@ -704,7 +704,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2306.test.cpp
       title: test/aoj/2306.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
     - icon: ':heavy_check_mark:'
@@ -785,7 +785,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_I.test.cpp
       title: test/aoj/CGL_7_I.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -913,7 +913,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/deque_operate_all_composite.test.cpp
       title: test/yosupo/deque_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/directedmst.test.cpp
       title: test/yosupo/directedmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -931,7 +931,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1114,10 +1114,10 @@ data:
     - icon: ':x:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
       title: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
     - icon: ':x:'

@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/division_of_polynomials.test.cpp
     title: test/yosupo/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   - icon: ':heavy_check_mark:'

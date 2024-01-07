@@ -2,13 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: dp/hu_tucker.hpp
     title: Hu-Tucker Algorithm
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_arborescence.cpp
+    title: Minimum Spanning Arborescence
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2415.test.cpp
+    title: test/aoj/2415.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/directedmst.test.cpp
+    title: test/yosupo/directedmst.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/leftist_heap.hpp\"\n#include <algorithm>\n\
@@ -59,10 +68,13 @@ data:
   isVerificationFile: false
   path: data-structure/leftist_heap.hpp
   requiredBy:
+  - graph/minimum_spanning_arborescence.cpp
   - dp/hu_tucker.hpp
   timestamp: '2024-01-08 01:32:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/directedmst.test.cpp
+  - test/aoj/2415.test.cpp
 documentation_of: data-structure/leftist_heap.hpp
 layout: document
 title: Leftist Heap
