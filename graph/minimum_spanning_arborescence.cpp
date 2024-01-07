@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 #include "edge.cpp"
-#include "../data-structure/unionfind/union_find.cpp"
+#include "../data-structure/unionfind/union_find.hpp"
 #include "../data-structure/leftist_heap.cpp"
 
 /*

@@ -1,6 +1,6 @@
 ---
 title: Persistent Array
-documentation_of: ../../data-structure/persistent_array.cpp
+documentation_of: ../../data-structure/persistent_array.hpp
 ---
 
 ## Description

@@ -1,6 +1,6 @@
 ---
 title: Union Find
-documentation_of: ../../../data-structure/unionfind/union_find.cpp
+documentation_of: ../../../data-structure/unionfind/union_find.hpp
 ---
 
 ## Description

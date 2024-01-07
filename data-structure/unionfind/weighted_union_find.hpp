@@ -4,7 +4,7 @@
 
 template <typename T>
 class WeightedUnionFind {
-public:
+   public:
     WeightedUnionFind() = default;
     explicit WeightedUnionFind(int n) : data(n, -1), ws(n) {}
 
@@ -36,19 +36,13 @@ public:
         return true;
     }
 
-    bool same(int x, int y) {
-        return find(x) == find(y);
-    }
+    bool same(int x, int y) { return find(x) == find(y); }
 
-    T diff(int x, int y) {
-        return weight(y) - weight(x);
-    }
+    T diff(int x, int y) { return weight(y) - weight(x); }
 
-    int size(int x) {
-        return -data[find(x)];
-    }
+    int size(int x) { return -data[find(x)]; }
 
-private:
+   private:
     std::vector<int> data;
     std::vector<T> ws;
 };

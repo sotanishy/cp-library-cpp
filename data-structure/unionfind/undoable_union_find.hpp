@@ -7,11 +7,12 @@
 
 template <typename M>
 class UndoableUnionFind {
-    using T = typename M::T;
+    using T = M::T;
 
-public:
+   public:
     UndoableUnionFind() = default;
-    explicit UndoableUnionFind(int n) : UndoableUnionFind(std::vector<T>(n, M::id())) {}
+    explicit UndoableUnionFind(int n)
+        : UndoableUnionFind(std::vector<T>(n, M::id())) {}
     explicit UndoableUnionFind(const std::vector<T>& v)
         : data(v.size(), -1), val(v.begin(), v.end()) {}
 
@@ -44,17 +45,11 @@ public:
         }
     }
 
-    bool same(int x, int y) const {
-        return find(x) == find(y);
-    }
+    bool same(int x, int y) const { return find(x) == find(y); }
 
-    int size(int x) const {
-        return -data[find(x)];
-    }
+    int size(int x) const { return -data[find(x)]; }
 
-    T component_fold(int x) const {
-        return val[find(x)];
-    }
+    T component_fold(int x) const { return val[find(x)]; }
 
     void update(int x, const T& v) {
         x = find(x);
@@ -63,7 +58,7 @@ public:
         val[x] = M::op(val[x], v);
     }
 
-private:
+   private:
     std::vector<int> data;
     std::vector<T> val;
     std::stack<std::tuple<int, int, T>> history;

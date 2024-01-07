@@ -1,6 +1,6 @@
 ---
 title: Persistent Queue
-documentation_of: ../../data-structure/persistent_queue.cpp
+documentation_of: ../../data-structure/persistent_queue.hpp
 ---
 
 ## Description

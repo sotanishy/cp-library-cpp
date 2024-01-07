@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_queue"
 
-#include "../../data-structure/persistent_queue.cpp"
+#include "../../data-structure/persistent_queue.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,8 +19,10 @@ int main() {
         if (q == 0) {
             int x;
             cin >> x;
-            if (t == -1) ver[i] = init.push(x);
-            else ver[i] = ver[t].push(x);
+            if (t == -1)
+                ver[i] = init.push(x);
+            else
+                ver[i] = ver[t].push(x);
         } else {
             cout << ver[t].front() << "\n";
             ver[i] = ver[t].pop();

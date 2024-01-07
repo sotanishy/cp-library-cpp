@@ -1,19 +1,16 @@
 #pragma once
 #include <cassert>
-#include "persistent_array.cpp"
+
+#include "persistent_array.hpp"
 
 template <typename T>
 class PersistentQueue {
-public:
+   public:
     PersistentQueue() : first(0), last(0) {}
 
-    int size() const {
-        return last - first;
-    }
+    int size() const { return last - first; }
 
-    bool empty() const {
-        return size() == 0;
-    }
+    bool empty() const { return size() == 0; }
 
     T front() const {
         assert(!empty());
@@ -34,7 +31,7 @@ public:
         return PersistentQueue(pa, first + 1, last);
     }
 
-private:
+   private:
     PersistentArray<T> pa;
     int first, last;
 

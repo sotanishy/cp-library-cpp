@@ -1,10 +1,11 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-#include "../persistent_array.cpp"
+
+#include "../persistent_array.hpp"
 
 class PersistentUnionFind {
-public:
+   public:
     PersistentUnionFind() = default;
     explicit PersistentUnionFind(int n) : data(std::vector<int>(n, -1)) {}
 
@@ -26,16 +27,13 @@ public:
         return PersistentUnionFind(res);
     }
 
-    bool same(int x, int y) const {
-        return find(x) == find(y);
-    }
+    bool same(int x, int y) const { return find(x) == find(y); }
 
-    int size(int x) const {
-        return -data.get(x);
-    }
+    int size(int x) const { return -data.get(x); }
 
-private:
+   private:
     PersistentArray<int, 8> data;
 
-    explicit PersistentUnionFind(const PersistentArray<int, 8>& pa) : data(pa) {}
+    explicit PersistentUnionFind(const PersistentArray<int, 8>& pa)
+        : data(pa) {}
 };

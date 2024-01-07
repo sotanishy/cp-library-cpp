@@ -1,8 +1,9 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum"
-
-#include "../../data-structure/segtree/segment_tree_beats.cpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum"
 
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/segment_tree_beats.hpp"
 using namespace std;
 using ll = long long;
 

@@ -3,7 +3,7 @@
 #include <stack>
 #include <vector>
 
-#include "../data-structure/unionfind/union_find.cpp"
+#include "../data-structure/unionfind/union_find.hpp"
 
 class JunctionTreeWidth2 {
    public:

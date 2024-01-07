@@ -3,26 +3,20 @@
 
 template <typename T>
 class PersistentStack {
-public:
+   public:
     PersistentStack() = default;
 
-    T top() const {
-        return last->val;
-    }
+    T top() const { return last->val; }
 
-    bool empty() const {
-        return last == nullptr;
-    }
+    bool empty() const { return last == nullptr; }
 
     PersistentStack push(const T& val) const {
         return PersistentStack(std::make_shared<Node>(val, last));
     }
 
-    PersistentStack pop() const {
-        return PersistentStack(last->prev);
-    }
+    PersistentStack pop() const { return PersistentStack(last->prev); }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::shared_ptr<Node>;
 

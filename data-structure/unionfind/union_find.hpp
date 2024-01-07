@@ -3,7 +3,7 @@
 #include <vector>
 
 class UnionFind {
-public:
+   public:
     UnionFind() = default;
     explicit UnionFind(int n) : data(n, -1) {}
 
@@ -21,14 +21,10 @@ public:
         data[y] = x;
     }
 
-    bool same(int x, int y) {
-        return find(x) == find(y);
-    }
+    bool same(int x, int y) { return find(x) == find(y); }
 
-    int size(int x) {
-        return -data[find(x)];
-    }
+    int size(int x) { return -data[find(x)]; }
 
-private:
+   private:
     std::vector<int> data;
 };

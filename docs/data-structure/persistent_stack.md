@@ -1,6 +1,6 @@
 ---
 title: Persistent Stack
-documentation_of: ../../data-structure/persistent_stack.cpp
+documentation_of: ../../data-structure/persistent_stack.hpp
 ---
 
 ## Description
