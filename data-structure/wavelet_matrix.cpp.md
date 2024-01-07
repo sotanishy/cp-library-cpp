@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: data-structure/bit_vector.cpp
     title: Rank/Select Dictionary
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_kth_smallest.test.cpp
-    title: test/yosupo/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_frequency.test.cpp
-    title: test/yosupo/static_range_frequency.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/wavelet_matrix.cpp\"\n#include <algorithm>\n\
@@ -113,45 +107,12 @@ data:
   path: data-structure/wavelet_matrix.cpp
   requiredBy: []
   timestamp: '2023-10-14 23:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/range_kth_smallest.test.cpp
-  - test/yosupo/static_range_frequency.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-structure/wavelet_matrix.cpp
 layout: document
-title: Wavelet Matrix
+redirect_from:
+- /library/data-structure/wavelet_matrix.cpp
+- /library/data-structure/wavelet_matrix.cpp.html
+title: data-structure/wavelet_matrix.cpp
 ---
-
-## Description
-
-Wavelet 行列は，静的な非負整数列に対する様々なクエリが処理できるデータ構造である．非負整数列を上位ビットからソートして完備辞書を構築する．
-
-空間計算量: $O(n \log m)$, $m$ は数列およびクエリで与えられる非負整数の最大値
-
-## Operations
-
-- `WaveletMatrix(vector<T> v)`
-    - `v` からウェーブレット行列を構築する
-    - 時間計算量: $O(n \log m)$
-- `T operator[](int k)`
-    - $k$ 番目の要素を取得する
-    - 時間計算量: $O(\log m)$
-- `int rank(int k, T x)`
-    - $[0, k)$ での $x$ の個数を返す
-    - 時間計算量: $O(\log m)$
-- `int range_freq(int l, int r, T ub)`
-    - $[l, r)$ で値が $[0, ub)$ に含まれる要素の個数を返す
-    - 時間計算量: $O(\log m)$
-- `int range_freq(int l, int r, T lb, T ub)`
-    - $[l, r)$ で値が $[lb, ub)$ に含まれる要素の個数を返す
-    - 時間計算量: $O(\log m)$
-- `int select(int k, T x)`
-    - $k$ 番目の $x$ の位置を返す
-    - 時間計算量: $O(\log n \log m)$
-- `T quantile(int l, int r, int k)`
-    - $[l, r)$ で $k$ 番目に小さい値を返す
-    - 時間計算量: $O(\log m)$
-
-## Reference
-
-- [ウェーブレット行列(wavelet matrix)](https://miti-7.hatenablog.com/entry/2018/04/28/152259)

@@ -20,7 +20,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/matrix/hafnian.hpp\"\n#include <cassert>\n#include\
+  bundledCode: "#line 2 \"math/linalg/hafnian.hpp\"\n#include <cassert>\n#include\
     \ <vector>\n\n#line 2 \"set/set_power_series.hpp\"\n#include <algorithm>\n#include\
     \ <array>\n#line 6 \"set/set_power_series.hpp\"\n\n#line 4 \"set/subset_convolution.hpp\"\
     \n\n#line 2 \"set/zeta_moebius_transform.hpp\"\n#include <bit>\n#line 5 \"set/zeta_moebius_transform.hpp\"\
@@ -88,7 +88,7 @@ data:
     \     SPS a(this->begin() + (1 << i), this->begin() + (1 << (i + 1)));\n     \
     \       SPS b(res.begin(), res.begin() + (1 << i));\n            a *= b;\n   \
     \         std::copy(a.begin(), a.end(), res.begin() + (1 << i));\n        }\n\
-    \        return res;\n    }\n};\n#line 6 \"math/matrix/hafnian.hpp\"\n\ntemplate\
+    \        return res;\n    }\n};\n#line 6 \"math/linalg/hafnian.hpp\"\n\ntemplate\
     \ <typename T, int N>\nT hafnian(std::vector<std::vector<T>> mat) {\n    const\
     \ int n = mat.size();\n    assert(n % 2 == 0);\n    const int n2 = n / 2;\n\n\
     \    // cyc[S]: number of alternating cycles using all edges in S\n    SetPowerSeries<T,\
@@ -145,13 +145,13 @@ data:
   - set/subset_convolution.hpp
   - set/zeta_moebius_transform.hpp
   isVerificationFile: false
-  path: math/matrix/hafnian.hpp
+  path: math/linalg/hafnian.hpp
   requiredBy: []
-  timestamp: '2024-01-07 16:57:48+09:00'
+  timestamp: '2024-01-07 21:12:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/hafnian_of_matrix.test.cpp
-documentation_of: math/matrix/hafnian.hpp
+documentation_of: math/linalg/hafnian.hpp
 layout: document
 title: Hafnian
 ---

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/matrix/hafnian.hpp
+    path: math/linalg/hafnian.hpp
     title: Hafnian
   - icon: ':question:'
     path: math/modint.hpp
@@ -28,7 +28,7 @@ data:
     - https://judge.yosupo.jp/problem/hafnian_of_matrix
   bundledCode: "#line 1 \"test/yosupo/hafnian_of_matrix.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n#include <bits/stdc++.h>\n\
-    \n#line 4 \"math/matrix/hafnian.hpp\"\n\n#line 6 \"set/set_power_series.hpp\"\n\
+    \n#line 4 \"math/linalg/hafnian.hpp\"\n\n#line 6 \"set/set_power_series.hpp\"\n\
     \n#line 4 \"set/subset_convolution.hpp\"\n\n#line 2 \"set/zeta_moebius_transform.hpp\"\
     \n#include <bit>\n#line 5 \"set/zeta_moebius_transform.hpp\"\n\ntemplate <typename\
     \ T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
@@ -95,7 +95,7 @@ data:
     \     SPS a(this->begin() + (1 << i), this->begin() + (1 << (i + 1)));\n     \
     \       SPS b(res.begin(), res.begin() + (1 << i));\n            a *= b;\n   \
     \         std::copy(a.begin(), a.end(), res.begin() + (1 << i));\n        }\n\
-    \        return res;\n    }\n};\n#line 6 \"math/matrix/hafnian.hpp\"\n\ntemplate\
+    \        return res;\n    }\n};\n#line 6 \"math/linalg/hafnian.hpp\"\n\ntemplate\
     \ <typename T, int N>\nT hafnian(std::vector<std::vector<T>> mat) {\n    const\
     \ int n = mat.size();\n    assert(n % 2 == 0);\n    const int n2 = n / 2;\n\n\
     \    // cyc[S]: number of alternating cycles using all edges in S\n    SetPowerSeries<T,\
@@ -154,14 +154,14 @@ data:
     \ {\n        for (int j = 0; j < N; ++j) cin >> a[i][j];\n    }\n    cout << hafnian<mint,\
     \ 19>(a) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n\
-    #include <bits/stdc++.h>\n\n#include \"../../math/matrix/hafnian.hpp\"\n#include\
+    #include <bits/stdc++.h>\n\n#include \"../../math/linalg/hafnian.hpp\"\n#include\
     \ \"../../math/modint.hpp\"\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N;\n    cin >> N;\n    vector a(N, vector<mint>(N));\n    for (int i\
     \ = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) cin >> a[i][j];\n  \
     \  }\n    cout << hafnian<mint, 19>(a) << endl;\n}\n"
   dependsOn:
-  - math/matrix/hafnian.hpp
+  - math/linalg/hafnian.hpp
   - set/set_power_series.hpp
   - set/subset_convolution.hpp
   - set/zeta_moebius_transform.hpp
@@ -169,7 +169,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-07 21:12:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/hafnian_of_matrix.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'

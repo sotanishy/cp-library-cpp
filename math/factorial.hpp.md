@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'
@@ -12,15 +12,15 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/factorial.test.cpp
     title: test/yosupo/factorial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/factorial.hpp\"\n#include <cmath>\n#include <vector>\n\
+  bundledCode: "#line 2 \"math/factorial.hpp\"\n#include <cmath>\n#include <vector>\n\
     \n#line 3 \"math/multipoint_evaluation.cpp\"\n\n#line 2 \"math/polynomial.cpp\"\
     \n#include <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n\
     #line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
@@ -152,9 +152,9 @@ data:
     \ i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int\
     \ i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n \
     \   for (int i = 0; i < m; ++i) y[i] = q[n + i].empty() ? 0 : q[n + i][0];\n \
-    \   return y;\n}\n#line 6 \"math/factorial.hpp\"\n\ntemplate <typename mint>\n\
-    class Factorial {\n   public:\n    Factorial() : B(std::sqrt(mint::get_mod()))\
-    \ {\n        int n = 1;\n        while (n < B) n <<= 1;\n        std::vector<Polynomial<mint>>\
+    \   return y;\n}\n#line 7 \"math/factorial.hpp\"\n\ntemplate <typename mint>\n\
+    class Factorial {\n   public:\n    Factorial() : B(std::sqrt(mint::mod())) {\n\
+    \        int n = 1;\n        while (n < B) n <<= 1;\n        std::vector<Polynomial<mint>>\
     \ p(2 * n, {1});\n        for (int i = 0; i < B; ++i) p[n + i] = {i + 1, 1};\n\
     \        for (int i = n - 1; i > 0; --i) p[i] = p[2 * i] * p[2 * i + 1];\n   \
     \     std::vector<mint> x(B);\n        for (int i = 0; i < B; ++i) x[i] = i *\
@@ -162,17 +162,17 @@ data:
     \ n) {\n        mint res = 1;\n        for (int i = 0; i < n / B; ++i) res *=\
     \ f[i];\n        for (int i = n / B * B + 1; i <= n; ++i) res *= i;\n        return\
     \ res;\n    }\n\n   private:\n    const int B;\n    std::vector<mint> f;\n};\n"
-  code: "#include <cmath>\n#include <vector>\n\n#include \"multipoint_evaluation.cpp\"\
+  code: "#pragma once\n#include <cmath>\n#include <vector>\n\n#include \"multipoint_evaluation.cpp\"\
     \n#include \"polynomial.cpp\"\n\ntemplate <typename mint>\nclass Factorial {\n\
-    \   public:\n    Factorial() : B(std::sqrt(mint::get_mod())) {\n        int n\
-    \ = 1;\n        while (n < B) n <<= 1;\n        std::vector<Polynomial<mint>>\
-    \ p(2 * n, {1});\n        for (int i = 0; i < B; ++i) p[n + i] = {i + 1, 1};\n\
-    \        for (int i = n - 1; i > 0; --i) p[i] = p[2 * i] * p[2 * i + 1];\n   \
-    \     std::vector<mint> x(B);\n        for (int i = 0; i < B; ++i) x[i] = i *\
-    \ B;\n        f = multipoint_evaluation(p[1], x);\n    }\n\n    mint query(int\
-    \ n) {\n        mint res = 1;\n        for (int i = 0; i < n / B; ++i) res *=\
-    \ f[i];\n        for (int i = n / B * B + 1; i <= n; ++i) res *= i;\n        return\
-    \ res;\n    }\n\n   private:\n    const int B;\n    std::vector<mint> f;\n};\n"
+    \   public:\n    Factorial() : B(std::sqrt(mint::mod())) {\n        int n = 1;\n\
+    \        while (n < B) n <<= 1;\n        std::vector<Polynomial<mint>> p(2 * n,\
+    \ {1});\n        for (int i = 0; i < B; ++i) p[n + i] = {i + 1, 1};\n        for\
+    \ (int i = n - 1; i > 0; --i) p[i] = p[2 * i] * p[2 * i + 1];\n        std::vector<mint>\
+    \ x(B);\n        for (int i = 0; i < B; ++i) x[i] = i * B;\n        f = multipoint_evaluation(p[1],\
+    \ x);\n    }\n\n    mint query(int n) {\n        mint res = 1;\n        for (int\
+    \ i = 0; i < n / B; ++i) res *= f[i];\n        for (int i = n / B * B + 1; i <=\
+    \ n; ++i) res *= i;\n        return res;\n    }\n\n   private:\n    const int\
+    \ B;\n    std::vector<mint> f;\n};\n"
   dependsOn:
   - math/multipoint_evaluation.cpp
   - math/polynomial.cpp
@@ -180,8 +180,8 @@ data:
   isVerificationFile: false
   path: math/factorial.hpp
   requiredBy: []
-  timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-07 21:12:19+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/factorial.test.cpp
 documentation_of: math/factorial.hpp

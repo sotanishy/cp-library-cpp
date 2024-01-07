@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_set_power_series.test.cpp
     title: test/yosupo/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/factorial.test.cpp
     title: test/yosupo/factorial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,19 +60,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inverse_matrix.test.cpp
     title: test/yosupo/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
   - icon: ':x:'

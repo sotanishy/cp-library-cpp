@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: data-structure/segtree/segment_tree_beats.hpp
-    title: data-structure/segtree/segment_tree_beats.hpp
+    title: Segment Tree Beats
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'
@@ -18,16 +18,16 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorial
     links:
     - https://judge.yosupo.jp/problem/factorial
   bundledCode: "#line 1 \"test/yosupo/factorial.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorial\"\
-    \n\n#line 1 \"math/factorial.hpp\"\n#include <cmath>\n#include <vector>\n\n#line\
+    \n\n#line 2 \"math/factorial.hpp\"\n#include <cmath>\n#include <vector>\n\n#line\
     \ 3 \"math/multipoint_evaluation.cpp\"\n\n#line 2 \"math/polynomial.cpp\"\n#include\
     \ <algorithm>\n#include <cassert>\n#line 5 \"math/polynomial.cpp\"\n\n#line 3\
     \ \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n   \
@@ -159,9 +159,9 @@ data:
     \ i > 0; --i) q[i] = q[2 * i] * q[2 * i + 1];\n    q[1] = p % q[1];\n    for (int\
     \ i = 2; i < n + m; ++i) q[i] = q[i / 2] % q[i];\n    std::vector<T> y(m);\n \
     \   for (int i = 0; i < m; ++i) y[i] = q[n + i].empty() ? 0 : q[n + i][0];\n \
-    \   return y;\n}\n#line 6 \"math/factorial.hpp\"\n\ntemplate <typename mint>\n\
-    class Factorial {\n   public:\n    Factorial() : B(std::sqrt(mint::get_mod()))\
-    \ {\n        int n = 1;\n        while (n < B) n <<= 1;\n        std::vector<Polynomial<mint>>\
+    \   return y;\n}\n#line 7 \"math/factorial.hpp\"\n\ntemplate <typename mint>\n\
+    class Factorial {\n   public:\n    Factorial() : B(std::sqrt(mint::mod())) {\n\
+    \        int n = 1;\n        while (n < B) n <<= 1;\n        std::vector<Polynomial<mint>>\
     \ p(2 * n, {1});\n        for (int i = 0; i < B; ++i) p[n + i] = {i + 1, 1};\n\
     \        for (int i = n - 1; i > 0; --i) p[i] = p[2 * i] * p[2 * i + 1];\n   \
     \     std::vector<mint> x(B);\n        for (int i = 0; i < B; ++i) x[i] = i *\
@@ -219,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/factorial.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-07 21:12:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/factorial.test.cpp
 layout: document

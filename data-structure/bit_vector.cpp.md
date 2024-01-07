@@ -2,19 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: data-structure/wavelet_matrix.cpp
-    title: Wavelet Matrix
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_kth_smallest.test.cpp
-    title: test/yosupo/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_frequency.test.cpp
-    title: test/yosupo/static_range_frequency.test.cpp
+    title: data-structure/wavelet_matrix.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/bit_vector.cpp\"\n#include <cstdint>\n#include\
@@ -53,10 +47,8 @@ data:
   requiredBy:
   - data-structure/wavelet_matrix.cpp
   timestamp: '2023-10-14 23:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/range_kth_smallest.test.cpp
-  - test/yosupo/static_range_frequency.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-structure/bit_vector.cpp
 layout: document
 title: Rank/Select Dictionary

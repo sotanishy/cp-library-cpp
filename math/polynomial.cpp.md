@@ -8,13 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/bernoulli.hpp
     title: Bernoulli Number
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
   - icon: ':x:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
   - icon: ':warning:'
@@ -24,9 +24,9 @@ data:
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   - icon: ':heavy_check_mark:'
-    path: math/matrix/characteristic_polynomial.hpp
+    path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':x:'
@@ -51,16 +51,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.test.cpp
     title: test/yosupo/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/factorial.test.cpp
     title: test/yosupo/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -314,11 +314,11 @@ data:
   requiredBy:
   - math/partition_function.hpp
   - math/multipoint_evaluation.cpp
-  - math/matrix/characteristic_polynomial.hpp
   - math/lagrange_polynomial.hpp
   - math/stirling_first.hpp
   - math/bostan_mori.hpp
   - math/bernoulli.hpp
+  - math/linalg/characteristic_polynomial.hpp
   - math/factorial.hpp
   - math/interpolation.cpp
   - math/product_of_polynomial_sequence.hpp

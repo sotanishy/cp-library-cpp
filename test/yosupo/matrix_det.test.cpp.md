@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: math/matrix/matrix.cpp
+    path: math/linalg/matrix.hpp
     title: Matrix
   - icon: ':question:'
-    path: math/matrix/square_matrix.cpp
+    path: math/linalg/square_matrix.hpp
     title: Square Matrix
   - icon: ':question:'
     path: math/modint.hpp
@@ -21,45 +21,16 @@ data:
     links:
     - https://judge.yosupo.jp/problem/matrix_det
   bundledCode: "#line 1 \"test/yosupo/matrix_det.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\
-    \n\n#line 2 \"math/modint.hpp\"\n#include <algorithm>\n#include <iostream>\n\n\
-    /**\n * @brief Mod int\n */\ntemplate <int m>\nclass Modint {\n    using mint\
-    \ = Modint;\n    static_assert(m > 0, \"Modulus must be positive\");\n\n   public:\n\
-    \    static constexpr int mod() { return m; }\n\n    constexpr Modint(long long\
-    \ y = 0) : x(y >= 0 ? y % m : (y % m + m) % m) {}\n\n    constexpr int val() const\
-    \ { return x; }\n\n    constexpr mint& operator+=(const mint& r) {\n        if\
-    \ ((x += r.x) >= m) x -= m;\n        return *this;\n    }\n    constexpr mint&\
-    \ operator-=(const mint& r) {\n        if ((x += m - r.x) >= m) x -= m;\n    \
-    \    return *this;\n    }\n    constexpr mint& operator*=(const mint& r) {\n \
-    \       x = static_cast<int>(1LL * x * r.x % m);\n        return *this;\n    }\n\
-    \    constexpr mint& operator/=(const mint& r) { return *this *= r.inv(); }\n\n\
-    \    constexpr bool operator==(const mint& r) const { return x == r.x; }\n\n \
-    \   constexpr mint operator+() const { return *this; }\n    constexpr mint operator-()\
-    \ const { return mint(-x); }\n\n    constexpr friend mint operator+(const mint&\
-    \ l, const mint& r) {\n        return mint(l) += r;\n    }\n    constexpr friend\
-    \ mint operator-(const mint& l, const mint& r) {\n        return mint(l) -= r;\n\
-    \    }\n    constexpr friend mint operator*(const mint& l, const mint& r) {\n\
-    \        return mint(l) *= r;\n    }\n    constexpr friend mint operator/(const\
-    \ mint& l, const mint& r) {\n        return mint(l) /= r;\n    }\n\n    constexpr\
-    \ mint inv() const {\n        int a = x, b = m, u = 1, v = 0;\n        while (b\
-    \ > 0) {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n\
-    \            std::swap(u -= t * v, v);\n        }\n        return mint(u);\n \
-    \   }\n\n    constexpr mint pow(long long n) const {\n        mint ret(1), mul(x);\n\
-    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
-    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
-    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
-    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
-    \        return is;\n    }\n\n   private:\n    int x;\n};\n#line 3 \"math/matrix/square_matrix.cpp\"\
-    \n#include <cassert>\n#include <initializer_list>\n\n#line 4 \"math/matrix/matrix.cpp\"\
-    \n#include <cmath>\n#line 6 \"math/matrix/matrix.cpp\"\n#include <type_traits>\n\
-    #include <vector>\n\ntemplate <typename T>\nclass Matrix {\n   public:\n    static\
-    \ Matrix concat(const Matrix& A, const Matrix& B) {\n        assert(A.m == B.m);\n\
-    \        Matrix C(A.m, A.n + B.n);\n        for (int i = 0; i < A.m; ++i) {\n\
-    \            std::copy(A[i].begin(), A[i].end(), C[i].begin());\n            std::copy(B[i].begin(),\
-    \ B[i].end(), C[i].begin() + A.n);\n        }\n        return C;\n    }\n\n  \
-    \  Matrix() = default;\n    Matrix(int m, int n) : mat(m, std::vector<T>(n)),\
-    \ m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>> list)\
-    \ {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
+    \n\n#include <bits/stdc++.h>\n\n#line 4 \"math/linalg/square_matrix.hpp\"\n#include\
+    \ <initializer_list>\n\n#line 6 \"math/linalg/matrix.hpp\"\n#include <type_traits>\n\
+    #line 8 \"math/linalg/matrix.hpp\"\n\ntemplate <typename T>\nclass Matrix {\n\
+    \   public:\n    static Matrix concat(const Matrix& A, const Matrix& B) {\n  \
+    \      assert(A.m == B.m);\n        Matrix C(A.m, A.n + B.n);\n        for (int\
+    \ i = 0; i < A.m; ++i) {\n            std::ranges::copy(A[i], C[i].begin());\n\
+    \            std::ranges::copy(B[i], C[i].begin() + A.n);\n        }\n       \
+    \ return C;\n    }\n\n    Matrix() = default;\n    Matrix(int m, int n) : mat(m,\
+    \ std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
+    \ list) {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
     \        n = mat[0].size();\n    }\n\n    int row() const { return m; }\n    int\
     \ col() const { return n; }\n\n    const std::vector<T>& operator[](int i) const\
     \ { return mat[i]; }\n    std::vector<T>& operator[](int i) { return mat[i]; }\n\
@@ -99,7 +70,7 @@ data:
     \ - b) < 1e-8;\n    }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<\n\
     \                              U>::value>::type* = nullptr>\n    static constexpr\
     \ bool eq(U a, U b) {\n        return a == b;\n    }\n\n   protected:\n    std::vector<std::vector<T>>\
-    \ mat;\n    int m, n;\n};\n#line 7 \"math/matrix/square_matrix.cpp\"\n\ntemplate\
+    \ mat;\n    int m, n;\n};\n#line 7 \"math/linalg/square_matrix.hpp\"\n\ntemplate\
     \ <typename T>\nclass SquareMatrix : public Matrix<T> {\n    using Matrix<T>::Matrix;\n\
     \    using Matrix<T>::eq;\n    using Matrix<T>::n;\n\n   public:\n    static SquareMatrix\
     \ I(int n) {\n        SquareMatrix ret(n);\n        for (int i = 0; i < n; ++i)\
@@ -124,26 +95,54 @@ data:
     \        auto IB = Matrix<T>::concat(*this, I(n)).rref();\n        SquareMatrix\
     \ B(n);\n        for (int i = 0; i < n; ++i) {\n            std::copy(IB[i].begin()\
     \ + n, IB[i].end(), B[i].begin());\n        }\n        return B;\n    }\n};\n\
-    #line 5 \"test/yosupo/matrix_det.test.cpp\"\n\n\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    SquareMatrix<mint> a(N);\n\
-    \    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) cin >>\
-    \ a[i][j];\n    }\n    cout << a.det() << endl;\n}\n"
+    #line 4 \"math/modint.hpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int m>\n\
+    class Modint {\n    using mint = Modint;\n    static_assert(m > 0, \"Modulus must\
+    \ be positive\");\n\n   public:\n    static constexpr int mod() { return m; }\n\
+    \n    constexpr Modint(long long y = 0) : x(y >= 0 ? y % m : (y % m + m) % m)\
+    \ {}\n\n    constexpr int val() const { return x; }\n\n    constexpr mint& operator+=(const\
+    \ mint& r) {\n        if ((x += r.x) >= m) x -= m;\n        return *this;\n  \
+    \  }\n    constexpr mint& operator-=(const mint& r) {\n        if ((x += m - r.x)\
+    \ >= m) x -= m;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
+    \ mint& r) {\n        x = static_cast<int>(1LL * x * r.x % m);\n        return\
+    \ *this;\n    }\n    constexpr mint& operator/=(const mint& r) { return *this\
+    \ *= r.inv(); }\n\n    constexpr bool operator==(const mint& r) const { return\
+    \ x == r.x; }\n\n    constexpr mint operator+() const { return *this; }\n    constexpr\
+    \ mint operator-() const { return mint(-x); }\n\n    constexpr friend mint operator+(const\
+    \ mint& l, const mint& r) {\n        return mint(l) += r;\n    }\n    constexpr\
+    \ friend mint operator-(const mint& l, const mint& r) {\n        return mint(l)\
+    \ -= r;\n    }\n    constexpr friend mint operator*(const mint& l, const mint&\
+    \ r) {\n        return mint(l) *= r;\n    }\n    constexpr friend mint operator/(const\
+    \ mint& l, const mint& r) {\n        return mint(l) /= r;\n    }\n\n    constexpr\
+    \ mint inv() const {\n        int a = x, b = m, u = 1, v = 0;\n        while (b\
+    \ > 0) {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n\
+    \            std::swap(u -= t * v, v);\n        }\n        return mint(u);\n \
+    \   }\n\n    constexpr mint pow(long long n) const {\n        mint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
+    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
+    \        return is;\n    }\n\n   private:\n    int x;\n};\n#line 7 \"test/yosupo/matrix_det.test.cpp\"\
+    \nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n  \
+    \  ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n  \
+    \  cin >> N;\n    SquareMatrix<mint> a(N);\n    for (int i = 0; i < N; ++i) {\n\
+    \        for (int j = 0; j < N; ++j) cin >> a[i][j];\n    }\n    cout << a.det()\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\
-    \ \"../../math/modint.hpp\"\n#include \"../../math/matrix/square_matrix.cpp\"\n\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
+    \ <bits/stdc++.h>\n\n#include \"../../math/linalg/square_matrix.hpp\"\n#include\
+    \ \"../../math/modint.hpp\"\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \n    int N;\n    cin >> N;\n    SquareMatrix<mint> a(N);\n    for (int i = 0;\
     \ i < N; ++i) {\n        for (int j = 0; j < N; ++j) cin >> a[i][j];\n    }\n\
     \    cout << a.det() << endl;\n}\n"
   dependsOn:
+  - math/linalg/square_matrix.hpp
+  - math/linalg/matrix.hpp
   - math/modint.hpp
-  - math/matrix/square_matrix.cpp
-  - math/matrix/matrix.cpp
   isVerificationFile: true
   path: test/yosupo/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-07 21:12:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix_det.test.cpp

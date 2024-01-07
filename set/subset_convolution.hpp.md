@@ -6,7 +6,7 @@ data:
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: math/matrix/hafnian.hpp
+    path: math/linalg/hafnian.hpp
     title: Hafnian
   - icon: ':heavy_check_mark:'
     path: set/set_power_series.hpp
@@ -88,7 +88,7 @@ data:
   isVerificationFile: false
   path: set/subset_convolution.hpp
   requiredBy:
-  - math/matrix/hafnian.hpp
+  - math/linalg/hafnian.hpp
   - set/set_power_series.hpp
   timestamp: '2024-01-07 16:57:48+09:00'
   verificationStatus: LIBRARY_SOME_WA

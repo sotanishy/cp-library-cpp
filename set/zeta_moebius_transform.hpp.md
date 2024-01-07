@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: math/matrix/hafnian.hpp
+    path: math/linalg/hafnian.hpp
     title: Hafnian
   - icon: ':heavy_check_mark:'
     path: set/and_or_convolution.hpp
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: set/zeta_moebius_transform.hpp
   requiredBy:
-  - math/matrix/hafnian.hpp
+  - math/linalg/hafnian.hpp
   - set/set_power_series.hpp
   - set/subset_convolution.hpp
   - set/and_or_convolution.hpp

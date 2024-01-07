@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
     - icon: ':question:'
@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.cpp
       title: Binary Trie
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: data-structure/bit_vector.cpp
       title: Rank/Select Dictionary
     - icon: ':heavy_check_mark:'
@@ -86,9 +86,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.cpp
       title: Sqrt Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: data-structure/wavelet_matrix.cpp
-      title: Wavelet Matrix
+      title: data-structure/wavelet_matrix.cpp
   - name: data-structure/bst
     pages:
     - icon: ':heavy_check_mark:'
@@ -148,7 +148,7 @@ data:
       title: 2D Segment Tree
     - icon: ':x:'
       path: data-structure/segtree/segment_tree_beats.hpp
-      title: data-structure/segtree/segment_tree_beats.hpp
+      title: Segment Tree Beats
     - icon: ':x:'
       path: data-structure/segtree/sortable_segment_tree.hpp
       title: Sortable Segment Tree
@@ -353,7 +353,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/bernoulli.hpp
       title: Bernoulli Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bostan_mori.hpp
       title: Bostan-Mori Algorithm
     - icon: ':warning:'
@@ -383,7 +383,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/factorial.hpp
       title: Factorial
     - icon: ':warning:'
@@ -431,7 +431,7 @@ data:
     - icon: ':x:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -470,23 +470,23 @@ data:
     - icon: ':x:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
-    - icon: ':x:'
-      path: math/system_of_linear_equations.cpp
-      title: System of Linear Equations
-  - name: math/matrix
+  - name: math/linalg
     pages:
     - icon: ':heavy_check_mark:'
-      path: math/matrix/characteristic_polynomial.hpp
+      path: math/linalg/characteristic_polynomial.hpp
       title: Characteristic Polynomial
     - icon: ':heavy_check_mark:'
-      path: math/matrix/hafnian.hpp
+      path: math/linalg/hafnian.hpp
       title: Hafnian
     - icon: ':question:'
-      path: math/matrix/matrix.cpp
+      path: math/linalg/matrix.hpp
       title: Matrix
     - icon: ':question:'
-      path: math/matrix/square_matrix.cpp
+      path: math/linalg/square_matrix.hpp
       title: Square Matrix
+    - icon: ':x:'
+      path: math/linalg/system_of_linear_equations.hpp
+      title: System of Linear Equations
   - name: misc
     pages:
     - icon: ':warning:'
@@ -979,7 +979,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_set_power_series.test.cpp
       title: test/yosupo/exp_of_set_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/factorial.test.cpp
       title: test/yosupo/factorial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1003,10 +1003,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/hafnian_of_matrix.test.cpp
       title: test/yosupo/hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inverse_matrix.test.cpp
       title: test/yosupo/inverse_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1015,13 +1015,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1030,7 +1030,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1126,7 +1126,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1168,7 +1168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_frequency.test.cpp
       title: test/yosupo/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
