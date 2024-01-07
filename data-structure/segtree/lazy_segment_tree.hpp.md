@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/permutation_tree.hpp
     title: Permutation Tree
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/common_interval_decomposition_tree.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yosupo/range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/lazy_segment_tree.hpp\"\n#include\
@@ -113,7 +113,7 @@ data:
   requiredBy:
   - tree/permutation_tree.hpp
   timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/common_interval_decomposition_tree.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
     title: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/euler_tour_tree.hpp\"\n#include <cassert>\n#include\
@@ -72,23 +72,23 @@ data:
     \ r->par = nullptr;\n        return {l, r};\n    }\n\n    static std::tuple<node_ptr,\
     \ node_ptr, node_ptr> split(node_ptr s,\n                                    \
     \                      node_ptr t) {\n        auto [a, b] = split2(s);\n     \
-    \   auto [c, d] = split2(t);\n        if (same(a, t))\n            return {c,\
-    \ d, b};\n        else\n            return {a, c, d};\n    }\n\n    static void\
-    \ rotate(node_ptr t, bool b) {\n        node_ptr p = t->par, g = p->par;\n   \
-    \     p->ch[1 - b] = t->ch[b];\n        if (p->ch[1 - b]) t->ch[b]->par = p;\n\
-    \        t->ch[b] = p;\n        p->par = t;\n        recalc(p);\n        recalc(t);\n\
-    \        t->par = g;\n        if (t->par) {\n            if (g->ch[0] == p)\n\
-    \                g->ch[0] = t;\n            else\n                g->ch[1] = t;\n\
-    \            recalc(g);\n        }\n    }\n\n    static void splay(node_ptr t)\
-    \ {\n        push(t);\n        while (t->par) {\n            auto p = t->par,\
-    \ g = p->par;\n            if (!g) {\n                push(p);\n             \
-    \   push(t);\n                rotate(t, p->ch[0] == t);\n            } else {\n\
-    \                push(g);\n                push(p);\n                push(t);\n\
-    \                bool b = g->ch[0] == p;\n                if (p->ch[1 - b] ==\
-    \ t) {\n                    rotate(p, b);\n                    rotate(t, b);\n\
-    \                } else {\n                    rotate(t, 1 - b);\n           \
-    \         rotate(t, b);\n                }\n            }\n        }\n    }\n\
-    };\n"
+    \   if (same(a, t)) {\n            auto [c, d] = split2(t);\n            return\
+    \ {c, d, b};\n        } else {\n            auto [c, d] = split2(t);\n       \
+    \     return {a, c, d};\n        }\n    }\n\n    static void rotate(node_ptr t,\
+    \ bool b) {\n        node_ptr p = t->par, g = p->par;\n        p->ch[1 - b] =\
+    \ t->ch[b];\n        if (p->ch[1 - b]) t->ch[b]->par = p;\n        t->ch[b] =\
+    \ p;\n        p->par = t;\n        recalc(p);\n        recalc(t);\n        t->par\
+    \ = g;\n        if (t->par) {\n            if (g->ch[0] == p)\n              \
+    \  g->ch[0] = t;\n            else\n                g->ch[1] = t;\n          \
+    \  recalc(g);\n        }\n    }\n\n    static void splay(node_ptr t) {\n     \
+    \   push(t);\n        while (t->par) {\n            auto p = t->par, g = p->par;\n\
+    \            if (!g) {\n                push(p);\n                push(t);\n \
+    \               rotate(t, p->ch[0] == t);\n            } else {\n            \
+    \    push(g);\n                push(p);\n                push(t);\n          \
+    \      bool b = g->ch[0] == p;\n                if (p->ch[1 - b] == t) {\n   \
+    \                 rotate(p, b);\n                    rotate(t, b);\n         \
+    \       } else {\n                    rotate(t, 1 - b);\n                    rotate(t,\
+    \ b);\n                }\n            }\n        }\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <memory>\n#include <unordered_map>\n\
     #include <utility>\n#include <vector>\n\ntemplate <typename M, typename O,\n \
     \         typename M::T (*act)(typename M::T, typename O::T)>\nclass EulerTourTree\
@@ -146,29 +146,29 @@ data:
     \ r->par = nullptr;\n        return {l, r};\n    }\n\n    static std::tuple<node_ptr,\
     \ node_ptr, node_ptr> split(node_ptr s,\n                                    \
     \                      node_ptr t) {\n        auto [a, b] = split2(s);\n     \
-    \   auto [c, d] = split2(t);\n        if (same(a, t))\n            return {c,\
-    \ d, b};\n        else\n            return {a, c, d};\n    }\n\n    static void\
-    \ rotate(node_ptr t, bool b) {\n        node_ptr p = t->par, g = p->par;\n   \
-    \     p->ch[1 - b] = t->ch[b];\n        if (p->ch[1 - b]) t->ch[b]->par = p;\n\
-    \        t->ch[b] = p;\n        p->par = t;\n        recalc(p);\n        recalc(t);\n\
-    \        t->par = g;\n        if (t->par) {\n            if (g->ch[0] == p)\n\
-    \                g->ch[0] = t;\n            else\n                g->ch[1] = t;\n\
-    \            recalc(g);\n        }\n    }\n\n    static void splay(node_ptr t)\
-    \ {\n        push(t);\n        while (t->par) {\n            auto p = t->par,\
-    \ g = p->par;\n            if (!g) {\n                push(p);\n             \
-    \   push(t);\n                rotate(t, p->ch[0] == t);\n            } else {\n\
-    \                push(g);\n                push(p);\n                push(t);\n\
-    \                bool b = g->ch[0] == p;\n                if (p->ch[1 - b] ==\
-    \ t) {\n                    rotate(p, b);\n                    rotate(t, b);\n\
-    \                } else {\n                    rotate(t, 1 - b);\n           \
-    \         rotate(t, b);\n                }\n            }\n        }\n    }\n\
-    };"
+    \   if (same(a, t)) {\n            auto [c, d] = split2(t);\n            return\
+    \ {c, d, b};\n        } else {\n            auto [c, d] = split2(t);\n       \
+    \     return {a, c, d};\n        }\n    }\n\n    static void rotate(node_ptr t,\
+    \ bool b) {\n        node_ptr p = t->par, g = p->par;\n        p->ch[1 - b] =\
+    \ t->ch[b];\n        if (p->ch[1 - b]) t->ch[b]->par = p;\n        t->ch[b] =\
+    \ p;\n        p->par = t;\n        recalc(p);\n        recalc(t);\n        t->par\
+    \ = g;\n        if (t->par) {\n            if (g->ch[0] == p)\n              \
+    \  g->ch[0] = t;\n            else\n                g->ch[1] = t;\n          \
+    \  recalc(g);\n        }\n    }\n\n    static void splay(node_ptr t) {\n     \
+    \   push(t);\n        while (t->par) {\n            auto p = t->par, g = p->par;\n\
+    \            if (!g) {\n                push(p);\n                push(t);\n \
+    \               rotate(t, p->ch[0] == t);\n            } else {\n            \
+    \    push(g);\n                push(p);\n                push(t);\n          \
+    \      bool b = g->ch[0] == p;\n                if (p->ch[1 - b] == t) {\n   \
+    \                 rotate(p, b);\n                    rotate(t, b);\n         \
+    \       } else {\n                    rotate(t, 1 - b);\n                    rotate(t,\
+    \ b);\n                }\n            }\n        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: tree/euler_tour_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-08 01:08:59+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp

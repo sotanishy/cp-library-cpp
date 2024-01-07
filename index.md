@@ -137,7 +137,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.hpp
       title: Dynamic Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/segtree/lazy_segment_tree.hpp
       title: Segment Tree with Lazy Propagation
     - icon: ':x:'
@@ -201,16 +201,16 @@ data:
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
-      path: flow/dinic.cpp
+      path: flow/dinic.hpp
       title: Dinic's Algorithm
-    - icon: ':heavy_check_mark:'
-      path: flow/ford_fulkerson.cpp
+    - icon: ':x:'
+      path: flow/ford_fulkerson.hpp
       title: Ford-Fulkerson Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/min_cost_b_flow.hpp
       title: Minimum Cost b-flow
     - icon: ':heavy_check_mark:'
-      path: flow/min_cost_flow.cpp
+      path: flow/min_cost_flow.hpp
       title: Minimum Cost Flow
   - name: geometry
     pages:
@@ -226,25 +226,25 @@ data:
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/dist.hpp
       title: geometry/dist.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/intersect.hpp
       title: geometry/intersect.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/intersection.hpp
       title: geometry/intersection.hpp
     - icon: ':warning:'
       path: geometry/minimum_bounding_circle.hpp
       title: Minimum Bounding Circle
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geometry/polygon.hpp
       title: geometry/polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -647,7 +647,7 @@ data:
     - icon: ':x:'
       path: tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':x:'
+    - icon: ':question:'
       path: tree/euler_tour_tree.hpp
       title: Euler Tour Tree
     - icon: ':x:'
@@ -659,7 +659,7 @@ data:
     - icon: ':x:'
       path: tree/link_cut_tree.hpp
       title: tree/link_cut_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/permutation_tree.hpp
       title: Permutation Tree
     - icon: ':x:'
@@ -683,7 +683,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1283.test.cpp
       title: test/aoj/1283.test.cpp
     - icon: ':heavy_check_mark:'
@@ -740,10 +740,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_3_A.test.cpp
       title: test/aoj/CGL_3_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -755,7 +755,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_B.test.cpp
       title: test/aoj/CGL_4_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_4_C.test.cpp
       title: test/aoj/CGL_4_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -842,7 +842,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     - icon: ':heavy_check_mark:'
@@ -898,7 +898,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/common_interval_decomposition_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -934,7 +934,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
       title: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
     - icon: ':x:'
@@ -1039,7 +1039,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/min_cost_b_flow.test.cpp
       title: test/yosupo/min_cost_b_flow.test.cpp
     - icon: ':heavy_check_mark:'

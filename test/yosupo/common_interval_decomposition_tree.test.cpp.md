@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/segtree/lazy_segment_tree.hpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/permutation_tree.hpp
     title: Permutation Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/common_interval_decomposition_tree
@@ -73,26 +73,27 @@ data:
     \ None };\n    struct Node {\n        NodeType tp;\n        int l, r;    // i\
     \ in [l, r)\n        int lb, ub;  // p[i] in [lb, ub)\n        std::vector<int>\
     \ ch;\n    };\n\n    std::vector<Node> nodes;\n\n    PermutationTree() = default;\n\
-    \    explicit PermutationTree(const std::vector<int>& p) {\n        // seg.fold(l,\
+    \    explicit PermutationTree(const std::vector<int>& p) {\n        LazySegmentTree<MinMonoid,\
+    \ AddMonoid, act> seg(\n            std::vector<int>(p.size()));\n        // seg.fold(l,\
     \ r) ==\n        // min_{l <= j < r} { max(p[j:i]) - min(p[j:i]) - (i - j) }\n\
-    \        LazySegmentTree<MinMonoid, AddMonoid, act> seg(p.size());\n        std::vector<int>\
-    \ st_max = {-1}, st_min = {-1}, st;\n\n        for (int i = 0; i < (int)p.size();\
-    \ ++i) {\n            while (st_max.back() >= 0 && p[st_max.back()] < p[i]) {\n\
-    \                seg.update(st_max[st_max.size() - 2] + 1, st_max.back() + 1,\n\
-    \                           p[i] - p[st_max.back()]);\n                st_max.pop_back();\n\
-    \            }\n            st_max.push_back(i);\n\n            while (st_min.back()\
-    \ >= 0 && p[st_min.back()] > p[i]) {\n                seg.update(st_min[st_min.size()\
-    \ - 2] + 1, st_min.back() + 1,\n                           -(p[i] - p[st_min.back()]));\n\
-    \                st_min.pop_back();\n            }\n            st_min.push_back(i);\n\
-    \n            nodes.push_back(\n                {Leaf, i, i + 1, p[i], p[i] +\
-    \ 1, std::vector<int>{}});\n            int v = nodes.size() - 1;  // index of\
-    \ the current node\n\n            while (true) {\n                NodeType join_tp\
-    \ = None;\n                if (!st.empty() && nodes[st.back()].ub == nodes[v].lb)\n\
-    \                    join_tp = JoinAsc;\n                if (!st.empty() && nodes[st.back()].lb\
-    \ == nodes[v].ub)\n                    join_tp = JoinDesc;\n\n               \
-    \ if (!st.empty() && join_tp != None) {\n                    // join\n       \
-    \             if (join_tp == nodes[st.back()].tp) {\n                        //\
-    \ same type, append to the existing join node\n                        add_child(st.back(),\
+    \        std::vector<int> st_max = {-1}, st_min = {-1}, st;\n\n        for (int\
+    \ i = 0; i < (int)p.size(); ++i) {\n            while (st_max.back() >= 0 && p[st_max.back()]\
+    \ < p[i]) {\n                seg.update(st_max[st_max.size() - 2] + 1, st_max.back()\
+    \ + 1,\n                           p[i] - p[st_max.back()]);\n               \
+    \ st_max.pop_back();\n            }\n            st_max.push_back(i);\n\n    \
+    \        while (st_min.back() >= 0 && p[st_min.back()] > p[i]) {\n           \
+    \     seg.update(st_min[st_min.size() - 2] + 1, st_min.back() + 1,\n         \
+    \                  -(p[i] - p[st_min.back()]));\n                st_min.pop_back();\n\
+    \            }\n            st_min.push_back(i);\n\n            nodes.push_back(\n\
+    \                {Leaf, i, i + 1, p[i], p[i] + 1, std::vector<int>{}});\n    \
+    \        int v = nodes.size() - 1;  // index of the current node\n\n         \
+    \   while (true) {\n                NodeType join_tp = None;\n               \
+    \ if (!st.empty() && nodes[st.back()].ub == nodes[v].lb)\n                   \
+    \ join_tp = JoinAsc;\n                if (!st.empty() && nodes[st.back()].lb ==\
+    \ nodes[v].ub)\n                    join_tp = JoinDesc;\n\n                if\
+    \ (!st.empty() && join_tp != None) {\n                    // join\n          \
+    \          if (join_tp == nodes[st.back()].tp) {\n                        // same\
+    \ type, append to the existing join node\n                        add_child(st.back(),\
     \ v);\n                        v = st.back();\n                        st.pop_back();\n\
     \                    } else {\n                        // different type, create\
     \ a new join node\n                        int u = st.back();\n              \
@@ -109,9 +110,9 @@ data:
     \ r, lb, ub, {v}});\n                    v = nodes.size() - 1;\n             \
     \       do {\n                        add_child(v, st.back());\n             \
     \           st.pop_back();\n                    } while (nodes[v].ub - nodes[v].lb\
-    \ !=\n                             nodes[v].r - nodes[v].l);\n\n             \
-    \       std::ranges::reverse(nodes[v].ch);\n                } else {\n       \
-    \             break;\n                }\n            }\n            st.push_back(v);\n\
+    \ !=\n                             nodes[v].r - nodes[v].l);\n               \
+    \     std::ranges::reverse(nodes[v].ch);\n                } else {\n         \
+    \           break;\n                }\n            }\n            st.push_back(v);\n\
     \            seg.update(0, i + 1, -1);\n        }\n    }\n\n   private:\n    void\
     \ add_child(int par, int ch) {\n        nodes[par].ch.push_back(ch);\n       \
     \ nodes[par].l = std::min(nodes[par].l, nodes[ch].l);\n        nodes[par].r =\
@@ -144,8 +145,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/common_interval_decomposition_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 01:08:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/common_interval_decomposition_tree.test.cpp
 layout: document

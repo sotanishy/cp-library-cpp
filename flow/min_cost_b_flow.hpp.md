@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/min_cost_b_flow.test.cpp
     title: test/yosupo/min_cost_b_flow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/min_cost_b_flow.hpp\"\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <queue>\n#include <limits>\n#include <utility>\n#include\
+    \ <cassert>\n#include <limits>\n#include <queue>\n#include <utility>\n#include\
     \ <vector>\n\ntemplate <typename Flow, typename Cost>\nclass MinCostFlow {\n \
     \  public:\n    MinCostFlow() = default;\n    explicit MinCostFlow(int V) : V(V),\
     \ G(V), b(V), potential(V) {}\n\n    void add_supply(int v, Flow amount) { b[v]\
@@ -83,8 +83,8 @@ data:
     \ b;\n    std::vector<Cost> potential;\n    std::vector<std::pair<int, int>> edge_idx;\n\
     \n    Cost residual_cost(int v, const Edge& e) const {\n        return e.cost\
     \ + potential[v] - potential[e.to];\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <queue>\n\
-    #include <limits>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
+  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <limits>\n\
+    #include <queue>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
     \ Flow, typename Cost>\nclass MinCostFlow {\n   public:\n    MinCostFlow() = default;\n\
     \    explicit MinCostFlow(int V) : V(V), G(V), b(V), potential(V) {}\n\n    void\
     \ add_supply(int v, Flow amount) { b[v] += amount; }\n    void add_demand(int\
@@ -158,8 +158,8 @@ data:
   isVerificationFile: false
   path: flow/min_cost_b_flow.hpp
   requiredBy: []
-  timestamp: '2023-01-01 16:25:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-08 01:08:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/min_cost_b_flow.test.cpp
 documentation_of: flow/min_cost_b_flow.hpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/min_cost_b_flow.hpp
     title: Minimum Cost b-flow
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -16,7 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/min_cost_b_flow
   bundledCode: "#line 1 \"test/yosupo/min_cost_b_flow.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n\n#line 2 \"flow/min_cost_b_flow.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\n#include <queue>\n#include <limits>\n\
+    \n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <queue>\n\
     #include <utility>\n#include <vector>\n\ntemplate <typename Flow, typename Cost>\n\
     class MinCostFlow {\n   public:\n    MinCostFlow() = default;\n    explicit MinCostFlow(int\
     \ V) : V(V), G(V), b(V), potential(V) {}\n\n    void add_supply(int v, Flow amount)\
@@ -128,8 +128,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/min_cost_b_flow.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 16:25:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-08 01:08:59+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/min_cost_b_flow.test.cpp
 layout: document

@@ -21,20 +21,25 @@ data:
     \ Vec& operator*=(T r) {\n        x *= r;\n        y *= r;\n        z *= r;\n\
     \        return *this;\n    }\n    constexpr Vec& operator/=(T r) {\n        x\
     \ /= r;\n        y /= r;\n        z /= r;\n        return *this;\n    }\n    constexpr\
-    \ Vec operator-() const { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const\
-    \ Vec& r) const { return Vec(*this) += r; }\n    constexpr Vec operator-(const\
-    \ Vec& r) const { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r)\
-    \ const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const {\
-    \ return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r, const Vec&\
-    \ v) { return v * r; }\n};\n\n// rotation around n=(x,y,z) by theta: cos(theta/2)\
-    \ + (xi+yj+zk) sin(theta/2)\nstruct Quarternion {\n    T x, y, z, w;\n    Quarternion()\
-    \ = default;\n    constexpr Quarternion(T x, T y, T z, T w) : x(x), y(y), z(z),\
-    \ w(w) {}\n    constexpr Quarternion conj() const { return Quarternion(-x, -y,\
-    \ -z, w); }\n    constexpr Quarternion& operator+=(const Quarternion& r) {\n \
-    \       x += r.x;\n        y += r.y;\n        z += r.z;\n        w += r.w;\n \
-    \       return *this;\n    }\n    constexpr Quarternion& operator-=(const Quarternion&\
-    \ r) {\n        x -= r.x;\n        y -= r.y;\n        z -= r.z;\n        w -=\
-    \ r.w;\n        return *this;\n    }\n    constexpr Quarternion& operator*=(const\
+    \ Vec operator+() const { return *this; }\n    constexpr Vec operator-() const\
+    \ { return Vec(-x, -y, -z); }\n    constexpr Vec operator+(const Vec& r) const\
+    \ { return Vec(*this) += r; }\n    constexpr Vec operator-(const Vec& r) const\
+    \ { return Vec(*this) -= r; }\n    constexpr Vec operator*(T r) const { return\
+    \ Vec(*this) *= r; }\n    constexpr Vec operator/(T r) const { return Vec(*this)\
+    \ /= r; }\n    friend constexpr Vec operator*(T r, const Vec& v) { return v *\
+    \ r; }\n\n    friend std::istream& operator>>(std::istream& is, Vec& p) {\n  \
+    \      T x, y, z;\n        is >> x >> y >> z;\n        p = {x, y, z};\n      \
+    \  return is;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
+    \ const Vec& p) {\n        os << \"(\" << p.x << \", \" << p.y << \", \" << p.z\
+    \ << \")\";\n        return os;\n    }\n};\n\n// rotation around n=(x,y,z) by\
+    \ theta: cos(theta/2) + (xi+yj+zk) sin(theta/2)\nstruct Quarternion {\n    T x,\
+    \ y, z, w;\n    Quarternion() = default;\n    constexpr Quarternion(T x, T y,\
+    \ T z, T w) : x(x), y(y), z(z), w(w) {}\n    constexpr Quarternion conj() const\
+    \ { return Quarternion(-x, -y, -z, w); }\n    constexpr Quarternion& operator+=(const\
+    \ Quarternion& r) {\n        x += r.x;\n        y += r.y;\n        z += r.z;\n\
+    \        w += r.w;\n        return *this;\n    }\n    constexpr Quarternion& operator-=(const\
+    \ Quarternion& r) {\n        x -= r.x;\n        y -= r.y;\n        z -= r.z;\n\
+    \        w -= r.w;\n        return *this;\n    }\n    constexpr Quarternion& operator*=(const\
     \ Quarternion& r) {\n        *this = Quarternion(w * r.x - z * r.y + y * r.z +\
     \ x * r.w,\n                            z * r.x + w * r.y - x * r.z + y * r.w,\n\
     \                            -y * r.x + x * r.y + w * r.z + z * r.w,\n       \
@@ -43,21 +48,18 @@ data:
     \        y *= r;\n        z *= r;\n        w *= r;\n        return *this;\n  \
     \  }\n    constexpr Quarternion& operator/=(T r) {\n        x /= r;\n        y\
     \ /= r;\n        z /= r;\n        w /= r;\n        return *this;\n    }\n    constexpr\
-    \ Quarternion operator-() const {\n        return Quarternion(-x, -y, -z, -w);\n\
-    \    }\n    constexpr Quarternion operator+(const Quarternion& r) const {\n  \
-    \      return Quarternion(*this) += r;\n    }\n    constexpr Quarternion operator-(const\
-    \ Quarternion& r) const {\n        return Quarternion(*this) -= r;\n    }\n  \
-    \  constexpr Quarternion operator*(const Quarternion& r) const {\n        return\
-    \ Quarternion(*this) *= r;\n    }\n    constexpr Quarternion operator*(T r) const\
-    \ {\n        return Quarternion(*this) *= r;\n    }\n    constexpr Quarternion\
-    \ operator/(T r) const {\n        return Quarternion(*this) /= r;\n    }\n};\n\
-    \nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y, z;\n    is\
-    \ >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nstd::ostream& operator<<(std::ostream&\
-    \ os, const Vec& p) {\n    os << \"(\" << p.x << \", \" << p.y << \", \" << p.z\
-    \ << \")\";\n    return os;\n}\n\nT dot(const Vec& a, const Vec& b) { return a.x\
-    \ * b.x + a.y * b.y + a.z * b.z; }\n\nVec cross(const Vec& a, const Vec& b) {\n\
-    \    return Vec(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z,\n              \
-    \ a.x * b.y - a.y * b.x);\n}\n\nnamespace std {\nT norm(const Vec& a) { return\
+    \ Quarternion operator+() const { return *this; }\n    constexpr Quarternion operator-()\
+    \ const {\n        return Quarternion(-x, -y, -z, -w);\n    }\n    constexpr Quarternion\
+    \ operator+(const Quarternion& r) const {\n        return Quarternion(*this) +=\
+    \ r;\n    }\n    constexpr Quarternion operator-(const Quarternion& r) const {\n\
+    \        return Quarternion(*this) -= r;\n    }\n    constexpr Quarternion operator*(const\
+    \ Quarternion& r) const {\n        return Quarternion(*this) *= r;\n    }\n  \
+    \  constexpr Quarternion operator*(T r) const {\n        return Quarternion(*this)\
+    \ *= r;\n    }\n    constexpr Quarternion operator/(T r) const {\n        return\
+    \ Quarternion(*this) /= r;\n    }\n};\n\nT dot(const Vec& a, const Vec& b) { return\
+    \ a.x * b.x + a.y * b.y + a.z * b.z; }\n\nVec cross(const Vec& a, const Vec& b)\
+    \ {\n    return Vec(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z,\n          \
+    \     a.x * b.y - a.y * b.x);\n}\n\nnamespace std {\nT norm(const Vec& a) { return\
     \ dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a)); }\n}  //\
     \ namespace std\n\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return\
     \ std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
@@ -102,15 +104,20 @@ data:
     \ return *this;\n    }\n    constexpr Vec& operator*=(T r) {\n        x *= r;\n\
     \        y *= r;\n        z *= r;\n        return *this;\n    }\n    constexpr\
     \ Vec& operator/=(T r) {\n        x /= r;\n        y /= r;\n        z /= r;\n\
-    \        return *this;\n    }\n    constexpr Vec operator-() const { return Vec(-x,\
-    \ -y, -z); }\n    constexpr Vec operator+(const Vec& r) const { return Vec(*this)\
-    \ += r; }\n    constexpr Vec operator-(const Vec& r) const { return Vec(*this)\
-    \ -= r; }\n    constexpr Vec operator*(T r) const { return Vec(*this) *= r; }\n\
-    \    constexpr Vec operator/(T r) const { return Vec(*this) /= r; }\n    friend\
-    \ constexpr Vec operator*(T r, const Vec& v) { return v * r; }\n};\n\n// rotation\
-    \ around n=(x,y,z) by theta: cos(theta/2) + (xi+yj+zk) sin(theta/2)\nstruct Quarternion\
-    \ {\n    T x, y, z, w;\n    Quarternion() = default;\n    constexpr Quarternion(T\
-    \ x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}\n    constexpr Quarternion conj()\
+    \        return *this;\n    }\n    constexpr Vec operator+() const { return *this;\
+    \ }\n    constexpr Vec operator-() const { return Vec(-x, -y, -z); }\n    constexpr\
+    \ Vec operator+(const Vec& r) const { return Vec(*this) += r; }\n    constexpr\
+    \ Vec operator-(const Vec& r) const { return Vec(*this) -= r; }\n    constexpr\
+    \ Vec operator*(T r) const { return Vec(*this) *= r; }\n    constexpr Vec operator/(T\
+    \ r) const { return Vec(*this) /= r; }\n    friend constexpr Vec operator*(T r,\
+    \ const Vec& v) { return v * r; }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, Vec& p) {\n        T x, y, z;\n        is >> x >> y >> z;\n        p = {x,\
+    \ y, z};\n        return is;\n    }\n\n    friend std::ostream& operator<<(std::ostream&\
+    \ os, const Vec& p) {\n        os << \"(\" << p.x << \", \" << p.y << \", \" <<\
+    \ p.z << \")\";\n        return os;\n    }\n};\n\n// rotation around n=(x,y,z)\
+    \ by theta: cos(theta/2) + (xi+yj+zk) sin(theta/2)\nstruct Quarternion {\n   \
+    \ T x, y, z, w;\n    Quarternion() = default;\n    constexpr Quarternion(T x,\
+    \ T y, T z, T w) : x(x), y(y), z(z), w(w) {}\n    constexpr Quarternion conj()\
     \ const { return Quarternion(-x, -y, -z, w); }\n    constexpr Quarternion& operator+=(const\
     \ Quarternion& r) {\n        x += r.x;\n        y += r.y;\n        z += r.z;\n\
     \        w += r.w;\n        return *this;\n    }\n    constexpr Quarternion& operator-=(const\
@@ -124,21 +131,18 @@ data:
     \        y *= r;\n        z *= r;\n        w *= r;\n        return *this;\n  \
     \  }\n    constexpr Quarternion& operator/=(T r) {\n        x /= r;\n        y\
     \ /= r;\n        z /= r;\n        w /= r;\n        return *this;\n    }\n    constexpr\
-    \ Quarternion operator-() const {\n        return Quarternion(-x, -y, -z, -w);\n\
-    \    }\n    constexpr Quarternion operator+(const Quarternion& r) const {\n  \
-    \      return Quarternion(*this) += r;\n    }\n    constexpr Quarternion operator-(const\
-    \ Quarternion& r) const {\n        return Quarternion(*this) -= r;\n    }\n  \
-    \  constexpr Quarternion operator*(const Quarternion& r) const {\n        return\
-    \ Quarternion(*this) *= r;\n    }\n    constexpr Quarternion operator*(T r) const\
-    \ {\n        return Quarternion(*this) *= r;\n    }\n    constexpr Quarternion\
-    \ operator/(T r) const {\n        return Quarternion(*this) /= r;\n    }\n};\n\
-    \nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y, z;\n    is\
-    \ >> x >> y >> z;\n    p = {x, y, z};\n    return is;\n}\n\nstd::ostream& operator<<(std::ostream&\
-    \ os, const Vec& p) {\n    os << \"(\" << p.x << \", \" << p.y << \", \" << p.z\
-    \ << \")\";\n    return os;\n}\n\nT dot(const Vec& a, const Vec& b) { return a.x\
-    \ * b.x + a.y * b.y + a.z * b.z; }\n\nVec cross(const Vec& a, const Vec& b) {\n\
-    \    return Vec(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z,\n              \
-    \ a.x * b.y - a.y * b.x);\n}\n\nnamespace std {\nT norm(const Vec& a) { return\
+    \ Quarternion operator+() const { return *this; }\n    constexpr Quarternion operator-()\
+    \ const {\n        return Quarternion(-x, -y, -z, -w);\n    }\n    constexpr Quarternion\
+    \ operator+(const Quarternion& r) const {\n        return Quarternion(*this) +=\
+    \ r;\n    }\n    constexpr Quarternion operator-(const Quarternion& r) const {\n\
+    \        return Quarternion(*this) -= r;\n    }\n    constexpr Quarternion operator*(const\
+    \ Quarternion& r) const {\n        return Quarternion(*this) *= r;\n    }\n  \
+    \  constexpr Quarternion operator*(T r) const {\n        return Quarternion(*this)\
+    \ *= r;\n    }\n    constexpr Quarternion operator/(T r) const {\n        return\
+    \ Quarternion(*this) /= r;\n    }\n};\n\nT dot(const Vec& a, const Vec& b) { return\
+    \ a.x * b.x + a.y * b.y + a.z * b.z; }\n\nVec cross(const Vec& a, const Vec& b)\
+    \ {\n    return Vec(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z,\n          \
+    \     a.x * b.y - a.y * b.x);\n}\n\nnamespace std {\nT norm(const Vec& a) { return\
     \ dot(a, a); }\nT abs(const Vec& a) { return std::sqrt(std::norm(a)); }\n}  //\
     \ namespace std\n\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return\
     \ std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
@@ -176,7 +180,7 @@ data:
   isVerificationFile: false
   path: geometry/geometry3d.hpp
   requiredBy: []
-  timestamp: '2023-05-14 13:38:20+09:00'
+  timestamp: '2024-01-08 01:08:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/geometry3d.hpp

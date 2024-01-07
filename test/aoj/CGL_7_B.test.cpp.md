@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/bisector.hpp
     title: geometry/bisector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
   - icon: ':heavy_check_mark:'
@@ -33,29 +33,29 @@ data:
   bundledCode: "#line 1 \"test/aoj/CGL_7_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\"\
     \n#define ERROR 0.000001\n\n#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <iostream>\n\
-    #include <vector>\n#include<numbers>\n\n// note that if T is of an integer type,\
-    \ std::abs does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\n\
-    std::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y;\n    is >> x\
-    \ >> y;\n    p = {x, y};\n    return is;\n}\n\nT dot(const Vec& a, const Vec&\
-    \ b) { return (std::conj(a) * b).real(); }\n\nT cross(const Vec& a, const Vec&\
-    \ b) { return (std::conj(a) * b).imag(); }\n\nconstexpr T PI = std::numbers::pi;\n\
-    constexpr T eps = 1e-10;\ninline bool eq(T a, T b) { return std::abs(a - b) <=\
-    \ eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a - b) <= eps; }\ninline\
-    \ bool lt(T a, T b) { return a < b - eps; }\ninline bool leq(T a, T b) { return\
-    \ a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n    Line() = default;\n \
-    \   Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2) {}\n    Vec dir() const\
-    \ { return p2 - p1; }\n};\n\nstruct Segment : Line {\n    using Line::Line;\n\
-    };\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle() = default;\n    Circle(const\
-    \ Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon = std::vector<Vec>;\n\nVec\
-    \ rot(const Vec& a, T ang) { return a * Vec(std::cos(ang), std::sin(ang)); }\n\
-    \nVec perp(const Vec& a) { return Vec(-a.imag(), a.real()); }\n\nVec projection(const\
-    \ Line& l, const Vec& p) {\n    return l.p1 + dot(p - l.p1, l.dir()) * l.dir()\
-    \ / std::norm(l.dir());\n}\n\nVec reflection(const Line& l, const Vec& p) {\n\
-    \    return T(2) * projection(l, p) - p;\n}\n\n// 0: collinear\n// 1: counter-clockwise\n\
-    // -1: clockwise\nint ccw(const Vec& a, const Vec& b, const Vec& c) {\n    if\
-    \ (eq(cross(b - a, c - a), 0)) return 0;\n    if (lt(cross(b - a, c - a), 0))\
-    \ return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>& pts) {\n\
-    \    std::sort(pts.begin(), pts.end(), [&](auto& p, auto& q) {\n        if ((p.imag()\
+    #include <numbers>\n#include <numeric>\n#include <vector>\n\n// note that if T\
+    \ is of an integer type, std::abs does not work\nusing T = double;\nusing Vec\
+    \ = std::complex<T>;\n\nstd::istream& operator>>(std::istream& is, Vec& p) {\n\
+    \    T x, y;\n    is >> x >> y;\n    p = {x, y};\n    return is;\n}\n\nT dot(const\
+    \ Vec& a, const Vec& b) { return (std::conj(a) * b).real(); }\n\nT cross(const\
+    \ Vec& a, const Vec& b) { return (std::conj(a) * b).imag(); }\n\nconstexpr T PI\
+    \ = std::numbers::pi_v<T>;\nconstexpr T eps = 1e-10;\ninline bool eq(T a, T b)\
+    \ { return std::abs(a - b) <= eps; }\ninline bool eq(Vec a, Vec b) { return std::abs(a\
+    \ - b) <= eps; }\ninline bool lt(T a, T b) { return a < b - eps; }\ninline bool\
+    \ leq(T a, T b) { return a <= b + eps; }\n\nstruct Line {\n    Vec p1, p2;\n \
+    \   Line() = default;\n    Line(const Vec& p1, const Vec& p2) : p1(p1), p2(p2)\
+    \ {}\n    Vec dir() const { return p2 - p1; }\n};\n\nstruct Segment : Line {\n\
+    \    using Line::Line;\n};\n\nstruct Circle {\n    Vec c;\n    T r;\n    Circle()\
+    \ = default;\n    Circle(const Vec& c, T r) : c(c), r(r) {}\n};\n\nusing Polygon\
+    \ = std::vector<Vec>;\n\nVec rot(const Vec& a, T ang) { return a * Vec(std::cos(ang),\
+    \ std::sin(ang)); }\n\nVec perp(const Vec& a) { return Vec(-a.imag(), a.real());\
+    \ }\n\nVec projection(const Line& l, const Vec& p) {\n    return l.p1 + dot(p\
+    \ - l.p1, l.dir()) * l.dir() / std::norm(l.dir());\n}\n\nVec reflection(const\
+    \ Line& l, const Vec& p) {\n    return T(2) * projection(l, p) - p;\n}\n\n// 0:\
+    \ collinear\n// 1: counter-clockwise\n// -1: clockwise\nint ccw(const Vec& a,\
+    \ const Vec& b, const Vec& c) {\n    if (eq(cross(b - a, c - a), 0)) return 0;\n\
+    \    if (lt(cross(b - a, c - a), 0)) return -1;\n    return 1;\n}\n\nvoid sort_by_arg(std::vector<Vec>&\
+    \ pts) {\n    std::ranges::sort(pts, [&](auto& p, auto& q) {\n        if ((p.imag()\
     \ < 0) != (q.imag() < 0)) return (p.imag() < 0);\n        if (cross(p, q) == 0)\
     \ {\n            if (p == Vec(0, 0))\n                return !(q.imag() < 0 ||\
     \ (q.imag() == 0 && q.real() > 0));\n            if (q == Vec(0, 0))\n       \
@@ -91,51 +91,52 @@ data:
     \ (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p - s.p1);\n    if (lt(dot(p\
     \ - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n    return std::abs(cross(p\
     \ - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const Segment& s, const\
-    \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min({dist(s,\
-    \ t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n#line 4 \"geometry/intersection.hpp\"\
-    \n\nVec intersection(const Line& l, const Line& m) {\n    assert(!eq(cross(l.dir(),\
-    \ m.dir()), 0));  // not parallel\n    Vec r = m.p1 - l.p1;\n    return l.p1 +\
-    \ cross(m.dir(), r) / cross(m.dir(), l.dir()) * l.dir();\n}\n\nstd::vector<Vec>\
-    \ intersection(const Circle& c, const Line& l) {\n    T d = dist(l, c.c);\n  \
-    \  if (lt(c.r, d)) return {};  // no intersection\n    Vec e1 = l.dir() / std::abs(l.dir());\n\
-    \    Vec e2 = perp(e1);\n    if (ccw(c.c, l.p1, l.p2) == 1) e2 *= -1;\n    if\
-    \ (eq(c.r, d)) return {c.c + d * e2};  // tangent\n    T t = std::sqrt(c.r * c.r\
-    \ - d * d);\n    return {c.c + d * e2 + t * e1, c.c + d * e2 - t * e1};\n}\n\n\
-    std::vector<Vec> intersection(const Circle& c1, const Circle& c2) {\n    T d =\
-    \ std::abs(c1.c - c2.c);\n    if (lt(c1.r + c2.r, d)) return {};  // outside\n\
-    \    Vec e1 = (c2.c - c1.c) / std::abs(c2.c - c1.c);\n    Vec e2 = perp(e1);\n\
-    \    if (lt(d, std::abs(c2.r - c1.r))) return {};                  // contain\n\
-    \    if (eq(d, std::abs(c2.r - c1.r))) return {c1.c + c1.r * e1};  // tangent\n\
-    \    T x = (c1.r * c1.r - c2.r * c2.r + d * d) / (2 * d);\n    T y = std::sqrt(c1.r\
-    \ * c1.r - x * x);\n    return {c1.c + x * e1 + y * e2, c1.c + x * e1 - y * e2};\n\
-    }\n\nT area_intersection(const Circle& c1, const Circle& c2) {\n    T d = std::abs(c2.c\
-    \ - c1.c);\n    if (leq(c1.r + c2.r, d)) return 0;    // outside\n    if (leq(d,\
-    \ std::abs(c2.r - c1.r))) {  // inside\n        T r = std::min(c1.r, c2.r);\n\
-    \        return PI * r * r;\n    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r\
-    \ * c1.r + d * d - c2.r * c2.r) / (2 * c1.r * d));\n    ans += c1.r * c1.r * (a\
-    \ - std::sin(a) * std::cos(a));\n    a = std::acos((c2.r * c2.r + d * d - c1.r\
-    \ * c1.r) / (2 * c2.r * d));\n    ans += c2.r * c2.r * (a - std::sin(a) * std::cos(a));\n\
-    \    return ans;\n}\n#line 4 \"geometry/bisector.hpp\"\n\nLine bisector(const\
-    \ Segment& s) {\n    auto m = (s.p1 + s.p2) / T(2);\n    return Line(m, m + Vec(-s.dir().imag(),\
-    \ s.dir().real()));\n}\n\nstd::pair<Line, Line> bisector(const Line& l, const\
-    \ Line& m) {\n    // parallel\n    if (eq(cross(l.dir(), m.dir()), 0)) {\n   \
-    \     auto n = Line(l.p1, l.p1 + perp(l.dir()));\n        auto p = intersection(n,\
-    \ m);\n        auto m = (l.p1 + p) / T(2);\n        return {Line(m, m + l.dir()),\
-    \ Line()};\n    }\n    auto p = intersection(l, m);\n    T ang = (std::arg(l.dir())\
-    \ + std::arg(m.dir())) / T(2);\n    auto b1 = Line(p, p + std::polar(T(1), ang));\n\
-    \    auto b2 = Line(p, p + std::polar(T(1), ang + PI / T(2)));\n    return {b1,\
-    \ b2};\n}\n#line 5 \"geometry/triangle.hpp\"\n\nVec centroid(const Vec& A, const\
-    \ Vec& B, const Vec& C) {\n    assert(ccw(A, B, C) != 0);\n    return (A + B +\
-    \ C) / T(3);\n}\n\nVec incenter(const Vec& A, const Vec& B, const Vec& C) {\n\
-    \    assert(ccw(A, B, C) != 0);\n    T a = std::abs(B - C);\n    T b = std::abs(C\
-    \ - A);\n    T c = std::abs(A - B);\n    return (a*A + b*B + c*C) / (a + b + c);\n\
-    }\n\nVec circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
+    \ Segment& t) {\n    if (intersect(s, t)) return T(0);\n    return std::min(\n\
+    \        {dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});\n}\n#line\
+    \ 4 \"geometry/intersection.hpp\"\n\nVec intersection(const Line& l, const Line&\
+    \ m) {\n    assert(!eq(cross(l.dir(), m.dir()), 0));  // not parallel\n    Vec\
+    \ r = m.p1 - l.p1;\n    return l.p1 + cross(m.dir(), r) / cross(m.dir(), l.dir())\
+    \ * l.dir();\n}\n\nstd::vector<Vec> intersection(const Circle& c, const Line&\
+    \ l) {\n    T d = dist(l, c.c);\n    if (lt(c.r, d)) return {};  // no intersection\n\
+    \    Vec e1 = l.dir() / std::abs(l.dir());\n    Vec e2 = perp(e1);\n    if (ccw(c.c,\
+    \ l.p1, l.p2) == 1) e2 *= -1;\n    if (eq(c.r, d)) return {c.c + d * e2};  //\
+    \ tangent\n    T t = std::sqrt(c.r * c.r - d * d);\n    return {c.c + d * e2 +\
+    \ t * e1, c.c + d * e2 - t * e1};\n}\n\nstd::vector<Vec> intersection(const Circle&\
+    \ c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(c1.r +\
+    \ c2.r, d)) return {};  // outside\n    Vec e1 = (c2.c - c1.c) / std::abs(c2.c\
+    \ - c1.c);\n    Vec e2 = perp(e1);\n    if (lt(d, std::abs(c2.r - c1.r))) return\
+    \ {};                  // contain\n    if (eq(d, std::abs(c2.r - c1.r))) return\
+    \ {c1.c + c1.r * e1};  // tangent\n    T x = (c1.r * c1.r - c2.r * c2.r + d *\
+    \ d) / (2 * d);\n    T y = std::sqrt(c1.r * c1.r - x * x);\n    return {c1.c +\
+    \ x * e1 + y * e2, c1.c + x * e1 - y * e2};\n}\n\nT area_intersection(const Circle&\
+    \ c1, const Circle& c2) {\n    T d = std::abs(c2.c - c1.c);\n    if (leq(c1.r\
+    \ + c2.r, d)) return 0;    // outside\n    if (leq(d, std::abs(c2.r - c1.r)))\
+    \ {  // inside\n        T r = std::min(c1.r, c2.r);\n        return PI * r * r;\n\
+    \    }\n    T ans = 0;\n    T a;\n    a = std::acos((c1.r * c1.r + d * d - c2.r\
+    \ * c2.r) / (2 * c1.r * d));\n    ans += c1.r * c1.r * (a - std::sin(a) * std::cos(a));\n\
+    \    a = std::acos((c2.r * c2.r + d * d - c1.r * c1.r) / (2 * c2.r * d));\n  \
+    \  ans += c2.r * c2.r * (a - std::sin(a) * std::cos(a));\n    return ans;\n}\n\
+    #line 4 \"geometry/bisector.hpp\"\n\nLine bisector(const Segment& s) {\n    auto\
+    \ m = (s.p1 + s.p2) / T(2);\n    return Line(m, m + Vec(-s.dir().imag(), s.dir().real()));\n\
+    }\n\nstd::pair<Line, Line> bisector(const Line& l, const Line& m) {\n    // parallel\n\
+    \    if (eq(cross(l.dir(), m.dir()), 0)) {\n        auto n = Line(l.p1, l.p1 +\
+    \ perp(l.dir()));\n        auto p = intersection(n, m);\n        auto m = (l.p1\
+    \ + p) / T(2);\n        return {Line(m, m + l.dir()), Line()};\n    }\n    auto\
+    \ p = intersection(l, m);\n    T ang = (std::arg(l.dir()) + std::arg(m.dir()))\
+    \ / T(2);\n    auto b1 = Line(p, p + std::polar(T(1), ang));\n    auto b2 = Line(p,\
+    \ p + std::polar(T(1), ang + PI / T(2)));\n    return {b1, b2};\n}\n#line 5 \"\
+    geometry/triangle.hpp\"\n\nVec centroid(const Vec& A, const Vec& B, const Vec&\
+    \ C) {\n    assert(ccw(A, B, C) != 0);\n    return (A + B + C) / T(3);\n}\n\n\
+    Vec incenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A, B,\
+    \ C) != 0);\n    T a = std::abs(B - C);\n    T b = std::abs(C - A);\n    T c =\
+    \ std::abs(A - B);\n    return (a * A + b * B + c * C) / (a + b + c);\n}\n\nVec\
+    \ circumcenter(const Vec& A, const Vec& B, const Vec& C) {\n    assert(ccw(A,\
     \ B, C) != 0);\n    return intersection(bisector(Segment(A, B)), bisector(Segment(A,\
     \ C)));\n}\n\n// large error but beautiful\n// Vec circumcenter(const Vec& A,\
     \ const Vec& B, const Vec& C) {\n//     assert(ccw(A, B, C) != 0);\n//     Vec\
     \ p = C - B, q = A - C, r = B - A;\n//     T a = std::norm(p) * dot(q, r);\n//\
     \     T b = std::norm(q) * dot(r, p);\n//     T c = std::norm(r) * dot(p, q);\n\
-    //     return (a*A + b*B + c*C) / (a + b + c);\n// }\n\n#line 7 \"test/aoj/CGL_7_B.test.cpp\"\
+    //     return (a*A + b*B + c*C) / (a + b + c);\n// }\n#line 7 \"test/aoj/CGL_7_B.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n\n    Vec p1,\
     \ p2, p3;\n    cin >> p1 >> p2 >> p3;\n    auto c = incenter(p1, p2, p3);\n  \
@@ -154,12 +155,12 @@ data:
   - geometry/dist.hpp
   - geometry/intersect.hpp
   - geometry/triangle.hpp
-  - geometry/intersection.hpp
   - geometry/bisector.hpp
+  - geometry/intersection.hpp
   isVerificationFile: true
   path: test/aoj/CGL_7_B.test.cpp
   requiredBy: []
-  timestamp: '2024-01-06 20:26:40+09:00'
+  timestamp: '2024-01-08 01:08:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_B.test.cpp

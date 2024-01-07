@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/euler_tour_tree.hpp
     title: Euler Tour Tree
   _extendedRequiredBy: []
@@ -73,26 +73,26 @@ data:
     \ r->par = nullptr;\n        return {l, r};\n    }\n\n    static std::tuple<node_ptr,\
     \ node_ptr, node_ptr> split(node_ptr s,\n                                    \
     \                      node_ptr t) {\n        auto [a, b] = split2(s);\n     \
-    \   auto [c, d] = split2(t);\n        if (same(a, t))\n            return {c,\
-    \ d, b};\n        else\n            return {a, c, d};\n    }\n\n    static void\
-    \ rotate(node_ptr t, bool b) {\n        node_ptr p = t->par, g = p->par;\n   \
-    \     p->ch[1 - b] = t->ch[b];\n        if (p->ch[1 - b]) t->ch[b]->par = p;\n\
-    \        t->ch[b] = p;\n        p->par = t;\n        recalc(p);\n        recalc(t);\n\
-    \        t->par = g;\n        if (t->par) {\n            if (g->ch[0] == p)\n\
-    \                g->ch[0] = t;\n            else\n                g->ch[1] = t;\n\
-    \            recalc(g);\n        }\n    }\n\n    static void splay(node_ptr t)\
-    \ {\n        push(t);\n        while (t->par) {\n            auto p = t->par,\
-    \ g = p->par;\n            if (!g) {\n                push(p);\n             \
-    \   push(t);\n                rotate(t, p->ch[0] == t);\n            } else {\n\
-    \                push(g);\n                push(p);\n                push(t);\n\
-    \                bool b = g->ch[0] == p;\n                if (p->ch[1 - b] ==\
-    \ t) {\n                    rotate(p, b);\n                    rotate(t, b);\n\
-    \                } else {\n                    rotate(t, 1 - b);\n           \
-    \         rotate(t, b);\n                }\n            }\n        }\n    }\n\
-    };\n#line 7 \"test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\nusing\
-    \ namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = ll;\n\
-    \    static T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n\
-    };\n\nll act(ll a, ll b) { return a + b; }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \   if (same(a, t)) {\n            auto [c, d] = split2(t);\n            return\
+    \ {c, d, b};\n        } else {\n            auto [c, d] = split2(t);\n       \
+    \     return {a, c, d};\n        }\n    }\n\n    static void rotate(node_ptr t,\
+    \ bool b) {\n        node_ptr p = t->par, g = p->par;\n        p->ch[1 - b] =\
+    \ t->ch[b];\n        if (p->ch[1 - b]) t->ch[b]->par = p;\n        t->ch[b] =\
+    \ p;\n        p->par = t;\n        recalc(p);\n        recalc(t);\n        t->par\
+    \ = g;\n        if (t->par) {\n            if (g->ch[0] == p)\n              \
+    \  g->ch[0] = t;\n            else\n                g->ch[1] = t;\n          \
+    \  recalc(g);\n        }\n    }\n\n    static void splay(node_ptr t) {\n     \
+    \   push(t);\n        while (t->par) {\n            auto p = t->par, g = p->par;\n\
+    \            if (!g) {\n                push(p);\n                push(t);\n \
+    \               rotate(t, p->ch[0] == t);\n            } else {\n            \
+    \    push(g);\n                push(p);\n                push(t);\n          \
+    \      bool b = g->ch[0] == p;\n                if (p->ch[1 - b] == t) {\n   \
+    \                 rotate(p, b);\n                    rotate(t, b);\n         \
+    \       } else {\n                    rotate(t, 1 - b);\n                    rotate(t,\
+    \ b);\n                }\n            }\n        }\n    }\n};\n#line 7 \"test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    \nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using\
+    \ T = ll;\n    static T id() { return 0; }\n    static T op(T a, T b) { return\
+    \ a + b; }\n};\n\nll act(ll a, ll b) { return a + b; }\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    EulerTourTree<AddMonoid,\
     \ AddMonoid, act> ett(N);\n    for (int i = 0; i < N; ++i) {\n        int a;\n\
     \        cin >> a;\n        ett.update(i, a);\n    }\n    for (int i = 0; i <\
@@ -124,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-01-08 01:08:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
