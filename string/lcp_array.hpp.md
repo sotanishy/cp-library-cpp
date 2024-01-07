@@ -2,24 +2,24 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: Longest Common Substring
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/longest_common_substring.test.cpp
     title: test/yosupo/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/number_of_substrings.test.cpp
     title: test/yosupo/number_of_substrings.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"string/lcp_array.cpp\"\n#include <string>\n#include <vector>\n\
+  bundledCode: "#line 2 \"string/lcp_array.hpp\"\n#include <string>\n#include <vector>\n\
     \ntemplate <typename T>\nstd::vector<int> lcp_array(const std::vector<T>& s,\n\
-    \                           const std::vector<int>& sa) {\n    int n = s.size();\n\
+    \                           const std::vector<int>& sa) {\n    const int n = s.size();\n\
     \    std::vector<int> rank(n);\n    for (int i = 0; i < n; ++i) rank[sa[i]] =\
     \ i;\n    int h = 0;\n    std::vector<int> lcp(n - 1);\n    for (int i = 0; i\
     \ < n; ++i) {\n        if (h > 0) --h;\n        if (rank[i] == 0) continue;\n\
@@ -29,7 +29,7 @@ data:
     \ sa) {\n    return lcp_array(std::vector<char>(s.begin(), s.end()), sa);\n}\n"
   code: "#pragma once\n#include <string>\n#include <vector>\n\ntemplate <typename\
     \ T>\nstd::vector<int> lcp_array(const std::vector<T>& s,\n                  \
-    \         const std::vector<int>& sa) {\n    int n = s.size();\n    std::vector<int>\
+    \         const std::vector<int>& sa) {\n    const int n = s.size();\n    std::vector<int>\
     \ rank(n);\n    for (int i = 0; i < n; ++i) rank[sa[i]] = i;\n    int h = 0;\n\
     \    std::vector<int> lcp(n - 1);\n    for (int i = 0; i < n; ++i) {\n       \
     \ if (h > 0) --h;\n        if (rank[i] == 0) continue;\n        int j = sa[rank[i]\
@@ -39,15 +39,15 @@ data:
     \ s.end()), sa);\n}"
   dependsOn: []
   isVerificationFile: false
-  path: string/lcp_array.cpp
+  path: string/lcp_array.hpp
   requiredBy:
   - string/longest_common_substring.hpp
-  timestamp: '2023-04-08 14:20:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-07 22:05:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/longest_common_substring.test.cpp
   - test/yosupo/number_of_substrings.test.cpp
-documentation_of: string/lcp_array.cpp
+documentation_of: string/lcp_array.hpp
 layout: document
 title: Longest Common Prefix Array
 ---

@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/persistent_queue.hpp
     title: Persistent Queue
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/persistent_union_find.hpp
     title: Persistent Union Find
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_queue.test.cpp
     title: test/yosupo/persistent_queue.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_unionfind.test.cpp
     title: test/yosupo/persistent_unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/persistent_array.hpp\"\n#include <memory>\n\
@@ -57,7 +57,7 @@ data:
   - data-structure/unionfind/persistent_union_find.hpp
   - data-structure/persistent_queue.hpp
   timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/persistent_unionfind.test.cpp
   - test/yosupo/persistent_queue.test.cpp

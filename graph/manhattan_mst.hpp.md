@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/segtree/segment_tree.hpp
     title: Segment Tree
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/manhattan_mst.hpp\"\n#include <algorithm>\n#include\
@@ -160,7 +160,7 @@ data:
   path: graph/manhattan_mst.hpp
   requiredBy: []
   timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp
 documentation_of: graph/manhattan_mst.hpp

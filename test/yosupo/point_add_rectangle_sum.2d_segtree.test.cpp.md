@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-structure/segtree/segment_tree.hpp
     title: Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree_2d.hpp
     title: 2D Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -139,7 +139,7 @@ data:
   path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
   requiredBy: []
   timestamp: '2024-01-07 21:12:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
 layout: document

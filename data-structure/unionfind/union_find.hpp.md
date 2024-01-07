@@ -5,13 +5,13 @@ data:
   - icon: ':x:'
     path: graph/junction_tree.hpp
     title: Junction Tree (Width 2)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.cpp
     title: Minimum Spanning Arborescence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedVerifiedWith:
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/directedmst.test.cpp
     title: test/yosupo/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
   - icon: ':x:'

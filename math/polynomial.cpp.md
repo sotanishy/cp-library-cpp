@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/partition_function.hpp
     title: Partition Function
   - icon: ':x:'
@@ -63,10 +63,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.test.cpp
     title: test/yosupo/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/partition_function.test.cpp
     title: test/yosupo/partition_function.test.cpp
   - icon: ':x:'

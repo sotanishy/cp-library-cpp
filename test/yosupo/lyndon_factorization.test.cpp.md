@@ -15,7 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/lyndon_factorization
   bundledCode: "#line 1 \"test/yosupo/lyndon_factorization.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/lyndon_factorization\"\n\n#line 1 \"string/lyndon_factorization.hpp\"\
+    \ \"https://judge.yosupo.jp/problem/lyndon_factorization\"\n\n#line 2 \"string/lyndon_factorization.hpp\"\
     \n#include <string>\n#include <vector>\n\nstd::vector<int> lyndon_factorization(const\
     \ std::string& s) {\n    const int n = s.size();\n    std::vector<int> res;\n\
     \    for (int i = 0; i < n;) {\n        int j = i + 1, k = i;\n        while (j\
@@ -39,7 +39,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/lyndon_factorization.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 22:50:39+09:00'
+  timestamp: '2024-01-07 22:05:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/lyndon_factorization.test.cpp

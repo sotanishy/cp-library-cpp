@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -53,10 +53,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/partition_refinement.hpp
       title: Partition Refinement
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/persistent_array.hpp
       title: Persistent Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/persistent_queue.hpp
       title: Persistent Queue
     - icon: ':warning:'
@@ -140,10 +140,10 @@ data:
     - icon: ':x:'
       path: data-structure/segtree/persistent_segment_tree.hpp
       title: Persistent Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/segtree/segment_tree.hpp
       title: Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_2d.hpp
       title: 2D Segment Tree
     - icon: ':x:'
@@ -160,7 +160,7 @@ data:
     - icon: ':warning:'
       path: data-structure/unionfind/partially_persistent_union_find.hpp
       title: Partially Persistent Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.hpp
       title: Persistent Union Find
     - icon: ':heavy_check_mark:'
@@ -279,7 +279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.cpp
       title: Dominator Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan Minimum Spanning Tree
     - icon: ':heavy_check_mark:'
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_steiner_tree.hpp
       title: Minimum Steiner Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
     - icon: ':heavy_check_mark:'
@@ -344,7 +344,7 @@ data:
       title: 2-Edge-Connected Components
   - name: math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/arbitrary_modint.hpp
       title: Arbitrary Mod int
     - icon: ':heavy_check_mark:'
@@ -428,7 +428,7 @@ data:
     - icon: ':warning:'
       path: math/moebius.hpp
       title: "M\xF6bius Function"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
     - icon: ':question:'
@@ -437,7 +437,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/partition_function.hpp
       title: Partition Function
     - icon: ':question:'
@@ -586,47 +586,47 @@ data:
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
-      path: string/aho_corasick.cpp
+      path: string/aho_corasick.hpp
       title: Aho-Corasick Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/enumerate_runs.hpp
       title: Enumerate Runs
     - icon: ':heavy_check_mark:'
-      path: string/kmp.cpp
+      path: string/kmp.hpp
       title: Knuth-Morris-Pratt Algorithm
-    - icon: ':heavy_check_mark:'
-      path: string/lcp_array.cpp
+    - icon: ':x:'
+      path: string/lcp_array.hpp
       title: Longest Common Prefix Array
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/longest_common_substring.hpp
       title: Longest Common Substring
     - icon: ':heavy_check_mark:'
       path: string/lyndon_factorization.hpp
       title: Lyndon Factorization
     - icon: ':heavy_check_mark:'
-      path: string/manacher.cpp
+      path: string/manacher.hpp
       title: Manacher's Algorithm
     - icon: ':warning:'
       path: string/min_cyclic_shift.hpp
-      title: Minimum Cyclic String
-    - icon: ':heavy_check_mark:'
+      title: Minimum Cyclic Shift
+    - icon: ':x:'
       path: string/palindromic_tree.hpp
       title: Palindromic Tree
     - icon: ':heavy_check_mark:'
       path: string/pattern_search_2d.hpp
       title: 2D Pattern Search (Baker-Bird Algorithm)
-    - icon: ':heavy_check_mark:'
-      path: string/rolling_hash.cpp
+    - icon: ':question:'
+      path: string/rolling_hash.hpp
       title: Rolling Hash
-    - icon: ':heavy_check_mark:'
-      path: string/suffix_array.cpp
+    - icon: ':x:'
+      path: string/suffix_array.hpp
       title: Suffix Array
     - icon: ':warning:'
-      path: string/trie.cpp
+      path: string/trie.hpp
       title: Trie
-    - icon: ':heavy_check_mark:'
-      path: string/z_array.cpp
-      title: Z Array
+    - icon: ':x:'
+      path: string/z_array.hpp
+      title: string/z_array.hpp
   - name: tree
     pages:
     - icon: ':warning:'
@@ -695,7 +695,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/2292.test.cpp
       title: test/aoj/2292.test.cpp
     - icon: ':heavy_check_mark:'
@@ -713,9 +713,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
       title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_14_B.suffix_array.test.cpp
-      title: test/aoj/ALDS1_14_B.suffix_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_C.test.cpp
       title: test/aoj/ALDS1_14_C.test.cpp
@@ -1033,7 +1030,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/longest_common_substring.test.cpp
       title: test/yosupo/longest_common_substring.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1042,13 +1039,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lyndon_factorization.test.cpp
       title: test/yosupo/lyndon_factorization.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/manhattanmst.test.cpp
       title: test/yosupo/manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_product.test.cpp
       title: test/yosupo/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1057,31 +1054,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/min_cost_b_flow.test.cpp
       title: test/yosupo/min_cost_b_flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/multipoint_evaluation.test.cpp
       title: test/yosupo/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/nim_product_64.test.cpp
       title: test/yosupo/nim_product_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_subsequences.test.cpp
       title: test/yosupo/number_of_subsequences.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/partition_function.test.cpp
       title: test/yosupo/partition_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_queue.test.cpp
       title: test/yosupo/persistent_queue.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1147,7 +1144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
       title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/runenumerate.test.cpp
       title: test/yosupo/runenumerate.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1189,7 +1186,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/subset_convolution.test.cpp
       title: test/yosupo/subset_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1237,7 +1234,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp
 layout: toppage

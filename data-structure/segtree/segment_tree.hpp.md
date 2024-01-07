@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree_2d.hpp
     title: 2D Segment Tree
   - icon: ':x:'
     path: data-structure/segtree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree.hpp\"\n#include <algorithm>\n\
@@ -113,7 +113,7 @@ data:
   - data-structure/segtree/segment_tree_2d.hpp
   - graph/manhattan_mst.hpp
   timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp

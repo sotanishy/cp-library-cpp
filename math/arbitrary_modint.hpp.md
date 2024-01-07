@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/montmort_number_mod.test.cpp
     title: test/yosupo/montmort_number_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Arbitrary Mod int
     links: []
@@ -77,7 +77,7 @@ data:
   path: math/arbitrary_modint.hpp
   requiredBy: []
   timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/montmort_number_mod.test.cpp

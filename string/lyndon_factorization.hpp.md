@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/lyndon_factorization.hpp\"\n#include <string>\n#include\
+  bundledCode: "#line 2 \"string/lyndon_factorization.hpp\"\n#include <string>\n#include\
     \ <vector>\n\nstd::vector<int> lyndon_factorization(const std::string& s) {\n\
     \    const int n = s.size();\n    std::vector<int> res;\n    for (int i = 0; i\
     \ < n;) {\n        int j = i + 1, k = i;\n        while (j < n && s[k] <= s[j])\
@@ -19,7 +19,7 @@ data:
     \ {\n                ++k;\n            }\n            ++j;\n        }\n      \
     \  while (i <= k) {\n            res.push_back(i);\n            i += j - k;\n\
     \        }\n    }\n    res.push_back(n);\n    return res;\n}\n"
-  code: "#include <string>\n#include <vector>\n\nstd::vector<int> lyndon_factorization(const\
+  code: "#pragma once\n#include <string>\n#include <vector>\n\nstd::vector<int> lyndon_factorization(const\
     \ std::string& s) {\n    const int n = s.size();\n    std::vector<int> res;\n\
     \    for (int i = 0; i < n;) {\n        int j = i + 1, k = i;\n        while (j\
     \ < n && s[k] <= s[j]) {\n            if (s[k] < s[j]) {\n                k =\
@@ -30,7 +30,7 @@ data:
   isVerificationFile: false
   path: string/lyndon_factorization.hpp
   requiredBy: []
-  timestamp: '2023-11-26 16:39:17+09:00'
+  timestamp: '2024-01-07 22:05:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lyndon_factorization.test.cpp

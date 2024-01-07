@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/factorial.test.cpp
     title: test/yosupo/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
   - icon: ':x:'

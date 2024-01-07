@@ -7,26 +7,26 @@ data:
     path: test/yosupo/enumerate_palindromes.test.cpp
     title: test/yosupo/enumerate_palindromes.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"string/manacher.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    #include <string>\n\nstd::vector<int> manacher(const std::string& s) {\n    int\
-    \ n = s.size();\n    std::vector<int> vs(2 * n - 1);\n    // odd length\n    for\
-    \ (int i = 0, l = 0, r = -1; i < n; ++i) {\n        int k = (i > r) ? 1 : std::min(vs[2\
-    \ * (l + r - i)], r - i + 1);\n        while (0 <= i - k && i + k < n && s[i -\
-    \ k] == s[i + k]) ++k;\n        vs[2 * i] = k;\n        --k;\n        if (i +\
-    \ k > r) {\n            l = i - k;\n            r = i + k;\n        }\n    }\n\
-    \    // even length\n    for (int i = 1, l = 0, r = -1; i < n; ++i) {\n      \
-    \  int k = (i > r) ? 0 : std::min(vs[2 * (l + r - i + 1) - 1], r - i + 1);\n \
-    \       while (0 <= i - k - 1 && i + k < n && s[i - k - 1] == s[i + k]) ++k;\n\
-    \        vs[2 * i - 1] = k;\n        --k;\n        if (i + k > r) {\n        \
-    \    l = i - k - 1;\n            r = i + k;\n        }\n    }\n    return vs;\n\
-    }\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include <string>\n\
-    \nstd::vector<int> manacher(const std::string& s) {\n    int n = s.size();\n \
-    \   std::vector<int> vs(2 * n - 1);\n    // odd length\n    for (int i = 0, l\
+  bundledCode: "#line 2 \"string/manacher.hpp\"\n#include <algorithm>\n#include <string>\n\
+    #include <vector>\n\nstd::vector<int> manacher(const std::string& s) {\n    const\
+    \ int n = s.size();\n    std::vector<int> vs(2 * n - 1);\n    // odd length\n\
+    \    for (int i = 0, l = 0, r = -1; i < n; ++i) {\n        int k = (i > r) ? 1\
+    \ : std::min(vs[2 * (l + r - i)], r - i + 1);\n        while (0 <= i - k && i\
+    \ + k < n && s[i - k] == s[i + k]) ++k;\n        vs[2 * i] = k;\n        --k;\n\
+    \        if (i + k > r) {\n            l = i - k;\n            r = i + k;\n  \
+    \      }\n    }\n    // even length\n    for (int i = 1, l = 0, r = -1; i < n;\
+    \ ++i) {\n        int k = (i > r) ? 0 : std::min(vs[2 * (l + r - i + 1) - 1],\
+    \ r - i + 1);\n        while (0 <= i - k - 1 && i + k < n && s[i - k - 1] == s[i\
+    \ + k]) ++k;\n        vs[2 * i - 1] = k;\n        --k;\n        if (i + k > r)\
+    \ {\n            l = i - k - 1;\n            r = i + k;\n        }\n    }\n  \
+    \  return vs;\n}\n"
+  code: "#pragma once\n#include <algorithm>\n#include <string>\n#include <vector>\n\
+    \nstd::vector<int> manacher(const std::string& s) {\n    const int n = s.size();\n\
+    \    std::vector<int> vs(2 * n - 1);\n    // odd length\n    for (int i = 0, l\
     \ = 0, r = -1; i < n; ++i) {\n        int k = (i > r) ? 1 : std::min(vs[2 * (l\
     \ + r - i)], r - i + 1);\n        while (0 <= i - k && i + k < n && s[i - k] ==\
     \ s[i + k]) ++k;\n        vs[2 * i] = k;\n        --k;\n        if (i + k > r)\
@@ -38,13 +38,13 @@ data:
     \ - 1;\n            r = i + k;\n        }\n    }\n    return vs;\n}"
   dependsOn: []
   isVerificationFile: false
-  path: string/manacher.cpp
+  path: string/manacher.hpp
   requiredBy: []
-  timestamp: '2021-01-29 21:47:21+09:00'
+  timestamp: '2024-01-07 22:05:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerate_palindromes.test.cpp
-documentation_of: string/manacher.cpp
+documentation_of: string/manacher.hpp
 layout: document
 title: Manacher's Algorithm
 ---

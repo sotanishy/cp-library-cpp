@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/arbitrary_modint.hpp
     title: Arbitrary Mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/montmort.cpp
     title: Monmort Number
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
@@ -70,7 +70,7 @@ data:
   path: test/yosupo/montmort_number_mod.test.cpp
   requiredBy: []
   timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/montmort_number_mod.test.cpp
 layout: document

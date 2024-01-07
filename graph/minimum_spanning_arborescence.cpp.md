@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.cpp
     title: graph/edge.cpp
   _extendedRequiredBy: []
