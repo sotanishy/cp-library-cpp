@@ -30,5 +30,5 @@ XOR セグメント木は，通常のセグメント木の操作の際に， ind
 
 ## Reference
 
-- verify (`XorSegmentTree`): [https://yukicoder.me/submissions/847011](https://yukicoder.me/submissions/847011)
+- verify (`XorSegmentTree`): [https://yukicoder.me/submissions/942181](https://yukicoder.me/submissions/942181)
 - verify (`XorSegmentTreeCommutative`): [https://codeforces.com/contest/1401/submission/197492564](https://codeforces.com/contest/1401/submission/197492564)

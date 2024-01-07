@@ -22,7 +22,3 @@ documentation_of: ../../../data-structure/segtree/segment_tree_2d.hpp
 - `T fold(X sx, X tx, Y sy, Y ty)`
     - 矩形領域 $[sx, tx) \times [sy, ty)$ 内の点の重みの積を取得する
     - 時間計算量: $O((\log n)^2)$
-
-## Reference
-
-- verify: [https://atcoder.jp/contests/abc266/submissions/34414646](https://atcoder.jp/contests/abc266/submissions/34414646)

@@ -1,6 +1,6 @@
 ---
 title: Dynamic Segment Tree
-documentation_of: ../../../data-structure/segtree/dynamic_segment_tree.cpp
+documentation_of: ../../../data-structure/segtree/dynamic_segment_tree.hpp
 ---
 
 ## Description

@@ -3,9 +3,9 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/segtree/segment_tree.cpp"
+#include "../../data-structure/segtree/segment_tree.hpp"
 #include "../../data-structure/segtree/sortable_segment_tree.hpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;

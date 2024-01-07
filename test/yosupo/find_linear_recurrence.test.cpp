@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/find_linear_recurrence"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/berlekamp_massey.cpp"
 
 

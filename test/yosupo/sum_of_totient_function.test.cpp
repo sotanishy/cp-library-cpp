@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
-// #include "../../math/modint.cpp"
+// #include "../../math/modint.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

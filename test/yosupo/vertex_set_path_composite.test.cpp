@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 
 
-#include "../../math/modint.cpp"
-#include "../../data-structure/segtree/segment_tree.cpp"
+#include "../../math/modint.hpp"
+#include "../../data-structure/segtree/segment_tree.hpp"
 #include "../../tree/hld.cpp"
 
 #include <bits/stdc++.h>

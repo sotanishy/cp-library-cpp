@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 
-#include "../../data-structure/segtree/persistent_segment_tree.cpp"
-#include "../../misc/compress.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/persistent_segment_tree.hpp"
+#include "../../misc/compress.cpp"
 using namespace std;
 using ll = long long;
 
@@ -51,7 +51,7 @@ int main() {
     vector<PersistentSegmentTree<AddMonoid>> st(M);
     st[0] = PersistentSegmentTree<AddMonoid>(M);
     for (int x = 0; x < M; ++x) {
-        if (x > 0) st[x] = st[x-1];
+        if (x > 0) st[x] = st[x - 1];
         auto tmp = st.back();
         for (auto& p : points[x]) {
             int y, w;

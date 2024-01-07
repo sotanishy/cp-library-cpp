@@ -1,21 +1,21 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <vector>
 
 template <typename M>
 class SegmentTree {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     SegmentTree() = default;
     explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}
-    explicit SegmentTree(const std::vector<T>& v) {
-        size = 1;
-        while (size < (int)v.size()) size <<= 1;
-        node.resize(2 * size, M::id());
-        std::copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; --i)
+    explicit SegmentTree(const std::vector<T>& v)
+        : size(std::bit_ceil(v.size())), node(2 * size, M::id()) {
+        std::ranges::copy(v, node.begin() + size);
+        for (int i = size - 1; i > 0; --i) {
             node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        }
     }
 
     T operator[](int k) const { return node[k + size]; }
@@ -44,10 +44,11 @@ class SegmentTree {
                 if (cond(nv)) {
                     while (l < size) {
                         nv = M::op(v, node[2 * l]);
-                        if (cond(nv))
+                        if (cond(nv)) {
                             l = 2 * l;
-                        else
+                        } else {
                             v = nv, l = 2 * l + 1;
+                        }
                     }
                     return l + 1 - size;
                 }
@@ -68,10 +69,11 @@ class SegmentTree {
                 if (cond(nv)) {
                     while (r < size) {
                         nv = M::op(node[2 * r + 1], v);
-                        if (cond(nv))
+                        if (cond(nv)) {
                             r = 2 * r + 1;
-                        else
+                        } else {
                             v = nv, r = 2 * r;
+                        }
                     }
                     return r - size;
                 }

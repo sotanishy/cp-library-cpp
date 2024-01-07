@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/polynomial_interpolation"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/lagrange_polynomial.hpp"
 
 #include <bits/stdc++.h>

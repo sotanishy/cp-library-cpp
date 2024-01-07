@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../convolution/ntt.hpp"
 
 #include <bits/stdc++.h>

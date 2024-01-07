@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/stirling_second.hpp"
 
 #include <bits/stdc++.h>

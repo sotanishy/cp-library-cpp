@@ -1,25 +1,24 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <vector>
 
 template <typename M>
 class XorSegmentTree {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     XorSegmentTree() = default;
     explicit XorSegmentTree(int n)
         : XorSegmentTree(std::vector<T>(n, M::id())) {}
-    explicit XorSegmentTree(const std::vector<T>& v) {
-        n = 0, size = 1;
-        while (size < (int)v.size()) size <<= 1, ++n;
-        table.resize(2 * size);
-
+    explicit XorSegmentTree(const std::vector<T>& v)
+        : size(std::bit_ceil(v.size())),
+          n(std::bit_width(size) - 1),
+          table(2 * size),
+          half(1 << ((n + 1) / 2)) {
         for (int k = 0; k < size; ++k) {
             table[size + k].resize(1, k < (int)v.size() ? v[k] : M::id());
         }
-        half = 1 << ((n + 1) / 2);
-
         for (int k = size - 1; k >= half; --k) pull(k);
     }
 
@@ -34,10 +33,12 @@ class XorSegmentTree {
         int i = 0;
         for (l += size, r += size; l < r && l > 2 * half;
              l >>= 1, r >>= 1, ++i) {
-            if (l & 1)
+            if (l & 1) {
                 vl = M::op(vl, table[l++ ^ (x >> i)][x & ((1 << i) - 1)]);
-            if (r & 1)
+            }
+            if (r & 1) {
                 vr = M::op(table[--r ^ (x >> i)][x & ((1 << i) - 1)], vr);
+            }
         }
         for (int k = l; k < r; ++k) {
             vl = M::op(vl, table[k ^ (x >> i)][x & ((1 << i) - 1)]);
@@ -50,7 +51,7 @@ class XorSegmentTree {
     std::vector<std::vector<T>> table;
 
     void pull(int k) {
-        int i = n - (31 - __builtin_clz(k));
+        int i = n - std::bit_width(k) + 1;
         table[k].resize(1 << i);
         for (int x = 0; x < (1 << i); ++x) {
             T vl = table[2 * k][x & ~(1 << (i - 1))];
@@ -63,20 +64,19 @@ class XorSegmentTree {
 
 template <typename M>
 class XorSegmentTreeCommutative {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     XorSegmentTreeCommutative() = default;
     explicit XorSegmentTreeCommutative(int n)
         : XorSegmentTreeCommutative(std::vector<T>(n, M::id())) {}
-    explicit XorSegmentTreeCommutative(const std::vector<T>& v) {
-        size = 1;
-        while (size < (int)v.size()) size <<= 1;
-        node.resize(2 * size, M::id());
-        std::copy(v.begin(), v.end(), node.begin() + size);
+    explicit XorSegmentTreeCommutative(const std::vector<T>& v)
+        : size(std::bit_ceil(v.size())), node(2 * size, M::id()) {
+        std::ranges::copy(v, node.begin() + size);
 
-        for (int k = size - 1; k > 0; --k)
+        for (int k = size - 1; k > 0; --k) {
             node[k] = M::op(node[2 * k], node[2 * k + 1]);
+        }
     }
 
     void update(int k, const T& x) {

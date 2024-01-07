@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-#include "../data-structure/segtree/lazy_segment_tree.cpp"
+#include "../data-structure/segtree/lazy_segment_tree.hpp"
 
 struct MinMonoid {
     using T = int;

@@ -1,29 +1,24 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
-
-#include "../../data-structure/segtree/dynamic_lazy_segment_tree.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/dynamic_lazy_segment_tree.hpp"
 using namespace std;
 
 struct M {
     using T = int;
     static T id() { return (1u << 31) - 1; }
-    static T op(T a, T b) {
-        return min(a, b);
-    }
+    static T op(T a, T b) { return min(a, b); }
 };
 
 struct O {
     using T = int;
     static T id() { return (1u << 31) - 1; }
-    static T op(T a, T b) {
-        return b;
-    }
+    static T op(T a, T b) { return b; }
 };
 
-M::T act(M::T a, O::T b) {
-    return b;
-}
+M::T act(M::T a, O::T b) { return b; }
 
 int main() {
     ios_base::sync_with_stdio(false);

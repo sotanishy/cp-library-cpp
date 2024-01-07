@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/matrix/matrix.cpp"
 
 

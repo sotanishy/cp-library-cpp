@@ -1,36 +1,34 @@
 #pragma once
-#include <vector>
+#include <bit>
 #include <memory>
+#include <numeric>
+#include <vector>
 
-/*
+/**
  * @brief Persistent Segment Tree
  */
 template <typename M>
 class PersistentSegmentTree {
-    using T = typename M::T;
+    using T = M::T;
 
-public:
+   public:
     PersistentSegmentTree() = default;
-    explicit PersistentSegmentTree(int n): PersistentSegmentTree(std::vector<T>(n, M::id())) {}
-    explicit PersistentSegmentTree(const std::vector<T>& v) : root(std::make_shared<Node>()) {
-        size = 1;
-        while (size < (int) v.size()) size <<= 1;
+    explicit PersistentSegmentTree(int n)
+        : PersistentSegmentTree(std::vector<T>(n, M::id())) {}
+    explicit PersistentSegmentTree(const std::vector<T>& v)
+        : root(std::make_shared<Node>()), size(std::bit_ceil(v.size())) {
         build(v, root, 0, size);
     }
 
-    T operator[](int k) const {
-        return fold(k, k + 1);
-    }
+    T operator[](int k) const { return fold(k, k + 1); }
 
     PersistentSegmentTree update(int k, const T& x) const {
         return PersistentSegmentTree(update(k, x, root, 0, size), size);
     }
 
-    T fold(int l, int r) const {
-        return fold(l, r, root, 0, size);
-    }
+    T fold(int l, int r) const { return fold(l, r, root, 0, size); }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::shared_ptr<Node>;
 
@@ -38,20 +36,22 @@ private:
         T val;
         node_ptr left, right;
         Node() : val(M::id()), left(nullptr), right(nullptr) {}
-        Node(const T& val, const node_ptr& left, const node_ptr& right) : val(val), left(left), right(right) {}
+        Node(const T& val, const node_ptr& left, const node_ptr& right)
+            : val(val), left(left), right(right) {}
     };
 
     node_ptr root;
     int size;
 
-    PersistentSegmentTree(const node_ptr& root, int size) : root(root), size(size) {}
+    PersistentSegmentTree(const node_ptr& root, int size)
+        : root(root), size(size) {}
 
     void build(const std::vector<T>& v, const node_ptr& n, int l, int r) const {
         if (r - l == 1) {
-            n->val = l < (int) v.size() ? v[l] : M::id();
+            n->val = l < (int)v.size() ? v[l] : M::id();
             return;
         }
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         n->left = std::make_shared<Node>();
         build(v, n->left, l, m);
         n->right = std::make_shared<Node>();
@@ -63,7 +63,7 @@ private:
         if (r - l == 1) {
             return std::make_shared<Node>(x, nullptr, nullptr);
         }
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         if (k < m) {
             auto left = update(k, x, n->left, l, m);
             T val = M::op(left->val, n->right->val);
@@ -78,8 +78,7 @@ private:
     T fold(int a, int b, const node_ptr& n, int l, int r) const {
         if (r <= a || b <= l) return M::id();
         if (a <= l && r <= b) return n->val;
-        int m = (l + r) / 2;
-        return M::op(fold(a, b, n->left, l, m),
-                     fold(a, b, n->right, m, r));
+        int m = std::midpoint(l, r);
+        return M::op(fold(a, b, n->left, l, m), fold(a, b, n->right, m, r));
     }
 };

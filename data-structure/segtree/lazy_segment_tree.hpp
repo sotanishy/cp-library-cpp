@@ -1,27 +1,30 @@
 #pragma once
 #include <algorithm>
+#include <bit>
+#include <numeric>
 #include <vector>
 
-template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
+template <typename M, typename O,
+          typename M::T (*act)(typename M::T, typename O::T)>
 class LazySegmentTree {
-    using T = typename M::T;
-    using E = typename O::T;
+    using T = M::T;
+    using E = O::T;
 
-public:
+   public:
     LazySegmentTree() = default;
-    explicit LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id())) {}
-    explicit LazySegmentTree(const std::vector<T>& v) {
-        size = 1;
-        while (size < (int) v.size()) size <<= 1;
-        node.resize(2 * size, M::id());
-        lazy.resize(2 * size, O::id());
-        std::copy(v.begin(), v.end(), node.begin() + size);
-        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2 * i + 1]);
+    explicit LazySegmentTree(int n)
+        : LazySegmentTree(std::vector<T>(n, M::id())) {}
+    explicit LazySegmentTree(const std::vector<T>& v)
+        : size(std::bit_ceil(v.size())),
+          node(2 * size, M::id()),
+          lazy(2 * size, O::id()) {
+        std::ranges::copy(v, node.begin() + size);
+        for (int i = size - 1; i > 0; --i) {
+            node[i] = M::op(node[2 * i], node[2 * i + 1]);
+        }
     }
 
-    T operator[](int k) {
-        return fold(k, k + 1);
-    }
+    T operator[](int k) { return fold(k, k + 1); }
 
     void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }
 
@@ -39,7 +42,7 @@ public:
         return find_last(0, r, 1, 0, size, v, cond);
     }
 
-private:
+   private:
     int size;
     std::vector<T> node;
     std::vector<E> lazy;
@@ -62,7 +65,7 @@ private:
             push(k);
             return;
         }
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         update(a, b, x, 2 * k, l, m);
         update(a, b, x, 2 * k + 1, m, r);
         node[k] = M::op(node[2 * k], node[2 * k + 1]);
@@ -72,9 +75,8 @@ private:
         push(k);
         if (r <= a || b <= l) return M::id();
         if (a <= l && r <= b) return node[k];
-        int m = (l + r) / 2;
-        return M::op(fold(a, b, 2 * k, l, m),
-                     fold(a, b, 2 * k + 1, m, r));
+        int m = std::midpoint(l, r);
+        return M::op(fold(a, b, 2 * k, l, m), fold(a, b, 2 * k + 1, m, r));
     }
 
     template <typename F>
@@ -87,7 +89,7 @@ private:
             return -1;
         }
         if (r - l == 1) return r;
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         int res = find_first(a, b, 2 * k, l, m, v, cond);
         if (res != -1) return res;
         return find_first(a, b, 2 * k + 1, m, r, v, cond);
@@ -103,7 +105,7 @@ private:
             return -1;
         }
         if (r - l == 1) return l;
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         int res = find_last(a, b, 2 * k + 1, m, r, v, cond);
         if (res != -1) return res;
         return find_last(a, b, 2 * k, l, m, v, cond);

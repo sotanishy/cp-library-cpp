@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../math/bernoulli.hpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 
 using namespace std;
 using ll = long long;

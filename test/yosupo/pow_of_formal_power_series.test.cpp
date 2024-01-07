@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/polynomial.cpp"
 
 #include <bits/stdc++.h>

@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../math/count_subset_sum.hpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 
 using mint = Modint<998244353>;
 

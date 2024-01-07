@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../math/matrix/square_matrix.cpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;

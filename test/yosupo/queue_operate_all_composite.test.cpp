@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
 
 #include "../../data-structure/sliding_window_aggregation.cpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 
 
 #include <bits/stdc++.h>

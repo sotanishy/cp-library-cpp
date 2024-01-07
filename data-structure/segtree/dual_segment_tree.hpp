@@ -1,18 +1,17 @@
 #pragma once
+#include <bit>
 #include <vector>
 
 template <typename M>
 class DualSegmentTree {
     using T = typename M::T;
 
-public:
+   public:
     DualSegmentTree() = default;
-    explicit DualSegmentTree(int n) {
-        size = 1;
-        height = 1;
-        while (size < n) size <<= 1, ++height;
-        lazy.resize(2 * size, M::id());
-    }
+    explicit DualSegmentTree(int n)
+        : size(std::bit_ceil((unsigned int)n)),
+          height(std::bit_width((unsigned int)size) - 1),
+          lazy(2 * size, M::id()) {}
 
     T operator[](int k) {
         k += size;
@@ -31,7 +30,7 @@ public:
         }
     }
 
-private:
+   private:
     int size, height;
     std::vector<T> lazy;
 

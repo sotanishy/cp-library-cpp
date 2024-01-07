@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../tree/rerooting.cpp"
 using namespace std;
 using ll = long long;

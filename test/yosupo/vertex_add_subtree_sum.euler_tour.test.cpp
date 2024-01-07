@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include "../../tree/euler_tour.cpp"
-#include "../../data-structure/segtree/segment_tree.cpp"
+#include "../../data-structure/segtree/segment_tree.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -4,7 +4,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/polynomial.cpp"
 
 using namespace std;

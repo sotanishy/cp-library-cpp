@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/bostan_mori.hpp"
 
 #include <bits/stdc++.h>

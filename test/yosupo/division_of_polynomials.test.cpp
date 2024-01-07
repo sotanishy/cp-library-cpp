@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/polynomial.cpp"
 
 #include <bits/stdc++.h>

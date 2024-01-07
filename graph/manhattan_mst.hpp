@@ -3,7 +3,7 @@
 #include <limits>
 #include <vector>
 
-#include "../data-structure/segtree/segment_tree.cpp"
+#include "../data-structure/segtree/segment_tree.hpp"
 #include "../graph/edge.cpp"
 #include "../graph/mst.cpp"
 

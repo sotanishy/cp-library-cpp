@@ -1,14 +1,15 @@
 #pragma once
 #include <memory>
+#include <numeric>
 #include <set>
 #include <utility>
 #include <vector>
 
-#include "segment_tree.cpp"
+#include "segment_tree.hpp"
 
 template <typename M>
 class SortableSegmentTree {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     SortableSegmentTree() = default;
@@ -88,7 +89,7 @@ class SortableSegmentTree {
                 val_forward = val_backward = x;
                 return;
             }
-            long long m = (l + r) / 2;
+            long long m = std::midpoint(l, r);
             if (key < m) {
                 if (!left) left = std::make_unique<Node>();
                 left->update(key, x, l, m);

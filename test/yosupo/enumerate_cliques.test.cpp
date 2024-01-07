@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_cliques"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../graph/enumerate_cliques.cpp"
 
 #include <bits/stdc++.h>

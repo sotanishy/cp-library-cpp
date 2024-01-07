@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
-#include "../../data-structure/segtree/segment_tree_2d.hpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/segment_tree_2d.hpp"
 using namespace std;
 using ll = long long;
 

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
 #include "../../data-structure/foldable_deque.hpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

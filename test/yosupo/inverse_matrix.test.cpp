@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/matrix/square_matrix.cpp"
 
 

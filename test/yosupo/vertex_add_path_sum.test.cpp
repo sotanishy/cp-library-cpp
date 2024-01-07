@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
-#include "../../data-structure/segtree/segment_tree.cpp"
+#include "../../data-structure/segtree/segment_tree.hpp"
 #include "../../tree/hld.cpp"
 
 #include <bits/stdc++.h>

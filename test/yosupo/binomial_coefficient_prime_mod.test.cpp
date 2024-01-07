@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/arbitrary_modint.cpp"
+#include "../../math/arbitrary_modint.hpp"
 #include "../../math/combination.cpp"
 using namespace std;
 using ll = long long;

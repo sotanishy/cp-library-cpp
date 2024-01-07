@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
 
-#include "../../math/arbitrary_modint.cpp"
+#include "../../math/arbitrary_modint.hpp"
 #include "../../math/montmort.cpp"
 
 #include <bits/stdc++.h>

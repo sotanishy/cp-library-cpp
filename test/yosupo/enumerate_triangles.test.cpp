@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_triangles"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../graph/enumerate_triangles.cpp"
 
 #include <bits/stdc++.h>

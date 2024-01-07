@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
-#include "../../data-structure/segtree/dual_segment_tree.cpp"
-#include "../../math/modint.cpp"
-
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/dual_segment_tree.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;
@@ -16,7 +15,6 @@ struct AffineMonoid {
         return {a.first * b.first, a.second * b.first + b.second};
     }
 };
-
 
 int main() {
     ios_base::sync_with_stdio(false);

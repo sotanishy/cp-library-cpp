@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation"
 
 #include "../../math/multipoint_evaluation.cpp"
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../math/polynomial.cpp"
 
 #include <bits/stdc++.h>

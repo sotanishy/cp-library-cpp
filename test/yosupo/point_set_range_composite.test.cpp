@@ -1,18 +1,19 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../../data-structure/segtree/segment_tree.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/segment_tree.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 using ll = long long;
 
-const ll mod = 998244353;
+using mint = Modint<998244353>;
 
 struct Monoid {
-    using T = pair<ll, ll>;
+    using T = pair<mint, mint>;
     static T id() { return {1, 0}; }
     static T op(T a, T b) {
-        return {a.first * b.first % mod, (a.second * b.first + b.second) % mod};
+        return {a.first * b.first, a.second * b.first + b.second};
     }
 };
 
@@ -22,7 +23,7 @@ int main() {
 
     int N, Q;
     cin >> N >> Q;
-    vector<pair<ll, ll>> ab(N);
+    vector<pair<mint, mint>> ab(N);
     for (int i = 0; i < N; i++) {
         int a, b;
         cin >> a >> b;
@@ -40,7 +41,7 @@ int main() {
             int l, r, x;
             cin >> l >> r >> x;
             auto f = st.fold(l, r);
-            cout << (f.first * x + f.second) % mod << "\n";
+            cout << f.first * x + f.second << "\n";
         }
     }
 }

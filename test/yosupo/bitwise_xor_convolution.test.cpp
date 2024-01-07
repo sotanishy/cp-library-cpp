@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../set/xor_convolution.hpp"
 using namespace std;
 using ll = long long;

@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
-#include "../../data-structure/segtree/lazy_segment_tree.cpp"
-#include "../../math/modint.cpp"
-
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/lazy_segment_tree.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;
@@ -12,9 +11,7 @@ using mint = Modint<998244353>;
 struct M {
     using T = pair<mint, mint>;
     static T id() { return {0, 0}; }
-    static T op(T a, T b) {
-        return {a.first + b.first, a.second + b.second};
-    }
+    static T op(T a, T b) { return {a.first + b.first, a.second + b.second}; }
 };
 
 struct O {
@@ -28,7 +25,6 @@ struct O {
 M::T act(M::T a, O::T b) {
     return {a.first * b.first + a.second * b.second, a.second};
 }
-
 
 int main() {
     ios_base::sync_with_stdio(false);

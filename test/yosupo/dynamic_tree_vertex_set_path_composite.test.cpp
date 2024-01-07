@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite"
 
-#include "../../math/modint.cpp"
+#include "../../math/modint.hpp"
 #include "../../tree/link_cut_tree.cpp"
 
 #include <bits/stdc++.h>

@@ -1,6 +1,6 @@
 ---
 title: Segment Tree with Lazy Propagation
-documentation_of: ../../../data-structure/segtree/lazy_segment_tree.cpp
+documentation_of: ../../../data-structure/segtree/lazy_segment_tree.hpp
 ---
 
 ## Description
