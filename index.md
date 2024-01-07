@@ -3,16 +3,16 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/fenwick_tree.cpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -74,7 +74,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.cpp
       title: Sliding Window Minimum
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/sliding_window_aggregation.cpp
       title: Sliding Window Aggregation
     - icon: ':warning:'
@@ -125,31 +125,31 @@ data:
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
-    - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/dual_segment_tree.cpp
+    - icon: ':x:'
+      path: data-structure/segtree/dual_segment_tree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/dynamic_lazy_segment_tree.cpp
+      path: data-structure/segtree/dynamic_lazy_segment_tree.hpp
       title: Dynamic Segment Tree with Lazy Propagation
     - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/dynamic_segment_tree.cpp
+      path: data-structure/segtree/dynamic_segment_tree.hpp
       title: Dynamic Segment Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/lazy_segment_tree.cpp
+    - icon: ':question:'
+      path: data-structure/segtree/lazy_segment_tree.hpp
       title: Segment Tree with Lazy Propagation
-    - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/persistent_segment_tree.cpp
+    - icon: ':x:'
+      path: data-structure/segtree/persistent_segment_tree.hpp
       title: Persistent Segment Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/segment_tree.cpp
+    - icon: ':x:'
+      path: data-structure/segtree/segment_tree.hpp
       title: Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/segment_tree_2d.hpp
       title: 2D Segment Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/segtree/segment_tree_beats.cpp
-      title: Segment Tree Beats
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: data-structure/segtree/segment_tree_beats.hpp
+      title: data-structure/segtree/segment_tree_beats.hpp
+    - icon: ':x:'
       path: data-structure/segtree/sortable_segment_tree.hpp
       title: Sortable Segment Tree
     - icon: ':warning:'
@@ -166,7 +166,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.cpp
       title: Undoable Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-structure/unionfind/union_find.cpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -279,7 +279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.cpp
       title: Dominator Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.cpp
       title: graph/edge.cpp
     - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.cpp
       title: Lowlink
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/manhattan_mst.hpp
       title: Manhattan Minimum Spanning Tree
     - icon: ':heavy_check_mark:'
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_steiner_tree.hpp
       title: Minimum Steiner Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/mst.cpp
       title: Minimum Spanning Tree Algorithms
     - icon: ':heavy_check_mark:'
@@ -344,22 +344,22 @@ data:
       title: 2-Edge-Connected Components
   - name: math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: math/arbitrary_modint.cpp
       title: Arbitrary Mod int
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/berlekamp_massey.cpp
       title: Berlekamp-Massey Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/bernoulli.hpp
       title: Bernoulli Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/bostan_mori.hpp
       title: Bostan-Mori Algorithm
     - icon: ':warning:'
       path: math/carmichael.cpp
       title: Carmichael Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
@@ -371,7 +371,7 @@ data:
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/count_subset_sum.hpp
       title: Count Subset Sum
     - icon: ':warning:'
@@ -380,10 +380,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/factorial.hpp
       title: Factorial
     - icon: ':warning:'
@@ -395,7 +395,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/garner.cpp
       title: Garner's Algorithm
     - icon: ':heavy_check_mark:'
@@ -416,31 +416,31 @@ data:
     - icon: ':warning:'
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
-      path: math/modint.cpp
+    - icon: ':question:'
+      path: math/modint.hpp
       title: Mod int
     - icon: ':warning:'
       path: math/moebius.hpp
       title: "M\xF6bius Function"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
       path: math/nimber.hpp
       title: Nimber
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/partition_function.hpp
       title: Partition Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -452,7 +452,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.hpp
       title: math/primitive_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
     - icon: ':warning:'
@@ -464,13 +464,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
       title: Stern-Brocot Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/stirling_second.hpp
       title: Stirling Number of the Second Kind
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/system_of_linear_equations.cpp
       title: System of Linear Equations
   - name: math/matrix
@@ -478,13 +478,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
       title: Characteristic Polynomial
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/matrix/hafnian.hpp
       title: Hafnian
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/matrix.cpp
       title: Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/square_matrix.cpp
       title: Square Matrix
   - name: misc
@@ -492,7 +492,7 @@ data:
     - icon: ':warning:'
       path: misc/boolean_square_matrix.cpp
       title: Boolean Square Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: misc/compress.cpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -568,10 +568,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: set/and_or_convolution.hpp
       title: Bitwise AND/OR Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: set/set_power_series.hpp
       title: Set Power Series
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: set/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -580,7 +580,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: set/xor_convolution.hpp
       title: Bitwise XOR Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: set/zeta_moebius_transform.hpp
       title: "Fast Zeta/M\xF6bius Transform"
   - name: string
@@ -641,13 +641,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/centroid_decomposition.hpp
       title: Centroid Decomposition
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/euler_tour.cpp
       title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
       title: Euler Tour Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/hld.cpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -662,7 +662,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/range_contour_aggregation.hpp
       title: Range Contour Aggregation
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/rerooting.cpp
       title: Rerooting
     - icon: ':heavy_check_mark:'
@@ -798,9 +798,6 @@ data:
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_2_A.test.cpp
-      title: test/aoj/DSL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
       title: test/aoj/DSL_2_B.dynamic_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -810,20 +807,8 @@ data:
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_2_D.test.cpp
-      title: test/aoj/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_2_E.test.cpp
-      title: test/aoj/DSL_2_E.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
       title: test/aoj/DSL_2_F.dynamic_lazy_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_2_F.test.cpp
-      title: test/aoj/DSL_2_F.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
-      title: test/aoj/DSL_2_G.lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
       title: test/aoj/DSL_2_G.range_fenwick_tree.test.cpp
@@ -895,13 +880,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/assignment.test.cpp
       title: test/yosupo/assignment.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bernoulli_number.test.cpp
       title: test/yosupo/bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
       title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -931,10 +916,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/common_interval_decomposition_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -949,7 +934,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/division_of_polynomials.test.cpp
       title: test/yosupo/division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
@@ -991,25 +976,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_set_power_series.test.cpp
       title: test/yosupo/exp_of_set_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/factorial.test.cpp
       title: test/yosupo/factorial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/factorize.test.cpp
       title: test/yosupo/factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/frequency_table_of_tree_distance.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1018,13 +1003,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/general_matching.test.cpp
       title: test/yosupo/general_matching.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/hafnian_of_matrix.test.cpp
       title: test/yosupo/hafnian_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/inverse_matrix.test.cpp
       title: test/yosupo/inverse_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1033,13 +1018,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1048,7 +1033,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1060,13 +1045,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lyndon_factorization.test.cpp
       title: test/yosupo/lyndon_factorization.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/manhattanmst.test.cpp
       title: test/yosupo/manhattanmst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/matrix_det.test.cpp
       title: test/yosupo/matrix_det.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/matrix_product.test.cpp
       title: test/yosupo/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1075,22 +1060,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/min_cost_b_flow.test.cpp
       title: test/yosupo/min_cost_b_flow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/montmort_number_mod.test.cpp
       title: test/yosupo/montmort_number_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/multipoint_evaluation.test.cpp
       title: test/yosupo/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/nim_product_64.test.cpp
       title: test/yosupo/nim_product_64.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/number_of_subsequences.test.cpp
       title: test/yosupo/number_of_subsequences.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_of_substrings.test.cpp
       title: test/yosupo/number_of_substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/partition_function.test.cpp
       title: test/yosupo/partition_function.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1099,31 +1084,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/point_add_range_sum.test.cpp
-      title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_set_range_sort_range_composite.test.cpp
       title: test/yosupo/point_set_range_sort_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/pow_of_matrix.test.cpp
       title: test/yosupo/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1132,19 +1114,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/primitive_root.test.cpp
       title: test/yosupo/primitive_root.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/product_of_polynomial_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_point_get.test.cpp
       title: test/yosupo/range_affine_point_get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1156,7 +1138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1180,7 +1162,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1201,13 +1183,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/subset_convolution.test.cpp
       title: test/yosupo/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1216,10 +1198,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sum_of_totient_function.test.cpp
       title: test/yosupo/sum_of_totient_function.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1231,7 +1213,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree_path_composite_sum.test.cpp
       title: test/yosupo/tree_path_composite_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1243,19 +1225,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'

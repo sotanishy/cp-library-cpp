@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/segtree/segment_tree.cpp
+  - icon: ':x:'
+    path: data-structure/segtree/segment_tree.hpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree_2d.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <utility>\n#include <vector>\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
-    \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
-    \n   public:\n    SegmentTree() = default;\n    explicit SegmentTree(int n) :\
-    \ SegmentTree(std::vector<T>(n, M::id())) {}\n    explicit SegmentTree(const std::vector<T>&\
-    \ v) {\n        size = 1;\n        while (size < (int)v.size()) size <<= 1;\n\
-    \        node.resize(2 * size, M::id());\n        std::copy(v.begin(), v.end(),\
-    \ node.begin() + size);\n        for (int i = size - 1; i > 0; --i)\n        \
-    \    node[i] = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int\
-    \ k) const { return node[k + size]; }\n\n    void update(int k, const T& x) {\n\
-    \        k += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
+    #include <bit>\n#include <cassert>\n#include <utility>\n#include <vector>\n\n\
+    #line 5 \"data-structure/segtree/segment_tree.hpp\"\n\ntemplate <typename M>\n\
+    class SegmentTree {\n    using T = M::T;\n\n   public:\n    SegmentTree() = default;\n\
+    \    explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n\
+    \    explicit SegmentTree(const std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\
+    \ node(2 * size, M::id()) {\n        std::ranges::copy(v, node.begin() + size);\n\
+    \        for (int i = size - 1; i > 0; --i) {\n            node[i] = M::op(node[2\
+    \ * i], node[2 * i + 1]);\n        }\n    }\n\n    T operator[](int k) const {\
+    \ return node[k + size]; }\n\n    void update(int k, const T& x) {\n        k\
+    \ += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
     \ * k], node[2 * k + 1]);\n    }\n\n    T fold(int l, int r) const {\n       \
     \ T vl = M::id(), vr = M::id();\n        for (l += size, r += size; l < r; l >>=\
     \ 1, r >>= 1) {\n            if (l & 1) vl = M::op(vl, node[l++]);\n         \
@@ -33,105 +33,107 @@ data:
     \ const {\n        T v = M::id();\n        for (l += size; l > 0; l >>= 1) {\n\
     \            if (l & 1) {\n                T nv = M::op(v, node[l]);\n       \
     \         if (cond(nv)) {\n                    while (l < size) {\n          \
-    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\n\
-    \                            l = 2 * l;\n                        else\n      \
-    \                      v = nv, l = 2 * l + 1;\n                    }\n       \
-    \             return l + 1 - size;\n                }\n                v = nv;\n\
-    \                ++l;\n            }\n        }\n        return -1;\n    }\n\n\
-    \    template <typename F>\n    int find_last(int r, F cond) const {\n       \
-    \ T v = M::id();\n        for (r += size; r > 0; r >>= 1) {\n            if (r\
-    \ & 1) {\n                --r;\n                T nv = M::op(node[r], v);\n  \
-    \              if (cond(nv)) {\n                    while (r < size) {\n     \
-    \                   nv = M::op(node[2 * r + 1], v);\n                        if\
-    \ (cond(nv))\n                            r = 2 * r + 1;\n                   \
-    \     else\n                            v = nv, r = 2 * r;\n                 \
-    \   }\n                    return r - size;\n                }\n             \
-    \   v = nv;\n            }\n        }\n        return -1;\n    }\n\n   private:\n\
-    \    int size;\n    std::vector<T> node;\n};\n#line 7 \"data-structure/segtree/segment_tree_2d.hpp\"\
+    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\
+    \ {\n                            l = 2 * l;\n                        } else {\n\
+    \                            v = nv, l = 2 * l + 1;\n                        }\n\
+    \                    }\n                    return l + 1 - size;\n           \
+    \     }\n                v = nv;\n                ++l;\n            }\n      \
+    \  }\n        return -1;\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) const {\n        T v = M::id();\n        for (r += size; r > 0; r\
+    \ >>= 1) {\n            if (r & 1) {\n                --r;\n                T\
+    \ nv = M::op(node[r], v);\n                if (cond(nv)) {\n                 \
+    \   while (r < size) {\n                        nv = M::op(node[2 * r + 1], v);\n\
+    \                        if (cond(nv)) {\n                            r = 2 *\
+    \ r + 1;\n                        } else {\n                            v = nv,\
+    \ r = 2 * r;\n                        }\n                    }\n             \
+    \       return r - size;\n                }\n                v = nv;\n       \
+    \     }\n        }\n        return -1;\n    }\n\n   private:\n    int size;\n\
+    \    std::vector<T> node;\n};\n#line 9 \"data-structure/segtree/segment_tree_2d.hpp\"\
     \n\ntemplate <typename X, typename Y, typename M>\nclass SegmentTree2D {\n   \
-    \ using T = typename M::T;\n\npublic:\n    SegmentTree2D() = default;\n    explicit\
+    \ using T = M::T;\n\n   public:\n    SegmentTree2D() = default;\n    explicit\
     \ SegmentTree2D(const std::vector<std::pair<X, Y>>& pts) {\n        for (auto&\
-    \ [x, y] : pts) {\n            xs.push_back(x);\n        }\n        std::sort(xs.begin(),\
-    \ xs.end());\n        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n\
-    \n        const int n = xs.size();\n        size = 1;\n        while (size < n)\
-    \ size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2 * size);\n\n\
-    \        for (auto& [x, y] : pts) {\n            ys[size + getx(x)].push_back(y);\n\
-    \        }\n\n        for (int i = 0; i < n; ++i) {\n            std::sort(ys[size\
-    \ + i].begin(), ys[size + i].end());\n            ys[size + i].erase(std::unique(ys[size\
-    \ + i].begin(), ys[size + i].end()), ys[size + i].end());\n        }\n       \
-    \ for (int i = size - 1; i > 0; --i) {\n            std::merge(ys[2*i].begin(),\
-    \ ys[2*i].end(), ys[2*i+1].begin(), ys[2*i+1].end(), std::back_inserter(ys[i]));\n\
-    \            ys[i].erase(std::unique(ys[i].begin(), ys[i].end()), ys[i].end());\n\
-    \        }\n        for (int i = 0; i < size + n; ++i) {\n            seg[i] =\
-    \ SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X x, Y y) const\
-    \ {\n        int kx = getx(x);\n        assert(kx < (int) xs.size() && xs[kx]\
-    \ == x);\n        kx += size;\n        int ky = gety(kx, y);\n        assert(ky\
-    \ < (int) ys[kx].size() && ys[kx][ky] == y);\n        return seg[kx][ky];\n  \
-    \  }\n\n    void update(X x, Y y, T val) {\n        int kx = getx(x);\n      \
-    \  assert(kx < (int) xs.size() && xs[kx] == x);\n        kx += size;\n       \
-    \ int ky = gety(kx, y);\n        assert(ky < (int) ys[kx].size() && ys[kx][ky]\
-    \ == y);\n        seg[kx].update(ky, val);\n        while (kx >>= 1) {\n     \
-    \       ky = gety(kx, y);\n            int kl = gety(2*kx, y), kr = gety(2*kx+1,\
-    \ y);\n            T vl = (kl < (int) ys[2*kx].size() && ys[2*kx][kl] == y ? seg[2*kx][kl]\
-    \ : M::id());\n            T vr = (kr < (int) ys[2*kx+1].size() && ys[2*kx+1][kr]\
-    \ == y ? seg[2*kx+1][kr] : M::id());\n            seg[kx].update(ky, M::op(vl,\
-    \ vr));\n        }\n    }\n\n    T fold(X sx, X tx, Y sy, Y ty) const {\n    \
-    \    T ret = M::id();\n        for (int l = size + getx(sx), r = size + getx(tx);\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                ret =\
-    \ M::op(ret, seg[l].fold(gety(l, sy), gety(l, ty)));\n                ++l;\n \
-    \           }\n            if (r & 1) {\n                --r;\n              \
-    \  ret = M::op(ret, seg[r].fold(gety(r, sy), gety(r, ty)));\n            }\n \
-    \       }\n        return ret;\n    }\n\nprivate:\n    int size;\n    std::vector<X>\
+    \ [x, y] : pts) {\n            xs.push_back(x);\n        }\n        std::ranges::sort(xs);\n\
+    \        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n\n        const\
+    \ int n = xs.size();\n        size = std::bit_ceil((unsigned int)n);\n       \
+    \ ys.resize(2 * size);\n        seg.resize(2 * size);\n\n        for (auto& [x,\
+    \ y] : pts) {\n            ys[size + getx(x)].push_back(y);\n        }\n\n   \
+    \     for (int i = size + n - 1; i > 0; --i) {\n            if (i >= size) {\n\
+    \                std::ranges::sort(ys[i]);\n            } else {\n           \
+    \     std::ranges::merge(ys[2 * i], ys[2 * i + 1],\n                         \
+    \          std::back_inserter(ys[i]));\n            }\n            ys[i].erase(std::unique(ys[i].begin(),\
+    \ ys[i].end()), ys[i].end());\n        }\n        for (int i = 0; i < size + n;\
+    \ ++i) {\n            seg[i] = SegmentTree<M>(ys[i].size());\n        }\n    }\n\
+    \n    T get(X x, Y y) const {\n        int kx = getx(x);\n        assert(kx <\
+    \ (int)xs.size() && xs[kx] == x);\n        kx += size;\n        int ky = gety(kx,\
+    \ y);\n        assert(ky < (int)ys[kx].size() && ys[kx][ky] == y);\n        return\
+    \ seg[kx][ky];\n    }\n\n    void update(X x, Y y, T val) {\n        int kx =\
+    \ getx(x);\n        assert(kx < (int)xs.size() && xs[kx] == x);\n        kx +=\
+    \ size;\n        int ky = gety(kx, y);\n        assert(ky < (int)ys[kx].size()\
+    \ && ys[kx][ky] == y);\n        seg[kx].update(ky, val);\n        while (kx >>=\
+    \ 1) {\n            ky = gety(kx, y);\n            int kl = gety(2 * kx, y), kr\
+    \ = gety(2 * kx + 1, y);\n            T vl = (kl < (int)ys[2 * kx].size() && ys[2\
+    \ * kx][kl] == y\n                        ? seg[2 * kx][kl]\n                \
+    \        : M::id());\n            T vr = (kr < (int)ys[2 * kx + 1].size() && ys[2\
+    \ * kx + 1][kr] == y\n                        ? seg[2 * kx + 1][kr]\n        \
+    \                : M::id());\n            seg[kx].update(ky, M::op(vl, vr));\n\
+    \        }\n    }\n\n    T fold(X sx, X tx, Y sy, Y ty) const {\n        T ret\
+    \ = M::id();\n        for (int l = size + getx(sx), r = size + getx(tx); l < r;\n\
+    \             l >>= 1, r >>= 1) {\n            if (l & 1) {\n                ret\
+    \ = M::op(ret, seg[l].fold(gety(l, sy), gety(l, ty)));\n                ++l;\n\
+    \            }\n            if (r & 1) {\n                --r;\n             \
+    \   ret = M::op(ret, seg[r].fold(gety(r, sy), gety(r, ty)));\n            }\n\
+    \        }\n        return ret;\n    }\n\n   private:\n    int size;\n    std::vector<X>\
     \ xs;\n    std::vector<std::vector<Y>> ys;\n    std::vector<SegmentTree<M>> seg;\n\
-    \n    int getx(X x) const { return std::lower_bound(xs.begin(), xs.end(), x) -\
-    \ xs.begin(); }\n    int gety(int k, Y y) const { return std::lower_bound(ys[k].begin(),\
-    \ ys[k].end(), y) - ys[k].begin(); }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
-    #include <vector>\n#include \"segment_tree.cpp\"\n\ntemplate <typename X, typename\
-    \ Y, typename M>\nclass SegmentTree2D {\n    using T = typename M::T;\n\npublic:\n\
-    \    SegmentTree2D() = default;\n    explicit SegmentTree2D(const std::vector<std::pair<X,\
-    \ Y>>& pts) {\n        for (auto& [x, y] : pts) {\n            xs.push_back(x);\n\
-    \        }\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n\n        const int n = xs.size();\n        size = 1;\n\
-    \        while (size < n) size <<= 1;\n        ys.resize(2 * size);\n        seg.resize(2\
-    \ * size);\n\n        for (auto& [x, y] : pts) {\n            ys[size + getx(x)].push_back(y);\n\
-    \        }\n\n        for (int i = 0; i < n; ++i) {\n            std::sort(ys[size\
-    \ + i].begin(), ys[size + i].end());\n            ys[size + i].erase(std::unique(ys[size\
-    \ + i].begin(), ys[size + i].end()), ys[size + i].end());\n        }\n       \
-    \ for (int i = size - 1; i > 0; --i) {\n            std::merge(ys[2*i].begin(),\
-    \ ys[2*i].end(), ys[2*i+1].begin(), ys[2*i+1].end(), std::back_inserter(ys[i]));\n\
-    \            ys[i].erase(std::unique(ys[i].begin(), ys[i].end()), ys[i].end());\n\
-    \        }\n        for (int i = 0; i < size + n; ++i) {\n            seg[i] =\
-    \ SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X x, Y y) const\
-    \ {\n        int kx = getx(x);\n        assert(kx < (int) xs.size() && xs[kx]\
-    \ == x);\n        kx += size;\n        int ky = gety(kx, y);\n        assert(ky\
-    \ < (int) ys[kx].size() && ys[kx][ky] == y);\n        return seg[kx][ky];\n  \
-    \  }\n\n    void update(X x, Y y, T val) {\n        int kx = getx(x);\n      \
-    \  assert(kx < (int) xs.size() && xs[kx] == x);\n        kx += size;\n       \
-    \ int ky = gety(kx, y);\n        assert(ky < (int) ys[kx].size() && ys[kx][ky]\
+    \n    int getx(X x) const { return std::ranges::lower_bound(xs, x) - xs.begin();\
+    \ }\n    int gety(int k, Y y) const {\n        return std::ranges::lower_bound(ys[k],\
+    \ y) - ys[k].begin();\n    }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <bit>\n#include <cassert>\n\
+    #include <utility>\n#include <vector>\n\n#include \"segment_tree.hpp\"\n\ntemplate\
+    \ <typename X, typename Y, typename M>\nclass SegmentTree2D {\n    using T = M::T;\n\
+    \n   public:\n    SegmentTree2D() = default;\n    explicit SegmentTree2D(const\
+    \ std::vector<std::pair<X, Y>>& pts) {\n        for (auto& [x, y] : pts) {\n \
+    \           xs.push_back(x);\n        }\n        std::ranges::sort(xs);\n    \
+    \    xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n\n        const int\
+    \ n = xs.size();\n        size = std::bit_ceil((unsigned int)n);\n        ys.resize(2\
+    \ * size);\n        seg.resize(2 * size);\n\n        for (auto& [x, y] : pts)\
+    \ {\n            ys[size + getx(x)].push_back(y);\n        }\n\n        for (int\
+    \ i = size + n - 1; i > 0; --i) {\n            if (i >= size) {\n            \
+    \    std::ranges::sort(ys[i]);\n            } else {\n                std::ranges::merge(ys[2\
+    \ * i], ys[2 * i + 1],\n                                   std::back_inserter(ys[i]));\n\
+    \            }\n            ys[i].erase(std::unique(ys[i].begin(), ys[i].end()),\
+    \ ys[i].end());\n        }\n        for (int i = 0; i < size + n; ++i) {\n   \
+    \         seg[i] = SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X\
+    \ x, Y y) const {\n        int kx = getx(x);\n        assert(kx < (int)xs.size()\
+    \ && xs[kx] == x);\n        kx += size;\n        int ky = gety(kx, y);\n     \
+    \   assert(ky < (int)ys[kx].size() && ys[kx][ky] == y);\n        return seg[kx][ky];\n\
+    \    }\n\n    void update(X x, Y y, T val) {\n        int kx = getx(x);\n    \
+    \    assert(kx < (int)xs.size() && xs[kx] == x);\n        kx += size;\n      \
+    \  int ky = gety(kx, y);\n        assert(ky < (int)ys[kx].size() && ys[kx][ky]\
     \ == y);\n        seg[kx].update(ky, val);\n        while (kx >>= 1) {\n     \
-    \       ky = gety(kx, y);\n            int kl = gety(2*kx, y), kr = gety(2*kx+1,\
-    \ y);\n            T vl = (kl < (int) ys[2*kx].size() && ys[2*kx][kl] == y ? seg[2*kx][kl]\
-    \ : M::id());\n            T vr = (kr < (int) ys[2*kx+1].size() && ys[2*kx+1][kr]\
-    \ == y ? seg[2*kx+1][kr] : M::id());\n            seg[kx].update(ky, M::op(vl,\
-    \ vr));\n        }\n    }\n\n    T fold(X sx, X tx, Y sy, Y ty) const {\n    \
-    \    T ret = M::id();\n        for (int l = size + getx(sx), r = size + getx(tx);\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n                ret =\
-    \ M::op(ret, seg[l].fold(gety(l, sy), gety(l, ty)));\n                ++l;\n \
-    \           }\n            if (r & 1) {\n                --r;\n              \
-    \  ret = M::op(ret, seg[r].fold(gety(r, sy), gety(r, ty)));\n            }\n \
-    \       }\n        return ret;\n    }\n\nprivate:\n    int size;\n    std::vector<X>\
-    \ xs;\n    std::vector<std::vector<Y>> ys;\n    std::vector<SegmentTree<M>> seg;\n\
-    \n    int getx(X x) const { return std::lower_bound(xs.begin(), xs.end(), x) -\
-    \ xs.begin(); }\n    int gety(int k, Y y) const { return std::lower_bound(ys[k].begin(),\
-    \ ys[k].end(), y) - ys[k].begin(); }\n};"
+    \       ky = gety(kx, y);\n            int kl = gety(2 * kx, y), kr = gety(2 *\
+    \ kx + 1, y);\n            T vl = (kl < (int)ys[2 * kx].size() && ys[2 * kx][kl]\
+    \ == y\n                        ? seg[2 * kx][kl]\n                        : M::id());\n\
+    \            T vr = (kr < (int)ys[2 * kx + 1].size() && ys[2 * kx + 1][kr] ==\
+    \ y\n                        ? seg[2 * kx + 1][kr]\n                        :\
+    \ M::id());\n            seg[kx].update(ky, M::op(vl, vr));\n        }\n    }\n\
+    \n    T fold(X sx, X tx, Y sy, Y ty) const {\n        T ret = M::id();\n     \
+    \   for (int l = size + getx(sx), r = size + getx(tx); l < r;\n             l\
+    \ >>= 1, r >>= 1) {\n            if (l & 1) {\n                ret = M::op(ret,\
+    \ seg[l].fold(gety(l, sy), gety(l, ty)));\n                ++l;\n            }\n\
+    \            if (r & 1) {\n                --r;\n                ret = M::op(ret,\
+    \ seg[r].fold(gety(r, sy), gety(r, ty)));\n            }\n        }\n        return\
+    \ ret;\n    }\n\n   private:\n    int size;\n    std::vector<X> xs;\n    std::vector<std::vector<Y>>\
+    \ ys;\n    std::vector<SegmentTree<M>> seg;\n\n    int getx(X x) const { return\
+    \ std::ranges::lower_bound(xs, x) - xs.begin(); }\n    int gety(int k, Y y) const\
+    \ {\n        return std::ranges::lower_bound(ys[k], y) - ys[k].begin();\n    }\n\
+    };"
   dependsOn:
-  - data-structure/segtree/segment_tree.cpp
+  - data-structure/segtree/segment_tree.hpp
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_2d.hpp
   requiredBy: []
-  timestamp: '2023-06-13 22:58:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-07 20:09:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
 documentation_of: data-structure/segtree/segment_tree_2d.hpp
@@ -158,7 +160,3 @@ title: 2D Segment Tree
 - `T fold(X sx, X tx, Y sy, Y ty)`
     - 矩形領域 $[sx, tx) \times [sy, ty)$ 内の点の重みの積を取得する
     - 時間計算量: $O((\log n)^2)$
-
-## Reference
-
-- verify: [https://atcoder.jp/contests/abc266/submissions/34414646](https://atcoder.jp/contests/abc266/submissions/34414646)

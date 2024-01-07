@@ -1,77 +1,37 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/arbitrary_modint.cpp
-    title: Arbitrary Mod int
-  - icon: ':heavy_check_mark:'
-    path: math/montmort.cpp
-    title: Monmort Number
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
-    links:
-    - https://judge.yosupo.jp/problem/montmort_number_mod
-  bundledCode: "#line 1 \"test/yosupo/montmort_number_mod.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\n#line 2 \"math/arbitrary_modint.cpp\"\
-    \n#include <iostream>\n#include <algorithm>\n#include <cassert>\n\n/*\n * @brief\
-    \ Arbitrary Mod int\n */\nclass ArbitraryModint {\n    using mint = ArbitraryModint;\n\
-    \npublic:\n    static int& mod() noexcept {\n        static int mod_ = 1;\n  \
-    \      return mod_;\n    }\n\n    static void set_mod(int mod_) {\n        assert(mod_\
-    \ > 0);\n        mod() = mod_;\n    }\n\n    ArbitraryModint(long long y = 0)\
-    \ noexcept : x(y >= 0 ? y % mod() : (y % mod() + mod()) % mod()) {}\n\n    int\
-    \ value() const noexcept { return x; }\n\n    mint& operator+=(const mint& r)\
-    \ noexcept { if ((x += r.x) >= mod()) x -= mod(); return *this; }\n    mint& operator-=(const\
-    \ mint& r) noexcept { if ((x += mod() - r.x) >= mod()) x -= mod(); return *this;\
-    \ }\n    mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL *\
-    \ x * r.x % mod()); return *this; }\n    mint& operator/=(const mint& r) noexcept\
-    \ { *this *= r.inv(); return *this; }\n\n    mint operator-() const noexcept {\
-    \ return mint(-x); }\n\n    mint operator+(const mint& r) const noexcept { return\
-    \ mint(*this) += r; }\n    mint operator-(const mint& r) const noexcept { return\
-    \ mint(*this) -= r; }\n    mint operator*(const mint& r) const noexcept { return\
-    \ mint(*this) *= r; }\n    mint operator/(const mint& r) const noexcept { return\
-    \ mint(*this) /= r; }\n\n    bool operator==(const mint& r) const noexcept { return\
-    \ x == r.x; }\n    bool operator!=(const mint& r) const noexcept { return x !=\
-    \ r.x; }\n\n    mint inv() const noexcept {\n        int a = x, b = mod(), u =\
-    \ 1, v = 0;\n        while (b > 0) {\n            int t = a / b;\n           \
-    \ std::swap(a -= t * b, b);\n            std::swap(u -= t * v, v);\n        }\n\
-    \        return mint(u);\n    }\n\n    mint pow(long long n) const noexcept {\n\
-    \        mint ret(1), mul(x);\n        while (n > 0) {\n            if (n & 1)\
-    \ ret *= mul;\n            mul *= mul;\n            n >>= 1;\n        }\n    \
-    \    return ret;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
-    \ const mint& r) {\n        return os << r.x;\n    }\n\n    friend std::istream&\
-    \ operator>>(std::istream& is, mint& r) {\n        long long t;\n        is >>\
-    \ t;\n        r = mint(t);\n        return is;\n    }\n\nprivate:\n    int x;\n\
-    };\n#line 2 \"math/montmort.cpp\"\n#include <vector>\n\n/*\n * @brief Monmort\
-    \ Number\n */\ntemplate <typename T>\nstd::vector<T> montmort_table(int n) {\n\
-    \    std::vector<T> ret(n + 1);\n    if (n == 1) return ret;\n    ret[2] = 1;\n\
-    \    for (int i = 3; i <= n; ++i) {\n        ret[i] = (ret[i - 1] + ret[i - 2])\
-    \ * (i - 1);\n    }\n    return ret;\n}\n#line 5 \"test/yosupo/montmort_number_mod.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    using mint =\
-    \ ArbitraryModint;\n    mint::set_mod(M);\n    vector<mint> ans = montmort_table<mint>(N);\n\
-    \    for (int i = 1; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n\
-    }\n"
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.1/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.1/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.1/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.1/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../math/arbitrary_modint.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\
-    \n#include \"../../math/arbitrary_modint.cpp\"\n#include \"../../math/montmort.cpp\"\
+    \n#include \"../../math/arbitrary_modint.hpp\"\n#include \"../../math/montmort.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    using mint =\
     \ ArbitraryModint;\n    mint::set_mod(M);\n    vector<mint> ans = montmort_table<mint>(N);\n\
     \    for (int i = 1; i <= N; ++i) cout << ans[i] << (i < N ? \" \" : \"\\n\");\n\
     }"
-  dependsOn:
-  - math/arbitrary_modint.cpp
-  - math/montmort.cpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 15:48:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/montmort_number_mod.test.cpp
 layout: document

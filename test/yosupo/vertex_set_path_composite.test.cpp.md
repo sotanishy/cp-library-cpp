@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/segtree/segment_tree.cpp
+  - icon: ':x:'
+    path: data-structure/segtree/segment_tree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
-    path: math/modint.cpp
+  - icon: ':question:'
+    path: math/modint.hpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/hld.cpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -22,44 +22,44 @@ data:
     - https://judge.yosupo.jp/problem/vertex_set_path_composite
   bundledCode: "#line 1 \"test/yosupo/vertex_set_path_composite.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n\n\n\
-    #line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <algorithm>\n\n/**\n\
-    \ * @brief Mod int\n */\ntemplate <int mod>\nclass Modint {\n    using mint =\
-    \ Modint;\n    static_assert(mod > 0, \"Modulus must be positive\");\n\npublic:\n\
-    \    static constexpr int get_mod() noexcept { return mod; }\n\n    constexpr\
-    \ Modint(long long y = 0) noexcept : x(y >= 0 ? y % mod : (y % mod + mod) % mod)\
-    \ {}\n\n    constexpr int value() const noexcept { return x; }\n\n    constexpr\
-    \ mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= mod) x -= mod;\
-    \ return *this; }\n    constexpr mint& operator-=(const mint& r) noexcept { if\
-    \ ((x += mod - r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator*=(const\
-    \ mint& r) noexcept { x = static_cast<int>(1LL * x * r.x % mod); return *this;\
-    \ }\n    constexpr mint& operator/=(const mint& r) noexcept { *this *= r.inv();\
-    \ return *this; }\n\n    constexpr mint operator-() const noexcept { return mint(-x);\
-    \ }\n\n    constexpr mint operator+(const mint& r) const noexcept { return mint(*this)\
-    \ += r; }\n    constexpr mint operator-(const mint& r) const noexcept { return\
-    \ mint(*this) -= r; }\n    constexpr mint operator*(const mint& r) const noexcept\
-    \ { return mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const\
-    \ noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
-    \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
-    \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
-    \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
-    \ {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n     \
-    \       std::swap(u -= t * v, v);\n        }\n        return mint(u);\n    }\n\
-    \n    constexpr mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
-    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
-    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
-    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
-    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
-    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 3 \"data-structure/segtree/segment_tree.cpp\"\
-    \n#include <vector>\n\ntemplate <typename M>\nclass SegmentTree {\n    using T\
-    \ = typename M::T;\n\n   public:\n    SegmentTree() = default;\n    explicit SegmentTree(int\
-    \ n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    explicit SegmentTree(const\
-    \ std::vector<T>& v) {\n        size = 1;\n        while (size < (int)v.size())\
-    \ size <<= 1;\n        node.resize(2 * size, M::id());\n        std::copy(v.begin(),\
-    \ v.end(), node.begin() + size);\n        for (int i = size - 1; i > 0; --i)\n\
-    \            node[i] = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int\
-    \ k) const { return node[k + size]; }\n\n    void update(int k, const T& x) {\n\
-    \        k += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
+    #line 2 \"math/modint.hpp\"\n#include <algorithm>\n#include <iostream>\n\n/**\n\
+    \ * @brief Mod int\n */\ntemplate <int m>\nclass Modint {\n    using mint = Modint;\n\
+    \    static_assert(m > 0, \"Modulus must be positive\");\n\n   public:\n    static\
+    \ constexpr int mod() { return m; }\n\n    constexpr Modint(long long y = 0) :\
+    \ x(y >= 0 ? y % m : (y % m + m) % m) {}\n\n    constexpr int val() const { return\
+    \ x; }\n\n    constexpr mint& operator+=(const mint& r) {\n        if ((x += r.x)\
+    \ >= m) x -= m;\n        return *this;\n    }\n    constexpr mint& operator-=(const\
+    \ mint& r) {\n        if ((x += m - r.x) >= m) x -= m;\n        return *this;\n\
+    \    }\n    constexpr mint& operator*=(const mint& r) {\n        x = static_cast<int>(1LL\
+    \ * x * r.x % m);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
+    \ mint& r) { return *this *= r.inv(); }\n\n    constexpr bool operator==(const\
+    \ mint& r) const { return x == r.x; }\n\n    constexpr mint operator+() const\
+    \ { return *this; }\n    constexpr mint operator-() const { return mint(-x); }\n\
+    \n    constexpr friend mint operator+(const mint& l, const mint& r) {\n      \
+    \  return mint(l) += r;\n    }\n    constexpr friend mint operator-(const mint&\
+    \ l, const mint& r) {\n        return mint(l) -= r;\n    }\n    constexpr friend\
+    \ mint operator*(const mint& l, const mint& r) {\n        return mint(l) *= r;\n\
+    \    }\n    constexpr friend mint operator/(const mint& l, const mint& r) {\n\
+    \        return mint(l) /= r;\n    }\n\n    constexpr mint inv() const {\n   \
+    \     int a = x, b = m, u = 1, v = 0;\n        while (b > 0) {\n            int\
+    \ t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u -=\
+    \ t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
+    \ pow(long long n) const {\n        mint ret(1), mul(x);\n        while (n > 0)\
+    \ {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n           \
+    \ n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
+    \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
+    \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
+    \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
+    \    }\n\n   private:\n    int x;\n};\n#line 3 \"data-structure/segtree/segment_tree.hpp\"\
+    \n#include <bit>\n#include <vector>\n\ntemplate <typename M>\nclass SegmentTree\
+    \ {\n    using T = M::T;\n\n   public:\n    SegmentTree() = default;\n    explicit\
+    \ SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    explicit\
+    \ SegmentTree(const std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\
+    \ node(2 * size, M::id()) {\n        std::ranges::copy(v, node.begin() + size);\n\
+    \        for (int i = size - 1; i > 0; --i) {\n            node[i] = M::op(node[2\
+    \ * i], node[2 * i + 1]);\n        }\n    }\n\n    T operator[](int k) const {\
+    \ return node[k + size]; }\n\n    void update(int k, const T& x) {\n        k\
+    \ += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
     \ * k], node[2 * k + 1]);\n    }\n\n    T fold(int l, int r) const {\n       \
     \ T vl = M::id(), vr = M::id();\n        for (l += size, r += size; l < r; l >>=\
     \ 1, r >>= 1) {\n            if (l & 1) vl = M::op(vl, node[l++]);\n         \
@@ -68,27 +68,28 @@ data:
     \ const {\n        T v = M::id();\n        for (l += size; l > 0; l >>= 1) {\n\
     \            if (l & 1) {\n                T nv = M::op(v, node[l]);\n       \
     \         if (cond(nv)) {\n                    while (l < size) {\n          \
-    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\n\
-    \                            l = 2 * l;\n                        else\n      \
-    \                      v = nv, l = 2 * l + 1;\n                    }\n       \
-    \             return l + 1 - size;\n                }\n                v = nv;\n\
-    \                ++l;\n            }\n        }\n        return -1;\n    }\n\n\
-    \    template <typename F>\n    int find_last(int r, F cond) const {\n       \
-    \ T v = M::id();\n        for (r += size; r > 0; r >>= 1) {\n            if (r\
-    \ & 1) {\n                --r;\n                T nv = M::op(node[r], v);\n  \
-    \              if (cond(nv)) {\n                    while (r < size) {\n     \
-    \                   nv = M::op(node[2 * r + 1], v);\n                        if\
-    \ (cond(nv))\n                            r = 2 * r + 1;\n                   \
-    \     else\n                            v = nv, r = 2 * r;\n                 \
-    \   }\n                    return r - size;\n                }\n             \
-    \   v = nv;\n            }\n        }\n        return -1;\n    }\n\n   private:\n\
-    \    int size;\n    std::vector<T> node;\n};\n#line 4 \"tree/hld.cpp\"\n\ntemplate\
-    \ <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD()\
-    \ = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n   \
-    \     : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),\n          in(G.size()),\
-    \ out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n\
-    \        decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int\
-    \ v, const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\
+    \ {\n                            l = 2 * l;\n                        } else {\n\
+    \                            v = nv, l = 2 * l + 1;\n                        }\n\
+    \                    }\n                    return l + 1 - size;\n           \
+    \     }\n                v = nv;\n                ++l;\n            }\n      \
+    \  }\n        return -1;\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) const {\n        T v = M::id();\n        for (r += size; r > 0; r\
+    \ >>= 1) {\n            if (r & 1) {\n                --r;\n                T\
+    \ nv = M::op(node[r], v);\n                if (cond(nv)) {\n                 \
+    \   while (r < size) {\n                        nv = M::op(node[2 * r + 1], v);\n\
+    \                        if (cond(nv)) {\n                            r = 2 *\
+    \ r + 1;\n                        } else {\n                            v = nv,\
+    \ r = 2 * r;\n                        }\n                    }\n             \
+    \       return r - size;\n                }\n                v = nv;\n       \
+    \     }\n        }\n        return -1;\n    }\n\n   private:\n    int size;\n\
+    \    std::vector<T> node;\n};\n#line 4 \"tree/hld.cpp\"\n\ntemplate <typename\
+    \ M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD() = default;\n\
+    \    HLD(const std::vector<std::vector<int>>& G, bool edge)\n        : G(G), size(G.size()),\
+    \ depth(G.size()), par(G.size(), -1),\n          in(G.size()), out(G.size()),\
+    \ head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n       \
+    \ decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int v,\
+    \ const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
     \ <typename F>\n    void update_edge(int u, int v, const T& x, const F& f) const\
     \ {\n        if (in[u] > in[v]) std::swap(u, v);\n        f(in[v], x);\n    }\n\
     \n    template <typename E, typename F>\n    void update(int u, int v, const E&\
@@ -149,7 +150,7 @@ data:
     \ v, fold, flip).first;\n            cout << a.first * x + a.second << \"\\n\"\
     ;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
-    \n\n\n#include \"../../math/modint.cpp\"\n#include \"../../data-structure/segtree/segment_tree.cpp\"\
+    \n\n\n#include \"../../math/modint.hpp\"\n#include \"../../data-structure/segtree/segment_tree.hpp\"\
     \n#include \"../../tree/hld.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\nstruct AffineMonoid\
     \ {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n    static T id()\
@@ -175,14 +176,14 @@ data:
     \ flip).first;\n            cout << a.first * x + a.second << \"\\n\";\n     \
     \   }\n    }\n}\n"
   dependsOn:
-  - math/modint.cpp
-  - data-structure/segtree/segment_tree.cpp
+  - math/modint.hpp
+  - data-structure/segtree/segment_tree.hpp
   - tree/hld.cpp
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2023-06-13 22:58:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 20:09:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
 layout: document

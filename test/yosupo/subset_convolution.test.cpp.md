@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/modint.cpp
+  - icon: ':question:'
+    path: math/modint.hpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: set/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: set/zeta_moebius_transform.hpp
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -58,35 +58,35 @@ data:
     \n    // convert back\n    std::vector<T> ret(n);\n    for (int i = 0; i < n;\
     \ ++i) {\n        ret[i] = pa[i][std::popcount((unsigned int)i)];\n    }\n   \
     \ return ret;\n}\n#line 4 \"test/yosupo/subset_convolution.test.cpp\"\n\n#include\
-    \ <bits/stdc++.h>\n\n#line 4 \"math/modint.cpp\"\n\n/**\n * @brief Mod int\n */\n\
-    template <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
-    \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
-    \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
-    \ x(y >= 0 ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value()\
-    \ const noexcept { return x; }\n\n    constexpr mint& operator+=(const mint& r)\
-    \ noexcept { if ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint&\
-    \ operator-=(const mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod;\
-    \ return *this; }\n    constexpr mint& operator*=(const mint& r) noexcept { x\
-    \ = static_cast<int>(1LL * x * r.x % mod); return *this; }\n    constexpr mint&\
-    \ operator/=(const mint& r) noexcept { *this *= r.inv(); return *this; }\n\n \
-    \   constexpr mint operator-() const noexcept { return mint(-x); }\n\n    constexpr\
-    \ mint operator+(const mint& r) const noexcept { return mint(*this) += r; }\n\
-    \    constexpr mint operator-(const mint& r) const noexcept { return mint(*this)\
-    \ -= r; }\n    constexpr mint operator*(const mint& r) const noexcept { return\
-    \ mint(*this) *= r; }\n    constexpr mint operator/(const mint& r) const noexcept\
-    \ { return mint(*this) /= r; }\n\n    constexpr bool operator==(const mint& r)\
-    \ const noexcept { return x == r.x; }\n    constexpr bool operator!=(const mint&\
-    \ r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const noexcept\
-    \ {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0) {\n    \
-    \        int t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u\
-    \ -= t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
-    \ pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n        while\
-    \ (n > 0) {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n   \
-    \         n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
+    \ <bits/stdc++.h>\n\n#line 4 \"math/modint.hpp\"\n\n/**\n * @brief Mod int\n */\n\
+    template <int m>\nclass Modint {\n    using mint = Modint;\n    static_assert(m\
+    \ > 0, \"Modulus must be positive\");\n\n   public:\n    static constexpr int\
+    \ mod() { return m; }\n\n    constexpr Modint(long long y = 0) : x(y >= 0 ? y\
+    \ % m : (y % m + m) % m) {}\n\n    constexpr int val() const { return x; }\n\n\
+    \    constexpr mint& operator+=(const mint& r) {\n        if ((x += r.x) >= m)\
+    \ x -= m;\n        return *this;\n    }\n    constexpr mint& operator-=(const\
+    \ mint& r) {\n        if ((x += m - r.x) >= m) x -= m;\n        return *this;\n\
+    \    }\n    constexpr mint& operator*=(const mint& r) {\n        x = static_cast<int>(1LL\
+    \ * x * r.x % m);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
+    \ mint& r) { return *this *= r.inv(); }\n\n    constexpr bool operator==(const\
+    \ mint& r) const { return x == r.x; }\n\n    constexpr mint operator+() const\
+    \ { return *this; }\n    constexpr mint operator-() const { return mint(-x); }\n\
+    \n    constexpr friend mint operator+(const mint& l, const mint& r) {\n      \
+    \  return mint(l) += r;\n    }\n    constexpr friend mint operator-(const mint&\
+    \ l, const mint& r) {\n        return mint(l) -= r;\n    }\n    constexpr friend\
+    \ mint operator*(const mint& l, const mint& r) {\n        return mint(l) *= r;\n\
+    \    }\n    constexpr friend mint operator/(const mint& l, const mint& r) {\n\
+    \        return mint(l) /= r;\n    }\n\n    constexpr mint inv() const {\n   \
+    \     int a = x, b = m, u = 1, v = 0;\n        while (b > 0) {\n            int\
+    \ t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u -=\
+    \ t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
+    \ pow(long long n) const {\n        mint ret(1), mul(x);\n        while (n > 0)\
+    \ {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n           \
+    \ n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
     \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\nprivate:\n    int x;\n};\n#line 8 \"test/yosupo/subset_convolution.test.cpp\"\
+    \    }\n\n   private:\n    int x;\n};\n#line 8 \"test/yosupo/subset_convolution.test.cpp\"\
     \nusing namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 <<\
     \ N);\n    for (int i = 0; i < 1 << N; ++i) cin >> a[i];\n    for (int i = 0;\
@@ -95,7 +95,7 @@ data:
     \ N) - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\n\
     #include \"../../set/subset_convolution.hpp\"\n\n#include <bits/stdc++.h>\n\n\
-    #include \"../../math/modint.cpp\"\nusing namespace std;\nusing ll = long long;\n\
+    #include \"../../math/modint.hpp\"\nusing namespace std;\nusing ll = long long;\n\
     \nusing mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n\
     \    vector<mint> a(1 << N), b(1 << N);\n    for (int i = 0; i < 1 << N; ++i)\
     \ cin >> a[i];\n    for (int i = 0; i < 1 << N; ++i) cin >> b[i];\n    auto c\
@@ -104,12 +104,12 @@ data:
   dependsOn:
   - set/subset_convolution.hpp
   - set/zeta_moebius_transform.hpp
-  - math/modint.cpp
+  - math/modint.hpp
   isVerificationFile: true
   path: test/yosupo/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 16:57:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 20:09:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/subset_convolution.test.cpp
 layout: document

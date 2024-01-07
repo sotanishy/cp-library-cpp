@@ -1,8 +1,8 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/segtree/lazy_segment_tree.cpp
+  - icon: ':question:'
+    path: data-structure/segtree/lazy_segment_tree.hpp
     title: Segment Tree with Lazy Propagation
   _extendedRequiredBy: []
   _extendedVerifiedWith:
@@ -15,54 +15,55 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/permutation_tree.hpp\"\n#include <algorithm>\n#include\
-    \ <vector>\n#line 4 \"data-structure/segtree/lazy_segment_tree.cpp\"\n\ntemplate\
-    \ <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>\n\
-    class LazySegmentTree {\n    using T = typename M::T;\n    using E = typename\
-    \ O::T;\n\npublic:\n    LazySegmentTree() = default;\n    explicit LazySegmentTree(int\
-    \ n) : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    explicit LazySegmentTree(const\
-    \ std::vector<T>& v) {\n        size = 1;\n        while (size < (int) v.size())\
-    \ size <<= 1;\n        node.resize(2 * size, M::id());\n        lazy.resize(2\
-    \ * size, O::id());\n        std::copy(v.begin(), v.end(), node.begin() + size);\n\
-    \        for (int i = size - 1; i > 0; --i) node[i] = M::op(node[2 * i], node[2\
-    \ * i + 1]);\n    }\n\n    T operator[](int k) {\n        return fold(k, k + 1);\n\
-    \    }\n\n    void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size);\
-    \ }\n\n    T fold(int l, int r) { return fold(l, r, 1, 0, size); }\n\n    template\
-    \ <typename F>\n    int find_first(int l, F cond) {\n        T v = M::id();\n\
-    \        return find_first(l, size, 1, 0, size, v, cond);\n    }\n\n    template\
-    \ <typename F>\n    int find_last(int r, F cond) {\n        T v = M::id();\n \
-    \       return find_last(0, r, 1, 0, size, v, cond);\n    }\n\nprivate:\n    int\
-    \ size;\n    std::vector<T> node;\n    std::vector<E> lazy;\n\n    void push(int\
-    \ k) {\n        if (lazy[k] == O::id()) return;\n        if (k < size) {\n   \
-    \         lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n            lazy[2 * k +\
-    \ 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n        node[k] = act(node[k],\
-    \ lazy[k]);\n        lazy[k] = O::id();\n    }\n\n    void update(int a, int b,\
-    \ const E& x, int k, int l, int r) {\n        push(k);\n        if (r <= a ||\
-    \ b <= l) return;\n        if (a <= l && r <= b) {\n            lazy[k] = O::op(lazy[k],\
-    \ x);\n            push(k);\n            return;\n        }\n        int m = (l\
-    \ + r) / 2;\n        update(a, b, x, 2 * k, l, m);\n        update(a, b, x, 2\
-    \ * k + 1, m, r);\n        node[k] = M::op(node[2 * k], node[2 * k + 1]);\n  \
-    \  }\n\n    T fold(int a, int b, int k, int l, int r) {\n        push(k);\n  \
-    \      if (r <= a || b <= l) return M::id();\n        if (a <= l && r <= b) return\
-    \ node[k];\n        int m = (l + r) / 2;\n        return M::op(fold(a, b, 2 *\
-    \ k, l, m),\n                     fold(a, b, 2 * k + 1, m, r));\n    }\n\n   \
-    \ template <typename F>\n    int find_first(int a, int b, int k, int l, int r,\
-    \ T& v, F cond) {\n        push(k);\n        if (r <= a) return -1;\n        if\
-    \ (b <= l) return l;\n        if (a <= l && r <= b && !cond(M::op(v, node[k])))\
-    \ {\n            v = M::op(v, node[k]);\n            return -1;\n        }\n \
-    \       if (r - l == 1) return r;\n        int m = (l + r) / 2;\n        int res\
-    \ = find_first(a, b, 2 * k, l, m, v, cond);\n        if (res != -1) return res;\n\
-    \        return find_first(a, b, 2 * k + 1, m, r, v, cond);\n    }\n\n    template\
-    \ <typename F>\n    int find_last(int a, int b, int k, int l, int r, T& v, F cond)\
-    \ {\n        push(k);\n        if (b <= l) return -1;\n        if (r <= a) return\
-    \ r;\n        if (a <= l && r <= b && !cond(M::op(node[k], v))) {\n          \
-    \  v = M::op(node[k], v);\n            return -1;\n        }\n        if (r -\
-    \ l == 1) return l;\n        int m = (l + r) / 2;\n        int res = find_last(a,\
-    \ b, 2 * k + 1, m, r, v, cond);\n        if (res != -1) return res;\n        return\
-    \ find_last(a, b, 2 * k, l, m, v, cond);\n    }\n};\n#line 5 \"tree/permutation_tree.hpp\"\
-    \n\nstruct MinMonoid {\n    using T = int;\n    static T id() { return (1u <<\
-    \ 31) - 1; }\n    static T op(T a, T b) {\n        return std::min(a, b);\n  \
-    \  }\n};\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return\
-    \ 0; }\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint act(int\
+    \ <vector>\n#line 3 \"data-structure/segtree/lazy_segment_tree.hpp\"\n#include\
+    \ <bit>\n#include <numeric>\n#line 6 \"data-structure/segtree/lazy_segment_tree.hpp\"\
+    \n\ntemplate <typename M, typename O,\n          typename M::T (*act)(typename\
+    \ M::T, typename O::T)>\nclass LazySegmentTree {\n    using T = M::T;\n    using\
+    \ E = O::T;\n\n   public:\n    LazySegmentTree() = default;\n    explicit LazySegmentTree(int\
+    \ n)\n        : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    explicit LazySegmentTree(const\
+    \ std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\n          node(2\
+    \ * size, M::id()),\n          lazy(2 * size, O::id()) {\n        std::ranges::copy(v,\
+    \ node.begin() + size);\n        for (int i = size - 1; i > 0; --i) {\n      \
+    \      node[i] = M::op(node[2 * i], node[2 * i + 1]);\n        }\n    }\n\n  \
+    \  T operator[](int k) { return fold(k, k + 1); }\n\n    void update(int l, int\
+    \ r, const E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r)\
+    \ { return fold(l, r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int\
+    \ l, F cond) {\n        T v = M::id();\n        return find_first(l, size, 1,\
+    \ 0, size, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size,\
+    \ v, cond);\n    }\n\n   private:\n    int size;\n    std::vector<T> node;\n \
+    \   std::vector<E> lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id())\
+    \ return;\n        if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k],\
+    \ lazy[k]);\n            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n\
+    \        }\n        node[k] = act(node[k], lazy[k]);\n        lazy[k] = O::id();\n\
+    \    }\n\n    void update(int a, int b, const E& x, int k, int l, int r) {\n \
+    \       push(k);\n        if (r <= a || b <= l) return;\n        if (a <= l &&\
+    \ r <= b) {\n            lazy[k] = O::op(lazy[k], x);\n            push(k);\n\
+    \            return;\n        }\n        int m = std::midpoint(l, r);\n      \
+    \  update(a, b, x, 2 * k, l, m);\n        update(a, b, x, 2 * k + 1, m, r);\n\
+    \        node[k] = M::op(node[2 * k], node[2 * k + 1]);\n    }\n\n    T fold(int\
+    \ a, int b, int k, int l, int r) {\n        push(k);\n        if (r <= a || b\
+    \ <= l) return M::id();\n        if (a <= l && r <= b) return node[k];\n     \
+    \   int m = std::midpoint(l, r);\n        return M::op(fold(a, b, 2 * k, l, m),\
+    \ fold(a, b, 2 * k + 1, m, r));\n    }\n\n    template <typename F>\n    int find_first(int\
+    \ a, int b, int k, int l, int r, T& v, F cond) {\n        push(k);\n        if\
+    \ (r <= a) return -1;\n        if (b <= l) return l;\n        if (a <= l && r\
+    \ <= b && !cond(M::op(v, node[k]))) {\n            v = M::op(v, node[k]);\n  \
+    \          return -1;\n        }\n        if (r - l == 1) return r;\n        int\
+    \ m = std::midpoint(l, r);\n        int res = find_first(a, b, 2 * k, l, m, v,\
+    \ cond);\n        if (res != -1) return res;\n        return find_first(a, b,\
+    \ 2 * k + 1, m, r, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ a, int b, int k, int l, int r, T& v, F cond) {\n        push(k);\n        if\
+    \ (b <= l) return -1;\n        if (r <= a) return r;\n        if (a <= l && r\
+    \ <= b && !cond(M::op(node[k], v))) {\n            v = M::op(node[k], v);\n  \
+    \          return -1;\n        }\n        if (r - l == 1) return l;\n        int\
+    \ m = std::midpoint(l, r);\n        int res = find_last(a, b, 2 * k + 1, m, r,\
+    \ v, cond);\n        if (res != -1) return res;\n        return find_last(a, b,\
+    \ 2 * k, l, m, v, cond);\n    }\n};\n#line 5 \"tree/permutation_tree.hpp\"\n\n\
+    struct MinMonoid {\n    using T = int;\n    static T id() { return (1u << 31)\
+    \ - 1; }\n    static T op(T a, T b) {\n        return std::min(a, b);\n    }\n\
+    };\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return 0; }\n\
+    \    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint act(int\
     \ a, int b) {\n    return a + b;\n}\n\nclass PermutationTree {\npublic:\n    enum\
     \ NodeType {\n        JoinAsc, JoinDesc, Cut, Leaf, None\n    };\n    struct Node\
     \ {\n        NodeType tp;\n        int l, r; // i in [l, r)\n        int lb, ub;\
@@ -106,7 +107,7 @@ data:
     \ nodes[ch].l);\n        nodes[par].r = std::max(nodes[par].r, nodes[ch].r);\n\
     \        nodes[par].lb = std::min(nodes[par].lb, nodes[ch].lb);\n        nodes[par].ub\
     \ = std::max(nodes[par].ub, nodes[ch].ub);\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"../data-structure/segtree/lazy_segment_tree.cpp\"\
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"../data-structure/segtree/lazy_segment_tree.hpp\"\
     \n\nstruct MinMonoid {\n    using T = int;\n    static T id() { return (1u <<\
     \ 31) - 1; }\n    static T op(T a, T b) {\n        return std::min(a, b);\n  \
     \  }\n};\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return\
@@ -155,11 +156,11 @@ data:
     \        nodes[par].lb = std::min(nodes[par].lb, nodes[ch].lb);\n        nodes[par].ub\
     \ = std::max(nodes[par].ub, nodes[ch].ub);\n    }\n};"
   dependsOn:
-  - data-structure/segtree/lazy_segment_tree.cpp
+  - data-structure/segtree/lazy_segment_tree.hpp
   isVerificationFile: false
   path: tree/permutation_tree.hpp
   requiredBy: []
-  timestamp: '2022-10-05 11:07:43+09:00'
+  timestamp: '2024-01-07 20:09:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/common_interval_decomposition_tree.test.cpp

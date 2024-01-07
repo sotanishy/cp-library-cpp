@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
-  - icon: ':heavy_check_mark:'
-    path: math/modint.cpp
+  - icon: ':question:'
+    path: math/modint.hpp
     title: Mod int
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -154,34 +154,34 @@ data:
     \ f(V + 1);\n    for (int k = 1; k <= V; ++k) {\n        if (a[k] == 0) continue;\n\
     \        for (int i = 1; k * i <= V; ++i) {\n            f[k * i] += mint(i %\
     \ 2 == 0 ? -1 : 1) * a[k] * inv[i];\n        }\n    }\n    return f.exp();\n}\n\
-    #line 4 \"math/modint.cpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int mod>\n\
-    class Modint {\n    using mint = Modint;\n    static_assert(mod > 0, \"Modulus\
-    \ must be positive\");\n\npublic:\n    static constexpr int get_mod() noexcept\
-    \ { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept : x(y >= 0\
-    \ ? y % mod : (y % mod + mod) % mod) {}\n\n    constexpr int value() const noexcept\
-    \ { return x; }\n\n    constexpr mint& operator+=(const mint& r) noexcept { if\
-    \ ((x += r.x) >= mod) x -= mod; return *this; }\n    constexpr mint& operator-=(const\
-    \ mint& r) noexcept { if ((x += mod - r.x) >= mod) x -= mod; return *this; }\n\
-    \    constexpr mint& operator*=(const mint& r) noexcept { x = static_cast<int>(1LL\
-    \ * x * r.x % mod); return *this; }\n    constexpr mint& operator/=(const mint&\
-    \ r) noexcept { *this *= r.inv(); return *this; }\n\n    constexpr mint operator-()\
-    \ const noexcept { return mint(-x); }\n\n    constexpr mint operator+(const mint&\
-    \ r) const noexcept { return mint(*this) += r; }\n    constexpr mint operator-(const\
-    \ mint& r) const noexcept { return mint(*this) -= r; }\n    constexpr mint operator*(const\
-    \ mint& r) const noexcept { return mint(*this) *= r; }\n    constexpr mint operator/(const\
-    \ mint& r) const noexcept { return mint(*this) /= r; }\n\n    constexpr bool operator==(const\
-    \ mint& r) const noexcept { return x == r.x; }\n    constexpr bool operator!=(const\
-    \ mint& r) const noexcept { return x != r.x; }\n\n    constexpr mint inv() const\
-    \ noexcept {\n        int a = x, b = mod, u = 1, v = 0;\n        while (b > 0)\
-    \ {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n     \
-    \       std::swap(u -= t * v, v);\n        }\n        return mint(u);\n    }\n\
-    \n    constexpr mint pow(long long n) const noexcept {\n        mint ret(1), mul(x);\n\
+    #line 4 \"math/modint.hpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int m>\n\
+    class Modint {\n    using mint = Modint;\n    static_assert(m > 0, \"Modulus must\
+    \ be positive\");\n\n   public:\n    static constexpr int mod() { return m; }\n\
+    \n    constexpr Modint(long long y = 0) : x(y >= 0 ? y % m : (y % m + m) % m)\
+    \ {}\n\n    constexpr int val() const { return x; }\n\n    constexpr mint& operator+=(const\
+    \ mint& r) {\n        if ((x += r.x) >= m) x -= m;\n        return *this;\n  \
+    \  }\n    constexpr mint& operator-=(const mint& r) {\n        if ((x += m - r.x)\
+    \ >= m) x -= m;\n        return *this;\n    }\n    constexpr mint& operator*=(const\
+    \ mint& r) {\n        x = static_cast<int>(1LL * x * r.x % m);\n        return\
+    \ *this;\n    }\n    constexpr mint& operator/=(const mint& r) { return *this\
+    \ *= r.inv(); }\n\n    constexpr bool operator==(const mint& r) const { return\
+    \ x == r.x; }\n\n    constexpr mint operator+() const { return *this; }\n    constexpr\
+    \ mint operator-() const { return mint(-x); }\n\n    constexpr friend mint operator+(const\
+    \ mint& l, const mint& r) {\n        return mint(l) += r;\n    }\n    constexpr\
+    \ friend mint operator-(const mint& l, const mint& r) {\n        return mint(l)\
+    \ -= r;\n    }\n    constexpr friend mint operator*(const mint& l, const mint&\
+    \ r) {\n        return mint(l) *= r;\n    }\n    constexpr friend mint operator/(const\
+    \ mint& l, const mint& r) {\n        return mint(l) /= r;\n    }\n\n    constexpr\
+    \ mint inv() const {\n        int a = x, b = m, u = 1, v = 0;\n        while (b\
+    \ > 0) {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n\
+    \            std::swap(u -= t * v, v);\n        }\n        return mint(u);\n \
+    \   }\n\n    constexpr mint pow(long long n) const {\n        mint ret(1), mul(x);\n\
     \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
     \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
     \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
     \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
-    \        return is;\n    }\n\nprivate:\n    int x;\n};\n#line 7 \"test/yosupo/sharp_p_subset_sum.test.cpp\"\
+    \        return is;\n    }\n\n   private:\n    int x;\n};\n#line 7 \"test/yosupo/sharp_p_subset_sum.test.cpp\"\
     \n\nusing mint = Modint<998244353>;\n\nusing namespace std;\nusing ll = long long;\n\
     \nint main() {\n    int N, T;\n    cin >> N >> T;\n    vector<int> s(N);\n   \
     \ for (auto& x : s) cin >> x;\n    auto ans = count_subset_sum<mint>(s, T);\n\n\
@@ -189,7 +189,7 @@ data:
     \ : \"\\n\");\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n\
     #include <bits/stdc++.h>\n\n#include \"../../math/count_subset_sum.hpp\"\n#include\
-    \ \"../../math/modint.cpp\"\n\nusing mint = Modint<998244353>;\n\nusing namespace\
+    \ \"../../math/modint.hpp\"\n\nusing mint = Modint<998244353>;\n\nusing namespace\
     \ std;\nusing ll = long long;\n\nint main() {\n    int N, T;\n    cin >> N >>\
     \ T;\n    vector<int> s(N);\n    for (auto& x : s) cin >> x;\n    auto ans = count_subset_sum<mint>(s,\
     \ T);\n\n    for (int i = 1; i <= T; ++i) {\n        cout << ans[i] << (i < T\
@@ -198,12 +198,12 @@ data:
   - math/count_subset_sum.hpp
   - math/polynomial.cpp
   - convolution/ntt.hpp
-  - math/modint.cpp
+  - math/modint.hpp
   isVerificationFile: true
   path: test/yosupo/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-24 17:02:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 20:09:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/sharp_p_subset_sum.test.cpp
 layout: document

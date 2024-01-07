@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/segtree/segment_tree.cpp
+  - icon: ':x:'
+    path: data-structure/segtree/segment_tree.hpp
     title: Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-structure/unionfind/union_find.cpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.cpp
     title: graph/edge.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -28,16 +28,16 @@ data:
     - https://judge.yosupo.jp/problem/manhattanmst
   bundledCode: "#line 1 \"test/yosupo/manhattanmst.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/manhattanmst\"\n\n#include <bits/stdc++.h>\n\n\
-    #line 5 \"graph/manhattan_mst.hpp\"\n\n#line 4 \"data-structure/segtree/segment_tree.cpp\"\
-    \n\ntemplate <typename M>\nclass SegmentTree {\n    using T = typename M::T;\n\
-    \n   public:\n    SegmentTree() = default;\n    explicit SegmentTree(int n) :\
-    \ SegmentTree(std::vector<T>(n, M::id())) {}\n    explicit SegmentTree(const std::vector<T>&\
-    \ v) {\n        size = 1;\n        while (size < (int)v.size()) size <<= 1;\n\
-    \        node.resize(2 * size, M::id());\n        std::copy(v.begin(), v.end(),\
-    \ node.begin() + size);\n        for (int i = size - 1; i > 0; --i)\n        \
-    \    node[i] = M::op(node[2 * i], node[2 * i + 1]);\n    }\n\n    T operator[](int\
-    \ k) const { return node[k + size]; }\n\n    void update(int k, const T& x) {\n\
-    \        k += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
+    #line 5 \"graph/manhattan_mst.hpp\"\n\n#line 3 \"data-structure/segtree/segment_tree.hpp\"\
+    \n#include <bit>\n#line 5 \"data-structure/segtree/segment_tree.hpp\"\n\ntemplate\
+    \ <typename M>\nclass SegmentTree {\n    using T = M::T;\n\n   public:\n    SegmentTree()\
+    \ = default;\n    explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    explicit SegmentTree(const std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\
+    \ node(2 * size, M::id()) {\n        std::ranges::copy(v, node.begin() + size);\n\
+    \        for (int i = size - 1; i > 0; --i) {\n            node[i] = M::op(node[2\
+    \ * i], node[2 * i + 1]);\n        }\n    }\n\n    T operator[](int k) const {\
+    \ return node[k + size]; }\n\n    void update(int k, const T& x) {\n        k\
+    \ += size;\n        node[k] = x;\n        while (k >>= 1) node[k] = M::op(node[2\
     \ * k], node[2 * k + 1]);\n    }\n\n    T fold(int l, int r) const {\n       \
     \ T vl = M::id(), vr = M::id();\n        for (l += size, r += size; l < r; l >>=\
     \ 1, r >>= 1) {\n            if (l & 1) vl = M::op(vl, node[l++]);\n         \
@@ -46,34 +46,35 @@ data:
     \ const {\n        T v = M::id();\n        for (l += size; l > 0; l >>= 1) {\n\
     \            if (l & 1) {\n                T nv = M::op(v, node[l]);\n       \
     \         if (cond(nv)) {\n                    while (l < size) {\n          \
-    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\n\
-    \                            l = 2 * l;\n                        else\n      \
-    \                      v = nv, l = 2 * l + 1;\n                    }\n       \
-    \             return l + 1 - size;\n                }\n                v = nv;\n\
-    \                ++l;\n            }\n        }\n        return -1;\n    }\n\n\
-    \    template <typename F>\n    int find_last(int r, F cond) const {\n       \
-    \ T v = M::id();\n        for (r += size; r > 0; r >>= 1) {\n            if (r\
-    \ & 1) {\n                --r;\n                T nv = M::op(node[r], v);\n  \
-    \              if (cond(nv)) {\n                    while (r < size) {\n     \
-    \                   nv = M::op(node[2 * r + 1], v);\n                        if\
-    \ (cond(nv))\n                            r = 2 * r + 1;\n                   \
-    \     else\n                            v = nv, r = 2 * r;\n                 \
-    \   }\n                    return r - size;\n                }\n             \
-    \   v = nv;\n            }\n        }\n        return -1;\n    }\n\n   private:\n\
-    \    int size;\n    std::vector<T> node;\n};\n#line 2 \"graph/edge.cpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge() =\
-    \ default;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n\
-    \    Edge(int from, int to, T weight) : from(from), to(to), weight(weight) {}\n\
-    };\n#line 4 \"data-structure/unionfind/union_find.cpp\"\n\nclass UnionFind {\n\
-    public:\n    UnionFind() = default;\n    explicit UnionFind(int n) : data(n, -1)\
-    \ {}\n\n    int find(int x) {\n        if (data[x] < 0) return x;\n        return\
-    \ data[x] = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n        x\
-    \ = find(x);\n        y = find(y);\n        if (x == y) return;\n        if (data[x]\
-    \ > data[y]) std::swap(x, y);\n        data[x] += data[y];\n        data[y] =\
-    \ x;\n    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n\n    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n\
-    \    std::vector<int> data;\n};\n#line 8 \"graph/mst.cpp\"\n\n/*\n * Kruskal's\
-    \ Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>> kruskal(std::vector<Edge<T>>\
+    \              nv = M::op(v, node[2 * l]);\n                        if (cond(nv))\
+    \ {\n                            l = 2 * l;\n                        } else {\n\
+    \                            v = nv, l = 2 * l + 1;\n                        }\n\
+    \                    }\n                    return l + 1 - size;\n           \
+    \     }\n                v = nv;\n                ++l;\n            }\n      \
+    \  }\n        return -1;\n    }\n\n    template <typename F>\n    int find_last(int\
+    \ r, F cond) const {\n        T v = M::id();\n        for (r += size; r > 0; r\
+    \ >>= 1) {\n            if (r & 1) {\n                --r;\n                T\
+    \ nv = M::op(node[r], v);\n                if (cond(nv)) {\n                 \
+    \   while (r < size) {\n                        nv = M::op(node[2 * r + 1], v);\n\
+    \                        if (cond(nv)) {\n                            r = 2 *\
+    \ r + 1;\n                        } else {\n                            v = nv,\
+    \ r = 2 * r;\n                        }\n                    }\n             \
+    \       return r - size;\n                }\n                v = nv;\n       \
+    \     }\n        }\n        return -1;\n    }\n\n   private:\n    int size;\n\
+    \    std::vector<T> node;\n};\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename\
+    \ T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge() = default;\n\
+    \    Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
+    \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4\
+    \ \"data-structure/unionfind/union_find.cpp\"\n\nclass UnionFind {\npublic:\n\
+    \    UnionFind() = default;\n    explicit UnionFind(int n) : data(n, -1) {}\n\n\
+    \    int find(int x) {\n        if (data[x] < 0) return x;\n        return data[x]\
+    \ = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n        x = find(x);\n\
+    \        y = find(y);\n        if (x == y) return;\n        if (data[x] > data[y])\
+    \ std::swap(x, y);\n        data[x] += data[y];\n        data[y] = x;\n    }\n\
+    \n    bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n\n\
+    \    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n  \
+    \  std::vector<int> data;\n};\n#line 8 \"graph/mst.cpp\"\n\n/*\n * Kruskal's Algorithm\n\
+    \ */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>> kruskal(std::vector<Edge<T>>\
     \ G, int V) {\n    std::sort(G.begin(), G.end(), [](const auto& e1, const auto&\
     \ e2) {\n        return e1.weight < e2.weight;\n    });\n    UnionFind uf(V);\n\
     \    T weight = 0;\n    std::vector<Edge<T>> edges;\n    for (auto& e : G) {\n\
@@ -140,15 +141,15 @@ data:
     \ << \"\\n\";\n    }\n}"
   dependsOn:
   - graph/manhattan_mst.hpp
-  - data-structure/segtree/segment_tree.cpp
+  - data-structure/segtree/segment_tree.hpp
   - graph/edge.cpp
   - graph/mst.cpp
   - data-structure/unionfind/union_find.cpp
   isVerificationFile: true
   path: test/yosupo/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2023-09-02 12:26:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 20:09:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/manhattanmst.test.cpp
 layout: document

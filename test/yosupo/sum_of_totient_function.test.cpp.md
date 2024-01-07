@@ -3,9 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -13,7 +13,7 @@ data:
     - https://judge.yosupo.jp/problem/sum_of_totient_function
   bundledCode: "#line 1 \"test/yosupo/sum_of_totient_function.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\n\n// #include\
-    \ \"../../math/modint.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \ \"../../math/modint.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
     \ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
     \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
@@ -63,7 +63,7 @@ data:
     \ long N;\n    cin >> N;\n    auto [small, large] = totient_summatory_table<mint>(N);\n\
     \    mint ans = large[1];\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
-    \n\n// #include \"../../math/modint.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \n\n// #include \"../../math/modint.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\ntemplate <int mod>\nclass Modint {\n    using mint = Modint;\n    static_assert(mod\
     \ > 0, \"Modulus must be positive\");\n\npublic:\n    static constexpr int get_mod()\
     \ noexcept { return mod; }\n\n    constexpr Modint(long long y = 0) noexcept :\
@@ -116,8 +116,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 00:48:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 20:09:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/sum_of_totient_function.test.cpp
 layout: document
