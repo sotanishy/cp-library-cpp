@@ -15,17 +15,18 @@ int longest_increasing_subsequence(const std::vector<T>& v, bool strict) {
     for (auto& x : v) {
         int k;
         if (strict) {
-            k = std::lower_bound(dp.begin(), dp.end(), x) - dp.begin();
+            k = std::ranges::lower_bound(dp, x) - dp.begin();
         } else {
-            k = std::upper_bound(dp.begin(), dp.end(), x) - dp.begin();
+            k = std::ranges::upper_bound(dp, x) - dp.begin();
         }
         dp[k] = x;
     }
-    return std::lower_bound(dp.begin(), dp.end(), INF) - dp.begin();
+    return std::ranges::lower_bound(dp, INF) - dp.begin();
 }
 
 template <typename T>
-std::pair<int, std::vector<int>> longest_increasing_subsequence_with_index(const std::vector<T>& v, bool strict) {
+std::pair<int, std::vector<int>> longest_increasing_subsequence_with_index(
+    const std::vector<T>& v, bool strict) {
     constexpr T INF = std::numeric_limits<T>::max();
     const int n = v.size();
     std::vector<T> dp(n + 1, INF);
@@ -35,15 +36,15 @@ std::pair<int, std::vector<int>> longest_increasing_subsequence_with_index(const
         T x = v[i];
         int k;
         if (strict) {
-            k = std::lower_bound(dp.begin(), dp.end(), x) - dp.begin();
+            k = std::ranges::lower_bound(dp, x) - dp.begin();
         } else {
-            k = std::upper_bound(dp.begin(), dp.end(), x) - dp.begin();
+            k = std::ranges::upper_bound(dp, x) - dp.begin();
         }
         dp[k] = x;
         len[i] = k;
     }
 
-    int res = *max_element(len.begin(), len.end());
+    int res = *std::ranges::max_element(len);
     int k = res;
     std::vector<int> idx;
     for (int i = n - 1; i >= 0; --i) {
@@ -52,6 +53,6 @@ std::pair<int, std::vector<int>> longest_increasing_subsequence_with_index(const
             --k;
         }
     }
-    std::reverse(idx.begin(), idx.end());
+    std::ranges::reverse(idx);
     return {res, idx};
 }

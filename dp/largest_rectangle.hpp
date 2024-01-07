@@ -26,6 +26,7 @@ T largest_rectangle(const std::vector<T>& h) {
         st.emplace(h[i], i);
     }
     T ret = 0;
-    for (int i = 0; i < n; ++i) ret = std::max(ret, h[i] * (right[i] - left[i]));
+    for (int i = 0; i < n; ++i)
+        ret = std::max(ret, h[i] * (right[i] - left[i]));
     return ret;
 }

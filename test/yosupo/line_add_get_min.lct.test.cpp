@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
-#include "../../data-structure/cht/li_chao_tree.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/cht/li_chao_tree.hpp"
 using namespace std;
 using ll = long long;
 

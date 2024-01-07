@@ -5,7 +5,7 @@
 
 template <typename T>
 class LeftistHeap {
-public:
+   public:
     LeftistHeap() = default;
 
     static LeftistHeap meld(LeftistHeap a, LeftistHeap b) {
@@ -30,7 +30,7 @@ public:
 
     void add(T x) { root->lazy += x; }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::unique_ptr<Node>;
 

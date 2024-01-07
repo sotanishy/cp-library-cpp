@@ -1,24 +1,24 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <cassert>
 #include <limits>
 #include <utility>
 #include <vector>
 
-/*
+/**
  * @brief Undoable Li Chao Tree
  */
 template <typename T>
 class UndoableLiChaoTree {
-public:
+   public:
     UndoableLiChaoTree() = default;
     explicit UndoableLiChaoTree(const std::vector<T>& vs) : xs(vs) {
-        std::sort(xs.begin(), xs.end());
-        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
-        size = 1;
-        while (size < (int) xs.size()) size <<= 1;
+        std::ranges::sort(xs);
+        xs.erase(std::ranges::unique(xs).begin(), xs.end());
+        size = std::bit_ceil(xs.size());
         node.resize(2 * size, {0, INF});
-        while ((int) xs.size() <= size) xs.push_back(xs.back() + 1);
+        while ((int)xs.size() <= size) xs.push_back(xs.back() + 1);
     }
 
     void add(T a, T b) {
@@ -26,7 +26,7 @@ public:
         Line line(a, b);
         int k = 1, l = 0, r = size;
         while (true) {
-            int m = (l + r) / 2;
+            int m = std::midpoint(l, r);
             bool left = line(xs[l]) < node[k](xs[l]);
             bool mid = line(xs[m]) < node[k](xs[m]);
             bool right = line(xs[r]) < node[k](xs[r]);
@@ -53,7 +53,7 @@ public:
     }
 
     T get(T x) const {
-        int k = std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+        int k = std::ranges::lower_bound(xs, x) - xs.begin();
         k += size;
         T res = node[k](x);
         while (k >>= 1) res = std::min(res, node[k](x));
@@ -70,7 +70,7 @@ public:
         }
     }
 
-private:
+   private:
     struct Line {
         T a, b;
         Line(T a, T b) : a(a), b(b) {}

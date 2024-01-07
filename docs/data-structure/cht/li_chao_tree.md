@@ -1,6 +1,6 @@
 ---
 title: Li Chao Tree
-documentation_of: ../../../data-structure/cht/li_chao_tree.cpp
+documentation_of: ../../../data-structure/cht/li_chao_tree.hpp
 ---
 
 ## Description

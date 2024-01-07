@@ -1,4 +1,6 @@
 #pragma once
+#include <deque>
+
 #include "geometry.hpp"
 #include "intersection.hpp"
 

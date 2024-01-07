@@ -1,6 +1,6 @@
 ---
 title: Hu-Tucker Algorithm
-documentation_of: ../../dp/hu_tucker.cpp
+documentation_of: ../../dp/hu_tucker.hpp
 ---
 
 ## Description

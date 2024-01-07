@@ -1,6 +1,6 @@
 ---
 title: Monotone Minima
-documentation_of: ../../dp/monotone_minima.cpp
+documentation_of: ../../dp/monotone_minima.hpp
 ---
 
 ## Description

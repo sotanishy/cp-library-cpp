@@ -1,29 +1,27 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <limits>
 #include <utility>
 #include <vector>
 
 template <typename T>
 class LiChaoTree {
-public:
+   public:
     LiChaoTree() = default;
     explicit LiChaoTree(const std::vector<T>& vs) : xs(vs) {
-        std::sort(xs.begin(), xs.end());
-        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
-        size = 1;
-        while (size < (int) xs.size()) size <<= 1;
+        std::ranges::sort(xs);
+        xs.erase(std::ranges::unique(xs).begin(), xs.end());
+        size = std::bit_ceil(xs.size());
         node.resize(2 * size, {0, INF});
-        while ((int) xs.size() <= size) xs.push_back(xs.back() + 1);
+        while ((int)xs.size() <= size) xs.push_back(xs.back() + 1);
     }
 
-    void add_line(T a, T b) {
-        update({a, b}, 1, 0, size);
-    }
+    void add_line(T a, T b) { update({a, b}, 1, 0, size); }
 
     void add_segment(T a, T b, T xl, T xr) {
-        int l = std::lower_bound(xs.begin(), xs.end(), xl) - xs.begin();
-        int r = std::lower_bound(xs.begin(), xs.end(), xr) - xs.begin();
+        int l = std::ranges::lower_bound(xs, xl) - xs.begin();
+        int r = std::ranges::lower_bound(xs, xr) - xs.begin();
 
         Line line(a, b);
         int len = 1;
@@ -43,14 +41,14 @@ public:
     }
 
     T get(T x) const {
-        int k = std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+        int k = std::ranges::lower_bound(xs, x) - xs.begin();
         k += size;
         T res = node[k](x);
         while (k >>= 1) res = std::min(res, node[k](x));
         return res;
     }
 
-private:
+   private:
     struct Line {
         T a, b;
         Line(T a, T b) : a(a), b(b) {}
@@ -65,7 +63,7 @@ private:
 
     void update(Line line, int k, int l, int r) {
         while (true) {
-            int m = (l + r) / 2;
+            int m = std::midpoint(l, r);
             bool left = line(xs[l]) < node[k](xs[l]);
             bool mid = line(xs[m]) < node[k](xs[m]);
             bool right = line(xs[r]) < node[k](xs[r]);

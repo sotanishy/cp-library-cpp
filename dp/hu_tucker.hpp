@@ -4,7 +4,8 @@
 #include <queue>
 #include <utility>
 #include <vector>
-#include "../data-structure/leftist_heap.cpp"
+
+#include "../data-structure/leftist_heap.hpp"
 
 template <typename T>
 T hu_tucker(std::vector<T> w) {
@@ -57,7 +58,8 @@ T hu_tucker(std::vector<T> w) {
         // merge left
         if (merge_l && i > 0) {
             int j = left[i];
-            heaps[j] = LeftistHeap<T>::meld(std::move(heaps[j]), std::move(heaps[i]));
+            heaps[j] =
+                LeftistHeap<T>::meld(std::move(heaps[j]), std::move(heaps[i]));
             right[j] = right[i];
             right[i] = -1;
             left[right[j]] = j;
@@ -66,7 +68,8 @@ T hu_tucker(std::vector<T> w) {
         // merge right
         if (merge_r && right[i] < n - 1) {
             int j = right[i];
-            heaps[i] = LeftistHeap<T>::meld(std::move(heaps[i]), std::move(heaps[j]));
+            heaps[i] =
+                LeftistHeap<T>::meld(std::move(heaps[i]), std::move(heaps[j]));
             right[i] = right[j];
             right[j] = -1;
             left[right[i]] = i;
@@ -76,7 +79,8 @@ T hu_tucker(std::vector<T> w) {
         if (!heaps[i].empty()) {
             T top = heaps[i].top().second;
             heaps[i].pop();
-            cs[i] = std::min(cs[i], std::min(w[i], w[right[i]]) + top);  // lm or mr
+            cs[i] =
+                std::min(cs[i], std::min(w[i], w[right[i]]) + top);  // lm or mr
             if (!heaps[i].empty()) {
                 cs[i] = std::min(cs[i], top + heaps[i].top().second);  // mm
             }

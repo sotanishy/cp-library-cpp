@@ -19,7 +19,7 @@ class FordFulkerson {
     T max_flow(int s, int t) {
         T flow = 0;
         while (true) {
-            std::ranges::fill(used, false);
+            std::fill(used.begin(), used.end(), false);
             T f = dfs(s, t, INF);
             if (f == 0) return flow;
             flow += f;

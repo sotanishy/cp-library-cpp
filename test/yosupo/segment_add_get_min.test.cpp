@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
-#include "../../data-structure/cht/li_chao_tree.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/cht/li_chao_tree.hpp"
 using namespace std;
 using ll = long long;
 
@@ -57,8 +57,10 @@ int main() {
             lct.add_segment(q.seg.a, q.seg.b, q.seg.l, q.seg.r);
         } else {
             ll ans = lct.get(q.p);
-            if (ans > 5e18) cout << "INFINITY\n";
-            else cout << ans << "\n";
+            if (ans > 5e18)
+                cout << "INFINITY\n";
+            else
+                cout << ans << "\n";
         }
     }
 }

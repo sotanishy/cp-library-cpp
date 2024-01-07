@@ -1,6 +1,6 @@
 ---
 title: SMAWK Algorithm
-documentation_of: ../../dp/smawk.cpp
+documentation_of: ../../dp/smawk.hpp
 ---
 
 ## Description

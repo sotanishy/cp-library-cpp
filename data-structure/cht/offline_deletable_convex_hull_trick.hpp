@@ -1,16 +1,16 @@
 #pragma once
+#include <bit>
 #include <cassert>
 #include <map>
 #include <utility>
 #include <vector>
-#include "undoable_li_chao_tree.cpp"
+
+#include "undoable_li_chao_tree.hpp"
 
 template <typename T>
 class OfflineDeletableConvexHullTrick {
-public:
-    void insert(T a, T b) {
-        open.insert({{a, b}, now++});
-    }
+   public:
+    void insert(T a, T b) { open.insert({{a, b}, now++}); }
 
     void erase(T a, T b) {
         auto it = open.find({a, b});
@@ -33,8 +33,7 @@ public:
         }
 
         // build a segment tree
-        int size = 1;
-        while (size < now) size <<= 1;
+        int size = std::bit_ceil((unsigned int)now);
         std::vector<std::vector<std::pair<T, T>>> lines(2 * size);
 
         for (auto [a, b, s, t] : closed) {
@@ -56,11 +55,11 @@ public:
                 dfs(dfs, 2 * k);
                 dfs(dfs, 2 * k + 1);
             } else if (k < size + now) {
-                if (query.count(k - size)) {
+                if (query.contains(k - size)) {
                     ret.push_back(lct.get(query[k - size]));
                 }
             }
-            for (int i = 0; i < (int) lines[k].size(); ++i) {
+            for (int i = 0; i < (int)lines[k].size(); ++i) {
                 lct.undo();
             }
         };
@@ -69,7 +68,7 @@ public:
         return ret;
     }
 
-private:
+   private:
     int now = 0;
     std::multimap<std::pair<T, T>, int> open;
     std::vector<std::tuple<T, T, int, int>> closed;

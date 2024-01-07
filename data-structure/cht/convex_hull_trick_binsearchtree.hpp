@@ -6,8 +6,7 @@
 
 template <typename T>
 class ConvexHullTrick {
-public:
-
+   public:
     void add(T a, T b) {
         a = -a, b = -b;
         auto m = lines.insert({a, b, 0});
@@ -33,9 +32,9 @@ public:
         return -(it.a * x + it.b);
     }
 
-private:
+   private:
     struct Line {
-        mutable T a, b;  // ax + b
+        mutable T a, b;    // ax + b
         mutable double p;  // intersection point with the next line
         bool operator<(const Line& o) const { return a < o.a; }
         bool operator<(T x) const { return p < x; }

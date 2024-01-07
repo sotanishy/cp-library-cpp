@@ -4,17 +4,19 @@
 
 template <typename F>
 std::vector<int> smawk(int n, int m, F f) {
-    auto calc = [&](auto& calc, const std::vector<int>& row, const std::vector<int>& col) -> std::vector<int> {
-        int r = row.size();
+    auto calc = [&](auto& calc, const std::vector<int>& row,
+                    const std::vector<int>& col) -> std::vector<int> {
+        const int r = row.size();
         if (r == 0) return {};
 
         // reduce
         std::vector<int> c2;
         for (int c : col) {
-            while (!c2.empty() && f(row[c2.size()-1], c2.back()) > f(row[c2.size()-1], c)) {
+            while (!c2.empty() && f(row[c2.size() - 1], c2.back()) >
+                                      f(row[c2.size() - 1], c)) {
                 c2.pop_back();
             }
-            if ((int) c2.size() < r) {
+            if ((int)c2.size() < r) {
                 c2.push_back(c);
             }
         }
@@ -26,8 +28,8 @@ std::vector<int> smawk(int n, int m, F f) {
         }
         auto a2 = calc(calc, r2, c2);
         std::vector<int> ans(r);
-        for (int i = 0; i < (int) a2.size(); ++i) {
-            ans[2*i+1] = a2[i];
+        for (int i = 0; i < (int)a2.size(); ++i) {
+            ans[2 * i + 1] = a2[i];
         }
         int j = 0;
         for (int i = 0; i < r; i += 2) {

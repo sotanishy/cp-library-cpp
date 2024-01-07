@@ -1,6 +1,6 @@
 ---
 title: Leftist Heap
-documentation_of: ../../data-structure/leftist_heap.cpp
+documentation_of: ../../data-structure/leftist_heap.hpp
 ---
 
 ## Description
