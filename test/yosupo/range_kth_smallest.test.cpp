@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/wavelet_matrix.cpp"
+#include "../../data-structure/wavelet_matrix.hpp"
 
 using namespace std;
 

@@ -18,7 +18,7 @@ class SegmentTree2D {
             xs.push_back(x);
         }
         std::ranges::sort(xs);
-        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
+        xs.erase(std::ranges::unique(xs).begin(), xs.end());
 
         const int n = xs.size();
         size = std::bit_ceil((unsigned int)n);
@@ -36,7 +36,7 @@ class SegmentTree2D {
                 std::ranges::merge(ys[2 * i], ys[2 * i + 1],
                                    std::back_inserter(ys[i]));
             }
-            ys[i].erase(std::unique(ys[i].begin(), ys[i].end()), ys[i].end());
+            ys[i].erase(std::ranges::unique(ys[i]).begin(), ys[i].end());
         }
         for (int i = 0; i < size + n; ++i) {
             seg[i] = SegmentTree<M>(ys[i].size());

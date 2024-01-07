@@ -1,3 +1,4 @@
+#pragma once
 #include <cmath>
 #include <vector>
 
@@ -7,7 +8,7 @@
 template <typename mint>
 class Factorial {
    public:
-    Factorial() : B(std::sqrt(mint::get_mod())) {
+    Factorial() : B(std::sqrt(mint::mod())) {
         int n = 1;
         while (n < B) n <<= 1;
         std::vector<Polynomial<mint>> p(2 * n, {1});

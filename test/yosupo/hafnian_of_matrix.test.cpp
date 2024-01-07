@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/matrix/hafnian.hpp"
+#include "../../math/linalg/hafnian.hpp"
 #include "../../math/modint.hpp"
 using namespace std;
 

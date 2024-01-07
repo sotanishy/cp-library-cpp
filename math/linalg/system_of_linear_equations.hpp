@@ -1,19 +1,21 @@
 #pragma once
 #include <cassert>
 #include <vector>
-#include "matrix/matrix.cpp"
+
+#include "matrix.hpp"
 
 template <typename T>
-std::vector<std::vector<T>> solve_system(const Matrix<T> A, const std::vector<T>& b) {
-    int m = A.row(), n = A.col();
-    assert(m == (int) b.size());
+std::vector<std::vector<T>> solve_system(const Matrix<T> A,
+                                         const std::vector<T>& b) {
+    const int m = A.row(), n = A.col();
+    assert(m == (int)b.size());
     Matrix<T> bb(m, 1);
     for (int i = 0; i < m; ++i) bb[i][0] = b[i];
     auto sol = Matrix<T>::concat(A, bb).rref();
 
     std::vector<bool> independent(n);
-    std::vector<std::vector<T>> ret(1, std::vector<T>(n));
-    std::vector<std::vector<T>> bases(n, std::vector<T>(n));
+    std::vector ret(1, std::vector<T>(n));
+    std::vector bases(n, std::vector<T>(n));
     for (int j = 0; j < n; ++j) bases[j][j] = 1;
     int j = 0;
     for (int i = 0; i < m; ++i) {

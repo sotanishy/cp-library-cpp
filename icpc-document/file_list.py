@@ -18,7 +18,7 @@ paths = {
         # "../data-structure/inner_product_search.hpp",
         # "../data-structure/slope_trick.cpp",
         # "../data-structure/fenwick_tree_2d.cpp",
-        # "../data-structure/wavelet_matrix.cpp",
+        # "../data-structure/wavelet_matrix.hpp",
         # "../data-structure/fenwick_tree.cpp",
         # "../data-structure/disjoint_sparse_table.cpp",
         # "../data-structure/min_max_heap.hpp",
@@ -157,8 +157,8 @@ paths = {
         # "../math/multipoint_evaluation.cpp",
         # "../math/stirling_first.hpp",
         # "../math/kitamasa.cpp",
-        # "../math/matrix/matrix.cpp",
-        # "../math/matrix/square_matrix.cpp",
+        # "../math/matrix/matrix.hpp",
+        # "../math/matrix/square_matrix.hpp",
     ],
     "misc": [
         # "../misc/enumerate_subsets.hpp",
@@ -181,7 +181,7 @@ paths = {
         # "../misc/permutation.hpp",
         # "../misc/compress.cpp",
         # "../misc/memo.hpp",
-        # "../misc/boolean_square_matrix.cpp",
+        # "../misc/boolean_square_matrix.hpp",
     ],
     "sat": [
         # "../sat/hornsat.hpp",

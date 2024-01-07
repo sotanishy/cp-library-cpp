@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/matrix/square_matrix.cpp"
+#include "../../math/linalg/square_matrix.hpp"
 #include "../../math/modint.hpp"
 using namespace std;
 

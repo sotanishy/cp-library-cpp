@@ -1,6 +1,6 @@
 ---
 title: Wavelet Matrix
-documentation_of: ../../data-structure/wavelet_matrix.cpp
+documentation_of: ../../data-structure/wavelet_matrix.hpp
 ---
 
 ## Description

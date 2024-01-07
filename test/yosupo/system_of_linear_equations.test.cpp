@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
 
-
-#include "../../math/modint.hpp"
-#include "../../math/matrix/matrix.cpp"
-#include "../../math/system_of_linear_equations.cpp"
+#include "../../math/linalg/system_of_linear_equations.hpp"
 
 #include <bits/stdc++.h>
+
+#include "../../math/linalg/matrix.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;
@@ -17,7 +17,8 @@ int main() {
     int N, M;
     cin >> N >> M;
     Matrix<mint> A(N, M);
-    for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) cin >> A[i][j];
+    for (int i = 0; i < N; ++i)
+        for (int j = 0; j < M; ++j) cin >> A[i][j];
     vector<mint> b(N);
     for (int i = 0; i < N; ++i) cin >> b[i];
     auto sol = solve_system(A, b);
@@ -27,6 +28,7 @@ int main() {
     }
     cout << sol.size() - 1 << "\n";
     for (int i = 0; i < sol.size(); ++i) {
-        for (int j = 0; j < M; ++j) cout << sol[i][j] << (j < M - 1 ? " " : "\n");
+        for (int j = 0; j < M; ++j)
+            cout << sol[i][j] << (j < M - 1 ? " " : "\n");
     }
 }

@@ -3,7 +3,7 @@
 #include <cassert>
 #include <initializer_list>
 
-#include "matrix.cpp"
+#include "matrix.hpp"
 
 template <typename T>
 class SquareMatrix : public Matrix<T> {

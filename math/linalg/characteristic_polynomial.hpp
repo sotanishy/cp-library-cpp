@@ -1,8 +1,9 @@
+#pragma once
 #include <algorithm>
 #include <vector>
 
 #include "../polynomial.cpp"
-#include "square_matrix.cpp"
+#include "square_matrix.hpp"
 
 template <typename mint>
 Polynomial<mint> characteristic_polynomial(SquareMatrix<mint> mat) {

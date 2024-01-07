@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/characteristic_polynomial"
 
-#include "../../math/matrix/characteristic_polynomial.hpp"
+#include "../../math/linalg/characteristic_polynomial.hpp"
 
 #include <bits/stdc++.h>
 
-#include "../../math/matrix/square_matrix.cpp"
+#include "../../math/linalg/square_matrix.hpp"
 #include "../../math/modint.hpp"
 using namespace std;
 

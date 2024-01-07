@@ -1,6 +1,6 @@
 ---
 title: Segment Tree Beats
-documentation_of: ../../../data-structure/segtree/segment_tree_beats.cpp
+documentation_of: ../../../data-structure/segtree/segment_tree_beats.hpp
 ---
 
 ## Description

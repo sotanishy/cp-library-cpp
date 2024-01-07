@@ -1,6 +1,6 @@
 ---
 title: System of Linear Equations
-documentation_of: ../../math/system_of_linear_equations.cpp
+documentation_of: ../../../math/linalg/system_of_linear_equations.hpp
 ---
 
 ## Description

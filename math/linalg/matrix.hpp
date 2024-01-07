@@ -13,8 +13,8 @@ class Matrix {
         assert(A.m == B.m);
         Matrix C(A.m, A.n + B.n);
         for (int i = 0; i < A.m; ++i) {
-            std::copy(A[i].begin(), A[i].end(), C[i].begin());
-            std::copy(B[i].begin(), B[i].end(), C[i].begin() + A.n);
+            std::ranges::copy(A[i], C[i].begin());
+            std::ranges::copy(B[i], C[i].begin() + A.n);
         }
         return C;
     }

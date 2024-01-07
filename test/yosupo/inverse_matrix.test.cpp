@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix"
 
-#include "../../math/modint.hpp"
-#include "../../math/matrix/square_matrix.cpp"
-
-
 #include <bits/stdc++.h>
+
+#include "../../math/linalg/square_matrix.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;
