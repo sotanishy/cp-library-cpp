@@ -31,32 +31,32 @@ data:
     /**\n * @brief Lexicographic Index of Permutations (in Factorial Number System)\n\
     \ */\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return 0;\
     \ }\n    static T op(T a, T b) { return a + b; }\n};\n\nstd::vector<int> perm_to_num(const\
-    \ std::vector<int>& P) {\n    int N = P.size();\n    std::vector<int> num(N);\n\
-    \    FenwickTree<AddMonoid> ft(N);\n    for (int i = N - 1; i >= 0; --i) {\n \
-    \       ft.update(P[i], 1);\n        num[N - i - 1] = ft.prefix_fold(P[i]);\n\
+    \ std::vector<int>& p) {\n    const int n = p.size();\n    std::vector<int> num(n);\n\
+    \    FenwickTree<AddMonoid> ft(n);\n    for (int i = n - 1; i >= 0; --i) {\n \
+    \       ft.update(p[i], 1);\n        num[n - i - 1] = ft.prefix_fold(p[i]);\n\
     \    }\n    return num;\n}\n\nstd::vector<int> num_to_perm(const std::vector<int>&\
-    \ num) {\n    int N = num.size();\n    std::vector<int> P(N);\n    FenwickTree<AddMonoid>\
-    \ ft(N);\n    for (int i = 0; i < N; ++i) ft.update(i, 1);\n    for (int i = 0;\
-    \ i < N; ++i) {\n        P[i] = ft.lower_bound(num[N - i - 1] + 1);\n        ft.update(P[i],\
-    \ -1);\n    }\n    return P;\n}\n"
+    \ num) {\n    const int n = num.size();\n    std::vector<int> p(n);\n    FenwickTree<AddMonoid>\
+    \ ft(n);\n    for (int i = 0; i < n; ++i) ft.update(i, 1);\n    for (int i = 0;\
+    \ i < n; ++i) {\n        p[i] = ft.lower_bound(num[n - i - 1] + 1);\n        ft.update(p[i],\
+    \ -1);\n    }\n    return p;\n}\n"
   code: "#pragma once\n#include <vector>\n\n#include \"../data-structure/fenwick_tree.hpp\"\
     \n\n/**\n * @brief Lexicographic Index of Permutations (in Factorial Number System)\n\
     \ */\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return 0;\
     \ }\n    static T op(T a, T b) { return a + b; }\n};\n\nstd::vector<int> perm_to_num(const\
-    \ std::vector<int>& P) {\n    int N = P.size();\n    std::vector<int> num(N);\n\
-    \    FenwickTree<AddMonoid> ft(N);\n    for (int i = N - 1; i >= 0; --i) {\n \
-    \       ft.update(P[i], 1);\n        num[N - i - 1] = ft.prefix_fold(P[i]);\n\
+    \ std::vector<int>& p) {\n    const int n = p.size();\n    std::vector<int> num(n);\n\
+    \    FenwickTree<AddMonoid> ft(n);\n    for (int i = n - 1; i >= 0; --i) {\n \
+    \       ft.update(p[i], 1);\n        num[n - i - 1] = ft.prefix_fold(p[i]);\n\
     \    }\n    return num;\n}\n\nstd::vector<int> num_to_perm(const std::vector<int>&\
-    \ num) {\n    int N = num.size();\n    std::vector<int> P(N);\n    FenwickTree<AddMonoid>\
-    \ ft(N);\n    for (int i = 0; i < N; ++i) ft.update(i, 1);\n    for (int i = 0;\
-    \ i < N; ++i) {\n        P[i] = ft.lower_bound(num[N - i - 1] + 1);\n        ft.update(P[i],\
-    \ -1);\n    }\n    return P;\n}"
+    \ num) {\n    const int n = num.size();\n    std::vector<int> p(n);\n    FenwickTree<AddMonoid>\
+    \ ft(n);\n    for (int i = 0; i < n; ++i) ft.update(i, 1);\n    for (int i = 0;\
+    \ i < n; ++i) {\n        p[i] = ft.lower_bound(num[n - i - 1] + 1);\n        ft.update(p[i],\
+    \ -1);\n    }\n    return p;\n}"
   dependsOn:
   - data-structure/fenwick_tree.hpp
   isVerificationFile: false
   path: misc/permutation.hpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/permutation.hpp

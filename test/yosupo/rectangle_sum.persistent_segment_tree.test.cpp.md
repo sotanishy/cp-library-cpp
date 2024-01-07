@@ -4,8 +4,8 @@ data:
   - icon: ':x:'
     path: data-structure/segtree/persistent_segment_tree.hpp
     title: Persistent Segment Tree
-  - icon: ':question:'
-    path: misc/compress.cpp
+  - icon: ':x:'
+    path: misc/compress.hpp
     title: Coordinate Compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -53,23 +53,23 @@ data:
     \ n, int l, int r) const {\n        if (r <= a || b <= l) return M::id();\n  \
     \      if (a <= l && r <= b) return n->val;\n        int m = std::midpoint(l,\
     \ r);\n        return M::op(fold(a, b, n->left, l, m), fold(a, b, n->right, m,\
-    \ r));\n    }\n};\n#line 4 \"misc/compress.cpp\"\n\n/*\n * @brief Coordinate Compression\n\
-    \ */\ntemplate <typename T>\nclass Compress {\npublic:\n    Compress() = default;\n\
-    \    explicit Compress(const std::vector<T>& vs) : xs(vs) {\n        std::sort(xs.begin(),\
-    \ xs.end());\n        xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n\
-    \    }\n\n    int compress(const T& x) const {\n        return std::lower_bound(xs.begin(),\
-    \ xs.end(), x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
-    \ vs) const {\n        std::vector<int> ret;\n        std::transform(vs.begin(),\
-    \ vs.end(), std::back_inserter(ret), [&](const T& x) {\n            return compress(x);\n\
-    \        });\n        return ret;\n    }\n\n    T decompress(int i) const {\n\
-    \        return xs[i];\n    }\n\n    int size() const {\n        return xs.size();\n\
-    \    }\n\nprivate:\n    std::vector<T> xs;\n};\n#line 7 \"test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp\"\
-    \nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using\
-    \ T = ll;\n    static T id() { return 0; }\n    static T op(T a, T b) { return\
-    \ a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs, ys;\n    vector<int>\
-    \ x(N), y(N), w(N);\n    vector<int> l(Q), d(Q), r(Q), u(Q);\n    for (int i =\
-    \ 0; i < N; ++i) {\n        cin >> x[i] >> y[i] >> w[i];\n        xs.push_back(x[i]);\n\
+    \ r));\n    }\n};\n#line 4 \"misc/compress.hpp\"\n\n/**\n * @brief Coordinate\
+    \ Compression\n */\ntemplate <typename T>\nclass Compress {\n   public:\n    Compress()\
+    \ = default;\n    explicit Compress(const std::vector<T>& vs) : xs(vs) {\n   \
+    \     std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
+    \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
+    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(std::vector<T> vs)\
+    \ const {\n        std::ranges::transform(vs, vs.begin(),\n                  \
+    \             [&](const T& x) { return compress(x); });\n        return vs;\n\
+    \    }\n\n    T decompress(int i) const { return xs[i]; }\n\n    int size() const\
+    \ { return xs.size(); }\n\n   private:\n    std::vector<T> xs;\n};\n#line 7 \"\
+    test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp\"\nusing namespace\
+    \ std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = ll;\n    static\
+    \ T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
+    \   int N, Q;\n    cin >> N >> Q;\n    vector<int> xs, ys;\n    vector<int> x(N),\
+    \ y(N), w(N);\n    vector<int> l(Q), d(Q), r(Q), u(Q);\n    for (int i = 0; i\
+    \ < N; ++i) {\n        cin >> x[i] >> y[i] >> w[i];\n        xs.push_back(x[i]);\n\
     \        ys.push_back(y[i]);\n    }\n    for (int i = 0; i < Q; ++i) {\n     \
     \   cin >> l[i] >> d[i] >> r[i] >> u[i];\n        xs.push_back(l[i]);\n      \
     \  ys.push_back(d[i]);\n        xs.push_back(r[i]);\n        ys.push_back(u[i]);\n\
@@ -87,7 +87,7 @@ data:
     \       cout << ans << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ <bits/stdc++.h>\n\n#include \"../../data-structure/segtree/persistent_segment_tree.hpp\"\
-    \n#include \"../../misc/compress.cpp\"\nusing namespace std;\nusing ll = long\
+    \n#include \"../../misc/compress.hpp\"\nusing namespace std;\nusing ll = long\
     \ long;\n\nstruct AddMonoid {\n    using T = ll;\n    static T id() { return 0;\
     \ }\n    static T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> xs,\
@@ -110,11 +110,11 @@ data:
     \       cout << ans << \"\\n\";\n    }\n}"
   dependsOn:
   - data-structure/segtree/persistent_segment_tree.hpp
-  - misc/compress.cpp
+  - misc/compress.hpp
   isVerificationFile: true
   path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp

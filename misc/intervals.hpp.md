@@ -10,7 +10,7 @@ data:
     links: []
   bundledCode: "#line 2 \"misc/intervals.hpp\"\n#include <cassert>\n#include <limits>\n\
     #include <set>\n#include <utility>\n#include <vector>\n\ntemplate <typename X,\
-    \ typename T>\nclass Intervals {\npublic:\n    static constexpr X INF = std::numeric_limits<T>::max()\
+    \ typename T>\nclass Intervals {\n   public:\n    static constexpr X INF = std::numeric_limits<T>::max()\
     \ / 2;\n\n    Intervals(T default_val) : default_val(default_val) {\n        st.emplace(INF,\
     \ INF, default_val);\n        st.emplace(-INF, -INF, default_val);\n    }\n\n\
     \    T get(X x) const {\n        auto it = --(st.lower_bound({x + 1, x, default_val}));\n\
@@ -31,11 +31,11 @@ data:
     \          intervals.emplace_back(r + 1, r_, v_);\n            }\n           \
     \ it = st.erase(it);\n        }\n        for (auto [l_, r_, v_] : intervals) st.emplace(l_,\
     \ r_, v_);\n    }\n\n    void erase(X l, X r) { set(l, r, default_val); }\n\n\
-    private:\n    std::set<std::tuple<X, X, T>> st;\n    T default_val;\n};\n"
+    \   private:\n    std::set<std::tuple<X, X, T>> st;\n    T default_val;\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <limits>\n#include <set>\n#include\
     \ <utility>\n#include <vector>\n\ntemplate <typename X, typename T>\nclass Intervals\
-    \ {\npublic:\n    static constexpr X INF = std::numeric_limits<T>::max() / 2;\n\
-    \n    Intervals(T default_val) : default_val(default_val) {\n        st.emplace(INF,\
+    \ {\n   public:\n    static constexpr X INF = std::numeric_limits<T>::max() /\
+    \ 2;\n\n    Intervals(T default_val) : default_val(default_val) {\n        st.emplace(INF,\
     \ INF, default_val);\n        st.emplace(-INF, -INF, default_val);\n    }\n\n\
     \    T get(X x) const {\n        auto it = --(st.lower_bound({x + 1, x, default_val}));\n\
     \        auto [l, r, v] = *it;\n        if (l <= x && x <= r) return v;\n    \
@@ -55,12 +55,12 @@ data:
     \          intervals.emplace_back(r + 1, r_, v_);\n            }\n           \
     \ it = st.erase(it);\n        }\n        for (auto [l_, r_, v_] : intervals) st.emplace(l_,\
     \ r_, v_);\n    }\n\n    void erase(X l, X r) { set(l, r, default_val); }\n\n\
-    private:\n    std::set<std::tuple<X, X, T>> st;\n    T default_val;\n};"
+    \   private:\n    std::set<std::tuple<X, X, T>> st;\n    T default_val;\n};"
   dependsOn: []
   isVerificationFile: false
   path: misc/intervals.hpp
   requiredBy: []
-  timestamp: '2022-06-30 16:20:14+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/intervals.hpp

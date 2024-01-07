@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: tree/lca.hpp
     title: Lowest Common Ancestor
   _extendedRequiredBy: []

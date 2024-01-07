@@ -54,10 +54,11 @@ data:
     \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
     \        return is;\n    }\n\n   private:\n    int x;\n};\n#line 2 \"math/stirling_second.hpp\"\
-    \n#include <vector>\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
-    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
-    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
-    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
+    \n#include <vector>\n#line 2 \"convolution/ntt.hpp\"\n#include <bit>\n#line 4\
+    \ \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n   \
+    \ if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n    if\
+    \ (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n    if (mod\
+    \ == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
     \ a) {\n    constexpr int mod = mint::mod();\n    constexpr mint primitive_root\
     \ = get_primitive_root(mod);\n\n    const int n = a.size();\n    for (int m =\
     \ n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n\
@@ -121,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/stirling_number_of_the_second_kind.test.cpp

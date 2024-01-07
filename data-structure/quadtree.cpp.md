@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/quadtree.cpp\"\n#include <memory>\n#include\
@@ -68,7 +68,7 @@ data:
   path: data-structure/quadtree.cpp
   requiredBy: []
   timestamp: '2022-03-06 20:10:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
 documentation_of: data-structure/quadtree.cpp

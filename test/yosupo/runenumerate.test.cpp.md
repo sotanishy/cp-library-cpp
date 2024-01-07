@@ -6,7 +6,7 @@ data:
     title: Enumerate Runs
   - icon: ':x:'
     path: string/z_array.hpp
-    title: string/z_array.hpp
+    title: Z Array
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

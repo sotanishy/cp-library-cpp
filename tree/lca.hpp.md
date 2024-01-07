@@ -8,10 +8,13 @@ data:
   - icon: ':warning:'
     path: tree/binary_lifting.hpp
     title: Binary Lifting
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/lca.test.cpp
+    title: test/yosupo/lca.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/lca.hpp\"\n#include <algorithm>\n#include <bit>\n#include\
@@ -75,8 +78,9 @@ data:
   - tree/auxiliary_tree.hpp
   - tree/binary_lifting.hpp
   timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/lca.test.cpp
 documentation_of: tree/lca.hpp
 layout: document
 title: Lowest Common Ancestor

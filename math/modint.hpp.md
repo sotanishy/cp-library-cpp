@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
   _extendedVerifiedWith:
@@ -15,25 +15,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_xor_convolution.test.cpp
     title: test/yosupo/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/characteristic_polynomial.test.cpp
     title: test/yosupo/characteristic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution_mod_1000000007.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/deque_operate_all_composite.test.cpp
     title: test/yosupo/deque_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/division_of_polynomials.test.cpp
     title: test/yosupo/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'

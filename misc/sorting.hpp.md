@@ -20,8 +20,8 @@ data:
     \ ++k) arr[l + k] = res[k];\n}\n\n// elements need to be distinct\ntemplate <typename\
     \ Compare>\nvoid merge_insertion_sort(std::vector<int>& arr, Compare cmp) {\n\
     \    int n = arr.size();\n    if (n <= 1) return;\n\n    std::map<int, int> idx;\n\
-    \    for (int k = 0; k < n; ++k) {\n        assert(!idx.count(arr[k]));\n    \
-    \    idx[arr[k]] = k;\n    }\n\n    // pair elements and recursively sort the\
+    \    for (int k = 0; k < n; ++k) {\n        assert(!idx.contains(arr[k]));\n \
+    \       idx[arr[k]] = k;\n    }\n\n    // pair elements and recursively sort the\
     \ bigger ones\n    std::vector<int> a;\n    for (int k = 0; k < n - 1; k += 2)\
     \ {\n        a.push_back(cmp(arr[k], arr[k + 1]) ? arr[k + 1] : arr[k]);\n   \
     \ }\n    merge_insertion_sort(a, cmp);\n\n    // a: sorted\n    // b: not sorted\n\
@@ -34,13 +34,13 @@ data:
     \           // the first element guaranteed to be bigger than x\n            int\
     \ right = a.size();\n            if ((idx[x] ^ 1) < n) {\n                // this\
     \ takes O(n)\n                // it can be made O(log n) with a Fenwick tree\n\
-    \                right =\n                    std::find(a.begin(), a.end(), arr[idx[x]\
-    \ ^ 1]) - a.begin();\n            }\n            // search insertion point\n \
-    \           int lb = -1, ub = right;\n            while (ub - lb > 1) {\n    \
-    \            int m = (lb + ub) / 2;\n                if (cmp(x, a[m]))\n     \
-    \               ub = m;\n                else\n                    lb = m;\n \
-    \           }\n            a.insert(a.begin() + ub, x);\n        }\n        s\
-    \ += g;\n        prev = g;\n    }\n\n    arr = a;\n}\n"
+    \                right = std::ranges::find(a, arr[idx[x] ^ 1]) - a.begin();\n\
+    \            }\n            // search insertion point\n            int lb = -1,\
+    \ ub = right;\n            while (ub - lb > 1) {\n                int m = std::midpoint(lb,\
+    \ ub);\n                if (cmp(x, a[m]))\n                    ub = m;\n     \
+    \           else\n                    lb = m;\n            }\n            a.insert(a.begin()\
+    \ + ub, x);\n        }\n        s += g;\n        prev = g;\n    }\n\n    arr =\
+    \ a;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <map>\n\
     #include <vector>\n\ntemplate <typename T, typename Compare>\nvoid merge_sort(std::vector<T>&\
     \ arr, int l, int r, Compare cmp) {\n    if (r - l == 1) return;\n\n    int m\
@@ -52,7 +52,7 @@ data:
     \n    for (int k = 0; k < r - l; ++k) arr[l + k] = res[k];\n}\n\n// elements need\
     \ to be distinct\ntemplate <typename Compare>\nvoid merge_insertion_sort(std::vector<int>&\
     \ arr, Compare cmp) {\n    int n = arr.size();\n    if (n <= 1) return;\n\n  \
-    \  std::map<int, int> idx;\n    for (int k = 0; k < n; ++k) {\n        assert(!idx.count(arr[k]));\n\
+    \  std::map<int, int> idx;\n    for (int k = 0; k < n; ++k) {\n        assert(!idx.contains(arr[k]));\n\
     \        idx[arr[k]] = k;\n    }\n\n    // pair elements and recursively sort\
     \ the bigger ones\n    std::vector<int> a;\n    for (int k = 0; k < n - 1; k +=\
     \ 2) {\n        a.push_back(cmp(arr[k], arr[k + 1]) ? arr[k + 1] : arr[k]);\n\
@@ -66,18 +66,18 @@ data:
     \           // the first element guaranteed to be bigger than x\n            int\
     \ right = a.size();\n            if ((idx[x] ^ 1) < n) {\n                // this\
     \ takes O(n)\n                // it can be made O(log n) with a Fenwick tree\n\
-    \                right =\n                    std::find(a.begin(), a.end(), arr[idx[x]\
-    \ ^ 1]) - a.begin();\n            }\n            // search insertion point\n \
-    \           int lb = -1, ub = right;\n            while (ub - lb > 1) {\n    \
-    \            int m = (lb + ub) / 2;\n                if (cmp(x, a[m]))\n     \
-    \               ub = m;\n                else\n                    lb = m;\n \
-    \           }\n            a.insert(a.begin() + ub, x);\n        }\n        s\
-    \ += g;\n        prev = g;\n    }\n\n    arr = a;\n}\n"
+    \                right = std::ranges::find(a, arr[idx[x] ^ 1]) - a.begin();\n\
+    \            }\n            // search insertion point\n            int lb = -1,\
+    \ ub = right;\n            while (ub - lb > 1) {\n                int m = std::midpoint(lb,\
+    \ ub);\n                if (cmp(x, a[m]))\n                    ub = m;\n     \
+    \           else\n                    lb = m;\n            }\n            a.insert(a.begin()\
+    \ + ub, x);\n        }\n        s += g;\n        prev = g;\n    }\n\n    arr =\
+    \ a;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: misc/sorting.hpp
   requiredBy: []
-  timestamp: '2023-03-06 14:13:05+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/sorting.hpp

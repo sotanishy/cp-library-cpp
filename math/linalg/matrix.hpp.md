@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
   - icon: ':question:'
@@ -12,7 +12,7 @@ data:
     path: math/linalg/system_of_linear_equations.hpp
     title: System of Linear Equations
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/characteristic_polynomial.test.cpp
     title: test/yosupo/characteristic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'

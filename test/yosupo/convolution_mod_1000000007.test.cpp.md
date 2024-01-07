@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/extgcd.cpp
     title: Extended Euclidean Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/garner.cpp
     title: Garner's Algorithm
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -71,49 +71,50 @@ data:
     \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\n   private:\n    int x;\n};\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr\
-    \ int get_primitive_root(int mod) {\n    if (mod == 167772161) return 3;\n   \
-    \ if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n    if\
-    \ (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\ntemplate\
-    \ <typename mint>\nvoid ntt(std::vector<mint>& a) {\n    constexpr int mod = mint::mod();\n\
-    \    constexpr mint primitive_root = get_primitive_root(mod);\n\n    const int\
-    \ n = a.size();\n    for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
-    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
-    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
-    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
-    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
-    \                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename\
-    \ mint>\nvoid intt(std::vector<mint>& a) {\n    constexpr int mod = mint::mod();\n\
-    \    constexpr mint primitive_root = get_primitive_root(mod);\n\n    const int\
-    \ n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega =\
-    \ primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n / m;\
-    \ ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
-    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
-    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
-    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
-    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
-    \ a, std::vector<mint> b) {\n    const int size = a.size() + b.size() - 1;\n \
-    \   const int n = std::bit_ceil((unsigned int)size);\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
-    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7 \"convolution/arbitrary_mod_convolution.hpp\"\
-    \n\nstd::vector<int> convolution(const std::vector<int>& a,\n                \
-    \             const std::vector<int>& b, int mod) {\n    using mint1 = Modint<167772161>;\n\
-    \    using mint2 = Modint<469762049>;\n    using mint3 = Modint<754974721>;\n\n\
-    \    std::vector<mint1> a1(a.begin(), a.end()), b1(b.begin(), b.end());\n    std::vector<mint2>\
-    \ a2(a.begin(), a.end()), b2(b.begin(), b.end());\n    std::vector<mint3> a3(a.begin(),\
-    \ a.end()), b3(b.begin(), b.end());\n\n    auto c1 = convolution(a1, b1);\n  \
-    \  auto c2 = convolution(a2, b2);\n    auto c3 = convolution(a3, b3);\n\n    std::vector<int>\
-    \ c(c1.size());\n    std::vector<long long> d(3);\n    const std::vector<long\
-    \ long> mods = {167772161, 469762049, 754974721};\n    for (int i = 0; i < (int)c1.size();\
-    \ ++i) {\n        d[0] = c1[i].val();\n        d[1] = c2[i].val();\n        d[2]\
-    \ = c3[i].val();\n        c[i] = garner(d, mods, mod);\n    }\n    return c;\n\
-    }\n#line 4 \"test/yosupo/convolution_mod_1000000007.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    vector<int> a(N),\
-    \ b(M);\n    for (auto& x : a) cin >> x;\n    for (auto& x : b) cin >> x;\n  \
-    \  auto c = convolution(a, b, 1e9+7);\n    for (int i = 0; i < (int) c.size();\
-    \ ++i) cout << c[i] << (i < (int)c.size()-1 ? \" \" : \"\\n\");\n}\n\n"
+    \    }\n\n   private:\n    int x;\n};\n#line 2 \"convolution/ntt.hpp\"\n#include\
+    \ <bit>\n#line 4 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
+    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
+    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
+    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
+    \ a) {\n    constexpr int mod = mint::mod();\n    constexpr mint primitive_root\
+    \ = get_primitive_root(mod);\n\n    const int n = a.size();\n    for (int m =\
+    \ n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n\
+    \        for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n        \
+    \    for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
+    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
+    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
+    \    w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename mint>\n\
+    void intt(std::vector<mint>& a) {\n    constexpr int mod = mint::mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    const int n = a.size();\n\
+    \    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
+    \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
+    \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
+    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
+    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
+    \ b) {\n    const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil((unsigned\
+    \ int)size);\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n \
+    \   for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \    return a;\n}\n#line 7 \"convolution/arbitrary_mod_convolution.hpp\"\n\nstd::vector<int>\
+    \ convolution(const std::vector<int>& a,\n                             const std::vector<int>&\
+    \ b, int mod) {\n    using mint1 = Modint<167772161>;\n    using mint2 = Modint<469762049>;\n\
+    \    using mint3 = Modint<754974721>;\n\n    std::vector<mint1> a1(a.begin(),\
+    \ a.end()), b1(b.begin(), b.end());\n    std::vector<mint2> a2(a.begin(), a.end()),\
+    \ b2(b.begin(), b.end());\n    std::vector<mint3> a3(a.begin(), a.end()), b3(b.begin(),\
+    \ b.end());\n\n    auto c1 = convolution(a1, b1);\n    auto c2 = convolution(a2,\
+    \ b2);\n    auto c3 = convolution(a3, b3);\n\n    std::vector<int> c(c1.size());\n\
+    \    std::vector<long long> d(3);\n    const std::vector<long long> mods = {167772161,\
+    \ 469762049, 754974721};\n    for (int i = 0; i < (int)c1.size(); ++i) {\n   \
+    \     d[0] = c1[i].val();\n        d[1] = c2[i].val();\n        d[2] = c3[i].val();\n\
+    \        c[i] = garner(d, mods, mod);\n    }\n    return c;\n}\n#line 4 \"test/yosupo/convolution_mod_1000000007.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n\
+    \    int N, M;\n    cin >> N >> M;\n    vector<int> a(N), b(M);\n    for (auto&\
+    \ x : a) cin >> x;\n    for (auto& x : b) cin >> x;\n    auto c = convolution(a,\
+    \ b, 1e9+7);\n    for (int i = 0; i < (int) c.size(); ++i) cout << c[i] << (i\
+    \ < (int)c.size()-1 ? \" \" : \"\\n\");\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \n\n#include \"../../convolution/arbitrary_mod_convolution.hpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -130,8 +131,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 00:27:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod_1000000007.test.cpp
 layout: document

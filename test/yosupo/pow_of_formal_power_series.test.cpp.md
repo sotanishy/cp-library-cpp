@@ -51,43 +51,44 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\n   private:\n    int x;\n};\n#line 3 \"math/polynomial.cpp\"\n#include\
-    \ <cassert>\n#include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr\
-    \ int get_primitive_root(int mod) {\n    if (mod == 167772161) return 3;\n   \
-    \ if (mod == 469762049) return 3;\n    if (mod == 754974721) return 11;\n    if\
-    \ (mod == 998244353) return 3;\n    if (mod == 1224736769) return 3;\n}\n\ntemplate\
-    \ <typename mint>\nvoid ntt(std::vector<mint>& a) {\n    constexpr int mod = mint::mod();\n\
-    \    constexpr mint primitive_root = get_primitive_root(mod);\n\n    const int\
-    \ n = a.size();\n    for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
-    \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
-    \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
-    \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
-    \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
-    \                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename\
-    \ mint>\nvoid intt(std::vector<mint>& a) {\n    constexpr int mod = mint::mod();\n\
-    \    constexpr mint primitive_root = get_primitive_root(mod);\n\n    const int\
-    \ n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega =\
-    \ primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n / m;\
-    \ ++s) {\n            mint w = 1;\n            for (int i = 0; i < m / 2; ++i)\
-    \ {\n                mint l = a[s * m + i];\n                mint r = a[s * m\
-    \ + i + m / 2] * w;\n                a[s * m + i] = l + r;\n                a[s\
-    \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
-    \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
-    \ a, std::vector<mint> b) {\n    const int size = a.size() + b.size() - 1;\n \
-    \   const int n = std::bit_ceil((unsigned int)size);\n    a.resize(n);\n    b.resize(n);\n\
-    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
-    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
-    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 7 \"math/polynomial.cpp\"\
-    \n\ntemplate <typename mint>\nclass Polynomial : public std::vector<mint> {\n\
-    \    using Poly = Polynomial;\n\n   public:\n    using std::vector<mint>::vector;\n\
-    \    using std::vector<mint>::operator=;\n\n    Poly pre(int size) const {\n \
-    \       return Poly(this->begin(),\n                    this->begin() + std::min((int)this->size(),\
-    \ size));\n    }\n\n    Poly rev(int deg = -1) const {\n        auto ret = *this;\n\
-    \        if (deg != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(),\
-    \ ret.rend());\n    }\n\n    void trim() {\n        while (!this->empty() && this->back()\
-    \ == 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly&\
-    \ operator-() const {\n        auto ret = *this;\n        for (auto& x : ret)\
-    \ x = -x;\n        return ret;\n    }\n\n    // -- binary operation with scalar\
-    \ ---\n\n    Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
+    \ <cassert>\n#include <vector>\n\n#line 2 \"convolution/ntt.hpp\"\n#include <bit>\n\
+    #line 4 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n\
+    \    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n  \
+    \  if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n   \
+    \ if (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
+    \ a) {\n    constexpr int mod = mint::mod();\n    constexpr mint primitive_root\
+    \ = get_primitive_root(mod);\n\n    const int n = a.size();\n    for (int m =\
+    \ n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n\
+    \        for (int s = 0; s < n / m; ++s) {\n            mint w = 1;\n        \
+    \    for (int i = 0; i < m / 2; ++i) {\n                mint l = a[s * m + i];\n\
+    \                mint r = a[s * m + i + m / 2];\n                a[s * m + i]\
+    \ = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n            \
+    \    w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename mint>\n\
+    void intt(std::vector<mint>& a) {\n    constexpr int mod = mint::mod();\n    constexpr\
+    \ mint primitive_root = get_primitive_root(mod);\n\n    const int n = a.size();\n\
+    \    for (int m = 2; m <= n; m <<= 1) {\n        mint omega = primitive_root.pow((mod\
+    \ - 1) / m).inv();\n        for (int s = 0; s < n / m; ++s) {\n            mint\
+    \ w = 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint\
+    \ l = a[s * m + i];\n                mint r = a[s * m + i + m / 2] * w;\n    \
+    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
+    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
+    \ b) {\n    const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil((unsigned\
+    \ int)size);\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n \
+    \   for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \    return a;\n}\n#line 7 \"math/polynomial.cpp\"\n\ntemplate <typename mint>\n\
+    class Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\n\
+    \   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
+    \n    Poly pre(int size) const {\n        return Poly(this->begin(),\n       \
+    \             this->begin() + std::min((int)this->size(), size));\n    }\n\n \
+    \   Poly rev(int deg = -1) const {\n        auto ret = *this;\n        if (deg\
+    \ != -1) ret.resize(deg, 0);\n        return Poly(ret.rbegin(), ret.rend());\n\
+    \    }\n\n    void trim() {\n        while (!this->empty() && this->back() ==\
+    \ 0) this->pop_back();\n    }\n\n    // --- unary operation ---\n\n    Poly& operator-()\
+    \ const {\n        auto ret = *this;\n        for (auto& x : ret) x = -x;\n  \
+    \      return ret;\n    }\n\n    // -- binary operation with scalar ---\n\n  \
+    \  Poly& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    Poly& operator-=(const\
     \ mint& rhs) {\n        if (this->empty()) this->resize(1);\n        (*this)[0]\
     \ -= rhs;\n        return *this;\n    }\n\n    Poly& operator*=(const mint& rhs)\
@@ -190,7 +191,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/pow_of_formal_power_series.test.cpp

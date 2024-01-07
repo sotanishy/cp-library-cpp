@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
@@ -33,10 +33,11 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\n\n#line\
     \ 2 \"math/linalg/characteristic_polynomial.hpp\"\n#include <algorithm>\n#include\
     \ <vector>\n\n#line 3 \"math/polynomial.cpp\"\n#include <cassert>\n#line 5 \"\
-    math/polynomial.cpp\"\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
-    \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
-    \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
-    \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
+    math/polynomial.cpp\"\n\n#line 2 \"convolution/ntt.hpp\"\n#include <bit>\n#line\
+    \ 4 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int mod) {\n \
+    \   if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n   \
+    \ if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n    if\
+    \ (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
     \ a) {\n    constexpr int mod = mint::mod();\n    constexpr mint primitive_root\
     \ = get_primitive_root(mod);\n\n    const int n = a.size();\n    for (int m =\
     \ n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod - 1) / m);\n\
@@ -300,8 +301,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/characteristic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 00:27:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/characteristic_polynomial.test.cpp
 layout: document

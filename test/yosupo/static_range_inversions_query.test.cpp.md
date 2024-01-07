@@ -4,11 +4,11 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
     title: data-structure/fenwick_tree.hpp
-  - icon: ':question:'
-    path: misc/compress.cpp
+  - icon: ':x:'
+    path: misc/compress.hpp
     title: Coordinate Compression
   - icon: ':x:'
-    path: misc/mo.cpp
+    path: misc/mo.hpp
     title: Mo's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -36,34 +36,32 @@ data:
     \           if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
     \            if (cmp(nv, x)) {\n                v = nv;\n                i +=\
     \ k;\n            }\n        }\n        return i + 1;\n    }\n\n   private:\n\
-    \    int n;\n    std::vector<T> data;\n};\n#line 4 \"misc/compress.cpp\"\n\n/*\n\
+    \    int n;\n    std::vector<T> data;\n};\n#line 4 \"misc/compress.hpp\"\n\n/**\n\
     \ * @brief Coordinate Compression\n */\ntemplate <typename T>\nclass Compress\
-    \ {\npublic:\n    Compress() = default;\n    explicit Compress(const std::vector<T>&\
-    \ vs) : xs(vs) {\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n    }\n\n    int compress(const T& x) const {\n     \
-    \   return std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();\n    }\n\n\
-    \    std::vector<int> compress(const std::vector<T>& vs) const {\n        std::vector<int>\
-    \ ret;\n        std::transform(vs.begin(), vs.end(), std::back_inserter(ret),\
-    \ [&](const T& x) {\n            return compress(x);\n        });\n        return\
-    \ ret;\n    }\n\n    T decompress(int i) const {\n        return xs[i];\n    }\n\
-    \n    int size() const {\n        return xs.size();\n    }\n\nprivate:\n    std::vector<T>\
-    \ xs;\n};\n#line 5 \"misc/mo.cpp\"\n\nclass Mo {\npublic:\n    Mo() = default;\n\
-    \    explicit Mo(int n) : n(n), cnt(0) {}\n\n    void query(int l, int r) {\n\
-    \        queries.emplace_back(cnt++, l, r);\n    }\n\n    template <typename ExL,\
-    \ typename ShL, typename ExR, typename ShR, typename Out>\n    void run(ExL exl,\
-    \ ShL shl, ExR exr, ShR shr, Out out) {\n        int s = sqrt(n);\n        std::sort(queries.begin(),\
-    \ queries.end(), [&](const auto& a, const auto& b) {\n            if (a.l / s\
-    \ != b.l / s) return a.l < b.l;\n            return a.r < b.r;\n        });\n\
+    \ {\n   public:\n    Compress() = default;\n    explicit Compress(const std::vector<T>&\
+    \ vs) : xs(vs) {\n        std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
+    \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
+    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(std::vector<T> vs)\
+    \ const {\n        std::ranges::transform(vs, vs.begin(),\n                  \
+    \             [&](const T& x) { return compress(x); });\n        return vs;\n\
+    \    }\n\n    T decompress(int i) const { return xs[i]; }\n\n    int size() const\
+    \ { return xs.size(); }\n\n   private:\n    std::vector<T> xs;\n};\n#line 5 \"\
+    misc/mo.hpp\"\n\nclass Mo {\n   public:\n    Mo() = default;\n    explicit Mo(int\
+    \ n) : n(n), cnt(0) {}\n\n    void query(int l, int r) { queries.emplace_back(cnt++,\
+    \ l, r); }\n\n    template <typename ExL, typename ShL, typename ExR, typename\
+    \ ShR,\n              typename Out>\n    void run(ExL exl, ShL shl, ExR exr, ShR\
+    \ shr, Out out) {\n        int s = sqrt(n);\n        std::ranges::sort(\n    \
+    \        queries, {}, [&](auto& q) { return std::make_pair(q.l / s, q.r); });\n\
     \        int curL = 0, curR = 0;\n        for (auto [id, l, r] : queries) {\n\
     \            while (curL > l) exl(--curL);\n            while (curR < r) exr(curR++);\n\
     \            while (curL < l) shl(curL++);\n            while (curR > r) shr(--curR);\n\
-    \            out(id);\n        }\n    }\n\nprivate:\n    struct Query {\n    \
-    \    int id, l, r;\n        Query(int id, int l, int r) : id(id), l(l), r(r) {}\n\
-    \    };\n\n    int n, cnt;\n    std::vector<Query> queries;\n};\n#line 8 \"test/yosupo/static_range_inversions_query.test.cpp\"\
-    \nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using\
-    \ T = int;\n    static T id() { return 0; }\n    static T op(T a, T b) { return\
-    \ a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (int i = 0;\
+    \            out(id);\n        }\n    }\n\n   private:\n    struct Query {\n \
+    \       int id, l, r;\n    };\n\n    int n, cnt;\n    std::vector<Query> queries;\n\
+    };\n#line 8 \"test/yosupo/static_range_inversions_query.test.cpp\"\nusing namespace\
+    \ std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = int;\n    static\
+    \ T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n};\n\nint\
+    \ main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n \
+    \   int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (int i = 0;\
     \ i < N; ++i) cin >> A[i];\n    A = Compress<int>(A).compress(A);\n    Mo mo(N);\n\
     \    for (int i = 0; i < Q; ++i) {\n        int l, r;\n        cin >> l >> r;\n\
     \        mo.query(l, r);\n    }\n\n    FenwickTree<AddMonoid> fw(N);\n    ll res\
@@ -77,7 +75,7 @@ data:
     \ shr, out);\n    for (auto& x : ans) cout << x << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
     \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/fenwick_tree.hpp\"\
-    \n#include \"../../misc/compress.cpp\"\n#include \"../../misc/mo.cpp\"\nusing\
+    \n#include \"../../misc/compress.hpp\"\n#include \"../../misc/mo.hpp\"\nusing\
     \ namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using T = int;\n\
     \    static T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n\
     };\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
@@ -95,12 +93,12 @@ data:
     \ shr, out);\n    for (auto& x : ans) cout << x << \"\\n\";\n}"
   dependsOn:
   - data-structure/fenwick_tree.hpp
-  - misc/compress.cpp
-  - misc/mo.cpp
+  - misc/compress.hpp
+  - misc/mo.hpp
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp

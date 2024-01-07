@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/relaxed_convolution.hpp\"\n#include <bit>\n\
-    #include <vector>\n\n#line 3 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
+    #include <vector>\n\n#line 4 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
     \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
     \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
     \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: false
   path: convolution/relaxed_convolution.hpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convolution/relaxed_convolution.hpp

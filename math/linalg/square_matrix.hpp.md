@@ -5,11 +5,11 @@ data:
     path: math/linalg/matrix.hpp
     title: Matrix
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/characteristic_polynomial.test.cpp
     title: test/yosupo/characteristic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'

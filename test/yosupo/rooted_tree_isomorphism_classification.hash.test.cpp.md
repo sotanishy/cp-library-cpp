@@ -1,8 +1,8 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: misc/compress.cpp
+  - icon: ':x:'
+    path: misc/compress.hpp
     title: Coordinate Compression
   - icon: ':x:'
     path: tree/tree_diameter.hpp
@@ -21,22 +21,20 @@ data:
     links:
     - https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
   bundledCode: "#line 1 \"test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
-    \n\n#line 2 \"misc/compress.cpp\"\n#include <algorithm>\n#include <vector>\n\n\
-    /*\n * @brief Coordinate Compression\n */\ntemplate <typename T>\nclass Compress\
-    \ {\npublic:\n    Compress() = default;\n    explicit Compress(const std::vector<T>&\
-    \ vs) : xs(vs) {\n        std::sort(xs.begin(), xs.end());\n        xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n    }\n\n    int compress(const T& x) const {\n     \
-    \   return std::lower_bound(xs.begin(), xs.end(), x) - xs.begin();\n    }\n\n\
-    \    std::vector<int> compress(const std::vector<T>& vs) const {\n        std::vector<int>\
-    \ ret;\n        std::transform(vs.begin(), vs.end(), std::back_inserter(ret),\
-    \ [&](const T& x) {\n            return compress(x);\n        });\n        return\
-    \ ret;\n    }\n\n    T decompress(int i) const {\n        return xs[i];\n    }\n\
-    \n    int size() const {\n        return xs.size();\n    }\n\nprivate:\n    std::vector<T>\
-    \ xs;\n};\n#line 3 \"tree/tree_isomorphism.hpp\"\n#include <map>\n#include <random>\n\
-    #include <utility>\n#line 7 \"tree/tree_isomorphism.hpp\"\n\n#line 5 \"tree/tree_diameter.hpp\"\
-    \n\nstd::pair<int, std::vector<int>> tree_diameter(\n    const std::vector<std::vector<int>>&\
-    \ G) {\n    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs,\
+    \n#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
+    \n\n#include <bits/stdc++.h>\n\n#line 4 \"misc/compress.hpp\"\n\n/**\n * @brief\
+    \ Coordinate Compression\n */\ntemplate <typename T>\nclass Compress {\n   public:\n\
+    \    Compress() = default;\n    explicit Compress(const std::vector<T>& vs) :\
+    \ xs(vs) {\n        std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
+    \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
+    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(std::vector<T> vs)\
+    \ const {\n        std::ranges::transform(vs, vs.begin(),\n                  \
+    \             [&](const T& x) { return compress(x); });\n        return vs;\n\
+    \    }\n\n    T decompress(int i) const { return xs[i]; }\n\n    int size() const\
+    \ { return xs.size(); }\n\n   private:\n    std::vector<T> xs;\n};\n#line 7 \"\
+    tree/tree_isomorphism.hpp\"\n\n#line 5 \"tree/tree_diameter.hpp\"\n\nstd::pair<int,\
+    \ std::vector<int>> tree_diameter(\n    const std::vector<std::vector<int>>& G)\
+    \ {\n    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs,\
     \ int v, int p) -> std::pair<int, int> {\n        std::pair<int, int> ret(0, v);\n\
     \        for (int c : G[v]) {\n            if (c == p) continue;\n           \
     \ auto weight = dfs(dfs, c, v);\n            ++weight.first;\n            if (ret\
@@ -98,31 +96,31 @@ data:
     \   dfs(G, val, c, v);\n                ch.push_back(val[c]);\n            }\n\
     \        }\n        std::ranges::sort(ch);\n        if (!mp.contains(ch)) {\n\
     \            mp[ch] = mp.size();\n        }\n        val[v] = mp[ch];\n    }\n\
-    };\n#line 5 \"test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    };\n#line 8 \"test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    int N;\n    cin >> N;\n    vector<vector<int>> G(N);\n\
     \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
     \  G[p].push_back(i);\n    }\n    TreeHasher hash;\n    auto val = hash.hash_subtrees(G,\
     \ 0);\n    Compress<long long> comp(val);\n    auto val2 = comp.compress(val);\n\
     \    cout << comp.size() << endl;\n    for (int i = 0; i < N; ++i) cout << val2[i]\
     \ << (i < N - 1 ? \" \" : \"\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
-    \n\n#include \"../../misc/compress.cpp\"\n#include \"../../tree/tree_isomorphism.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(0);\n\n    int N;\n    cin >> N;\n    vector<vector<int>> G(N);\n\
-    \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
-    \  G[p].push_back(i);\n    }\n    TreeHasher hash;\n    auto val = hash.hash_subtrees(G,\
-    \ 0);\n    Compress<long long> comp(val);\n    auto val2 = comp.compress(val);\n\
-    \    cout << comp.size() << endl;\n    for (int i = 0; i < N; ++i) cout << val2[i]\
-    \ << (i < N - 1 ? \" \" : \"\\n\");\n}"
+  code: "#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
+    \n\n#include <bits/stdc++.h>\n\n#include \"../../misc/compress.hpp\"\n#include\
+    \ \"../../tree/tree_isomorphism.hpp\"\nusing namespace std;\n\nint main() {\n\
+    \    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int N;\n    cin\
+    \ >> N;\n    vector<vector<int>> G(N);\n    for (int i = 1; i < N; ++i) {\n  \
+    \      int p;\n        cin >> p;\n        G[p].push_back(i);\n    }\n    TreeHasher\
+    \ hash;\n    auto val = hash.hash_subtrees(G, 0);\n    Compress<long long> comp(val);\n\
+    \    auto val2 = comp.compress(val);\n    cout << comp.size() << endl;\n    for\
+    \ (int i = 0; i < N; ++i) cout << val2[i] << (i < N - 1 ? \" \" : \"\\n\");\n}"
   dependsOn:
-  - misc/compress.cpp
+  - misc/compress.hpp
   - tree/tree_isomorphism.hpp
   - tree/tree_diameter.hpp
   isVerificationFile: true
   path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp

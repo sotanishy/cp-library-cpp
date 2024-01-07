@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.hpp
       title: Persistent Stack
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/quadtree.cpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
@@ -383,7 +383,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
     - icon: ':x:'
@@ -398,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/garner.cpp
       title: Garner's Algorithm
     - icon: ':heavy_check_mark:'
@@ -475,7 +475,7 @@ data:
       title: Stirling Number of the Second Kind
   - name: math/linalg
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/linalg/characteristic_polynomial.hpp
       title: Characteristic Polynomial
     - icon: ':heavy_check_mark:'
@@ -493,10 +493,10 @@ data:
   - name: misc
     pages:
     - icon: ':warning:'
-      path: misc/boolean_square_matrix.cpp
+      path: misc/boolean_square_matrix.hpp
       title: Boolean Square Matrix
-    - icon: ':question:'
-      path: misc/compress.cpp
+    - icon: ':x:'
+      path: misc/compress.hpp
       title: Coordinate Compression
     - icon: ':warning:'
       path: misc/discrete_log_monoid_action.hpp
@@ -505,7 +505,7 @@ data:
       path: misc/enumerate_subsets.hpp
       title: Enumerate Subsets
     - icon: ':warning:'
-      path: misc/fraction.cpp
+      path: misc/fraction.hpp
       title: Fraction
     - icon: ':warning:'
       path: misc/golden_section_search.hpp
@@ -526,7 +526,7 @@ data:
       path: misc/matroid_intersection.hpp
       title: Matroid Intersection
     - icon: ':warning:'
-      path: misc/median_set.cpp
+      path: misc/median_set.hpp
       title: Median Set
     - icon: ':warning:'
       path: misc/memo.hpp
@@ -535,7 +535,7 @@ data:
       path: misc/min_periodic_function.hpp
       title: Minimize Periodic Function
     - icon: ':x:'
-      path: misc/mo.cpp
+      path: misc/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
       path: misc/monoids.cpp
@@ -544,8 +544,8 @@ data:
       path: misc/permutation.hpp
       title: Lexicographic Index of Permutations (in Factorial Number System)
     - icon: ':warning:'
-      path: misc/random.cpp
-      title: misc/random.cpp
+      path: misc/random.hpp
+      title: misc/random.hpp
     - icon: ':warning:'
       path: misc/sorting.hpp
       title: Sorting Algorithms
@@ -556,8 +556,8 @@ data:
       path: misc/sum_top_k.hpp
       title: Sum of Top K Values
     - icon: ':warning:'
-      path: misc/timer.cpp
-      title: misc/timer.cpp
+      path: misc/timer.hpp
+      title: misc/timer.hpp
   - name: sat
     pages:
     - icon: ':warning:'
@@ -629,7 +629,7 @@ data:
       title: Trie
     - icon: ':x:'
       path: string/z_array.hpp
-      title: string/z_array.hpp
+      title: Z Array
   - name: tree
     pages:
     - icon: ':warning:'
@@ -647,18 +647,18 @@ data:
     - icon: ':x:'
       path: tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':heavy_check_mark:'
-      path: tree/euler_tour_tree.cpp
+    - icon: ':x:'
+      path: tree/euler_tour_tree.hpp
       title: Euler Tour Tree
     - icon: ':x:'
       path: tree/hld.hpp
       title: Heavy-Light Decomposition
-    - icon: ':warning:'
+    - icon: ':x:'
       path: tree/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':heavy_check_mark:'
-      path: tree/link_cut_tree.cpp
-      title: Link/Cut Tree
+    - icon: ':x:'
+      path: tree/link_cut_tree.hpp
+      title: tree/link_cut_tree.hpp
     - icon: ':x:'
       path: tree/permutation_tree.hpp
       title: Permutation Tree
@@ -889,7 +889,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cartesian_tree.test.cpp
       title: test/yosupo/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/characteristic_polynomial.test.cpp
       title: test/yosupo/characteristic_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -901,10 +901,10 @@ data:
     - icon: ':x:'
       path: test/yosupo/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/common_interval_decomposition_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -919,7 +919,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/division_of_polynomials.test.cpp
       title: test/yosupo/division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
@@ -934,16 +934,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
       title: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
-      title: test/yosupo/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1072,7 +1069,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
     - icon: ':heavy_check_mark:'
