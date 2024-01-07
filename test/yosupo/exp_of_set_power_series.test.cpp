@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../math/modint.cpp"
-#include "../../math/set_power_series.hpp"
+#include "../../set/set_power_series.hpp"
 using namespace std;
 using ll = long long;
 

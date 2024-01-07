@@ -1,6 +1,14 @@
+#pragma once
+#include <algorithm>
+#include <array>
+#include <cassert>
 #include <vector>
 
-#include "../convolution/subset_convolution.hpp"
+#include "subset_convolution.hpp"
+
+/**
+ * @brief Set Power Series
+ */
 
 template <typename mint, int N>
 class SetPowerSeries : public std::vector<mint> {
@@ -12,6 +20,7 @@ class SetPowerSeries : public std::vector<mint> {
     using std::vector<mint>::operator=;
 
     // -- binary operation with scalar ---
+
     SPS& operator+=(const mint& rhs) {
         if (this->empty()) this->resize(1);
         (*this)[0] += rhs;
@@ -60,10 +69,10 @@ class SetPowerSeries : public std::vector<mint> {
     SPS operator*(const SPS& rhs) const { return SPS(*this) *= rhs; }
 
     // --- compositions ---
+
     SPS exp() const {
         assert((*this)[0] == mint(0));
-        int n = 0;
-        while (1 << n < (int)this->size()) ++n;
+        const int n = std::bit_width(std::bit_ceil(this->size())) - 1;
         SPS res(1 << n);
         res[0] = 1;
         for (int i = 0; i < n; ++i) {

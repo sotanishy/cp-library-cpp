@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
-#include "../../math/modint.cpp"
-#include "../../convolution/xor_convolution.hpp"
-
 #include <bits/stdc++.h>
+
+#include "../../math/modint.cpp"
+#include "../../set/xor_convolution.hpp"
 using namespace std;
 using ll = long long;
 
@@ -16,5 +16,6 @@ int main() {
     for (auto& x : a) cin >> x;
     for (auto& x : b) cin >> x;
     auto c = xor_convolution(a, b);
-    for (int i = 0; i < (1 << N); ++i) cout << c[i] << (i < (1 << N) - 1 ? " " : "\n");
+    for (int i = 0; i < (1 << N); ++i)
+        cout << c[i] << (i < (1 << N) - 1 ? " " : "\n");
 }

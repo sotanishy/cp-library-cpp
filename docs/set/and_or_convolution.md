@@ -1,6 +1,6 @@
 ---
-title: Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/Möbius Transform)
-documentation_of: ../../convolution/and_or_convolution.hpp
+title: Fast Zeta/Möbius Transform
+documentation_of: ../../set/zeta_moebius_transform.hpp
 ---
 
 ## Description
@@ -33,12 +33,6 @@ $$
     - 時間計算量: $O(n\log n)$
 - `void fmt(vector<T> a, bool subset)`
     - 数列 $a$ を高速 Möbius 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる．$a$ の長さが2冪であることを要求する．
-    - 時間計算量: $O(n\log n)$
-- `vector<T> and_convolution(vector<T> a, vector<T> b)`
-    - 数列 $a$ と $b$ の bitwise AND convolution を計算する
-    - 時間計算量: $O(n\log n)$
-- `vector<T> or_convolution(vector<T> a, vector<T> b)`
-    - 数列 $a$ と $b$ の bitwise OR convolution を計算する
     - 時間計算量: $O(n\log n)$
 
 ## Note

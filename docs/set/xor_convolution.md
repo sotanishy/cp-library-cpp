@@ -1,11 +1,11 @@
 ---
-title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
-documentation_of: ../../convolution/xor_convolution.hpp
+title: Fast Walsh-Hadamard Transform
+documentation_of: ../../set/walsh_hadamard_transform.hpp
 ---
 
 ## Description
 
-高速 Walsh-Hadamard 変換を用いると，bitwise XOR convolution が計算できる．
+Walsh-Hadamard 変換を用いると，bitwise XOR convolution が計算できる．
 
 $$
 c_k = \sum_{i\oplus j=k} a_i b_j
@@ -18,9 +18,6 @@ $$
     - 時間計算量: $O(n\log n)$
 - `void ifwht(vector<T> a)`
     - 数列 $a$ を逆高速 Walsh-Hadamard 変換する
-    - 時間計算量: $O(n\log n)$
-- `vector<T> xor_convolution(vector<T> a, vector<T> b)`
-    - 数列 $a$ と $b$ の bitwise XOR convolution を計算する
     - 時間計算量: $O(n\log n)$
 
 ## Note
