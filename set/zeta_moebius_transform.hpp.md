@@ -2,68 +2,67 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
     title: Hafnian
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: set/and_or_convolution.hpp
     title: Bitwise AND/OR Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: set/set_power_series.hpp
     title: Set Power Series
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: set/subset_convolution.hpp
     title: Subset Convolution
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_set_power_series.test.cpp
     title: test/yosupo/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"set/zeta_moebius_transform.hpp\"\n#include <bit>\n#include\
     \ <cassert>\n#include <vector>\n\ntemplate <typename T>\nvoid superset_fzt(std::vector<T>&\
-    \ a) {\n    assert(std::has_single_bit(a.size()));\n    int k = std::bit_width(a.size());\n\
-    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
-    \ {\n            if (!(j >> i & 1)) a[j] += a[j ^ (1 << i)];\n        }\n    }\n\
-    }\n\ntemplate <typename T>\nvoid superset_fmt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
-    \    int k = std::bit_width(a.size());\n    for (int i = 0; i < k; ++i) {\n  \
-    \      for (int j = 0; j < (1 << k); ++j) {\n            if (!(j >> i & 1)) a[j]\
-    \ -= a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid subset_fzt(std::vector<T>&\
-    \ a) {\n    assert(std::has_single_bit(a.size()));\n    int k = std::bit_width(a.size());\n\
-    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
-    \ {\n            if (j >> i & 1) a[j] += a[j ^ (1 << i)];\n        }\n    }\n\
-    }\n\ntemplate <typename T>\nvoid subset_fmt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
-    \    int k = std::bit_width(a.size());\n    for (int i = 0; i < k; ++i) {\n  \
-    \      for (int j = 0; j < (1 << k); ++j) {\n            if (j >> i & 1) a[j]\
-    \ -= a[j ^ (1 << i)];\n        }\n    }\n}\n"
+    \ a) {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
+    \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
+    \            if (!(j & i)) a[j] += a[j | i];\n        }\n    }\n}\n\ntemplate\
+    \ <typename T>\nvoid superset_fmt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
+    \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j] -= a[j | i];\n   \
+    \     }\n    }\n}\n\ntemplate <typename T>\nvoid subset_fzt(std::vector<T>& a)\
+    \ {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
+    \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
+    \            if (!(j & i)) a[j | i] += a[j];\n        }\n    }\n}\n\ntemplate\
+    \ <typename T>\nvoid subset_fmt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
+    \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j | i] -= a[j];\n   \
+    \     }\n    }\n}\n"
   code: "#pragma once\n#include <bit>\n#include <cassert>\n#include <vector>\n\ntemplate\
     \ <typename T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
-    \    int k = std::bit_width(a.size());\n    for (int i = 0; i < k; ++i) {\n  \
-    \      for (int j = 0; j < (1 << k); ++j) {\n            if (!(j >> i & 1)) a[j]\
-    \ += a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid superset_fmt(std::vector<T>&\
-    \ a) {\n    assert(std::has_single_bit(a.size()));\n    int k = std::bit_width(a.size());\n\
-    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
-    \ {\n            if (!(j >> i & 1)) a[j] -= a[j ^ (1 << i)];\n        }\n    }\n\
-    }\n\ntemplate <typename T>\nvoid subset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
-    \    int k = std::bit_width(a.size());\n    for (int i = 0; i < k; ++i) {\n  \
-    \      for (int j = 0; j < (1 << k); ++j) {\n            if (j >> i & 1) a[j]\
-    \ += a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid subset_fmt(std::vector<T>&\
-    \ a) {\n    assert(std::has_single_bit(a.size()));\n    int k = std::bit_width(a.size());\n\
-    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
-    \ {\n            if (j >> i & 1) a[j] -= a[j ^ (1 << i)];\n        }\n    }\n\
-    }\n"
+    \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
+    \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j] += a[j | i];\n   \
+    \     }\n    }\n}\n\ntemplate <typename T>\nvoid superset_fmt(std::vector<T>&\
+    \ a) {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
+    \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
+    \            if (!(j & i)) a[j] -= a[j | i];\n        }\n    }\n}\n\ntemplate\
+    \ <typename T>\nvoid subset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
+    \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j | i] += a[j];\n   \
+    \     }\n    }\n}\n\ntemplate <typename T>\nvoid subset_fmt(std::vector<T>& a)\
+    \ {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
+    \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
+    \            if (!(j & i)) a[j | i] -= a[j];\n        }\n    }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: set/zeta_moebius_transform.hpp
@@ -72,8 +71,8 @@ data:
   - set/set_power_series.hpp
   - set/subset_convolution.hpp
   - set/and_or_convolution.hpp
-  timestamp: '2024-01-07 12:10:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-07 16:57:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/exp_of_set_power_series.test.cpp
   - test/yosupo/hafnian_of_matrix.test.cpp
