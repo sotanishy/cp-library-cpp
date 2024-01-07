@@ -5,17 +5,17 @@ data:
     path: set/zeta_moebius_transform.hpp
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
     title: Hafnian
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/set_power_series.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_set_power_series.test.cpp
     title: test/yosupo/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':x:'

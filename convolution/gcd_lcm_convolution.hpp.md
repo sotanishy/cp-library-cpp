@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/yosupo/lcm_convolution.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/gcd_lcm_convolution.hpp\"\n#include <vector>\n\
@@ -66,7 +66,7 @@ data:
   path: convolution/gcd_lcm_convolution.hpp
   requiredBy: []
   timestamp: '2022-03-24 13:03:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/lcm_convolution.test.cpp

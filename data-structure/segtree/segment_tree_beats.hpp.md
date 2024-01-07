@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/segment_tree_beats.hpp\"\n#include\
@@ -164,8 +167,9 @@ data:
   path: data-structure/segtree/segment_tree_beats.hpp
   requiredBy: []
   timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: data-structure/segtree/segment_tree_beats.hpp
 layout: document
 redirect_from:

@@ -3,13 +3,13 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
-    - icon: ':x:'
+    - icon: ':question:'
       path: convolution/gcd_lcm_convolution.hpp
       title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
     - icon: ':question:'
@@ -53,14 +53,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/partition_refinement.hpp
       title: Partition Refinement
-    - icon: ':heavy_check_mark:'
-      path: data-structure/persistent_array.cpp
+    - icon: ':x:'
+      path: data-structure/persistent_array.hpp
       title: Persistent Array
-    - icon: ':heavy_check_mark:'
-      path: data-structure/persistent_queue.cpp
+    - icon: ':x:'
+      path: data-structure/persistent_queue.hpp
       title: Persistent Queue
     - icon: ':warning:'
-      path: data-structure/persistent_stack.cpp
+      path: data-structure/persistent_stack.hpp
       title: Persistent Stack
     - icon: ':heavy_check_mark:'
       path: data-structure/quadtree.cpp
@@ -146,7 +146,7 @@ data:
     - icon: ':x:'
       path: data-structure/segtree/segment_tree_2d.hpp
       title: 2D Segment Tree
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data-structure/segtree/segment_tree_beats.hpp
       title: data-structure/segtree/segment_tree_beats.hpp
     - icon: ':x:'
@@ -158,19 +158,19 @@ data:
   - name: data-structure/unionfind
     pages:
     - icon: ':warning:'
-      path: data-structure/unionfind/partially_persistent_union_find.cpp
+      path: data-structure/unionfind/partially_persistent_union_find.hpp
       title: Partially Persistent Union Find
-    - icon: ':heavy_check_mark:'
-      path: data-structure/unionfind/persistent_union_find.cpp
+    - icon: ':x:'
+      path: data-structure/unionfind/persistent_union_find.hpp
       title: Persistent Union Find
     - icon: ':heavy_check_mark:'
-      path: data-structure/unionfind/undoable_union_find.cpp
+      path: data-structure/unionfind/undoable_union_find.hpp
       title: Undoable Union Find
     - icon: ':question:'
-      path: data-structure/unionfind/union_find.cpp
+      path: data-structure/unionfind/union_find.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
-      path: data-structure/unionfind/weighted_union_find.cpp
+      path: data-structure/unionfind/weighted_union_find.hpp
       title: Weighted Union Find
   - name: dp
     pages:
@@ -294,7 +294,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/general_matching.hpp
       title: General Matching
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/junction_tree.hpp
       title: Junction Tree (Width 2)
     - icon: ':heavy_check_mark:'
@@ -344,13 +344,13 @@ data:
       title: 2-Edge-Connected Components
   - name: math
     pages:
-    - icon: ':warning:'
-      path: math/arbitrary_modint.cpp
+    - icon: ':question:'
+      path: math/arbitrary_modint.hpp
       title: Arbitrary Mod int
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/berlekamp_massey.cpp
       title: Berlekamp-Massey Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bernoulli.hpp
       title: Bernoulli Number
     - icon: ':x:'
@@ -359,7 +359,7 @@ data:
     - icon: ':warning:'
       path: math/carmichael.cpp
       title: Carmichael Function
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/combination.cpp
       title: Combination
     - icon: ':warning:'
@@ -380,7 +380,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/euler_totient.cpp
       title: Euler's Totient Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
     - icon: ':x:'
@@ -395,7 +395,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/floor_sum.cpp
       title: Sum of Floor of Linear
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/garner.cpp
       title: Garner's Algorithm
     - icon: ':heavy_check_mark:'
@@ -428,7 +428,7 @@ data:
     - icon: ':warning:'
       path: math/moebius.hpp
       title: "M\xF6bius Function"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/montmort.cpp
       title: Monmort Number
     - icon: ':x:'
@@ -478,7 +478,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
       title: Characteristic Polynomial
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/hafnian.hpp
       title: Hafnian
     - icon: ':question:'
@@ -568,7 +568,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: set/and_or_convolution.hpp
       title: Bitwise AND/OR Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: set/set_power_series.hpp
       title: Set Power Series
     - icon: ':question:'
@@ -792,9 +792,6 @@ data:
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_1_A.test.cpp
-      title: test/aoj/DSL_1_A.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -880,13 +877,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/assignment.test.cpp
       title: test/yosupo/assignment.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bernoulli_number.test.cpp
       title: test/yosupo/bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
       title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -916,10 +913,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/common_interval_decomposition_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod.test.cpp
       title: test/yosupo/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution_mod_1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -934,7 +931,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/discrete_logarithm_mod.test.cpp
       title: test/yosupo/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/division_of_polynomials.test.cpp
       title: test/yosupo/division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
@@ -976,7 +973,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -988,13 +985,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/factorize.test.cpp
       title: test/yosupo/factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1003,7 +1000,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/general_matching.test.cpp
       title: test/yosupo/general_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/hafnian_of_matrix.test.cpp
       title: test/yosupo/hafnian_of_matrix.test.cpp
     - icon: ':x:'
@@ -1078,10 +1075,10 @@ data:
     - icon: ':x:'
       path: test/yosupo/partition_function.test.cpp
       title: test/yosupo/partition_function.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/persistent_queue.test.cpp
       title: test/yosupo/persistent_queue.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/persistent_unionfind.test.cpp
       title: test/yosupo/persistent_unionfind.test.cpp
     - icon: ':x:'
@@ -1207,7 +1204,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tetration_mod.test.cpp
       title: test/yosupo/tetration_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree_decomposition_width_2.test.cpp
       title: test/yosupo/tree_decomposition_width_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1222,7 +1219,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
     - icon: ':x:'

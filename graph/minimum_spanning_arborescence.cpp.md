@@ -5,7 +5,7 @@ data:
     path: data-structure/leftist_heap.cpp
     title: Leftist Heap
   - icon: ':question:'
-    path: data-structure/unionfind/union_find.cpp
+    path: data-structure/unionfind/union_find.hpp
     title: Union Find
   - icon: ':question:'
     path: graph/edge.cpp
@@ -26,16 +26,16 @@ data:
     #include <vector>\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct\
     \ Edge {\n    int from, to;\n    T weight;\n    Edge() = default;\n    Edge(int\
     \ to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int from, int\
-    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.cpp\"\
-    \n\nclass UnionFind {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int\
+    \ to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 4 \"data-structure/unionfind/union_find.hpp\"\
+    \n\nclass UnionFind {\n   public:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
     \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
     \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return;\n\
     \        if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n\
-    \        data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return\
-    \ find(x) == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
-    \    }\n\nprivate:\n    std::vector<int> data;\n};\n#line 5 \"data-structure/leftist_heap.cpp\"\
-    \n\ntemplate <typename T>\nclass LeftistHeap {\npublic:\n    LeftistHeap() = default;\n\
+    \        data[y] = x;\n    }\n\n    bool same(int x, int y) { return find(x) ==\
+    \ find(y); }\n\n    int size(int x) { return -data[find(x)]; }\n\n   private:\n\
+    \    std::vector<int> data;\n};\n#line 5 \"data-structure/leftist_heap.cpp\"\n\
+    \ntemplate <typename T>\nclass LeftistHeap {\npublic:\n    LeftistHeap() = default;\n\
     \n    static LeftistHeap meld(LeftistHeap a, LeftistHeap b) {\n        return\
     \ LeftistHeap(meld(std::move(a.root), std::move(b.root)));\n    }\n\n    std::pair<int,\
     \ T> top() const {\n        push(root);\n        return {root->id, root->val};\n\
@@ -92,7 +92,7 @@ data:
     \ par};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <memory>\n\
     #include <numeric>\n#include <utility>\n#include <vector>\n#include \"edge.cpp\"\
-    \n#include \"../data-structure/unionfind/union_find.cpp\"\n#include \"../data-structure/leftist_heap.cpp\"\
+    \n#include \"../data-structure/unionfind/union_find.hpp\"\n#include \"../data-structure/leftist_heap.cpp\"\
     \n\n/*\n * @brief Minimum Spanning Arborescence\n */\ntemplate <typename T>\n\
     std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>>\
     \ G, int V, int root) {\n    std::vector<LeftistHeap<T>> incoming(V);\n    for\
@@ -129,12 +129,12 @@ data:
     \ par};\n}\n"
   dependsOn:
   - graph/edge.cpp
-  - data-structure/unionfind/union_find.cpp
+  - data-structure/unionfind/union_find.hpp
   - data-structure/leftist_heap.cpp
   isVerificationFile: false
   path: graph/minimum_spanning_arborescence.cpp
   requiredBy: []
-  timestamp: '2021-09-11 15:28:38+09:00'
+  timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/directedmst.test.cpp

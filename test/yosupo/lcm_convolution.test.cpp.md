@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/gcd_lcm_convolution.hpp
     title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
   - icon: ':question:'

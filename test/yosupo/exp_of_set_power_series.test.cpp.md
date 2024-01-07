@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/set_power_series.hpp
     title: Set Power Series
   - icon: ':question:'

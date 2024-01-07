@@ -2,30 +2,30 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: data-structure/unionfind/union_find.cpp
+    path: data-structure/unionfind/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree_decomposition_width_2.test.cpp
     title: test/yosupo/tree_decomposition_width_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/junction_tree.hpp\"\n#include <set>\n#include <stack>\n\
-    #include <vector>\n\n#line 2 \"data-structure/unionfind/union_find.cpp\"\n#include\
-    \ <algorithm>\n#line 4 \"data-structure/unionfind/union_find.cpp\"\n\nclass UnionFind\
-    \ {\npublic:\n    UnionFind() = default;\n    explicit UnionFind(int n) : data(n,\
+    #include <vector>\n\n#line 2 \"data-structure/unionfind/union_find.hpp\"\n#include\
+    \ <algorithm>\n#line 4 \"data-structure/unionfind/union_find.hpp\"\n\nclass UnionFind\
+    \ {\n   public:\n    UnionFind() = default;\n    explicit UnionFind(int n) : data(n,\
     \ -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return x;\n      \
     \  return data[x] = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n\
     \        x = find(x);\n        y = find(y);\n        if (x == y) return;\n   \
     \     if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n \
-    \       data[y] = x;\n    }\n\n    bool same(int x, int y) {\n        return find(x)\
-    \ == find(y);\n    }\n\n    int size(int x) {\n        return -data[find(x)];\n\
-    \    }\n\nprivate:\n    std::vector<int> data;\n};\n#line 7 \"graph/junction_tree.hpp\"\
-    \n\nclass JunctionTreeWidth2 {\n   public:\n    struct Node {\n        std::vector<int>\
+    \       data[y] = x;\n    }\n\n    bool same(int x, int y) { return find(x) ==\
+    \ find(y); }\n\n    int size(int x) { return -data[find(x)]; }\n\n   private:\n\
+    \    std::vector<int> data;\n};\n#line 7 \"graph/junction_tree.hpp\"\n\nclass\
+    \ JunctionTreeWidth2 {\n   public:\n    struct Node {\n        std::vector<int>\
     \ bag;\n        std::vector<int> ch;\n    };\n\n    explicit JunctionTreeWidth2(const\
     \ std::vector<std::vector<int>>& G)\n        : nodes(1) {\n        const int n\
     \ = G.size();\n\n        UnionFind uf(n);\n        std::vector<int> deg(n);\n\
@@ -66,7 +66,7 @@ data:
     \ const { return nodes; }\n\n   private:\n    bool treewidth_is_2;\n    std::vector<Node>\
     \ nodes;\n};\n"
   code: "#pragma once\n#include <set>\n#include <stack>\n#include <vector>\n\n#include\
-    \ \"../data-structure/unionfind/union_find.cpp\"\n\nclass JunctionTreeWidth2 {\n\
+    \ \"../data-structure/unionfind/union_find.hpp\"\n\nclass JunctionTreeWidth2 {\n\
     \   public:\n    struct Node {\n        std::vector<int> bag;\n        std::vector<int>\
     \ ch;\n    };\n\n    explicit JunctionTreeWidth2(const std::vector<std::vector<int>>&\
     \ G)\n        : nodes(1) {\n        const int n = G.size();\n\n        UnionFind\
@@ -108,12 +108,12 @@ data:
     \ { return nodes; }\n\n   private:\n    bool treewidth_is_2;\n    std::vector<Node>\
     \ nodes;\n};\n"
   dependsOn:
-  - data-structure/unionfind/union_find.cpp
+  - data-structure/unionfind/union_find.hpp
   isVerificationFile: false
   path: graph/junction_tree.hpp
   requiredBy: []
-  timestamp: '2023-05-07 15:56:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-07 20:49:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree_decomposition_width_2.test.cpp
 documentation_of: graph/junction_tree.hpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
     title: Hafnian
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/set_power_series.hpp
     title: Set Power Series
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -170,7 +170,7 @@ data:
   path: test/yosupo/hafnian_of_matrix.test.cpp
   requiredBy: []
   timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/hafnian_of_matrix.test.cpp
 layout: document

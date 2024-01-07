@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/montmort_number_mod.test.cpp
+    title: test/yosupo/montmort_number_mod.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Monmort Number
     links: []
@@ -24,8 +27,9 @@ data:
   path: math/montmort.cpp
   requiredBy: []
   timestamp: '2022-04-28 21:35:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/montmort_number_mod.test.cpp
 documentation_of: math/montmort.cpp
 layout: document
 redirect_from:

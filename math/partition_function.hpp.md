@@ -23,18 +23,18 @@ data:
     \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
     \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename T>\nvoid bit_reverse(std::vector<T>&\
     \ a) {\n    int n = a.size();\n    for (int i = 0, j = 1; j < n - 1; ++j) {\n\
-    \        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n        if (i < j) std::swap(a[i],\
-    \ a[j]);\n    }\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>& a,\
-    \ bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
-    \ mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n  \
-    \  for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
+    \        for (int k = n >> 1; k > (i ^= k); k >>= 1) {\n            if (i < j)\
+    \ std::swap(a[i], a[j]);\n        }\n    }\n}\n\ntemplate <typename mint>\nvoid\
+    \ ntt(std::vector<mint>& a, bool ordered = false) {\n    constexpr int mod = mint::mod();\n\
+    \    constexpr mint primitive_root = get_primitive_root(mod);\n\n    int n = a.size();\n\
+    \    for (int m = n; m > 1; m >>= 1) {\n        mint omega = primitive_root.pow((mod\
     \ - 1) / m);\n        for (int s = 0; s < n / m; ++s) {\n            mint w =\
     \ 1;\n            for (int i = 0; i < m / 2; ++i) {\n                mint l =\
     \ a[s * m + i];\n                mint r = a[s * m + i + m / 2];\n            \
     \    a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = (l - r) * w;\n\
     \                w *= omega;\n            }\n        }\n    }\n    if (ordered)\
     \ bit_reverse(a);\n}\n\ntemplate <typename mint>\nvoid intt(std::vector<mint>&\
-    \ a, bool ordered = false) {\n    constexpr int mod = mint::get_mod();\n    constexpr\
+    \ a, bool ordered = false) {\n    constexpr int mod = mint::mod();\n    constexpr\
     \ mint primitive_root = get_primitive_root(mod);\n\n    if (ordered) bit_reverse(a);\n\
     \    int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        mint omega\
     \ = primitive_root.pow((mod - 1) / m).inv();\n        for (int s = 0; s < n /\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: math/partition_function.hpp
   requiredBy: []
-  timestamp: '2024-01-06 22:27:11+09:00'
+  timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/partition_function.test.cpp

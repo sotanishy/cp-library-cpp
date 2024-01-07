@@ -6,12 +6,15 @@ data:
     path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+    title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/combination.cpp\"\n#include <vector>\n\ntemplate <typename\
@@ -48,9 +51,10 @@ data:
   requiredBy:
   - math/stirling_second.hpp
   timestamp: '2023-05-27 03:55:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/binomial_coefficient_prime_mod.test.cpp
 documentation_of: math/combination.cpp
 layout: document
 title: Combination

@@ -8,19 +8,19 @@ data:
     path: set/zeta_moebius_transform.hpp
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/hafnian.hpp
     title: Hafnian
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_set_power_series.test.cpp
     title: test/yosupo/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Set Power Series
     links: []
@@ -133,7 +133,7 @@ data:
   requiredBy:
   - math/matrix/hafnian.hpp
   timestamp: '2024-01-07 16:57:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/exp_of_set_power_series.test.cpp
   - test/yosupo/hafnian_of_matrix.test.cpp

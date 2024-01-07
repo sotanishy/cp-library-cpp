@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: data-structure/unionfind/union_find.cpp
+    path: data-structure/unionfind/union_find.hpp
     title: Union Find
   - icon: ':question:'
     path: graph/edge.cpp
@@ -34,14 +34,14 @@ data:
     \ <typename T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge() =\
     \ default;\n    Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n\
     \    Edge(int from, int to, T weight) : from(from), to(to), weight(weight) {}\n\
-    };\n#line 4 \"data-structure/unionfind/union_find.cpp\"\n\nclass UnionFind {\n\
-    public:\n    UnionFind() = default;\n    explicit UnionFind(int n) : data(n, -1)\
-    \ {}\n\n    int find(int x) {\n        if (data[x] < 0) return x;\n        return\
-    \ data[x] = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n        x\
-    \ = find(x);\n        y = find(y);\n        if (x == y) return;\n        if (data[x]\
-    \ > data[y]) std::swap(x, y);\n        data[x] += data[y];\n        data[y] =\
-    \ x;\n    }\n\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n\n    int size(int x) {\n        return -data[find(x)];\n    }\n\nprivate:\n\
+    };\n#line 4 \"data-structure/unionfind/union_find.hpp\"\n\nclass UnionFind {\n\
+    \   public:\n    UnionFind() = default;\n    explicit UnionFind(int n) : data(n,\
+    \ -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return x;\n      \
+    \  return data[x] = find(data[x]);\n    }\n\n    void unite(int x, int y) {\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) return;\n   \
+    \     if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n \
+    \       data[y] = x;\n    }\n\n    bool same(int x, int y) { return find(x) ==\
+    \ find(y); }\n\n    int size(int x) { return -data[find(x)]; }\n\n   private:\n\
     \    std::vector<int> data;\n};\n#line 8 \"graph/mst.cpp\"\n\n/*\n * Kruskal's\
     \ Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>> kruskal(std::vector<Edge<T>>\
     \ G, int V) {\n    std::sort(G.begin(), G.end(), [](const auto& e1, const auto&\
@@ -72,7 +72,7 @@ data:
     \         weight += e.weight;\n                edges.push_back(e);\n         \
     \   }\n        }\n    }\n    return {weight, edges};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <queue>\n#include <utility>\n\
-    #include <vector>\n#include \"edge.cpp\"\n#include \"../data-structure/unionfind/union_find.cpp\"\
+    #include <vector>\n#include \"edge.cpp\"\n#include \"../data-structure/unionfind/union_find.hpp\"\
     \n\n/*\n * Kruskal's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
     \ kruskal(std::vector<Edge<T>> G, int V) {\n    std::sort(G.begin(), G.end(),\
     \ [](const auto& e1, const auto& e2) {\n        return e1.weight < e2.weight;\n\
@@ -103,12 +103,12 @@ data:
     \   }\n        }\n    }\n    return {weight, edges};\n}"
   dependsOn:
   - graph/edge.cpp
-  - data-structure/unionfind/union_find.cpp
+  - data-structure/unionfind/union_find.hpp
   isVerificationFile: false
   path: graph/mst.cpp
   requiredBy:
   - graph/manhattan_mst.hpp
-  timestamp: '2021-02-09 14:52:42+09:00'
+  timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp
