@@ -7,6 +7,9 @@ data:
   - icon: ':x:'
     path: set/and_or_convolution.hpp
     title: Bitwise AND/OR Convolution
+  - icon: ':x:'
+    path: set/zeta_moebius_transform.hpp
+    title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -48,9 +51,24 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 2 \"set/and_or_convolution.hpp\"\n#include\
-    \ <bit>\n#line 4 \"set/and_or_convolution.hpp\"\n\n/**\n * @brief Bitwise AND/OR\
-    \ Convolution\n */\n\ntemplate <typename T>\nstd::vector<T> and_convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n\
+    \ <bit>\n#line 4 \"set/and_or_convolution.hpp\"\n\n#line 5 \"set/zeta_moebius_transform.hpp\"\
+    \n\ntemplate <typename T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    int k = std::bit_width(a.size());\n    for (int i = 0; i < k; ++i) {\n  \
+    \      for (int j = 0; j < (1 << k); ++j) {\n            if (!(j >> i & 1)) a[j]\
+    \ += a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid superset_fmt(std::vector<T>&\
+    \ a) {\n    assert(std::has_single_bit(a.size()));\n    int k = std::bit_width(a.size());\n\
+    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
+    \ {\n            if (!(j >> i & 1)) a[j] -= a[j ^ (1 << i)];\n        }\n    }\n\
+    }\n\ntemplate <typename T>\nvoid subset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    int k = std::bit_width(a.size());\n    for (int i = 0; i < k; ++i) {\n  \
+    \      for (int j = 0; j < (1 << k); ++j) {\n            if (j >> i & 1) a[j]\
+    \ += a[j ^ (1 << i)];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid subset_fmt(std::vector<T>&\
+    \ a) {\n    assert(std::has_single_bit(a.size()));\n    int k = std::bit_width(a.size());\n\
+    \    for (int i = 0; i < k; ++i) {\n        for (int j = 0; j < (1 << k); ++j)\
+    \ {\n            if (j >> i & 1) a[j] -= a[j ^ (1 << i)];\n        }\n    }\n\
+    }\n#line 6 \"set/and_or_convolution.hpp\"\n\n/**\n * @brief Bitwise AND/OR Convolution\n\
+    \ */\n\ntemplate <typename T>\nstd::vector<T> and_convolution(std::vector<T> a,\
+    \ std::vector<T> b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n\
     \    a.resize(n);\n    b.resize(n);\n    superset_fzt(a);\n    superset_fzt(b);\n\
     \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    superset_fmt(a);\n    return\
     \ a;\n}\n\ntemplate <typename T>\nstd::vector<T> or_convolution(std::vector<T>\
@@ -74,10 +92,11 @@ data:
   dependsOn:
   - math/modint.cpp
   - set/and_or_convolution.hpp
+  - set/zeta_moebius_transform.hpp
   isVerificationFile: true
   path: test/yosupo/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 12:10:37+09:00'
+  timestamp: '2024-01-07 12:55:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_and_convolution.test.cpp

@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':x:'
+    path: math/matrix/hafnian.hpp
+    title: Hafnian
+  - icon: ':x:'
+    path: set/and_or_convolution.hpp
+    title: Bitwise AND/OR Convolution
+  - icon: ':x:'
     path: set/set_power_series.hpp
     title: Set Power Series
   - icon: ':x:'
@@ -10,8 +16,14 @@ data:
     title: Subset Convolution
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yosupo/bitwise_and_convolution.test.cpp
+    title: test/yosupo/bitwise_and_convolution.test.cpp
+  - icon: ':x:'
     path: test/yosupo/exp_of_set_power_series.test.cpp
     title: test/yosupo/exp_of_set_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/hafnian_of_matrix.test.cpp
+    title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':x:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
@@ -56,12 +68,16 @@ data:
   isVerificationFile: false
   path: set/zeta_moebius_transform.hpp
   requiredBy:
+  - math/matrix/hafnian.hpp
   - set/set_power_series.hpp
   - set/subset_convolution.hpp
+  - set/and_or_convolution.hpp
   timestamp: '2024-01-07 12:10:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/exp_of_set_power_series.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/subset_convolution.test.cpp
 documentation_of: set/zeta_moebius_transform.hpp
 layout: document

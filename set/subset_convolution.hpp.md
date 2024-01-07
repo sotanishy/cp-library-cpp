@@ -6,12 +6,18 @@ data:
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy:
   - icon: ':x:'
+    path: math/matrix/hafnian.hpp
+    title: Hafnian
+  - icon: ':x:'
     path: set/set_power_series.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/yosupo/exp_of_set_power_series.test.cpp
     title: test/yosupo/exp_of_set_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/hafnian_of_matrix.test.cpp
+    title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':x:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
@@ -48,15 +54,15 @@ data:
     \    const std::vector<T>& b) {\n    using Poly = std::array<T, N + 1>;\n    const\
     \ int n = std::bit_ceil(std::max(a.size(), b.size()));\n\n    // convert to polynomials\n\
     \    std::vector<Poly> pa(n), pb(n);\n    for (int i = 0; i < (int)a.size(); ++i)\
-    \ {\n        pa[i][std::popcount(i)] = a[i];\n    }\n    for (int i = 0; i < (int)b.size();\
-    \ ++i) {\n        pb[i][std::popcount(i)] = b[i];\n    }\n\n    // bitwise or\
-    \ convolution\n    subset_fzt(pa);\n    subset_fzt(pb);\n    for (int i = 0; i\
-    \ < n; ++i) {\n        Poly pc;\n        for (int j = 0; j <= N; ++j) {\n    \
-    \        for (int k = 0; k <= N - j; ++k) {\n                pc[j + k] += pa[i][j]\
-    \ * pb[i][k];\n            }\n        }\n        pa[i].swap(pc);\n    }\n    subset_fmt(pa);\n\
-    \n    // convert back\n    std::vector<T> ret(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        ret[i] = pa[i][std::popcount(i)];\n    }\n    return ret;\n\
-    }\n"
+    \ {\n        pa[i][std::popcount((unsigned int)i)] = a[i];\n    }\n    for (int\
+    \ i = 0; i < (int)b.size(); ++i) {\n        pb[i][std::popcount((unsigned int)i)]\
+    \ = b[i];\n    }\n\n    // bitwise or convolution\n    subset_fzt(pa);\n    subset_fzt(pb);\n\
+    \    for (int i = 0; i < n; ++i) {\n        Poly pc;\n        for (int j = 0;\
+    \ j <= N; ++j) {\n            for (int k = 0; k <= N - j; ++k) {\n           \
+    \     pc[j + k] += pa[i][j] * pb[i][k];\n            }\n        }\n        pa[i].swap(pc);\n\
+    \    }\n    subset_fmt(pa);\n\n    // convert back\n    std::vector<T> ret(n);\n\
+    \    for (int i = 0; i < n; ++i) {\n        ret[i] = pa[i][std::popcount((unsigned\
+    \ int)i)];\n    }\n    return ret;\n}\n"
   code: "#pragma once\n#include <array>\n#include <vector>\n\n#include \"zeta_moebius_transform.hpp\"\
     \n\ntemplate <typename T, std::size_t N>\nstd::array<T, N>& operator+=(std::array<T,\
     \ N>& lhs,\n                             const std::array<T, N>& rhs) {\n    for\
@@ -68,25 +74,27 @@ data:
     \                              const std::vector<T>& b) {\n    using Poly = std::array<T,\
     \ N + 1>;\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n\n\
     \    // convert to polynomials\n    std::vector<Poly> pa(n), pb(n);\n    for (int\
-    \ i = 0; i < (int)a.size(); ++i) {\n        pa[i][std::popcount(i)] = a[i];\n\
-    \    }\n    for (int i = 0; i < (int)b.size(); ++i) {\n        pb[i][std::popcount(i)]\
-    \ = b[i];\n    }\n\n    // bitwise or convolution\n    subset_fzt(pa);\n    subset_fzt(pb);\n\
-    \    for (int i = 0; i < n; ++i) {\n        Poly pc;\n        for (int j = 0;\
-    \ j <= N; ++j) {\n            for (int k = 0; k <= N - j; ++k) {\n           \
-    \     pc[j + k] += pa[i][j] * pb[i][k];\n            }\n        }\n        pa[i].swap(pc);\n\
-    \    }\n    subset_fmt(pa);\n\n    // convert back\n    std::vector<T> ret(n);\n\
-    \    for (int i = 0; i < n; ++i) {\n        ret[i] = pa[i][std::popcount(i)];\n\
-    \    }\n    return ret;\n}\n"
+    \ i = 0; i < (int)a.size(); ++i) {\n        pa[i][std::popcount((unsigned int)i)]\
+    \ = a[i];\n    }\n    for (int i = 0; i < (int)b.size(); ++i) {\n        pb[i][std::popcount((unsigned\
+    \ int)i)] = b[i];\n    }\n\n    // bitwise or convolution\n    subset_fzt(pa);\n\
+    \    subset_fzt(pb);\n    for (int i = 0; i < n; ++i) {\n        Poly pc;\n  \
+    \      for (int j = 0; j <= N; ++j) {\n            for (int k = 0; k <= N - j;\
+    \ ++k) {\n                pc[j + k] += pa[i][j] * pb[i][k];\n            }\n \
+    \       }\n        pa[i].swap(pc);\n    }\n    subset_fmt(pa);\n\n    // convert\
+    \ back\n    std::vector<T> ret(n);\n    for (int i = 0; i < n; ++i) {\n      \
+    \  ret[i] = pa[i][std::popcount((unsigned int)i)];\n    }\n    return ret;\n}\n"
   dependsOn:
   - set/zeta_moebius_transform.hpp
   isVerificationFile: false
   path: set/subset_convolution.hpp
   requiredBy:
+  - math/matrix/hafnian.hpp
   - set/set_power_series.hpp
-  timestamp: '2024-01-07 12:10:37+09:00'
+  timestamp: '2024-01-07 12:55:13+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/exp_of_set_power_series.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/subset_convolution.test.cpp
 documentation_of: set/subset_convolution.hpp
 layout: document

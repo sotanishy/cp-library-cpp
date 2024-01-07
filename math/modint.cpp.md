@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_xor_convolution.test.cpp
     title: test/yosupo/bitwise_xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/hafnian_of_matrix.test.cpp
+    title: test/yosupo/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.test.cpp
     title: test/yosupo/inv_of_formal_power_series.test.cpp
@@ -235,6 +238,7 @@ data:
   - test/yosupo/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/number_of_subsequences.test.cpp
   - test/yosupo/factorial.test.cpp

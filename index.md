@@ -478,7 +478,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
       title: Characteristic Polynomial
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/matrix/hafnian.hpp
       title: Hafnian
     - icon: ':heavy_check_mark:'
@@ -574,10 +574,10 @@ data:
     - icon: ':x:'
       path: set/subset_convolution.hpp
       title: Subset Convolution
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: set/walsh_hadamard_transform.hpp
       title: Fast Walsh-Hadamard Transform
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: set/xor_convolution.hpp
       title: Bitwise XOR Convolution
     - icon: ':x:'
@@ -913,7 +913,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bitwise_xor_convolution.test.cpp
       title: test/yosupo/bitwise_xor_convolution.test.cpp
     - icon: ':heavy_check_mark:'

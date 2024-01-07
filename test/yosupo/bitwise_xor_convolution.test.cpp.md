@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: set/walsh_hadamard_transform.hpp
+    title: Fast Walsh-Hadamard Transform
+  - icon: ':heavy_check_mark:'
     path: set/xor_convolution.hpp
     title: Bitwise XOR Convolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
@@ -48,15 +51,26 @@ data:
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
     \    }\n\nprivate:\n    int x;\n};\n#line 2 \"set/xor_convolution.hpp\"\n#include\
-    \ <bit>\n#line 4 \"set/xor_convolution.hpp\"\n\n/**\n * @brief Bitwise XOR Convolution\n\
-    \ */\n\ntemplate <typename T>\nstd::vector<T> xor_convolution(std::vector<T> a,\
-    \ std::vector<T> b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n\
-    \    a.resize(n);\n    b.resize(n);\n    fwht(a);\n    fwht(b);\n    for (int\
-    \ i = 0; i < n; ++i) a[i] *= b[i];\n    ifwht(a);\n    return a;\n}\n#line 7 \"\
-    test/yosupo/bitwise_xor_convolution.test.cpp\"\nusing namespace std;\nusing ll\
-    \ = long long;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    int N;\n\
-    \    cin >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a)\
-    \ cin >> x;\n    for (auto& x : b) cin >> x;\n    auto c = xor_convolution(a,\
+    \ <bit>\n#line 4 \"set/xor_convolution.hpp\"\n\n#line 5 \"set/walsh_hadamard_transform.hpp\"\
+    \n\ntemplate <typename T>\nvoid fwht(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    const int n = a.size();\n    for (int h = 1; h < n; h <<= 1) {\n        for\
+    \ (int i = 0; i < n; i += h << 1) {\n            for (int j = i; j < i + h; ++j)\
+    \ {\n                T x = a[j], y = a[j | h];\n                a[j] = x + y;\n\
+    \                a[j | h] = x - y;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ <typename T>\nvoid ifwht(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \    const int n = a.size();\n    const T inv2 = T(1) / 2;\n    for (int h = 1;\
+    \ h < n; h <<= 1) {\n        for (int i = 0; i < n; i += h << 1) {\n         \
+    \   for (int j = i; j < i + h; ++j) {\n                T x = a[j], y = a[j | h];\n\
+    \                a[j] = (x + y) * inv2;\n                a[j | h] = (x - y) *\
+    \ inv2;\n            }\n        }\n    }\n}\n#line 6 \"set/xor_convolution.hpp\"\
+    \n\n/**\n * @brief Bitwise XOR Convolution\n */\n\ntemplate <typename T>\nstd::vector<T>\
+    \ xor_convolution(std::vector<T> a, std::vector<T> b) {\n    const int n = std::bit_ceil(std::max(a.size(),\
+    \ b.size()));\n    a.resize(n);\n    b.resize(n);\n    fwht(a);\n    fwht(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    ifwht(a);\n    return a;\n\
+    }\n#line 7 \"test/yosupo/bitwise_xor_convolution.test.cpp\"\nusing namespace std;\n\
+    using ll = long long;\n\nusing mint = Modint<998244353>;\n\nint main() {\n   \
+    \ int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    for (auto&\
+    \ x : a) cin >> x;\n    for (auto& x : b) cin >> x;\n    auto c = xor_convolution(a,\
     \ b);\n    for (int i = 0; i < (1 << N); ++i)\n        cout << c[i] << (i < (1\
     \ << N) - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
@@ -70,11 +84,12 @@ data:
   dependsOn:
   - math/modint.cpp
   - set/xor_convolution.hpp
+  - set/walsh_hadamard_transform.hpp
   isVerificationFile: true
   path: test/yosupo/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 12:10:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-07 12:55:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_xor_convolution.test.cpp
 layout: document

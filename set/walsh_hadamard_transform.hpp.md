@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: set/xor_convolution.hpp
+    title: Bitwise XOR Convolution
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/bitwise_xor_convolution.test.cpp
+    title: test/yosupo/bitwise_xor_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"set/walsh_hadamard_transform.hpp\"\n#include <bit>\n#include\
@@ -36,10 +42,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: set/walsh_hadamard_transform.hpp
-  requiredBy: []
+  requiredBy:
+  - set/xor_convolution.hpp
   timestamp: '2024-01-07 12:10:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/bitwise_xor_convolution.test.cpp
 documentation_of: set/walsh_hadamard_transform.hpp
 layout: document
 title: Fast Walsh-Hadamard Transform
