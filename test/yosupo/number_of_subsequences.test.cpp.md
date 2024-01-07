@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/fenwick_tree.cpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   _extendedRequiredBy: []

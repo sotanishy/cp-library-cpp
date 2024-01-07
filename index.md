@@ -4,9 +4,6 @@ data:
   - name: convolution
     pages:
     - icon: ':heavy_check_mark:'
-      path: convolution/and_or_convolution.hpp
-      title: "Bitwise AND/OR Convolution (Subset/Superset Fast Zeta/M\xF6bius Transform)"
-    - icon: ':heavy_check_mark:'
       path: convolution/arbitrary_mod_convolution.hpp
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
@@ -21,12 +18,6 @@ data:
     - icon: ':warning:'
       path: convolution/relaxed_convolution.hpp
       title: Relaxed Convolution
-    - icon: ':heavy_check_mark:'
-      path: convolution/subset_convolution.hpp
-      title: Subset Convolution
-    - icon: ':heavy_check_mark:'
-      path: convolution/xor_convolution.hpp
-      title: Bitwise XOR Convolution (Fast Walsh-Hadamard Transform)
   - name: data-structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -431,7 +422,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.cpp
       title: Mod int
     - icon: ':warning:'
@@ -471,9 +462,6 @@ data:
       path: math/quotients.hpp
       title: Intervals with Equal Quotients
     - icon: ':heavy_check_mark:'
-      path: math/set_power_series.hpp
-      title: math/set_power_series.hpp
-    - icon: ':heavy_check_mark:'
       path: math/stern_brocot_tree.hpp
       title: Stern-Brocot Tree
     - icon: ':heavy_check_mark:'
@@ -490,7 +478,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/characteristic_polynomial.hpp
       title: Characteristic Polynomial
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: math/matrix/hafnian.hpp
       title: Hafnian
     - icon: ':heavy_check_mark:'
@@ -575,6 +563,26 @@ data:
     - icon: ':heavy_check_mark:'
       path: sat/twosat.hpp
       title: 2-SAT
+  - name: set
+    pages:
+    - icon: ':x:'
+      path: set/and_or_convolution.hpp
+      title: Bitwise AND/OR Convolution
+    - icon: ':x:'
+      path: set/set_power_series.hpp
+      title: Set Power Series
+    - icon: ':x:'
+      path: set/subset_convolution.hpp
+      title: Subset Convolution
+    - icon: ':warning:'
+      path: set/walsh_hadamard_transform.hpp
+      title: Fast Walsh-Hadamard Transform
+    - icon: ':x:'
+      path: set/xor_convolution.hpp
+      title: Bitwise XOR Convolution
+    - icon: ':x:'
+      path: set/zeta_moebius_transform.hpp
+      title: "Fast Zeta/M\xF6bius Transform"
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
@@ -902,10 +910,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/bipartitematching.test.cpp
       title: test/yosupo/bipartitematching.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bitwise_and_convolution.test.cpp
       title: test/yosupo/bitwise_and_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bitwise_xor_convolution.test.cpp
       title: test/yosupo/bitwise_xor_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -986,7 +994,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/exp_of_set_power_series.test.cpp
       title: test/yosupo/exp_of_set_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1010,7 +1018,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/general_matching.test.cpp
       title: test/yosupo/general_matching.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/hafnian_of_matrix.test.cpp
       title: test/yosupo/hafnian_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1199,7 +1207,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/subset_convolution.test.cpp
       title: test/yosupo/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'

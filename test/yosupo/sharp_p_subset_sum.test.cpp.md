@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.cpp
     title: Mod int
   - icon: ':heavy_check_mark:'
