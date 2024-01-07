@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/fenwick_tree.cpp
-    title: Fenwick Tree
+  - icon: ':question:'
+    path: data-structure/fenwick_tree.hpp
+    title: data-structure/fenwick_tree.hpp
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
@@ -47,9 +47,9 @@ data:
     \ os, const mint& r) {\n        return os << r.x;\n    }\n\n    friend std::istream&\
     \ operator>>(std::istream& is, mint& r) {\n        long long t;\n        is >>\
     \ t;\n        r = mint(t);\n        return is;\n    }\n\n   private:\n    int\
-    \ x;\n};\n#line 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n\
+    \ x;\n};\n#line 2 \"data-structure/fenwick_tree.hpp\"\n#include <functional>\n\
     #include <vector>\n\ntemplate <typename M>\nclass FenwickTree {\n    using T =\
-    \ typename M::T;\n\n   public:\n    FenwickTree() = default;\n    explicit FenwickTree(int\
+    \ M::T;\n\n   public:\n    FenwickTree() = default;\n    explicit FenwickTree(int\
     \ n) : n(n), data(n + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n   \
     \     T ret = M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n\
     \        return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
@@ -72,7 +72,7 @@ data:
     \ ft.prefix_fold(i+1) - ft.prefix_fold(l));\n        last[A[i]] = i + 1;\n   \
     \ }\n    cout << ft.prefix_fold(N + 1) - 1 << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
-    \n\n#include \"../../math/modint.hpp\"\n#include \"../../data-structure/fenwick_tree.cpp\"\
+    \n\n#include \"../../math/modint.hpp\"\n#include \"../../data-structure/fenwick_tree.hpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nstruct AddMonoid {\n    using T = mint;\n    static T id() { return 0; }\n \
     \   static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint main() {\n\
@@ -84,11 +84,11 @@ data:
     \ }\n    cout << ft.prefix_fold(N + 1) - 1 << endl;\n}"
   dependsOn:
   - math/modint.hpp
-  - data-structure/fenwick_tree.cpp
+  - data-structure/fenwick_tree.hpp
   isVerificationFile: true
   path: test/yosupo/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_subsequences.test.cpp

@@ -1,46 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-structure/fenwick_tree.cpp
-    title: Fenwick Tree
   - icon: ':question:'
-    path: tree/hld.cpp
+    path: data-structure/fenwick_tree.hpp
+    title: data-structure/fenwick_tree.hpp
+  - icon: ':x:'
+    path: tree/hld.hpp
     title: Heavy-Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
     links:
     - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
   bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum.hld.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#line\
-    \ 2 \"data-structure/fenwick_tree.cpp\"\n#include <functional>\n#include <vector>\n\
-    \ntemplate <typename M>\nclass FenwickTree {\n    using T = typename M::T;\n\n\
-    \   public:\n    FenwickTree() = default;\n    explicit FenwickTree(int n) : n(n),\
-    \ data(n + 1, M::id()) {}\n\n    T prefix_fold(int i) const {\n        T ret =\
-    \ M::id();\n        for (; i > 0; i -= i & -i) ret = M::op(ret, data[i]);\n  \
-    \      return ret;\n    }\n\n    void update(int i, const T& x) {\n        for\
-    \ (++i; i <= n; i += i & -i) data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const\
-    \ T& x) const { return lower_bound(x, std::less<>()); }\n\n    template <typename\
-    \ Compare>\n    int lower_bound(const T& x, Compare cmp) const {\n        if (!cmp(M::id(),\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#include\
+    \ <bits/stdc++.h>\n\n#line 4 \"data-structure/fenwick_tree.hpp\"\n\ntemplate <typename\
+    \ M>\nclass FenwickTree {\n    using T = M::T;\n\n   public:\n    FenwickTree()\
+    \ = default;\n    explicit FenwickTree(int n) : n(n), data(n + 1, M::id()) {}\n\
+    \n    T prefix_fold(int i) const {\n        T ret = M::id();\n        for (; i\
+    \ > 0; i -= i & -i) ret = M::op(ret, data[i]);\n        return ret;\n    }\n\n\
+    \    void update(int i, const T& x) {\n        for (++i; i <= n; i += i & -i)\
+    \ data[i] = M::op(data[i], x);\n    }\n\n    int lower_bound(const T& x) const\
+    \ { return lower_bound(x, std::less<>()); }\n\n    template <typename Compare>\n\
+    \    int lower_bound(const T& x, Compare cmp) const {\n        if (!cmp(M::id(),\
     \ x)) return 0;\n        int k = 1;\n        while (k * 2 <= n) k <<= 1;\n   \
     \     int i = 0;\n        T v = M::id();\n        for (; k > 0; k >>= 1) {\n \
     \           if (i + k > n) continue;\n            T nv = M::op(v, data[i + k]);\n\
     \            if (cmp(nv, x)) {\n                v = nv;\n                i +=\
     \ k;\n            }\n        }\n        return i + 1;\n    }\n\n   private:\n\
-    \    int n;\n    std::vector<T> data;\n};\n#line 2 \"tree/hld.cpp\"\n#include\
-    \ <algorithm>\n#line 4 \"tree/hld.cpp\"\n\ntemplate <typename M>\nclass HLD {\n\
-    \    using T = typename M::T;\n\npublic:\n    HLD() = default;\n    HLD(const\
-    \ std::vector<std::vector<int>>& G, bool edge)\n        : G(G), size(G.size()),\
-    \ depth(G.size()), par(G.size(), -1),\n          in(G.size()), out(G.size()),\
-    \ head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n       \
-    \ decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int v,\
-    \ const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \    int n;\n    std::vector<T> data;\n};\n#line 4 \"tree/hld.hpp\"\n\ntemplate\
+    \ <typename M>\nclass HLD {\n    using T = M::T;\n\n   public:\n    HLD() = default;\n\
+    \    HLD(const std::vector<std::vector<int>>& G, bool edge)\n        : G(G),\n\
+    \          size(G.size()),\n          depth(G.size()),\n          par(G.size(),\
+    \ -1),\n          in(G.size()),\n          out(G.size()),\n          head(G.size()),\n\
+    \          heavy(G.size(), -1),\n          edge(edge) {\n        dfs(0);\n   \
+    \     decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int\
+    \ v, const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
     \ <typename F>\n    void update_edge(int u, int v, const T& x, const F& f) const\
     \ {\n        if (in[u] > in[v]) std::swap(u, v);\n        f(in[v], x);\n    }\n\
     \n    template <typename E, typename F>\n    void update(int u, int v, const E&\
@@ -66,7 +66,7 @@ data:
     \ {\n            if (in[u] > in[v]) std::swap(u, v);\n            if (head[u]\
     \ == head[v]) return u;\n            v = par[head[v]];\n        }\n    }\n\n \
     \   int dist(int u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u,\
-    \ v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ v)];\n    }\n\n   private:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
     \ size, depth, par, in, out, head, heavy;\n    bool edge;\n    int cur_pos = 0;\n\
     \n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n   \
     \     for (int c : G[v]) {\n            if (c == par[v]) continue;\n         \
@@ -76,45 +76,45 @@ data:
     \        }\n    }\n\n    void decompose(int v, int h) {\n        head[v] = h;\n\
     \        in[v] = cur_pos++;\n        if (heavy[v] != -1) decompose(heavy[v], h);\n\
     \        for (int c : G[v]) {\n            if (c != par[v] && c != heavy[v]) decompose(c,\
-    \ c);\n        }\n        out[v] = cur_pos;\n    }\n};\n#line 5 \"test/yosupo/vertex_add_subtree_sum.hld.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
-    \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n\
-    \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
-    \  G[p].push_back(i);\n    }\n    HLD<AddMonoid> hld(G, false);\n    FenwickTree<AddMonoid>\
-    \ fw(N);\n    auto update = [&](int k, ll x) {\n        fw.update(k, x);\n   \
-    \ };\n    auto fold = [&](int l, int r) {\n        return fw.prefix_fold(r) -\
-    \ fw.prefix_fold(l);\n    };\n    for (int i = 0; i < N; ++i) hld.update(i, a[i],\
-    \ update);\n    for (int i = 0; i < Q; ++i) {\n        int t, u;\n        cin\
-    \ >> t >> u;\n        if (t == 0) {\n            int x;\n            cin >> x;\n\
-    \            hld.update(u, x, update);\n        } else {\n            cout <<\
-    \ hld.subtree_fold(u, fold) << \"\\n\";\n        }\n    }\n}\n"
+    \ c);\n        }\n        out[v] = cur_pos;\n    }\n};\n#line 7 \"test/yosupo/vertex_add_subtree_sum.hld.test.cpp\"\
+    \nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using\
+    \ T = ll;\n    static T id() { return 0; }\n    static T op(T a, T b) { return\
+    \ a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n    for (int i = 0;\
+    \ i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 1;\
+    \ i < N; ++i) {\n        int p;\n        cin >> p;\n        G[p].push_back(i);\n\
+    \    }\n    HLD<AddMonoid> hld(G, false);\n    FenwickTree<AddMonoid> fw(N);\n\
+    \    auto update = [&](int k, ll x) { fw.update(k, x); };\n    auto fold = [&](int\
+    \ l, int r) {\n        return fw.prefix_fold(r) - fw.prefix_fold(l);\n    };\n\
+    \    for (int i = 0; i < N; ++i) hld.update(i, a[i], update);\n    for (int i\
+    \ = 0; i < Q; ++i) {\n        int t, u;\n        cin >> t >> u;\n        if (t\
+    \ == 0) {\n            int x;\n            cin >> x;\n            hld.update(u,\
+    \ x, update);\n        } else {\n            cout << hld.subtree_fold(u, fold)\
+    \ << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
-    \n\n#include \"../../data-structure/fenwick_tree.cpp\"\n#include \"../../tree/hld.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
-    \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/fenwick_tree.hpp\"\
+    \n#include \"../../tree/hld.hpp\"\nusing namespace std;\nusing ll = long long;\n\
+    \nstruct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n   \
+    \ static T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
     \    for (int i = 0; i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n\
     \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
     \  G[p].push_back(i);\n    }\n    HLD<AddMonoid> hld(G, false);\n    FenwickTree<AddMonoid>\
-    \ fw(N);\n    auto update = [&](int k, ll x) {\n        fw.update(k, x);\n   \
-    \ };\n    auto fold = [&](int l, int r) {\n        return fw.prefix_fold(r) -\
-    \ fw.prefix_fold(l);\n    };\n    for (int i = 0; i < N; ++i) hld.update(i, a[i],\
-    \ update);\n    for (int i = 0; i < Q; ++i) {\n        int t, u;\n        cin\
-    \ >> t >> u;\n        if (t == 0) {\n            int x;\n            cin >> x;\n\
-    \            hld.update(u, x, update);\n        } else {\n            cout <<\
-    \ hld.subtree_fold(u, fold) << \"\\n\";\n        }\n    }\n}"
+    \ fw(N);\n    auto update = [&](int k, ll x) { fw.update(k, x); };\n    auto fold\
+    \ = [&](int l, int r) {\n        return fw.prefix_fold(r) - fw.prefix_fold(l);\n\
+    \    };\n    for (int i = 0; i < N; ++i) hld.update(i, a[i], update);\n    for\
+    \ (int i = 0; i < Q; ++i) {\n        int t, u;\n        cin >> t >> u;\n     \
+    \   if (t == 0) {\n            int x;\n            cin >> x;\n            hld.update(u,\
+    \ x, update);\n        } else {\n            cout << hld.subtree_fold(u, fold)\
+    \ << \"\\n\";\n        }\n    }\n}"
   dependsOn:
-  - data-structure/fenwick_tree.cpp
-  - tree/hld.cpp
+  - data-structure/fenwick_tree.hpp
+  - tree/hld.hpp
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   requiredBy: []
-  timestamp: '2023-06-18 14:56:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 23:25:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
 layout: document

@@ -9,10 +9,10 @@ data:
   - icon: ':x:'
     path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
   _isVerificationFailed: true

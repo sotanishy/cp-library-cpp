@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
@@ -39,10 +39,10 @@ data:
     \ i] = l + r;\n                a[s * m + i + m / 2] = l - r;\n               \
     \ w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename mint>\n\
     std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {\n  \
-    \  const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil(size);\n\
-    \    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n    for (int i\
-    \ = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n    mint\
-    \ n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \  const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil((unsigned\
+    \ int)size);\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n \
+    \   for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
     \    return a;\n}\n#line 3 \"math/combination.cpp\"\n\ntemplate <typename mint>\n\
     class Combination {\n   public:\n    Combination() = default;\n    Combination(int\
     \ n) : fact_(n + 1), fact_inv_(n + 1) {\n        fact_[0] = 1;\n        for (int\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: false
   path: math/stirling_second.hpp
   requiredBy: []
-  timestamp: '2024-01-07 22:37:45+09:00'
+  timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/stirling_number_of_the_second_kind.test.cpp

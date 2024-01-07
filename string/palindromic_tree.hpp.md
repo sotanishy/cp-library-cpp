@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2292.test.cpp
     title: test/aoj/2292.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/palindromic_tree.hpp\"\n#include <map>\n#include\
@@ -20,7 +20,7 @@ data:
     \ : PalindromicTree() {\n        for (char c : s) add(c);\n    }\n\n    void add(char\
     \ c) {\n        str.push_back(c);\n\n        //  find a palidrome cAc\n      \
     \  int k = find_next_palindrome(suff);\n\n        // the palindrome already exists\n\
-    \        if (nodes[k].link.count(c)) {\n            ++nodes[nodes[k].link[c]].cnt;\n\
+    \        if (nodes[k].link.contains(c)) {\n            ++nodes[nodes[k].link[c]].cnt;\n\
     \            suff = nodes[k].link[c];\n            return;\n        }\n\n    \
     \    // create a new node\n        nodes[k].link[c] = nodes.size();\n        suff\
     \ = nodes.size();\n        nodes.emplace_back(nodes[k].len + 2, (int)str.size()\
@@ -34,7 +34,7 @@ data:
     \   }\n        return ret;\n    }\n\n    // returns {length, one of the starting\
     \ indices, count}\n    std::vector<std::tuple<int, int, int>> get_palindrome_frequencies()\
     \ {\n        std::vector<std::tuple<int, int, int>> ret;\n        for (auto& node\
-    \ : nodes | std::views::drop(1) | std::views::reverse) {\n            ret.emplace_back(node.len,\
+    \ : nodes | std::views::drop(2) | std::views::reverse) {\n            ret.emplace_back(node.len,\
     \ node.idx, node.cnt);\n            nodes[node.suffix_link].cnt += node.cnt;\n\
     \        }\n        return ret;\n    }\n\n   private:\n    struct Node {\n   \
     \     std::map<char, int> link;\n        int suffix_link;\n        int len, idx,\
@@ -53,9 +53,9 @@ data:
     \ std::string& s) : PalindromicTree() {\n        for (char c : s) add(c);\n  \
     \  }\n\n    void add(char c) {\n        str.push_back(c);\n\n        //  find\
     \ a palidrome cAc\n        int k = find_next_palindrome(suff);\n\n        // the\
-    \ palindrome already exists\n        if (nodes[k].link.count(c)) {\n         \
-    \   ++nodes[nodes[k].link[c]].cnt;\n            suff = nodes[k].link[c];\n   \
-    \         return;\n        }\n\n        // create a new node\n        nodes[k].link[c]\
+    \ palindrome already exists\n        if (nodes[k].link.contains(c)) {\n      \
+    \      ++nodes[nodes[k].link[c]].cnt;\n            suff = nodes[k].link[c];\n\
+    \            return;\n        }\n\n        // create a new node\n        nodes[k].link[c]\
     \ = nodes.size();\n        suff = nodes.size();\n        nodes.emplace_back(nodes[k].len\
     \ + 2, (int)str.size() - nodes[k].len - 2,\n                           1);\n\n\
     \        // add a suffix link\n        if (nodes.back().len == 1) {\n        \
@@ -67,7 +67,7 @@ data:
     \ k = nodes[k].suffix_link;\n        }\n        return ret;\n    }\n\n    // returns\
     \ {length, one of the starting indices, count}\n    std::vector<std::tuple<int,\
     \ int, int>> get_palindrome_frequencies() {\n        std::vector<std::tuple<int,\
-    \ int, int>> ret;\n        for (auto& node : nodes | std::views::drop(1) | std::views::reverse)\
+    \ int, int>> ret;\n        for (auto& node : nodes | std::views::drop(2) | std::views::reverse)\
     \ {\n            ret.emplace_back(node.len, node.idx, node.cnt);\n           \
     \ nodes[node.suffix_link].cnt += node.cnt;\n        }\n        return ret;\n \
     \   }\n\n   private:\n    struct Node {\n        std::map<char, int> link;\n \
@@ -82,8 +82,8 @@ data:
   isVerificationFile: false
   path: string/palindromic_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-07 22:05:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-07 23:25:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2292.test.cpp
 documentation_of: string/palindromic_tree.hpp

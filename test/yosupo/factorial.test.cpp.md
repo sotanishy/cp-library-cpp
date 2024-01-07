@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':x:'
@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -51,10 +51,10 @@ data:
     \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
     \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
-    \ b) {\n    const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil(size);\n\
-    \    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n    for (int i\
-    \ = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n    mint\
-    \ n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \ b) {\n    const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil((unsigned\
+    \ int)size);\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n \
+    \   for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
     \    return a;\n}\n#line 7 \"math/polynomial.cpp\"\n\ntemplate <typename mint>\n\
     class Polynomial : public std::vector<mint> {\n    using Poly = Polynomial;\n\n\
     \   public:\n    using std::vector<mint>::vector;\n    using std::vector<mint>::operator=;\n\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/factorial.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 22:37:45+09:00'
+  timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/factorial.test.cpp

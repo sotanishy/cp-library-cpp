@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/gcd_lcm_convolution.hpp
       title: GCD/LCM Convolution
-    - icon: ':x:'
+    - icon: ':question:'
       path: convolution/ntt.hpp
       title: Number Theoretic Transform
     - icon: ':warning:'
@@ -32,9 +32,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.cpp
       title: Disjoint Sparse Table
-    - icon: ':heavy_check_mark:'
-      path: data-structure/fenwick_tree.cpp
-      title: Fenwick Tree
+    - icon: ':question:'
+      path: data-structure/fenwick_tree.hpp
+      title: data-structure/fenwick_tree.hpp
     - icon: ':warning:'
       path: data-structure/fenwick_tree_2d.cpp
       title: 2D Fenwick Tree
@@ -137,7 +137,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.hpp
       title: Dynamic Segment Tree
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-structure/segtree/lazy_segment_tree.hpp
       title: Segment Tree with Lazy Propagation
     - icon: ':x:'
@@ -353,7 +353,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/berlekamp_massey.cpp
       title: Berlekamp-Massey Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bernoulli.hpp
       title: Bernoulli Number
     - icon: ':x:'
@@ -443,7 +443,7 @@ data:
     - icon: ':x:'
       path: math/partition_function.hpp
       title: Partition Function
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
@@ -534,7 +534,7 @@ data:
     - icon: ':warning:'
       path: misc/min_periodic_function.hpp
       title: Minimize Periodic Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: misc/mo.cpp
       title: Mo's Algorithm
     - icon: ':warning:'
@@ -612,13 +612,13 @@ data:
     - icon: ':warning:'
       path: string/min_cyclic_shift.hpp
       title: Minimum Cyclic Shift
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: Palindromic Tree
     - icon: ':heavy_check_mark:'
       path: string/pattern_search_2d.hpp
       title: 2D Pattern Search (Baker-Bird Algorithm)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling Hash
     - icon: ':question:'
@@ -633,45 +633,45 @@ data:
   - name: tree
     pages:
     - icon: ':warning:'
-      path: tree/auxiliary_tree.cpp
+      path: tree/auxiliary_tree.hpp
       title: Auxiliary Tree
     - icon: ':warning:'
       path: tree/binary_lifting.hpp
       title: Binary Lifting
     - icon: ':heavy_check_mark:'
-      path: tree/cartesian_tree.cpp
+      path: tree/cartesian_tree.hpp
       title: Cartesian Tree
-    - icon: ':question:'
+    - icon: ':x:'
       path: tree/centroid_decomposition.hpp
       title: Centroid Decomposition
     - icon: ':x:'
-      path: tree/euler_tour.cpp
+      path: tree/euler_tour.hpp
       title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.cpp
       title: Euler Tour Tree
-    - icon: ':question:'
-      path: tree/hld.cpp
+    - icon: ':x:'
+      path: tree/hld.hpp
       title: Heavy-Light Decomposition
-    - icon: ':heavy_check_mark:'
-      path: tree/lca.cpp
+    - icon: ':warning:'
+      path: tree/lca.hpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.cpp
       title: Link/Cut Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/permutation_tree.hpp
       title: Permutation Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/range_contour_aggregation.hpp
       title: Range Contour Aggregation
-    - icon: ':question:'
-      path: tree/rerooting.cpp
+    - icon: ':x:'
+      path: tree/rerooting.hpp
       title: Rerooting
-    - icon: ':heavy_check_mark:'
-      path: tree/tree_diameter.cpp
+    - icon: ':x:'
+      path: tree/tree_diameter.hpp
       title: Diameter of a Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: tree/tree_isomorphism.hpp
       title: Tree Isomorphism
   verificationCategories:
@@ -698,7 +698,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.treap.test.cpp
       title: test/aoj/1508.treap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2292.test.cpp
       title: test/aoj/2292.test.cpp
     - icon: ':heavy_check_mark:'
@@ -707,9 +707,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/2821.test.cpp
-      title: test/aoj/2821.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_B.kmp.test.cpp
       title: test/aoj/ALDS1_14_B.kmp.test.cpp
@@ -843,15 +840,6 @@ data:
       path: test/aoj/GRL_3_C.test.cpp
       title: test/aoj/GRL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_5_A.test.cpp
-      title: test/aoj/GRL_5_A.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_5_B.test.cpp
-      title: test/aoj/GRL_5_B.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_5_C.test.cpp
-      title: test/aoj/GRL_5_C.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -877,7 +865,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/assignment.test.cpp
       title: test/yosupo/assignment.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/bernoulli_number.test.cpp
       title: test/yosupo/bernoulli_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -910,7 +898,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/common_interval_decomposition_tree.test.cpp
     - icon: ':x:'
@@ -1018,7 +1006,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1141,10 +1129,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.range_tree.test.cpp
       title: test/yosupo/rectangle_sum.range_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
       title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
       title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
     - icon: ':x:'
@@ -1171,7 +1159,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/static_range_frequency.test.cpp
       title: test/yosupo/static_range_frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1207,7 +1195,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/tree_decomposition_width_2.test.cpp
       title: test/yosupo/tree_decomposition_width_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
     - icon: ':x:'
@@ -1223,15 +1211,12 @@ data:
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
     - icon: ':x:'
-      path: test/yosupo/vertex_add_path_sum.test.cpp
-      title: test/yosupo/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':x:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     - icon: ':x:'

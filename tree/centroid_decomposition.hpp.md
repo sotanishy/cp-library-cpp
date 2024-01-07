@@ -2,60 +2,61 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/range_contour_aggregation.hpp
     title: Range Contour Aggregation
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/yosupo/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/centroid_decomposition.hpp\"\n#include <tuple>\n#include\
-    \ <vector>\n\nstd::tuple<std::vector<int>, std::vector<int>, std::vector<int>>\
-    \ centroid_decomposition(const std::vector<std::vector<int>>& G) {\n    int N\
-    \ = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N), par(N);\n\
+    \ <vector>\n\nstd::tuple<std::vector<int>, std::vector<int>, std::vector<int>>\n\
+    centroid_decomposition(const std::vector<std::vector<int>>& G) {\n    const int\
+    \ N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N), par(N);\n\
     \n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n        sz[v]\
     \ = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c] == -1)\
     \ sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n    };\n\
     \n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n) -> int\
     \ {\n        for (int c : G[v]) {\n            if (c != p && level[c] == -1 &&\
-    \ sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n    \
-    \    return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v, int\
-    \ k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n        int\
-    \ s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n        sz_comp[s]\
-    \ = n;\n        par[s] = p;\n        for (int c : G[s]) {\n            if (level[c]\
-    \ == -1) decompose(decompose, c, k + 1, s);\n        }\n    };\n\n    decompose(decompose,\
-    \ 0, 0, -1);\n    return {level, sz_comp, par};\n}\n"
+    \ sz[c] > n / 2)\n                return dfs_centroid(dfs_centroid, c, v, n);\n\
+    \        }\n        return v;\n    };\n\n    auto decompose = [&](auto& decompose,\
+    \ int v, int k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n\
+    \        int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n\
+    \        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s]) {\n\
+    \            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n        }\n\
+    \    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp, par};\n\
+    }\n"
   code: "#pragma once\n#include <tuple>\n#include <vector>\n\nstd::tuple<std::vector<int>,\
-    \ std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>&\
-    \ G) {\n    int N = G.size();\n    std::vector<int> sz(N), level(N, -1), sz_comp(N),\
-    \ par(N);\n\n    auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {\n\
-    \        sz[v] = 1;\n        for (int c : G[v]) {\n            if (c != p && level[c]\
-    \ == -1) sz[v] += dfs_size(dfs_size, c, v);\n        }\n        return sz[v];\n\
-    \    };\n\n    auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n)\
-    \ -> int {\n        for (int c : G[v]) {\n            if (c != p && level[c] ==\
-    \ -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);\n        }\n\
-    \        return v;\n    };\n\n    auto decompose = [&](auto& decompose, int v,\
-    \ int k, int p) -> void {\n        int n = dfs_size(dfs_size, v, -1);\n      \
-    \  int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s] = k;\n    \
-    \    sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s]) {\n    \
-    \        if (level[c] == -1) decompose(decompose, c, k + 1, s);\n        }\n \
-    \   };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp, par};\n\
-    }"
+    \ std::vector<int>, std::vector<int>>\ncentroid_decomposition(const std::vector<std::vector<int>>&\
+    \ G) {\n    const int N = G.size();\n    std::vector<int> sz(N), level(N, -1),\
+    \ sz_comp(N), par(N);\n\n    auto dfs_size = [&](auto& dfs_size, int v, int p)\
+    \ -> int {\n        sz[v] = 1;\n        for (int c : G[v]) {\n            if (c\
+    \ != p && level[c] == -1) sz[v] += dfs_size(dfs_size, c, v);\n        }\n    \
+    \    return sz[v];\n    };\n\n    auto dfs_centroid = [&](auto& dfs_centroid,\
+    \ int v, int p, int n) -> int {\n        for (int c : G[v]) {\n            if\
+    \ (c != p && level[c] == -1 && sz[c] > n / 2)\n                return dfs_centroid(dfs_centroid,\
+    \ c, v, n);\n        }\n        return v;\n    };\n\n    auto decompose = [&](auto&\
+    \ decompose, int v, int k, int p) -> void {\n        int n = dfs_size(dfs_size,\
+    \ v, -1);\n        int s = dfs_centroid(dfs_centroid, v, -1, n);\n        level[s]\
+    \ = k;\n        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s])\
+    \ {\n            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n    \
+    \    }\n    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp,\
+    \ par};\n}"
   dependsOn: []
   isVerificationFile: false
   path: tree/centroid_decomposition.hpp
   requiredBy:
   - tree/range_contour_aggregation.hpp
-  timestamp: '2022-07-02 23:54:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-01-07 23:25:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/frequency_table_of_tree_distance.test.cpp

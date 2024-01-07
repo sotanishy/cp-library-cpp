@@ -17,7 +17,7 @@ data:
     \   node_ptr par;\n        std::string str;\n    };\n\n    const node_ptr root;\n\
     \n    void insert(const node_ptr& t, const std::string& s, int id, int k) {\n\
     \        ++t->sz;\n        if (k == (int)s.size()) {\n            t->accept.push_back(id);\n\
-    \            return;\n        }\n        int c = s[k];\n        if (!t->ch.count(c))\
+    \            return;\n        }\n        int c = s[k];\n        if (!t->ch.contains(c))\
     \ {\n            t->ch[c] = std::make_shared<Node>();\n            t->ch[c]->par\
     \ = t;\n            t->ch[c]->str = c;\n        }\n        insert(t->ch[c], s,\
     \ id, k + 1);\n    }\n\n    void compress(node_ptr t) {\n        while (t->accept.empty()\
@@ -35,7 +35,7 @@ data:
     \   node_ptr par;\n        std::string str;\n    };\n\n    const node_ptr root;\n\
     \n    void insert(const node_ptr& t, const std::string& s, int id, int k) {\n\
     \        ++t->sz;\n        if (k == (int)s.size()) {\n            t->accept.push_back(id);\n\
-    \            return;\n        }\n        int c = s[k];\n        if (!t->ch.count(c))\
+    \            return;\n        }\n        int c = s[k];\n        if (!t->ch.contains(c))\
     \ {\n            t->ch[c] = std::make_shared<Node>();\n            t->ch[c]->par\
     \ = t;\n            t->ch[c]->str = c;\n        }\n        insert(t->ch[c], s,\
     \ id, k + 1);\n    }\n\n    void compress(node_ptr t) {\n        while (t->accept.empty()\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: string/trie.hpp
   requiredBy: []
-  timestamp: '2024-01-07 22:05:53+09:00'
+  timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/trie.hpp

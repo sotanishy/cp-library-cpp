@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2292.test.cpp
     title: test/aoj/2292.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
     title: test/aoj/ALDS1_14_B.rolling_hash.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/rolling_hash.hpp\"\n#include <random>\n#include <string>\n\
@@ -61,7 +61,7 @@ data:
   path: string/rolling_hash.hpp
   requiredBy: []
   timestamp: '2024-01-07 22:05:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_B.rolling_hash.test.cpp
   - test/aoj/2292.test.cpp

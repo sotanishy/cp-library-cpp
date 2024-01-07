@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bernoulli.hpp
     title: Bernoulli Number
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
   - icon: ':x:'
     path: math/partition_function.hpp
     title: Partition Function
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/polynomial.cpp
     title: Polynomial
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
     path: math/stirling_second.hpp
     title: Stirling Number of the Second Kind
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bernoulli_number.test.cpp
     title: test/yosupo/bernoulli_number.test.cpp
   - icon: ':x:'
@@ -107,7 +107,7 @@ data:
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convolution/ntt.hpp\"\n#include <vector>\n\nconstexpr int\
@@ -132,10 +132,10 @@ data:
     \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
     \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
     \ a, std::vector<mint> b) {\n    const int size = a.size() + b.size() - 1;\n \
-    \   const int n = std::bit_ceil(size);\n    a.resize(n);\n    b.resize(n);\n \
-    \   ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n\
-    \    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int i = 0; i <\
-    \ size; ++i) a[i] *= n_inv;\n    return a;\n}\n"
+    \   const int n = std::bit_ceil((unsigned int)size);\n    a.resize(n);\n    b.resize(n);\n\
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n"
   code: "#pragma once\n#include <vector>\n\nconstexpr int get_primitive_root(int mod)\
     \ {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return 3;\n\
     \    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n \
@@ -157,10 +157,10 @@ data:
     \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
     \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
     \ <typename mint>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
-    \ b) {\n    const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil(size);\n\
-    \    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n    for (int i\
-    \ = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n    mint\
-    \ n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
+    \ b) {\n    const int size = a.size() + b.size() - 1;\n    const int n = std::bit_ceil((unsigned\
+    \ int)size);\n    a.resize(n);\n    b.resize(n);\n    ntt(a);\n    ntt(b);\n \
+    \   for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n    a.resize(size);\n\
+    \    mint n_inv = mint(n).inv();\n    for (int i = 0; i < size; ++i) a[i] *= n_inv;\n\
     \    return a;\n}"
   dependsOn: []
   isVerificationFile: false
@@ -181,8 +181,8 @@ data:
   - math/count_subset_sum.hpp
   - convolution/relaxed_convolution.hpp
   - convolution/arbitrary_mod_convolution.hpp
-  timestamp: '2024-01-07 22:37:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-07 23:25:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/polynomial_taylor_shift.test.cpp
   - test/yosupo/bernoulli_number.test.cpp

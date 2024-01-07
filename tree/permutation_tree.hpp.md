@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-structure/segtree/lazy_segment_tree.hpp
     title: Segment Tree with Lazy Propagation
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/common_interval_decomposition_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/permutation_tree.hpp\"\n#include <algorithm>\n#include\
-    \ <vector>\n#line 3 \"data-structure/segtree/lazy_segment_tree.hpp\"\n#include\
+    \ <vector>\n\n#line 3 \"data-structure/segtree/lazy_segment_tree.hpp\"\n#include\
     \ <bit>\n#include <numeric>\n#line 6 \"data-structure/segtree/lazy_segment_tree.hpp\"\
     \n\ntemplate <typename M, typename O,\n          typename M::T (*act)(typename\
     \ M::T, typename O::T)>\nclass LazySegmentTree {\n    using T = M::T;\n    using\
@@ -59,109 +59,121 @@ data:
     \          return -1;\n        }\n        if (r - l == 1) return l;\n        int\
     \ m = std::midpoint(l, r);\n        int res = find_last(a, b, 2 * k + 1, m, r,\
     \ v, cond);\n        if (res != -1) return res;\n        return find_last(a, b,\
-    \ 2 * k, l, m, v, cond);\n    }\n};\n#line 5 \"tree/permutation_tree.hpp\"\n\n\
+    \ 2 * k, l, m, v, cond);\n    }\n};\n#line 6 \"tree/permutation_tree.hpp\"\n\n\
     struct MinMonoid {\n    using T = int;\n    static T id() { return (1u << 31)\
-    \ - 1; }\n    static T op(T a, T b) {\n        return std::min(a, b);\n    }\n\
-    };\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return 0; }\n\
-    \    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint act(int\
-    \ a, int b) {\n    return a + b;\n}\n\nclass PermutationTree {\npublic:\n    enum\
-    \ NodeType {\n        JoinAsc, JoinDesc, Cut, Leaf, None\n    };\n    struct Node\
-    \ {\n        NodeType tp;\n        int l, r; // i in [l, r)\n        int lb, ub;\
-    \ // p[i] in [lb, ub)\n        std::vector<int> ch;\n    };\n\n    std::vector<Node>\
-    \ nodes;\n\n    PermutationTree() = default;\n    explicit PermutationTree(const\
-    \ std::vector<int>& p) {\n        LazySegmentTree<MinMonoid, AddMonoid, act> seg(std::vector<int>(p.size()));\
-    \  // seg.fold(l, r) == min_{l <= j < r} { max(p[j:i]) - min(p[j:i]) - (i - j)\
-    \ }\n        std::vector<int> st_max = {-1}, st_min = {-1}, st;\n\n        for\
-    \ (int i = 0; i < (int) p.size(); ++i) {\n            while (st_max.back() >=\
-    \ 0 && p[st_max.back()] < p[i]) {\n                seg.update(st_max[st_max.size()\
-    \ - 2] + 1, st_max.back() + 1, p[i] - p[st_max.back()]);\n                st_max.pop_back();\n\
+    \ - 1; }\n    static T op(T a, T b) { return std::min(a, b); }\n};\n\nstruct AddMonoid\
+    \ {\n    using T = int;\n    static T id() { return 0; }\n    static T op(T a,\
+    \ T b) { return a + b; }\n};\n\nint act(int a, int b) { return a + b; }\n\nclass\
+    \ PermutationTree {\n   public:\n    enum NodeType { JoinAsc, JoinDesc, Cut, Leaf,\
+    \ None };\n    struct Node {\n        NodeType tp;\n        int l, r;    // i\
+    \ in [l, r)\n        int lb, ub;  // p[i] in [lb, ub)\n        std::vector<int>\
+    \ ch;\n    };\n\n    std::vector<Node> nodes;\n\n    PermutationTree() = default;\n\
+    \    explicit PermutationTree(const std::vector<int>& p) {\n        // seg.fold(l,\
+    \ r) ==\n        // min_{l <= j < r} { max(p[j:i]) - min(p[j:i]) - (i - j) }\n\
+    \        LazySegmentTree<MinMonoid, AddMonoid, act> seg(p.size());\n        std::vector<int>\
+    \ st_max = {-1}, st_min = {-1}, st;\n\n        for (int i = 0; i < (int)p.size();\
+    \ ++i) {\n            while (st_max.back() >= 0 && p[st_max.back()] < p[i]) {\n\
+    \                seg.update(st_max[st_max.size() - 2] + 1, st_max.back() + 1,\n\
+    \                           p[i] - p[st_max.back()]);\n                st_max.pop_back();\n\
     \            }\n            st_max.push_back(i);\n\n            while (st_min.back()\
     \ >= 0 && p[st_min.back()] > p[i]) {\n                seg.update(st_min[st_min.size()\
-    \ - 2] + 1, st_min.back() + 1, -(p[i] - p[st_min.back()]));\n                st_min.pop_back();\n\
-    \            }\n            st_min.push_back(i);\n\n            nodes.push_back({Leaf,\
-    \ i, i + 1, p[i], p[i] + 1, std::vector<int>{}});\n            int v = nodes.size()\
-    \ - 1;  // index of the current node\n\n            while (true) {\n         \
-    \       NodeType join_tp = None;\n                if (!st.empty() && nodes[st.back()].ub\
-    \ == nodes[v].lb) join_tp = JoinAsc;\n                if (!st.empty() && nodes[st.back()].lb\
-    \ == nodes[v].ub) join_tp = JoinDesc;\n\n                if (!st.empty() && join_tp\
-    \ != None) {\n                    // join\n                    if (join_tp ==\
-    \ nodes[st.back()].tp) {\n                        // same type, append to the\
-    \ existing join node\n                        add_child(st.back(), v);\n     \
-    \                   v = st.back();\n                        st.pop_back();\n \
-    \                   } else {\n                        // different type, create\
+    \ - 2] + 1, st_min.back() + 1,\n                           -(p[i] - p[st_min.back()]));\n\
+    \                st_min.pop_back();\n            }\n            st_min.push_back(i);\n\
+    \n            nodes.push_back(\n                {Leaf, i, i + 1, p[i], p[i] +\
+    \ 1, std::vector<int>{}});\n            int v = nodes.size() - 1;  // index of\
+    \ the current node\n\n            while (true) {\n                NodeType join_tp\
+    \ = None;\n                if (!st.empty() && nodes[st.back()].ub == nodes[v].lb)\n\
+    \                    join_tp = JoinAsc;\n                if (!st.empty() && nodes[st.back()].lb\
+    \ == nodes[v].ub)\n                    join_tp = JoinDesc;\n\n               \
+    \ if (!st.empty() && join_tp != None) {\n                    // join\n       \
+    \             if (join_tp == nodes[st.back()].tp) {\n                        //\
+    \ same type, append to the existing join node\n                        add_child(st.back(),\
+    \ v);\n                        v = st.back();\n                        st.pop_back();\n\
+    \                    } else {\n                        // different type, create\
     \ a new join node\n                        int u = st.back();\n              \
-    \          nodes.push_back({join_tp, nodes[u].l, nodes[u].r, nodes[u].lb, nodes[u].ub,\
-    \ {u}});\n                        st.pop_back();\n                        add_child(nodes.size()\
+    \          nodes.push_back({join_tp,\n                                       \
+    \  nodes[u].l,\n                                         nodes[u].r,\n       \
+    \                                  nodes[u].lb,\n                            \
+    \             nodes[u].ub,\n                                         {u}});\n\
+    \                        st.pop_back();\n                        add_child(nodes.size()\
     \ - 1, v);\n                        v = nodes.size() - 1;\n                  \
     \  }\n                } else if (seg.fold(0, i + 1 - (nodes[v].r - nodes[v].l))\
-    \ == 0) {\n                    // cut\n                    int l = nodes[v].l,\
-    \ r = nodes[v].r, lb = nodes[v].lb, ub = nodes[v].ub;\n                    nodes.push_back({Cut,\
-    \ l, r, lb, ub, {v}});\n                    v = nodes.size() - 1;\n          \
-    \          do {\n                        add_child(v, st.back());\n          \
-    \              st.pop_back();\n                    } while (nodes[v].ub - nodes[v].lb\
-    \ != nodes[v].r - nodes[v].l);\n                    std::reverse(nodes[v].ch.begin(),\
-    \ nodes[v].ch.end());\n                } else {\n                    break;\n\
-    \                }\n            }\n            st.push_back(v);\n            seg.update(0,\
-    \ i + 1, -1);\n        }\n    }\n\nprivate:\n    void add_child(int par, int ch)\
-    \ {\n        nodes[par].ch.push_back(ch);\n        nodes[par].l = std::min(nodes[par].l,\
-    \ nodes[ch].l);\n        nodes[par].r = std::max(nodes[par].r, nodes[ch].r);\n\
-    \        nodes[par].lb = std::min(nodes[par].lb, nodes[ch].lb);\n        nodes[par].ub\
-    \ = std::max(nodes[par].ub, nodes[ch].ub);\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"../data-structure/segtree/lazy_segment_tree.hpp\"\
+    \ ==\n                           0) {\n                    // cut\n          \
+    \          int l = nodes[v].l, r = nodes[v].r, lb = nodes[v].lb,\n           \
+    \             ub = nodes[v].ub;\n                    nodes.push_back({Cut, l,\
+    \ r, lb, ub, {v}});\n                    v = nodes.size() - 1;\n             \
+    \       do {\n                        add_child(v, st.back());\n             \
+    \           st.pop_back();\n                    } while (nodes[v].ub - nodes[v].lb\
+    \ !=\n                             nodes[v].r - nodes[v].l);\n\n             \
+    \       std::ranges::reverse(nodes[v].ch);\n                } else {\n       \
+    \             break;\n                }\n            }\n            st.push_back(v);\n\
+    \            seg.update(0, i + 1, -1);\n        }\n    }\n\n   private:\n    void\
+    \ add_child(int par, int ch) {\n        nodes[par].ch.push_back(ch);\n       \
+    \ nodes[par].l = std::min(nodes[par].l, nodes[ch].l);\n        nodes[par].r =\
+    \ std::max(nodes[par].r, nodes[ch].r);\n        nodes[par].lb = std::min(nodes[par].lb,\
+    \ nodes[ch].lb);\n        nodes[par].ub = std::max(nodes[par].ub, nodes[ch].ub);\n\
+    \    }\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n#include \"../data-structure/segtree/lazy_segment_tree.hpp\"\
     \n\nstruct MinMonoid {\n    using T = int;\n    static T id() { return (1u <<\
-    \ 31) - 1; }\n    static T op(T a, T b) {\n        return std::min(a, b);\n  \
-    \  }\n};\n\nstruct AddMonoid {\n    using T = int;\n    static T id() { return\
-    \ 0; }\n    static T op(T a, T b) {\n        return a + b;\n    }\n};\n\nint act(int\
-    \ a, int b) {\n    return a + b;\n}\n\nclass PermutationTree {\npublic:\n    enum\
-    \ NodeType {\n        JoinAsc, JoinDesc, Cut, Leaf, None\n    };\n    struct Node\
-    \ {\n        NodeType tp;\n        int l, r; // i in [l, r)\n        int lb, ub;\
-    \ // p[i] in [lb, ub)\n        std::vector<int> ch;\n    };\n\n    std::vector<Node>\
-    \ nodes;\n\n    PermutationTree() = default;\n    explicit PermutationTree(const\
-    \ std::vector<int>& p) {\n        LazySegmentTree<MinMonoid, AddMonoid, act> seg(std::vector<int>(p.size()));\
-    \  // seg.fold(l, r) == min_{l <= j < r} { max(p[j:i]) - min(p[j:i]) - (i - j)\
-    \ }\n        std::vector<int> st_max = {-1}, st_min = {-1}, st;\n\n        for\
-    \ (int i = 0; i < (int) p.size(); ++i) {\n            while (st_max.back() >=\
-    \ 0 && p[st_max.back()] < p[i]) {\n                seg.update(st_max[st_max.size()\
-    \ - 2] + 1, st_max.back() + 1, p[i] - p[st_max.back()]);\n                st_max.pop_back();\n\
+    \ 31) - 1; }\n    static T op(T a, T b) { return std::min(a, b); }\n};\n\nstruct\
+    \ AddMonoid {\n    using T = int;\n    static T id() { return 0; }\n    static\
+    \ T op(T a, T b) { return a + b; }\n};\n\nint act(int a, int b) { return a + b;\
+    \ }\n\nclass PermutationTree {\n   public:\n    enum NodeType { JoinAsc, JoinDesc,\
+    \ Cut, Leaf, None };\n    struct Node {\n        NodeType tp;\n        int l,\
+    \ r;    // i in [l, r)\n        int lb, ub;  // p[i] in [lb, ub)\n        std::vector<int>\
+    \ ch;\n    };\n\n    std::vector<Node> nodes;\n\n    PermutationTree() = default;\n\
+    \    explicit PermutationTree(const std::vector<int>& p) {\n        // seg.fold(l,\
+    \ r) ==\n        // min_{l <= j < r} { max(p[j:i]) - min(p[j:i]) - (i - j) }\n\
+    \        LazySegmentTree<MinMonoid, AddMonoid, act> seg(p.size());\n        std::vector<int>\
+    \ st_max = {-1}, st_min = {-1}, st;\n\n        for (int i = 0; i < (int)p.size();\
+    \ ++i) {\n            while (st_max.back() >= 0 && p[st_max.back()] < p[i]) {\n\
+    \                seg.update(st_max[st_max.size() - 2] + 1, st_max.back() + 1,\n\
+    \                           p[i] - p[st_max.back()]);\n                st_max.pop_back();\n\
     \            }\n            st_max.push_back(i);\n\n            while (st_min.back()\
     \ >= 0 && p[st_min.back()] > p[i]) {\n                seg.update(st_min[st_min.size()\
-    \ - 2] + 1, st_min.back() + 1, -(p[i] - p[st_min.back()]));\n                st_min.pop_back();\n\
-    \            }\n            st_min.push_back(i);\n\n            nodes.push_back({Leaf,\
-    \ i, i + 1, p[i], p[i] + 1, std::vector<int>{}});\n            int v = nodes.size()\
-    \ - 1;  // index of the current node\n\n            while (true) {\n         \
-    \       NodeType join_tp = None;\n                if (!st.empty() && nodes[st.back()].ub\
-    \ == nodes[v].lb) join_tp = JoinAsc;\n                if (!st.empty() && nodes[st.back()].lb\
-    \ == nodes[v].ub) join_tp = JoinDesc;\n\n                if (!st.empty() && join_tp\
-    \ != None) {\n                    // join\n                    if (join_tp ==\
-    \ nodes[st.back()].tp) {\n                        // same type, append to the\
-    \ existing join node\n                        add_child(st.back(), v);\n     \
-    \                   v = st.back();\n                        st.pop_back();\n \
-    \                   } else {\n                        // different type, create\
+    \ - 2] + 1, st_min.back() + 1,\n                           -(p[i] - p[st_min.back()]));\n\
+    \                st_min.pop_back();\n            }\n            st_min.push_back(i);\n\
+    \n            nodes.push_back(\n                {Leaf, i, i + 1, p[i], p[i] +\
+    \ 1, std::vector<int>{}});\n            int v = nodes.size() - 1;  // index of\
+    \ the current node\n\n            while (true) {\n                NodeType join_tp\
+    \ = None;\n                if (!st.empty() && nodes[st.back()].ub == nodes[v].lb)\n\
+    \                    join_tp = JoinAsc;\n                if (!st.empty() && nodes[st.back()].lb\
+    \ == nodes[v].ub)\n                    join_tp = JoinDesc;\n\n               \
+    \ if (!st.empty() && join_tp != None) {\n                    // join\n       \
+    \             if (join_tp == nodes[st.back()].tp) {\n                        //\
+    \ same type, append to the existing join node\n                        add_child(st.back(),\
+    \ v);\n                        v = st.back();\n                        st.pop_back();\n\
+    \                    } else {\n                        // different type, create\
     \ a new join node\n                        int u = st.back();\n              \
-    \          nodes.push_back({join_tp, nodes[u].l, nodes[u].r, nodes[u].lb, nodes[u].ub,\
-    \ {u}});\n                        st.pop_back();\n                        add_child(nodes.size()\
+    \          nodes.push_back({join_tp,\n                                       \
+    \  nodes[u].l,\n                                         nodes[u].r,\n       \
+    \                                  nodes[u].lb,\n                            \
+    \             nodes[u].ub,\n                                         {u}});\n\
+    \                        st.pop_back();\n                        add_child(nodes.size()\
     \ - 1, v);\n                        v = nodes.size() - 1;\n                  \
     \  }\n                } else if (seg.fold(0, i + 1 - (nodes[v].r - nodes[v].l))\
-    \ == 0) {\n                    // cut\n                    int l = nodes[v].l,\
-    \ r = nodes[v].r, lb = nodes[v].lb, ub = nodes[v].ub;\n                    nodes.push_back({Cut,\
-    \ l, r, lb, ub, {v}});\n                    v = nodes.size() - 1;\n          \
-    \          do {\n                        add_child(v, st.back());\n          \
-    \              st.pop_back();\n                    } while (nodes[v].ub - nodes[v].lb\
-    \ != nodes[v].r - nodes[v].l);\n                    std::reverse(nodes[v].ch.begin(),\
-    \ nodes[v].ch.end());\n                } else {\n                    break;\n\
-    \                }\n            }\n            st.push_back(v);\n            seg.update(0,\
-    \ i + 1, -1);\n        }\n    }\n\nprivate:\n    void add_child(int par, int ch)\
-    \ {\n        nodes[par].ch.push_back(ch);\n        nodes[par].l = std::min(nodes[par].l,\
-    \ nodes[ch].l);\n        nodes[par].r = std::max(nodes[par].r, nodes[ch].r);\n\
-    \        nodes[par].lb = std::min(nodes[par].lb, nodes[ch].lb);\n        nodes[par].ub\
-    \ = std::max(nodes[par].ub, nodes[ch].ub);\n    }\n};"
+    \ ==\n                           0) {\n                    // cut\n          \
+    \          int l = nodes[v].l, r = nodes[v].r, lb = nodes[v].lb,\n           \
+    \             ub = nodes[v].ub;\n                    nodes.push_back({Cut, l,\
+    \ r, lb, ub, {v}});\n                    v = nodes.size() - 1;\n             \
+    \       do {\n                        add_child(v, st.back());\n             \
+    \           st.pop_back();\n                    } while (nodes[v].ub - nodes[v].lb\
+    \ !=\n                             nodes[v].r - nodes[v].l);\n\n             \
+    \       std::ranges::reverse(nodes[v].ch);\n                } else {\n       \
+    \             break;\n                }\n            }\n            st.push_back(v);\n\
+    \            seg.update(0, i + 1, -1);\n        }\n    }\n\n   private:\n    void\
+    \ add_child(int par, int ch) {\n        nodes[par].ch.push_back(ch);\n       \
+    \ nodes[par].l = std::min(nodes[par].l, nodes[ch].l);\n        nodes[par].r =\
+    \ std::max(nodes[par].r, nodes[ch].r);\n        nodes[par].lb = std::min(nodes[par].lb,\
+    \ nodes[ch].lb);\n        nodes[par].ub = std::max(nodes[par].ub, nodes[ch].ub);\n\
+    \    }\n};"
   dependsOn:
   - data-structure/segtree/lazy_segment_tree.hpp
   isVerificationFile: false
   path: tree/permutation_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-07 23:25:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/common_interval_decomposition_tree.test.cpp
 documentation_of: tree/permutation_tree.hpp

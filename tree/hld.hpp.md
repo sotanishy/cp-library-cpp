@@ -4,24 +4,22 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"tree/hld.cpp\"\n#include <algorithm>\n#include <vector>\n\
-    \ntemplate <typename M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n\
-    \    HLD() = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n\
-    \        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),\n       \
-    \   in(G.size()), out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge)\
+  bundledCode: "#line 2 \"tree/hld.hpp\"\n#include <algorithm>\n#include <vector>\n\
+    \ntemplate <typename M>\nclass HLD {\n    using T = M::T;\n\n   public:\n    HLD()\
+    \ = default;\n    HLD(const std::vector<std::vector<int>>& G, bool edge)\n   \
+    \     : G(G),\n          size(G.size()),\n          depth(G.size()),\n       \
+    \   par(G.size(), -1),\n          in(G.size()),\n          out(G.size()),\n  \
+    \        head(G.size()),\n          heavy(G.size(), -1),\n          edge(edge)\
     \ {\n        dfs(0);\n        decompose(0, 0);\n    }\n\n    template <typename\
     \ F>\n    void update(int v, const T& x, const F& f) const {\n        f(in[v],\
     \ x);\n    }\n\n    template <typename F>\n    void update_edge(int u, int v,\
@@ -49,7 +47,7 @@ data:
     \ v) const {\n        while (true) {\n            if (in[u] > in[v]) std::swap(u,\
     \ v);\n            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
     \        }\n    }\n\n    int dist(int u, int v) const {\n        return depth[u]\
-    \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>>\
+    \ + depth[v] - 2 * depth[lca(u, v)];\n    }\n\n   private:\n    std::vector<std::vector<int>>\
     \ G;\n    std::vector<int> size, depth, par, in, out, head, heavy;\n    bool edge;\n\
     \    int cur_pos = 0;\n\n    void dfs(int v) {\n        size[v] = 1;\n       \
     \ int max_size = 0;\n        for (int c : G[v]) {\n            if (c == par[v])\
@@ -62,12 +60,13 @@ data:
     \ par[v] && c != heavy[v]) decompose(c, c);\n        }\n        out[v] = cur_pos;\n\
     \    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n\ntemplate <typename\
-    \ M>\nclass HLD {\n    using T = typename M::T;\n\npublic:\n    HLD() = default;\n\
-    \    HLD(const std::vector<std::vector<int>>& G, bool edge)\n        : G(G), size(G.size()),\
-    \ depth(G.size()), par(G.size(), -1),\n          in(G.size()), out(G.size()),\
-    \ head(G.size()), heavy(G.size(), -1), edge(edge) {\n        dfs(0);\n       \
-    \ decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int v,\
-    \ const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
+    \ M>\nclass HLD {\n    using T = M::T;\n\n   public:\n    HLD() = default;\n \
+    \   HLD(const std::vector<std::vector<int>>& G, bool edge)\n        : G(G),\n\
+    \          size(G.size()),\n          depth(G.size()),\n          par(G.size(),\
+    \ -1),\n          in(G.size()),\n          out(G.size()),\n          head(G.size()),\n\
+    \          heavy(G.size(), -1),\n          edge(edge) {\n        dfs(0);\n   \
+    \     decompose(0, 0);\n    }\n\n    template <typename F>\n    void update(int\
+    \ v, const T& x, const F& f) const {\n        f(in[v], x);\n    }\n\n    template\
     \ <typename F>\n    void update_edge(int u, int v, const T& x, const F& f) const\
     \ {\n        if (in[u] > in[v]) std::swap(u, v);\n        f(in[v], x);\n    }\n\
     \n    template <typename E, typename F>\n    void update(int u, int v, const E&\
@@ -93,7 +92,7 @@ data:
     \ {\n            if (in[u] > in[v]) std::swap(u, v);\n            if (head[u]\
     \ == head[v]) return u;\n            v = par[head[v]];\n        }\n    }\n\n \
     \   int dist(int u, int v) const {\n        return depth[u] + depth[v] - 2 * depth[lca(u,\
-    \ v)];\n    }\n\nprivate:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
+    \ v)];\n    }\n\n   private:\n    std::vector<std::vector<int>> G;\n    std::vector<int>\
     \ size, depth, par, in, out, head, heavy;\n    bool edge;\n    int cur_pos = 0;\n\
     \n    void dfs(int v) {\n        size[v] = 1;\n        int max_size = 0;\n   \
     \     for (int c : G[v]) {\n            if (c == par[v]) continue;\n         \
@@ -106,15 +105,14 @@ data:
     \ c);\n        }\n        out[v] = cur_pos;\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: tree/hld.cpp
+  path: tree/hld.hpp
   requiredBy: []
-  timestamp: '2023-04-08 00:55:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-01-07 23:25:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
-documentation_of: tree/hld.cpp
+documentation_of: tree/hld.hpp
 layout: document
 title: Heavy-Light Decomposition
 ---

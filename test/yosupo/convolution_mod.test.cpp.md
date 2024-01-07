@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
@@ -69,10 +69,10 @@ data:
     \ * m + i + m / 2] = l - r;\n                w *= omega;\n            }\n    \
     \    }\n    }\n}\n\ntemplate <typename mint>\nstd::vector<mint> convolution(std::vector<mint>\
     \ a, std::vector<mint> b) {\n    const int size = a.size() + b.size() - 1;\n \
-    \   const int n = std::bit_ceil(size);\n    a.resize(n);\n    b.resize(n);\n \
-    \   ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    intt(a);\n\
-    \    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int i = 0; i <\
-    \ size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 5 \"test/yosupo/convolution_mod.test.cpp\"\
+    \   const int n = std::bit_ceil((unsigned int)size);\n    a.resize(n);\n    b.resize(n);\n\
+    \    ntt(a);\n    ntt(b);\n    for (int i = 0; i < n; ++i) a[i] *= b[i];\n   \
+    \ intt(a);\n    a.resize(size);\n    mint n_inv = mint(n).inv();\n    for (int\
+    \ i = 0; i < size; ++i) a[i] *= n_inv;\n    return a;\n}\n#line 5 \"test/yosupo/convolution_mod.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
     using mint = Modint<998244353>;\n\nint main() {\n    int N, M;\n    cin >> N >>\
     \ M;\n    vector<mint> a(N), b(M);\n    for (int i = 0; i < N; i++) cin >> a[i];\n\
@@ -93,7 +93,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 22:37:45+09:00'
+  timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-structure/segtree/lazy_segment_tree.hpp
     title: Segment Tree with Lazy Propagation
   - icon: ':question:'

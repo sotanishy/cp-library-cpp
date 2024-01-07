@@ -5,7 +5,7 @@ data:
     path: data-structure/segtree/segment_tree.hpp
     title: Segment Tree
   - icon: ':x:'
-    path: tree/euler_tour.cpp
+    path: tree/euler_tour.hpp
     title: Euler Tour
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -19,17 +19,11 @@ data:
     - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
   bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\
-    \n#line 2 \"tree/euler_tour.cpp\"\n#include <vector>\n\n/*\n * @brief Euler Tour\n\
-    \ */\nstd::pair<std::vector<int>, std::vector<int>> euler_tour(const std::vector<std::vector<int>>&\
-    \ G, int root) {\n    std::vector<int> in(G.size()), out(G.size());\n    int k\
-    \ = 0;\n\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\n        in[v]\
-    \ = k++;\n        for (int c : G[v]) if (c != p) dfs(dfs, c, v);\n        out[v]\
-    \ = k;\n    };\n\n    dfs(dfs, root, -1);\n    return {in, out};\n}\n#line 2 \"\
-    data-structure/segtree/segment_tree.hpp\"\n#include <algorithm>\n#include <bit>\n\
-    #line 5 \"data-structure/segtree/segment_tree.hpp\"\n\ntemplate <typename M>\n\
-    class SegmentTree {\n    using T = M::T;\n\n   public:\n    SegmentTree() = default;\n\
-    \    explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n\
-    \    explicit SegmentTree(const std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\
+    \n#include <bits/stdc++.h>\n\n#line 3 \"data-structure/segtree/segment_tree.hpp\"\
+    \n#include <bit>\n#line 5 \"data-structure/segtree/segment_tree.hpp\"\n\ntemplate\
+    \ <typename M>\nclass SegmentTree {\n    using T = M::T;\n\n   public:\n    SegmentTree()\
+    \ = default;\n    explicit SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    explicit SegmentTree(const std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\
     \ node(2 * size, M::id()) {\n        std::ranges::copy(v, node.begin() + size);\n\
     \        for (int i = size - 1; i > 0; --i) {\n            node[i] = M::op(node[2\
     \ * i], node[2 * i + 1]);\n        }\n    }\n\n    T operator[](int k) const {\
@@ -58,24 +52,30 @@ data:
     \ r = 2 * r;\n                        }\n                    }\n             \
     \       return r - size;\n                }\n                v = nv;\n       \
     \     }\n        }\n        return -1;\n    }\n\n   private:\n    int size;\n\
-    \    std::vector<T> node;\n};\n#line 5 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
-    \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
-    \    for (int i = 0; i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n\
-    \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
-    \  G[p].push_back(i);\n    }\n    auto [in, out] = euler_tour(G, 0);\n    SegmentTree<AddMonoid>\
-    \ st(N);\n    for (int i = 0; i < N; ++i) st.update(in[i], a[i]);\n    for (int\
-    \ i = 0; i < Q; ++i) {\n        int t, u;\n        cin >> t >> u;\n        if\
-    \ (t == 0) {\n            int x;\n            cin >> x;\n            st.update(in[u],\
-    \ st[in[u]] + x);\n        } else {\n            cout << st.fold(in[u], out[u])\
-    \ << \"\\n\";\n        }\n    }\n}\n"
+    \    std::vector<T> node;\n};\n#line 3 \"tree/euler_tour.hpp\"\n\n/**\n * @brief\
+    \ Euler Tour\n */\nstd::pair<std::vector<int>, std::vector<int>> euler_tour(\n\
+    \    const std::vector<std::vector<int>>& G, int root) {\n    std::vector<int>\
+    \ in(G.size()), out(G.size());\n    int k = 0;\n\n    auto dfs = [&](auto& dfs,\
+    \ int v, int p) -> void {\n        in[v] = k++;\n        for (int c : G[v])\n\
+    \            if (c != p) dfs(dfs, c, v);\n        out[v] = k;\n    };\n\n    dfs(dfs,\
+    \ root, -1);\n    return {in, out};\n}\n#line 7 \"test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp\"\
+    \nusing namespace std;\nusing ll = long long;\n\nstruct AddMonoid {\n    using\
+    \ T = ll;\n    static T id() { return 0; }\n    static T op(T a, T b) { return\
+    \ a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n    for (int i = 0;\
+    \ i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n    for (int i = 1;\
+    \ i < N; ++i) {\n        int p;\n        cin >> p;\n        G[p].push_back(i);\n\
+    \    }\n    auto [in, out] = euler_tour(G, 0);\n    SegmentTree<AddMonoid> st(N);\n\
+    \    for (int i = 0; i < N; ++i) st.update(in[i], a[i]);\n    for (int i = 0;\
+    \ i < Q; ++i) {\n        int t, u;\n        cin >> t >> u;\n        if (t == 0)\
+    \ {\n            int x;\n            cin >> x;\n            st.update(in[u], st[in[u]]\
+    \ + x);\n        } else {\n            cout << st.fold(in[u], out[u]) << \"\\\
+    n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
-    \n\n#include \"../../tree/euler_tour.cpp\"\n#include \"../../data-structure/segtree/segment_tree.hpp\"\
-    \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\n\
-    struct AddMonoid {\n    using T = ll;\n    static T id() { return 0; }\n    static\
-    \ T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \n\n#include <bits/stdc++.h>\n\n#include \"../../data-structure/segtree/segment_tree.hpp\"\
+    \n#include \"../../tree/euler_tour.hpp\"\nusing namespace std;\nusing ll = long\
+    \ long;\n\nstruct AddMonoid {\n    using T = ll;\n    static T id() { return 0;\
+    \ }\n    static T op(T a, T b) { return a + b; }\n};\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> a(N);\n\
     \    for (int i = 0; i < N; ++i) cin >> a[i];\n    vector<vector<int>> G(N);\n\
     \    for (int i = 1; i < N; ++i) {\n        int p;\n        cin >> p;\n      \
@@ -86,12 +86,12 @@ data:
     \ st[in[u]] + x);\n        } else {\n            cout << st.fold(in[u], out[u])\
     \ << \"\\n\";\n        }\n    }\n}"
   dependsOn:
-  - tree/euler_tour.cpp
   - data-structure/segtree/segment_tree.hpp
+  - tree/euler_tour.hpp
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
