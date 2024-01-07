@@ -1,6 +1,6 @@
 ---
 title: Treap
-documentation_of: ../../../data-structure/bst/treap.cpp
+documentation_of: ../../../data-structure/bst/treap.hpp
 ---
 
 ## Description

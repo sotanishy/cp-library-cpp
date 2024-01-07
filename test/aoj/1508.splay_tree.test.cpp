@@ -1,16 +1,14 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508"
 
-#include "../../data-structure/bst/splay_tree.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/bst/splay_tree.hpp"
 using namespace std;
 
 struct MinMonoid {
     using T = int;
     static T id() { return (1u << 31) - 1; }
-    static T op(T a, T b) {
-        return min(a, b);
-    }
+    static T op(T a, T b) { return min(a, b); }
 };
 
 int main() {

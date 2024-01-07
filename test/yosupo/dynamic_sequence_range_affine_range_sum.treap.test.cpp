@@ -1,9 +1,10 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
-
-#include "../../data-structure/bst/lazy_treap.cpp"
-#include "../../math/modint.hpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 
 #include <bits/stdc++.h>
+
+#include "../../data-structure/bst/lazy_treap.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;
@@ -11,9 +12,7 @@ using mint = Modint<998244353>;
 struct M {
     using T = pair<mint, mint>;
     static T id() { return {0, 0}; }
-    static T op(T a, T b) {
-        return {a.first + b.first, a.second + b.second};
-    }
+    static T op(T a, T b) { return {a.first + b.first, a.second + b.second}; }
 };
 
 struct O {

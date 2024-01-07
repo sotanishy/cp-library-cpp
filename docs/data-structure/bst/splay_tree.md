@@ -1,6 +1,6 @@
 ---
 title: Splay Tree
-documentation_of: ../../../data-structure/bst/splay_tree.cpp
+documentation_of: ../../../data-structure/bst/splay_tree.hpp
 ---
 
 ## Descriptions

@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/bst/treap.cpp"
+#include "../../data-structure/bst/treap.hpp"
 using namespace std;
 
 struct AddMonoid {

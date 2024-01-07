@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C"
-
-#include "../../dp/largest_rectangle.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C"
 
 #include <bits/stdc++.h>
+
+#include "../../dp/largest_rectangle.hpp"
 using namespace std;
 using ll = long long;
 

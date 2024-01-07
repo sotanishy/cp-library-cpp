@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/bst/splay_tree.cpp"
+#include "../../data-structure/bst/splay_tree.hpp"
 using namespace std;
 
 struct AddMonoid {

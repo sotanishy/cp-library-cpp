@@ -5,17 +5,19 @@
 #include <numeric>
 #include <utility>
 #include <vector>
-#include "edge.cpp"
-#include "../data-structure/unionfind/union_find.hpp"
-#include "../data-structure/leftist_heap.cpp"
 
-/*
+#include "../data-structure/leftist_heap.hpp"
+#include "../data-structure/unionfind/union_find.hpp"
+#include "edge.cpp"
+
+/**
  * @brief Minimum Spanning Arborescence
  */
 template <typename T>
-std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>> G, int V, int root) {
+std::pair<T, std::vector<int>> minimum_spanning_arborescence(
+    std::vector<Edge<T>> G, int V, int root) {
     std::vector<LeftistHeap<T>> incoming(V);
-    for (int i = 0; i < (int) G.size(); ++i) {
+    for (int i = 0; i < (int)G.size(); ++i) {
         auto& e = G[i];
         incoming[e.to].push(i, e.weight);
     }
@@ -23,7 +25,7 @@ std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>
     UnionFind uf(V);
     std::vector<int> from(V), stem(V, -1), prev_edge(G.size()), ord;
     std::vector<T> from_cost(V);
-    std::vector<int> status(V); // 0: not checked, 1: cheking, 2: checked
+    std::vector<int> status(V);  // 0: not checked, 1: cheking, 2: checked
     status[root] = 2;
 
     for (int s = 0; s < V; ++s) {
@@ -33,7 +35,7 @@ std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>
         while (status[cur] != 2) {
             status[cur] = 1;
             processing.push_back(cur);
-            if (incoming[cur].empty()) { // no msa
+            if (incoming[cur].empty()) {  // no msa
                 return {std::numeric_limits<T>::max(), std::vector<int>()};
             }
 
@@ -59,7 +61,8 @@ std::pair<T, std::vector<int>> minimum_spanning_arborescence(std::vector<Edge<T>
                     if (!incoming[p].empty()) incoming[p].add(-from_cost[p]);
                     if (p != cur) {
                         uf.unite(p, cur);
-                        auto newheap = LeftistHeap<T>::meld(std::move(incoming[cur]), std::move(incoming[p]));
+                        auto newheap = LeftistHeap<T>::meld(
+                            std::move(incoming[cur]), std::move(incoming[p]));
                         incoming[cur = uf.find(cur)] = std::move(newheap);
                     }
                     p = uf.find(from[p]);

@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2415"
 
-#include "../../dp/hu_tucker.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../dp/hu_tucker.hpp"
 using namespace std;
 using ll = long long;
 

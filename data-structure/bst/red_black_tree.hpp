@@ -2,29 +2,23 @@
 #include <iostream>
 #include <memory>
 
-/*
+/**
  * @brief Red Black Tree
  */
 template <typename T>
 class RedBlackTree {
-public:
+   public:
     int count(T key) {
         if (find(root, key)) return 1;
         return 0;
     }
 
-    void insert(T key) {
-        insert(std::make_shared<Node>(key));
-    }
+    void insert(T key) { insert(std::make_shared<Node>(key)); }
 
-    void erase(T key) {
-        erase(find(root, key));
-    }
+    void erase(T key) { erase(find(root, key)); }
 
-private:
-    enum Color {
-        BLACK, RED
-    };
+   private:
+    enum Color { BLACK, RED };
 
     struct Node;
     using node_ptr = std::shared_ptr<Node>;
@@ -44,8 +38,10 @@ private:
     node_ptr find(const node_ptr& x, T key) {
         if (x == nullptr) return nullptr;
         if (key == x->key) return x;
-        if (key < x->key) return find(x->left, key);
-        else return find(x->right, key);
+        if (key < x->key)
+            return find(x->left, key);
+        else
+            return find(x->right, key);
     }
 
     node_ptr minimum(node_ptr x) {
@@ -156,8 +152,10 @@ private:
         node_ptr x = root;
         while (x != nil) {
             y = x;
-            if (z->key < x->key) x = x->left;
-            else x = x->right;
+            if (z->key < x->key)
+                x = x->left;
+            else
+                x = x->right;
         }
         z->par = y;
         if (y == nil) {

@@ -1,6 +1,6 @@
 ---
 title: Treap with Lazy Propagation
-documentation_of: ../../../data-structure/bst/lazy_treap.cpp
+documentation_of: ../../../data-structure/bst/lazy_treap.hpp
 ---
 
 ## Description

@@ -1,15 +1,16 @@
 #pragma once
 #include <cassert>
 #include <random>
-#include <utility>
 #include <tuple>
+#include <utility>
 
-template <typename M, typename O, typename M::T (*act)(typename M::T, typename O::T)>
+template <typename M, typename O,
+          typename M::T (*act)(typename M::T, typename O::T)>
 class LazyTreap {
-    using T = typename M::T;
-    using E = typename O::T;
+    using T = M::T;
+    using E = O::T;
 
-public:
+   public:
     LazyTreap() = default;
 
     static LazyTreap join(LazyTreap l, LazyTreap r) {
@@ -52,7 +53,8 @@ public:
 
     void insert(int k, const T& x) {
         auto s = split(std::move(root), k);
-        root = join(join(std::move(s.first), new Node(x)), std::move(s.second));
+        root = join(join(std::move(s.first), std::make_unique<Node>(x)),
+                    std::move(s.second));
     }
 
     void erase(int k) {
@@ -62,32 +64,24 @@ public:
     }
 
     void push_front(const T& x) {
-        root = join(new Node(x), std::move(root));
+        root = join(std::make_unique<Node>(x), std::move(root));
     }
 
     void push_back(const T& x) {
-        root = join(std::move(root), new Node(x));
+        root = join(std::move(root), std::make_unique<Node>(x));
     }
 
-    void pop_front() {
-        root = split(std::move(root), 1).second;
-    }
+    void pop_front() { root = split(std::move(root), 1).second; }
 
-    void pop_back() {
-        root = split(std::move(root), size() - 1).first;
-    }
+    void pop_back() { root = split(std::move(root), size() - 1).first; }
 
-    int size() const {
-        return size(root);
-    }
+    int size() const { return size(root); }
 
-    bool empty() const {
-        return size() == 0;
-    }
+    bool empty() const { return size() == 0; }
 
-private:
+   private:
     struct Node;
-    using node_ptr = Node*;
+    using node_ptr = std::unique_ptr<Node>;
 
     static unsigned int rand() {
         static std::random_device rd;
@@ -104,16 +98,22 @@ private:
         bool rev;
 
         Node() : Node(M::id()) {}
-        Node(const T& x) : left(nullptr), right(nullptr), val(x), sum(val), lazy(O::id()), pri(rand()), sz(1), rev(false) {}
+        Node(const T& x)
+            : left(nullptr),
+              right(nullptr),
+              val(x),
+              sum(val),
+              lazy(O::id()),
+              pri(rand()),
+              sz(1),
+              rev(false) {}
     };
 
     node_ptr root = nullptr;
 
     explicit LazyTreap(node_ptr root) : root(std::move(root)) {}
 
-    static int size(const node_ptr& t) {
-        return t ? t->sz : 0;
-    }
+    static int size(const node_ptr& t) { return t ? t->sz : 0; }
 
     static void recalc(const node_ptr& t) {
         if (!t) return;

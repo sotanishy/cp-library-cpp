@@ -1,6 +1,6 @@
 ---
 title: Randomized Binary Search Tree
-documentation_of: ../../../data-structure/bst/rbst.cpp
+documentation_of: ../../../data-structure/bst/rbst.hpp
 ---
 
 ## Description
