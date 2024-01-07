@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
-    title: data-structure/fenwick_tree.hpp
+    title: Fenwick Tree
   - icon: ':x:'
     path: tree/hld.hpp
     title: Heavy-Light Decomposition

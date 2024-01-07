@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"data-structure/slope_trick.cpp\"\n#include <functional>\n\
+  bundledCode: "#line 2 \"data-structure/slope_trick.hpp\"\n#include <functional>\n\
     #include <limits>\n#include <queue>\n#include <vector>\n\ntemplate <typename T>\n\
     class SlopeTrick {\n   public:\n    SlopeTrick() {\n        const T INF = std::numeric_limits<T>::max()\
     \ / 2;\n        left.push(-INF);\n        right.push(INF);\n    }\n\n    void\
@@ -68,12 +68,12 @@ data:
     };"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/slope_trick.cpp
+  path: data-structure/slope_trick.hpp
   requiredBy: []
-  timestamp: '2021-09-05 01:22:40+09:00'
+  timestamp: '2024-01-08 02:22:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: data-structure/slope_trick.cpp
+documentation_of: data-structure/slope_trick.hpp
 layout: document
 title: Slope Trick
 ---

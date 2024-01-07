@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
-    title: data-structure/fenwick_tree.hpp
+    title: Fenwick Tree
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int

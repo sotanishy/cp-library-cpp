@@ -23,20 +23,20 @@ data:
       title: Relaxed Convolution
   - name: data-structure
     pages:
-    - icon: ':heavy_check_mark:'
-      path: data-structure/binary_trie.cpp
+    - icon: ':x:'
+      path: data-structure/binary_trie.hpp
       title: Binary Trie
-    - icon: ':warning:'
-      path: data-structure/bit_vector.cpp
+    - icon: ':x:'
+      path: data-structure/bit_vector.hpp
       title: Rank/Select Dictionary
-    - icon: ':heavy_check_mark:'
-      path: data-structure/disjoint_sparse_table.cpp
+    - icon: ':x:'
+      path: data-structure/disjoint_sparse_table.hpp
       title: Disjoint Sparse Table
     - icon: ':question:'
       path: data-structure/fenwick_tree.hpp
-      title: data-structure/fenwick_tree.hpp
+      title: Fenwick Tree
     - icon: ':warning:'
-      path: data-structure/fenwick_tree_2d.cpp
+      path: data-structure/fenwick_tree_2d.hpp
       title: 2D Fenwick Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/foldable_deque.hpp
@@ -44,8 +44,8 @@ data:
     - icon: ':warning:'
       path: data-structure/inner_product_search.hpp
       title: Inner-Product Search
-    - icon: ':heavy_check_mark:'
-      path: data-structure/kd_tree.cpp
+    - icon: ':x:'
+      path: data-structure/kd_tree.hpp
       title: k-d Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/leftist_heap.hpp
@@ -66,32 +66,32 @@ data:
       path: data-structure/persistent_stack.hpp
       title: Persistent Stack
     - icon: ':x:'
-      path: data-structure/quadtree.cpp
+      path: data-structure/quadtree.hpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
-      path: data-structure/range_fenwick_tree.cpp
+      path: data-structure/range_fenwick_tree.hpp
       title: Fenwick Tree with Range Update
-    - icon: ':heavy_check_mark:'
-      path: data-structure/range_tree.cpp
+    - icon: ':x:'
+      path: data-structure/range_tree.hpp
       title: Range Tree
     - icon: ':heavy_check_mark:'
-      path: data-structure/slide_min.cpp
+      path: data-structure/slide_min.hpp
       title: Sliding Window Minimum
     - icon: ':x:'
-      path: data-structure/sliding_window_aggregation.cpp
+      path: data-structure/sliding_window_aggregation.hpp
       title: Sliding Window Aggregation
     - icon: ':warning:'
-      path: data-structure/slope_trick.cpp
+      path: data-structure/slope_trick.hpp
       title: Slope Trick
     - icon: ':heavy_check_mark:'
-      path: data-structure/sparse_table.cpp
+      path: data-structure/sparse_table.hpp
       title: Sparse Table
-    - icon: ':heavy_check_mark:'
-      path: data-structure/sqrt_tree.cpp
+    - icon: ':x:'
+      path: data-structure/sqrt_tree.hpp
       title: Sqrt Tree
-    - icon: ':warning:'
-      path: data-structure/wavelet_matrix.cpp
-      title: data-structure/wavelet_matrix.cpp
+    - icon: ':x:'
+      path: data-structure/wavelet_matrix.hpp
+      title: Wavelet Matrix
   - name: data-structure/bst
     pages:
     - icon: ':x:'
@@ -797,7 +797,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.test.cpp
       title: test/aoj/DSL_2_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1123,7 +1123,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/rectangle_sum.range_tree.test.cpp
       title: test/yosupo/rectangle_sum.range_tree.test.cpp
     - icon: ':x:'
@@ -1141,7 +1141,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
     - icon: ':x:'
@@ -1159,10 +1159,10 @@ data:
     - icon: ':x:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq.sqrt_tree.test.cpp
       title: test/yosupo/staticrmq.sqrt_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq.test.cpp
       title: test/yosupo/staticrmq.test.cpp
     - icon: ':x:'
