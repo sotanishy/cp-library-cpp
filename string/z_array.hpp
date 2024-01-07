@@ -3,7 +3,7 @@
 #include <vector>
 
 std::vector<int> z_array(const std::string& s) {
-    int n = s.size();
+    const int n = s.size();
     std::vector<int> z(n);
     z[0] = n;
     int l = 0, r = 0;

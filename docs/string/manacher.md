@@ -1,6 +1,6 @@
 ---
 title: Manacher's Algorithm
-documentation_of: ../../string/manacher.cpp
+documentation_of: ../../string/manacher.hpp
 ---
 
 ## Description

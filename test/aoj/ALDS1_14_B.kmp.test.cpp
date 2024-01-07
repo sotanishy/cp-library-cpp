@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B"
-
-#include "../../string/kmp.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B"
 
 #include <bits/stdc++.h>
+
+#include "../../string/kmp.hpp"
 using namespace std;
 
 int main() {

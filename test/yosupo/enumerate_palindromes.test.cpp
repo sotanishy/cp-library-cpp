@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 
-#include "../../string/manacher.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../string/manacher.hpp"
 using namespace std;
 using ll = long long;
 
@@ -14,9 +14,13 @@ int main() {
     cin >> S;
     auto ans = manacher(S);
     for (int i = 0; i < ans.size(); ++i) {
-        if (i % 2 == 0) cout << 2 * ans[i] - 1;
-        else cout << 2 * ans[i];
-        if (i < ans.size() - 1) cout << " ";
-        else cout << endl;
+        if (i % 2 == 0)
+            cout << 2 * ans[i] - 1;
+        else
+            cout << 2 * ans[i];
+        if (i < ans.size() - 1)
+            cout << " ";
+        else
+            cout << endl;
     }
 }

@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2292"
 
 #include "../../string/palindromic_tree.hpp"
-#include "../../string/rolling_hash.cpp"
+#include "../../string/rolling_hash.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

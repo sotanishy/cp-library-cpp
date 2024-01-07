@@ -1,6 +1,6 @@
 ---
 title: Trie
-documentation_of: ../../string/trie.cpp
+documentation_of: ../../string/trie.hpp
 ---
 
 ## Description

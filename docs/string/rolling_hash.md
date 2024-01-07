@@ -1,6 +1,6 @@
 ---
 title: Rolling Hash
-documentation_of: ../../string/rolling_hash.cpp
+documentation_of: ../../string/rolling_hash.hpp
 ---
 
 ## Description

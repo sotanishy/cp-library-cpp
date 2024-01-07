@@ -1,6 +1,6 @@
 ---
 title: Aho-Corasick Algorithm
-documentation_of: ../../string/aho_corasick.cpp
+documentation_of: ../../string/aho_corasick.hpp
 ---
 
 ## Description

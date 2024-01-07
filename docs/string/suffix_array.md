@@ -1,6 +1,6 @@
 ---
 title: Suffix Array
-documentation_of: ../../string/suffix_array.cpp
+documentation_of: ../../string/suffix_array.hpp
 ---
 
 ## Description

@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C"
-
-#include "../../string/pattern_search_2d.hpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C"
 
 #include <bits/stdc++.h>
+
+#include "../../string/pattern_search_2d.hpp"
 using namespace std;
 
 int main() {

@@ -3,12 +3,12 @@
 #include <vector>
 
 /**
- * @brief Minimum Cyclic String
+ * @brief Minimum Cyclic Shift
  */
 
 template <typename T>
-std::vector<T> min_cyclic_string(const std::vector<T>& s) {
-    int n = s.size();
+std::vector<T> min_cyclic_shift(const std::vector<T>& s) {
+    const int n = s.size();
     auto ss = s;
     ss.insert(ss.end(), s.begin(), s.end());
     int i = 0, ans = 0;
@@ -27,7 +27,7 @@ std::vector<T> min_cyclic_string(const std::vector<T>& s) {
     return std::vector<T>(ss.begin() + ans, ss.begin() + ans + n);
 }
 
-std::string min_cyclic_string(const std::string& s) {
-    auto res = min_cyclic_string(std::vector<char>(s.begin(), s.end()));
+std::string min_cyclic_shift(const std::string& s) {
+    auto res = min_cyclic_shift(std::vector<char>(s.begin(), s.end()));
     return std::string(res.begin(), res.end());
 }

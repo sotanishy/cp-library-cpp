@@ -1,6 +1,6 @@
 ---
 title: Longest Common Prefix Array
-documentation_of: ../../string/lcp_array.cpp
+documentation_of: ../../string/lcp_array.hpp
 ---
 
 ## Description

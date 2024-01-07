@@ -5,7 +5,7 @@
 template <typename T>
 std::vector<int> lcp_array(const std::vector<T>& s,
                            const std::vector<int>& sa) {
-    int n = s.size();
+    const int n = s.size();
     std::vector<int> rank(n);
     for (int i = 0; i < n; ++i) rank[sa[i]] = i;
     int h = 0;

@@ -1,12 +1,13 @@
 #pragma once
 #include <algorithm>
 #include <map>
+#include <numeric>
 #include <queue>
 #include <string>
 #include <vector>
 
 class AhoCorasick {
-public:
+   public:
     struct Node {
         std::map<char, int> ch;
         std::vector<int> accept;
@@ -59,7 +60,7 @@ public:
                 auto& a = states[j].accept;
                 auto& b = states[states[j].link].accept;
                 std::vector<int> accept;
-                std::set_union(a.begin(), a.end(), b.begin(), b.end(), std::back_inserter(accept));
+                std::ranges::set_union(a, b, std::back_inserter(accept));
                 a = accept;
 
                 que.push(j);
@@ -81,7 +82,7 @@ public:
     std::vector<std::pair<int, int>> match(const std::string& str) const {
         std::vector<std::pair<int, int>> ret;
         int i = 0;
-        for (int k = 0; k < (int) str.size(); ++k) {
+        for (int k = 0; k < (int)str.size(); ++k) {
             char c = str[k];
             i = get_next(i, c);
             for (auto id : states[i].accept) {
@@ -96,11 +97,11 @@ class DynamicAhoCorasick {
     std::vector<std::vector<std::string>> dict;
     std::vector<AhoCorasick> ac;
 
-public:
+   public:
     void insert(const std::string& s) {
         int k = 0;
-        while (k < (int) dict.size() && !dict[k].empty()) ++k;
-        if (k == (int) dict.size()) {
+        while (k < (int)dict.size() && !dict[k].empty()) ++k;
+        if (k == (int)dict.size()) {
             dict.emplace_back();
             ac.emplace_back();
         }
@@ -121,8 +122,8 @@ public:
     }
 
     long long count(const std::string& str) const {
-        long long ret = 0;
-        for (int i = 0; i < (int) ac.size(); ++i) ret += ac[i].count(str);
-        return ret;
+        return std::accumulate(
+            ac.begin(), ac.end(), 0LL,
+            [&](auto res, auto& a) { return res + a.count(str); });
     }
 };

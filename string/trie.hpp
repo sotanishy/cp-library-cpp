@@ -5,14 +5,14 @@
 #include <vector>
 
 class Trie {
-public:
+   public:
     Trie() : root(std::make_shared<Node>()) {}
 
     void insert(const std::string& s, int id) { insert(root, s, id, 0); }
 
     void compress() { compress(root); }
 
-protected:
+   protected:
     struct Node;
     using node_ptr = std::shared_ptr<Node>;
 
@@ -22,15 +22,13 @@ protected:
         int sz = 0;
         node_ptr par;
         std::string str;
-
-        Node() = default;
     };
 
     const node_ptr root;
 
     void insert(const node_ptr& t, const std::string& s, int id, int k) {
         ++t->sz;
-        if (k == (int) s.size()) {
+        if (k == (int)s.size()) {
             t->accept.push_back(id);
             return;
         }

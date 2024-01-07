@@ -2,14 +2,15 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
-#include "z_array.cpp"
 
-std::vector<std::vector<std::pair<int, int>>> enumerate_runs(const std::string& s) {
+#include "z_array.hpp"
+
+std::vector<std::vector<std::pair<int, int>>> enumerate_runs(
+    const std::string& s) {
     std::vector<std::vector<std::pair<int, int>>> runs(s.size() + 1);
 
     auto calc = [&](const std::string& u, const std::string& v) {
-        int nu = u.size();
-        int nv = v.size();
+        const int nu = u.size(), nv = v.size();
         std::string ru(u.rbegin(), u.rend());
         auto z1 = z_array(ru);
         auto z2 = z_array(v + '$' + u + v);
@@ -27,7 +28,7 @@ std::vector<std::vector<std::pair<int, int>>> enumerate_runs(const std::string& 
 
     auto rec = [&](auto& rec, int l, int r) {
         if (r - l == 1) return;
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         rec(rec, l, m);
         rec(rec, m, r);
 
@@ -47,9 +48,10 @@ std::vector<std::vector<std::pair<int, int>>> enumerate_runs(const std::string& 
     rec(rec, 0, s.size());
 
     // remove duplicates
-    for (int p = 1; p <= (int) s.size(); ++p) {
-        std::sort(runs[p].begin(), runs[p].end(), [&](auto& p, auto& q) {
-            return std::make_pair(p.first, -p.second) < std::make_pair(q.first, -q.second);
+    for (int p = 1; p <= (int)s.size(); ++p) {
+        std::ranges::sort(runs[p], [&](auto& p, auto& q) {
+            return std::make_pair(p.first, -p.second) <
+                   std::make_pair(q.first, -q.second);
         });
         std::vector<std::pair<int, int>> res;
         int mx = -1;

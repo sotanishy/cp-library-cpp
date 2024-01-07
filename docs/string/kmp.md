@@ -1,6 +1,6 @@
 ---
 title: Knuth-Morris-Pratt Algorithm
-documentation_of: ../../string/kmp.cpp
+documentation_of: ../../string/kmp.hpp
 ---
 
 ## Description

@@ -1,10 +1,10 @@
 #pragma once
 #include <algorithm>
-#include <vector>
 #include <string>
+#include <vector>
 
 std::vector<int> manacher(const std::string& s) {
-    int n = s.size();
+    const int n = s.size();
     std::vector<int> vs(2 * n - 1);
     // odd length
     for (int i = 0, l = 0, r = -1; i < n; ++i) {

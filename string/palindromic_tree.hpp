@@ -1,10 +1,11 @@
 #pragma once
 #include <map>
+#include <ranges>
 #include <string>
 #include <vector>
 
 class PalindromicTree {
-public:
+   public:
     PalindromicTree() : nodes(2) {
         nodes[0] = Node(-1, -1, 0);  // root for odd length palindromes
         nodes[1] = Node(0, -1, 0);   // root for even length palindromes
@@ -32,7 +33,8 @@ public:
         // create a new node
         nodes[k].link[c] = nodes.size();
         suff = nodes.size();
-        nodes.emplace_back(nodes[k].len + 2, (int) str.size() - nodes[k].len - 2, 1);
+        nodes.emplace_back(nodes[k].len + 2, (int)str.size() - nodes[k].len - 2,
+                           1);
 
         // add a suffix link
         if (nodes.back().len == 1) {
@@ -56,14 +58,14 @@ public:
     // returns {length, one of the starting indices, count}
     std::vector<std::tuple<int, int, int>> get_palindrome_frequencies() {
         std::vector<std::tuple<int, int, int>> ret;
-        for (int i = (int) nodes.size() - 1; i > 1; --i) {
-            ret.emplace_back(nodes[i].len, nodes[i].idx, nodes[i].cnt);
-            nodes[nodes[i].suffix_link].cnt += nodes[i].cnt;
+        for (auto& node : nodes | std::views::drop(1) | std::views::reverse) {
+            ret.emplace_back(node.len, node.idx, node.cnt);
+            nodes[node.suffix_link].cnt += node.cnt;
         }
         return ret;
     }
 
-private:
+   private:
     struct Node {
         std::map<char, int> link;
         int suffix_link;

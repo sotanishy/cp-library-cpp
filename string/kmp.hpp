@@ -6,8 +6,7 @@ template <typename T>
 std::vector<int> prefix_function(const std::vector<T>& s) {
     const int n = s.size();
     std::vector<int> ret(n);
-    int len = 0;
-    for (int i = 1; i < n; ++i) {
+    for (int len = 0, i = 1; i < n; ++i) {
         if (s[i] == s[len]) {
             ++len;
             ret[i] = len;
@@ -24,11 +23,11 @@ std::vector<int> prefix_function(const std::vector<T>& s) {
 }
 
 template <typename T>
-std::vector<int> kmp(const std::vector<T>& txt, const std::vector<T>& pat, const std::vector<int>& pf) {
-    int n = txt.size(), m = pat.size();
+std::vector<int> kmp(const std::vector<T>& txt, const std::vector<T>& pat,
+                     const std::vector<int>& pf) {
+    const int n = txt.size(), m = pat.size();
     std::vector<int> match;
-    int i = 0, j = 0;
-    while (i < n) {
+    for (int i = 0, j = 0; i < n;) {
         if (pat[j] == txt[i]) {
             ++i;
             ++j;
@@ -51,20 +50,26 @@ std::vector<int> prefix_function(const std::string& s) {
     return prefix_function(std::vector<char>(s.begin(), s.end()));
 }
 
-std::vector<int> kmp(const std::string& txt, const std::string& pat, const std::vector<int>& pf) {
-    return kmp(std::vector<char>(txt.begin(), txt.end()), std::vector<char>(pat.begin(), pat.end()), pf);
+std::vector<int> kmp(const std::string& txt, const std::string& pat,
+                     const std::vector<int>& pf) {
+    return kmp(std::vector<char>(txt.begin(), txt.end()),
+               std::vector<char>(pat.begin(), pat.end()), pf);
 }
 
 template <int AlphabetSize, int Offset>
-std::vector<std::vector<std::pair<int, bool>>> matching_automaton(const std::string& s) {
+std::vector<std::vector<std::pair<int, bool>>> matching_automaton(
+    const std::string& s) {
     const int n = s.size();
     auto lps = prefix_function(s);
-    std::vector<std::vector<std::pair<int, bool>>> aut(n, std::vector<std::pair<int, bool>>(AlphabetSize));
+    std::vector aut(n, std::vector<std::pair<int, bool>>(AlphabetSize));
     for (int i = 0; i < n; ++i) {
         for (int c = 0; c < AlphabetSize; ++c) {
             if (Offset + c == s[i]) {
-                if (i == n - 1) aut[i][c] = {lps[i], true};
-                else aut[i][c] = {i + 1, false};
+                if (i == n - 1) {
+                    aut[i][c] = {lps[i], true};
+                } else {
+                    aut[i][c] = {i + 1, false};
+                }
             } else {
                 aut[i][c] = {i > 0 ? aut[lps[i - 1]][c].first : 0, 0};
             }
