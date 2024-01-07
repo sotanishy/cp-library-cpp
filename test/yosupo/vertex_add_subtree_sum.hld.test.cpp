@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
-#include "../../data-structure/fenwick_tree.cpp"
-#include "../../tree/hld.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/fenwick_tree.hpp"
+#include "../../tree/hld.hpp"
 using namespace std;
 using ll = long long;
 
@@ -29,9 +29,7 @@ int main() {
     }
     HLD<AddMonoid> hld(G, false);
     FenwickTree<AddMonoid> fw(N);
-    auto update = [&](int k, ll x) {
-        fw.update(k, x);
-    };
+    auto update = [&](int k, ll x) { fw.update(k, x); };
     auto fold = [&](int l, int r) {
         return fw.prefix_fold(r) - fw.prefix_fold(l);
     };

@@ -24,7 +24,7 @@ class PalindromicTree {
         int k = find_next_palindrome(suff);
 
         // the palindrome already exists
-        if (nodes[k].link.count(c)) {
+        if (nodes[k].link.contains(c)) {
             ++nodes[nodes[k].link[c]].cnt;
             suff = nodes[k].link[c];
             return;
@@ -58,7 +58,7 @@ class PalindromicTree {
     // returns {length, one of the starting indices, count}
     std::vector<std::tuple<int, int, int>> get_palindrome_frequencies() {
         std::vector<std::tuple<int, int, int>> ret;
-        for (auto& node : nodes | std::views::drop(1) | std::views::reverse) {
+        for (auto& node : nodes | std::views::drop(2) | std::views::reverse) {
             ret.emplace_back(node.len, node.idx, node.cnt);
             nodes[node.suffix_link].cnt += node.cnt;
         }

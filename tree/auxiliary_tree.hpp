@@ -2,23 +2,23 @@
 #include <stack>
 #include <utility>
 #include <vector>
-#include "lca.cpp"
+
+#include "lca.hpp"
 
 class AuxiliaryTree {
-public:
+   public:
     AuxiliaryTree() = default;
-    AuxiliaryTree(std::vector<std::vector<int>>& G, int root) : G(G), lca(G, root), ord(G.size()), depth(G.size()) {
+    AuxiliaryTree(std::vector<std::vector<int>>& G, int root)
+        : G(G), lca(G, root), ord(G.size()), depth(G.size()) {
         dfs(root, -1);
     }
 
     std::vector<std::pair<int, int>> query(std::vector<int> vs) {
-        std::sort(vs.begin(), vs.end(), [&](int u, int v) {
-            return ord[u] < ord[v];
-        });
+        std::ranges::sort(vs, {}, [&](int v) { return ord[v]; });
         std::vector<std::pair<int, int>> edges;
         std::stack<int> st;
         st.push(vs[0]);
-        for (int i = 1; i < (int) vs.size(); ++i) {
+        for (int i = 1; i < (int)vs.size(); ++i) {
             int l = lca.query(vs[i - 1], vs[i]);
             if (l != vs[i - 1]) {
                 int u = st.top();
@@ -41,7 +41,7 @@ public:
         return edges;
     }
 
-private:
+   private:
     std::vector<std::vector<int>> G;
     LCA lca;
     std::vector<int> ord, depth;

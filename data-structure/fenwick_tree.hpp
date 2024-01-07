@@ -4,7 +4,7 @@
 
 template <typename M>
 class FenwickTree {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     FenwickTree() = default;

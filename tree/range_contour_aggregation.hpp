@@ -4,12 +4,12 @@
 #include <utility>
 #include <vector>
 
-#include "../data-structure/fenwick_tree.cpp"
+#include "../data-structure/fenwick_tree.hpp"
 #include "centroid_decomposition.hpp"
 
 template <typename Group>
 class RangeContourAggregation {
-    using T = typename Group::T;
+    using T = Group::T;
 
    public:
     RangeContourAggregation() = default;
@@ -67,7 +67,7 @@ class RangeContourAggregation {
                 }
 
                 for (int w : G[u]) {
-                    if (level[w] > level[v] && !dist[v].count(w)) {
+                    if (level[w] > level[v] && !dist[v].contains(w)) {
                         dist[v][w] = d + 1;
                         que.push({w, i});
                     }

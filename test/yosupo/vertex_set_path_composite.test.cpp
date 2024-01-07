@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 
-
-#include "../../math/modint.hpp"
-#include "../../data-structure/segtree/segment_tree.hpp"
-#include "../../tree/hld.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/segment_tree.hpp"
+#include "../../math/modint.hpp"
+#include "../../tree/hld.hpp"
 using namespace std;
 using ll = long long;
 
@@ -16,8 +15,10 @@ struct AffineMonoid {
     static T id() { return {{1, 0}, {1, 0}}; }
     static T op(T a, T b) {
         return {
-            {a.first.first * b.first.first, a.first.second * b.first.first + b.first.second},
-            {b.second.first * a.second.first, b.second.second * a.second.first + a.second.second},
+            {a.first.first * b.first.first,
+             a.first.second * b.first.first + b.first.second},
+            {b.second.first * a.second.first,
+             b.second.second * a.second.first + a.second.second},
         };
     }
 };
@@ -43,13 +44,11 @@ int main() {
     }
     HLD<AffineMonoid> hld(G, false);
     SegmentTree<AffineMonoid> st(N);
-    auto update = [&](int k, const AffineMonoid::T& p) {
-        st.update(k, p);
+    auto update = [&](int k, const AffineMonoid::T& p) { st.update(k, p); };
+    auto fold = [&](int l, int r) { return st.fold(l, r); };
+    auto flip = [&](AffineMonoid::T& a) {
+        return make_pair(a.second, a.first);
     };
-    auto fold = [&](int l, int r) {
-        return st.fold(l, r);
-    };
-    auto flip = [&](AffineMonoid::T& a) { return make_pair(a.second, a.first); };
     for (int i = 0; i < N; ++i) hld.update(i, ab[i], update);
     for (int i = 0; i < Q; ++i) {
         int t;

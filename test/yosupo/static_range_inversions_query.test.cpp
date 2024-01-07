@@ -1,19 +1,17 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_inversions_query"
 
-#include "../../data-structure/fenwick_tree.cpp"
+#include <bits/stdc++.h>
+
+#include "../../data-structure/fenwick_tree.hpp"
 #include "../../misc/compress.cpp"
 #include "../../misc/mo.cpp"
-
-#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 
 struct AddMonoid {
     using T = int;
     static T id() { return 0; }
-    static T op(T a, T b) {
-        return a + b;
-    }
+    static T op(T a, T b) { return a + b; }
 };
 
 int main() {
@@ -51,9 +49,7 @@ int main() {
         res -= fw.prefix_fold(N) - fw.prefix_fold(A[i] + 1);
         fw.update(A[i], -1);
     };
-    auto out = [&](int i) {
-        ans[i] = res;
-    };
+    auto out = [&](int i) { ans[i] = res; };
     mo.run(exl, shl, exr, shr, out);
     for (auto& x : ans) cout << x << "\n";
 }

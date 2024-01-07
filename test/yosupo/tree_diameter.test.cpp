@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
-#include "../../graph/edge.cpp"
-#include "../../tree/tree_diameter.cpp"
+#include "../../tree/tree_diameter.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,7 +8,7 @@ using ll = long long;
 
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& v) {
-    for (int i = 0; i < (int) v.size(); ++i) cout << v[i] << " ";
+    for (int i = 0; i < (int)v.size(); ++i) cout << v[i] << " ";
     return os;
 }
 
@@ -19,7 +18,7 @@ int main() {
 
     int N;
     cin >> N;
-    vector<vector<Edge<ll>>> G(N);
+    vector<vector<pair<int, ll>>> G(N);
     for (int i = 0; i < N - 1; ++i) {
         int a, b, c;
         cin >> a >> b >> c;

@@ -2,8 +2,9 @@
 #include <tuple>
 #include <vector>
 
-std::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomposition(const std::vector<std::vector<int>>& G) {
-    int N = G.size();
+std::tuple<std::vector<int>, std::vector<int>, std::vector<int>>
+centroid_decomposition(const std::vector<std::vector<int>>& G) {
+    const int N = G.size();
     std::vector<int> sz(N), level(N, -1), sz_comp(N), par(N);
 
     auto dfs_size = [&](auto& dfs_size, int v, int p) -> int {
@@ -16,7 +17,8 @@ std::tuple<std::vector<int>, std::vector<int>, std::vector<int>> centroid_decomp
 
     auto dfs_centroid = [&](auto& dfs_centroid, int v, int p, int n) -> int {
         for (int c : G[v]) {
-            if (c != p && level[c] == -1 && sz[c] > n / 2) return dfs_centroid(dfs_centroid, c, v, n);
+            if (c != p && level[c] == -1 && sz[c] > n / 2)
+                return dfs_centroid(dfs_centroid, c, v, n);
         }
         return v;
     };

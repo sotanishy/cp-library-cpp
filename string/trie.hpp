@@ -33,7 +33,7 @@ class Trie {
             return;
         }
         int c = s[k];
-        if (!t->ch.count(c)) {
+        if (!t->ch.contains(c)) {
             t->ch[c] = std::make_shared<Node>();
             t->ch[c]->par = t;
             t->ch[c]->str = c;

@@ -1,17 +1,20 @@
 #pragma once
 #include <vector>
-#include "lca.cpp"
+
+#include "lca.hpp"
 
 /**
  * @brief Binary Lifting
  */
 template <typename M>
 class BinaryLifting : public LCA {
-    using T = typename M::T;
+    using T = M::T;
 
-public:
+   public:
     BinaryLifting() = default;
-    BinaryLifting(const std::vector<std::vector<int>>& G, const std::vector<T> vs, int root) : LCA(G, root) {
+    BinaryLifting(const std::vector<std::vector<int>>& G,
+                  const std::vector<T> vs, int root)
+        : LCA(G, root) {
         int V = G.size();
         val.assign(LOG, std::vector<int>(V, M::id()));
         val[0] = vs;
@@ -59,6 +62,6 @@ public:
         return resu;
     }
 
-private:
+   private:
     std::vector<std::vector<T>> val;
 };

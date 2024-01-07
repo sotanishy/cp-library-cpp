@@ -6,7 +6,7 @@ template <typename M, typename Cost,
           typename M::T (*apply_edge)(typename M::T, int, int, Cost),
           typename M::T (*apply_vertex)(typename M::T, int)>
 class Rerooting {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     explicit Rerooting(int n) : G(n) {}

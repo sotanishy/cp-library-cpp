@@ -4,13 +4,20 @@
 
 template <typename M>
 class HLD {
-    using T = typename M::T;
+    using T = M::T;
 
-public:
+   public:
     HLD() = default;
     HLD(const std::vector<std::vector<int>>& G, bool edge)
-        : G(G), size(G.size()), depth(G.size()), par(G.size(), -1),
-          in(G.size()), out(G.size()), head(G.size()), heavy(G.size(), -1), edge(edge) {
+        : G(G),
+          size(G.size()),
+          depth(G.size()),
+          par(G.size(), -1),
+          in(G.size()),
+          out(G.size()),
+          head(G.size()),
+          heavy(G.size(), -1),
+          edge(edge) {
         dfs(0);
         decompose(0, 0);
     }
@@ -87,7 +94,7 @@ public:
         return depth[u] + depth[v] - 2 * depth[lca(u, v)];
     }
 
-private:
+   private:
     std::vector<std::vector<int>> G;
     std::vector<int> size, depth, par, in, out, head, heavy;
     bool edge;

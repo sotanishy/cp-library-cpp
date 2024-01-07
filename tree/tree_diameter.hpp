@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
-#include "../graph/edge.cpp"
 
-std::pair<int, std::vector<int>> tree_diameter(const std::vector<std::vector<int>>& G) {
+std::pair<int, std::vector<int>> tree_diameter(
+    const std::vector<std::vector<int>>& G) {
     std::vector<int> to(G.size());
 
     auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<int, int> {
@@ -34,18 +34,19 @@ std::pair<int, std::vector<int>> tree_diameter(const std::vector<std::vector<int
 }
 
 template <typename T>
-std::pair<T, std::vector<int>> tree_diameter(const std::vector<std::vector<Edge<T>>>& G) {
+std::pair<T, std::vector<int>> tree_diameter(
+    const std::vector<std::vector<std::pair<int, T>>>& G) {
     std::vector<int> to(G.size());
 
     auto dfs = [&](const auto& dfs, int v, int p) -> std::pair<T, int> {
         std::pair<T, int> ret(0, v);
-        for (auto& e : G[v]) {
-            if (e.to == p) continue;
-            auto weight = dfs(dfs, e.to, v);
-            weight.first += e.weight;
+        for (auto& [u, w] : G[v]) {
+            if (u == p) continue;
+            auto weight = dfs(dfs, u, v);
+            weight.first += w;
             if (ret < weight) {
                 ret = weight;
-                to[v] = e.to;
+                to[v] = u;
             }
         }
         return ret;

@@ -1,18 +1,20 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <vector>
 
 class LCA {
-public:
+   public:
     LCA() = default;
-    LCA(const std::vector<std::vector<int>>& G, int root) : G(G), LOG(32 - __builtin_clz(G.size())), depth(G.size()) {
-        int V = G.size();
-        table.assign(LOG, std::vector<int>(V, -1));
-
+    LCA(const std::vector<std::vector<int>>& G, int root)
+        : G(G),
+          LOG(std::bit_width(G.size())),
+          depth(G.size()),
+          table(LOG, std::vector<int>(G.size(), -1)) {
         dfs(root, -1, 0);
 
         for (int k = 0; k < LOG - 1; ++k) {
-            for (int v = 0; v < V; ++v) {
+            for (int v = 0; v < (int)G.size(); ++v) {
                 if (table[k][v] >= 0) {
                     table[k + 1][v] = table[k][table[k][v]];
                 }
@@ -63,8 +65,7 @@ public:
         return parent(v, du + dv - k);
     }
 
-
-protected:
+   protected:
     const std::vector<std::vector<int>>& G;
     const int LOG;
     std::vector<std::vector<int>> table;

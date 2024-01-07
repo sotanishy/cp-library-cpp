@@ -43,7 +43,7 @@ template <typename T>
 std::vector<double> convolution(const std::vector<T>& a,
                                 const std::vector<T>& b) {
     const int size = a.size() + b.size() - 1;
-    const int n = std::bit_ceil(size);
+    const int n = std::bit_ceil((unsigned int)size);
     std::vector<std::complex<double>> na(a.begin(), a.end()),
         nb(b.begin(), b.end());
     na.resize(n);

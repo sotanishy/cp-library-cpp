@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "../data-structure/fenwick_tree.cpp"
+#include "../data-structure/fenwick_tree.hpp"
 
 /**
  * @brief Lexicographic Index of Permutations (in Factorial Number System)

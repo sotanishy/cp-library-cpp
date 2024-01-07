@@ -54,7 +54,7 @@ void intt(std::vector<mint>& a) {
 template <typename mint>
 std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
     const int size = a.size() + b.size() - 1;
-    const int n = std::bit_ceil(size);
+    const int n = std::bit_ceil((unsigned int)size);
     a.resize(n);
     b.resize(n);
     ntt(a);

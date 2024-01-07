@@ -1,22 +1,19 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree"
-
-#include "../../data-structure/fenwick_tree.cpp"
-#include "../../tree/centroid_decomposition.hpp"
-#include "../../tree/range_contour_aggregation.hpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree"
 
 #include <bits/stdc++.h>
+
+#include "../../data-structure/fenwick_tree.hpp"
+#include "../../tree/centroid_decomposition.hpp"
+#include "../../tree/range_contour_aggregation.hpp"
 using namespace std;
 using ll = long long;
 
 struct AddGroup {
     using T = ll;
     static T id() { return 0; }
-    static T op(T a, T b) {
-        return a + b;
-    }
-    static T inv(T a) {
-        return -a;
-    }
+    static T op(T a, T b) { return a + b; }
+    static T inv(T a) { return -a; }
 };
 
 int main() {

@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
-#include "../../tree/euler_tour.cpp"
-#include "../../data-structure/segtree/segment_tree.hpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/segtree/segment_tree.hpp"
+#include "../../tree/euler_tour.hpp"
 using namespace std;
 using ll = long long;
 

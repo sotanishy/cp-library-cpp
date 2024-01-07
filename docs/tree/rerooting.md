@@ -1,6 +1,6 @@
 ---
 title: Rerooting
-documentation_of: ../../tree/rerooting.cpp
+documentation_of: ../../tree/rerooting.hpp
 ---
 
 ## Description

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_subsequences"
 
 #include "../../math/modint.hpp"
-#include "../../data-structure/fenwick_tree.cpp"
+#include "../../data-structure/fenwick_tree.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
