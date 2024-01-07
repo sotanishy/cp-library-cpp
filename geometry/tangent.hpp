@@ -26,7 +26,7 @@ std::vector<Line> common_tangents(Circle c1, Circle c2) {
         ret.push_back(Line(c1.c + e, c1.c + e + d));
         ret.push_back(Line(c1.c - e, c1.c - e + d));
     } else {
-        auto p = (-c2.r*c1.c + c1.r*c2.c) / (c1.r - c2.r);
+        auto p = (-c2.r * c1.c + c1.r * c2.c) / (c1.r - c2.r);
         if (cnt == 1) {
             Vec q(-p.imag(), p.real());
             return {Line(p, q)};
@@ -38,7 +38,7 @@ std::vector<Line> common_tangents(Circle c1, Circle c2) {
     }
 
     // internal
-    auto p = (c2.r*c1.c + c1.r*c2.c) / (c1.r + c2.r);
+    auto p = (c2.r * c1.c + c1.r * c2.c) / (c1.r + c2.r);
     if (cnt == 3) {
         Vec q(-p.imag(), p.real());
         ret.push_back(Line(p, q));

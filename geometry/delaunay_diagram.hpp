@@ -3,6 +3,7 @@
 #include <set>
 #include <utility>
 #include <vector>
+
 #include "geometry.hpp"
 #include "triangle.hpp"
 
@@ -28,8 +29,8 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
         // connect all points by a path
         std::vector<std::pair<Vec, int>> pi(n);
         for (int i = 0; i < n; ++i) pi[i] = {pts[i], i};
-        std::sort(pi.begin(), pi.end(), [&](auto& p, auto& q) {
-            return std::make_pair(p.first.real(), p.first.imag()) < std::make_pair(q.first.real(), q.first.imag());
+        std::ranges::sort(pi, {}, [&](auto& p) {
+            return std::make_pair(p.first.real(), p.first.imag());
         });
         for (int k = 0; k < n - 1; ++k) {
             edges.emplace_back(pi[k].second, pi[k + 1].second);
@@ -50,12 +51,16 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
             if (q.imag() == INF) return INF;
             x += eps;
             Vec m = (p + q) / T(2);
-            Vec dir = rot(p - m, PI/2);
-            T D = (x-p.real()) * (x-q.real());
-            return m.imag() + ((m.real() - x) * dir.real() + std::sqrt(D) * std::abs(dir)) / dir.imag();
+            Vec dir = rot(p - m, PI / 2);
+            T D = (x - p.real()) * (x - q.real());
+            return m.imag() + ((m.real() - x) * dir.real() +
+                               std::sqrt(D) * std::abs(dir)) /
+                                  dir.imag();
         }
         bool operator<(T y) const { return gety(sweepx) < y; }
-        bool operator<(const Parabola& o) const { return gety(sweepx) < o.gety(sweepx); }
+        bool operator<(const Parabola& o) const {
+            return gety(sweepx) < o.gety(sweepx);
+        }
     };
 
     // maintains a list of parabola
@@ -78,17 +83,18 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
     // true if the i-th vertex event is still valid
     std::vector<bool> valid(1);
 
-    int k = 1; // next id
+    int k = 1;  // next id
 
     // create vertex events
     auto update = [&](const iterator& it) {
-        if (it->i <= -1 || it == beach.begin()) return; // sentinels
+        if (it->i <= -1 || it == beach.begin()) return;  // sentinels
         valid[it->id] = false;
         auto a = std::prev(it);
         // handle a vertex event that occurs
         // when 3 parabolas at (a->p, it->p, it->q) coincide
-        if (eq(ccw(a->p, it->p, it->q), 0)) return;  // never coincide when collinear
-        //create a new event
+        if (eq(ccw(a->p, it->p, it->q), 0))
+            return;  // never coincide when collinear
+        // create a new event
         it->id = k++;
         valid.push_back(true);
         Vec c = circumcenter(a->p, it->p, it->q);
@@ -108,7 +114,7 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
     for (auto& p : pts) p = rot(p, 1);
 
     // sentinel
-    beach.emplace(Vec(-INF, INF), Vec(-INF*2, INF), -1);
+    beach.emplace(Vec(-INF, INF), Vec(-INF * 2, INF), -1);
 
     // add all point events
     for (int i = 0; i < n; ++i) {
@@ -116,7 +122,8 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
     }
 
     while (!pq.empty()) {
-        auto e = pq.top(); pq.pop();
+        auto e = pq.top();
+        pq.pop();
         sweepx = e.x;
         if (e.id >= 0) {
             // point event
@@ -127,7 +134,9 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
             auto b = beach.insert(c, Parabola(p, c->p, i));
             auto a = beach.insert(b, Parabola(c->p, p, c->i));
             add_edge(i, c->i);
-            update(a); update(b); update(c);
+            update(a);
+            update(b);
+            update(c);
         } else if (valid[-e.id]) {
             // vertex event
             // (a, e, b) -> (a, b)
@@ -136,7 +145,8 @@ std::vector<std::pair<int, int>> delaunay_diagram(std::vector<Vec> pts) {
             beach.erase(e.it);
             a->q = b->p;
             add_edge(a->i, b->i);
-            update(a); update(b);
+            update(a);
+            update(b);
         }
     }
 

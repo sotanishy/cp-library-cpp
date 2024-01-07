@@ -1,6 +1,6 @@
 ---
 title: Minimum Cost Flow
-documentation_of: ../../flow/min_cost_flow.cpp
+documentation_of: ../../flow/min_cost_flow.hpp
 ---
 
 ## Description

@@ -1,7 +1,7 @@
 #pragma once
+#include "bisector.hpp"
 #include "geometry.hpp"
 #include "intersection.hpp"
-#include "bisector.hpp"
 
 Vec centroid(const Vec& A, const Vec& B, const Vec& C) {
     assert(ccw(A, B, C) != 0);
@@ -13,7 +13,7 @@ Vec incenter(const Vec& A, const Vec& B, const Vec& C) {
     T a = std::abs(B - C);
     T b = std::abs(C - A);
     T c = std::abs(A - B);
-    return (a*A + b*B + c*C) / (a + b + c);
+    return (a * A + b * B + c * C) / (a + b + c);
 }
 
 Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
@@ -30,4 +30,3 @@ Vec circumcenter(const Vec& A, const Vec& B, const Vec& C) {
 //     T c = std::norm(r) * dot(p, q);
 //     return (a*A + b*B + c*C) / (a + b + c);
 // }
-

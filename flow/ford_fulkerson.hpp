@@ -7,19 +7,19 @@
 
 template <typename T>
 class FordFulkerson {
-public:
+   public:
     FordFulkerson() = default;
     explicit FordFulkerson(int n) : G(n), used(n) {}
 
     void add_edge(int u, int v, T cap) {
-        G[u].push_back({v, (int) G[v].size(), cap});
-        G[v].push_back({u, (int) G[u].size() - 1, 0});
+        G[u].push_back({v, (int)G[v].size(), cap});
+        G[v].push_back({u, (int)G[u].size() - 1, 0});
     }
 
     T max_flow(int s, int t) {
         T flow = 0;
         while (true) {
-            std::fill(used.begin(), used.end(), false);
+            std::ranges::fill(used, false);
             T f = dfs(s, t, INF);
             if (f == 0) return flow;
             flow += f;
@@ -44,7 +44,7 @@ public:
         return visited;
     }
 
-private:
+   private:
     struct Edge {
         int to, rev;
         T cap;

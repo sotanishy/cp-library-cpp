@@ -1,20 +1,20 @@
 #pragma once
 #include <random>
-#include <vector>
+
 #include "geometry.hpp"
 #include "triangle.hpp"
 
 Circle minimum_bounding_circle(std::vector<Vec> pts) {
     std::random_device rd;
     std::mt19937_64 rng(rd());
-    std::shuffle(pts.begin(), pts.end(), rng);
+    std::ranges::shuffle(pts, rng);
 
     std::vector<Vec> boundary;
 
     auto trivial = [&]() {
         if (boundary.size() == 0) {
             return Circle(Vec(0, 0), 0);
-        } else if (boundary.size() ==  1) {
+        } else if (boundary.size() == 1) {
             return Circle(boundary[0], 0);
         }
         Vec c;

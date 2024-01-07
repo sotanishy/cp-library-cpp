@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B"
-
-#include "../../flow/min_cost_flow.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B"
 
 #include <bits/stdc++.h>
+
+#include "../../flow/min_cost_flow.hpp"
 using namespace std;
 
 int main() {

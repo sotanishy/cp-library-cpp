@@ -1,6 +1,6 @@
 ---
 title: Ford-Fulkerson Algorithm
-documentation_of: ../../flow/ford_fulkerson.cpp
+documentation_of: ../../flow/ford_fulkerson.hpp
 ---
 
 ## Description

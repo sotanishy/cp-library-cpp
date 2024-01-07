@@ -1,9 +1,4 @@
 #pragma once
-#include <algorithm>
-#include <deque>
-#include <utility>
-#include <vector>
-
 #include "geometry.hpp"
 #include "intersection.hpp"
 
@@ -68,9 +63,7 @@ Polygon halfplane_intersection(std::vector<std::pair<Vec, Vec>> hps) {
     hps.emplace_back(Vec(0, 1), Vec(0, -INF));  // -INF <= y
     hps.emplace_back(Vec(0, -1), Vec(0, INF));  // y <= INF
 
-    std::sort(hps.begin(), hps.end(), [&](const auto& h1, const auto& h2) {
-        return std::arg(h1.first) < std::arg(h2.first);
-    });
+    std::ranges::sort(hps, {}, [&](auto& h) { return std::arg(h.first); });
 
     std::deque<Hp> dq;
     int len = 0;
@@ -139,7 +132,7 @@ class PolygonContainment {
 
         int lb = 1, ub = (int)poly.size() - 1;
         while (ub - lb > 1) {
-            int m = (lb + ub) / 2;
+            int m = std::midpoint(lb, ub);
             if (leq(0, cross(poly[m] - poly[0], pt - poly[0])))
                 lb = m;
             else

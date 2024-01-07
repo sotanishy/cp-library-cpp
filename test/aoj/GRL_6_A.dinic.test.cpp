@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
-
-#include "../../flow/dinic.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
 
 #include <bits/stdc++.h>
+
+#include "../../flow/dinic.hpp"
 using namespace std;
 
 int main() {

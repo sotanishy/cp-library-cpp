@@ -166,11 +166,13 @@ class EulerTourTree {
     static std::tuple<node_ptr, node_ptr, node_ptr> split(node_ptr s,
                                                           node_ptr t) {
         auto [a, b] = split2(s);
-        auto [c, d] = split2(t);
-        if (same(a, t))
+        if (same(a, t)) {
+            auto [c, d] = split2(t);
             return {c, d, b};
-        else
+        } else {
+            auto [c, d] = split2(t);
             return {a, c, d};
+        }
     }
 
     static void rotate(node_ptr t, bool b) {

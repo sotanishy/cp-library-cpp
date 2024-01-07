@@ -14,5 +14,6 @@ T dist(const Segment& s, const Vec& p) {
 
 T dist(const Segment& s, const Segment& t) {
     if (intersect(s, t)) return T(0);
-    return std::min({dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});
+    return std::min(
+        {dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t, s.p2)});
 }

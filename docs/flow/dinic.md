@@ -1,6 +1,6 @@
 ---
 title: Dinic's Algorithm
-documentation_of: ../../flow/dinic.cpp
+documentation_of: ../../flow/dinic.hpp
 ---
 
 ## Description

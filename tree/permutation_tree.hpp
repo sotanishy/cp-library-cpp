@@ -32,9 +32,10 @@ class PermutationTree {
 
     PermutationTree() = default;
     explicit PermutationTree(const std::vector<int>& p) {
+        LazySegmentTree<MinMonoid, AddMonoid, act> seg(
+            std::vector<int>(p.size()));
         // seg.fold(l, r) ==
         // min_{l <= j < r} { max(p[j:i]) - min(p[j:i]) - (i - j) }
-        LazySegmentTree<MinMonoid, AddMonoid, act> seg(p.size());
         std::vector<int> st_max = {-1}, st_min = {-1}, st;
 
         for (int i = 0; i < (int)p.size(); ++i) {
@@ -95,7 +96,6 @@ class PermutationTree {
                         st.pop_back();
                     } while (nodes[v].ub - nodes[v].lb !=
                              nodes[v].r - nodes[v].l);
-
                     std::ranges::reverse(nodes[v].ch);
                 } else {
                     break;

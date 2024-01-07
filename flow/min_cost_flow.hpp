@@ -8,13 +8,13 @@
 
 template <typename Cap, typename Cost>
 class MinCostFlow {
-public:
+   public:
     MinCostFlow() = default;
     explicit MinCostFlow(int V) : V(V), G(V), add(0) {}
 
     void add_edge(int u, int v, Cap cap, Cost cost) {
-        G[u].emplace_back(v, cap, cost, (int) G[v].size());
-        G[v].emplace_back(u, 0, -cost, (int) G[u].size() - 1);
+        G[u].emplace_back(v, cap, cost, (int)G[v].size());
+        G[v].emplace_back(u, 0, -cost, (int)G[u].size() - 1);
     }
 
     void add_edge(int u, int v, Cap lb, Cap ub, Cost cost) {
@@ -34,16 +34,14 @@ public:
 
         while (f > 0) {
             // update h using dijkstra
-            std::fill(dist.begin(), dist.end(), INF);
+            std::ranges::fill(dist, INF);
             dist[s] = 0;
             pq.emplace(0, s);
             while (!pq.empty()) {
-                Cost d;
-                int v;
-                std::tie(d, v) = pq.top();
+                auto [d, v] = pq.top();
                 pq.pop();
                 if (dist[v] < d) continue;
-                for (int i = 0; i < (int) G[v].size(); ++i) {
+                for (int i = 0; i < (int)G[v].size(); ++i) {
                     Edge& e = G[v][i];
                     Cost ndist = dist[v] + e.cost + h[v] - h[e.to];
                     if (e.cap > 0 && dist[e.to] > ndist) {
@@ -75,22 +73,23 @@ public:
         return ret;
     }
 
-private:
+   private:
     struct Edge {
         int to;
         Cap cap;
         Cost cost;
         int rev;
-        Edge(int to, Cap cap, Cost cost, int rev) : to(to), cap(cap), cost(cost), rev(rev) {}
+        Edge(int to, Cap cap, Cost cost, int rev)
+            : to(to), cap(cap), cost(cost), rev(rev) {}
     };
 
     static constexpr Cost INF = std::numeric_limits<Cost>::max() / 2;
-    static constexpr Cost M = INF / 1e9;  // large constant used for minimum flow requirement for edges
+    // large constant used for minimum flow requirement for edges
+    static constexpr Cost M = INF / 1e9;
 
     int V;
     std::vector<std::vector<Edge>> G;
     Cost add;
-
 
     std::vector<Cost> calculate_initial_potential(int s) {
         std::vector<Cost> h(V);
@@ -104,7 +103,8 @@ private:
         // for (int i = 0; i < V - 1; ++i) {
         //     for (int v = 0; v < V; ++v) {
         //         for (auto& e : G[v]) {
-        //             if (e.cap > 0 && h[v] != INF && h[e.to] > h[v] + e.cost) {
+        //             if (e.cap > 0 && h[v] != INF && h[e.to] > h[v] + e.cost)
+        //             {
         //                 h[e.to] = h[v] + e.cost;
         //             }
         //         }

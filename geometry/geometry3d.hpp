@@ -40,12 +40,25 @@ struct Vec {
         z /= r;
         return *this;
     }
+    constexpr Vec operator+() const { return *this; }
     constexpr Vec operator-() const { return Vec(-x, -y, -z); }
     constexpr Vec operator+(const Vec& r) const { return Vec(*this) += r; }
     constexpr Vec operator-(const Vec& r) const { return Vec(*this) -= r; }
     constexpr Vec operator*(T r) const { return Vec(*this) *= r; }
     constexpr Vec operator/(T r) const { return Vec(*this) /= r; }
     friend constexpr Vec operator*(T r, const Vec& v) { return v * r; }
+
+    friend std::istream& operator>>(std::istream& is, Vec& p) {
+        T x, y, z;
+        is >> x >> y >> z;
+        p = {x, y, z};
+        return is;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Vec& p) {
+        os << "(" << p.x << ", " << p.y << ", " << p.z << ")";
+        return os;
+    }
 };
 
 // rotation around n=(x,y,z) by theta: cos(theta/2) + (xi+yj+zk) sin(theta/2)
@@ -89,6 +102,7 @@ struct Quarternion {
         w /= r;
         return *this;
     }
+    constexpr Quarternion operator+() const { return *this; }
     constexpr Quarternion operator-() const {
         return Quarternion(-x, -y, -z, -w);
     }
@@ -108,18 +122,6 @@ struct Quarternion {
         return Quarternion(*this) /= r;
     }
 };
-
-std::istream& operator>>(std::istream& is, Vec& p) {
-    T x, y, z;
-    is >> x >> y >> z;
-    p = {x, y, z};
-    return is;
-}
-
-std::ostream& operator<<(std::ostream& os, const Vec& p) {
-    os << "(" << p.x << ", " << p.y << ", " << p.z << ")";
-    return os;
-}
 
 T dot(const Vec& a, const Vec& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
