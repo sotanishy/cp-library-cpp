@@ -3,7 +3,7 @@
 
 template <typename T>
 class RangeFenwickTree {
-public:
+   public:
     RangeFenwickTree() = default;
     explicit RangeFenwickTree(int n) : n(n), data0(n + 1), data1(n + 1) {}
 
@@ -18,7 +18,7 @@ public:
         add(data1, r, x * (r - 1));
     }
 
-private:
+   private:
     int n;
     std::vector<T> data0, data1;
 

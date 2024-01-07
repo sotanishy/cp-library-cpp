@@ -1,18 +1,19 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <vector>
 
 template <typename M>
 class SparseTable {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     SparseTable() = default;
     explicit SparseTable(const std::vector<T>& v) {
-        int n = v.size(), b = 0;
-        while ((1 << b) <= n) ++b;
+        const int n = v.size();
+        const int b = std::bit_width((unsigned int)n);
         lookup.resize(b, std::vector<T>(n));
-        std::copy(v.begin(), v.end(), lookup[0].begin());
+        std::ranges::copy(v, lookup[0].begin());
         for (int i = 1; i < b; ++i) {
             for (int j = 0; j + (1 << i) <= n; ++j) {
                 lookup[i][j] =
@@ -23,7 +24,7 @@ class SparseTable {
 
     T fold(int l, int r) const {
         if (l == r) return M::id();
-        int i = 31 - __builtin_clz(r - l);
+        int i = std::bit_width((unsigned int)(r - l)) - 1;
         return M::op(lookup[i][l], lookup[i][r - (1 << i)]);
     }
 

@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C"
 
-#include "../../data-structure/kd_tree.cpp"
+#include "../../data-structure/kd_tree.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

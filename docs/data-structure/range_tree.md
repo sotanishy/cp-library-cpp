@@ -1,6 +1,6 @@
 ---
 title: Range Tree
-documentation_of: ../../data-structure/range_tree.cpp
+documentation_of: ../../data-structure/range_tree.hpp
 ---
 
 ## Description

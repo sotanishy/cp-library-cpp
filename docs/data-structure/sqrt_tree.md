@@ -1,6 +1,6 @@
 ---
 title: Sqrt Tree
-documentation_of: ../../data-structure/sqrt_tree.cpp
+documentation_of: ../../data-structure/sqrt_tree.hpp
 ---
 
 ## Description

@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
-
-#include "../../data-structure/range_fenwick_tree.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 
 #include <bits/stdc++.h>
+
+#include "../../data-structure/range_fenwick_tree.hpp"
 using namespace std;
 
 int main() {
@@ -11,7 +12,7 @@ int main() {
 
     int n, q;
     cin >> n >> q;
-    RangeFenwickTree<long long> ft(n+1);
+    RangeFenwickTree<long long> ft(n + 1);
     for (int i = 0; i < q; i++) {
         int type, s, t;
         cin >> type >> s >> t;

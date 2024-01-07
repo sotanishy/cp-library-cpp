@@ -1,18 +1,19 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <vector>
 
 template <typename M>
 class DisjointSparseTable {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     DisjointSparseTable() = default;
     explicit DisjointSparseTable(const std::vector<T>& v) {
-        int n = v.size(), b = 0;
-        while ((1 << b) < n) ++b;
+        const int n = v.size();
+        const int b = std::bit_width((unsigned int)n);
         lookup.resize(b + 1, std::vector<T>(n));
-        std::copy(v.begin(), v.end(), lookup[0].begin());
+        std::ranges::copy(v, lookup[0].begin());
         for (int i = 1; i <= b; ++i) {
             int len = 1 << i;
             for (int l = 0; l + len / 2 < n; l += len) {
@@ -32,7 +33,7 @@ class DisjointSparseTable {
     T fold(int l, int r) const {
         if (l == r) return M::id();
         if (r - l == 1) return lookup[0][l];
-        int i = 32 - __builtin_clz(l ^ (r - 1));
+        int i = std::bit_width((unsigned int)(l ^ (r - 1)));
         return M::op(lookup[i][l], lookup[i][r - 1]);
     }
 

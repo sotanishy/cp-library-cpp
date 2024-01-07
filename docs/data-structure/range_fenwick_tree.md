@@ -1,6 +1,6 @@
 ---
 title: Fenwick Tree with Range Update
-documentation_of: ../../data-structure/range_fenwick_tree.cpp
+documentation_of: ../../data-structure/range_fenwick_tree.hpp
 ---
 
 ## Description

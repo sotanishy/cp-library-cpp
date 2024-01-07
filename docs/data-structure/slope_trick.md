@@ -1,6 +1,6 @@
 ---
 title: Slope Trick
-documentation_of: ../../data-structure/slope_trick.cpp
+documentation_of: ../../data-structure/slope_trick.hpp
 ---
 
 ## Description

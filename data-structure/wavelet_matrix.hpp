@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "bit_vector.cpp"
+#include "bit_vector.hpp"
 
 template <typename T, int MAX_LOG>
 class WaveletMatrix {
@@ -28,7 +28,7 @@ class WaveletMatrix {
             v.swap(nv);
         }
         for (int i = 0; i < n; ++i) {
-            if (!start.count(v[i])) start[v[i]] = i;
+            if (!start.contains(v[i])) start[v[i]] = i;
         }
     }
 
@@ -47,7 +47,7 @@ class WaveletMatrix {
             bool b = x >> d & 1;
             k = cnt0[d] * b + mat[d].rank(k, b);
         }
-        if (start.count(x)) return k - start.at(x);
+        if (start.contains(x)) return k - start.at(x);
         return k;
     }
 

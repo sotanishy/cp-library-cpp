@@ -1,14 +1,15 @@
 #pragma once
 #include <vector>
 
-/*
+/**
  * @brief 2D Fenwick Tree
  */
 template <typename T>
 class FenwickTree2D {
-public:
+   public:
     FenwickTree2D() = default;
-    FenwickTree2D(int H, int W) : H(H), W(W), data(H + 1, std::vector<T>(W + 1)) {}
+    FenwickTree2D(int H, int W)
+        : H(H), W(W), data(H + 1, std::vector<T>(W + 1)) {}
 
     void add(int a, int b, T x) {
         ++a;
@@ -32,7 +33,7 @@ public:
         return ret;
     }
 
-private:
+   private:
     int H, W;
     std::vector<std::vector<T>> data;
 };

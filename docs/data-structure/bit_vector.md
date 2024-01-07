@@ -1,6 +1,6 @@
 ---
 title: Rank/Select Dictionary
-documentation_of: ../../data-structure/bit_vector.cpp
+documentation_of: ../../data-structure/bit_vector.hpp
 ---
 
 ## Description

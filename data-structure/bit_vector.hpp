@@ -1,5 +1,7 @@
 #pragma once
+#include <bit>
 #include <cstdint>
+#include <numeric>
 #include <vector>
 
 class BitVector {
@@ -12,21 +14,21 @@ class BitVector {
         for (int i = 0; i < (int)v.size(); ++i)
             data[i / sz] |= v[i] << (i % sz);
         for (int i = 0; i < n; ++i)
-            sum[i + 1] = sum[i] + __builtin_popcount(data[i]);
+            sum[i + 1] = sum[i] + std::popcount(data[i]);
     }
 
     bool operator[](int k) const { return data[k / sz] >> (k % sz) & 1; }
 
     int rank(int k, bool b) const {
         int mask = (1U << (k % sz)) - 1;
-        int r = sum[k / sz] + __builtin_popcount(data[k / sz] & mask);
+        int r = sum[k / sz] + std::popcount(data[k / sz] & mask);
         return b ? r : k - r;
     }
 
     int select(int k, bool b) const {
         int lb = 0, ub = data.size();
         while (ub - lb > 1) {
-            int m = (lb + ub) / 2;
+            int m = std::midpoint(lb, ub);
             if (rank(m, b) <= k)
                 lb = m;
             else

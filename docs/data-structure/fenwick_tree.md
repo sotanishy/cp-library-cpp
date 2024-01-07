@@ -1,6 +1,6 @@
 ---
 title: Fenwick Tree
-documentation_of: ../../data-structure/fenwick_tree.cpp
+documentation_of: ../../data-structure/fenwick_tree.hpp
 ---
 
 ## Description

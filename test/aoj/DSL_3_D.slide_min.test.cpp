@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D"
 
-#include "../../data-structure/slide_min.cpp"
+#include "../../data-structure/slide_min.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

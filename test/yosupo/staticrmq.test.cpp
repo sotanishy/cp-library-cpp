@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/disjoint_sparse_table.cpp"
+#include "../../data-structure/disjoint_sparse_table.hpp"
 using namespace std;
 
 struct MinMonoid {

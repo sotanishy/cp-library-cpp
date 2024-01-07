@@ -4,32 +4,22 @@
 
 template <typename T, int B = 32>
 class BinaryTrie {
-public:
+   public:
     BinaryTrie() : root(std::make_unique<Node>()) {}
 
-    int size() const {
-        return root->count;
-    }
+    int size() const { return root->count; }
 
-    bool empty() const {
-        return size() == 0;
-    }
+    bool empty() const { return size() == 0; }
 
-    int count(T x) const {
-        return count(root, x, B - 1);
-    }
+    int count(T x) const { return count(root, x, B - 1); }
 
     int count_less(T x, T xor_val = 0) const {
         return count_less(root, x, xor_val, B - 1);
     }
 
-    void insert(T x) {
-        insert(root, x, B - 1);
-    }
+    void insert(T x) { insert(root, x, B - 1); }
 
-    void erase(T x) {
-        erase(root, x, B - 1);
-    }
+    void erase(T x) { erase(root, x, B - 1); }
 
     T min_element(T xor_val = 0) const {
         assert(!empty());
@@ -41,7 +31,7 @@ public:
         return max_element(root, xor_val, B - 1);
     }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::unique_ptr<Node>;
 
@@ -65,7 +55,8 @@ private:
         int ret = 0;
         if (f ^ b) {
             if (t->ch[f]) ret += t->ch[f]->count;
-            if (t->ch[1 - f]) ret += count_less(t->ch[1 - f], x, xor_val, k - 1);
+            if (t->ch[1 - f])
+                ret += count_less(t->ch[1 - f], x, xor_val, k - 1);
         } else {
             if (t->ch[f]) ret += count_less(t->ch[f], x, xor_val, k - 1);
         }

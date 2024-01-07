@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../data-structure/sqrt_tree.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/sqrt_tree.hpp"
 using namespace std;
 
 struct MinSemigroup {

@@ -1,6 +1,6 @@
 ---
 title: Sliding Window Aggregation
-documentation_of: ../../data-structure/sliding_window_aggregation.cpp
+documentation_of: ../../data-structure/sliding_window_aggregation.hpp
 ---
 
 ## Description

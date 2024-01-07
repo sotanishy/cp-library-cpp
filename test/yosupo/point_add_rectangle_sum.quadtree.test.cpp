@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/quadtree.cpp"
+#include "../../data-structure/quadtree.hpp"
 #include "../../misc/compress.hpp"
 using namespace std;
 using ll = long long;

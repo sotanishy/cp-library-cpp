@@ -1,6 +1,6 @@
 ---
 title: Binary Trie
-documentation_of: ../../data-structure/binary_trie.cpp
+documentation_of: ../../data-structure/binary_trie.hpp
 ---
 
 ## Description

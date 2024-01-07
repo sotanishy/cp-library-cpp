@@ -1,6 +1,6 @@
 ---
 title: Disjoint Sparse Table
-documentation_of: ../../data-structure/disjoint_sparse_table.cpp
+documentation_of: ../../data-structure/disjoint_sparse_table.hpp
 ---
 
 ## Description

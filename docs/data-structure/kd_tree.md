@@ -1,6 +1,6 @@
 ---
 title: k-d Tree
-documentation_of: ../../data-structure/kd_tree.cpp
+documentation_of: ../../data-structure/kd_tree.hpp
 ---
 
 ## Description

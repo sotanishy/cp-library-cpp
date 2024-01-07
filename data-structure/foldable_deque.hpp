@@ -8,15 +8,19 @@ template <typename S>
 class FoldableDeque {
     using T = typename S::T;
 
-public:
+   public:
     void push_front(const T& x) {
-        if (front.empty()) front.emplace(x, x);
-        else front.emplace(x, S::op(x, front.top().second));
+        if (front.empty())
+            front.emplace(x, x);
+        else
+            front.emplace(x, S::op(x, front.top().second));
     }
 
     void push_back(const T& x) {
-        if (back.empty()) back.emplace(x, x);
-        else back.emplace(x, S::op(back.top().second, x));
+        if (back.empty())
+            back.emplace(x, x);
+        else
+            back.emplace(x, S::op(back.top().second, x));
     }
 
     void pop_front() {
@@ -49,9 +53,7 @@ public:
         back.pop();
     }
 
-    bool empty() const {
-        return front.empty() && back.empty();
-    }
+    bool empty() const { return front.empty() && back.empty(); }
 
     T fold() const {
         assert(!empty());
@@ -60,7 +62,6 @@ public:
         return S::op(front.top().second, back.top().second);
     }
 
-private:
+   private:
     std::stack<std::pair<T, T>> front, back;
 };
-

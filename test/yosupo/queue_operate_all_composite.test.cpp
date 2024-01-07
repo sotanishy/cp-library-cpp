@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
 
-#include "../../data-structure/sliding_window_aggregation.cpp"
-#include "../../math/modint.hpp"
-
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/sliding_window_aggregation.hpp"
+#include "../../math/modint.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;

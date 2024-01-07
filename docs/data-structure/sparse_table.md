@@ -1,6 +1,6 @@
 ---
 title: Sparse Table
-documentation_of: ../../data-structure/sparse_table.cpp
+documentation_of: ../../data-structure/sparse_table.hpp
 ---
 
 ## Description

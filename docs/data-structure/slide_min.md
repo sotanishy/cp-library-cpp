@@ -1,6 +1,6 @@
 ---
 title: Sliding Window Minimum
-documentation_of: ../../data-structure/slide_min.cpp
+documentation_of: ../../data-structure/slide_min.hpp
 ---
 
 ## Description

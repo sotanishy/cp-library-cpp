@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "../data-structure/disjoint_sparse_table.cpp"
+#include "../data-structure/disjoint_sparse_table.hpp"
 
 /**
  * @brief Combination (Large)

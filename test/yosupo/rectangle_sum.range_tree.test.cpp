@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 
-#include "../../data-structure/range_tree.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/range_tree.hpp"
 using namespace std;
 using ll = long long;
 

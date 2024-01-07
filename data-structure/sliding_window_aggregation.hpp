@@ -7,10 +7,12 @@ template <typename S>
 class SlidingWindowAggregation {
     using T = typename S::T;
 
-public:
+   public:
     void push(const T& x) {
-        if (back.empty()) back.emplace(x, x);
-        else back.emplace(x, S::op(back.top().second, x));
+        if (back.empty())
+            back.emplace(x, x);
+        else
+            back.emplace(x, S::op(back.top().second, x));
     }
 
     void pop() {
@@ -28,9 +30,7 @@ public:
         front.pop();
     }
 
-    bool empty() const {
-        return front.empty() && back.empty();
-    }
+    bool empty() const { return front.empty() && back.empty(); }
 
     T fold() const {
         assert(!empty());
@@ -39,6 +39,6 @@ public:
         return S::op(front.top().second, back.top().second);
     }
 
-private:
+   private:
     std::stack<std::pair<T, T>> front, back;
 };

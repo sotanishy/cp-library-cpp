@@ -1,6 +1,6 @@
 ---
 title: Quadtree
-documentation_of: ../../data-structure/quadtree.cpp
+documentation_of: ../../data-structure/quadtree.hpp
 ---
 
 ## Description

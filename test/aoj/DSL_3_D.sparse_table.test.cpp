@@ -3,7 +3,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../data-structure/sparse_table.cpp"
+#include "../../data-structure/sparse_table.hpp"
 using namespace std;
 
 struct MinMonoid {

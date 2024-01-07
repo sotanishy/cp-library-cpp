@@ -1,14 +1,15 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <cassert>
 #include <vector>
 
 template <typename T>
 class MinMaxHeap {
-public:
+   public:
     MinMaxHeap() = default;
     explicit MinMaxHeap(const std::vector<T>& v) : heap(v) {
-        for (int i = (int) heap.size() / 2 - 1; i >= 0; --i) {
+        for (int i = (int)heap.size() / 2 - 1; i >= 0; --i) {
             pushdown(i);
         }
     }
@@ -53,28 +54,30 @@ public:
         pushdown(i);
     }
 
-private:
+   private:
     std::vector<T> heap;
 
     void pushdown(int i) {
-        int d = 31 - __builtin_clz(i + 1);
+        int d = std::bit_width((unsigned int)i + 1) - 1;
         int n = heap.size();
 
         while (true) {
-            int l = 2*i + 1, r = l + 1;
+            int l = 2 * i + 1, r = l + 1;
             if (l >= n) return;
 
             int m = i;  // idx of smallest child or grandchild
-            std::vector<int> check = {l, r, 2*l + 1, 2*l + 2, 2*r + 1, 2*r + 2};
+            std::vector<int> check = {l,         r,         2 * l + 1,
+                                      2 * l + 2, 2 * r + 1, 2 * r + 2};
             for (int j : check) {
                 if (j < n && ((d % 2) ^ (heap[j] < heap[m]))) m = j;
             }
 
-            if (m >= 2*l + 1) {  // grandchild
+            if (m >= 2 * l + 1) {  // grandchild
                 if ((d % 2) ^ (heap[m] < heap[i])) {
                     std::swap(heap[m], heap[i]);
                     int p = (m - 1) / 2;  // parent of m
-                    if ((d % 2) ^ (heap[m] > heap[p])) std::swap(heap[m], heap[p]);
+                    if ((d % 2) ^ (heap[m] > heap[p]))
+                        std::swap(heap[m], heap[p]);
                     i = m;
                 } else {
                     break;
@@ -89,7 +92,7 @@ private:
     void pushup(int i) {
         if (i == 0) return;
         int p = (i - 1) / 2;
-        int d = 31 - __builtin_clz(i + 1);
+        int d = std::bit_width((unsigned int)i + 1) - 1;
         if ((d % 2) ^ (heap[i] > heap[p])) {
             std::swap(heap[i], heap[p]);
             i = p;
