@@ -4,37 +4,38 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"dp/monotone_minima.cpp\"\n#include <vector>\n\ntemplate\
+  bundledCode: "#line 2 \"dp/monotone_minima.hpp\"\n#include <vector>\n\ntemplate\
     \ <typename F>\nstd::vector<int> monotone_minima(int n, int m, const F& f) {\n\
     \    std::vector<int> idx(n, -1);\n\n    auto calc = [&](const auto& calc, int\
-    \ l, int r, int optl, int optr) -> void {\n        if (l > r) return;\n      \
-    \  int m = (l + r) / 2;\n        auto mi = f(m, optl);\n        idx[m] = optl;\n\
-    \        for (int i = optl + 1; i <= optr; ++i) {\n            auto v = f(m, i);\n\
-    \            if (mi > v) {\n                mi = v;\n                idx[m] =\
-    \ i;\n            }\n        }\n        calc(calc, l, m-1, optl, idx[m]);\n  \
-    \      calc(calc, m+1, r, idx[m], optr);\n    };\n\n    calc(calc, 0, n - 1, 0,\
-    \ m - 1);\n    return idx;\n}\n"
+    \ l, int r, int optl,\n                    int optr) -> void {\n        if (l\
+    \ > r) return;\n        int m = std::midpoint(l, r);\n        auto mi = f(m, optl);\n\
+    \        idx[m] = optl;\n        for (int i = optl + 1; i <= optr; ++i) {\n  \
+    \          auto v = f(m, i);\n            if (mi > v) {\n                mi =\
+    \ v;\n                idx[m] = i;\n            }\n        }\n        calc(calc,\
+    \ l, m - 1, optl, idx[m]);\n        calc(calc, m + 1, r, idx[m], optr);\n    };\n\
+    \n    calc(calc, 0, n - 1, 0, m - 1);\n    return idx;\n}\n"
   code: "#pragma once\n#include <vector>\n\ntemplate <typename F>\nstd::vector<int>\
     \ monotone_minima(int n, int m, const F& f) {\n    std::vector<int> idx(n, -1);\n\
-    \n    auto calc = [&](const auto& calc, int l, int r, int optl, int optr) -> void\
-    \ {\n        if (l > r) return;\n        int m = (l + r) / 2;\n        auto mi\
-    \ = f(m, optl);\n        idx[m] = optl;\n        for (int i = optl + 1; i <= optr;\
-    \ ++i) {\n            auto v = f(m, i);\n            if (mi > v) {\n         \
-    \       mi = v;\n                idx[m] = i;\n            }\n        }\n     \
-    \   calc(calc, l, m-1, optl, idx[m]);\n        calc(calc, m+1, r, idx[m], optr);\n\
-    \    };\n\n    calc(calc, 0, n - 1, 0, m - 1);\n    return idx;\n}"
+    \n    auto calc = [&](const auto& calc, int l, int r, int optl,\n            \
+    \        int optr) -> void {\n        if (l > r) return;\n        int m = std::midpoint(l,\
+    \ r);\n        auto mi = f(m, optl);\n        idx[m] = optl;\n        for (int\
+    \ i = optl + 1; i <= optr; ++i) {\n            auto v = f(m, i);\n           \
+    \ if (mi > v) {\n                mi = v;\n                idx[m] = i;\n      \
+    \      }\n        }\n        calc(calc, l, m - 1, optl, idx[m]);\n        calc(calc,\
+    \ m + 1, r, idx[m], optr);\n    };\n\n    calc(calc, 0, n - 1, 0, m - 1);\n  \
+    \  return idx;\n}"
   dependsOn: []
   isVerificationFile: false
-  path: dp/monotone_minima.cpp
+  path: dp/monotone_minima.hpp
   requiredBy: []
-  timestamp: '2021-09-30 02:00:41+09:00'
+  timestamp: '2024-01-08 01:32:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: dp/monotone_minima.cpp
+documentation_of: dp/monotone_minima.hpp
 layout: document
 title: Monotone Minima
 ---

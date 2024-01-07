@@ -9,9 +9,6 @@ data:
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
   - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_arborescence.cpp
-    title: Minimum Spanning Arborescence
-  - icon: ':heavy_check_mark:'
     path: graph/mst.cpp
     title: Minimum Spanning Tree Algorithms
   _extendedVerifiedWith:
@@ -24,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.prim.test.cpp
     title: test/aoj/GRL_2_A.prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/directedmst.test.cpp
-    title: test/yosupo/directedmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
@@ -66,11 +60,9 @@ data:
   - graph/manhattan_mst.hpp
   - graph/mst.cpp
   - graph/junction_tree.hpp
-  - graph/minimum_spanning_arborescence.cpp
   timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/directedmst.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/tree_decomposition_width_2.test.cpp
   - test/yosupo/manhattanmst.test.cpp

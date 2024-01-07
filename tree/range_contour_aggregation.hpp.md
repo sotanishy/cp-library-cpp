@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
     title: data-structure/fenwick_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/centroid_decomposition.hpp
     title: Centroid Decomposition
   _extendedRequiredBy: []

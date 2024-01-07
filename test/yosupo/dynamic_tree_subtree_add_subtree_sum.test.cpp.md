@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/euler_tour_tree.hpp
     title: Euler Tour Tree
   _extendedRequiredBy: []

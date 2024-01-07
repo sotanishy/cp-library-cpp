@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convolution/divisor_zeta_moebius_transform.hpp
       title: "Multiple/Divisor Fast Zeta/M\xF6bius Transform"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convolution/fft.hpp
       title: Fast Fourier Transform
     - icon: ':heavy_check_mark:'
@@ -47,8 +47,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.cpp
       title: k-d Tree
-    - icon: ':heavy_check_mark:'
-      path: data-structure/leftist_heap.cpp
+    - icon: ':warning:'
+      path: data-structure/leftist_heap.hpp
       title: Leftist Heap
     - icon: ':heavy_check_mark:'
       path: data-structure/min_max_heap.hpp
@@ -112,19 +112,19 @@ data:
   - name: data-structure/cht
     pages:
     - icon: ':warning:'
-      path: data-structure/cht/convex_hull_trick.cpp
-      title: Convex Hull Trick
-    - icon: ':heavy_check_mark:'
+      path: data-structure/cht/convex_hull_trick.hpp
+      title: data-structure/cht/convex_hull_trick.hpp
+    - icon: ':x:'
       path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
       title: Convex Hull Trick (Binary Search Tree)
-    - icon: ':heavy_check_mark:'
-      path: data-structure/cht/li_chao_tree.cpp
+    - icon: ':x:'
+      path: data-structure/cht/li_chao_tree.hpp
       title: Li Chao Tree
     - icon: ':warning:'
-      path: data-structure/cht/offline_deletable_convex_hull_trick.cpp
-      title: Offline Deletable Convex Hull Trick
+      path: data-structure/cht/offline_deletable_convex_hull_trick.hpp
+      title: data-structure/cht/offline_deletable_convex_hull_trick.hpp
     - icon: ':warning:'
-      path: data-structure/cht/undoable_li_chao_tree.cpp
+      path: data-structure/cht/undoable_li_chao_tree.hpp
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
@@ -180,30 +180,30 @@ data:
     - icon: ':warning:'
       path: dp/edit_distance.hpp
       title: Edit Distance
-    - icon: ':heavy_check_mark:'
-      path: dp/hu_tucker.cpp
+    - icon: ':warning:'
+      path: dp/hu_tucker.hpp
       title: Hu-Tucker Algorithm
-    - icon: ':heavy_check_mark:'
-      path: dp/largest_rectangle.cpp
+    - icon: ':warning:'
+      path: dp/largest_rectangle.hpp
       title: Largest Rectangle
     - icon: ':warning:'
       path: dp/lcs.hpp
       title: Longest Common Subsequence
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/lis.hpp
       title: Longest Increasing Subsequence
     - icon: ':warning:'
-      path: dp/monotone_minima.cpp
+      path: dp/monotone_minima.hpp
       title: Monotone Minima
     - icon: ':warning:'
-      path: dp/smawk.cpp
+      path: dp/smawk.hpp
       title: SMAWK Algorithm
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
       path: flow/dinic.hpp
       title: Dinic's Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.hpp
       title: Ford-Fulkerson Algorithm
     - icon: ':x:'
@@ -226,25 +226,25 @@ data:
     - icon: ':warning:'
       path: geometry/delaunay_diagram.hpp
       title: Delaunay Diagram
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/dist.hpp
       title: geometry/dist.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
       path: geometry/geometry3d.hpp
       title: 3D Geometry
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersect.hpp
       title: geometry/intersect.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/intersection.hpp
       title: geometry/intersection.hpp
     - icon: ':warning:'
       path: geometry/minimum_bounding_circle.hpp
       title: Minimum Bounding Circle
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/polygon.hpp
       title: geometry/polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -315,7 +315,7 @@ data:
     - icon: ':warning:'
       path: graph/maximum_weight_independent_set.hpp
       title: Maximum Weight Independent Set
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: graph/minimum_spanning_arborescence.cpp
       title: Minimum Spanning Arborescence
     - icon: ':heavy_check_mark:'
@@ -386,7 +386,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/extgcd.cpp
       title: Extended Euclidean Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/factorial.hpp
       title: Factorial
     - icon: ':warning:'
@@ -434,7 +434,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/multipoint_evaluation.cpp
       title: Multipoint Evaluation
     - icon: ':heavy_check_mark:'
@@ -641,13 +641,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.hpp
       title: Cartesian Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: tree/centroid_decomposition.hpp
       title: Centroid Decomposition
     - icon: ':x:'
       path: tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.hpp
       title: Euler Tour Tree
     - icon: ':x:'
@@ -656,7 +656,7 @@ data:
     - icon: ':x:'
       path: tree/lca.hpp
       title: Lowest Common Ancestor
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.hpp
       title: tree/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -683,7 +683,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1208.test.cpp
       title: test/aoj/1208.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1283.test.cpp
       title: test/aoj/1283.test.cpp
     - icon: ':heavy_check_mark:'
@@ -704,7 +704,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2306.test.cpp
       title: test/aoj/2306.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
     - icon: ':heavy_check_mark:'
@@ -740,10 +740,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_A.test.cpp
       title: test/aoj/CGL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -755,7 +755,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_B.test.cpp
       title: test/aoj/CGL_4_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_C.test.cpp
       title: test/aoj/CGL_4_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -785,7 +785,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_I.test.cpp
       title: test/aoj/CGL_7_I.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -842,7 +842,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
       title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     - icon: ':heavy_check_mark:'
@@ -913,7 +913,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/deque_operate_all_composite.test.cpp
       title: test/yosupo/deque_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/directedmst.test.cpp
       title: test/yosupo/directedmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -937,10 +937,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
       title: test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -958,13 +958,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_formal_power_series.test.cpp
       title: test/yosupo/exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/exp_of_set_power_series.test.cpp
       title: test/yosupo/exp_of_set_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/factorial.test.cpp
       title: test/yosupo/factorial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -973,7 +973,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/find_linear_recurrence.test.cpp
       title: test/yosupo/find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
@@ -988,7 +988,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/hafnian_of_matrix.test.cpp
       title: test/yosupo/hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/inv_of_formal_power_series.test.cpp
       title: test/yosupo/inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1009,10 +1009,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/line_add_get_min.cht.test.cpp
       title: test/yosupo/line_add_get_min.cht.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
     - icon: ':x:'
@@ -1021,7 +1021,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/longest_common_substring.test.cpp
       title: test/yosupo/longest_common_substring.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/longest_increasing_subsequence.test.cpp
       title: test/yosupo/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1138,7 +1138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'

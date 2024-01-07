@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/intersection.hpp
     title: geometry/intersection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
     title: geometry/polygon.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
@@ -57,38 +57,39 @@ data:
     \ == 0 && q.real() > 0));\n            if (q == Vec(0, 0))\n                return\
     \ (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n            return (p.real()\
     \ > q.real());\n        }\n        return (cross(p, q) > 0);\n    });\n}\n#line\
-    \ 3 \"geometry/intersect.hpp\"\n\nbool intersect(const Segment& s, const Vec&\
-    \ p) {\n    Vec u = s.p1 - p, v = s.p2 - p;\n    return eq(cross(u, v), 0) &&\
-    \ leq(dot(u, v), 0);\n}\n\n// 0: outside\n// 1: on the border\n// 2: inside\n\
-    int intersect(const Polygon& poly, const Vec& p) {\n    const int n = poly.size();\n\
-    \    bool in = 0;\n    for (int i = 0; i < n; ++i) {\n        auto a = poly[i]\
-    \ - p, b = poly[(i + 1) % n] - p;\n        if (eq(cross(a, b), 0) && (lt(dot(a,\
-    \ b), 0) || eq(dot(a, b), 0)))\n            return 1;\n        if (a.imag() >\
-    \ b.imag()) std::swap(a, b);\n        if (leq(a.imag(), 0) && lt(0, b.imag())\
-    \ && lt(cross(a, b), 0)) in ^= 1;\n    }\n    return in ? 2 : 0;\n}\n\nint intersect(const\
-    \ Segment& s, const Segment& t) {\n    auto a = s.p1, b = s.p2;\n    auto c =\
-    \ t.p1, d = t.p2;\n    if (ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c,\
-    \ d, b)) return 2;\n    if (intersect(s, c) || intersect(s, d) || intersect(t,\
-    \ a) ||\n        intersect(t, b))\n        return 1;\n    return 0;\n}\n\n// true\
-    \ if they have positive area in common or touch on the border\nbool intersect(const\
-    \ Polygon& poly1, const Polygon& poly2) {\n    const int n = poly1.size();\n \
-    \   const int m = poly2.size();\n    for (int i = 0; i < n; ++i) {\n        for\
-    \ (int j = 0; j < m; ++j) {\n            if (intersect(Segment(poly1[i], poly1[(i\
-    \ + 1) % n]),\n                          Segment(poly2[j], poly2[(j + 1) % m])))\
-    \ {\n                return true;\n            }\n        }\n    }\n    return\
-    \ intersect(poly1, poly2[0]) || intersect(poly2, poly1[0]);\n}\n\n// 0: inside\n\
-    // 1: inscribe\n// 2: intersect\n// 3: circumscribe\n// 4: outside\nint intersect(const\
-    \ Circle& c1, const Circle& c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d,\
-    \ std::abs(c2.r - c1.r))) return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return\
-    \ 1;\n    if (eq(c1.r + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return\
-    \ 4;\n    return 2;\n}\n#line 4 \"geometry/dist.hpp\"\n\nT dist(const Line& l,\
-    \ const Vec& p) {\n    return std::abs(cross(p - l.p1, l.dir())) / std::abs(l.dir());\n\
-    }\n\nT dist(const Segment& s, const Vec& p) {\n    if (lt(dot(p - s.p1, s.dir()),\
-    \ 0)) return std::abs(p - s.p1);\n    if (lt(dot(p - s.p2, -s.dir()), 0)) return\
-    \ std::abs(p - s.p2);\n    return std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());\n\
-    }\n\nT dist(const Segment& s, const Segment& t) {\n    if (intersect(s, t)) return\
-    \ T(0);\n    return std::min(\n        {dist(s, t.p1), dist(s, t.p2), dist(t,\
-    \ s.p1), dist(t, s.p2)});\n}\n#line 4 \"geometry/intersection.hpp\"\n\nVec intersection(const\
+    \ 2 \"geometry/polygon.hpp\"\n#include <deque>\n\n#line 3 \"geometry/intersect.hpp\"\
+    \n\nbool intersect(const Segment& s, const Vec& p) {\n    Vec u = s.p1 - p, v\
+    \ = s.p2 - p;\n    return eq(cross(u, v), 0) && leq(dot(u, v), 0);\n}\n\n// 0:\
+    \ outside\n// 1: on the border\n// 2: inside\nint intersect(const Polygon& poly,\
+    \ const Vec& p) {\n    const int n = poly.size();\n    bool in = 0;\n    for (int\
+    \ i = 0; i < n; ++i) {\n        auto a = poly[i] - p, b = poly[(i + 1) % n] -\
+    \ p;\n        if (eq(cross(a, b), 0) && (lt(dot(a, b), 0) || eq(dot(a, b), 0)))\n\
+    \            return 1;\n        if (a.imag() > b.imag()) std::swap(a, b);\n  \
+    \      if (leq(a.imag(), 0) && lt(0, b.imag()) && lt(cross(a, b), 0)) in ^= 1;\n\
+    \    }\n    return in ? 2 : 0;\n}\n\nint intersect(const Segment& s, const Segment&\
+    \ t) {\n    auto a = s.p1, b = s.p2;\n    auto c = t.p1, d = t.p2;\n    if (ccw(a,\
+    \ b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b)) return 2;\n    if (intersect(s,\
+    \ c) || intersect(s, d) || intersect(t, a) ||\n        intersect(t, b))\n    \
+    \    return 1;\n    return 0;\n}\n\n// true if they have positive area in common\
+    \ or touch on the border\nbool intersect(const Polygon& poly1, const Polygon&\
+    \ poly2) {\n    const int n = poly1.size();\n    const int m = poly2.size();\n\
+    \    for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < m; ++j) {\n  \
+    \          if (intersect(Segment(poly1[i], poly1[(i + 1) % n]),\n            \
+    \              Segment(poly2[j], poly2[(j + 1) % m]))) {\n                return\
+    \ true;\n            }\n        }\n    }\n    return intersect(poly1, poly2[0])\
+    \ || intersect(poly2, poly1[0]);\n}\n\n// 0: inside\n// 1: inscribe\n// 2: intersect\n\
+    // 3: circumscribe\n// 4: outside\nint intersect(const Circle& c1, const Circle&\
+    \ c2) {\n    T d = std::abs(c1.c - c2.c);\n    if (lt(d, std::abs(c2.r - c1.r)))\
+    \ return 0;\n    if (eq(d, std::abs(c2.r - c1.r))) return 1;\n    if (eq(c1.r\
+    \ + c2.r, d)) return 3;\n    if (lt(c1.r + c2.r, d)) return 4;\n    return 2;\n\
+    }\n#line 4 \"geometry/dist.hpp\"\n\nT dist(const Line& l, const Vec& p) {\n  \
+    \  return std::abs(cross(p - l.p1, l.dir())) / std::abs(l.dir());\n}\n\nT dist(const\
+    \ Segment& s, const Vec& p) {\n    if (lt(dot(p - s.p1, s.dir()), 0)) return std::abs(p\
+    \ - s.p1);\n    if (lt(dot(p - s.p2, -s.dir()), 0)) return std::abs(p - s.p2);\n\
+    \    return std::abs(cross(p - s.p1, s.dir())) / std::abs(s.dir());\n}\n\nT dist(const\
+    \ Segment& s, const Segment& t) {\n    if (intersect(s, t)) return T(0);\n   \
+    \ return std::min(\n        {dist(s, t.p1), dist(s, t.p2), dist(t, s.p1), dist(t,\
+    \ s.p2)});\n}\n#line 4 \"geometry/intersection.hpp\"\n\nVec intersection(const\
     \ Line& l, const Line& m) {\n    assert(!eq(cross(l.dir(), m.dir()), 0));  //\
     \ not parallel\n    Vec r = m.p1 - l.p1;\n    return l.p1 + cross(m.dir(), r)\
     \ / cross(m.dir(), l.dir()) * l.dir();\n}\n\nstd::vector<Vec> intersection(const\
@@ -111,7 +112,7 @@ data:
     \ * c2.r) / (2 * c1.r * d));\n    ans += c1.r * c1.r * (a - std::sin(a) * std::cos(a));\n\
     \    a = std::acos((c2.r * c2.r + d * d - c1.r * c1.r) / (2 * c2.r * d));\n  \
     \  ans += c2.r * c2.r * (a - std::sin(a) * std::cos(a));\n    return ans;\n}\n\
-    #line 4 \"geometry/polygon.hpp\"\n\nT area(const Polygon& poly) {\n    const int\
+    #line 6 \"geometry/polygon.hpp\"\n\nT area(const Polygon& poly) {\n    const int\
     \ n = poly.size();\n    T res = 0;\n    for (int i = 0; i < n; ++i) {\n      \
     \  res += cross(poly[i], poly[(i + 1) % n]);\n    }\n    return std::abs(res)\
     \ / T(2);\n}\n\nbool is_convex(const Polygon& poly) {\n    int n = poly.size();\n\
@@ -184,8 +185,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 01:08:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 01:32:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_3_A.test.cpp
 layout: document

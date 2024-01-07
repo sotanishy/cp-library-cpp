@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"data-structure/cht/convex_hull_trick.cpp\"\n#include <algorithm>\n\
+  bundledCode: "#line 2 \"data-structure/cht/convex_hull_trick.hpp\"\n#include <algorithm>\n\
     #include <deque>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
     \ T>\nclass ConvexHullTrick {\n   public:\n    void add(T a, T b) {\n        Line\
     \ line(a, b);\n        while (lines.size() >= 2 &&\n               check(*(lines.end()\
@@ -38,33 +38,15 @@ data:
     \  }\n};"
   dependsOn: []
   isVerificationFile: false
-  path: data-structure/cht/convex_hull_trick.cpp
+  path: data-structure/cht/convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2023-06-13 22:58:26+09:00'
+  timestamp: '2024-01-08 01:32:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: data-structure/cht/convex_hull_trick.cpp
+documentation_of: data-structure/cht/convex_hull_trick.hpp
 layout: document
-title: Convex Hull Trick
+redirect_from:
+- /library/data-structure/cht/convex_hull_trick.hpp
+- /library/data-structure/cht/convex_hull_trick.hpp.html
+title: data-structure/cht/convex_hull_trick.hpp
 ---
-
-## Description
-
-Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエリを効率的に行う手法である．
-
-この実装では，追加する直線の傾きが単調非増加である必要がある．傾きに単調性がないときは平衡二分探索木を用いた CHT または Li Chao tree を使用せよ．
-
-空間計算量: $O(n)$
-
-## Operations
-
-- `T add(T a, T b)`
-    - 直線 $ax + b$ を $L$ に追加する
-    - 時間計算量: $\mathrm{amortized}\ O(1)$
-- `T get(T x)`
-    - 与えられた $x$ に対し，$L$ の中で最小値を取る直線の値を求める
-    - 時間計算量: $\mathrm{amortized}\ O(1)$
-
-## Reference
-
-- [Convex-Hull Trick](https://satanic0258.hatenablog.com/entry/2016/08/16/181331)

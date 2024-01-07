@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
     title: Convex Hull Trick (Binary Search Tree)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -17,16 +17,16 @@ data:
   bundledCode: "#line 1 \"test/yosupo/line_add_get_min.cht.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\n\n#line 2 \"data-structure/cht/convex_hull_trick_binsearchtree.hpp\"\
     \n#include <cassert>\n#include <limits>\n#include <set>\n#include <utility>\n\n\
-    template <typename T>\nclass ConvexHullTrick {\npublic:\n\n    void add(T a, T\
-    \ b) {\n        a = -a, b = -b;\n        auto m = lines.insert({a, b, 0});\n \
-    \       auto l = m, r = m;\n        ++r;\n        while (update(m, r)) {\n   \
-    \         r = lines.erase(r);\n        }\n        if (l != lines.begin() && update(--l,\
+    template <typename T>\nclass ConvexHullTrick {\n   public:\n    void add(T a,\
+    \ T b) {\n        a = -a, b = -b;\n        auto m = lines.insert({a, b, 0});\n\
+    \        auto l = m, r = m;\n        ++r;\n        while (update(m, r)) {\n  \
+    \          r = lines.erase(r);\n        }\n        if (l != lines.begin() && update(--l,\
     \ m)) {\n            m = lines.erase(m);\n            update(l, m);\n        }\n\
     \        m = l;\n        while (l != lines.begin() && (--l)->p >= m->p) {\n  \
     \          update(l, lines.erase(m));\n            m = l;\n        }\n    }\n\n\
     \    T get(T x) const {\n        assert(!lines.empty());\n        auto it = *lines.lower_bound(x);\n\
-    \        return -(it.a * x + it.b);\n    }\n\nprivate:\n    struct Line {\n  \
-    \      mutable T a, b;  // ax + b\n        mutable double p;  // intersection\
+    \        return -(it.a * x + it.b);\n    }\n\n   private:\n    struct Line {\n\
+    \        mutable T a, b;    // ax + b\n        mutable double p;  // intersection\
     \ point with the next line\n        bool operator<(const Line& o) const { return\
     \ a < o.a; }\n        bool operator<(T x) const { return p < x; }\n    };\n\n\
     \    using iterator = typename std::multiset<Line, std::less<>>::iterator;\n \
@@ -60,8 +60,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/line_add_get_min.cht.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 13:45:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-08 01:32:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/line_add_get_min.cht.test.cpp
 layout: document

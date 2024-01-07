@@ -6,7 +6,7 @@ data:
     path: tree/range_contour_aggregation.hpp
     title: Range Contour Aggregation
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/centroid_decomposition.hpp\"\n#include <tuple>\n#include\
@@ -56,7 +56,7 @@ data:
   requiredBy:
   - tree/range_contour_aggregation.hpp
   timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/frequency_table_of_tree_distance.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
     title: Convex Hull Trick (Binary Search Tree)
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   bundledCode: "#line 2 \"data-structure/inner_product_search.hpp\"\n#include <algorithm>\n\
     #include <cassert>\n#include <limits>\n\n#line 4 \"data-structure/cht/convex_hull_trick_binsearchtree.hpp\"\
     \n#include <set>\n#include <utility>\n\ntemplate <typename T>\nclass ConvexHullTrick\
-    \ {\npublic:\n\n    void add(T a, T b) {\n        a = -a, b = -b;\n        auto\
+    \ {\n   public:\n    void add(T a, T b) {\n        a = -a, b = -b;\n        auto\
     \ m = lines.insert({a, b, 0});\n        auto l = m, r = m;\n        ++r;\n   \
     \     while (update(m, r)) {\n            r = lines.erase(r);\n        }\n   \
     \     if (l != lines.begin() && update(--l, m)) {\n            m = lines.erase(m);\n\
@@ -23,9 +23,9 @@ data:
     \ && (--l)->p >= m->p) {\n            update(l, lines.erase(m));\n           \
     \ m = l;\n        }\n    }\n\n    T get(T x) const {\n        assert(!lines.empty());\n\
     \        auto it = *lines.lower_bound(x);\n        return -(it.a * x + it.b);\n\
-    \    }\n\nprivate:\n    struct Line {\n        mutable T a, b;  // ax + b\n  \
-    \      mutable double p;  // intersection point with the next line\n        bool\
-    \ operator<(const Line& o) const { return a < o.a; }\n        bool operator<(T\
+    \    }\n\n   private:\n    struct Line {\n        mutable T a, b;    // ax + b\n\
+    \        mutable double p;  // intersection point with the next line\n       \
+    \ bool operator<(const Line& o) const { return a < o.a; }\n        bool operator<(T\
     \ x) const { return p < x; }\n    };\n\n    using iterator = typename std::multiset<Line,\
     \ std::less<>>::iterator;\n    static constexpr double INF = std::numeric_limits<double>::max()\
     \ / 2;\n\n    std::multiset<Line, std::less<>> lines;\n\n    bool update(iterator\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: false
   path: data-structure/inner_product_search.hpp
   requiredBy: []
-  timestamp: '2023-04-08 13:57:59+09:00'
+  timestamp: '2024-01-08 01:32:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/inner_product_search.hpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
     title: test/aoj/GRL_6_A.ford_fulkerson.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/ford_fulkerson.hpp\"\n#include <algorithm>\n#include\
@@ -17,10 +17,10 @@ data:
     \ FordFulkerson(int n) : G(n), used(n) {}\n\n    void add_edge(int u, int v, T\
     \ cap) {\n        G[u].push_back({v, (int)G[v].size(), cap});\n        G[v].push_back({u,\
     \ (int)G[u].size() - 1, 0});\n    }\n\n    T max_flow(int s, int t) {\n      \
-    \  T flow = 0;\n        while (true) {\n            std::ranges::fill(used, false);\n\
-    \            T f = dfs(s, t, INF);\n            if (f == 0) return flow;\n   \
-    \         flow += f;\n        }\n    }\n\n    std::set<int> min_cut(int s) {\n\
-    \        std::stack<int> st;\n        std::set<int> visited;\n        st.push(s);\n\
+    \  T flow = 0;\n        while (true) {\n            std::fill(used.begin(), used.end(),\
+    \ false);\n            T f = dfs(s, t, INF);\n            if (f == 0) return flow;\n\
+    \            flow += f;\n        }\n    }\n\n    std::set<int> min_cut(int s)\
+    \ {\n        std::stack<int> st;\n        std::set<int> visited;\n        st.push(s);\n\
     \        visited.insert(s);\n        while (!st.empty()) {\n            int v\
     \ = st.top();\n            st.pop();\n            for (auto& e : G[v]) {\n   \
     \             if (e.cap > 0 && !visited.count(e.to)) {\n                    visited.insert(e.to);\n\
@@ -40,10 +40,10 @@ data:
     \ : G(n), used(n) {}\n\n    void add_edge(int u, int v, T cap) {\n        G[u].push_back({v,\
     \ (int)G[v].size(), cap});\n        G[v].push_back({u, (int)G[u].size() - 1, 0});\n\
     \    }\n\n    T max_flow(int s, int t) {\n        T flow = 0;\n        while (true)\
-    \ {\n            std::ranges::fill(used, false);\n            T f = dfs(s, t,\
-    \ INF);\n            if (f == 0) return flow;\n            flow += f;\n      \
-    \  }\n    }\n\n    std::set<int> min_cut(int s) {\n        std::stack<int> st;\n\
-    \        std::set<int> visited;\n        st.push(s);\n        visited.insert(s);\n\
+    \ {\n            std::fill(used.begin(), used.end(), false);\n            T f\
+    \ = dfs(s, t, INF);\n            if (f == 0) return flow;\n            flow +=\
+    \ f;\n        }\n    }\n\n    std::set<int> min_cut(int s) {\n        std::stack<int>\
+    \ st;\n        std::set<int> visited;\n        st.push(s);\n        visited.insert(s);\n\
     \        while (!st.empty()) {\n            int v = st.top();\n            st.pop();\n\
     \            for (auto& e : G[v]) {\n                if (e.cap > 0 && !visited.count(e.to))\
     \ {\n                    visited.insert(e.to);\n                    st.push(e.to);\n\
@@ -61,8 +61,8 @@ data:
   isVerificationFile: false
   path: flow/ford_fulkerson.hpp
   requiredBy: []
-  timestamp: '2024-01-08 01:08:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-08 01:32:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_6_A.ford_fulkerson.test.cpp
 documentation_of: flow/ford_fulkerson.hpp

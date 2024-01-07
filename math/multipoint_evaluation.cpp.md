@@ -8,14 +8,14 @@ data:
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
   - icon: ':x:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/factorial.test.cpp
     title: test/yosupo/factorial.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yosupo/polynomial_interpolation.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n\n\
@@ -176,7 +176,7 @@ data:
   - math/lagrange_polynomial.hpp
   - math/factorial.hpp
   timestamp: '2024-01-08 00:27:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/factorial.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp
