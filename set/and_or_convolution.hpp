@@ -2,6 +2,8 @@
 #include <bit>
 #include <vector>
 
+#include "zeta_moebius_transform.hpp"
+
 /**
  * @brief Bitwise AND/OR Convolution
  */

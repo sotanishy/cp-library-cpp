@@ -27,10 +27,10 @@ std::vector<T> subset_convolution(const std::vector<T>& a,
     // convert to polynomials
     std::vector<Poly> pa(n), pb(n);
     for (int i = 0; i < (int)a.size(); ++i) {
-        pa[i][std::popcount(i)] = a[i];
+        pa[i][std::popcount((unsigned int)i)] = a[i];
     }
     for (int i = 0; i < (int)b.size(); ++i) {
-        pb[i][std::popcount(i)] = b[i];
+        pb[i][std::popcount((unsigned int)i)] = b[i];
     }
 
     // bitwise or convolution
@@ -50,7 +50,7 @@ std::vector<T> subset_convolution(const std::vector<T>& a,
     // convert back
     std::vector<T> ret(n);
     for (int i = 0; i < n; ++i) {
-        ret[i] = pa[i][std::popcount(i)];
+        ret[i] = pa[i][std::popcount((unsigned int)i)];
     }
     return ret;
 }

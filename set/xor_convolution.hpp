@@ -2,6 +2,8 @@
 #include <bit>
 #include <vector>
 
+#include "walsh_hadamard_transform.hpp"
+
 /**
  * @brief Bitwise XOR Convolution
  */

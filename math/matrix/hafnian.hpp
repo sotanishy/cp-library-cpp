@@ -2,7 +2,7 @@
 #include <cassert>
 #include <vector>
 
-#include "../set/set_power_series.hpp"
+#include "../../set/set_power_series.hpp"
 
 template <typename T, int N>
 T hafnian(std::vector<std::vector<T>> mat) {
