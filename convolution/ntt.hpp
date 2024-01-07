@@ -9,22 +9,12 @@ constexpr int get_primitive_root(int mod) {
     if (mod == 1224736769) return 3;
 }
 
-template <typename T>
-void bit_reverse(std::vector<T>& a) {
-    int n = a.size();
-    for (int i = 0, j = 1; j < n - 1; ++j) {
-        for (int k = n >> 1; k > (i ^= k); k >>= 1) {
-            if (i < j) std::swap(a[i], a[j]);
-        }
-    }
-}
-
 template <typename mint>
-void ntt(std::vector<mint>& a, bool ordered = false) {
+void ntt(std::vector<mint>& a) {
     constexpr int mod = mint::mod();
     constexpr mint primitive_root = get_primitive_root(mod);
 
-    int n = a.size();
+    const int n = a.size();
     for (int m = n; m > 1; m >>= 1) {
         mint omega = primitive_root.pow((mod - 1) / m);
         for (int s = 0; s < n / m; ++s) {
@@ -38,16 +28,14 @@ void ntt(std::vector<mint>& a, bool ordered = false) {
             }
         }
     }
-    if (ordered) bit_reverse(a);
 }
 
 template <typename mint>
-void intt(std::vector<mint>& a, bool ordered = false) {
+void intt(std::vector<mint>& a) {
     constexpr int mod = mint::mod();
     constexpr mint primitive_root = get_primitive_root(mod);
 
-    if (ordered) bit_reverse(a);
-    int n = a.size();
+    const int n = a.size();
     for (int m = 2; m <= n; m <<= 1) {
         mint omega = primitive_root.pow((mod - 1) / m).inv();
         for (int s = 0; s < n / m; ++s) {
@@ -65,9 +53,8 @@ void intt(std::vector<mint>& a, bool ordered = false) {
 
 template <typename mint>
 std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
-    int size = a.size() + b.size() - 1;
-    int n = 1;
-    while (n < size) n <<= 1;
+    const int size = a.size() + b.size() - 1;
+    const int n = std::bit_ceil(size);
     a.resize(n);
     b.resize(n);
     ntt(a);

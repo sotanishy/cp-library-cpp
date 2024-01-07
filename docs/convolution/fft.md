@@ -11,11 +11,11 @@ documentation_of: ../../convolution/fft.hpp
 
 ## Operations
 
-- `void fft(vector<complex<double>> a, bool ordered)`
-    - 数列 $a$ を高速 Fourier 変換する．`ordered = false` なら並べ替えは行われない．
+- `void fft(vector<complex<double>> a)`
+    - 数列 $a$ を高速 Fourier 変換する
     - 時間計算量: $O(n\log n)$
-- `void ifft(vector<complex<double>> a, bool ordered)`
-    - 数列 $a$ を逆高速 Fourier 変換する．`ordered = false` なら並べ替えは行われない．
+- `void ifft(vector<complex<double>> a)`
+    - 数列 $a$ を逆高速 Fourier 変換する
     - 時間計算量: $O(n\log n)$
 - `vector<double> convolution(vector<T> a, vector<T> b)`
     - 数列 $a$ と $b$ の畳み込みを計算する

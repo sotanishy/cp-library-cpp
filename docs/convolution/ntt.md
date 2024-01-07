@@ -9,11 +9,11 @@ documentation_of: ../../convolution/ntt.hpp
 
 ## Operations
 
-- `void ntt(vector<mint> a, bool ordered)`
-    - 数列 $a$ を数論変換する．`ordered = false` なら並べ替えは行われない．
+- `void ntt(vector<mint> a)`
+    - 数列 $a$ を数論変換する
     - 時間計算量: $O(n\log n)$
-- `void intt(vector<mint> a, bool ordered)`
-    - 数列 $a$ を逆数論変換する．`ordered = false` なら並べ替えは行われない．
+- `void intt(vector<mint> a)`
+    - 数列 $a$ を逆数論変換する
     - 時間計算量: $O(n\log n)$
 - `vector<mint> convolution(vector<mint> a, vector<mint> b)`
     - 数列 $a$ と $b$ の畳み込みを計算する

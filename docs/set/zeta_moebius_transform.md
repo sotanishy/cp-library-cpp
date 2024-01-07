@@ -5,7 +5,7 @@ documentation_of: ../../set/zeta_moebius_transform.hpp
 
 ## Description
 
-下位集合に関する Zeta 変換は，写像 $f$ が与えられたとき，以下を満たす写像 $g$ を得る変換である．Möbius 変換は，zeta 変換の逆変換である (つまり，写像 $g$ が与えられたとき，以下を満たす写像 $f$ を得る変換である)．
+下位集合に関する zeta 変換は，写像 $f$ が与えられたとき，以下を満たす写像 $g$ を得る変換である．Möbius 変換は，zeta 変換の逆変換である (つまり，写像 $g$ が与えられたとき，以下を満たす写像 $f$ を得る変換である)．
 
 $$
 g(S) = \sum_{T \subseteq S} f(T)
@@ -28,11 +28,13 @@ $$
 
 ## Operations
 
-- `void fzt(vector<T> a, bool subset)`
-    - 数列 $a$ を高速 zeta 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる．$a$ の長さが2冪であることを要求する．
+- `void subset_fzt(vector<T> a)`
+- `void superset_fzt(vector<T> a)`
+    - 数列 $a$ を高速 zeta 変換する
     - 時間計算量: $O(n\log n)$
-- `void fmt(vector<T> a, bool subset)`
-    - 数列 $a$ を高速 Möbius 変換する．`subset == true`なら下位集合，`false`なら上位集合をみる．$a$ の長さが2冪であることを要求する．
+- `void subset_fmt(vector<T> a)`
+- `void superset_fmt(vector<T> a)`
+    - 数列 $a$ を高速 Möbius 変換する
     - 時間計算量: $O(n\log n)$
 
 ## Note
@@ -40,8 +42,8 @@ $$
 | 畳み込み | 変換 | 逆変換 |
 | $\max$ | zeta 変換 (累積和，下位) | Möbius 変換 (累積和，下位) |
 | $\min$ | zeta 変換 (累積和，上位) | Möbius 変換 (累積和，上位) |
-| $\gcd$ | zeta 変換 (約数，上位) | Möbius 変換 (約数，上位) |
-| $\mathrm{lcm}$ | zeta 変換 (約数，下位) | Möbius 変換 (約数，下位) |
+| $\gcd$ | zeta 変換 (倍数) | Möbius 変換 (倍数) |
+| $\mathrm{lcm}$ | zeta 変換 (約数) | Möbius 変換 (約数) |
 | $\mathrm{bitwise\ and}$ | zeta 変換 (bit，上位) | Möbius 変換 (bit，上位) |
 | $\mathrm{bitwise\ or}$ | zeta 変換 (bit，下位) | Möbius 変換 (bit，下位) |
 | $\mathrm{bitwise\ xor}$ | Walsh-Hadamard 変換 | 逆 Walsh-Hadamard 変換 |

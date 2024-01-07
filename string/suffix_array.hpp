@@ -8,7 +8,7 @@ template <typename T>
 std::vector<int> suffix_array(const std::vector<T>& s) {
     const int n = s.size();
     std::vector<int> sa(n);
-    std::ranges::iota(sa, 0);
+    std::iota(sa.begin(), sa.end(), 0);
     std::ranges::sort(sa, {}, [&](int i) { return s[i]; });
     int cl = 0;
     std::vector<int> rank(n);
@@ -58,7 +58,7 @@ template <typename T>
 std::vector<int> cyclic_suffix_array(const std::vector<T>& s) {
     const int n = s.size();
     std::vector<int> sa(n);
-    std::ranges::iota(sa, 0);
+    std::iota(sa.begin(), sa.end(), 0);
     std::ranges::sort(sa, {}, [&](int i) { return s[i]; });
     int cl = 0;
     std::vector<int> rank(n);

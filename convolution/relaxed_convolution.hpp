@@ -1,4 +1,5 @@
 #pragma once
+#include <bit>
 #include <vector>
 
 #include "ntt.hpp"
@@ -10,7 +11,7 @@ class RelaxedConvolution {
         f.push_back(a);
         g.push_back(b);
         ++n;
-        int m = 1 << __builtin_ctz(n + 1);
+        int m = 1 << std::countr_zero((unsigned int)n + 1);
         int s = 0, x = 1;
         while (x <= m) {
             calc(n - x, n, s, s + x);
