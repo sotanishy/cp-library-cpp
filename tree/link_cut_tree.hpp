@@ -5,9 +5,9 @@
 
 template <typename M, typename M::T (*flip)(typename M::T)>
 class LinkCutTree {
-    using T = typename M::T;
+    using T = M::T;
 
-public:
+   public:
     LinkCutTree() = default;
     explicit LinkCutTree(int n) {
         for (int i = 0; i < n; ++i) {
@@ -35,9 +35,7 @@ public:
         reverse(vertex[v]);
     }
 
-    T get(int v) const {
-        return vertex[v]->val;
-    }
+    T get(int v) const { return vertex[v]->val; }
 
     void set(int v, const T& x) {
         expose(vertex[v]);
@@ -51,7 +49,7 @@ public:
         return vertex[v]->sum;
     }
 
-private:
+   private:
     struct Node;
     using node_ptr = std::shared_ptr<Node>;
 
@@ -62,8 +60,13 @@ private:
         bool rev;
 
         Node(const T& x)
-            : left(nullptr), right(nullptr), par(nullptr),
-              val(x), sum(x), sz(1), rev(false) {}
+            : left(nullptr),
+              right(nullptr),
+              par(nullptr),
+              val(x),
+              sum(x),
+              sz(1),
+              rev(false) {}
     };
 
     std::vector<node_ptr> vertex;
@@ -81,9 +84,7 @@ private:
 
     // splay tree
 
-    static int size(const node_ptr& t) {
-        return t ? t->sz : 0;
-    }
+    static int size(const node_ptr& t) { return t ? t->sz : 0; }
 
     static void recalc(const node_ptr& t) {
         if (!t) return;
@@ -156,8 +157,10 @@ private:
             if (is_root(p)) {
                 push(p);
                 push(t);
-                if (t == p->left) rotate_right(p);
-                else rotate_left(p);
+                if (t == p->left)
+                    rotate_right(p);
+                else
+                    rotate_left(p);
             } else {
                 auto g = p->par;
                 push(g);

@@ -22,5 +22,5 @@ std::optional<T> majority(const std::vector<T>& v) {
             ++cnt;
         }
     }
-    return cnt > (int) v.size() / 2 ? std::optional<T>(m) : std::nullopt;
+    return cnt > (int)v.size() / 2 ? std::optional<T>(m) : std::nullopt;
 }

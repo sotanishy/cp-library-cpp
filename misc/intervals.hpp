@@ -7,7 +7,7 @@
 
 template <typename X, typename T>
 class Intervals {
-public:
+   public:
     static constexpr X INF = std::numeric_limits<T>::max() / 2;
 
     Intervals(T default_val) : default_val(default_val) {
@@ -58,7 +58,7 @@ public:
 
     void erase(X l, X r) { set(l, r, default_val); }
 
-private:
+   private:
     std::set<std::tuple<X, X, T>> st;
     T default_val;
 };

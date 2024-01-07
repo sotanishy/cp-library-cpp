@@ -3,7 +3,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../tree/euler_tour_tree.cpp"
+#include "../../tree/euler_tour_tree.hpp"
 using namespace std;
 using ll = long long;
 

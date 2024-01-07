@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
-#include <set>
 #include <queue>
+#include <set>
 #include <vector>
 
 // given the ground set E and oracles for M1 and M2
@@ -13,16 +13,16 @@ std::set<int> matroid_intersection(int E, F1 oracle1, F2 oracle2) {
     std::vector<int> dist(E, -1), prv(E, -1);
     std::queue<int> que;
     while (true) {
-        std::fill(is_source.begin(), is_source.end(), false);
-        std::fill(is_sink.begin(), is_sink.end(), false);
-        std::fill(dist.begin(), dist.end(), -1);
-        std::fill(prv.begin(), prv.end(), -1);
+        std::ranges::fill(is_source, false);
+        std::ranges::fill(is_sink, false);
+        std::ranges::fill(dist, -1);
+        std::ranges::fill(prv, -1);
         while (!que.empty()) que.pop();
 
         // check sink and source
         bool upd = false;
         for (int i = 0; i < E; ++i) {
-            if (!S.count(i)) {
+            if (!S.contains(i)) {
                 S.insert(i);
                 is_source[i] = oracle1(S);
                 is_sink[i] = oracle2(S);
@@ -47,7 +47,7 @@ std::set<int> matroid_intersection(int E, F1 oracle1, F2 oracle2) {
             if (is_sink[i]) {
                 // shortest source-sink path found, update S
                 do {
-                    if (S.count(i)) {
+                    if (S.contains(i)) {
                         S.erase(i);
                     } else {
                         S.insert(i);
@@ -57,10 +57,10 @@ std::set<int> matroid_intersection(int E, F1 oracle1, F2 oracle2) {
                 upd = true;
                 break;
             }
-            if (S.count(i)) {
+            if (S.contains(i)) {
                 // i -> j
                 for (int j = 0; j < E; ++j) {
-                    if (dist[j] == -1 && !is_source[j] && !S.count(j)) {
+                    if (dist[j] == -1 && !is_source[j] && !S.contains(j)) {
                         S.erase(i);
                         S.insert(j);
                         if (oracle1(S)) {
@@ -75,7 +75,7 @@ std::set<int> matroid_intersection(int E, F1 oracle1, F2 oracle2) {
             } else {
                 // j <- i
                 for (int j = 0; j < E; ++j) {
-                    if (dist[j] == -1 && S.count(j)) {
+                    if (dist[j] == -1 && S.contains(j)) {
                         S.erase(j);
                         S.insert(i);
                         if (oracle2(S)) {

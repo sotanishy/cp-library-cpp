@@ -1,6 +1,6 @@
 ---
 title: Mo's Algorithm
-documentation_of: ../../misc/mo.cpp
+documentation_of: ../../misc/mo.hpp
 ---
 
 ## Description

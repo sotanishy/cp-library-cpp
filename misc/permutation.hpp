@@ -13,25 +13,25 @@ struct AddMonoid {
     static T op(T a, T b) { return a + b; }
 };
 
-std::vector<int> perm_to_num(const std::vector<int>& P) {
-    int N = P.size();
-    std::vector<int> num(N);
-    FenwickTree<AddMonoid> ft(N);
-    for (int i = N - 1; i >= 0; --i) {
-        ft.update(P[i], 1);
-        num[N - i - 1] = ft.prefix_fold(P[i]);
+std::vector<int> perm_to_num(const std::vector<int>& p) {
+    const int n = p.size();
+    std::vector<int> num(n);
+    FenwickTree<AddMonoid> ft(n);
+    for (int i = n - 1; i >= 0; --i) {
+        ft.update(p[i], 1);
+        num[n - i - 1] = ft.prefix_fold(p[i]);
     }
     return num;
 }
 
 std::vector<int> num_to_perm(const std::vector<int>& num) {
-    int N = num.size();
-    std::vector<int> P(N);
-    FenwickTree<AddMonoid> ft(N);
-    for (int i = 0; i < N; ++i) ft.update(i, 1);
-    for (int i = 0; i < N; ++i) {
-        P[i] = ft.lower_bound(num[N - i - 1] + 1);
-        ft.update(P[i], -1);
+    const int n = num.size();
+    std::vector<int> p(n);
+    FenwickTree<AddMonoid> ft(n);
+    for (int i = 0; i < n; ++i) ft.update(i, 1);
+    for (int i = 0; i < n; ++i) {
+        p[i] = ft.lower_bound(num[n - i - 1] + 1);
+        ft.update(p[i], -1);
     }
-    return P;
+    return p;
 }

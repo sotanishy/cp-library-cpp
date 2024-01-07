@@ -19,20 +19,20 @@ class SumTopK {
     }
 
     void erase(T x) {
-        if (small.find(x) != small.end()) {
+        if (small.contains(x)) {
             small.erase(small.find(x));
             sumsmall -= x;
         } else {
-            assert(big.find(x) != big.end());
+            assert(big.contains(x));
             big.erase(big.find(x));
             sumbig -= x;
         }
         fix();
     }
 
-    T sum_big() { return sumbig; }
+    T sum_big() const { return sumbig; }
 
-    T sum_small() { return sumsmall; }
+    T sum_small() const { return sumsmall; }
 
    private:
     std::multiset<T> small, big;

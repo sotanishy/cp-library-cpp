@@ -3,8 +3,8 @@
 #include <bits/stdc++.h>
 
 #include "../../data-structure/fenwick_tree.hpp"
-#include "../../misc/compress.cpp"
-#include "../../misc/mo.cpp"
+#include "../../misc/compress.hpp"
+#include "../../misc/mo.hpp"
 using namespace std;
 using ll = long long;
 

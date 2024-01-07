@@ -1,4 +1,5 @@
 #pragma once
+#include <bit>
 #include <complex>
 #include <numbers>
 #include <vector>

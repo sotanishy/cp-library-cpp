@@ -1,6 +1,6 @@
 ---
 title: Z Array
-documentation_of: ../../string/z_array.cpp
+documentation_of: ../../string/z_array.hpp
 ---
 
 ## Description

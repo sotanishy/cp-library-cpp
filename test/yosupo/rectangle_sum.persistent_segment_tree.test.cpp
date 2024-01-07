@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../data-structure/segtree/persistent_segment_tree.hpp"
-#include "../../misc/compress.cpp"
+#include "../../misc/compress.hpp"
 using namespace std;
 using ll = long long;
 

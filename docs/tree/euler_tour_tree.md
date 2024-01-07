@@ -1,6 +1,6 @@
 ---
 title: Euler Tour Tree
-documentation_of: ../../tree/euler_tour_tree.cpp
+documentation_of: ../../tree/euler_tour_tree.hpp
 ---
 
 ## Description

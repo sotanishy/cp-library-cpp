@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
-#include "../../data-structure/quadtree.cpp"
-#include "../../misc/compress.cpp"
-
 #include <bits/stdc++.h>
+
+#include "../../data-structure/quadtree.cpp"
+#include "../../misc/compress.hpp"
 using namespace std;
 using ll = long long;
 

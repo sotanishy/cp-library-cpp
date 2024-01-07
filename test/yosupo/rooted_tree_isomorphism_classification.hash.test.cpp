@@ -1,9 +1,10 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification"
-
-#include "../../misc/compress.cpp"
-#include "../../tree/tree_isomorphism.hpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification"
 
 #include <bits/stdc++.h>
+
+#include "../../misc/compress.hpp"
+#include "../../tree/tree_isomorphism.hpp"
 using namespace std;
 
 int main() {

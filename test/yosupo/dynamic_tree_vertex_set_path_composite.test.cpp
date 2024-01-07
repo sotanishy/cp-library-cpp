@@ -1,9 +1,10 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite"
-
-#include "../../math/modint.hpp"
-#include "../../tree/link_cut_tree.cpp"
+#define PROBLEM \
+    "https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite"
 
 #include <bits/stdc++.h>
+
+#include "../../math/modint.hpp"
+#include "../../tree/link_cut_tree.hpp"
 using namespace std;
 
 using mint = Modint<998244353>;
@@ -13,13 +14,18 @@ struct AffineMonoid {
     static constexpr T id = {{1, 0}, {1, 0}};
     static T op(T a, T b) {
         return {
-            {a.first.first * b.first.first, a.first.second * b.first.first + b.first.second},
-            {b.second.first * a.second.first, b.second.second * a.second.first + a.second.second},
+            {a.first.first * b.first.first,
+             a.first.second * b.first.first + b.first.second},
+            {b.second.first * a.second.first,
+             b.second.second * a.second.first + a.second.second},
         };
     }
 };
 
-AffineMonoid::T flip(AffineMonoid::T a) { swap(a.first, a.second); return a; }
+AffineMonoid::T flip(AffineMonoid::T a) {
+    swap(a.first, a.second);
+    return a;
+}
 
 int main() {
     ios_base::sync_with_stdio(false);

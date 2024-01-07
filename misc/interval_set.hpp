@@ -6,7 +6,7 @@
 
 template <typename T>
 class IntervalSet {
-public:
+   public:
     static constexpr T INF = std::numeric_limits<T>::max() / 2;
 
     IntervalSet() {
@@ -83,6 +83,6 @@ public:
         return x;
     }
 
-private:
+   private:
     std::set<std::pair<T, T>> st;
 };

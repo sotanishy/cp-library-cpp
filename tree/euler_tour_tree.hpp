@@ -8,8 +8,8 @@
 template <typename M, typename O,
           typename M::T (*act)(typename M::T, typename O::T)>
 class EulerTourTree {
-    using T = typename M::T;
-    using E = typename O::T;
+    using T = M::T;
+    using E = O::T;
 
    public:
     EulerTourTree() = default;
@@ -29,8 +29,7 @@ class EulerTourTree {
 
     void cut(int u, int v) {
         assert(ptr[u].find(v) != ptr[u].end());
-        node_ptr a, b, c;
-        std::tie(a, b, c) = split(get_node(u, v), get_node(v, u));
+        auto [a, b, c] = split(get_node(u, v), get_node(v, u));
         join(a, c);
         ptr[u].erase(v);
         ptr[v].erase(u);
@@ -166,15 +165,12 @@ class EulerTourTree {
 
     static std::tuple<node_ptr, node_ptr, node_ptr> split(node_ptr s,
                                                           node_ptr t) {
-        node_ptr a, b, c, d;
-        std::tie(a, b) = split2(s);
-        if (same(a, t)) {
-            std::tie(c, d) = split2(t);
+        auto [a, b] = split2(s);
+        auto [c, d] = split2(t);
+        if (same(a, t))
             return {c, d, b};
-        } else {
-            std::tie(c, d) = split2(t);
+        else
             return {a, c, d};
-        }
     }
 
     static void rotate(node_ptr t, bool b) {

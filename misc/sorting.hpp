@@ -37,7 +37,7 @@ void merge_insertion_sort(std::vector<int>& arr, Compare cmp) {
 
     std::map<int, int> idx;
     for (int k = 0; k < n; ++k) {
-        assert(!idx.count(arr[k]));
+        assert(!idx.contains(arr[k]));
         idx[arr[k]] = k;
     }
 
@@ -70,13 +70,12 @@ void merge_insertion_sort(std::vector<int>& arr, Compare cmp) {
             if ((idx[x] ^ 1) < n) {
                 // this takes O(n)
                 // it can be made O(log n) with a Fenwick tree
-                right =
-                    std::find(a.begin(), a.end(), arr[idx[x] ^ 1]) - a.begin();
+                right = std::ranges::find(a, arr[idx[x] ^ 1]) - a.begin();
             }
             // search insertion point
             int lb = -1, ub = right;
             while (ub - lb > 1) {
-                int m = (lb + ub) / 2;
+                int m = std::midpoint(lb, ub);
                 if (cmp(x, a[m]))
                     ub = m;
                 else

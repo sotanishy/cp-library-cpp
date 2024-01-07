@@ -1,12 +1,13 @@
 #pragma once
+#include <cmath>
 #include <unordered_set>
 
 template <typename M, typename S, S (*act)(typename M::T, S)>
 long long discrete_log_monoid_action(typename M::T x, S s, S t, long long N) {
-    using T = typename M::T;
+    using T = M::T;
 
     // baby-step
-    const int m = sqrt(N) + 1;
+    const int m = std::sqrt(N) + 1;
     std::unordered_set<S> babies;
     S baby = t;
     for (int i = 1; i <= m; ++i) {
@@ -26,7 +27,7 @@ long long discrete_log_monoid_action(typename M::T x, S s, S t, long long N) {
     S giant = s;
     bool first = true;
     for (int i = 0; i <= N / m; ++i) {
-        if (babies.count(act(xm, giant))) {
+        if (babies.contains(act(xm, giant))) {
             S u = giant;
             for (int j = 0; j < m; ++j) {
                 if (u == t) {

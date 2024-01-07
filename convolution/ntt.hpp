@@ -1,4 +1,5 @@
 #pragma once
+#include <bit>
 #include <vector>
 
 constexpr int get_primitive_root(int mod) {

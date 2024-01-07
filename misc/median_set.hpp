@@ -6,7 +6,7 @@
  */
 template <typename T>
 class MedianSet {
-public:
+   public:
     void insert(T x) {
         if (x < *right.begin()) {
             left.insert(x);
@@ -33,7 +33,7 @@ public:
         }
     }
 
-private:
+   private:
     std::set<T> left, right;
 
     void balance() {

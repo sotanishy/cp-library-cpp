@@ -10,15 +10,13 @@ class BooleanSquareMatrix {
     using BSMatrix = BooleanSquareMatrix;
     using Matrix = std::array<std::bitset<N>, N>;
 
-public:
+   public:
     void set(int r, int c) {
         rmat[r].set(c);
         cmat[c].set(r);
     }
 
-    bool get(int r, int c) {
-        return rmat[r][c];
-    }
+    bool get(int r, int c) { return rmat[r][c]; }
 
     BSMatrix matmul(const BSMatrix& B) const {
         BSMatrix res;
@@ -44,7 +42,6 @@ public:
         return ret;
     }
 
-
-private:
+   private:
     Matrix rmat, cmat;
 };

@@ -14,4 +14,4 @@ documentation_of: ../../misc/majority.hpp
 ## Reference
 
 - [Boyer–Moore majority vote algorithm - Wikipedia](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm)
-- verify: [https://atcoder.jp/contests/abc272/submissions/35557503]
+- verify: [https://atcoder.jp/contests/abc272/submissions/35557503](https://atcoder.jp/contests/abc272/submissions/35557503)
