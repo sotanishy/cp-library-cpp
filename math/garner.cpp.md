@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/extgcd.cpp
     title: Extended Euclidean Algorithm
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution_mod_1000000007.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/garner.cpp\"\n#include <vector>\n#line 2 \"math/extgcd.cpp\"\
@@ -47,7 +47,7 @@ data:
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2022-03-20 20:27:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution_mod_1000000007.test.cpp
 documentation_of: math/garner.cpp

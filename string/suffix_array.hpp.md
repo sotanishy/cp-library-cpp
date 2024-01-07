@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: Longest Common Substring
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/longest_common_substring.test.cpp
     title: test/yosupo/longest_common_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_of_substrings.test.cpp
     title: test/yosupo/number_of_substrings.test.cpp
   - icon: ':x:'
@@ -17,13 +17,58 @@ data:
     title: test/yosupo/suffixarray.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n#include <algorithm>\n#include\
     \ <numeric>\n#include <string>\n#include <vector>\n\ntemplate <typename T>\nstd::vector<int>\
     \ suffix_array(const std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int>\
-    \ sa(n);\n    std::ranges::iota(sa, 0);\n    std::ranges::sort(sa, {}, [&](int\
+    \ sa(n);\n    std::iota(sa.begin(), sa.end(), 0);\n    std::ranges::sort(sa, {},\
+    \ [&](int i) { return s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n\
+    \    for (int i = 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n\
+    \        rank[sa[i]] = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n\
+    \    for (int k = 1; k < n; k <<= 1) {\n        // sort by second half\n     \
+    \   int cnt1 = 0, cnt2 = k;\n        for (int i = 0; i < n; ++i) {\n         \
+    \   int j = sa[i] - k;\n            if (j >= 0)\n                tmp[cnt2++] =\
+    \ j;\n            else\n                tmp[cnt1++] = j + n;\n        }\n\n  \
+    \      // sort by first half\n        std::ranges::fill(cnt, 0);\n        for\
+    \ (int i = 0; i < n; ++i) ++cnt[rank[tmp[i]]];\n        for (int i = 1; i < n;\
+    \ ++i) cnt[i] += cnt[i - 1];\n        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]]\
+    \ = tmp[i];\n\n        // assign new rank\n        nrank[sa[0]] = 0;\n       \
+    \ cl = 0;\n        for (int i = 1; i < n; ++i) {\n            if (rank[sa[i -\
+    \ 1]] != rank[sa[i]] ||\n                (sa[i - 1] + k < n ? rank[sa[i - 1] +\
+    \ k] : -1) !=\n                    (sa[i] + k < n ? rank[sa[i] + k] : -1)) {\n\
+    \                ++cl;\n            }\n            nrank[sa[i]] = cl;\n      \
+    \  }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
+    \ suffix_array(const std::string& s) {\n    return suffix_array(std::vector<char>(s.begin(),\
+    \ s.end()));\n}\n\ntemplate <typename T>\nstd::vector<int> cyclic_suffix_array(const\
+    \ std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int> sa(n);\n\
+    \    std::iota(sa.begin(), sa.end(), 0);\n    std::ranges::sort(sa, {}, [&](int\
+    \ i) { return s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n    for\
+    \ (int i = 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n   \
+    \     rank[sa[i]] = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n\
+    \    for (int k = 1; k < n; k <<= 1) {\n        // sort by second half\n     \
+    \   int cnt1 = 0, cnt2 = k;\n        for (int i = 0; i < n; ++i) {\n         \
+    \   int j = sa[i] - k;\n            if (j >= 0)\n                tmp[cnt2++] =\
+    \ j;\n            else\n                tmp[cnt1++] = j + n;\n        }\n\n  \
+    \      // sort by first half\n        std::ranges::fill(cnt, 0);\n        for\
+    \ (int i = 0; i < n; ++i) ++cnt[rank[tmp[i]]];\n        for (int i = 1; i < n;\
+    \ ++i) cnt[i] += cnt[i - 1];\n        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]]\
+    \ = tmp[i];\n\n        // assign new rank\n        nrank[sa[0]] = 0;\n       \
+    \ cl = 0;\n        for (int i = 1; i < n; ++i) {\n            if (rank[sa[i -\
+    \ 1]] != rank[sa[i]] ||\n                rank[(sa[i - 1] + k) % n] != rank[(sa[i]\
+    \ + k) % n]) {\n                ++cl;\n            }\n            nrank[sa[i]]\
+    \ = cl;\n        }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
+    \ cyclic_suffix_array(const std::string& s) {\n    return cyclic_suffix_array(std::vector<char>(s.begin(),\
+    \ s.end()));\n}\n\n/*\n// comparator for substrings\n// used for string matching\
+    \ with the suffix array\n\nauto cmp = [&](int si, const string& t) {\n    int\
+    \ sn = S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn;\
+    \ ++si, ++ti) {\n        if (T[si] < t[ti]) return true;\n        if (T[si] >\
+    \ t[ti]) return false;\n    }\n    return si == sn && ti < tn;\n};\n*/\n"
+  code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <string>\n\
+    #include <vector>\n\ntemplate <typename T>\nstd::vector<int> suffix_array(const\
+    \ std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int> sa(n);\n\
+    \    std::iota(sa.begin(), sa.end(), 0);\n    std::ranges::sort(sa, {}, [&](int\
     \ i) { return s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n    for\
     \ (int i = 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n   \
     \     rank[sa[i]] = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n\
@@ -43,62 +88,17 @@ data:
     \ suffix_array(const std::string& s) {\n    return suffix_array(std::vector<char>(s.begin(),\
     \ s.end()));\n}\n\ntemplate <typename T>\nstd::vector<int> cyclic_suffix_array(const\
     \ std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int> sa(n);\n\
-    \    std::ranges::iota(sa, 0);\n    std::ranges::sort(sa, {}, [&](int i) { return\
-    \ s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n    for (int i =\
-    \ 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n        rank[sa[i]]\
-    \ = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n    for (int k\
-    \ = 1; k < n; k <<= 1) {\n        // sort by second half\n        int cnt1 = 0,\
-    \ cnt2 = k;\n        for (int i = 0; i < n; ++i) {\n            int j = sa[i]\
-    \ - k;\n            if (j >= 0)\n                tmp[cnt2++] = j;\n          \
-    \  else\n                tmp[cnt1++] = j + n;\n        }\n\n        // sort by\
-    \ first half\n        std::ranges::fill(cnt, 0);\n        for (int i = 0; i <\
-    \ n; ++i) ++cnt[rank[tmp[i]]];\n        for (int i = 1; i < n; ++i) cnt[i] +=\
-    \ cnt[i - 1];\n        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]]\
-    \ = tmp[i];\n\n        // assign new rank\n        nrank[sa[0]] = 0;\n       \
-    \ cl = 0;\n        for (int i = 1; i < n; ++i) {\n            if (rank[sa[i -\
-    \ 1]] != rank[sa[i]] ||\n                rank[(sa[i - 1] + k) % n] != rank[(sa[i]\
-    \ + k) % n]) {\n                ++cl;\n            }\n            nrank[sa[i]]\
-    \ = cl;\n        }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
-    \ cyclic_suffix_array(const std::string& s) {\n    return cyclic_suffix_array(std::vector<char>(s.begin(),\
-    \ s.end()));\n}\n\n/*\n// comparator for substrings\n// used for string matching\
-    \ with the suffix array\n\nauto cmp = [&](int si, const string& t) {\n    int\
-    \ sn = S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn;\
-    \ ++si, ++ti) {\n        if (T[si] < t[ti]) return true;\n        if (T[si] >\
-    \ t[ti]) return false;\n    }\n    return si == sn && ti < tn;\n};\n*/\n"
-  code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <string>\n\
-    #include <vector>\n\ntemplate <typename T>\nstd::vector<int> suffix_array(const\
-    \ std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int> sa(n);\n\
-    \    std::ranges::iota(sa, 0);\n    std::ranges::sort(sa, {}, [&](int i) { return\
-    \ s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n    for (int i =\
-    \ 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n        rank[sa[i]]\
-    \ = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n    for (int k\
-    \ = 1; k < n; k <<= 1) {\n        // sort by second half\n        int cnt1 = 0,\
-    \ cnt2 = k;\n        for (int i = 0; i < n; ++i) {\n            int j = sa[i]\
-    \ - k;\n            if (j >= 0)\n                tmp[cnt2++] = j;\n          \
-    \  else\n                tmp[cnt1++] = j + n;\n        }\n\n        // sort by\
-    \ first half\n        std::ranges::fill(cnt, 0);\n        for (int i = 0; i <\
-    \ n; ++i) ++cnt[rank[tmp[i]]];\n        for (int i = 1; i < n; ++i) cnt[i] +=\
-    \ cnt[i - 1];\n        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]]\
-    \ = tmp[i];\n\n        // assign new rank\n        nrank[sa[0]] = 0;\n       \
-    \ cl = 0;\n        for (int i = 1; i < n; ++i) {\n            if (rank[sa[i -\
-    \ 1]] != rank[sa[i]] ||\n                (sa[i - 1] + k < n ? rank[sa[i - 1] +\
-    \ k] : -1) !=\n                    (sa[i] + k < n ? rank[sa[i] + k] : -1)) {\n\
-    \                ++cl;\n            }\n            nrank[sa[i]] = cl;\n      \
-    \  }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
-    \ suffix_array(const std::string& s) {\n    return suffix_array(std::vector<char>(s.begin(),\
-    \ s.end()));\n}\n\ntemplate <typename T>\nstd::vector<int> cyclic_suffix_array(const\
-    \ std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int> sa(n);\n\
-    \    std::ranges::iota(sa, 0);\n    std::ranges::sort(sa, {}, [&](int i) { return\
-    \ s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n    for (int i =\
-    \ 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n        rank[sa[i]]\
-    \ = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n    for (int k\
-    \ = 1; k < n; k <<= 1) {\n        // sort by second half\n        int cnt1 = 0,\
-    \ cnt2 = k;\n        for (int i = 0; i < n; ++i) {\n            int j = sa[i]\
-    \ - k;\n            if (j >= 0)\n                tmp[cnt2++] = j;\n          \
-    \  else\n                tmp[cnt1++] = j + n;\n        }\n\n        // sort by\
-    \ first half\n        std::ranges::fill(cnt, 0);\n        for (int i = 0; i <\
-    \ n; ++i) ++cnt[rank[tmp[i]]];\n        for (int i = 1; i < n; ++i) cnt[i] +=\
-    \ cnt[i - 1];\n        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]]\
+    \    std::iota(sa.begin(), sa.end(), 0);\n    std::ranges::sort(sa, {}, [&](int\
+    \ i) { return s[i]; });\n    int cl = 0;\n    std::vector<int> rank(n);\n    for\
+    \ (int i = 1; i < n; ++i) {\n        if (s[sa[i - 1]] != s[sa[i]]) ++cl;\n   \
+    \     rank[sa[i]] = cl;\n    }\n    std::vector<int> tmp(n), nrank(n), cnt(n);\n\
+    \    for (int k = 1; k < n; k <<= 1) {\n        // sort by second half\n     \
+    \   int cnt1 = 0, cnt2 = k;\n        for (int i = 0; i < n; ++i) {\n         \
+    \   int j = sa[i] - k;\n            if (j >= 0)\n                tmp[cnt2++] =\
+    \ j;\n            else\n                tmp[cnt1++] = j + n;\n        }\n\n  \
+    \      // sort by first half\n        std::ranges::fill(cnt, 0);\n        for\
+    \ (int i = 0; i < n; ++i) ++cnt[rank[tmp[i]]];\n        for (int i = 1; i < n;\
+    \ ++i) cnt[i] += cnt[i - 1];\n        for (int i = n - 1; i >= 0; --i) sa[--cnt[rank[tmp[i]]]]\
     \ = tmp[i];\n\n        // assign new rank\n        nrank[sa[0]] = 0;\n       \
     \ cl = 0;\n        for (int i = 1; i < n; ++i) {\n            if (rank[sa[i -\
     \ 1]] != rank[sa[i]] ||\n                rank[(sa[i - 1] + k) % n] != rank[(sa[i]\
@@ -115,8 +115,8 @@ data:
   path: string/suffix_array.hpp
   requiredBy:
   - string/longest_common_substring.hpp
-  timestamp: '2024-01-07 22:05:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-07 22:37:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/suffixarray.test.cpp
   - test/yosupo/longest_common_substring.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convolution/fft.hpp
     title: Fast Fourier Transform
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/centroid_decomposition.hpp
     title: Centroid Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -34,34 +34,31 @@ data:
     \ = k;\n        sz_comp[s] = n;\n        par[s] = p;\n        for (int c : G[s])\
     \ {\n            if (level[c] == -1) decompose(decompose, c, k + 1, s);\n    \
     \    }\n    };\n\n    decompose(decompose, 0, 0, -1);\n    return {level, sz_comp,\
-    \ par};\n}\n#line 2 \"convolution/fft.hpp\"\n#include <complex>\n#line 4 \"convolution/fft.hpp\"\
-    \n\nconstexpr double PI = 3.14159265358979323846;\n\ntemplate <typename T>\nvoid\
-    \ bit_reverse(std::vector<T>& a) {\n    int n = a.size();\n    for (int i = 0,\
-    \ j = 1; j < n - 1; ++j) {\n        for (int k = n >> 1; k > (i ^= k); k >>= 1);\n\
-    \        if (i < j) std::swap(a[i], a[j]);\n    }\n}\n\nvoid fft(std::vector<std::complex<double>>&\
-    \ a, bool ordered = false) {\n    int n = a.size();\n    for (int m = n; m > 1;\
-    \ m >>= 1) {\n        double ang = 2.0 * PI / m;\n        std::complex<double>\
+    \ par};\n}\n#line 2 \"convolution/fft.hpp\"\n#include <complex>\n#include <numbers>\n\
+    #line 5 \"convolution/fft.hpp\"\n\nvoid fft(std::vector<std::complex<double>>&\
+    \ a) {\n    const int n = a.size();\n    for (int m = n; m > 1; m >>= 1) {\n \
+    \       double ang = 2.0 * std::numbers::pi / m;\n        std::complex<double>\
     \ omega(cos(ang), sin(ang));\n        for (int s = 0; s < n / m; ++s) {\n    \
     \        std::complex<double> w(1, 0);\n            for (int i = 0; i < m / 2;\
     \ ++i) {\n                auto l = a[s * m + i];\n                auto r = a[s\
     \ * m + i + m / 2];\n                a[s * m + i] = l + r;\n                a[s\
     \ * m + i + m / 2] = (l - r) * w;\n                w *= omega;\n            }\n\
-    \        }\n    }\n    if (ordered) bit_reverse(a);\n}\n\nvoid ifft(std::vector<std::complex<double>>&\
-    \ a, bool ordered = false) {\n    if (ordered) bit_reverse(a);\n    int n = a.size();\n\
-    \    for (int m = 2; m <= n; m <<= 1) {\n        double ang = -2.0 * PI / m;\n\
-    \        std::complex<double> omega(cos(ang), sin(ang));\n        for (int s =\
-    \ 0; s < n / m; ++s) {\n            std::complex<double> w(1, 0);\n          \
-    \  for (int i = 0; i < m / 2; ++i) {\n                auto l = a[s * m + i];\n\
-    \                auto r = a[s * m + i + m / 2] * w;\n                a[s * m +\
-    \ i] = l + r;\n                a[s * m + i + m / 2] = l - r;\n               \
-    \ w *= omega;\n            }\n        }\n    }\n}\n\ntemplate <typename T>\nstd::vector<double>\
-    \ convolution(const std::vector<T>& a, const std::vector<T>& b) {\n    int size\
-    \ = a.size() + b.size() - 1;\n    int n = 1;\n    while (n < size) n <<= 1;\n\
-    \    std::vector<std::complex<double>> na(a.begin(), a.end()), nb(b.begin(), b.end());\n\
-    \    na.resize(n);\n    nb.resize(n);\n    fft(na);\n    fft(nb);\n    for (int\
-    \ i = 0; i < n; ++i) na[i] *= nb[i];\n    ifft(na);\n    std::vector<double> ret(size);\n\
-    \    for (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;\n    return ret;\n\
-    }\n#line 5 \"test/yosupo/frequency_table_of_tree_distance.test.cpp\"\n\n#include\
+    \        }\n    }\n}\n\nvoid ifft(std::vector<std::complex<double>>& a) {\n  \
+    \  const int n = a.size();\n    for (int m = 2; m <= n; m <<= 1) {\n        double\
+    \ ang = -2.0 * std::numbers::pi / m;\n        std::complex<double> omega(cos(ang),\
+    \ sin(ang));\n        for (int s = 0; s < n / m; ++s) {\n            std::complex<double>\
+    \ w(1, 0);\n            for (int i = 0; i < m / 2; ++i) {\n                auto\
+    \ l = a[s * m + i];\n                auto r = a[s * m + i + m / 2] * w;\n    \
+    \            a[s * m + i] = l + r;\n                a[s * m + i + m / 2] = l -\
+    \ r;\n                w *= omega;\n            }\n        }\n    }\n}\n\ntemplate\
+    \ <typename T>\nstd::vector<double> convolution(const std::vector<T>& a,\n   \
+    \                             const std::vector<T>& b) {\n    const int size =\
+    \ a.size() + b.size() - 1;\n    const int n = std::bit_ceil(size);\n    std::vector<std::complex<double>>\
+    \ na(a.begin(), a.end()),\n        nb(b.begin(), b.end());\n    na.resize(n);\n\
+    \    nb.resize(n);\n    fft(na);\n    fft(nb);\n    for (int i = 0; i < n; ++i)\
+    \ na[i] *= nb[i];\n    ifft(na);\n    std::vector<double> ret(size);\n    for\
+    \ (int i = 0; i < size; ++i) ret[i] = na[i].real() / n;\n    return ret;\n}\n\
+    #line 5 \"test/yosupo/frequency_table_of_tree_distance.test.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n#define rep(i,\
     \ s, t) for (int i = (int)(s); i < (int)(t); ++i)\n#define revrep(i, t, s) for\
     \ (int i = (int)(t)-1; i >= (int)(s); --i)\n#define all(x) begin(x), end(x)\n\
@@ -124,8 +121,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-09-02 12:26:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-07 22:37:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/frequency_table_of_tree_distance.test.cpp
 layout: document

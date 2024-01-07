@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree_2d.hpp
     title: 2D Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
   - icon: ':heavy_check_mark:'
@@ -18,10 +18,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/point_set_range_sort_range_composite.test.cpp
   - icon: ':x:'

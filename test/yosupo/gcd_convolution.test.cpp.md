@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: convolution/divisor_zeta_moebius_transform.hpp
+    title: "Multiple/Divisor Fast Zeta/M\xF6bius Transform"
+  - icon: ':heavy_check_mark:'
     path: convolution/gcd_lcm_convolution.hpp
-    title: "GCD/LCM Convolution (Divisor Fast Zeta/M\xF6bius Transform)"
+    title: GCD/LCM Convolution
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
@@ -48,28 +51,32 @@ data:
     \ operator>>(std::istream& is, mint& r) {\n        long long t;\n        is >>\
     \ t;\n        r = mint(t);\n        return is;\n    }\n\n   private:\n    int\
     \ x;\n};\n#line 2 \"convolution/gcd_lcm_convolution.hpp\"\n#include <vector>\n\
-    \ntemplate <typename T>\nvoid divisor_fzt(std::vector<T>& a, bool subset) {\n\
-    \    int n = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p\
-    \ = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset) {\n\
-    \            for (int k = 1; k * p < n; ++k) {\n                sieve[k * p] =\
-    \ false;\n                a[k * p] += a[k];\n            }\n        } else {\n\
-    \            for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k\
-    \ * p] = false;\n                a[k] += a[k * p];\n            }\n        }\n\
-    \    }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>& a, bool subset)\
-    \ {\n    int n = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int\
-    \ p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        if (subset)\
-    \ {\n            for (int k = (n - 1) / p; k > 0; --k) {\n                sieve[k\
-    \ * p] = false;\n                a[k * p] -= a[k];\n            }\n        } else\
-    \ {\n            for (int k = 1; k * p < n; ++k) {\n                sieve[k *\
-    \ p] = false;\n                a[k] -= a[k * p];\n            }\n        }\n \
-    \   }\n}\n\ntemplate <typename T>\nstd::vector<T> gcd_convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
-    \    b.resize(n);\n    divisor_fzt(a, false);\n    divisor_fzt(b, false);\n  \
-    \  for (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, false);\n   \
-    \ return a;\n}\n\ntemplate <typename T>\nstd::vector<T> lcm_convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = std::max(a.size(), b.size());\n    a.resize(n);\n\
-    \    b.resize(n);\n    divisor_fzt(a, true);\n    divisor_fzt(b, true);\n    for\
-    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a, true);\n    return\
+    \n#line 3 \"convolution/divisor_zeta_moebius_transform.hpp\"\n\ntemplate <typename\
+    \ T>\nvoid divisor_fzt(std::vector<T>& a) {\n    const int n = a.size();\n   \
+    \ std::vector<bool> sieve(n, true);\n    for (int p = 2; p < n; ++p) {\n     \
+    \   if (!sieve[p]) continue;\n        for (int k = 1; k * p < n; ++k) {\n    \
+    \        sieve[k * p] = false;\n            a[k * p] += a[k];\n        }\n   \
+    \ }\n}\n\ntemplate <typename T>\nvoid divisor_fmt(std::vector<T>& a) {\n    const\
+    \ int n = a.size();\n    std::vector<bool> sieve(n, true);\n    for (int p = 2;\
+    \ p < n; ++p) {\n        if (!sieve[p]) continue;\n        for (int k = (n - 1)\
+    \ / p; k > 0; --k) {\n            sieve[k * p] = false;\n            a[k * p]\
+    \ -= a[k];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid multiple_fzt(std::vector<T>&\
+    \ a) {\n    const int n = a.size();\n    std::vector<bool> sieve(n, true);\n \
+    \   for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n        for\
+    \ (int k = (n - 1) / p; k > 0; --k) {\n            sieve[k * p] = false;\n   \
+    \         a[k] += a[k * p];\n        }\n    }\n}\n\ntemplate <typename T>\nvoid\
+    \ multiple_fmt(std::vector<T>& a) {\n    const int n = a.size();\n    std::vector<bool>\
+    \ sieve(n, true);\n    for (int p = 2; p < n; ++p) {\n        if (!sieve[p]) continue;\n\
+    \        for (int k = 1; k * p < n; ++k) {\n            sieve[k * p] = false;\n\
+    \            a[k] -= a[k * p];\n        }\n    }\n}\n#line 5 \"convolution/gcd_lcm_convolution.hpp\"\
+    \n\n/**\n * @brief GCD/LCM Convolution\n */\n\ntemplate <typename T>\nstd::vector<T>\
+    \ gcd_convolution(std::vector<T> a, std::vector<T> b) {\n    const int n = std::max(a.size(),\
+    \ b.size());\n    a.resize(n);\n    b.resize(n);\n    multiple_fzt(a);\n    multiple_fzt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    multiple_fmt(a);\n    return\
+    \ a;\n}\n\ntemplate <typename T>\nstd::vector<T> lcm_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    const int n = std::max(a.size(), b.size());\n  \
+    \  a.resize(n);\n    b.resize(n);\n    divisor_fzt(a);\n    divisor_fzt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    divisor_fmt(a);\n    return\
     \ a;\n}\n#line 5 \"test/yosupo/gcd_convolution.test.cpp\"\n\n\n#include <bits/stdc++.h>\n\
     using namespace std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\
     \nint main() {\n    int N;\n    cin >> N;\n    vector<mint> a(N+1), b(N+1);\n\
@@ -87,10 +94,11 @@ data:
   dependsOn:
   - math/modint.hpp
   - convolution/gcd_lcm_convolution.hpp
+  - convolution/divisor_zeta_moebius_transform.hpp
   isVerificationFile: true
   path: test/yosupo/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-07 22:37:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/gcd_convolution.test.cpp
