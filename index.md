@@ -113,7 +113,7 @@ data:
     pages:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.hpp
-      title: data-structure/cht/convex_hull_trick.hpp
+      title: Convex Hull Trick
     - icon: ':heavy_check_mark:'
       path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
       title: Convex Hull Trick (Binary Search Tree)
@@ -122,7 +122,7 @@ data:
       title: Li Chao Tree
     - icon: ':warning:'
       path: data-structure/cht/offline_deletable_convex_hull_trick.hpp
-      title: data-structure/cht/offline_deletable_convex_hull_trick.hpp
+      title: Offline Deletable Convex Hull Trick
     - icon: ':warning:'
       path: data-structure/cht/undoable_li_chao_tree.hpp
       title: Undoable Li Chao Tree
@@ -279,7 +279,7 @@ data:
     - icon: ':warning:'
       path: graph/dm_decomposition.hpp
       title: Dulmage-Mendelsohn Decomposition
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.hpp
       title: Dominator Tree
     - icon: ':heavy_check_mark:'
@@ -329,7 +329,7 @@ data:
       title: Pseudotree Cycle
     - icon: ':warning:'
       path: graph/range_edge_graph.hpp
-      title: graph/range_edge_graph.hpp
+      title: Range Edge Graph
     - icon: ':x:'
       path: graph/scc.hpp
       title: Strongly Connected Components
@@ -481,7 +481,7 @@ data:
     - icon: ':question:'
       path: math/linalg/matrix.hpp
       title: Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/linalg/square_matrix.hpp
       title: Square Matrix
     - icon: ':x:'
@@ -913,7 +913,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/division_of_polynomials.test.cpp
       title: test/yosupo/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dominatortree.test.cpp
       title: test/yosupo/dominatortree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1072,13 +1072,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_formal_power_series.test.cpp
       title: test/yosupo/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_matrix.test.cpp
       title: test/yosupo/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'

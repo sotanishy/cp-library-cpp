@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/square_matrix.hpp
     title: Square Matrix
   - icon: ':x:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_matrix.test.cpp
     title: test/yosupo/pow_of_matrix.test.cpp
   - icon: ':x:'

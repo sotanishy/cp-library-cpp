@@ -118,12 +118,12 @@ data:
     \                    }\n                    st.update(k, {x + y, i});\n      \
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
-    \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, edges]\
+    \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
     \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
-    \    std::ranges::transform(edges, ret.begin(), [&](auto& e) {\n        auto [u,\
-    \ v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n}\n\
-    #line 6 \"test/yosupo/manhattanmst.test.cpp\"\n\nusing namespace std;\nusing ll\
-    \ = long long;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<pair<long\
+    \    std::ranges::transform(mst_edges, ret.begin(), [&](auto& e) {\n        auto\
+    \ [u, v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n\
+    }\n#line 6 \"test/yosupo/manhattanmst.test.cpp\"\n\nusing namespace std;\nusing\
+    \ ll = long long;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<pair<long\
     \ long, long long>> pts(N);\n    for (auto& x : pts) cin >> x.first >> x.second;\n\
     \    auto [weight, edges] = manhattan_mst(pts);\n    cout << weight << endl;\n\
     \    for (auto [u, v] : edges) {\n        cout << u << \" \" << v << \"\\n\";\n\
@@ -143,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 13:32:33+09:00'
+  timestamp: '2024-01-08 15:10:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/manhattanmst.test.cpp

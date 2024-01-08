@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/linalg/matrix.hpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/square_matrix.hpp
     title: Square Matrix
   - icon: ':question:'

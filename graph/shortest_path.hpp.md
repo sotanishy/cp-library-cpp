@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/range_edge_graph.hpp
-    title: graph/range_edge_graph.hpp
+    title: Range Edge Graph
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A.test.cpp

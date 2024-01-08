@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: data-structure/cht/offline_deletable_convex_hull_trick.hpp
-    title: data-structure/cht/offline_deletable_convex_hull_trick.hpp
+    title: Offline Deletable Convex Hull Trick
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp

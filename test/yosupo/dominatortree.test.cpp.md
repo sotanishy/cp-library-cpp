@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: Dominator Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dominatortree
@@ -42,9 +42,9 @@ data:
     \  }\n        bucket[par[w]].clear();\n        unite(par[w], w);\n    }\n\n  \
     \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = sdom[s];\n\
     \    for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n      \
-    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    std::ranges::transform(idom,\
-    \ idom.begin(), [&](int i) { return vs[i]; });\n    return idom;\n}\n#line 4 \"\
-    test/yosupo/dominatortree.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
+    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v\
+    \ : vs) {\n        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}\n#line 4\
+    \ \"test/yosupo/dominatortree.test.cpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, M, S;\n    cin >> N >> M >> S;\n    vector<vector<int>>\
     \ G(N);\n    for (int i = 0; i < M; ++i) {\n        int a, b;\n        cin >>\
@@ -64,8 +64,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dominatortree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 15:10:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dominatortree.test.cpp
 layout: document

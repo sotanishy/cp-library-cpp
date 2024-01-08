@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dominatortree.test.cpp
     title: test/yosupo/dominatortree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/dominator_tree.hpp\"\n#include <algorithm>\n#include\
@@ -37,8 +37,8 @@ data:
     \  }\n        bucket[par[w]].clear();\n        unite(par[w], w);\n    }\n\n  \
     \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = sdom[s];\n\
     \    for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n      \
-    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    std::ranges::transform(idom,\
-    \ idom.begin(), [&](int i) { return vs[i]; });\n    return idom;\n}\n"
+    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v\
+    \ : vs) {\n        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <vector>\n\
     \nstd::vector<int> dominator_tree(const std::vector<std::vector<int>>& G, int\
     \ s) {\n    const int n = G.size();\n\n    // label nodes with the arrival times\
@@ -65,14 +65,14 @@ data:
     \  }\n        bucket[par[w]].clear();\n        unite(par[w], w);\n    }\n\n  \
     \  // calculate idom\n    std::vector<int> idom(n, -1);\n    idom[s] = sdom[s];\n\
     \    for (int i = 1; i < k; ++i) {\n        int w = vs[i], u = us[w];\n      \
-    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    std::ranges::transform(idom,\
-    \ idom.begin(), [&](int i) { return vs[i]; });\n    return idom;\n}"
+    \  idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);\n    }\n    for (int v\
+    \ : vs) {\n        idom[v] = vs[idom[v]];\n    }\n    return idom;\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/dominator_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-08 15:10:29+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dominatortree.test.cpp
 documentation_of: graph/dominator_tree.hpp

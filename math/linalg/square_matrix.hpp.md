@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_det.test.cpp
     title: test/yosupo/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_matrix.test.cpp
     title: test/yosupo/pow_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/linalg/square_matrix.hpp\"\n#include <algorithm>\n\
@@ -132,7 +132,7 @@ data:
   requiredBy:
   - math/linalg/characteristic_polynomial.hpp
   timestamp: '2024-01-07 21:12:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/characteristic_polynomial.test.cpp
   - test/yosupo/inverse_matrix.test.cpp
