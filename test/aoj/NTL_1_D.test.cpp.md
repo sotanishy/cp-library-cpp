@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/euler_totient.hpp
     title: Euler's Totient Function
   _extendedRequiredBy: []

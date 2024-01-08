@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/kth_root.hpp
-    title: k-th Root
+    title: Integer Kth Root
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -16,8 +16,8 @@ data:
     - https://judge.yosupo.jp/problem/kth_root_integer
   bundledCode: "#line 1 \"test/yosupo/kth_root_integer.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/kth_root_integer\"\n\n#line 2 \"math/number-theory/kth_root.hpp\"\
-    \n#include <cassert>\n#include <cmath>\n\n/**\n * @brief k-th Root\n */\nunsigned\
-    \ long long kth_root(unsigned long long x, int k) {\n    using ull = unsigned\
+    \n#include <cassert>\n#include <cmath>\n\n/**\n * @brief Integer Kth Root\n */\n\
+    unsigned long long kth_root(unsigned long long x, int k) {\n    using ull = unsigned\
     \ long long;\n    assert(k >= 1);\n    if (x <= 1 || k == 1) return x;\n    auto\
     \ check = [&](ull a) {\n        ull y = x;\n        int e = k;\n        while\
     \ (e) {\n            if (e & 1) {\n                if (a == 0) return false;\n\
@@ -41,8 +41,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 17:31:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 19:16:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/kth_root_integer.test.cpp
 layout: document

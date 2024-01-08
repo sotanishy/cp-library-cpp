@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/hafnian.hpp
     title: Hafnian
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'
     path: math/set/set_power_series.hpp
     title: Set Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/set/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/set/zeta_moebius_transform.hpp
     title: math/set/zeta_moebius_transform.hpp
   _extendedRequiredBy: []

@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/factorize.test.cpp
     title: test/yosupo/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/primality_test.test.cpp
     title: test/yosupo/primality_test.test.cpp
   - icon: ':x:'

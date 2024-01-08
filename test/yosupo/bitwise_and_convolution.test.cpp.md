@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'
     path: math/set/and_or_convolution.hpp
     title: Bitwise AND/OR Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/set/zeta_moebius_transform.hpp
     title: math/set/zeta_moebius_transform.hpp
   _extendedRequiredBy: []

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/euler_totient.hpp
     title: Euler's Totient Function
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/mod_arithmetic.hpp
     title: Modular Arithmetic
   _extendedRequiredBy: []

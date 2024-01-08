@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/set/set_power_series.hpp
     title: Set Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/set/subset_convolution.hpp
     title: Subset Convolution
   _extendedVerifiedWith:
@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/set/zeta_moebius_transform.hpp\"\n#include <bit>\n\
@@ -72,7 +72,7 @@ data:
   - math/set/subset_convolution.hpp
   - math/set/and_or_convolution.hpp
   timestamp: '2024-01-08 17:31:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/exp_of_set_power_series.test.cpp
   - test/yosupo/hafnian_of_matrix.test.cpp

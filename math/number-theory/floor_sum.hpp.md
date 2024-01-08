@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/sum_of_floor_of_linear.test.cpp
+    title: test/yosupo/sum_of_floor_of_linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/number-theory/floor_sum.hpp\"\n\nlong long floor_sum(long\
@@ -27,8 +30,9 @@ data:
   path: math/number-theory/floor_sum.hpp
   requiredBy: []
   timestamp: '2024-01-08 17:31:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/sum_of_floor_of_linear.test.cpp
 documentation_of: math/number-theory/floor_sum.hpp
 layout: document
 title: Sum of Floor of Linear

@@ -6,9 +6,9 @@ data:
     title: Fast Prime Number Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
@@ -73,7 +73,7 @@ data:
   path: test/yosupo/primality_test.test.cpp
   requiredBy: []
   timestamp: '2024-01-08 17:31:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/primality_test.test.cpp
 layout: document

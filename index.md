@@ -395,7 +395,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -450,7 +450,7 @@ data:
     - icon: ':warning:'
       path: math/number-theory/divisor.hpp
       title: Divisor
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/euler_totient.hpp
       title: Euler's Totient Function
     - icon: ':heavy_check_mark:'
@@ -462,7 +462,7 @@ data:
     - icon: ':question:'
       path: math/number-theory/fast_prime.hpp
       title: Fast Prime Number Algorithms
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/floor_sum.hpp
       title: Sum of Floor of Linear
     - icon: ':heavy_check_mark:'
@@ -471,15 +471,15 @@ data:
     - icon: ':warning:'
       path: math/number-theory/isqrt.hpp
       title: Integer Square Root
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/kth_root.hpp
-      title: k-th Root
-    - icon: ':question:'
+      title: Integer Kth Root
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/mod_arithmetic.hpp
       title: Modular Arithmetic
     - icon: ':warning:'
       path: math/number-theory/moebius.hpp
-      title: math/number-theory/moebius.hpp
+      title: "M\xF6bius Function"
     - icon: ':heavy_check_mark:'
       path: math/number-theory/prime.hpp
       title: Prime Number Algorithms
@@ -503,10 +503,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/set/set_power_series.hpp
       title: Set Power Series
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/set/subset_convolution.hpp
       title: Subset Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/set/zeta_moebius_transform.hpp
       title: math/set/zeta_moebius_transform.hpp
   - name: misc
@@ -990,7 +990,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/jump_on_tree.test.cpp
       title: test/yosupo/jump_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1083,7 +1083,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_matrix.test.cpp
       title: test/yosupo/pow_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
     - icon: ':x:'
@@ -1143,7 +1143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1164,22 +1164,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/subset_convolution.test.cpp
       title: test/yosupo/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_totient_function.test.cpp
       title: test/yosupo/sum_of_totient_function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tetration_mod.test.cpp
       title: test/yosupo/tetration_mod.test.cpp
     - icon: ':heavy_check_mark:'
