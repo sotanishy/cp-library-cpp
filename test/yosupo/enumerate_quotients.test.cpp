@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/quotients.hpp"
+#include "../../math/number-theory/quotients.hpp"
 using namespace std;
 
 int main() {

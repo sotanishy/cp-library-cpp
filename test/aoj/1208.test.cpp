@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1208"
 
-#include "../../math/stern_brocot_tree.hpp"
+#include "../../math/number-theory/stern_brocot_tree.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

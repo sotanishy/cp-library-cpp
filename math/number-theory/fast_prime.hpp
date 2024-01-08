@@ -9,34 +9,41 @@ namespace fast_prime {
 class LargeModint {
     using mint = LargeModint;
 
-public:
-    static long long& get_mod() noexcept {
+   public:
+    static long long& get_mod() {
         static long long mod = 1;
         return mod;
     }
 
-    static void set_mod(long long mod) {
-        get_mod() = mod;
+    static void set_mod(long long mod) { get_mod() = mod; }
+
+    LargeModint(long long y = 0)
+        : x(y >= 0 ? y % get_mod() : (y % get_mod() + get_mod()) % get_mod()) {}
+
+    long long val() const { return x; }
+
+    mint& operator+=(const mint& r) {
+        if ((x += r.x) >= get_mod()) x -= get_mod();
+        return *this;
+    }
+    mint& operator-=(const mint& r) {
+        if ((x += get_mod() - r.x) >= get_mod()) x -= get_mod();
+        return *this;
+    }
+    mint& operator*=(const mint& r) {
+        x = static_cast<long long>((__int128_t)x * r.x % get_mod());
+        return *this;
     }
 
-    LargeModint(long long y = 0) noexcept : x(y >= 0 ? y % get_mod() : (y % get_mod() + get_mod()) % get_mod()) {}
+    mint operator-() const { return mint(-x); }
 
-    long long value() const noexcept { return x; }
+    mint operator+(const mint& r) const { return mint(*this) += r; }
+    mint operator-(const mint& r) const { return mint(*this) -= r; }
+    mint operator*(const mint& r) const { return mint(*this) *= r; }
 
-    mint& operator+=(const mint& r) noexcept { if ((x += r.x) >= get_mod()) x -= get_mod(); return *this; }
-    mint& operator-=(const mint& r) noexcept { if ((x += get_mod() - r.x) >= get_mod()) x -= get_mod(); return *this; }
-    mint& operator*=(const mint& r) noexcept { x = static_cast<long long>((__int128_t) x * r.x % get_mod()); return *this; }
+    bool operator==(const mint& r) const { return x == r.x; }
 
-    mint operator-() const noexcept { return mint(-x); }
-
-    mint operator+(const mint& r) const noexcept { return mint(*this) += r; }
-    mint operator-(const mint& r) const noexcept { return mint(*this) -= r; }
-    mint operator*(const mint& r) const noexcept { return mint(*this) *= r; }
-
-    bool operator==(const mint& r) const noexcept { return x == r.x; }
-    bool operator!=(const mint& r) const noexcept { return x != r.x; }
-
-    mint pow(long long n) const noexcept {
+    mint pow(long long n) const {
         mint ret(1), mul(x);
         while (n > 0) {
             if (n & 1) ret *= mul;
@@ -46,7 +53,7 @@ public:
         return ret;
     }
 
-private:
+   private:
     long long x;
 };
 
@@ -99,7 +106,7 @@ long long pollards_rho(long long n) {
             x = x * x + c;
             y = y * y + c;
             y = y * y + c;
-            d = std::gcd((x - y).value(), n);
+            d = std::gcd((x - y).val(), n);
         }
         if (d < n) return d;
     }
@@ -111,8 +118,8 @@ std::vector<long long> prime_factor(long long n) {
     if (p == n) return {p};
     auto l = prime_factor(p);
     auto r = prime_factor(n / p);
-    std::copy(r.begin(), r.end(), std::back_inserter(l));
+    std::ranges::copy(r, std::back_inserter(l));
     return l;
 }
 
-} // namespace fast_prime
+}  // namespace fast_prime

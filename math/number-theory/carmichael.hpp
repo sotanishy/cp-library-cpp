@@ -1,7 +1,8 @@
 #pragma once
 #include <cmath>
 #include <numeric>
-#include "prime.cpp"
+
+#include "prime.hpp"
 
 long long carmichael(long long n) {
     long long ret = 1;

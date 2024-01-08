@@ -1,6 +1,6 @@
 ---
 title: Fast Prime Number Algorithms
-documentation_of: ../../math/fast_prime.cpp
+documentation_of: ../../../math/number-theory/fast_prime.hpp
 ---
 
 ## Description

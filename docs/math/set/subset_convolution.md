@@ -1,6 +1,6 @@
 ---
 title: Subset Convolution
-documentation_of: ../../set/subset_convolution.hpp
+documentation_of: ../../../math/set/subset_convolution.hpp
 ---
 
 ## Description

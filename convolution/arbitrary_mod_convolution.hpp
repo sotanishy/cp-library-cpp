@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "../math/garner.cpp"
+#include "../math/number-theory/garner.hpp"
 #include "../math/modint.hpp"
 #include "ntt.hpp"
 

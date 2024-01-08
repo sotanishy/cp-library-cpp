@@ -1,8 +1,10 @@
 #pragma once
+#include <vector>
 #include <cmath>
 #include <numeric>
 #include <unordered_map>
-#include "euler_totient.cpp"
+
+#include "euler_totient.hpp"
 
 /*
  * Modular Exponentiation
@@ -17,9 +19,7 @@ long long mod_pow(long long a, long long e, int mod) {
     return ret;
 }
 
-long long mod_inv(long long a, int mod) {
-    return mod_pow(a, mod - 2, mod);
-}
+long long mod_inv(long long a, int mod) { return mod_pow(a, mod - 2, mod); }
 
 /*
  * Discrete Logarithm
@@ -39,7 +39,7 @@ int mod_log(long long a, long long b, int mod) {
     }
 
     // baby-step
-    const int m = sqrt(mod) + 1;
+    const int m = std::sqrt(mod) + 1;
     std::unordered_map<long long, int> baby_index;
     long long baby = b;
     for (int i = 0; i <= m; ++i) {
@@ -53,7 +53,7 @@ int mod_log(long long a, long long b, int mod) {
     long long giant = k;
     for (int i = 1; i <= m; ++i) {
         giant = giant * am % mod;
-        if (baby_index.count(giant)) {
+        if (baby_index.contains(giant)) {
             return i * m - baby_index[giant] + add;
         }
     }

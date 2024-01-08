@@ -1,6 +1,6 @@
 ---
 title: Prime Number Algorithms
-documentation_of: ../../math/prime.cpp
+documentation_of: ../../../math/number-theory/prime.hpp
 ---
 
 ## Description

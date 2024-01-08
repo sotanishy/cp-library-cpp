@@ -1,6 +1,6 @@
 ---
 title: Primitive Root
-documentation_of: ../../math/primitive_root.hpp
+documentation_of: ../../../math/number-theory/primitive_root.hpp
 ---
 
 ## Description

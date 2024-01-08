@@ -1,6 +1,6 @@
 ---
 title: Divisor
-documentation_of: ../../math/divisor.cpp
+documentation_of: ../../../math/number-theory/divisor.hpp
 ---
 
 ## Description

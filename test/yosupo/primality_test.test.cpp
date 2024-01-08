@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../math/fast_prime.cpp"
+#include "../../math/number-theory/fast_prime.hpp"
 using namespace std;
 using ll = long long;
 

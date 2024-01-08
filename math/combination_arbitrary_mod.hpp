@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-#include "prime.cpp"
+
+#include "number-theory/prime.hpp"
 
 template <typename mint>
 std::vector<mint> combination_arbitrary_modint(int n) {
@@ -17,7 +18,7 @@ std::vector<mint> combination_arbitrary_modint(int n) {
     }
 
     int l = 0;
-    std::vector<int> maxfact(n+1, -1);
+    std::vector<int> maxfact(n + 1, -1);
     std::vector<int> ps;
     for (int p : prime) {
         if (m % p == 0) {
@@ -33,13 +34,13 @@ std::vector<mint> combination_arbitrary_modint(int n) {
     for (int i = 0; i < l; ++i) {
         pow[i].resize(n / (ps[i] - 1) + 1);
         pow[i][0] = 1;
-        for (int j = 1; j < (int) pow[i].size(); ++j) {
-            pow[i][j] = pow[i][j-1] * ps[i];
+        for (int j = 1; j < (int)pow[i].size(); ++j) {
+            pow[i][j] = pow[i][j - 1] * ps[i];
         }
     }
 
     // calculate comb
-    std::vector<mint> comb(n+1);
+    std::vector<mint> comb(n + 1);
     comb[0] = 1;
     mint s = 1;
     std::vector<int> t(l);

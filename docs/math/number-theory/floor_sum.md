@@ -1,6 +1,6 @@
 ---
 title: Sum of Floor of Linear
-documentation_of: ../../math/floor_sum.cpp
+documentation_of: ../../../math/number-theory/floor_sum.hpp
 ---
 
 ## Description

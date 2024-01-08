@@ -1,6 +1,6 @@
 ---
 title: Carmichael Function
-documentation_of: ../../math/carmichael.cpp
+documentation_of: ../../../math/number-theory/carmichael.hpp
 ---
 
 ## Description

@@ -3,7 +3,7 @@
 #include <vector>
 
 long long prime_count(long long n) {
-    int s = (int) std::sqrt(n);
+    int s = (int)std::sqrt(n);
     std::vector<long long> small(n / s + 1), large(s + 1);
     for (int i = 1; i <= n / s; ++i) small[i] = i - 1;
     for (int i = 1; i <= s; ++i) large[i] = n / i - 1;

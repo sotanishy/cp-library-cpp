@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 
-#include "../../math/primitive_root.hpp"
+#include "../../math/number-theory/primitive_root.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

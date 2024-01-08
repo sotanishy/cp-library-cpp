@@ -1,6 +1,6 @@
 ---
 title: Garner's Algorithm
-documentation_of: ../../math/garner.cpp
+documentation_of: ../../../math/number-theory/garner.hpp
 ---
 
 ## Description

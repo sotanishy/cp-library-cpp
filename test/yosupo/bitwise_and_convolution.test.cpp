@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../math/modint.hpp"
-#include "../../set/and_or_convolution.hpp"
+#include "../../math/set/and_or_convolution.hpp"
 using namespace std;
 using ll = long long;
 

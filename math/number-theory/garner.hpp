@@ -1,10 +1,12 @@
 #pragma once
 #include <vector>
-#include "extgcd.cpp"
 
-long long garner(const std::vector<long long>& b, std::vector<long long> m, long long mod) {
+#include "extgcd.hpp"
+
+long long garner(const std::vector<long long>& b, std::vector<long long> m,
+                 long long mod) {
     m.push_back(mod);
-    int n = m.size();
+    const int n = m.size();
     std::vector<long long> coeffs(n, 1);
     std::vector<long long> consts(n, 0);
     for (int k = 0; k < n - 1; ++k) {

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
 
-#include "../../math/prime_count.hpp"
+#include "../../math/number-theory/prime_count.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,6 +1,7 @@
 #pragma once
 #include <random>
-#include "fast_prime.cpp"
+
+#include "fast_prime.hpp"
 
 long long primitive_root(long long p) {
     auto prime = fast_prime::prime_factor(p - 1);

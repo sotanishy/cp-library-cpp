@@ -1,6 +1,6 @@
 ---
 title: Fast Walsh-Hadamard Transform
-documentation_of: ../../set/walsh_hadamard_transform.hpp
+documentation_of: ../../convolution/walsh_hadamard_transform.hpp
 ---
 
 ## Description

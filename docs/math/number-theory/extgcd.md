@@ -1,6 +1,6 @@
 ---
 title: Extended Euclidean Algorithm
-documentation_of: ../../math/extgcd.cpp
+documentation_of: ../../../math/number-theory/extgcd.hpp
 ---
 
 ## Description

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
-#include "../../math/fast_prime.cpp"
+#include "../../math/number-theory/fast_prime.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

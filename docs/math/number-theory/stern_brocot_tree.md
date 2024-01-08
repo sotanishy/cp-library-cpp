@@ -1,6 +1,6 @@
 ---
 title: Stern-Brocot Tree
-documentation_of: ../../math/stern_brocot_tree.hpp
+documentation_of: ../../../math/number-theory/stern_brocot_tree.hpp
 ---
 
 ## Description

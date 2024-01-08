@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
 
-#include "../../math/kth_root.hpp"
+#include "../../math/number-theory/kth_root.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

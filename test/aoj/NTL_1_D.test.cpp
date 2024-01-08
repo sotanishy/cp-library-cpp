@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D"
 
-#include "../../math/euler_totient.cpp"
+#include "../../math/number-theory/euler_totient.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

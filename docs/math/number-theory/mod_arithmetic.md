@@ -1,6 +1,6 @@
 ---
 title: Modular Arithmetic
-documentation_of: ../../math/mod_arithmetic.cpp
+documentation_of: ../../../math/number-theory/mod_arithmetic.hpp
 ---
 
 ## Description

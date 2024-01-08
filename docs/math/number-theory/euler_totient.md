@@ -1,6 +1,6 @@
 ---
 title: Euler's Totient Function
-documentation_of: ../../math/euler_totient.cpp
+documentation_of: ../../../math/number-theory/euler_totient.hpp
 ---
 
 ## Description

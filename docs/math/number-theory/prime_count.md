@@ -1,6 +1,6 @@
 ---
 title: Prime Counting Function
-documentation_of: ../../math/prime_count.hpp
+documentation_of: ../../../math/number-theory/prime_count.hpp
 ---
 
 ## Description

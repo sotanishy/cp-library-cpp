@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../../math/modint.hpp"
-#include "../../set/xor_convolution.hpp"
+#include "../../convolution/xor_convolution.hpp"
 using namespace std;
 using ll = long long;
 
