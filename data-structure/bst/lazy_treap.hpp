@@ -53,8 +53,7 @@ class LazyTreap {
 
     void insert(int k, const T& x) {
         auto s = split(std::move(root), k);
-        root = join(join(std::move(s.first), std::make_unique<Node>(x)),
-                    std::move(s.second));
+        root = join(join(std::move(s.first), new Node(x)), std::move(s.second));
     }
 
     void erase(int k) {
@@ -63,13 +62,9 @@ class LazyTreap {
         root = join(std::move(p.first), std::move(q.second));
     }
 
-    void push_front(const T& x) {
-        root = join(std::make_unique<Node>(x), std::move(root));
-    }
+    void push_front(const T& x) { root = join(new Node(x), std::move(root)); }
 
-    void push_back(const T& x) {
-        root = join(std::move(root), std::make_unique<Node>(x));
-    }
+    void push_back(const T& x) { root = join(std::move(root), new Node(x)); }
 
     void pop_front() { root = split(std::move(root), 1).second; }
 
@@ -81,7 +76,7 @@ class LazyTreap {
 
    private:
     struct Node;
-    using node_ptr = std::unique_ptr<Node>;
+    using node_ptr = Node*;
 
     static unsigned int rand() {
         static std::random_device rd;

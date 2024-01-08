@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <numeric>
 #include <vector>
 
 template <typename T>
@@ -28,7 +29,7 @@ class KDTree {
     std::vector<Point> points;
 
     int check_position(const Point& p, const Point& s, const Point& t,
-                       int axis) const {
+                       bool axis) const {
         if (axis == 0) {
             if (p.x < s.x) return -1;
             if (t.x < p.x) return 1;
@@ -40,26 +41,26 @@ class KDTree {
         }
     }
 
-    void build(int l, int r, int axis) {
+    void build(int l, int r, bool axis) {
         if (l > r) return;
         std::ranges::sort(points.begin() + l, points.begin() + r + 1, {},
                           [&](auto& p) { return axis == 0 ? p.x : p.y; });
         int m = std::midpoint(l, r);
-        build(l, m - 1, 1 - axis);
-        build(m + 1, r, 1 - axis);
+        build(l, m - 1, axis ^ 1);
+        build(m + 1, r, axis ^ 1);
     }
 
     void search(const Point& s, const Point& t, std::vector<int>& res, int l,
-                int r, int axis) const {
+                int r, bool axis) const {
         if (l > r) return;
-        int m = (l + r) / 2;
+        int m = std::midpoint(l, r);
         bool contained = true;
         for (int i = 0; i < 2; i++)
             contained &= check_position(points[m], s, t, i) == 0;
         if (contained) res.push_back(points[m].id);
         if (l == r) return;
         int pos = check_position(points[m], s, t, axis);
-        if (pos != -1) search(s, t, res, l, m - 1, 1 - axis);
-        if (pos != 1) search(s, t, res, m + 1, r, 1 - axis);
+        if (pos != -1) search(s, t, res, l, m - 1, axis ^ 1);
+        if (pos != 1) search(s, t, res, m + 1, r, axis ^ 1);
     }
 };
