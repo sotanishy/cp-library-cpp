@@ -19,7 +19,7 @@ class Compress {
     }
 
     std::vector<int> compress(const std::vector<T>& vs) const {
-        std::vector<int> res;
+        std::vector<int> res(vs.size());
         std::ranges::transform(vs, res.begin(),
                                [&](const T& x) { return compress(x); });
         return res;
