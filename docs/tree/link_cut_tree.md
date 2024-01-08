@@ -1,6 +1,6 @@
 ---
 title: Link/Cut Tree
-documentation_of: ../../tree/link_cut_tree.cpp
+documentation_of: ../../tree/link_cut_tree.hpp
 ---
 
 ## Description

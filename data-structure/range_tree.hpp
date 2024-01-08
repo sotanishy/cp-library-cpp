@@ -43,21 +43,21 @@ class RangeTree {
         int l = std::ranges::lower_bound(xs, sx) - xs.begin();
         int r = std::ranges::lower_bound(xs, tx) - xs.begin();
         T ret = 0;
-        auto cmp = [&](const std::pair<Y, T>& p, Y y) { return p.first < y; };
+        auto proj = [&](const auto& p) { return p.first; };
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
-                int hi = std::ranges::lower_bound(node[l], ty, cmp) -
+                int hi = std::ranges::lower_bound(node[l], ty, {}, proj) -
                          node[l].begin();
-                int lo = std::ranges::lower_bound(node[l], sy, cmp) -
+                int lo = std::ranges::lower_bound(node[l], sy, {}, proj) -
                          node[l].begin();
                 ret += sum[l][hi] - sum[l][lo];
                 ++l;
             }
             if (r & 1) {
                 --r;
-                int hi = std::ranges::lower_bound(node[r], ty, cmp) -
+                int hi = std::ranges::lower_bound(node[r], ty, {}, proj) -
                          node[r].begin();
-                int lo = std::ranges::lower_bound(node[r], sy, cmp) -
+                int lo = std::ranges::lower_bound(node[r], sy, {}, proj) -
                          node[r].begin();
                 ret += sum[r][hi] - sum[r][lo];
             }

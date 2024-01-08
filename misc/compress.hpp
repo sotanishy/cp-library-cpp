@@ -18,10 +18,11 @@ class Compress {
         return std::ranges::lower_bound(xs, x) - xs.begin();
     }
 
-    std::vector<int> compress(std::vector<T> vs) const {
-        std::ranges::transform(vs, vs.begin(),
+    std::vector<int> compress(const std::vector<T>& vs) const {
+        std::vector<int> res;
+        std::ranges::transform(vs, res.begin(),
                                [&](const T& x) { return compress(x); });
-        return vs;
+        return res;
     }
 
     T decompress(int i) const { return xs[i]; }
