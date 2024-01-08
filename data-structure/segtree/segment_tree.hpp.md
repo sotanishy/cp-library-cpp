@@ -8,11 +8,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'

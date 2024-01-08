@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/enumerate_cliques.test.cpp
     title: test/yosupo/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/enumerate_triangles.test.cpp
     title: test/yosupo/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'

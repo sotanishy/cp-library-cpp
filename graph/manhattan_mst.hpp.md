@@ -7,20 +7,17 @@ data:
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
-    path: graph/edge.cpp
-    title: graph/edge.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/mst.cpp
+  - icon: ':question:'
+    path: graph/mst.hpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/manhattan_mst.hpp\"\n#include <algorithm>\n#include\
@@ -57,11 +54,8 @@ data:
     \ r = 2 * r;\n                        }\n                    }\n             \
     \       return r - size;\n                }\n                v = nv;\n       \
     \     }\n        }\n        return -1;\n    }\n\n   private:\n    int size;\n\
-    \    std::vector<T> node;\n};\n#line 2 \"graph/edge.cpp\"\n\ntemplate <typename\
-    \ T>\nstruct Edge {\n    int from, to;\n    T weight;\n    Edge() = default;\n\
-    \    Edge(int to, T weight) : from(-1), to(to), weight(weight) {}\n    Edge(int\
-    \ from, int to, T weight) : from(from), to(to), weight(weight) {}\n};\n#line 3\
-    \ \"graph/mst.cpp\"\n#include <queue>\n#include <utility>\n#line 4 \"data-structure/unionfind/union_find.hpp\"\
+    \    std::vector<T> node;\n};\n#line 3 \"graph/mst.hpp\"\n#include <queue>\n#include\
+    \ <utility>\n#line 6 \"graph/mst.hpp\"\n\n#line 4 \"data-structure/unionfind/union_find.hpp\"\
     \n\nclass UnionFind {\n   public:\n    UnionFind() = default;\n    explicit UnionFind(int\
     \ n) : data(n, -1) {}\n\n    int find(int x) {\n        if (data[x] < 0) return\
     \ x;\n        return data[x] = find(data[x]);\n    }\n\n    void unite(int x,\
@@ -69,98 +63,99 @@ data:
     \        if (data[x] > data[y]) std::swap(x, y);\n        data[x] += data[y];\n\
     \        data[y] = x;\n    }\n\n    bool same(int x, int y) { return find(x) ==\
     \ find(y); }\n\n    int size(int x) { return -data[find(x)]; }\n\n   private:\n\
-    \    std::vector<int> data;\n};\n#line 8 \"graph/mst.cpp\"\n\n/*\n * Kruskal's\
-    \ Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>> kruskal(std::vector<Edge<T>>\
-    \ G, int V) {\n    std::sort(G.begin(), G.end(), [](const auto& e1, const auto&\
-    \ e2) {\n        return e1.weight < e2.weight;\n    });\n    UnionFind uf(V);\n\
-    \    T weight = 0;\n    std::vector<Edge<T>> edges;\n    for (auto& e : G) {\n\
-    \        if (!uf.same(e.from, e.to)) {\n            uf.unite(e.from, e.to);\n\
-    \            weight += e.weight;\n            edges.push_back(e);\n        }\n\
-    \    }\n    return {weight, edges};\n}\n\n/*\n * Prim's Algorithm\n */\ntemplate\
-    \ <typename T>\nstd::pair<T, std::vector<Edge<T>>> prim(const std::vector<std::vector<Edge<T>>>&\
-    \ G) {\n    std::vector<bool> used(G.size());\n    auto cmp = [](const auto& e1,\
-    \ const auto& e2) { return e1.weight > e2.weight; };\n    std::priority_queue<Edge<T>,\
-    \ std::vector<Edge<T>>, decltype(cmp)> pq(cmp);\n    pq.emplace(0, 0, 0);\n  \
-    \  T weight = 0;\n    std::vector<Edge<T>> edges;\n    while (!pq.empty()) {\n\
-    \        auto e = pq.top();\n        pq.pop();\n        if (used[e.to]) continue;\n\
-    \        used[e.to] = true;\n        weight += e.weight;\n        if (e.to !=\
-    \ 0) edges.push_back(e);\n        for (auto& f : G[e.to]) {\n            pq.emplace(e.to,\
-    \ f.to, f.weight);\n        }\n    }\n    return {weight, edges};\n}\n\n/*\n *\
-    \ Boruvka's Algorithm\n */\ntemplate <typename T>\nstd::pair<T, std::vector<Edge<T>>>\
-    \ boruvka(std::vector<Edge<T>> G, int V) {\n    UnionFind uf(V);\n    T weight\
-    \ = 0;\n    std::vector<Edge<T>> edges;\n    while (uf.size(0) < V) {\n      \
-    \  std::vector<Edge<T>> cheapest(V, {-1, -1, std::numeric_limits<T>::max()});\n\
-    \        for (auto& e : G) {\n            if (!uf.same(e.from, e.to)) {\n    \
-    \            int u = uf.find(e.from);\n                int v = uf.find(e.to);\n\
-    \                if (e.weight < cheapest[u].weight) cheapest[u] = e;\n       \
-    \         if (e.weight < cheapest[v].weight) cheapest[v] = e;\n            }\n\
-    \        }\n        for (auto& e : cheapest) {\n            if (e.from != -1 &&\
-    \ !uf.same(e.from, e.to)) {\n                uf.unite(e.from, e.to);\n       \
-    \         weight += e.weight;\n                edges.push_back(e);\n         \
-    \   }\n        }\n    }\n    return {weight, edges};\n}\n#line 9 \"graph/manhattan_mst.hpp\"\
+    \    std::vector<int> data;\n};\n#line 8 \"graph/mst.hpp\"\n\ntemplate <typename\
+    \ T>\nusing Edge = std::tuple<int, int, T>;\n\n/*\n * Kruskal's Algorithm\n */\n\
+    template <typename T>\nstd::pair<T, std::vector<Edge<T>>> kruskal(std::vector<Edge<T>>\
+    \ G, int V) {\n    std::ranges::sort(G, {}, [](auto& e) { return std::get<2>(e);\
+    \ });\n    UnionFind uf(V);\n    T weight = 0;\n    std::vector<Edge<T>> edges;\n\
+    \    for (auto& [u, v, w] : G) {\n        if (!uf.same(u, v)) {\n            uf.unite(u,\
+    \ v);\n            weight += w;\n            edges.push_back({u, v, w});\n   \
+    \     }\n    }\n    return {weight, edges};\n}\n\n/*\n * Prim's Algorithm\n */\n\
+    template <typename T>\nstd::pair<T, std::vector<Edge<T>>> prim(\n    const std::vector<std::vector<std::pair<int,\
+    \ T>>>& G) {\n    std::vector<bool> used(G.size());\n    auto cmp = [](const auto&\
+    \ e1, const auto& e2) {\n        return std::get<2>(e1) > std::get<2>(e2);\n \
+    \   };\n    std::priority_queue<Edge<T>, std::vector<Edge<T>>, decltype(cmp)>\
+    \ pq(cmp);\n    pq.emplace(0, 0, 0);\n    T weight = 0;\n    std::vector<Edge<T>>\
+    \ edges;\n    while (!pq.empty()) {\n        auto [p, v, w] = pq.top();\n    \
+    \    pq.pop();\n        if (used[v]) continue;\n        used[v] = true;\n    \
+    \    weight += w;\n        if (v != 0) edges.push_back({p, v, w});\n        for\
+    \ (auto& [u, w2] : G[v]) {\n            pq.emplace(v, u, w2);\n        }\n   \
+    \ }\n    return {weight, edges};\n}\n\n/*\n * Boruvka's Algorithm\n */\ntemplate\
+    \ <typename T>\nstd::pair<T, std::vector<Edge<T>>> boruvka(std::vector<Edge<T>>\
+    \ G, int V) {\n    UnionFind uf(V);\n    T weight = 0;\n    std::vector<Edge<T>>\
+    \ edges;\n    while (uf.size(0) < V) {\n        std::vector<Edge<T>> cheapest(V,\n\
+    \                                      {-1, -1, std::numeric_limits<T>::max()});\n\
+    \        for (auto [u, v, w] : G) {\n            if (!uf.same(u, v)) {\n     \
+    \           u = uf.find(u);\n                v = uf.find(v);\n               \
+    \ if (w < std::get<2>(cheapest[u])) cheapest[u] = {u, v, w};\n               \
+    \ if (w < std::get<2>(cheapest[v])) cheapest[v] = {u, v, w};\n            }\n\
+    \        }\n        for (auto [u, v, w] : cheapest) {\n            if (u != -1\
+    \ && !uf.same(u, v)) {\n                uf.unite(u, v);\n                weight\
+    \ += w;\n                edges.push_back({u, v, w});\n            }\n        }\n\
+    \    }\n    return {weight, edges};\n}\n#line 8 \"graph/manhattan_mst.hpp\"\n\n\
+    template <typename U>\nstruct MinMonoid {\n    using T = std::pair<U, int>;\n\
+    \    static T id() { return {std::numeric_limits<U>::max(), -1}; }\n    static\
+    \ T op(T a, T b) { return std::min(a, b); }\n};\n\ntemplate <typename T>\nstd::pair<T,\
+    \ std::vector<std::pair<int, int>>> manhattan_mst(\n    std::vector<std::pair<T,\
+    \ T>> pts) {\n    std::vector<int> idx(pts.size());\n    std::iota(idx.begin(),\
+    \ idx.end(), 0);\n\n    std::vector<std::tuple<int, int, T>> edges;\n\n    for\
+    \ (int i = 0; i < 2; ++i) {\n        for (int j = 0; j < 2; ++j) {\n         \
+    \   for (int k = 0; k < 2; ++k) {\n                // sort by y-x asc then by\
+    \ y desc\n                std::ranges::sort(idx, {}, [&](int i) {\n          \
+    \          auto [x, y] = pts[i];\n                    return std::make_tuple(y\
+    \ - x, -y, i);\n                });\n\n                // compress y\n       \
+    \         std::vector<T> cs;\n                cs.reserve(pts.size());\n      \
+    \          for (auto [x, y] : pts) cs.push_back(y);\n                std::ranges::sort(cs);\n\
+    \                cs.erase(std::ranges::unique(cs).begin(), cs.end());\n\n    \
+    \            // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
+    \n                for (int i : idx) {\n                    auto [x, y] = pts[i];\n\
+    \                    int k = std::ranges::lower_bound(cs) - cs.begin();\n    \
+    \                auto [d, j] = st.fold(k, cs.size());\n                    if\
+    \ (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
+    \                    }\n                    st.update(k, {x + y, i});\n      \
+    \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
+    \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
+    \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, edges]\
+    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
+    \    std::ranges::transform(edges, ret.begin(), [&](auto& e) {\n        auto [u,\
+    \ v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n}\n"
+  code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <vector>\n\
+    \n#include \"../data-structure/segtree/segment_tree.hpp\"\n#include \"../graph/mst.hpp\"\
     \n\ntemplate <typename U>\nstruct MinMonoid {\n    using T = std::pair<U, int>;\n\
     \    static T id() { return {std::numeric_limits<U>::max(), -1}; }\n    static\
     \ T op(T a, T b) { return std::min(a, b); }\n};\n\ntemplate <typename T>\nstd::pair<T,\
-    \ std::vector<Edge<T>>> manhattan_mst(\n    std::vector<std::pair<T, T>> pts)\
-    \ {\n    std::vector<int> idx(pts.size());\n    std::iota(idx.begin(), idx.end(),\
-    \ 0);\n\n    std::vector<Edge<T>> edges;\n\n    for (int i = 0; i < 2; ++i) {\n\
-    \        for (int j = 0; j < 2; ++j) {\n            for (int k = 0; k < 2; ++k)\
-    \ {\n                // sort by y-x asc then by y desc\n                std::sort(idx.begin(),\
-    \ idx.end(), [&](auto& i, auto& j) {\n                    auto [xi, yi] = pts[i];\n\
-    \                    auto [xj, yj] = pts[j];\n                    if (yi - xi\
-    \ != yj - xj) return yi - xi < yj - xj;\n                    if (yi != yj) return\
-    \ yi > yj;\n                    return i < j;\n                });\n\n       \
-    \         // compress y\n                std::vector<T> cs;\n                cs.reserve(pts.size());\n\
-    \                for (auto [x, y] : pts) cs.push_back(y);\n                std::sort(cs.begin(),\
-    \ cs.end());\n                cs.erase(std::unique(cs.begin(), cs.end()), cs.end());\n\
-    \n                // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
-    \n                for (int i : idx) {\n                    auto [x, y] = pts[i];\n\
-    \                    int k =\n                        std::lower_bound(cs.begin(),\
-    \ cs.end(), y) - cs.begin();\n                    auto [d, j] = st.fold(k, cs.size());\n\
-    \                    if (j != -1) {\n                        edges.push_back(Edge<T>(i,\
-    \ j, d - (x + y)));\n                    }\n                    st.update(k, {x\
-    \ + y, i});\n                }\n\n                for (auto& p : pts) std::swap(p.first,\
-    \ p.second);\n            }\n            for (auto& p : pts) p.first *= -1;\n\
-    \        }\n        for (auto& p : pts) p.second *= -1;\n    }\n\n    return kruskal(edges,\
-    \ pts.size());\n}\n"
-  code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <vector>\n\
-    \n#include \"../data-structure/segtree/segment_tree.hpp\"\n#include \"../graph/edge.cpp\"\
-    \n#include \"../graph/mst.cpp\"\n\ntemplate <typename U>\nstruct MinMonoid {\n\
-    \    using T = std::pair<U, int>;\n    static T id() { return {std::numeric_limits<U>::max(),\
-    \ -1}; }\n    static T op(T a, T b) { return std::min(a, b); }\n};\n\ntemplate\
-    \ <typename T>\nstd::pair<T, std::vector<Edge<T>>> manhattan_mst(\n    std::vector<std::pair<T,\
+    \ std::vector<std::pair<int, int>>> manhattan_mst(\n    std::vector<std::pair<T,\
     \ T>> pts) {\n    std::vector<int> idx(pts.size());\n    std::iota(idx.begin(),\
-    \ idx.end(), 0);\n\n    std::vector<Edge<T>> edges;\n\n    for (int i = 0; i <\
-    \ 2; ++i) {\n        for (int j = 0; j < 2; ++j) {\n            for (int k = 0;\
-    \ k < 2; ++k) {\n                // sort by y-x asc then by y desc\n         \
-    \       std::sort(idx.begin(), idx.end(), [&](auto& i, auto& j) {\n          \
-    \          auto [xi, yi] = pts[i];\n                    auto [xj, yj] = pts[j];\n\
-    \                    if (yi - xi != yj - xj) return yi - xi < yj - xj;\n     \
-    \               if (yi != yj) return yi > yj;\n                    return i <\
-    \ j;\n                });\n\n                // compress y\n                std::vector<T>\
-    \ cs;\n                cs.reserve(pts.size());\n                for (auto [x,\
-    \ y] : pts) cs.push_back(y);\n                std::sort(cs.begin(), cs.end());\n\
-    \                cs.erase(std::unique(cs.begin(), cs.end()), cs.end());\n\n  \
-    \              // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
+    \ idx.end(), 0);\n\n    std::vector<std::tuple<int, int, T>> edges;\n\n    for\
+    \ (int i = 0; i < 2; ++i) {\n        for (int j = 0; j < 2; ++j) {\n         \
+    \   for (int k = 0; k < 2; ++k) {\n                // sort by y-x asc then by\
+    \ y desc\n                std::ranges::sort(idx, {}, [&](int i) {\n          \
+    \          auto [x, y] = pts[i];\n                    return std::make_tuple(y\
+    \ - x, -y, i);\n                });\n\n                // compress y\n       \
+    \         std::vector<T> cs;\n                cs.reserve(pts.size());\n      \
+    \          for (auto [x, y] : pts) cs.push_back(y);\n                std::ranges::sort(cs);\n\
+    \                cs.erase(std::ranges::unique(cs).begin(), cs.end());\n\n    \
+    \            // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
     \n                for (int i : idx) {\n                    auto [x, y] = pts[i];\n\
-    \                    int k =\n                        std::lower_bound(cs.begin(),\
-    \ cs.end(), y) - cs.begin();\n                    auto [d, j] = st.fold(k, cs.size());\n\
-    \                    if (j != -1) {\n                        edges.push_back(Edge<T>(i,\
-    \ j, d - (x + y)));\n                    }\n                    st.update(k, {x\
-    \ + y, i});\n                }\n\n                for (auto& p : pts) std::swap(p.first,\
-    \ p.second);\n            }\n            for (auto& p : pts) p.first *= -1;\n\
-    \        }\n        for (auto& p : pts) p.second *= -1;\n    }\n\n    return kruskal(edges,\
-    \ pts.size());\n}"
+    \                    int k = std::ranges::lower_bound(cs) - cs.begin();\n    \
+    \                auto [d, j] = st.fold(k, cs.size());\n                    if\
+    \ (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
+    \                    }\n                    st.update(k, {x + y, i});\n      \
+    \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
+    \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
+    \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, edges]\
+    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
+    \    std::ranges::transform(edges, ret.begin(), [&](auto& e) {\n        auto [u,\
+    \ v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n}"
   dependsOn:
   - data-structure/segtree/segment_tree.hpp
-  - graph/edge.cpp
-  - graph/mst.cpp
+  - graph/mst.hpp
   - data-structure/unionfind/union_find.hpp
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-08 13:32:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp
 documentation_of: graph/manhattan_mst.hpp

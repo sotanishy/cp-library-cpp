@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/offline_dynamic_connectivity.cpp
+  - icon: ':x:'
+    path: graph/offline_dynamic_connectivity.hpp
     title: Offline Dynamic Connectivity
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/unionfind/undoable_union_find.hpp\"\n#include\
@@ -62,9 +62,9 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/undoable_union_find.hpp
   requiredBy:
-  - graph/offline_dynamic_connectivity.cpp
+  - graph/offline_dynamic_connectivity.hpp
   timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: data-structure/unionfind/undoable_union_find.hpp

@@ -55,17 +55,17 @@ data:
     \                    state[u] = -2;\n                }\n            }\n\n    \
     \        if (x == -1) {\n                // last vertex\n            } else if\
     \ (y == -1) {\n                --deg[x];\n            } else {\n             \
-    \   // add new edge\n                if (!G_st[x].count(y)) {\n              \
-    \      G_st[x].insert(y);\n                    G_st[y].insert(x);\n          \
-    \      } else {\n                    --deg[x], --deg[y];\n                }\n\
+    \   // add new edge\n                if (!G_st[x].contains(y)) {\n           \
+    \         G_st[x].insert(y);\n                    G_st[y].insert(x);\n       \
+    \         } else {\n                    --deg[x], --deg[y];\n                }\n\
     \            }\n            for (int u : G_st[v]) {\n                if (state[u]\
     \ == -1 && deg[u] <= 2) {\n                    st.push(u);\n                }\n\
     \            }\n\n            deg[v] = 0;\n            state[v] = nodes.size();\n\
-    \            nodes.push_back(node);\n        }\n\n        if (*std::max_element(deg.begin(),\
-    \ deg.end()) > 0) {\n            treewidth_is_2 = false;\n            return;\n\
-    \        }\n\n        treewidth_is_2 = true;\n        nodes[0].ch.push_back(nodes.size()\
-    \ - 1);\n    }\n\n    bool is_treewidth_2() const { return treewidth_is_2; }\n\
-    \n    int size() const { return nodes.size(); }\n\n    std::vector<Node> get_nodes()\
+    \            nodes.push_back(node);\n        }\n\n        if (*std::ranges::max_element(deg)\
+    \ > 0) {\n            treewidth_is_2 = false;\n            return;\n        }\n\
+    \n        treewidth_is_2 = true;\n        nodes[0].ch.push_back(nodes.size() -\
+    \ 1);\n    }\n\n    bool is_treewidth_2() const { return treewidth_is_2; }\n\n\
+    \    int size() const { return nodes.size(); }\n\n    std::vector<Node> get_nodes()\
     \ const { return nodes; }\n\n   private:\n    bool treewidth_is_2;\n    std::vector<Node>\
     \ nodes;\n};\n#line 6 \"test/yosupo/tree_decomposition_width_2.test.cpp\"\nusing\
     \ namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
@@ -100,7 +100,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree_decomposition_width_2.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:49:49+09:00'
+  timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree_decomposition_width_2.test.cpp

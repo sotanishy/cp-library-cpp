@@ -166,7 +166,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.hpp
       title: Persistent Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/unionfind/undoable_union_find.hpp
       title: Undoable Union Find
     - icon: ':question:'
@@ -259,42 +259,39 @@ data:
       path: graph/assignment.hpp
       title: Assignment Problem (Maximum Weight Perfect Matching)
     - icon: ':heavy_check_mark:'
-      path: graph/biconnected_components.cpp
+      path: graph/biconnected_components.hpp
       title: Biconnected Components
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/bipartite_edge_coloring.hpp
       title: Bipartite Edge Coloring
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/bipartite_matching.hpp
       title: Bipartite Matching
     - icon: ':heavy_check_mark:'
       path: graph/chordal_graph_recognition.hpp
       title: Chordal Graph Recognition
-    - icon: ':heavy_check_mark:'
-      path: graph/chromatic_number.cpp
+    - icon: ':x:'
+      path: graph/chromatic_number.hpp
       title: Chromatic Number
     - icon: ':warning:'
       path: graph/complement_bfs.hpp
       title: BFS on a Complement Graph
     - icon: ':warning:'
-      path: graph/dm_decomposition.cpp
+      path: graph/dm_decomposition.hpp
       title: Dulmage-Mendelsohn Decomposition
-    - icon: ':heavy_check_mark:'
-      path: graph/dominator_tree.cpp
+    - icon: ':x:'
+      path: graph/dominator_tree.hpp
       title: Dominator Tree
-    - icon: ':heavy_check_mark:'
-      path: graph/edge.cpp
-      title: graph/edge.cpp
-    - icon: ':heavy_check_mark:'
-      path: graph/enumerate_cliques.cpp
+    - icon: ':x:'
+      path: graph/enumerate_cliques.hpp
       title: Clique Enumeration
-    - icon: ':heavy_check_mark:'
-      path: graph/enumerate_triangles.cpp
+    - icon: ':x:'
+      path: graph/enumerate_triangles.hpp
       title: Triangle Enumeration
     - icon: ':warning:'
       path: graph/eulerian_walk.hpp
       title: Eulerian Walk
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/general_matching.hpp
       title: General Matching
     - icon: ':x:'
@@ -303,47 +300,47 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lex_bfs.hpp
       title: Lexicographic BFS
-    - icon: ':heavy_check_mark:'
-      path: graph/lowlink.cpp
+    - icon: ':question:'
+      path: graph/lowlink.hpp
       title: Lowlink
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/manhattan_mst.hpp
       title: Manhattan Minimum Spanning Tree
-    - icon: ':heavy_check_mark:'
-      path: graph/maximum_independent_set.cpp
+    - icon: ':x:'
+      path: graph/maximum_independent_set.hpp
       title: Maximum Independent Set
     - icon: ':warning:'
       path: graph/maximum_weight_independent_set.hpp
       title: Maximum Weight Independent Set
-    - icon: ':heavy_check_mark:'
-      path: graph/minimum_spanning_arborescence.cpp
+    - icon: ':warning:'
+      path: graph/minimum_spanning_arborescence.hpp
       title: Minimum Spanning Arborescence
     - icon: ':heavy_check_mark:'
       path: graph/minimum_steiner_tree.hpp
       title: Minimum Steiner Tree
-    - icon: ':heavy_check_mark:'
-      path: graph/mst.cpp
+    - icon: ':question:'
+      path: graph/mst.hpp
       title: Minimum Spanning Tree Algorithms
-    - icon: ':heavy_check_mark:'
-      path: graph/offline_dynamic_connectivity.cpp
+    - icon: ':x:'
+      path: graph/offline_dynamic_connectivity.hpp
       title: Offline Dynamic Connectivity
     - icon: ':warning:'
       path: graph/pseudotree_cycle.hpp
       title: Pseudotree Cycle
     - icon: ':warning:'
-      path: graph/range_edge_graph.cpp
-      title: Range Edge Graph
-    - icon: ':heavy_check_mark:'
-      path: graph/scc.cpp
+      path: graph/range_edge_graph.hpp
+      title: graph/range_edge_graph.hpp
+    - icon: ':x:'
+      path: graph/scc.hpp
       title: Strongly Connected Components
-    - icon: ':heavy_check_mark:'
-      path: graph/shortest_path.cpp
+    - icon: ':question:'
+      path: graph/shortest_path.hpp
       title: Shortest Path Algorithms
     - icon: ':warning:'
-      path: graph/topological_sort.cpp
+      path: graph/topological_sort.hpp
       title: Topological Sort
-    - icon: ':heavy_check_mark:'
-      path: graph/two_edge_connected_components.cpp
+    - icon: ':x:'
+      path: graph/two_edge_connected_components.hpp
       title: 2-Edge-Connected Components
   - name: math
     pages:
@@ -563,7 +560,7 @@ data:
     - icon: ':warning:'
       path: sat/hornsat.hpp
       title: Horn-SAT
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: sat/twosat.hpp
       title: 2-SAT
   - name: set
@@ -702,9 +699,6 @@ data:
       path: test/aoj/2292.test.cpp
       title: test/aoj/2292.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/2306.test.cpp
-      title: test/aoj/2306.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/2415.test.cpp
       title: test/aoj/2415.test.cpp
     - icon: ':heavy_check_mark:'
@@ -830,15 +824,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A.prim.test.cpp
       title: test/aoj/GRL_2_A.prim.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_A.test.cpp
       title: test/aoj/GRL_3_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_3_C.test.cpp
-      title: test/aoj/GRL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A.dinic.test.cpp
       title: test/aoj/GRL_6_A.dinic.test.cpp
@@ -848,7 +839,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_7_A.test.cpp
       title: test/aoj/GRL_7_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -874,10 +865,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
       title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bipartite_edge_coloring.test.cpp
       title: test/yosupo/bipartite_edge_coloring.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/bipartitematching.test.cpp
       title: test/yosupo/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -895,7 +886,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chordal_graph_recognition.test.cpp
       title: test/yosupo/chordal_graph_recognition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -913,7 +904,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/deque_operate_all_composite.test.cpp
       title: test/yosupo/deque_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/directedmst.test.cpp
       title: test/yosupo/directedmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -922,13 +913,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/division_of_polynomials.test.cpp
       title: test/yosupo/division_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dominatortree.test.cpp
       title: test/yosupo/dominatortree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/double_ended_priority_queue.test.cpp
       title: test/yosupo/double_ended_priority_queue.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -943,7 +934,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/enumerate_cliques.test.cpp
       title: test/yosupo/enumerate_cliques.test.cpp
     - icon: ':heavy_check_mark:'
@@ -955,7 +946,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/enumerate_quotients.test.cpp
       title: test/yosupo/enumerate_quotients.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/enumerate_triangles.test.cpp
       title: test/yosupo/enumerate_triangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -982,7 +973,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_of_gaussian_integers.test.cpp
       title: test/yosupo/gcd_of_gaussian_integers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/general_matching.test.cpp
       title: test/yosupo/general_matching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1027,7 +1018,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lyndon_factorization.test.cpp
       title: test/yosupo/lyndon_factorization.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/manhattanmst.test.cpp
       title: test/yosupo/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1036,7 +1027,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix_product.test.cpp
       title: test/yosupo/matrix_product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1135,7 +1126,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/runenumerate.test.cpp
       title: test/yosupo/runenumerate.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp
     - icon: ':x:'
@@ -1147,7 +1138,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1198,10 +1189,10 @@ data:
     - icon: ':x:'
       path: test/yosupo/tree_path_composite_sum.test.cpp
       title: test/yosupo/tree_path_composite_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
     - icon: ':x:'

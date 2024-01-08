@@ -3,23 +3,20 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2306.test.cpp
-    title: test/aoj/2306.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/enumerate_cliques.test.cpp
     title: test/yosupo/enumerate_cliques.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/enumerate_cliques.cpp\"\n#include <cmath>\n#include\
-    \ <vector>\n\nstd::vector<std::vector<int>> enumerate_cliques(const std::vector<std::vector<bool>>&\
+  bundledCode: "#line 2 \"graph/enumerate_cliques.hpp\"\n#include <cmath>\n#include\
+    \ <vector>\n\nstd::vector<std::vector<int>> enumerate_cliques(\n    const std::vector<std::vector<bool>>&\
     \ G) {\n    int N = G.size(), M = 0;\n    std::vector<int> deg(N);\n    for (int\
     \ i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if\
     \ (G[i][j]) {\n                ++deg[i];\n                ++M;\n            }\n\
-    \        }\n    }\n    M /= 2;\n    int B = std::sqrt(2*M);\n    std::vector<std::vector<int>>\
+    \        }\n    }\n    M /= 2;\n    int B = std::sqrt(2 * M);\n    std::vector<std::vector<int>>\
     \ cliques;\n\n    auto check = [&](const std::vector<int>& vs, bool use_first)\
     \ {\n        int n = vs.size();\n        for (int S = 1; S < 1 << n; ++S) {\n\
     \            if (use_first && !(S & 1)) continue;\n            bool ok = true;\n\
@@ -39,39 +36,38 @@ data:
     \        }\n        }\n        check(vs, true);\n        checked[i] = true;\n\
     \    }\n    check(big, false);\n    return cliques;\n}\n"
   code: "#pragma once\n#include <cmath>\n#include <vector>\n\nstd::vector<std::vector<int>>\
-    \ enumerate_cliques(const std::vector<std::vector<bool>>& G) {\n    int N = G.size(),\
-    \ M = 0;\n    std::vector<int> deg(N);\n    for (int i = 0; i < N; ++i) {\n  \
-    \      for (int j = 0; j < N; ++j) {\n            if (G[i][j]) {\n           \
-    \     ++deg[i];\n                ++M;\n            }\n        }\n    }\n    M\
-    \ /= 2;\n    int B = std::sqrt(2*M);\n    std::vector<std::vector<int>> cliques;\n\
-    \n    auto check = [&](const std::vector<int>& vs, bool use_first) {\n       \
-    \ int n = vs.size();\n        for (int S = 1; S < 1 << n; ++S) {\n           \
-    \ if (use_first && !(S & 1)) continue;\n            bool ok = true;\n        \
-    \    for (int i = 0; i < n - 1; ++i) {\n                if (!(S >> i & 1)) continue;\n\
-    \                for (int j = i + 1; j < n; ++j) {\n                    if ((S\
-    \ >> j & 1) && !G[vs[i]][vs[j]]) {\n                        ok = false;\n    \
-    \                    break;\n                    }\n                }\n      \
-    \          if (!ok) break;\n            }\n            if (ok) {\n           \
-    \     cliques.emplace_back();\n                for (int i = 0; i < n; ++i) {\n\
-    \                    if (S >> i & 1) {\n                        cliques.back().push_back(vs[i]);\n\
-    \                    }\n                }\n            }\n        }\n    };\n\n\
-    \    std::vector<bool> checked(N);\n    std::vector<int> big;\n    for (int i\
-    \ = 0; i < N; ++i) {\n        if (deg[i] >= B) {\n            big.push_back(i);\n\
-    \            continue;\n        }\n        std::vector<int> vs;\n        vs.push_back(i);\n\
-    \        for (int j = 0; j < N; ++j) {\n            if (G[i][j] && !checked[j])\
-    \ {\n                vs.push_back(j);\n            }\n        }\n        check(vs,\
-    \ true);\n        checked[i] = true;\n    }\n    check(big, false);\n    return\
-    \ cliques;\n}\n"
+    \ enumerate_cliques(\n    const std::vector<std::vector<bool>>& G) {\n    int\
+    \ N = G.size(), M = 0;\n    std::vector<int> deg(N);\n    for (int i = 0; i <\
+    \ N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (G[i][j]) {\n\
+    \                ++deg[i];\n                ++M;\n            }\n        }\n \
+    \   }\n    M /= 2;\n    int B = std::sqrt(2 * M);\n    std::vector<std::vector<int>>\
+    \ cliques;\n\n    auto check = [&](const std::vector<int>& vs, bool use_first)\
+    \ {\n        int n = vs.size();\n        for (int S = 1; S < 1 << n; ++S) {\n\
+    \            if (use_first && !(S & 1)) continue;\n            bool ok = true;\n\
+    \            for (int i = 0; i < n - 1; ++i) {\n                if (!(S >> i &\
+    \ 1)) continue;\n                for (int j = i + 1; j < n; ++j) {\n         \
+    \           if ((S >> j & 1) && !G[vs[i]][vs[j]]) {\n                        ok\
+    \ = false;\n                        break;\n                    }\n          \
+    \      }\n                if (!ok) break;\n            }\n            if (ok)\
+    \ {\n                cliques.emplace_back();\n                for (int i = 0;\
+    \ i < n; ++i) {\n                    if (S >> i & 1) {\n                     \
+    \   cliques.back().push_back(vs[i]);\n                    }\n                }\n\
+    \            }\n        }\n    };\n\n    std::vector<bool> checked(N);\n    std::vector<int>\
+    \ big;\n    for (int i = 0; i < N; ++i) {\n        if (deg[i] >= B) {\n      \
+    \      big.push_back(i);\n            continue;\n        }\n        std::vector<int>\
+    \ vs;\n        vs.push_back(i);\n        for (int j = 0; j < N; ++j) {\n     \
+    \       if (G[i][j] && !checked[j]) {\n                vs.push_back(j);\n    \
+    \        }\n        }\n        check(vs, true);\n        checked[i] = true;\n\
+    \    }\n    check(big, false);\n    return cliques;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/enumerate_cliques.cpp
+  path: graph/enumerate_cliques.hpp
   requiredBy: []
-  timestamp: '2021-10-23 12:21:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-08 13:32:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/enumerate_cliques.test.cpp
-  - test/aoj/2306.test.cpp
-documentation_of: graph/enumerate_cliques.cpp
+documentation_of: graph/enumerate_cliques.hpp
 layout: document
 title: Clique Enumeration
 ---

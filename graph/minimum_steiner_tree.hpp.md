@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/edge.cpp
-    title: graph/edge.cpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -15,15 +12,11 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/minimum_steiner_tree.hpp\"\n#include <algorithm>\n\
-    #include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n#line\
-    \ 2 \"graph/edge.cpp\"\n\ntemplate <typename T>\nstruct Edge {\n    int from,\
-    \ to;\n    T weight;\n    Edge() = default;\n    Edge(int to, T weight) : from(-1),\
-    \ to(to), weight(weight) {}\n    Edge(int from, int to, T weight) : from(from),\
-    \ to(to), weight(weight) {}\n};\n#line 8 \"graph/minimum_steiner_tree.hpp\"\n\n\
-    template <typename T>\nT minimum_steiner_tree(std::vector<std::vector<Edge<T>>>&\
-    \ G, std::vector<int>& terminals) {\n    const int n = G.size();\n    const int\
-    \ t = terminals.size();\n    constexpr T INF = std::numeric_limits<T>::max() /\
-    \ 2;\n    using P = std::pair<T, int>;\n\n    std::vector<std::vector<T>> dp(1\
+    #include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\n\
+    template <typename T>\nT minimum_steiner_tree(std::vector<std::vector<std::pair<int,\
+    \ T>>>& G,\n                       std::vector<int>& terminals) {\n    const int\
+    \ n = G.size();\n    const int t = terminals.size();\n    constexpr T INF = std::numeric_limits<T>::max()\
+    \ / 2;\n    using P = std::pair<T, int>;\n\n    std::vector<std::vector<T>> dp(1\
     \ << t, std::vector<T>(n, INF));\n    for (int i = 0; i < t; ++i) dp[1 << i][terminals[i]]\
     \ = 0;\n\n    for (int S = 1; S < (1 << t); ++S) {\n        for (int i = 0; i\
     \ < n; ++i) {\n            for (int U = S; U > 0; U = (U - 1) & S) {\n       \
@@ -32,34 +25,32 @@ data:
     \ std::vector<P>, std::greater<>> pq;\n        for (int i = 0; i < n; ++i) {\n\
     \            pq.emplace(dp[S][i], i);\n        }\n        while (!pq.empty())\
     \ {\n            auto [d, v] = pq.top();\n            pq.pop();\n            if\
-    \ (dp[S][v] < d) continue;\n            for (auto& e : G[v]) {\n             \
-    \   if (dp[S][e.to] > d + e.weight) {\n                    dp[S][e.to] = d + e.weight;\n\
-    \                    pq.emplace(dp[S][e.to], e.to);\n                }\n     \
-    \       }\n        }\n    }\n\n    return dp.back()[terminals[0]];\n}\n"
+    \ (dp[S][v] < d) continue;\n            for (auto [u, w] : G[v]) {\n         \
+    \       if (dp[S][u] > d + w) {\n                    dp[S][u] = d + w;\n     \
+    \               pq.emplace(dp[S][u], u);\n                }\n            }\n \
+    \       }\n    }\n\n    return dp.back()[terminals[0]];\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n#include \"edge.cpp\"\n\ntemplate <typename\
-    \ T>\nT minimum_steiner_tree(std::vector<std::vector<Edge<T>>>& G, std::vector<int>&\
-    \ terminals) {\n    const int n = G.size();\n    const int t = terminals.size();\n\
-    \    constexpr T INF = std::numeric_limits<T>::max() / 2;\n    using P = std::pair<T,\
-    \ int>;\n\n    std::vector<std::vector<T>> dp(1 << t, std::vector<T>(n, INF));\n\
-    \    for (int i = 0; i < t; ++i) dp[1 << i][terminals[i]] = 0;\n\n    for (int\
-    \ S = 1; S < (1 << t); ++S) {\n        for (int i = 0; i < n; ++i) {\n       \
-    \     for (int U = S; U > 0; U = (U - 1) & S) {\n                dp[S][i] = std::min(dp[S][i],\
-    \ dp[S ^ U][i] + dp[U][i]);\n            }\n        }\n        if (S == (1 <<\
-    \ t) - 1) continue;\n        std::priority_queue<P, std::vector<P>, std::greater<>>\
-    \ pq;\n        for (int i = 0; i < n; ++i) {\n            pq.emplace(dp[S][i],\
-    \ i);\n        }\n        while (!pq.empty()) {\n            auto [d, v] = pq.top();\n\
-    \            pq.pop();\n            if (dp[S][v] < d) continue;\n            for\
-    \ (auto& e : G[v]) {\n                if (dp[S][e.to] > d + e.weight) {\n    \
-    \                dp[S][e.to] = d + e.weight;\n                    pq.emplace(dp[S][e.to],\
-    \ e.to);\n                }\n            }\n        }\n    }\n\n    return dp.back()[terminals[0]];\n\
-    }\n"
-  dependsOn:
-  - graph/edge.cpp
+    #include <utility>\n#include <vector>\n\ntemplate <typename T>\nT minimum_steiner_tree(std::vector<std::vector<std::pair<int,\
+    \ T>>>& G,\n                       std::vector<int>& terminals) {\n    const int\
+    \ n = G.size();\n    const int t = terminals.size();\n    constexpr T INF = std::numeric_limits<T>::max()\
+    \ / 2;\n    using P = std::pair<T, int>;\n\n    std::vector<std::vector<T>> dp(1\
+    \ << t, std::vector<T>(n, INF));\n    for (int i = 0; i < t; ++i) dp[1 << i][terminals[i]]\
+    \ = 0;\n\n    for (int S = 1; S < (1 << t); ++S) {\n        for (int i = 0; i\
+    \ < n; ++i) {\n            for (int U = S; U > 0; U = (U - 1) & S) {\n       \
+    \         dp[S][i] = std::min(dp[S][i], dp[S ^ U][i] + dp[U][i]);\n          \
+    \  }\n        }\n        if (S == (1 << t) - 1) continue;\n        std::priority_queue<P,\
+    \ std::vector<P>, std::greater<>> pq;\n        for (int i = 0; i < n; ++i) {\n\
+    \            pq.emplace(dp[S][i], i);\n        }\n        while (!pq.empty())\
+    \ {\n            auto [d, v] = pq.top();\n            pq.pop();\n            if\
+    \ (dp[S][v] < d) continue;\n            for (auto [u, w] : G[v]) {\n         \
+    \       if (dp[S][u] > d + w) {\n                    dp[S][u] = d + w;\n     \
+    \               pq.emplace(dp[S][u], u);\n                }\n            }\n \
+    \       }\n    }\n\n    return dp.back()[terminals[0]];\n}\n"
+  dependsOn: []
   isVerificationFile: false
   path: graph/minimum_steiner_tree.hpp
   requiredBy: []
-  timestamp: '2022-06-27 14:23:07+09:00'
+  timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1040.test.cpp

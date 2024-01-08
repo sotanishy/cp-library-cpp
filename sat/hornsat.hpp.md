@@ -9,9 +9,9 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"sat/hornsat.hpp\"\n#include <stack>\n#include <utility>\n\
-    #include <vector>\n\nstd::vector<bool> horn_sat(int n_literals, const std::vector<std::pair<int,\
-    \ std::vector<int>>>& clauses) {\n    const int n_clauses = clauses.size();\n\
-    \    std::vector<bool> val(n_literals, false);\n    std::vector<std::vector<int>>\
+    #include <vector>\n\nstd::vector<bool> horn_sat(\n    int n_literals,\n    const\
+    \ std::vector<std::pair<int, std::vector<int>>>& clauses) {\n    const int n_clauses\
+    \ = clauses.size();\n    std::vector<bool> val(n_literals, false);\n    std::vector<std::vector<int>>\
     \ neg(n_clauses), idx(n_literals);\n    std::vector<int> pos(n_clauses), n_neg(n_clauses);\n\
     \n    int k = 0;\n    for (auto& [p, n] : clauses) {\n        pos[k] = p;\n  \
     \      neg[k] = n;\n        n_neg[k] = n.size();\n        for (int i : n) idx[i].push_back(k);\n\
@@ -29,12 +29,12 @@ data:
     \ v |= !val[j];\n        if (!v) {\n            // not satisfiable\n         \
     \   return {};\n        }\n    }\n    return val;\n}\n"
   code: "#pragma once\n#include <stack>\n#include <utility>\n#include <vector>\n\n\
-    std::vector<bool> horn_sat(int n_literals, const std::vector<std::pair<int, std::vector<int>>>&\
-    \ clauses) {\n    const int n_clauses = clauses.size();\n    std::vector<bool>\
-    \ val(n_literals, false);\n    std::vector<std::vector<int>> neg(n_clauses), idx(n_literals);\n\
-    \    std::vector<int> pos(n_clauses), n_neg(n_clauses);\n\n    int k = 0;\n  \
-    \  for (auto& [p, n] : clauses) {\n        pos[k] = p;\n        neg[k] = n;\n\
-    \        n_neg[k] = n.size();\n        for (int i : n) idx[i].push_back(k);\n\
+    std::vector<bool> horn_sat(\n    int n_literals,\n    const std::vector<std::pair<int,\
+    \ std::vector<int>>>& clauses) {\n    const int n_clauses = clauses.size();\n\
+    \    std::vector<bool> val(n_literals, false);\n    std::vector<std::vector<int>>\
+    \ neg(n_clauses), idx(n_literals);\n    std::vector<int> pos(n_clauses), n_neg(n_clauses);\n\
+    \n    int k = 0;\n    for (auto& [p, n] : clauses) {\n        pos[k] = p;\n  \
+    \      neg[k] = n;\n        n_neg[k] = n.size();\n        for (int i : n) idx[i].push_back(k);\n\
     \        ++k;\n    }\n\n    // if there is a clause with no negative literals\
     \ and a positive literal,\n    // make it positive and remove it from other clauses.\n\
     \    // if there is no such clause, make all remaining literals negative.\n  \
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: sat/hornsat.hpp
   requiredBy: []
-  timestamp: '2022-04-14 13:03:36+09:00'
+  timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: sat/hornsat.hpp

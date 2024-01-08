@@ -54,7 +54,7 @@ data:
     \                pivot.push_back(y);\n                neighbor.insert(y);\n  \
     \          }\n        }\n        for (auto [s, t] : pr.refine(pivot)) {\n    \
     \        if ((int)prv.size() <= t) {\n                prv.resize(t + 1, -1);\n\
-    \                nxt.resize(t + 1, -1);\n            }\n            if (neighbor.count(pr.member(s)))\
+    \                nxt.resize(t + 1, -1);\n            }\n            if (neighbor.contains(pr.member(s)))\
     \ {\n                if (nxt[s] >= 0) prv[nxt[s]] = t;\n                nxt[t]\
     \ = nxt[s];\n                prv[t] = s;\n                nxt[s] = t;\n      \
     \      } else {\n                if (prv[s] >= 0) nxt[prv[s]] = t;\n         \
@@ -66,29 +66,29 @@ data:
     \    const std::vector<std::vector<int>>& G) {\n    const int n = G.size();\n\
     \    std::vector<std::set<int>> st(n);\n    for (int x = 0; x < n; ++x) {\n  \
     \      for (int y : G[x]) st[x].insert(y);\n    }\n\n    auto ord = lex_bfs(G);\n\
-    \    std::reverse(ord.begin(), ord.end());\n    std::vector<int> idx(n, -1);\n\
-    \    for (int x = 0; x < n; ++x) idx[ord[x]] = x;\n\n    // check if ord is a\
-    \ perfect elimination ordering\n    for (int i = n - 1; i >= 0; --i) {\n     \
-    \   int x = ord[i];\n\n        // find the first neighbor z of x that appears\
-    \ after x\n        std::pair<int, int> neighbor(n, -1);\n        for (int y :\
-    \ G[x]) {\n            if (idx[y] > i) {\n                neighbor = std::min(neighbor,\
-    \ {idx[y], y});\n            }\n        }\n        auto [j, z] = neighbor;\n \
-    \       if (j == n) continue;\n\n        // check if N(x) - z is a subset of N(z)\n\
-    \        for (int y : G[x]) {\n            if (idx[y] > i && y != z && !st[y].count(z))\
-    \ {\n                // not chordal\n                // bfs from y to z using\
-    \ vertices after x and not in N(x)\n\n                std::queue<int> que;\n \
-    \               que.push(y);\n                std::vector<int> prv(n, -1);\n \
-    \               prv[y] = y;\n                prv[z] = -1;\n                for\
-    \ (int v : G[x]) {\n                    if (v != y && v != z) {\n            \
-    \            prv[v] = -2;\n                    }\n                }\n        \
-    \        while (!que.empty()) {\n                    int v = que.front();\n  \
-    \                  que.pop();\n                    for (int u : G[v]) {\n    \
-    \                    if (idx[u] > i && prv[u] == -1) {\n                     \
-    \       prv[u] = v;\n                            que.push(u);\n              \
-    \          }\n                    }\n                }\n\n                assert(prv[z]\
-    \ != -1);\n\n                std::vector<int> cycle;\n                int v =\
-    \ z;\n                while (prv[v] != v) {\n                    cycle.push_back(v);\n\
-    \                    v = prv[v];\n                }\n                cycle.push_back(y);\n\
+    \    std::ranges::reverse(ord);\n    std::vector<int> idx(n, -1);\n    for (int\
+    \ x = 0; x < n; ++x) idx[ord[x]] = x;\n\n    // check if ord is a perfect elimination\
+    \ ordering\n    for (int i = n - 1; i >= 0; --i) {\n        int x = ord[i];\n\n\
+    \        // find the first neighbor z of x that appears after x\n        std::pair<int,\
+    \ int> neighbor(n, -1);\n        for (int y : G[x]) {\n            if (idx[y]\
+    \ > i) {\n                neighbor = std::min(neighbor, {idx[y], y});\n      \
+    \      }\n        }\n        auto [j, z] = neighbor;\n        if (j == n) continue;\n\
+    \n        // check if N(x) - z is a subset of N(z)\n        for (int y : G[x])\
+    \ {\n            if (idx[y] > i && y != z && !st[y].count(z)) {\n            \
+    \    // not chordal\n                // bfs from y to z using vertices after x\
+    \ and not in N(x)\n\n                std::queue<int> que;\n                que.push(y);\n\
+    \                std::vector<int> prv(n, -1);\n                prv[y] = y;\n \
+    \               prv[z] = -1;\n                for (int v : G[x]) {\n         \
+    \           if (v != y && v != z) {\n                        prv[v] = -2;\n  \
+    \                  }\n                }\n                while (!que.empty())\
+    \ {\n                    int v = que.front();\n                    que.pop();\n\
+    \                    for (int u : G[v]) {\n                        if (idx[u]\
+    \ > i && prv[u] == -1) {\n                            prv[u] = v;\n          \
+    \                  que.push(u);\n                        }\n                 \
+    \   }\n                }\n\n                assert(prv[z] != -1);\n\n        \
+    \        std::vector<int> cycle;\n                int v = z;\n               \
+    \ while (prv[v] != v) {\n                    cycle.push_back(v);\n           \
+    \         v = prv[v];\n                }\n                cycle.push_back(y);\n\
     \                cycle.push_back(x);\n\n                return {false, cycle};\n\
     \            }\n        }\n    }\n\n    return {true, ord};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <queue>\n\
@@ -98,29 +98,29 @@ data:
     \    const std::vector<std::vector<int>>& G) {\n    const int n = G.size();\n\
     \    std::vector<std::set<int>> st(n);\n    for (int x = 0; x < n; ++x) {\n  \
     \      for (int y : G[x]) st[x].insert(y);\n    }\n\n    auto ord = lex_bfs(G);\n\
-    \    std::reverse(ord.begin(), ord.end());\n    std::vector<int> idx(n, -1);\n\
-    \    for (int x = 0; x < n; ++x) idx[ord[x]] = x;\n\n    // check if ord is a\
-    \ perfect elimination ordering\n    for (int i = n - 1; i >= 0; --i) {\n     \
-    \   int x = ord[i];\n\n        // find the first neighbor z of x that appears\
-    \ after x\n        std::pair<int, int> neighbor(n, -1);\n        for (int y :\
-    \ G[x]) {\n            if (idx[y] > i) {\n                neighbor = std::min(neighbor,\
-    \ {idx[y], y});\n            }\n        }\n        auto [j, z] = neighbor;\n \
-    \       if (j == n) continue;\n\n        // check if N(x) - z is a subset of N(z)\n\
-    \        for (int y : G[x]) {\n            if (idx[y] > i && y != z && !st[y].count(z))\
-    \ {\n                // not chordal\n                // bfs from y to z using\
-    \ vertices after x and not in N(x)\n\n                std::queue<int> que;\n \
-    \               que.push(y);\n                std::vector<int> prv(n, -1);\n \
-    \               prv[y] = y;\n                prv[z] = -1;\n                for\
-    \ (int v : G[x]) {\n                    if (v != y && v != z) {\n            \
-    \            prv[v] = -2;\n                    }\n                }\n        \
-    \        while (!que.empty()) {\n                    int v = que.front();\n  \
-    \                  que.pop();\n                    for (int u : G[v]) {\n    \
-    \                    if (idx[u] > i && prv[u] == -1) {\n                     \
-    \       prv[u] = v;\n                            que.push(u);\n              \
-    \          }\n                    }\n                }\n\n                assert(prv[z]\
-    \ != -1);\n\n                std::vector<int> cycle;\n                int v =\
-    \ z;\n                while (prv[v] != v) {\n                    cycle.push_back(v);\n\
-    \                    v = prv[v];\n                }\n                cycle.push_back(y);\n\
+    \    std::ranges::reverse(ord);\n    std::vector<int> idx(n, -1);\n    for (int\
+    \ x = 0; x < n; ++x) idx[ord[x]] = x;\n\n    // check if ord is a perfect elimination\
+    \ ordering\n    for (int i = n - 1; i >= 0; --i) {\n        int x = ord[i];\n\n\
+    \        // find the first neighbor z of x that appears after x\n        std::pair<int,\
+    \ int> neighbor(n, -1);\n        for (int y : G[x]) {\n            if (idx[y]\
+    \ > i) {\n                neighbor = std::min(neighbor, {idx[y], y});\n      \
+    \      }\n        }\n        auto [j, z] = neighbor;\n        if (j == n) continue;\n\
+    \n        // check if N(x) - z is a subset of N(z)\n        for (int y : G[x])\
+    \ {\n            if (idx[y] > i && y != z && !st[y].count(z)) {\n            \
+    \    // not chordal\n                // bfs from y to z using vertices after x\
+    \ and not in N(x)\n\n                std::queue<int> que;\n                que.push(y);\n\
+    \                std::vector<int> prv(n, -1);\n                prv[y] = y;\n \
+    \               prv[z] = -1;\n                for (int v : G[x]) {\n         \
+    \           if (v != y && v != z) {\n                        prv[v] = -2;\n  \
+    \                  }\n                }\n                while (!que.empty())\
+    \ {\n                    int v = que.front();\n                    que.pop();\n\
+    \                    for (int u : G[v]) {\n                        if (idx[u]\
+    \ > i && prv[u] == -1) {\n                            prv[u] = v;\n          \
+    \                  que.push(u);\n                        }\n                 \
+    \   }\n                }\n\n                assert(prv[z] != -1);\n\n        \
+    \        std::vector<int> cycle;\n                int v = z;\n               \
+    \ while (prv[v] != v) {\n                    cycle.push_back(v);\n           \
+    \         v = prv[v];\n                }\n                cycle.push_back(y);\n\
     \                cycle.push_back(x);\n\n                return {false, cycle};\n\
     \            }\n        }\n    }\n\n    return {true, ord};\n}"
   dependsOn:
@@ -129,7 +129,7 @@ data:
   isVerificationFile: false
   path: graph/chordal_graph_recognition.hpp
   requiredBy: []
-  timestamp: '2023-03-09 17:45:18+09:00'
+  timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/chordal_graph_recognition.test.cpp

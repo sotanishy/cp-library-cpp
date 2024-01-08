@@ -1,48 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/scc.cpp
+  - icon: ':x:'
+    path: graph/scc.hpp
     title: Strongly Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/two_sat.test.cpp
     title: test/yosupo/two_sat.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"sat/twosat.hpp\"\n#include <vector>\n#line 2 \"graph/scc.cpp\"\
-    \n#include <algorithm>\n#line 4 \"graph/scc.cpp\"\n\nstd::vector<int> scc(const\
-    \ std::vector<std::vector<int>>& G) {\n    const int n = G.size();\n    std::vector<std::vector<int>>\
-    \ G_rev(n);\n    for (int u = 0; u < n; ++u) {\n        for (int v : G[u]) G_rev[v].push_back(u);\n\
-    \    }\n    std::vector<int> comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\
-    \n    auto dfs = [&](const auto& self, int u) -> void {\n        if (visited[u])\
-    \ return;\n        visited[u] = true;\n        for (int v : G[u]) self(self, v);\n\
-    \        order.push_back(u);\n    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs,\
-    \ v);\n    std::reverse(order.begin(), order.end());\n    int c = 0;\n\n    auto\
-    \ rdfs = [&](const auto& self, int u, int c) -> void {\n        if (comp[u] !=\
-    \ -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) self(self,\
-    \ v, c);\n    };\n\n    for (int v : order) if (comp[v] == -1) rdfs(rdfs, v, c++);\n\
-    \    return comp;\n}\n\nstd::vector<std::vector<int>> contract(const std::vector<std::vector<int>>&\
-    \ G, const std::vector<int>& comp) {\n    const int n = *max_element(comp.begin(),\
-    \ comp.end()) + 1;\n    std::vector<std::vector<int>> G2(n);\n    for (int i =\
-    \ 0; i < (int) G.size(); ++i) {\n        for (int j : G[i]) {\n            if\
-    \ (comp[i] != comp[j]) {\n                G2[comp[i]].push_back(comp[j]);\n  \
-    \          }\n        }\n    }\n    for (int i = 0; i < n; ++i) {\n        std::sort(G2[i].begin(),\
-    \ G2[i].end());\n        G2[i].erase(std::unique(G2[i].begin(), G2[i].end()),\
-    \ G2[i].end());\n    }\n    return G2;\n}\n#line 4 \"sat/twosat.hpp\"\n\nstd::vector<bool>\
-    \ two_sat(int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses)\
-    \ {\n    std::vector<std::vector<int>> G(2 * n);\n    std::vector<bool> val(n);\n\
-    \n    for (auto& [i, f, j, g] : clauses) {\n        G[n * f + i].push_back(n *\
+  bundledCode: "#line 2 \"sat/twosat.hpp\"\n#include <vector>\n\n#line 2 \"graph/scc.hpp\"\
+    \n#include <algorithm>\n#include <ranges>\n#line 5 \"graph/scc.hpp\"\n\nstd::vector<int>\
+    \ scc(const std::vector<std::vector<int>>& G) {\n    const int n = G.size();\n\
+    \    std::vector<std::vector<int>> G_rev(n);\n    for (int u = 0; u < n; ++u)\
+    \ {\n        for (int v : G[u]) G_rev[v].push_back(u);\n    }\n    std::vector<int>\
+    \ comp(n, -1), order(n);\n    std::vector<bool> visited(n);\n\n    auto dfs =\
+    \ [&](const auto& dfs, int u) -> void {\n        if (visited[u]) return;\n   \
+    \     visited[u] = true;\n        for (int v : G[u]) dfs(dfs, v);\n        order.push_back(u);\n\
+    \    };\n\n    for (int v = 0; v < n; ++v) dfs(dfs, v);\n    int c = 0;\n\n  \
+    \  auto rdfs = [&](const auto& rdfs, int u, int c) -> void {\n        if (comp[u]\
+    \ != -1) return;\n        comp[u] = c;\n        for (int v : G_rev[u]) rdfs(rdfs,\
+    \ v, c);\n    };\n\n    for (int v : order | std::views::reverse) {\n        if\
+    \ (comp[v] == -1) rdfs(rdfs, v, c++);\n    }\n    return comp;\n}\n\nstd::vector<std::vector<int>>\
+    \ contract(const std::vector<std::vector<int>>& G,\n                         \
+    \              const std::vector<int>& comp) {\n    const int n = *std::ranges::max_element(comp)\
+    \ + 1;\n    std::vector<std::vector<int>> G2(n);\n    for (int i = 0; i < (int)G.size();\
+    \ ++i) {\n        for (int j : G[i]) {\n            if (comp[i] != comp[j]) {\n\
+    \                G2[comp[i]].push_back(comp[j]);\n            }\n        }\n \
+    \   }\n    for (int i = 0; i < n; ++i) {\n        std::ranges::sort(G2[i]);\n\
+    \        G2[i].erase(std::ranges::unique(G2[i]).begin(), G2[i].end());\n    }\n\
+    \    return G2;\n}\n#line 5 \"sat/twosat.hpp\"\n\nstd::vector<bool> two_sat(\n\
+    \    int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses) {\n\
+    \    std::vector<std::vector<int>> G(2 * n);\n    std::vector<bool> val(n);\n\n\
+    \    for (auto& [i, f, j, g] : clauses) {\n        G[n * f + i].push_back(n *\
     \ (!g) + j);\n        G[n * g + j].push_back(n * (!f) + i);\n    }\n\n    auto\
     \ comp = scc(G);\n    for (int i = 0; i < n; ++i) {\n        if (comp[i] == comp[n\
     \ + i]) {\n            // not satisfiable\n            return {};\n        }\n\
     \        val[i] = comp[i] > comp[n + i];\n    }\n    return val;\n}\n"
-  code: "#pragma once\n#include <vector>\n#include \"../graph/scc.cpp\"\n\nstd::vector<bool>\
-    \ two_sat(int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses)\
+  code: "#pragma once\n#include <vector>\n\n#include \"../graph/scc.hpp\"\n\nstd::vector<bool>\
+    \ two_sat(\n    int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses)\
     \ {\n    std::vector<std::vector<int>> G(2 * n);\n    std::vector<bool> val(n);\n\
     \n    for (auto& [i, f, j, g] : clauses) {\n        G[n * f + i].push_back(n *\
     \ (!g) + j);\n        G[n * g + j].push_back(n * (!f) + i);\n    }\n\n    auto\
@@ -50,12 +51,12 @@ data:
     \ + i]) {\n            // not satisfiable\n            return {};\n        }\n\
     \        val[i] = comp[i] > comp[n + i];\n    }\n    return val;\n}"
   dependsOn:
-  - graph/scc.cpp
+  - graph/scc.hpp
   isVerificationFile: false
   path: sat/twosat.hpp
   requiredBy: []
-  timestamp: '2022-04-14 13:03:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-08 13:32:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/two_sat.test.cpp
 documentation_of: sat/twosat.hpp

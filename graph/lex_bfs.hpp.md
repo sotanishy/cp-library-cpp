@@ -53,7 +53,7 @@ data:
     \                pivot.push_back(y);\n                neighbor.insert(y);\n  \
     \          }\n        }\n        for (auto [s, t] : pr.refine(pivot)) {\n    \
     \        if ((int)prv.size() <= t) {\n                prv.resize(t + 1, -1);\n\
-    \                nxt.resize(t + 1, -1);\n            }\n            if (neighbor.count(pr.member(s)))\
+    \                nxt.resize(t + 1, -1);\n            }\n            if (neighbor.contains(pr.member(s)))\
     \ {\n                if (nxt[s] >= 0) prv[nxt[s]] = t;\n                nxt[t]\
     \ = nxt[s];\n                prv[t] = s;\n                nxt[s] = t;\n      \
     \      } else {\n                if (prv[s] >= 0) nxt[prv[s]] = t;\n         \
@@ -71,7 +71,7 @@ data:
     \     pivot.push_back(y);\n                neighbor.insert(y);\n            }\n\
     \        }\n        for (auto [s, t] : pr.refine(pivot)) {\n            if ((int)prv.size()\
     \ <= t) {\n                prv.resize(t + 1, -1);\n                nxt.resize(t\
-    \ + 1, -1);\n            }\n            if (neighbor.count(pr.member(s))) {\n\
+    \ + 1, -1);\n            }\n            if (neighbor.contains(pr.member(s))) {\n\
     \                if (nxt[s] >= 0) prv[nxt[s]] = t;\n                nxt[t] = nxt[s];\n\
     \                prv[t] = s;\n                nxt[s] = t;\n            } else\
     \ {\n                if (prv[s] >= 0) nxt[prv[s]] = t;\n                prv[t]\
@@ -84,7 +84,7 @@ data:
   path: graph/lex_bfs.hpp
   requiredBy:
   - graph/chordal_graph_recognition.hpp
-  timestamp: '2023-03-09 17:45:18+09:00'
+  timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/chordal_graph_recognition.test.cpp
