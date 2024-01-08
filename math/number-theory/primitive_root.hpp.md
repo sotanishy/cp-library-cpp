@@ -4,32 +4,28 @@ data:
   - icon: ':question:'
     path: math/number-theory/fast_prime.hpp
     title: Fast Prime Number Algorithms
-  - icon: ':x:'
-    path: math/number-theory/primitive_root.hpp
-    title: Primitive Root
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/primitive_root.test.cpp
+    title: test/yosupo/primitive_root.test.cpp
   _isVerificationFailed: true
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
-    links:
-    - https://judge.yosupo.jp/problem/primitive_root
-  bundledCode: "#line 1 \"test/yosupo/primitive_root.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/primitive_root\"\n\n#line 2 \"math/number-theory/primitive_root.hpp\"\
-    \n#include <random>\n\n#line 2 \"math/number-theory/fast_prime.hpp\"\n#include\
-    \ <algorithm>\n#include <numeric>\n#line 5 \"math/number-theory/fast_prime.hpp\"\
-    \n#include <vector>\n\nnamespace fast_prime {\n\nclass LargeModint {\n    using\
-    \ mint = LargeModint;\n\n   public:\n    static long long& get_mod() {\n     \
-    \   static long long mod = 1;\n        return mod;\n    }\n\n    static void set_mod(long\
-    \ long mod) { get_mod() = mod; }\n\n    LargeModint(long long y = 0)\n       \
-    \ : x(y >= 0 ? y % get_mod() : (y % get_mod() + get_mod()) % get_mod()) {}\n\n\
-    \    long long val() const { return x; }\n\n    mint& operator+=(const mint& r)\
-    \ {\n        if ((x += r.x) >= get_mod()) x -= get_mod();\n        return *this;\n\
-    \    }\n    mint& operator-=(const mint& r) {\n        if ((x += get_mod() - r.x)\
-    \ >= get_mod()) x -= get_mod();\n        return *this;\n    }\n    mint& operator*=(const\
+    links: []
+  bundledCode: "#line 2 \"math/number-theory/primitive_root.hpp\"\n#include <random>\n\
+    \n#line 2 \"math/number-theory/fast_prime.hpp\"\n#include <algorithm>\n#include\
+    \ <numeric>\n#line 5 \"math/number-theory/fast_prime.hpp\"\n#include <vector>\n\
+    \nnamespace fast_prime {\n\nclass LargeModint {\n    using mint = LargeModint;\n\
+    \n   public:\n    static long long& get_mod() {\n        static long long mod\
+    \ = 1;\n        return mod;\n    }\n\n    static void set_mod(long long mod) {\
+    \ get_mod() = mod; }\n\n    LargeModint(long long y = 0)\n        : x(y >= 0 ?\
+    \ y % get_mod() : (y % get_mod() + get_mod()) % get_mod()) {}\n\n    long long\
+    \ val() const { return x; }\n\n    mint& operator+=(const mint& r) {\n       \
+    \ if ((x += r.x) >= get_mod()) x -= get_mod();\n        return *this;\n    }\n\
+    \    mint& operator-=(const mint& r) {\n        if ((x += get_mod() - r.x) >=\
+    \ get_mod()) x -= get_mod();\n        return *this;\n    }\n    mint& operator*=(const\
     \ mint& r) {\n        x = static_cast<long long>((__int128_t)x * r.x % get_mod());\n\
     \        return *this;\n    }\n\n    mint operator-() const { return mint(-x);\
     \ }\n\n    mint operator+(const mint& r) const { return mint(*this) += r; }\n\
@@ -68,30 +64,38 @@ data:
     \        mint a = x;\n        bool ok = true;\n        for (auto pi : prime) {\n\
     \            if (a.pow((p - 1) / pi) == 1) {\n                ok = false;\n  \
     \              break;\n            }\n        }\n        if (ok) return a.value();\n\
-    \    }\n}\n#line 4 \"test/yosupo/primitive_root.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int Q;\n    cin >> Q;\n    while (Q--) {\n     \
-    \   long long p;\n        cin >> p;\n        cout << primitive_root(p) << \"\\\
-    n\";\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
-    \ \"../../math/number-theory/primitive_root.hpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n\n    int Q;\n    cin >> Q;\n    while (Q--) {\n     \
-    \   long long p;\n        cin >> p;\n        cout << primitive_root(p) << \"\\\
-    n\";\n    }\n}\n"
+    \    }\n}\n"
+  code: "#pragma once\n#include <random>\n\n#include \"fast_prime.hpp\"\n\nlong long\
+    \ primitive_root(long long p) {\n    auto prime = fast_prime::prime_factor(p -\
+    \ 1);\n\n    using mint = fast_prime::LargeModint;\n    mint::set_mod(p);\n\n\
+    \    std::random_device rd;\n    std::mt19937_64 rng(rd());\n    std::uniform_int_distribution<long\
+    \ long> rand(1, p - 1);\n    while (true) {\n        long long x = rand(rng);\n\
+    \        mint a = x;\n        bool ok = true;\n        for (auto pi : prime) {\n\
+    \            if (a.pow((p - 1) / pi) == 1) {\n                ok = false;\n  \
+    \              break;\n            }\n        }\n        if (ok) return a.value();\n\
+    \    }\n}\n"
   dependsOn:
-  - math/number-theory/primitive_root.hpp
   - math/number-theory/fast_prime.hpp
-  isVerificationFile: true
-  path: test/yosupo/primitive_root.test.cpp
+  isVerificationFile: false
+  path: math/number-theory/primitive_root.hpp
   requiredBy: []
   timestamp: '2024-01-08 17:31:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: test/yosupo/primitive_root.test.cpp
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/primitive_root.test.cpp
+documentation_of: math/number-theory/primitive_root.hpp
 layout: document
-redirect_from:
-- /verify/test/yosupo/primitive_root.test.cpp
-- /verify/test/yosupo/primitive_root.test.cpp.html
-title: test/yosupo/primitive_root.test.cpp
+title: Primitive Root
 ---
+
+## Description
+
+素数 $p$ を法とする原子根を求める．
+
+- `long long primitive_root(long long p)`
+    - 素数 $p$ を法とする原子根を求める
+    - 時間計算量: $\mathrm{expected}\ O(n^{\frac{1}{4}} \log n)$
+
+## Reference
+
+- [原子根のアルゴリズム - 37zigenのHP](https://37zigen.com/primitive-root/)

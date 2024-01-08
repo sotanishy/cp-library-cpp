@@ -21,6 +21,12 @@ data:
     - icon: ':warning:'
       path: convolution/relaxed_convolution.hpp
       title: Relaxed Convolution
+    - icon: ':heavy_check_mark:'
+      path: convolution/walsh_hadamard_transform.hpp
+      title: Fast Walsh-Hadamard Transform
+    - icon: ':heavy_check_mark:'
+      path: convolution/xor_convolution.hpp
+      title: Bitwise XOR Convolution
   - name: data-structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -356,9 +362,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/bostan_mori.hpp
       title: Bostan-Mori Algorithm
-    - icon: ':warning:'
-      path: math/carmichael.cpp
-      title: Carmichael Function
     - icon: ':heavy_check_mark:'
       path: math/combination.cpp
       title: Combination
@@ -374,30 +377,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/count_subset_sum.hpp
       title: Count Subset Sum
-    - icon: ':warning:'
-      path: math/divisor.cpp
-      title: Divisor
-    - icon: ':heavy_check_mark:'
-      path: math/euler_totient.cpp
-      title: Euler's Totient Function
-    - icon: ':heavy_check_mark:'
-      path: math/extgcd.cpp
-      title: Extended Euclidean Algorithm
     - icon: ':heavy_check_mark:'
       path: math/factorial.hpp
       title: Factorial
-    - icon: ':warning:'
-      path: math/farey_sequence.hpp
-      title: Farey Sequence
-    - icon: ':heavy_check_mark:'
-      path: math/fast_prime.cpp
-      title: Fast Prime Number Algorithms
-    - icon: ':heavy_check_mark:'
-      path: math/floor_sum.cpp
-      title: Sum of Floor of Linear
-    - icon: ':heavy_check_mark:'
-      path: math/garner.cpp
-      title: Garner's Algorithm
     - icon: ':heavy_check_mark:'
       path: math/gaussian_integer.hpp
       title: Gaussian Integer
@@ -405,29 +387,17 @@ data:
       path: math/interpolation.cpp
       title: Polynomial Interpolation
     - icon: ':warning:'
-      path: math/isqrt.hpp
-      title: math/isqrt.hpp
-    - icon: ':warning:'
       path: math/kitamasa.cpp
       title: Kitamasa's Algorithm
-    - icon: ':heavy_check_mark:'
-      path: math/kth_root.hpp
-      title: math/kth_root.hpp
     - icon: ':warning:'
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
     - icon: ':heavy_check_mark:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
-    - icon: ':heavy_check_mark:'
-      path: math/mod_arithmetic.cpp
-      title: Modular Arithmetic
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: Mod int
-    - icon: ':warning:'
-      path: math/moebius.hpp
-      title: "M\xF6bius Function"
     - icon: ':heavy_check_mark:'
       path: math/montmort.cpp
       title: Monmort Number
@@ -444,26 +414,11 @@ data:
       path: math/polynomial.cpp
       title: Polynomial
     - icon: ':heavy_check_mark:'
-      path: math/prime.cpp
-      title: Prime Number Algorithms
-    - icon: ':heavy_check_mark:'
-      path: math/prime_count.hpp
-      title: Prime Counting Function
-    - icon: ':heavy_check_mark:'
-      path: math/primitive_root.hpp
-      title: Primitive Root
-    - icon: ':heavy_check_mark:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
     - icon: ':warning:'
       path: math/q_analogs.hpp
       title: q-Analogs
-    - icon: ':heavy_check_mark:'
-      path: math/quotients.hpp
-      title: Intervals with Equal Quotients
-    - icon: ':heavy_check_mark:'
-      path: math/stern_brocot_tree.hpp
-      title: Stern-Brocot Tree
     - icon: ':heavy_check_mark:'
       path: math/stirling_first.hpp
       title: Stirling Number of the First Kind
@@ -487,6 +442,73 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/linalg/system_of_linear_equations.hpp
       title: System of Linear Equations
+  - name: math/number-theory
+    pages:
+    - icon: ':warning:'
+      path: math/number-theory/carmichael.hpp
+      title: Carmichael Function
+    - icon: ':warning:'
+      path: math/number-theory/divisor.hpp
+      title: Divisor
+    - icon: ':question:'
+      path: math/number-theory/euler_totient.hpp
+      title: Euler's Totient Function
+    - icon: ':heavy_check_mark:'
+      path: math/number-theory/extgcd.hpp
+      title: Extended Euclidean Algorithm
+    - icon: ':warning:'
+      path: math/number-theory/farey_sequence.hpp
+      title: Farey Sequence
+    - icon: ':question:'
+      path: math/number-theory/fast_prime.hpp
+      title: Fast Prime Number Algorithms
+    - icon: ':warning:'
+      path: math/number-theory/floor_sum.hpp
+      title: Sum of Floor of Linear
+    - icon: ':heavy_check_mark:'
+      path: math/number-theory/garner.hpp
+      title: Garner's Algorithm
+    - icon: ':warning:'
+      path: math/number-theory/isqrt.hpp
+      title: Integer Square Root
+    - icon: ':x:'
+      path: math/number-theory/kth_root.hpp
+      title: k-th Root
+    - icon: ':question:'
+      path: math/number-theory/mod_arithmetic.hpp
+      title: Modular Arithmetic
+    - icon: ':warning:'
+      path: math/number-theory/moebius.hpp
+      title: math/number-theory/moebius.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/number-theory/prime.hpp
+      title: Prime Number Algorithms
+    - icon: ':heavy_check_mark:'
+      path: math/number-theory/prime_count.hpp
+      title: Prime Counting Function
+    - icon: ':x:'
+      path: math/number-theory/primitive_root.hpp
+      title: Primitive Root
+    - icon: ':heavy_check_mark:'
+      path: math/number-theory/quotients.hpp
+      title: Intervals with Equal Quotients
+    - icon: ':heavy_check_mark:'
+      path: math/number-theory/stern_brocot_tree.hpp
+      title: Stern-Brocot Tree
+  - name: math/set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: math/set/and_or_convolution.hpp
+      title: Bitwise AND/OR Convolution
+    - icon: ':heavy_check_mark:'
+      path: math/set/set_power_series.hpp
+      title: Set Power Series
+    - icon: ':question:'
+      path: math/set/subset_convolution.hpp
+      title: Subset Convolution
+    - icon: ':question:'
+      path: math/set/zeta_moebius_transform.hpp
+      title: math/set/zeta_moebius_transform.hpp
   - name: misc
     pages:
     - icon: ':warning:'
@@ -563,26 +585,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: sat/twosat.hpp
       title: 2-SAT
-  - name: set
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: set/and_or_convolution.hpp
-      title: Bitwise AND/OR Convolution
-    - icon: ':heavy_check_mark:'
-      path: set/set_power_series.hpp
-      title: Set Power Series
-    - icon: ':heavy_check_mark:'
-      path: set/subset_convolution.hpp
-      title: Subset Convolution
-    - icon: ':heavy_check_mark:'
-      path: set/walsh_hadamard_transform.hpp
-      title: Fast Walsh-Hadamard Transform
-    - icon: ':heavy_check_mark:'
-      path: set/xor_convolution.hpp
-      title: Bitwise XOR Convolution
-    - icon: ':heavy_check_mark:'
-      path: set/zeta_moebius_transform.hpp
-      title: "Fast Zeta/M\xF6bius Transform"
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
@@ -988,7 +990,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/jump_on_tree.test.cpp
       title: test/yosupo/jump_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1081,10 +1083,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/pow_of_matrix.test.cpp
       title: test/yosupo/pow_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/primitive_root.test.cpp
       title: test/yosupo/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1141,7 +1143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1162,22 +1164,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/subset_convolution.test.cpp
       title: test/yosupo/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/suffixarray.test.cpp
       title: test/yosupo/suffixarray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/sum_of_totient_function.test.cpp
       title: test/yosupo/sum_of_totient_function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tetration_mod.test.cpp
       title: test/yosupo/tetration_mod.test.cpp
     - icon: ':heavy_check_mark:'

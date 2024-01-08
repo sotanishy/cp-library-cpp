@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: set/zeta_moebius_transform.hpp
-    title: "Fast Zeta/M\xF6bius Transform"
+  - icon: ':question:'
+    path: math/set/zeta_moebius_transform.hpp
+    title: math/set/zeta_moebius_transform.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/linalg/hafnian.hpp
     title: Hafnian
   - icon: ':heavy_check_mark:'
-    path: set/set_power_series.hpp
+    path: math/set/set_power_series.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -18,18 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/hafnian_of_matrix.test.cpp
     title: test/yosupo/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"set/subset_convolution.hpp\"\n#include <array>\n#include\
-    \ <vector>\n\n#line 2 \"set/zeta_moebius_transform.hpp\"\n#include <bit>\n#include\
-    \ <cassert>\n#line 5 \"set/zeta_moebius_transform.hpp\"\n\ntemplate <typename\
-    \ T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+  bundledCode: "#line 2 \"math/set/subset_convolution.hpp\"\n#include <array>\n#include\
+    \ <vector>\n\n#line 2 \"math/set/zeta_moebius_transform.hpp\"\n#include <bit>\n\
+    #include <cassert>\n#line 5 \"math/set/zeta_moebius_transform.hpp\"\n\ntemplate\
+    \ <typename T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
     \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
     \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j] += a[j | i];\n   \
     \     }\n    }\n}\n\ntemplate <typename T>\nvoid superset_fmt(std::vector<T>&\
@@ -43,7 +43,7 @@ data:
     \ {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
     \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
     \            if (!(j & i)) a[j | i] -= a[j];\n        }\n    }\n}\n#line 6 \"\
-    set/subset_convolution.hpp\"\n\ntemplate <typename T, std::size_t N>\nstd::array<T,\
+    math/set/subset_convolution.hpp\"\n\ntemplate <typename T, std::size_t N>\nstd::array<T,\
     \ N>& operator+=(std::array<T, N>& lhs,\n                             const std::array<T,\
     \ N>& rhs) {\n    for (int i = 0; i < (int)N; ++i) lhs[i] += rhs[i];\n    return\
     \ lhs;\n}\n\ntemplate <typename T, std::size_t N>\nstd::array<T, N>& operator-=(std::array<T,\
@@ -84,19 +84,19 @@ data:
     \ back\n    std::vector<T> ret(n);\n    for (int i = 0; i < n; ++i) {\n      \
     \  ret[i] = pa[i][std::popcount((unsigned int)i)];\n    }\n    return ret;\n}\n"
   dependsOn:
-  - set/zeta_moebius_transform.hpp
+  - math/set/zeta_moebius_transform.hpp
   isVerificationFile: false
-  path: set/subset_convolution.hpp
+  path: math/set/subset_convolution.hpp
   requiredBy:
   - math/linalg/hafnian.hpp
-  - set/set_power_series.hpp
-  timestamp: '2024-01-07 16:57:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - math/set/set_power_series.hpp
+  timestamp: '2024-01-08 17:31:43+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/exp_of_set_power_series.test.cpp
   - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/subset_convolution.test.cpp
-documentation_of: set/subset_convolution.hpp
+documentation_of: math/set/subset_convolution.hpp
 layout: document
 title: Subset Convolution
 ---

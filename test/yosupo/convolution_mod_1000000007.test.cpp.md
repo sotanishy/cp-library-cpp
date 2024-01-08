@@ -7,15 +7,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':heavy_check_mark:'
-    path: math/extgcd.cpp
-    title: Extended Euclidean Algorithm
-  - icon: ':heavy_check_mark:'
-    path: math/garner.cpp
-    title: Garner's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
+  - icon: ':heavy_check_mark:'
+    path: math/number-theory/extgcd.hpp
+    title: Extended Euclidean Algorithm
+  - icon: ':heavy_check_mark:'
+    path: math/number-theory/garner.hpp
+    title: Garner's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,50 +29,51 @@ data:
   bundledCode: "#line 1 \"test/yosupo/convolution_mod_1000000007.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\n\n#line\
     \ 2 \"convolution/arbitrary_mod_convolution.hpp\"\n#include <vector>\n\n#line\
-    \ 2 \"math/extgcd.cpp\"\n#include <algorithm>\n#include <utility>\n\nstd::pair<long\
-    \ long, long long> extgcd(long long a, long long b) {\n    long long s = a, sx\
-    \ = 1, sy = 0, t = b, tx = 0, ty = 1;\n    while (t) {\n        long long q =\
-    \ s / t;\n        std::swap(s -= t * q, t);\n        std::swap(sx -= tx * q, tx);\n\
-    \        std::swap(sy -= ty * q, ty);\n    }\n    return {sx, sy};\n}\n\nlong\
-    \ long mod_inv(long long a, long long mod) {\n    long long inv = extgcd(a, mod).first;\n\
-    \    return (inv % mod + mod) % mod;\n}\n#line 4 \"math/garner.cpp\"\n\nlong long\
-    \ garner(const std::vector<long long>& b, std::vector<long long> m, long long\
-    \ mod) {\n    m.push_back(mod);\n    int n = m.size();\n    std::vector<long long>\
-    \ coeffs(n, 1);\n    std::vector<long long> consts(n, 0);\n    for (int k = 0;\
-    \ k < n - 1; ++k) {\n        long long t = (b[k] - consts[k]) * mod_inv(coeffs[k],\
-    \ m[k]) % m[k];\n        if (t < 0) t += m[k];\n        for (int i = k + 1; i\
-    \ < n; ++i) {\n            consts[i] = (consts[i] + t * coeffs[i]) % m[i];\n \
-    \           coeffs[i] = coeffs[i] * m[k] % m[i];\n        }\n    }\n    return\
-    \ consts.back();\n}\n#line 3 \"math/modint.hpp\"\n#include <iostream>\n\n/**\n\
-    \ * @brief Mod int\n */\ntemplate <int m>\nclass Modint {\n    using mint = Modint;\n\
-    \    static_assert(m > 0, \"Modulus must be positive\");\n\n   public:\n    static\
-    \ constexpr int mod() { return m; }\n\n    constexpr Modint(long long y = 0) :\
-    \ x(y >= 0 ? y % m : (y % m + m) % m) {}\n\n    constexpr int val() const { return\
-    \ x; }\n\n    constexpr mint& operator+=(const mint& r) {\n        if ((x += r.x)\
-    \ >= m) x -= m;\n        return *this;\n    }\n    constexpr mint& operator-=(const\
-    \ mint& r) {\n        if ((x += m - r.x) >= m) x -= m;\n        return *this;\n\
-    \    }\n    constexpr mint& operator*=(const mint& r) {\n        x = static_cast<int>(1LL\
-    \ * x * r.x % m);\n        return *this;\n    }\n    constexpr mint& operator/=(const\
-    \ mint& r) { return *this *= r.inv(); }\n\n    constexpr bool operator==(const\
-    \ mint& r) const { return x == r.x; }\n\n    constexpr mint operator+() const\
-    \ { return *this; }\n    constexpr mint operator-() const { return mint(-x); }\n\
-    \n    constexpr friend mint operator+(const mint& l, const mint& r) {\n      \
-    \  return mint(l) += r;\n    }\n    constexpr friend mint operator-(const mint&\
-    \ l, const mint& r) {\n        return mint(l) -= r;\n    }\n    constexpr friend\
-    \ mint operator*(const mint& l, const mint& r) {\n        return mint(l) *= r;\n\
-    \    }\n    constexpr friend mint operator/(const mint& l, const mint& r) {\n\
-    \        return mint(l) /= r;\n    }\n\n    constexpr mint inv() const {\n   \
-    \     int a = x, b = m, u = 1, v = 0;\n        while (b > 0) {\n            int\
-    \ t = a / b;\n            std::swap(a -= t * b, b);\n            std::swap(u -=\
-    \ t * v, v);\n        }\n        return mint(u);\n    }\n\n    constexpr mint\
-    \ pow(long long n) const {\n        mint ret(1), mul(x);\n        while (n > 0)\
-    \ {\n            if (n & 1) ret *= mul;\n            mul *= mul;\n           \
-    \ n >>= 1;\n        }\n        return ret;\n    }\n\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
-    \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
-    \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\n   private:\n    int x;\n};\n#line 2 \"convolution/ntt.hpp\"\n#include\
-    \ <bit>\n#line 4 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
+    \ 3 \"math/number-theory/garner.hpp\"\n\n#line 2 \"math/number-theory/extgcd.hpp\"\
+    \n#include <algorithm>\n#include <utility>\n\nstd::pair<long long, long long>\
+    \ extgcd(long long a, long long b) {\n    long long s = a, sx = 1, sy = 0, t =\
+    \ b, tx = 0, ty = 1;\n    while (t) {\n        long long q = s / t;\n        std::swap(s\
+    \ -= t * q, t);\n        std::swap(sx -= tx * q, tx);\n        std::swap(sy -=\
+    \ ty * q, ty);\n    }\n    return {sx, sy};\n}\n\nlong long mod_inv(long long\
+    \ a, long long mod) {\n    long long inv = extgcd(a, mod).first;\n    return (inv\
+    \ % mod + mod) % mod;\n}\n#line 5 \"math/number-theory/garner.hpp\"\n\nlong long\
+    \ garner(const std::vector<long long>& b, std::vector<long long> m,\n        \
+    \         long long mod) {\n    m.push_back(mod);\n    const int n = m.size();\n\
+    \    std::vector<long long> coeffs(n, 1);\n    std::vector<long long> consts(n,\
+    \ 0);\n    for (int k = 0; k < n - 1; ++k) {\n        long long t = (b[k] - consts[k])\
+    \ * mod_inv(coeffs[k], m[k]) % m[k];\n        if (t < 0) t += m[k];\n        for\
+    \ (int i = k + 1; i < n; ++i) {\n            consts[i] = (consts[i] + t * coeffs[i])\
+    \ % m[i];\n            coeffs[i] = coeffs[i] * m[k] % m[i];\n        }\n    }\n\
+    \    return consts.back();\n}\n#line 3 \"math/modint.hpp\"\n#include <iostream>\n\
+    \n/**\n * @brief Mod int\n */\ntemplate <int m>\nclass Modint {\n    using mint\
+    \ = Modint;\n    static_assert(m > 0, \"Modulus must be positive\");\n\n   public:\n\
+    \    static constexpr int mod() { return m; }\n\n    constexpr Modint(long long\
+    \ y = 0) : x(y >= 0 ? y % m : (y % m + m) % m) {}\n\n    constexpr int val() const\
+    \ { return x; }\n\n    constexpr mint& operator+=(const mint& r) {\n        if\
+    \ ((x += r.x) >= m) x -= m;\n        return *this;\n    }\n    constexpr mint&\
+    \ operator-=(const mint& r) {\n        if ((x += m - r.x) >= m) x -= m;\n    \
+    \    return *this;\n    }\n    constexpr mint& operator*=(const mint& r) {\n \
+    \       x = static_cast<int>(1LL * x * r.x % m);\n        return *this;\n    }\n\
+    \    constexpr mint& operator/=(const mint& r) { return *this *= r.inv(); }\n\n\
+    \    constexpr bool operator==(const mint& r) const { return x == r.x; }\n\n \
+    \   constexpr mint operator+() const { return *this; }\n    constexpr mint operator-()\
+    \ const { return mint(-x); }\n\n    constexpr friend mint operator+(const mint&\
+    \ l, const mint& r) {\n        return mint(l) += r;\n    }\n    constexpr friend\
+    \ mint operator-(const mint& l, const mint& r) {\n        return mint(l) -= r;\n\
+    \    }\n    constexpr friend mint operator*(const mint& l, const mint& r) {\n\
+    \        return mint(l) *= r;\n    }\n    constexpr friend mint operator/(const\
+    \ mint& l, const mint& r) {\n        return mint(l) /= r;\n    }\n\n    constexpr\
+    \ mint inv() const {\n        int a = x, b = m, u = 1, v = 0;\n        while (b\
+    \ > 0) {\n            int t = a / b;\n            std::swap(a -= t * b, b);\n\
+    \            std::swap(u -= t * v, v);\n        }\n        return mint(u);\n \
+    \   }\n\n    constexpr mint pow(long long n) const {\n        mint ret(1), mul(x);\n\
+    \        while (n > 0) {\n            if (n & 1) ret *= mul;\n            mul\
+    \ *= mul;\n            n >>= 1;\n        }\n        return ret;\n    }\n\n   \
+    \ friend std::ostream& operator<<(std::ostream& os, const mint& r) {\n       \
+    \ return os << r.x;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, mint& r) {\n        long long t;\n        is >> t;\n        r = mint(t);\n\
+    \        return is;\n    }\n\n   private:\n    int x;\n};\n#line 2 \"convolution/ntt.hpp\"\
+    \n#include <bit>\n#line 4 \"convolution/ntt.hpp\"\n\nconstexpr int get_primitive_root(int\
     \ mod) {\n    if (mod == 167772161) return 3;\n    if (mod == 469762049) return\
     \ 3;\n    if (mod == 754974721) return 11;\n    if (mod == 998244353) return 3;\n\
     \    if (mod == 1224736769) return 3;\n}\n\ntemplate <typename mint>\nvoid ntt(std::vector<mint>&\
@@ -124,14 +125,14 @@ data:
     \ ++i) cout << c[i] << (i < (int)c.size()-1 ? \" \" : \"\\n\");\n}\n\n"
   dependsOn:
   - convolution/arbitrary_mod_convolution.hpp
-  - math/garner.cpp
-  - math/extgcd.cpp
+  - math/number-theory/garner.hpp
+  - math/number-theory/extgcd.hpp
   - math/modint.hpp
   - convolution/ntt.hpp
   isVerificationFile: true
   path: test/yosupo/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution_mod_1000000007.test.cpp

@@ -129,9 +129,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/subset_convolution.test.cpp
     title: test/yosupo/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/sum_of_totient_function.test.cpp
+    title: test/yosupo/sum_of_totient_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
@@ -141,9 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Mod int
     links: []
@@ -211,7 +214,7 @@ data:
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
@@ -247,6 +250,7 @@ data:
   - test/yosupo/number_of_subsequences.test.cpp
   - test/yosupo/factorial.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/sum_of_totient_function.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/enumerate_cliques.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp

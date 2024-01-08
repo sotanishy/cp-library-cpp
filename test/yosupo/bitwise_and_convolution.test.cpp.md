@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'
-    path: set/and_or_convolution.hpp
+    path: math/set/and_or_convolution.hpp
     title: Bitwise AND/OR Convolution
-  - icon: ':heavy_check_mark:'
-    path: set/zeta_moebius_transform.hpp
-    title: "Fast Zeta/M\xF6bius Transform"
+  - icon: ':question:'
+    path: math/set/zeta_moebius_transform.hpp
+    title: math/set/zeta_moebius_transform.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -50,8 +50,8 @@ data:
     \ operator<<(std::ostream& os, const mint& r) {\n        return os << r.x;\n \
     \   }\n\n    friend std::istream& operator>>(std::istream& is, mint& r) {\n  \
     \      long long t;\n        is >> t;\n        r = mint(t);\n        return is;\n\
-    \    }\n\n   private:\n    int x;\n};\n#line 2 \"set/and_or_convolution.hpp\"\n\
-    #include <bit>\n#line 4 \"set/and_or_convolution.hpp\"\n\n#line 5 \"set/zeta_moebius_transform.hpp\"\
+    \    }\n\n   private:\n    int x;\n};\n#line 2 \"math/set/and_or_convolution.hpp\"\
+    \n#include <bit>\n#line 4 \"math/set/and_or_convolution.hpp\"\n\n#line 5 \"math/set/zeta_moebius_transform.hpp\"\
     \n\ntemplate <typename T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
     \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
     \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j] += a[j | i];\n   \
@@ -66,37 +66,37 @@ data:
     \ {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
     \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
     \            if (!(j & i)) a[j | i] -= a[j];\n        }\n    }\n}\n#line 6 \"\
-    set/and_or_convolution.hpp\"\n\n/**\n * @brief Bitwise AND/OR Convolution\n */\n\
-    \ntemplate <typename T>\nstd::vector<T> and_convolution(std::vector<T> a, std::vector<T>\
-    \ b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n    a.resize(n);\n\
-    \    b.resize(n);\n    superset_fzt(a);\n    superset_fzt(b);\n    for (int i\
-    \ = 0; i < n; ++i) a[i] *= b[i];\n    superset_fmt(a);\n    return a;\n}\n\ntemplate\
-    \ <typename T>\nstd::vector<T> or_convolution(std::vector<T> a, std::vector<T>\
-    \ b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n    a.resize(n);\n\
-    \    b.resize(n);\n    subset_fzt(a);\n    subset_fzt(b);\n    for (int i = 0;\
-    \ i < n; ++i) a[i] *= b[i];\n    subset_fmt(a);\n    return a;\n}\n#line 7 \"\
-    test/yosupo/bitwise_and_convolution.test.cpp\"\nusing namespace std;\nusing ll\
-    \ = long long;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    int N;\n\
-    \    cin >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a)\
-    \ cin >> x;\n    for (auto& x : b) cin >> x;\n    auto c = and_convolution(a,\
+    math/set/and_or_convolution.hpp\"\n\n/**\n * @brief Bitwise AND/OR Convolution\n\
+    \ */\n\ntemplate <typename T>\nstd::vector<T> and_convolution(std::vector<T> a,\
+    \ std::vector<T> b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n\
+    \    a.resize(n);\n    b.resize(n);\n    superset_fzt(a);\n    superset_fzt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    superset_fmt(a);\n    return\
+    \ a;\n}\n\ntemplate <typename T>\nstd::vector<T> or_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    const int n = std::bit_ceil(std::max(a.size(), b.size()));\n\
+    \    a.resize(n);\n    b.resize(n);\n    subset_fzt(a);\n    subset_fzt(b);\n\
+    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n    subset_fmt(a);\n    return\
+    \ a;\n}\n#line 7 \"test/yosupo/bitwise_and_convolution.test.cpp\"\nusing namespace\
+    \ std;\nusing ll = long long;\n\nusing mint = Modint<998244353>;\n\nint main()\
+    \ {\n    int N;\n    cin >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    for\
+    \ (auto& x : a) cin >> x;\n    for (auto& x : b) cin >> x;\n    auto c = and_convolution(a,\
     \ b);\n    for (int i = 0; i < (1 << N); ++i)\n        cout << c[i] << (i < (1\
     \ << N) - 1 ? \" \" : \"\\n\");\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n\n#include <bits/stdc++.h>\n\n#include \"../../math/modint.hpp\"\n#include \"\
-    ../../set/and_or_convolution.hpp\"\nusing namespace std;\nusing ll = long long;\n\
-    \nusing mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin >> N;\n\
-    \    vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a) cin >> x;\n   \
-    \ for (auto& x : b) cin >> x;\n    auto c = and_convolution(a, b);\n    for (int\
-    \ i = 0; i < (1 << N); ++i)\n        cout << c[i] << (i < (1 << N) - 1 ? \" \"\
-    \ : \"\\n\");\n}\n"
+    ../../math/set/and_or_convolution.hpp\"\nusing namespace std;\nusing ll = long\
+    \ long;\n\nusing mint = Modint<998244353>;\n\nint main() {\n    int N;\n    cin\
+    \ >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    for (auto& x : a) cin >>\
+    \ x;\n    for (auto& x : b) cin >> x;\n    auto c = and_convolution(a, b);\n \
+    \   for (int i = 0; i < (1 << N); ++i)\n        cout << c[i] << (i < (1 << N)\
+    \ - 1 ? \" \" : \"\\n\");\n}\n"
   dependsOn:
   - math/modint.hpp
-  - set/and_or_convolution.hpp
-  - set/zeta_moebius_transform.hpp
+  - math/set/and_or_convolution.hpp
+  - math/set/zeta_moebius_transform.hpp
   isVerificationFile: true
   path: test/yosupo/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_and_convolution.test.cpp

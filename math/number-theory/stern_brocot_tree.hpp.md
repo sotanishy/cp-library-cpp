@@ -12,8 +12,8 @@ data:
   attributes:
     document_title: Stern Brocot Tree
     links: []
-  bundledCode: "#line 2 \"math/stern_brocot_tree.hpp\"\n#include <utility>\n\n/**\n\
-    \ * @brief Stern Brocot Tree\n */\ntemplate <typename F>\nstd::pair<std::pair<long\
+  bundledCode: "#line 2 \"math/number-theory/stern_brocot_tree.hpp\"\n#include <utility>\n\
+    \n/**\n * @brief Stern Brocot Tree\n */\ntemplate <typename F>\nstd::pair<std::pair<long\
     \ long, long long>, std::pair<long long, long long>>\nstern_brocot_tree_search(long\
     \ long n, F cond) {\n    long long a = 0, b = 1, c = 1, d = 0;\n    while (true)\
     \ {\n        long long num = a + c, den = b + d;\n        if (num > n || den >\
@@ -39,13 +39,13 @@ data:
     \            d += b * k;\n        }\n    }\n    return {{a, b}, {c, d}};\n}"
   dependsOn: []
   isVerificationFile: false
-  path: math/stern_brocot_tree.hpp
+  path: math/number-theory/stern_brocot_tree.hpp
   requiredBy: []
-  timestamp: '2023-04-08 00:55:58+09:00'
+  timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1208.test.cpp
-documentation_of: math/stern_brocot_tree.hpp
+documentation_of: math/number-theory/stern_brocot_tree.hpp
 layout: document
 title: Stern-Brocot Tree
 ---

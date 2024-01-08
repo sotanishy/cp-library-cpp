@@ -4,18 +4,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/hafnian.hpp
     title: Hafnian
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'
-    path: set/set_power_series.hpp
+    path: math/set/set_power_series.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
-    path: set/subset_convolution.hpp
+  - icon: ':question:'
+    path: math/set/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
-    path: set/zeta_moebius_transform.hpp
-    title: "Fast Zeta/M\xF6bius Transform"
+  - icon: ':question:'
+    path: math/set/zeta_moebius_transform.hpp
+    title: math/set/zeta_moebius_transform.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -28,10 +28,10 @@ data:
     - https://judge.yosupo.jp/problem/hafnian_of_matrix
   bundledCode: "#line 1 \"test/yosupo/hafnian_of_matrix.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n#include <bits/stdc++.h>\n\
-    \n#line 4 \"math/linalg/hafnian.hpp\"\n\n#line 6 \"set/set_power_series.hpp\"\n\
-    \n#line 4 \"set/subset_convolution.hpp\"\n\n#line 2 \"set/zeta_moebius_transform.hpp\"\
-    \n#include <bit>\n#line 5 \"set/zeta_moebius_transform.hpp\"\n\ntemplate <typename\
-    \ T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
+    \n#line 4 \"math/linalg/hafnian.hpp\"\n\n#line 6 \"math/set/set_power_series.hpp\"\
+    \n\n#line 4 \"math/set/subset_convolution.hpp\"\n\n#line 2 \"math/set/zeta_moebius_transform.hpp\"\
+    \n#include <bit>\n#line 5 \"math/set/zeta_moebius_transform.hpp\"\n\ntemplate\
+    \ <typename T>\nvoid superset_fzt(std::vector<T>& a) {\n    assert(std::has_single_bit(a.size()));\n\
     \    const int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        for\
     \ (int j = 0; j < n; ++j) {\n            if (!(j & i)) a[j] += a[j | i];\n   \
     \     }\n    }\n}\n\ntemplate <typename T>\nvoid superset_fmt(std::vector<T>&\
@@ -45,7 +45,7 @@ data:
     \ {\n    assert(std::has_single_bit(a.size()));\n    const int n = a.size();\n\
     \    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; ++j) {\n\
     \            if (!(j & i)) a[j | i] -= a[j];\n        }\n    }\n}\n#line 6 \"\
-    set/subset_convolution.hpp\"\n\ntemplate <typename T, std::size_t N>\nstd::array<T,\
+    math/set/subset_convolution.hpp\"\n\ntemplate <typename T, std::size_t N>\nstd::array<T,\
     \ N>& operator+=(std::array<T, N>& lhs,\n                             const std::array<T,\
     \ N>& rhs) {\n    for (int i = 0; i < (int)N; ++i) lhs[i] += rhs[i];\n    return\
     \ lhs;\n}\n\ntemplate <typename T, std::size_t N>\nstd::array<T, N>& operator-=(std::array<T,\
@@ -64,10 +64,10 @@ data:
     \ * pb[i][k];\n            }\n        }\n        pa[i].swap(pc);\n    }\n    subset_fmt(pa);\n\
     \n    // convert back\n    std::vector<T> ret(n);\n    for (int i = 0; i < n;\
     \ ++i) {\n        ret[i] = pa[i][std::popcount((unsigned int)i)];\n    }\n   \
-    \ return ret;\n}\n#line 8 \"set/set_power_series.hpp\"\n\n/**\n * @brief Set Power\
-    \ Series\n */\n\ntemplate <typename mint, int N>\nclass SetPowerSeries : public\
-    \ std::vector<mint> {\n    using SPS = SetPowerSeries<mint, N>;\n    using Poly\
-    \ = std::array<mint, N + 1>;\n\n   public:\n    using std::vector<mint>::vector;\n\
+    \ return ret;\n}\n#line 8 \"math/set/set_power_series.hpp\"\n\n/**\n * @brief\
+    \ Set Power Series\n */\n\ntemplate <typename mint, int N>\nclass SetPowerSeries\
+    \ : public std::vector<mint> {\n    using SPS = SetPowerSeries<mint, N>;\n   \
+    \ using Poly = std::array<mint, N + 1>;\n\n   public:\n    using std::vector<mint>::vector;\n\
     \    using std::vector<mint>::operator=;\n\n    // -- binary operation with scalar\
     \ ---\n\n    SPS& operator+=(const mint& rhs) {\n        if (this->empty()) this->resize(1);\n\
     \        (*this)[0] += rhs;\n        return *this;\n    }\n\n    SPS& operator-=(const\
@@ -162,14 +162,14 @@ data:
     \  }\n    cout << hafnian<mint, 19>(a) << endl;\n}\n"
   dependsOn:
   - math/linalg/hafnian.hpp
-  - set/set_power_series.hpp
-  - set/subset_convolution.hpp
-  - set/zeta_moebius_transform.hpp
+  - math/set/set_power_series.hpp
+  - math/set/subset_convolution.hpp
+  - math/set/zeta_moebius_transform.hpp
   - math/modint.hpp
   isVerificationFile: true
   path: test/yosupo/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 21:12:19+09:00'
+  timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/hafnian_of_matrix.test.cpp

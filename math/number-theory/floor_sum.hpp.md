@@ -2,22 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/sum_of_floor_of_linear.test.cpp
-    title: test/yosupo/sum_of_floor_of_linear.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/floor_sum.cpp\"\n\nlong long floor_sum(long long n,\
-    \ long long m, long long a, long long b) {\n    long long sum = 0;\n    if (a\
-    \ >= m) {\n        sum += (a / m) * n * (n - 1) / 2;\n        a %= m;\n    }\n\
-    \    if (b >= m) {\n        sum += (b / m) * n;\n        b %= m;\n    }\n    long\
-    \ long y = (a * n + b) / m;\n    if (y == 0) return sum;\n    long long x = (m\
-    \ * y - b + a - 1) / a;\n    sum += (n - x) * y + floor_sum(y, a, m, a * x - m\
-    \ * y + b);\n    return sum;\n}\n"
+  bundledCode: "#line 2 \"math/number-theory/floor_sum.hpp\"\n\nlong long floor_sum(long\
+    \ long n, long long m, long long a, long long b) {\n    long long sum = 0;\n \
+    \   if (a >= m) {\n        sum += (a / m) * n * (n - 1) / 2;\n        a %= m;\n\
+    \    }\n    if (b >= m) {\n        sum += (b / m) * n;\n        b %= m;\n    }\n\
+    \    long long y = (a * n + b) / m;\n    if (y == 0) return sum;\n    long long\
+    \ x = (m * y - b + a - 1) / a;\n    sum += (n - x) * y + floor_sum(y, a, m, a\
+    \ * x - m * y + b);\n    return sum;\n}\n"
   code: "#pragma once\n\nlong long floor_sum(long long n, long long m, long long a,\
     \ long long b) {\n    long long sum = 0;\n    if (a >= m) {\n        sum += (a\
     \ / m) * n * (n - 1) / 2;\n        a %= m;\n    }\n    if (b >= m) {\n       \
@@ -27,13 +24,12 @@ data:
     }"
   dependsOn: []
   isVerificationFile: false
-  path: math/floor_sum.cpp
+  path: math/number-theory/floor_sum.hpp
   requiredBy: []
-  timestamp: '2021-02-06 00:41:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/sum_of_floor_of_linear.test.cpp
-documentation_of: math/floor_sum.cpp
+  timestamp: '2024-01-08 17:31:43+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: math/number-theory/floor_sum.hpp
 layout: document
 title: Sum of Floor of Linear
 ---

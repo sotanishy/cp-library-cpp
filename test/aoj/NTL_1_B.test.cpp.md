@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/euler_totient.cpp
+  - icon: ':question:'
+    path: math/number-theory/euler_totient.hpp
     title: Euler's Totient Function
-  - icon: ':heavy_check_mark:'
-    path: math/mod_arithmetic.cpp
+  - icon: ':question:'
+    path: math/number-theory/mod_arithmetic.hpp
     title: Modular Arithmetic
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -18,33 +18,46 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B
   bundledCode: "#line 1 \"test/aoj/NTL_1_B.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
-    \n\n#line 2 \"math/mod_arithmetic.cpp\"\n#include <cmath>\n#include <numeric>\n\
-    #include <unordered_map>\n#line 3 \"math/euler_totient.cpp\"\n#include <vector>\n\
-    \nlong long euler_totient(long long n) {\n    long long ret = n;\n    if (n %\
-    \ 2 == 0) {\n        ret -= ret / 2;\n        while (n % 2 == 0) n /= 2;\n   \
-    \ }\n    for (long long i = 3; i * i <= n; i += 2) {\n        if (n % i == 0)\
+    \n\n#line 2 \"math/number-theory/mod_arithmetic.hpp\"\n#include <vector>\n#include\
+    \ <cmath>\n#include <numeric>\n#include <unordered_map>\n\n#line 4 \"math/number-theory/euler_totient.hpp\"\
+    \n\nlong long euler_totient(long long n) {\n    long long ret = n;\n    if (n\
+    \ % 2 == 0) {\n        ret -= ret / 2;\n        while (n % 2 == 0) n /= 2;\n \
+    \   }\n    for (long long i = 3; i * i <= n; i += 2) {\n        if (n % i == 0)\
     \ {\n            ret -= ret / i;\n            while (n % i == 0) n /= i;\n   \
     \     }\n    }\n    if (n != 1) ret -= ret / n;\n    return ret;\n}\n\nstd::vector<int>\
     \ euler_totient_table(int n) {\n    std::vector<int> ret(n + 1);\n    std::iota(ret.begin(),\
     \ ret.end(), 0);\n    for (int i = 2; i <= n; ++i) {\n        if (ret[i] == i)\
     \ {\n            for (int j = i; j <= n; j += i) {\n                ret[j] = ret[j]\
-    \ / i * (i - 1);\n            }\n        }\n    }\n    return ret;\n}\n#line 6\
-    \ \"math/mod_arithmetic.cpp\"\n\n/*\n * Modular Exponentiation\n */\nlong long\
-    \ mod_pow(long long a, long long e, int mod) {\n    long long ret = 1;\n    while\
-    \ (e > 0) {\n        if (e & 1) ret = ret * a % mod;\n        a = a * a % mod;\n\
-    \        e >>= 1;\n    }\n    return ret;\n}\n\nlong long mod_inv(long long a,\
-    \ int mod) {\n    return mod_pow(a, mod - 2, mod);\n}\n\n/*\n * Discrete Logarithm\n\
+    \ / i * (i - 1);\n            }\n        }\n    }\n    return ret;\n}\n\ntemplate\
+    \ <typename mint>\nstd::pair<std::vector<mint>, std::vector<mint>> totient_summatory_table(\n\
+    \    long long n) {\n    if (n == 0) return {{0}, {0}};\n    const int b = std::min(n,\
+    \ (long long)1e4);\n    std::vector<mint> small(n / b + 1), large(b + 1);\n\n\
+    \    std::vector<int> totient(n / b + 1);\n    std::iota(totient.begin(), totient.end(),\
+    \ 0);\n    for (int i = 2; i <= n / b; ++i) {\n        if (totient[i] != i) continue;\n\
+    \        for (int j = i; j <= n / b; j += i) {\n            totient[j] = totient[j]\
+    \ / i * (i - 1);\n        }\n    }\n    for (int i = 0; i < n / b; ++i) small[i\
+    \ + 1] = small[i] + totient[i + 1];\n\n    for (int i = 1; i <= b; ++i) {\n  \
+    \      mint k = n / i;\n        large[i] = k * (k + 1) / 2;\n    }\n    for (long\
+    \ long i = b; i >= 1; --i) {\n        for (long long l = 2; l <= n / i;) {\n \
+    \           long long q = n / (i * l), r = n / (i * q) + 1;\n            large[i]\
+    \ -=\n                (i * l <= b ? large[i * l] : small[n / (i * l)]) * (r -\
+    \ l);\n            l = r;\n        }\n    }\n    return {small, large};\n}\n#line\
+    \ 8 \"math/number-theory/mod_arithmetic.hpp\"\n\n/*\n * Modular Exponentiation\n\
+    \ */\nlong long mod_pow(long long a, long long e, int mod) {\n    long long ret\
+    \ = 1;\n    while (e > 0) {\n        if (e & 1) ret = ret * a % mod;\n       \
+    \ a = a * a % mod;\n        e >>= 1;\n    }\n    return ret;\n}\n\nlong long mod_inv(long\
+    \ long a, int mod) { return mod_pow(a, mod - 2, mod); }\n\n/*\n * Discrete Logarithm\n\
     \ */\nint mod_log(long long a, long long b, int mod) {\n    // make a and mod\
     \ coprime\n    a %= mod;\n    b %= mod;\n    long long k = 1, add = 0, g;\n  \
     \  while ((g = std::gcd(a, mod)) > 1) {\n        if (b == k) return add;\n   \
     \     if (b % g) return -1;\n        b /= g;\n        mod /= g;\n        ++add;\n\
-    \        k = k * a / g % mod;\n    }\n\n    // baby-step\n    const int m = sqrt(mod)\
+    \        k = k * a / g % mod;\n    }\n\n    // baby-step\n    const int m = std::sqrt(mod)\
     \ + 1;\n    std::unordered_map<long long, int> baby_index;\n    long long baby\
     \ = b;\n    for (int i = 0; i <= m; ++i) {\n        baby_index[baby] = i;\n  \
     \      baby = baby * a % mod;\n    }\n\n    // giant-step\n    long long am =\
     \ 1;\n    for (int i = 0; i < m; ++i) am = am * a % mod;\n    long long giant\
     \ = k;\n    for (int i = 1; i <= m; ++i) {\n        giant = giant * am % mod;\n\
-    \        if (baby_index.count(giant)) {\n            return i * m - baby_index[giant]\
+    \        if (baby_index.contains(giant)) {\n            return i * m - baby_index[giant]\
     \ + add;\n        }\n    }\n    return -1;\n}\n\n/*\n * Quadratic Residue\n */\n\
     long long mod_sqrt(long long n, int mod) {\n    if (n == 0) return 0;\n    if\
     \ (mod == 2) return 1;\n    if (std::gcd(n, mod) != 1) return -1;\n    if (mod_pow(n,\
@@ -76,17 +89,17 @@ data:
     \    cin.tie(0);\n\n    int m, n;\n    cin >> m >> n;\n    cout << mod_pow(m,\
     \ n, 1e9 + 7) << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
-    \n\n#include \"../../math/mod_arithmetic.cpp\"\n\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
-    \n    int m, n;\n    cin >> m >> n;\n    cout << mod_pow(m, n, 1e9 + 7) << endl;\n\
-    }"
+    \n\n#include \"../../math/number-theory/mod_arithmetic.hpp\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int m, n;\n    cin >> m >> n;\n    cout << mod_pow(m,\
+    \ n, 1e9 + 7) << endl;\n}"
   dependsOn:
-  - math/mod_arithmetic.cpp
-  - math/euler_totient.cpp
+  - math/number-theory/mod_arithmetic.hpp
+  - math/number-theory/euler_totient.hpp
   isVerificationFile: true
   path: test/aoj/NTL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-04 12:02:47+09:00'
+  timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_B.test.cpp
