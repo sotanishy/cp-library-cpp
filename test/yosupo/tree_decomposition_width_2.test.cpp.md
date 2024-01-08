@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/junction_tree.hpp
     title: Junction Tree (Width 2)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_decomposition_width_2
@@ -101,7 +101,7 @@ data:
   path: test/yosupo/tree_decomposition_width_2.test.cpp
   requiredBy: []
   timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/tree_decomposition_width_2.test.cpp
 layout: document

@@ -6,12 +6,12 @@ data:
     path: math/combination_large.hpp
     title: Combination (Large)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq.test.cpp
     title: test/yosupo/staticrmq.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/disjoint_sparse_table.hpp\"\n#include <algorithm>\n\
@@ -55,7 +55,7 @@ data:
   requiredBy:
   - math/combination_large.hpp
   timestamp: '2024-01-08 02:22:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq.test.cpp
 documentation_of: data-structure/disjoint_sparse_table.hpp

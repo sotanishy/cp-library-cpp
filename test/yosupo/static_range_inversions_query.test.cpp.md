@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/compress.hpp
     title: Coordinate Compression
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/mo.hpp
     title: Mo's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -42,7 +42,7 @@ data:
     \ vs) : xs(vs) {\n        std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
     \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
     \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
-    \ vs) const {\n        std::vector<int> res;\n        std::ranges::transform(vs,\
+    \ vs) const {\n        std::vector<int> res(vs.size());\n        std::ranges::transform(vs,\
     \ res.begin(),\n                               [&](const T& x) { return compress(x);\
     \ });\n        return res;\n    }\n\n    T decompress(int i) const { return xs[i];\
     \ }\n\n    int size() const { return xs.size(); }\n\n   private:\n    std::vector<T>\
@@ -98,8 +98,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 16:18:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 16:33:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp
 layout: document

@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Coordinate Compression
     links: []
@@ -27,7 +27,7 @@ data:
     \ vs) : xs(vs) {\n        std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
     \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
     \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
-    \ vs) const {\n        std::vector<int> res;\n        std::ranges::transform(vs,\
+    \ vs) const {\n        std::vector<int> res(vs.size());\n        std::ranges::transform(vs,\
     \ res.begin(),\n                               [&](const T& x) { return compress(x);\
     \ });\n        return res;\n    }\n\n    T decompress(int i) const { return xs[i];\
     \ }\n\n    int size() const { return xs.size(); }\n\n   private:\n    std::vector<T>\
@@ -38,7 +38,7 @@ data:
     \     std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
     \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
     \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
-    \ vs) const {\n        std::vector<int> res;\n        std::ranges::transform(vs,\
+    \ vs) const {\n        std::vector<int> res(vs.size());\n        std::ranges::transform(vs,\
     \ res.begin(),\n                               [&](const T& x) { return compress(x);\
     \ });\n        return res;\n    }\n\n    T decompress(int i) const { return xs[i];\
     \ }\n\n    int size() const { return xs.size(); }\n\n   private:\n    std::vector<T>\
@@ -47,8 +47,8 @@ data:
   isVerificationFile: false
   path: misc/compress.hpp
   requiredBy: []
-  timestamp: '2024-01-08 16:18:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-08 16:33:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp

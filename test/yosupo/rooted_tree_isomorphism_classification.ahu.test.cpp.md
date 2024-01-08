@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: tree/tree_diameter.hpp
     title: Diameter of a Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/tree_isomorphism.hpp
     title: Tree Isomorphism
   _extendedRequiredBy: []

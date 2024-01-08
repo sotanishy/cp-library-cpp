@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/quadtree.hpp
     title: Quadtree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/compress.hpp
     title: Coordinate Compression
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -52,7 +52,7 @@ data:
     \     std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
     \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
     \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
-    \ vs) const {\n        std::vector<int> res;\n        std::ranges::transform(vs,\
+    \ vs) const {\n        std::vector<int> res(vs.size());\n        std::ranges::transform(vs,\
     \ res.begin(),\n                               [&](const T& x) { return compress(x);\
     \ });\n        return res;\n    }\n\n    T decompress(int i) const { return xs[i];\
     \ }\n\n    int size() const { return xs.size(); }\n\n   private:\n    std::vector<T>\
@@ -114,8 +114,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 16:18:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 16:33:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
 layout: document

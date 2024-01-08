@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/arbitrary_modint.hpp
     title: Arbitrary Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combination.cpp
     title: Combination
   _extendedRequiredBy: []

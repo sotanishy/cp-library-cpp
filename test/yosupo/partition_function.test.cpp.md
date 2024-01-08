@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/partition_function.hpp
     title: Partition Function
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []

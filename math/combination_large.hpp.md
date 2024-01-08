@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/disjoint_sparse_table.hpp
     title: Disjoint Sparse Table
   _extendedRequiredBy: []

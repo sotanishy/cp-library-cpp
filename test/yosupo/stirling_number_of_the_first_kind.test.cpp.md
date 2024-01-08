@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/stirling_first.hpp
     title: Stirling Number of the First Kind
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
@@ -196,7 +196,7 @@ data:
   path: test/yosupo/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
   timestamp: '2024-01-08 00:27:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/stirling_number_of_the_first_kind.test.cpp
 layout: document

@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: set/set_power_series.hpp
     title: Set Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/zeta_moebius_transform.hpp
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy: []

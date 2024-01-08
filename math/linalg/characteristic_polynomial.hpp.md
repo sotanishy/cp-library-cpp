@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convolution/ntt.hpp
     title: Number Theoretic Transform
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/matrix.hpp
     title: Matrix
   - icon: ':heavy_check_mark:'
     path: math/linalg/square_matrix.hpp
     title: Square Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []

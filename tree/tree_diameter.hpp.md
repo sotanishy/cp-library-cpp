@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/tree_isomorphism.hpp
     title: Tree Isomorphism
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - icon: ':x:'

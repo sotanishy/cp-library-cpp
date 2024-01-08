@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: set/and_or_convolution.hpp
     title: Bitwise AND/OR Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/zeta_moebius_transform.hpp
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy: []

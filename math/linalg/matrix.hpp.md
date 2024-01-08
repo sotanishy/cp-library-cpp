@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/square_matrix.hpp
     title: Square Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/system_of_linear_equations.hpp
     title: System of Linear Equations
   _extendedVerifiedWith:
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_matrix.test.cpp
     title: test/yosupo/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/linalg/matrix.hpp\"\n#include <algorithm>\n#include\
@@ -142,7 +142,7 @@ data:
   - math/linalg/square_matrix.hpp
   - math/linalg/system_of_linear_equations.hpp
   timestamp: '2024-01-07 21:12:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix_product.test.cpp
   - test/yosupo/characteristic_polynomial.test.cpp

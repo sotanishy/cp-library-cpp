@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: set/zeta_moebius_transform.hpp
     title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy: []

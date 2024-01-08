@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: Longest Common Substring
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: Suffix Array
   _extendedRequiredBy: []
