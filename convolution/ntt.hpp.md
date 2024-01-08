@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/count_subset_sum.hpp
     title: Count Subset Sum
   - icon: ':heavy_check_mark:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sharp_p_subset_sum.test.cpp
     title: test/yosupo/sharp_p_subset_sum.test.cpp
   - icon: ':x:'

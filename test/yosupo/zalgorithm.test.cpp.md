@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/z_array.hpp
     title: Z Array
   _extendedRequiredBy: []

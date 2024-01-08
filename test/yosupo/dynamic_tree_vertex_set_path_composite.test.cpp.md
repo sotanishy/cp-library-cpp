@@ -6,7 +6,7 @@ data:
     title: Mod int
   - icon: ':heavy_check_mark:'
     path: tree/link_cut_tree.hpp
-    title: tree/link_cut_tree.hpp
+    title: Link/Cut Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

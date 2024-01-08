@@ -6,7 +6,7 @@ data:
     title: Fast Prime Number Algorithms
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.hpp
-    title: math/primitive_root.hpp
+    title: Primitive Root
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

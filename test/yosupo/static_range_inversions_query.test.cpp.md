@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':question:'
+  - icon: ':x:'
     path: misc/compress.hpp
     title: Coordinate Compression
   - icon: ':x:'
@@ -41,13 +41,13 @@ data:
     \ {\n   public:\n    Compress() = default;\n    explicit Compress(const std::vector<T>&\
     \ vs) : xs(vs) {\n        std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
     \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
-    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(std::vector<T> vs)\
-    \ const {\n        std::ranges::transform(vs, vs.begin(),\n                  \
-    \             [&](const T& x) { return compress(x); });\n        return vs;\n\
-    \    }\n\n    T decompress(int i) const { return xs[i]; }\n\n    int size() const\
-    \ { return xs.size(); }\n\n   private:\n    std::vector<T> xs;\n};\n#line 5 \"\
-    misc/mo.hpp\"\n\nclass Mo {\n   public:\n    Mo() = default;\n    explicit Mo(int\
-    \ n) : n(n), cnt(0) {}\n\n    void query(int l, int r) { queries.emplace_back(cnt++,\
+    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
+    \ vs) const {\n        std::vector<int> res;\n        std::ranges::transform(vs,\
+    \ res.begin(),\n                               [&](const T& x) { return compress(x);\
+    \ });\n        return res;\n    }\n\n    T decompress(int i) const { return xs[i];\
+    \ }\n\n    int size() const { return xs.size(); }\n\n   private:\n    std::vector<T>\
+    \ xs;\n};\n#line 5 \"misc/mo.hpp\"\n\nclass Mo {\n   public:\n    Mo() = default;\n\
+    \    explicit Mo(int n) : n(n), cnt(0) {}\n\n    void query(int l, int r) { queries.emplace_back(cnt++,\
     \ l, r); }\n\n    template <typename ExL, typename ShL, typename ExR, typename\
     \ ShR,\n              typename Out>\n    void run(ExL exl, ShL shl, ExR exr, ShR\
     \ shr, Out out) {\n        int s = sqrt(n);\n        std::ranges::sort(\n    \
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-01-08 16:18:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_inversions_query.test.cpp

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.hpp
-    title: math/primitive_root.hpp
+    title: Primitive Root
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/factorize.test.cpp

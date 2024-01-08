@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: misc/compress.hpp
     title: Coordinate Compression
   - icon: ':question:'
@@ -27,14 +27,14 @@ data:
     \    Compress() = default;\n    explicit Compress(const std::vector<T>& vs) :\
     \ xs(vs) {\n        std::ranges::sort(xs);\n        xs.erase(std::ranges::unique(xs).begin(),\
     \ xs.end());\n    }\n\n    int compress(const T& x) const {\n        return std::ranges::lower_bound(xs,\
-    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(std::vector<T> vs)\
-    \ const {\n        std::ranges::transform(vs, vs.begin(),\n                  \
-    \             [&](const T& x) { return compress(x); });\n        return vs;\n\
-    \    }\n\n    T decompress(int i) const { return xs[i]; }\n\n    int size() const\
-    \ { return xs.size(); }\n\n   private:\n    std::vector<T> xs;\n};\n#line 7 \"\
-    tree/tree_isomorphism.hpp\"\n\n#line 5 \"tree/tree_diameter.hpp\"\n\nstd::pair<int,\
-    \ std::vector<int>> tree_diameter(\n    const std::vector<std::vector<int>>& G)\
-    \ {\n    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs,\
+    \ x) - xs.begin();\n    }\n\n    std::vector<int> compress(const std::vector<T>&\
+    \ vs) const {\n        std::vector<int> res;\n        std::ranges::transform(vs,\
+    \ res.begin(),\n                               [&](const T& x) { return compress(x);\
+    \ });\n        return res;\n    }\n\n    T decompress(int i) const { return xs[i];\
+    \ }\n\n    int size() const { return xs.size(); }\n\n   private:\n    std::vector<T>\
+    \ xs;\n};\n#line 7 \"tree/tree_isomorphism.hpp\"\n\n#line 5 \"tree/tree_diameter.hpp\"\
+    \n\nstd::pair<int, std::vector<int>> tree_diameter(\n    const std::vector<std::vector<int>>&\
+    \ G) {\n    std::vector<int> to(G.size());\n\n    auto dfs = [&](const auto& dfs,\
     \ int v, int p) -> std::pair<int, int> {\n        std::pair<int, int> ret(0, v);\n\
     \        for (int c : G[v]) {\n            if (c == p) continue;\n           \
     \ auto weight = dfs(dfs, c, v);\n            ++weight.first;\n            if (ret\
@@ -120,7 +120,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-01-08 16:18:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp

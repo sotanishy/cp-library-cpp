@@ -23,10 +23,10 @@ data:
       title: Relaxed Convolution
   - name: data-structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/binary_trie.hpp
       title: Binary Trie
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bit_vector.hpp
       title: Rank/Select Dictionary
     - icon: ':x:'
@@ -65,13 +65,13 @@ data:
     - icon: ':warning:'
       path: data-structure/persistent_stack.hpp
       title: Persistent Stack
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/quadtree.hpp
       title: Quadtree
     - icon: ':heavy_check_mark:'
       path: data-structure/range_fenwick_tree.hpp
       title: Fenwick Tree with Range Update
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/range_tree.hpp
       title: Range Tree
     - icon: ':heavy_check_mark:'
@@ -89,7 +89,7 @@ data:
     - icon: ':x:'
       path: data-structure/sqrt_tree.hpp
       title: Sqrt Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -140,7 +140,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.hpp
       title: Segment Tree with Lazy Propagation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/persistent_segment_tree.hpp
       title: Persistent Segment Tree
     - icon: ':question:'
@@ -333,7 +333,7 @@ data:
     - icon: ':question:'
       path: graph/scc.hpp
       title: Strongly Connected Components
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path.hpp
       title: Shortest Path Algorithms
     - icon: ':warning:'
@@ -371,7 +371,7 @@ data:
     - icon: ':warning:'
       path: math/convert_base.cpp
       title: Base Conversion
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/count_subset_sum.hpp
       title: Count Subset Sum
     - icon: ':warning:'
@@ -451,7 +451,7 @@ data:
       title: Prime Counting Function
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.hpp
-      title: math/primitive_root.hpp
+      title: Primitive Root
     - icon: ':heavy_check_mark:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
@@ -492,7 +492,7 @@ data:
     - icon: ':warning:'
       path: misc/boolean_square_matrix.hpp
       title: Boolean Square Matrix
-    - icon: ':question:'
+    - icon: ':x:'
       path: misc/compress.hpp
       title: Coordinate Compression
     - icon: ':warning:'
@@ -588,7 +588,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/aho_corasick.hpp
       title: Aho-Corasick Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/enumerate_runs.hpp
       title: Enumerate Runs
     - icon: ':heavy_check_mark:'
@@ -624,7 +624,7 @@ data:
     - icon: ':warning:'
       path: string/trie.hpp
       title: Trie
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/z_array.hpp
       title: Z Array
   - name: tree
@@ -655,7 +655,7 @@ data:
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: tree/link_cut_tree.hpp
-      title: tree/link_cut_tree.hpp
+      title: Link/Cut Tree
     - icon: ':heavy_check_mark:'
       path: tree/permutation_tree.hpp
       title: Permutation Tree
@@ -1060,7 +1060,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
       title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1111,10 +1111,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.range_tree.test.cpp
       title: test/yosupo/rectangle_sum.range_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1123,7 +1123,7 @@ data:
     - icon: ':x:'
       path: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
       title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/runenumerate.test.cpp
       title: test/yosupo/runenumerate.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1132,19 +1132,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/set_xor_min.test.cpp
       title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sharp_p_subset_sum.test.cpp
       title: test/yosupo/sharp_p_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_frequency.test.cpp
       title: test/yosupo/static_range_frequency.test.cpp
     - icon: ':x:'

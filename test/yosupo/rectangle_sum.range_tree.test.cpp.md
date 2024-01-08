@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/range_tree.hpp
     title: Range Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -34,18 +34,18 @@ data:
     \ + 1] = sum[i][j] + node[i][j].second;\n            }\n        }\n    }\n\n \
     \   T fold(X sx, X tx, Y sy, Y ty) const {\n        int l = std::ranges::lower_bound(xs,\
     \ sx) - xs.begin();\n        int r = std::ranges::lower_bound(xs, tx) - xs.begin();\n\
-    \        T ret = 0;\n        auto cmp = [&](const std::pair<Y, T>& p, Y y) { return\
-    \ p.first < y; };\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1)\
-    \ {\n            if (l & 1) {\n                int hi = std::ranges::lower_bound(node[l],\
-    \ ty, cmp) -\n                         node[l].begin();\n                int lo\
-    \ = std::ranges::lower_bound(node[l], sy, cmp) -\n                         node[l].begin();\n\
-    \                ret += sum[l][hi] - sum[l][lo];\n                ++l;\n     \
-    \       }\n            if (r & 1) {\n                --r;\n                int\
-    \ hi = std::ranges::lower_bound(node[r], ty, cmp) -\n                        \
-    \ node[r].begin();\n                int lo = std::ranges::lower_bound(node[r],\
-    \ sy, cmp) -\n                         node[r].begin();\n                ret +=\
-    \ sum[r][hi] - sum[r][lo];\n            }\n        }\n        return ret;\n  \
-    \  }\n\n   private:\n    int size;\n    std::vector<X> xs;\n    std::vector<std::vector<std::pair<Y,\
+    \        T ret = 0;\n        auto proj = [&](const auto& p) { return p.first;\
+    \ };\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n        \
+    \    if (l & 1) {\n                int hi = std::ranges::lower_bound(node[l],\
+    \ ty, {}, proj) -\n                         node[l].begin();\n               \
+    \ int lo = std::ranges::lower_bound(node[l], sy, {}, proj) -\n               \
+    \          node[l].begin();\n                ret += sum[l][hi] - sum[l][lo];\n\
+    \                ++l;\n            }\n            if (r & 1) {\n             \
+    \   --r;\n                int hi = std::ranges::lower_bound(node[r], ty, {}, proj)\
+    \ -\n                         node[r].begin();\n                int lo = std::ranges::lower_bound(node[r],\
+    \ sy, {}, proj) -\n                         node[r].begin();\n               \
+    \ ret += sum[r][hi] - sum[r][lo];\n            }\n        }\n        return ret;\n\
+    \    }\n\n   private:\n    int size;\n    std::vector<X> xs;\n    std::vector<std::vector<std::pair<Y,\
     \ T>>> node;\n    std::vector<std::vector<T>> sum;\n};\n#line 6 \"test/yosupo/rectangle_sum.range_tree.test.cpp\"\
     \nusing namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int N, Q;\n    cin >> N >> Q;\n    vector<tuple<int,\
@@ -68,8 +68,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/rectangle_sum.range_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 02:22:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 16:18:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum.range_tree.test.cpp
 layout: document
