@@ -1,6 +1,6 @@
 ---
 title: Clique Enumeration
-documentation_of: ../../graph/enumerate_cliques.cpp
+documentation_of: ../../graph/enumerate_cliques.hpp
 ---
 
 ## Description

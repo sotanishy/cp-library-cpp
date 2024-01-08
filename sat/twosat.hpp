@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
-#include "../graph/scc.cpp"
 
-std::vector<bool> two_sat(int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses) {
+#include "../graph/scc.hpp"
+
+std::vector<bool> two_sat(
+    int n, const std::vector<std::tuple<int, bool, int, bool>>& clauses) {
     std::vector<std::vector<int>> G(2 * n);
     std::vector<bool> val(n);
 

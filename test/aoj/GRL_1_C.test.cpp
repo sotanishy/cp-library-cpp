@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C"
 
-#include "../../graph/shortest_path.cpp"
+#include "../../graph/shortest_path.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

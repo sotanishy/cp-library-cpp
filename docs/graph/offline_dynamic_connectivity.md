@@ -1,6 +1,6 @@
 ---
 title: Offline Dynamic Connectivity
-documentation_of: ../../graph/offline_dynamic_connectivity.cpp
+documentation_of: ../../graph/offline_dynamic_connectivity.hpp
 ---
 
 ## Description

@@ -77,7 +77,7 @@ class JunctionTreeWidth2 {
                 --deg[x];
             } else {
                 // add new edge
-                if (!G_st[x].count(y)) {
+                if (!G_st[x].contains(y)) {
                     G_st[x].insert(y);
                     G_st[y].insert(x);
                 } else {
@@ -95,7 +95,7 @@ class JunctionTreeWidth2 {
             nodes.push_back(node);
         }
 
-        if (*std::max_element(deg.begin(), deg.end()) > 0) {
+        if (*std::ranges::max_element(deg) > 0) {
             treewidth_is_2 = false;
             return;
         }

@@ -1,6 +1,6 @@
 ---
 title: Dominator Tree
-documentation_of: ../../graph/dominator_tree.cpp
+documentation_of: ../../graph/dominator_tree.hpp
 ---
 
 ## Description

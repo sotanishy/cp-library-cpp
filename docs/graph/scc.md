@@ -1,6 +1,6 @@
 ---
 title: Strongly Connected Components
-documentation_of: ../../graph/scc.cpp
+documentation_of: ../../graph/scc.hpp
 ---
 
 ## Description

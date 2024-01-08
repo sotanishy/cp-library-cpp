@@ -2,9 +2,11 @@
 #include <stack>
 #include <utility>
 #include <vector>
-#include "lowlink.cpp"
 
-std::vector<std::vector<std::pair<int, int>>> biconnected_components(const std::vector<std::vector<int>>& G, const Lowlink& low) {
+#include "lowlink.hpp"
+
+std::vector<std::vector<std::pair<int, int>>> biconnected_components(
+    const std::vector<std::vector<int>>& G, const Lowlink& low) {
     std::vector<bool> used(G.size());
     std::stack<std::pair<int, int>> st;
     std::vector<std::vector<std::pair<int, int>>> bc;
@@ -33,7 +35,7 @@ std::vector<std::vector<std::pair<int, int>>> biconnected_components(const std::
         }
     };
 
-    for (int v = 0; v < (int) G.size(); ++v) {
+    for (int v = 0; v < (int)G.size(); ++v) {
         if (!used[v]) dfs(dfs, v, -1);
     }
 

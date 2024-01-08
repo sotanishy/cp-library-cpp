@@ -1,6 +1,6 @@
 ---
 title: Dulmage-Mendelsohn Decomposition
-documentation_of: ../../graph/dm_decomposition.cpp
+documentation_of: ../../graph/dm_decomposition.hpp
 ---
 
 ## Description

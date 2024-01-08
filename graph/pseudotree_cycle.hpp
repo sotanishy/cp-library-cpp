@@ -6,7 +6,7 @@
  * @brief Pseudotree Cycle
  */
 std::vector<int> pseudotree_cycle(const std::vector<std::vector<int>>& G) {
-    int n = G.size();
+    const int n = G.size();
     std::vector<int> deg(n);
     std::stack<int> st;
     for (int i = 0; i < n; ++i) {

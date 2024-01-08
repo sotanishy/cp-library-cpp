@@ -3,23 +3,23 @@
 #include <limits>
 #include <memory>
 #include <numeric>
+#include <ranges>
 #include <utility>
 #include <vector>
 
 #include "../data-structure/leftist_heap.hpp"
 #include "../data-structure/unionfind/union_find.hpp"
-#include "edge.cpp"
 
 /**
  * @brief Minimum Spanning Arborescence
  */
 template <typename T>
 std::pair<T, std::vector<int>> minimum_spanning_arborescence(
-    std::vector<Edge<T>> G, int V, int root) {
+    std::vector<std::tuple<int, int, T>> G, int V, int root) {
     std::vector<LeftistHeap<T>> incoming(V);
     for (int i = 0; i < (int)G.size(); ++i) {
-        auto& e = G[i];
-        incoming[e.to].push(i, e.weight);
+        auto [s, t, w] = G[i];
+        incoming[t].push(i, w);
     }
     T weight = 0;
     UnionFind uf(V);
@@ -40,7 +40,7 @@ std::pair<T, std::vector<int>> minimum_spanning_arborescence(
             }
 
             auto [i, c] = incoming[cur].top();
-            int v = uf.find(G[i].from);
+            int v = uf.find(std::get<0>(G[i]));
             incoming[cur].pop();
             if (cur == v) continue;
             from[cur] = v;
@@ -74,15 +74,14 @@ std::pair<T, std::vector<int>> minimum_spanning_arborescence(
         }
         for (int v : processing) status[v] = 2;
     }
-    std::reverse(ord.begin(), ord.end());
     std::vector<bool> used_edge(G.size());
     std::vector<int> par(V);
     std::iota(par.begin(), par.end(), 0);
-    for (int i : ord) {
+    for (int i : ord | std::views::reverse) {
         if (used_edge[i]) continue;
-        auto& e = G[i];
-        par[e.to] = e.from;
-        int x = stem[e.to];
+        auto [s, t, w] = G[i];
+        par[t] = s;
+        int x = stem[t];
         while (x != i) {
             used_edge[x] = true;
             x = prev_edge[x];

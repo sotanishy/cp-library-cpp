@@ -3,7 +3,9 @@
 #include <utility>
 #include <vector>
 
-std::vector<bool> horn_sat(int n_literals, const std::vector<std::pair<int, std::vector<int>>>& clauses) {
+std::vector<bool> horn_sat(
+    int n_literals,
+    const std::vector<std::pair<int, std::vector<int>>>& clauses) {
     const int n_clauses = clauses.size();
     std::vector<bool> val(n_literals, false);
     std::vector<std::vector<int>> neg(n_clauses), idx(n_literals);

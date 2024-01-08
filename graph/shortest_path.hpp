@@ -5,21 +5,20 @@
 #include <utility>
 #include <vector>
 
-#include "edge.cpp"
-
 /*
  * Bellman-Ford Algorithm
  */
 template <typename T>
-std::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {
+std::vector<T> bellman_ford(const std::vector<std::tuple<int, int, T>>& G,
+                            int V, int s) {
     constexpr T INF = std::numeric_limits<T>::max();
     std::vector<T> dist(V, INF);
     dist[s] = 0;
     for (int i = 0; i < V; ++i) {
-        for (auto& e : G) {
-            if (dist[e.from] != INF && dist[e.to] > dist[e.from] + e.weight) {
-                dist[e.to] = dist[e.from] + e.weight;
-                if (i == V - 1) return std::vector<T>();
+        for (auto& [s, t, w] : G) {
+            if (dist[s] != INF && dist[t] > dist[s] + w) {
+                dist[t] = dist[s] + w;
+                if (i == V - 1) return {};
             }
         }
     }
@@ -31,7 +30,7 @@ std::vector<T> bellman_ford(const std::vector<Edge<T>>& G, int V, int s) {
  */
 template <typename T>
 void floyd_warshall(std::vector<std::vector<T>>& dist) {
-    int V = dist.size();
+    const int V = dist.size();
     for (int k = 0; k < V; ++k) {
         for (int i = 0; i < V; ++i) {
             for (int j = 0; j < V; ++j) {
@@ -45,7 +44,8 @@ void floyd_warshall(std::vector<std::vector<T>>& dist) {
  * Dijkstra's Algorithm
  */
 template <typename T>
-std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
+std::vector<T> dijkstra(const std::vector<std::vector<std::pair<int, T>>>& G,
+                        int s) {
     std::vector<T> dist(G.size(), std::numeric_limits<T>::max());
     dist[s] = 0;
     using P = std::pair<T, int>;
@@ -53,15 +53,13 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
     pq.emplace(0, s);
 
     while (!pq.empty()) {
-        T d;
-        int v;
-        std::tie(d, v) = pq.top();
+        auto [d, v] = pq.top();
         pq.pop();
         if (dist[v] < d) continue;
-        for (auto& e : G[v]) {
-            if (dist[e.to] > d + e.weight) {
-                dist[e.to] = d + e.weight;
-                pq.emplace(dist[e.to], e.to);
+        for (auto& [u, w] : G[v]) {
+            if (dist[u] > d + w) {
+                dist[u] = d + w;
+                pq.emplace(dist[u], u);
             }
         }
     }
@@ -71,7 +69,7 @@ std::vector<T> dijkstra(const std::vector<std::vector<Edge<T>>>& G, int s) {
 
 template <typename T>
 std::pair<std::vector<T>, std::vector<int>> shortest_path_tree(
-    const std::vector<std::vector<Edge<T>>>& G, int s) {
+    const std::vector<std::vector<std::pair<int, T>>>& G, int s) {
     std::vector<T> dist(G.size(), std::numeric_limits<T>::max());
     std::vector<int> par(G.size(), -1);
     dist[s] = 0;
@@ -80,16 +78,14 @@ std::pair<std::vector<T>, std::vector<int>> shortest_path_tree(
     pq.emplace(0, s);
 
     while (!pq.empty()) {
-        T d;
-        int v;
-        std::tie(d, v) = pq.top();
+        auto [d, v] = pq.top();
         pq.pop();
         if (dist[v] < d) continue;
-        for (auto& e : G[v]) {
-            if (dist[e.to] > d + e.weight) {
-                dist[e.to] = d + e.weight;
-                par[e.to] = v;
-                pq.emplace(dist[e.to], e.to);
+        for (auto& [u, w] : G[v]) {
+            if (dist[u] > d + w) {
+                dist[u] = d + w;
+                par[u] = v;
+                pq.emplace(dist[u], u);
             }
         }
     }
@@ -123,8 +119,8 @@ std::vector<int> bfs(const std::vector<std::vector<int>>& G, int s) {
 /*
  * Dial's Algorithm
  */
-std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s,
-                      int w) {
+std::vector<int> dial(const std::vector<std::vector<std::pair<int, int>>>& G,
+                      int s, int w) {
     std::vector<int> dist(G.size(), std::numeric_limits<int>::max());
     dist[s] = 0;
     std::vector<std::vector<int>> buckets(w * G.size(), std::vector<int>());
@@ -135,10 +131,10 @@ std::vector<int> dial(const std::vector<std::vector<Edge<int>>>& G, int s,
             int v = buckets[d].back();
             buckets[d].pop_back();
             if (dist[v] < d) continue;
-            for (auto& e : G[v]) {
-                if (dist[e.to] > d + e.weight) {
-                    dist[e.to] = d + e.weight;
-                    buckets[dist[e.to]].push_back(e.to);
+            for (auto& [u, w] : G[v]) {
+                if (dist[u] > d + w) {
+                    dist[u] = d + w;
+                    buckets[dist[u]].push_back(u);
                 }
             }
         }

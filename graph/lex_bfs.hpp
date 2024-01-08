@@ -30,7 +30,7 @@ std::vector<int> lex_bfs(const std::vector<std::vector<int>>& G) {
                 prv.resize(t + 1, -1);
                 nxt.resize(t + 1, -1);
             }
-            if (neighbor.count(pr.member(s))) {
+            if (neighbor.contains(pr.member(s))) {
                 if (nxt[s] >= 0) prv[nxt[s]] = t;
                 nxt[t] = nxt[s];
                 prv[t] = s;

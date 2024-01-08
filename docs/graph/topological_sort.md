@@ -1,6 +1,6 @@
 ---
 title: Topological Sort
-documentation_of: ../../graph/topological_sort.cpp
+documentation_of: ../../graph/topological_sort.hpp
 ---
 
 ## Description

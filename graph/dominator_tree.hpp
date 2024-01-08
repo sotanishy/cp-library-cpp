@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <numeric>
 #include <vector>
 
@@ -49,7 +50,7 @@ std::vector<int> dominator_tree(const std::vector<std::vector<int>>& G, int s) {
         return dsu[v] = r;
     };
 
-    auto eval = [&](int v) {   // return the ancestor of v with minimum sdom
+    auto eval = [&](int v) {  // return the ancestor of v with minimum sdom
         find(find, v);
         return val[v];
     };
@@ -77,8 +78,6 @@ std::vector<int> dominator_tree(const std::vector<std::vector<int>>& G, int s) {
         int w = vs[i], u = us[w];
         idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);
     }
-    for (int v : vs) {
-        idom[v] = vs[idom[v]];
-    }
+    std::ranges::transform(idom, idom.begin(), [&](int i) { return vs[i]; });
     return idom;
 }

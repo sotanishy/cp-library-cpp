@@ -14,7 +14,7 @@ int main() {
     for (auto& x : pts) cin >> x.first >> x.second;
     auto [weight, edges] = manhattan_mst(pts);
     cout << weight << endl;
-    for (auto& e : edges) {
-        cout << e.from << " " << e.to << "\n";
+    for (auto [u, v] : edges) {
+        cout << u << " " << v << "\n";
     }
 }

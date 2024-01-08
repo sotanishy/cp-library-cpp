@@ -3,7 +3,7 @@
 
 #include <bits/stdc++.h>
 
-#include "../../graph/offline_dynamic_connectivity.cpp"
+#include "../../graph/offline_dynamic_connectivity.hpp"
 using namespace std;
 
 using ll = long long;

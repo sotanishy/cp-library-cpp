@@ -19,7 +19,7 @@ std::pair<bool, std::vector<int>> recognize_chordal_graph(
     }
 
     auto ord = lex_bfs(G);
-    std::reverse(ord.begin(), ord.end());
+    std::ranges::reverse(ord);
     std::vector<int> idx(n, -1);
     for (int x = 0; x < n; ++x) idx[ord[x]] = x;
 

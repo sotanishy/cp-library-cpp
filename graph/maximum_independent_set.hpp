@@ -1,11 +1,13 @@
 #pragma once
+#include <algorithm>
 #include <vector>
 
-std::vector<int> maximum_independent_set(const std::vector<std::vector<int>>& G) {
-    int n = G.size();
+std::vector<int> maximum_independent_set(
+    const std::vector<std::vector<int>>& G) {
+    const int n = G.size();
     std::vector<bool> used(n), ans(n);
     std::vector<int> deg(n), dead(n);
-    for (int i = 0; i < n; ++i) deg[i] = G[i].size();
+    std::ranges::transform(G, deg.begin(), [&](auto& g) { return g.size(); });
     int res = 0, cnt = 0, alive = n;
 
     auto dfs = [&](const auto& dfs) {

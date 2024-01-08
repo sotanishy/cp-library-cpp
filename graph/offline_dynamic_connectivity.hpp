@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <cassert>
 #include <map>
 #include <tuple>
@@ -10,7 +11,7 @@
 
 template <typename M>
 class OfflineDynamicConnectivity {
-    using T = typename M::T;
+    using T = M::T;
 
    public:
     OfflineDynamicConnectivity() = default;
@@ -57,8 +58,7 @@ class OfflineDynamicConnectivity {
         }
 
         // build a segment tree
-        int size = 1;
-        while (size < now) size <<= 1;
+        int size = std::bit_ceil((unsigned int)now);
         std::vector<std::vector<std::pair<int, int>>> edges(2 * size);
         std::vector<std::vector<std::pair<int, T>>> updates(2 * size);
 
@@ -92,11 +92,11 @@ class OfflineDynamicConnectivity {
                 self(self, 2 * k);
                 self(self, 2 * k + 1);
             } else if (k < size + now) {
-                if (query_same.count(k - size)) {
+                if (query_same.contains(k - size)) {
                     auto [u, v] = query_same[k - size];
                     ret.emplace_back(uf.same(u, v), M::id());
                 }
-                if (query_fold.count(k - size)) {
+                if (query_fold.contains(k - size)) {
                     ret.emplace_back(false,
                                      uf.component_fold(query_fold[k - size]));
                 }

@@ -1,6 +1,6 @@
 ---
 title: Triangle Enumeration
-documentation_of: ../../graph/enumerate_triangles.cpp
+documentation_of: ../../graph/enumerate_triangles.hpp
 ---
 
 ## Description

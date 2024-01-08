@@ -2,7 +2,8 @@
 #include <cmath>
 #include <vector>
 
-std::vector<std::vector<int>> enumerate_cliques(const std::vector<std::vector<bool>>& G) {
+std::vector<std::vector<int>> enumerate_cliques(
+    const std::vector<std::vector<bool>>& G) {
     int N = G.size(), M = 0;
     std::vector<int> deg(N);
     for (int i = 0; i < N; ++i) {
@@ -14,7 +15,7 @@ std::vector<std::vector<int>> enumerate_cliques(const std::vector<std::vector<bo
         }
     }
     M /= 2;
-    int B = std::sqrt(2*M);
+    int B = std::sqrt(2 * M);
     std::vector<std::vector<int>> cliques;
 
     auto check = [&](const std::vector<int>& vs, bool use_first) {

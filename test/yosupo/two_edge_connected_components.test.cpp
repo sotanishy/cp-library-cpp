@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_edge_connected_components"
 
-#include "../../graph/lowlink.cpp"
-#include "../../graph/two_edge_connected_components.cpp"
+#include "../../graph/lowlink.hpp"
+#include "../../graph/two_edge_connected_components.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -4,10 +4,10 @@
 #include <queue>
 #include <utility>
 #include <vector>
-#include "edge.cpp"
 
 template <typename T>
-T minimum_steiner_tree(std::vector<std::vector<Edge<T>>>& G, std::vector<int>& terminals) {
+T minimum_steiner_tree(std::vector<std::vector<std::pair<int, T>>>& G,
+                       std::vector<int>& terminals) {
     const int n = G.size();
     const int t = terminals.size();
     constexpr T INF = std::numeric_limits<T>::max() / 2;
@@ -31,10 +31,10 @@ T minimum_steiner_tree(std::vector<std::vector<Edge<T>>>& G, std::vector<int>& t
             auto [d, v] = pq.top();
             pq.pop();
             if (dp[S][v] < d) continue;
-            for (auto& e : G[v]) {
-                if (dp[S][e.to] > d + e.weight) {
-                    dp[S][e.to] = d + e.weight;
-                    pq.emplace(dp[S][e.to], e.to);
+            for (auto [u, w] : G[v]) {
+                if (dp[S][u] > d + w) {
+                    dp[S][u] = d + w;
+                    pq.emplace(dp[S][u], u);
                 }
             }
         }

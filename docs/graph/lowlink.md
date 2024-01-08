@@ -1,6 +1,6 @@
 ---
 title: Lowlink
-documentation_of: ../../graph/lowlink.cpp
+documentation_of: ../../graph/lowlink.hpp
 ---
 
 ## Description

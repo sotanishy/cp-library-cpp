@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
-#include "../../graph/shortest_path.cpp"
+#include "../../graph/shortest_path.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -12,7 +12,7 @@ int main() {
 
     int N, M, s, t;
     cin >> N >> M >> s >> t;
-    vector<vector<Edge<long long>>> G(N);
+    vector<vector<pair<int, long long>>> G(N);
     for (int i = 0; i < M; ++i) {
         int a, b, c;
         cin >> a >> b >> c;

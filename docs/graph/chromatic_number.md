@@ -1,6 +1,6 @@
 ---
 title: Chromatic Number
-documentation_of: ../../graph/chromatic_number.cpp
+documentation_of: ../../graph/chromatic_number.hpp
 ---
 
 ## Description

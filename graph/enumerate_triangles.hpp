@@ -1,10 +1,12 @@
 #pragma once
+#include <algorithm>
 #include <vector>
 
-std::vector<std::tuple<int, int, int>> enumerate_triangles(const std::vector<std::vector<int>>& G) {
-    int n = G.size();
+std::vector<std::tuple<int, int, int>> enumerate_triangles(
+    const std::vector<std::vector<int>>& G) {
+    const int n = G.size();
     std::vector<int> deg(n);
-    for (int i = 0; i < n; ++i) deg[i] = G[i].size();
+    std::ranges::transform(G, deg.begin(), [&](auto& g) { return g.size(); });
     std::vector<std::vector<int>> G2(n);
     std::vector<std::pair<int, int>> edges;
     for (int i = 0; i < n; ++i) {

@@ -1,6 +1,6 @@
 ---
 title: Maximum Independent Set
-documentation_of: ../../graph/maximum_independent_set.cpp
+documentation_of: ../../graph/maximum_independent_set.hpp
 ---
 
 ## Description

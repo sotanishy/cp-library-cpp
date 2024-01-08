@@ -1,6 +1,6 @@
 ---
 title: Minimum Spanning Tree Algorithms
-documentation_of: ../../graph/mst.cpp
+documentation_of: ../../graph/mst.hpp
 ---
 
 ## Description

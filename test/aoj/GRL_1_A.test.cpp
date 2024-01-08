@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
-
-#include "../../graph/shortest_path.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
 #include <bits/stdc++.h>
+
+#include "../../graph/shortest_path.hpp"
 using namespace std;
 
 const int INF = 1e9;
@@ -13,7 +14,7 @@ int main() {
 
     int V, E, r;
     cin >> V >> E >> r;
-    vector<vector<Edge<int>>> G(V);
+    vector<vector<pair<int, int>>> G(V);
     for (int i = 0; i < E; i++) {
         int s, t, d;
         cin >> s >> t >> d;
@@ -21,7 +22,9 @@ int main() {
     }
     auto dist = dijkstra(G, r);
     for (int i = 0; i < V; i++) {
-        if (dist[i] < INF) cout << dist[i] << "\n";
-        else cout << "INF\n";
+        if (dist[i] < INF)
+            cout << dist[i] << "\n";
+        else
+            cout << "INF\n";
     }
 }

@@ -1,6 +1,6 @@
 ---
 title: 2-Edge-Connected Components
-documentation_of: ../../graph/two_edge_connected_components.cpp
+documentation_of: ../../graph/two_edge_connected_components.hpp
 ---
 
 ## Description

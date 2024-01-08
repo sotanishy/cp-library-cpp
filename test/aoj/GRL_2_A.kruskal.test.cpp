@@ -1,8 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
-
-#include "../../graph/mst.cpp"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
 #include <bits/stdc++.h>
+
+#include "../../graph/mst.hpp"
 using namespace std;
 
 int main() {
@@ -11,7 +12,7 @@ int main() {
 
     int V, E;
     cin >> V >> E;
-    vector<Edge<int>> edges;
+    vector<tuple<int, int, int>> edges;
     for (int i = 0; i < E; i++) {
         int s, t, w;
         cin >> s >> t >> w;

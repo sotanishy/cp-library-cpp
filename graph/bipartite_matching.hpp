@@ -5,13 +5,17 @@
 #include <vector>
 
 class BipartiteMatching {
-public:
+   public:
     BipartiteMatching() = default;
-    BipartiteMatching(int U, int V) : U(U), V(V), NIL(U + V), G(U), level(U + V + 1), match(U + V + 1, NIL) {}
+    BipartiteMatching(int U, int V)
+        : U(U),
+          V(V),
+          NIL(U + V),
+          G(U),
+          level(U + V + 1),
+          match(U + V + 1, NIL) {}
 
-    void add_edge(int u, int v) {
-        G[u].emplace_back(U + v);
-    }
+    void add_edge(int u, int v) { G[u].emplace_back(U + v); }
 
     std::vector<std::pair<int, int>> max_matching() {
         while (bfs()) {
@@ -28,7 +32,7 @@ public:
         return ret;
     }
 
-private:
+   private:
     static constexpr int INF = std::numeric_limits<int>::max() / 2;
 
     const int U, V, NIL;
@@ -36,7 +40,7 @@ private:
     std::vector<int> level, match;
 
     bool bfs() {
-        std::fill(level.begin(), level.end(), INF);
+        std::ranges::fill(level, INF);
         std::queue<int> q;
         for (int u = 0; u < U; ++u) {
             if (match[u] == NIL) {
@@ -73,13 +77,12 @@ private:
     }
 };
 
-
 /*
  * Bipartite matching using Ford-Fulkerson algorithm
  * Time complexity: O(VE)
  */
 class BipartiteMatchingFF {
-public:
+   public:
     BipartiteMatchingFF() = default;
     explicit BipartiteMatchingFF(int n) : G(n), used(n), match(n) {}
 
@@ -90,8 +93,8 @@ public:
 
     std::vector<std::pair<int, int>> max_matching() {
         int res = 0;
-        std::fill(match.begin(), match.end(), -1);
-        for (int v = 0; v < (int) G.size(); ++v) {
+        std::ranges::fill(match, -1);
+        for (int v = 0; v < (int)G.size(); ++v) {
             if (match[v] == -1) {
                 std::fill(used.begin(), used.end(), false);
                 if (dfs(v)) ++res;
@@ -99,13 +102,13 @@ public:
         }
 
         std::vector<std::pair<int, int>> ret;
-        for (int i = 0; i < (int) G.size(); ++i) {
+        for (int i = 0; i < (int)G.size(); ++i) {
             if (i < match[i]) ret.emplace_back(i, match[i]);
         }
         return ret;
     }
 
-private:
+   private:
     std::vector<std::vector<int>> G;
     std::vector<bool> used;
     std::vector<int> match;

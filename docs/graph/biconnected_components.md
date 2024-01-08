@@ -1,6 +1,6 @@
 ---
 title: Biconnected Components
-documentation_of: ../../graph/biconnected_components.cpp
+documentation_of: ../../graph/biconnected_components.hpp
 ---
 
 ## Description

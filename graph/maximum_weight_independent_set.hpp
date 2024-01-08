@@ -4,7 +4,8 @@
 #include <vector>
 
 template <typename T>
-T maximum_weight_independent_set(const std::vector<std::vector<int>>& G, const std::vector<T>& w) {
+T maximum_weight_independent_set(const std::vector<std::vector<int>>& G,
+                                 const std::vector<T>& w) {
     const int n = G.size();
     const int n1 = n / 2;
     const int n2 = n - n1;

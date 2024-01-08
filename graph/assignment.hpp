@@ -1,9 +1,8 @@
 #pragma once
 #include <algorithm>
-#include <queue>
 #include <limits>
+#include <queue>
 #include <vector>
-
 
 template <typename T>
 std::vector<int> assignment(const std::vector<std::vector<T>>& cost) {
@@ -15,7 +14,7 @@ std::vector<int> assignment(const std::vector<std::vector<T>>& cost) {
     std::vector<T> slack(m), slack_idx(m, -1);
 
     for (int i = 0; i < n; ++i) {
-        yrow[i] = *std::max_element(cost[i].begin(), cost[i].end());
+        yrow[i] = *std::ranges::max_element(cost[i]);
     }
 
     // add the edge (j, i) to the alternating tree
@@ -45,7 +44,7 @@ std::vector<int> assignment(const std::vector<std::vector<T>>& cost) {
     for (int t = 0; t < n; ++t) {
         std::fill(usedrow.begin(), usedrow.end(), false);
         std::fill(usedcol.begin(), usedcol.end(), false);
-        std::fill(par.begin(), par.end(), -1);
+        std::ranges::fill(par, -1);
         std::queue<int> que;
         // seed
         for (int i = 0; i < n; ++i) {
@@ -93,8 +92,10 @@ std::vector<int> assignment(const std::vector<std::vector<T>>& cost) {
                 if (usedrow[i]) yrow[i] -= delta;
             }
             for (int j = 0; j < m; ++j) {
-                if (usedcol[j]) ycol[j] += delta;
-                else slack[j] -= delta;
+                if (usedcol[j])
+                    ycol[j] += delta;
+                else
+                    slack[j] -= delta;
             }
             // add new edges of the equality graph to the alternating tree
             for (int j = 0; j < m; ++j) {

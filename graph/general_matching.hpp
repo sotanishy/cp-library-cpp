@@ -5,13 +5,12 @@
 #include <vector>
 
 class GeneralMatching {
-public:
+   public:
     GeneralMatching() = default;
-    explicit GeneralMatching(int n) : n(n), m(n + n / 2), G(m, std::vector<bool>(m)), mate(m, -1) {}
+    explicit GeneralMatching(int n)
+        : n(n), m(n + n / 2), G(m, std::vector<bool>(m)), mate(m, -1) {}
 
-    void add_edge(int u, int v) {
-        G[u][v] = G[v][u] = true;
-    }
+    void add_edge(int u, int v) { G[u][v] = G[v][u] = true; }
 
     std::vector<std::pair<int, int>> max_matching() {
         // par: parent in the alternating forest
@@ -43,10 +42,10 @@ public:
             }
         };
 
-        for (int ans = 0; ; ++ans) {
-            std::fill(par.begin(), par.end(), -1);
-            std::fill(dep.begin(), dep.end(), -1);
-            std::fill(comp.begin(), comp.end(), -1);
+        for (int ans = 0;; ++ans) {
+            std::ranges::fill(par, -1);
+            std::ranges::fill(dep, -1);
+            std::ranges::fill(comp, -1);
             bool augment = false;
             int c = n;  // n + number of blossoms
 
@@ -83,15 +82,16 @@ public:
                         auto av = get_ancestors(v);
                         auto au = get_ancestors(u);
                         int w;  // lca
-                        while (!av.empty() && !au.empty() && av.back() == au.back()) {
+                        while (!av.empty() && !au.empty() &&
+                               av.back() == au.back()) {
                             w = av.back();
                             av.pop_back();
                             au.pop_back();
                         }
                         blossom[c] = std::move(av);
                         blossom[c].push_back(w);
-                        std::reverse(blossom[c].begin(), blossom[c].end());
-                        std::move(au.begin(), au.end(), std::back_inserter(blossom[c]));
+                        std::ranges::reverse(blossom[c]);
+                        std::ranges::move(au, std::back_inserter(blossom[c]));
 
                         // contract
                         if (par[w] != -1) mate[par[w]] = c;
@@ -176,8 +176,8 @@ public:
         }
     }
 
-private:
+   private:
     int n, m;  // m: maximum number of vertices + blossoms
     std::vector<std::vector<bool>> G;  // adjacency matrix
-    std::vector<int> mate;  // -1 if not matched
+    std::vector<int> mate;             // -1 if not matched
 };

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
 
-#include "../../graph/maximum_independent_set.cpp"
+#include "../../graph/maximum_independent_set.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

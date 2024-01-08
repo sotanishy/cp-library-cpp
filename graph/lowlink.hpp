@@ -4,14 +4,15 @@
 #include <vector>
 
 class Lowlink {
-public:
+   public:
     std::vector<int> ord, low;
     std::vector<std::pair<int, int>> bridge;
     std::vector<int> articulation;
 
     Lowlink() = default;
-    explicit Lowlink(const std::vector<std::vector<int>>& G) : ord(G.size(), -1), low(G.size()), G(G) {
-        for (int i = 0; i < (int) G.size(); ++i) {
+    explicit Lowlink(const std::vector<std::vector<int>>& G)
+        : ord(G.size(), -1), low(G.size()), G(G) {
+        for (int i = 0; i < (int)G.size(); ++i) {
             if (ord[i] == -1) dfs(i, -1);
         }
     }
@@ -21,7 +22,7 @@ public:
         return ord[u] < low[v];
     }
 
-private:
+   private:
     std::vector<std::vector<int>> G;
     int k = 0;
 

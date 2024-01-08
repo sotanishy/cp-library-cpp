@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
-#include "../../graph/scc.cpp"
+#include "../../graph/scc.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

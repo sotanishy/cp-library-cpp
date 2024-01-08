@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dominatortree"
 
-#include "../../graph/dominator_tree.cpp"
+#include "../../graph/dominator_tree.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

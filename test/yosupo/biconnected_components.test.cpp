@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
 
-#include "../../graph/lowlink.cpp"
-#include "../../graph/biconnected_components.cpp"
+#include "../../graph/biconnected_components.hpp"
 
 #include <bits/stdc++.h>
+
+#include "../../graph/lowlink.hpp"
 using namespace std;
 using ll = long long;
 

@@ -4,8 +4,7 @@
 #include <vector>
 
 #include "../data-structure/segtree/segment_tree.hpp"
-#include "../graph/edge.cpp"
-#include "../graph/mst.cpp"
+#include "../graph/mst.hpp"
 
 template <typename U>
 struct MinMonoid {
@@ -15,42 +14,38 @@ struct MinMonoid {
 };
 
 template <typename T>
-std::pair<T, std::vector<Edge<T>>> manhattan_mst(
+std::pair<T, std::vector<std::pair<int, int>>> manhattan_mst(
     std::vector<std::pair<T, T>> pts) {
     std::vector<int> idx(pts.size());
     std::iota(idx.begin(), idx.end(), 0);
 
-    std::vector<Edge<T>> edges;
+    std::vector<std::tuple<int, int, T>> edges;
 
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             for (int k = 0; k < 2; ++k) {
                 // sort by y-x asc then by y desc
-                std::sort(idx.begin(), idx.end(), [&](auto& i, auto& j) {
-                    auto [xi, yi] = pts[i];
-                    auto [xj, yj] = pts[j];
-                    if (yi - xi != yj - xj) return yi - xi < yj - xj;
-                    if (yi != yj) return yi > yj;
-                    return i < j;
+                std::ranges::sort(idx, {}, [&](int i) {
+                    auto [x, y] = pts[i];
+                    return std::make_tuple(y - x, -y, i);
                 });
 
                 // compress y
                 std::vector<T> cs;
                 cs.reserve(pts.size());
                 for (auto [x, y] : pts) cs.push_back(y);
-                std::sort(cs.begin(), cs.end());
-                cs.erase(std::unique(cs.begin(), cs.end()), cs.end());
+                std::ranges::sort(cs);
+                cs.erase(std::ranges::unique(cs).begin(), cs.end());
 
                 // sweep
                 SegmentTree<MinMonoid<T>> st(cs.size());
 
                 for (int i : idx) {
                     auto [x, y] = pts[i];
-                    int k =
-                        std::lower_bound(cs.begin(), cs.end(), y) - cs.begin();
+                    int k = std::ranges::lower_bound(cs) - cs.begin();
                     auto [d, j] = st.fold(k, cs.size());
                     if (j != -1) {
-                        edges.push_back(Edge<T>(i, j, d - (x + y)));
+                        edges.push_back({i, j, d - (x + y)});
                     }
                     st.update(k, {x + y, i});
                 }
@@ -62,5 +57,11 @@ std::pair<T, std::vector<Edge<T>>> manhattan_mst(
         for (auto& p : pts) p.second *= -1;
     }
 
-    return kruskal(edges, pts.size());
+    auto [weight, edges] = kruskal(edges, pts.size());
+    std::vector<std::pair<int, int>> ret(edges.size());
+    std::ranges::transform(edges, ret.begin(), [&](auto& e) {
+        auto [u, v, w] = e;
+        return {u, v};
+    });
+    return {weight, ret};
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <bit>
 #include <map>
 #include <stack>
 #include <utility>
@@ -15,8 +16,8 @@ std::vector<int> bipartite_edge_coloring(
     for (auto [a, b] : edges) {
         ++deg1[a], ++deg2[b];
     }
-    const int D = std::max(*max_element(deg1.begin(), deg1.end()),
-                           *max_element(deg2.begin(), deg2.end()));
+    const int D = std::max(*std::ranges::max_element(deg1),
+                           *std::ranges::max_element(deg1));
 
     // convert to D-regular bipartite graph
     // merge vertices with the sum of degrees <= D
@@ -24,7 +25,7 @@ std::vector<int> bipartite_edge_coloring(
         const int n = deg.size();
         std::vector<std::pair<int, int>> vs(n);
         for (int i = 0; i < n; ++i) vs[i] = {deg[i], i};
-        std::sort(vs.begin(), vs.end());
+        std::ranges::sort(vs);
 
         std::vector<int> id(n);
         std::vector<int> ndeg;
@@ -125,8 +126,7 @@ std::vector<int> bipartite_edge_coloring(
             }
             rec(rec, edges2[0], D / 2);
 
-            int nD = 1;
-            while (nD < D / 2) nD <<= 1;
+            int nD = std::bit_ceil((unsigned int)(D / 2));
 
             // add nD-D/2 edges from edges2[0] to edges2[1]
             for (auto [a, b, i] : edges2[0]) {
@@ -217,8 +217,7 @@ std::vector<std::pair<int, int>> regular_bipartite_matching(
             return rec(rec, dummy_cnt[0] < dummy_cnt[1] ? edges2[0] : edges2[1],
                        D / 2);
         } else {
-            int size = 1;
-            while (size < D) size <<= 1;
+            int size = std::bit_ceil((unsigned int)D);
 
             // add size-D dummy edges
             auto edges2 = edges;

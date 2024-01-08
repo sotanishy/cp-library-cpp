@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_cliques"
 
 #include "../../math/modint.hpp"
-#include "../../graph/enumerate_cliques.cpp"
+#include "../../graph/enumerate_cliques.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
