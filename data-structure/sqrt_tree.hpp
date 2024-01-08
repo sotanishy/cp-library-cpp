@@ -10,7 +10,7 @@ class SqrtTree {
    public:
     SqrtTree() = default;
     explicit SqrtTree(const std::vector<T>& v) : v(v) {
-        const int n = v.size(), lg = std::bit_width(n);
+        const int n = v.size(), lg = std::bit_width((unsigned int)n);
         on_layer.resize(lg + 1);
         int n_layer = 0;
         for (int i = lg; i > 1; i = (i + 1) / 2) {
