@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
 
-#include "../../graph/lowlink.cpp"
+#include "../../graph/lowlink.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

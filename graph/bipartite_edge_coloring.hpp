@@ -17,7 +17,7 @@ std::vector<int> bipartite_edge_coloring(
         ++deg1[a], ++deg2[b];
     }
     const int D = std::max(*std::ranges::max_element(deg1),
-                           *std::ranges::max_element(deg1));
+                           *std::ranges::max_element(deg2));
 
     // convert to D-regular bipartite graph
     // merge vertices with the sum of degrees <= D

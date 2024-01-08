@@ -2,7 +2,6 @@
 
 #include <bits/stdc++.h>
 
-#include "../../graph/edge.cpp"
 #include "../../graph/minimum_spanning_arborescence.hpp"
 using namespace std;
 using ll = long long;
