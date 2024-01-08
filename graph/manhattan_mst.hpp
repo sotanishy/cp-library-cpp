@@ -42,7 +42,7 @@ std::pair<T, std::vector<std::pair<int, int>>> manhattan_mst(
 
                 for (int i : idx) {
                     auto [x, y] = pts[i];
-                    int k = std::ranges::lower_bound(cs) - cs.begin();
+                    int k = std::ranges::lower_bound(cs, y) - cs.begin();
                     auto [d, j] = st.fold(k, cs.size());
                     if (j != -1) {
                         edges.push_back({i, j, d - (x + y)});
@@ -59,9 +59,8 @@ std::pair<T, std::vector<std::pair<int, int>>> manhattan_mst(
 
     auto [weight, mst_edges] = kruskal(edges, pts.size());
     std::vector<std::pair<int, int>> ret(edges.size());
-    std::ranges::transform(mst_edges, ret.begin(), [&](auto& e) {
-        auto [u, v, w] = e;
-        return {u, v};
+    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {
+        return std::make_pair(std::get<0>(e), std::get<1>(e));
     });
     return {weight, ret};
 }
