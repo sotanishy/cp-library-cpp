@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/system_of_linear_equations.hpp
     title: System of Linear Equations
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Mod int
   _extendedRequiredBy: []

@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: misc/permutation.hpp
     title: Lexicographic Index of Permutations (in Factorial Number System)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/range_contour_aggregation.hpp
     title: Range Contour Aggregation
   _extendedVerifiedWith:
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_inversions_query.test.cpp
     title: test/yosupo/static_range_inversions_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/fenwick_tree.hpp\"\n#include <functional>\n\
@@ -66,7 +66,7 @@ data:
   - misc/permutation.hpp
   - tree/range_contour_aggregation.hpp
   timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.hld.test.cpp
   - test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp

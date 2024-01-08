@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Euler Tour
     links: []
@@ -30,7 +30,7 @@ data:
   path: tree/euler_tour.hpp
   requiredBy: []
   timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
 documentation_of: tree/euler_tour.hpp

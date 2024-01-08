@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/compress.hpp
     title: Coordinate Compression
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/tree_diameter.hpp
     title: Diameter of a Tree
   - icon: ':heavy_check_mark:'

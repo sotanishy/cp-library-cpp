@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/enumerate_cliques.hpp
     title: Clique Enumeration
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Mod int
   _extendedRequiredBy: []

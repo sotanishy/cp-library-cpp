@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/leftist_heap.hpp
     title: Leftist Heap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []

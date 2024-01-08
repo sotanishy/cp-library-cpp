@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/disjoint_sparse_table.hpp
       title: Disjoint Sparse Table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/fenwick_tree.hpp
       title: Fenwick Tree
     - icon: ':warning:'
@@ -86,7 +86,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/sparse_table.hpp
       title: Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sqrt_tree.hpp
       title: Sqrt Tree
     - icon: ':heavy_check_mark:'
@@ -143,7 +143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.hpp
       title: Persistent Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -169,7 +169,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.hpp
       title: Undoable Union Find
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/union_find.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lex_bfs.hpp
       title: Lexicographic BFS
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -330,7 +330,7 @@ data:
     - icon: ':warning:'
       path: graph/range_edge_graph.hpp
       title: Range Edge Graph
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: Strongly Connected Components
     - icon: ':heavy_check_mark:'
@@ -339,7 +339,7 @@ data:
     - icon: ':warning:'
       path: graph/topological_sort.hpp
       title: Topological Sort
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_connected_components.hpp
       title: 2-Edge-Connected Components
   - name: math
@@ -422,7 +422,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_arithmetic.cpp
       title: Modular Arithmetic
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: Mod int
     - icon: ':warning:'
@@ -560,7 +560,7 @@ data:
     - icon: ':warning:'
       path: sat/hornsat.hpp
       title: Horn-SAT
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: sat/twosat.hpp
       title: 2-SAT
   - name: set
@@ -624,7 +624,7 @@ data:
     - icon: ':warning:'
       path: string/trie.hpp
       title: Trie
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/z_array.hpp
       title: Z Array
   - name: tree
@@ -638,16 +638,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.hpp
       title: Cartesian Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/centroid_decomposition.hpp
       title: Centroid Decomposition
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/euler_tour.hpp
       title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: tree/euler_tour_tree.hpp
       title: Euler Tour Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/hld.hpp
       title: Heavy-Light Decomposition
     - icon: ':heavy_check_mark:'
@@ -659,13 +659,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/permutation_tree.hpp
       title: Permutation Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/range_contour_aggregation.hpp
       title: Range Contour Aggregation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/rerooting.hpp
       title: Rerooting
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree_diameter.hpp
       title: Diameter of a Tree
     - icon: ':heavy_check_mark:'
@@ -1150,7 +1150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_inversions_query.test.cpp
       title: test/yosupo/static_range_inversions_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq.sqrt_tree.test.cpp
       title: test/yosupo/staticrmq.sqrt_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1183,34 +1183,34 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_decomposition_width_2.test.cpp
       title: test/yosupo/tree_decomposition_width_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_path_composite_sum.test.cpp
       title: test/yosupo/tree_path_composite_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_sat.test.cpp
       title: test/yosupo/two_sat.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/yosupo/vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.hld.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp
 layout: toppage

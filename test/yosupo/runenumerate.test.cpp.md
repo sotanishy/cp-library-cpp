@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/enumerate_runs.hpp
     title: Enumerate Runs
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/z_array.hpp
     title: Z Array
   _extendedRequiredBy: []
