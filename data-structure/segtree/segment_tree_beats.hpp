@@ -20,7 +20,7 @@ class SegmentTreeBeats {
         : size(std::bit_ceil(v.size())),
           node(2 * size, M::id()),
           lazy(2 * size, O::id()) {
-        std::ranges::copy(v, , node.begin() + size);
+        std::ranges::copy(v, node.begin() + size);
         for (int i = size - 1; i > 0; --i) {
             node[i] = M::op(node[2 * i], node[2 * i + 1]);
         }
