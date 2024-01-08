@@ -109,17 +109,17 @@ data:
     \                cs.erase(std::ranges::unique(cs).begin(), cs.end());\n\n    \
     \            // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
     \n                for (int i : idx) {\n                    auto [x, y] = pts[i];\n\
-    \                    int k = std::ranges::lower_bound(cs) - cs.begin();\n    \
-    \                auto [d, j] = st.fold(k, cs.size());\n                    if\
-    \ (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
+    \                    int k = std::ranges::lower_bound(cs, y) - cs.begin();\n \
+    \                   auto [d, j] = st.fold(k, cs.size());\n                   \
+    \ if (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
     \                    }\n                    st.update(k, {x + y, i});\n      \
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
     \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
     \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
-    \    std::ranges::transform(mst_edges, ret.begin(), [&](auto& e) {\n        auto\
-    \ [u, v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n\
-    }\n"
+    \    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {\n   \
+    \     return std::make_pair(std::get<0>(e), std::get<1>(e));\n    });\n    return\
+    \ {weight, ret};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <limits>\n#include <vector>\n\
     \n#include \"../data-structure/segtree/segment_tree.hpp\"\n#include \"../graph/mst.hpp\"\
     \n\ntemplate <typename U>\nstruct MinMonoid {\n    using T = std::pair<U, int>;\n\
@@ -138,17 +138,17 @@ data:
     \                cs.erase(std::ranges::unique(cs).begin(), cs.end());\n\n    \
     \            // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
     \n                for (int i : idx) {\n                    auto [x, y] = pts[i];\n\
-    \                    int k = std::ranges::lower_bound(cs) - cs.begin();\n    \
-    \                auto [d, j] = st.fold(k, cs.size());\n                    if\
-    \ (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
+    \                    int k = std::ranges::lower_bound(cs, y) - cs.begin();\n \
+    \                   auto [d, j] = st.fold(k, cs.size());\n                   \
+    \ if (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
     \                    }\n                    st.update(k, {x + y, i});\n      \
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
     \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
     \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
-    \    std::ranges::transform(mst_edges, ret.begin(), [&](auto& e) {\n        auto\
-    \ [u, v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n\
-    }"
+    \    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {\n   \
+    \     return std::make_pair(std::get<0>(e), std::get<1>(e));\n    });\n    return\
+    \ {weight, ret};\n}"
   dependsOn:
   - data-structure/segtree/segment_tree.hpp
   - graph/mst.hpp
@@ -156,7 +156,7 @@ data:
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2024-01-08 15:10:29+09:00'
+  timestamp: '2024-01-08 15:29:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp

@@ -26,7 +26,7 @@ data:
     - icon: ':x:'
       path: data-structure/binary_trie.hpp
       title: Binary Trie
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/bit_vector.hpp
       title: Rank/Select Dictionary
     - icon: ':x:'
@@ -77,7 +77,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/slide_min.hpp
       title: Sliding Window Minimum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/sliding_window_aggregation.hpp
       title: Sliding Window Aggregation
     - icon: ':warning:'
@@ -89,7 +89,7 @@ data:
     - icon: ':x:'
       path: data-structure/sqrt_tree.hpp
       title: Sqrt Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: data-structure/bst
@@ -128,7 +128,7 @@ data:
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dual_segment_tree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
@@ -137,7 +137,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_segment_tree.hpp
       title: Dynamic Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.hpp
       title: Segment Tree with Lazy Propagation
     - icon: ':x:'
@@ -452,7 +452,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.hpp
       title: math/primitive_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/product_of_polynomial_sequence.hpp
       title: Product of Polynomial Sequence
     - icon: ':warning:'
@@ -1087,22 +1087,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/primitive_root.test.cpp
       title: test/yosupo/primitive_root.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_point_get.test.cpp
       title: test/yosupo/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
     - icon: ':x:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
     - icon: ':x:'

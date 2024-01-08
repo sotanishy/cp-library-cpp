@@ -112,22 +112,22 @@ data:
     \                cs.erase(std::ranges::unique(cs).begin(), cs.end());\n\n    \
     \            // sweep\n                SegmentTree<MinMonoid<T>> st(cs.size());\n\
     \n                for (int i : idx) {\n                    auto [x, y] = pts[i];\n\
-    \                    int k = std::ranges::lower_bound(cs) - cs.begin();\n    \
-    \                auto [d, j] = st.fold(k, cs.size());\n                    if\
-    \ (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
+    \                    int k = std::ranges::lower_bound(cs, y) - cs.begin();\n \
+    \                   auto [d, j] = st.fold(k, cs.size());\n                   \
+    \ if (j != -1) {\n                        edges.push_back({i, j, d - (x + y)});\n\
     \                    }\n                    st.update(k, {x + y, i});\n      \
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
     \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
     \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
-    \    std::ranges::transform(mst_edges, ret.begin(), [&](auto& e) {\n        auto\
-    \ [u, v, w] = e;\n        return {u, v};\n    });\n    return {weight, ret};\n\
-    }\n#line 6 \"test/yosupo/manhattanmst.test.cpp\"\n\nusing namespace std;\nusing\
-    \ ll = long long;\n\nint main() {\n    int N;\n    cin >> N;\n    vector<pair<long\
-    \ long, long long>> pts(N);\n    for (auto& x : pts) cin >> x.first >> x.second;\n\
-    \    auto [weight, edges] = manhattan_mst(pts);\n    cout << weight << endl;\n\
-    \    for (auto [u, v] : edges) {\n        cout << u << \" \" << v << \"\\n\";\n\
-    \    }\n}\n"
+    \    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {\n   \
+    \     return std::make_pair(std::get<0>(e), std::get<1>(e));\n    });\n    return\
+    \ {weight, ret};\n}\n#line 6 \"test/yosupo/manhattanmst.test.cpp\"\n\nusing namespace\
+    \ std;\nusing ll = long long;\n\nint main() {\n    int N;\n    cin >> N;\n   \
+    \ vector<pair<long long, long long>> pts(N);\n    for (auto& x : pts) cin >> x.first\
+    \ >> x.second;\n    auto [weight, edges] = manhattan_mst(pts);\n    cout << weight\
+    \ << endl;\n    for (auto [u, v] : edges) {\n        cout << u << \" \" << v <<\
+    \ \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n\n#include\
     \ <bits/stdc++.h>\n\n#include \"../../graph/manhattan_mst.hpp\"\n\nusing namespace\
     \ std;\nusing ll = long long;\n\nint main() {\n    int N;\n    cin >> N;\n   \
@@ -143,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 15:10:29+09:00'
+  timestamp: '2024-01-08 15:29:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/manhattanmst.test.cpp
