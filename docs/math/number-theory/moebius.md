@@ -1,6 +1,6 @@
 ---
 title: Möbius Function
-documentation_of: ../../math/moebius.hpp
+documentation_of: ../../../math/number-theory/moebius.hpp
 ---
 
 ## Description

@@ -3,7 +3,7 @@
 #include <cmath>
 
 /**
- * @brief k-th Root
+ * @brief Integer Kth Root
  */
 unsigned long long kth_root(unsigned long long x, int k) {
     using ull = unsigned long long;
