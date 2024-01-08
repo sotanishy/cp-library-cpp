@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/longest_increasing_subsequence.test.cpp
     title: test/yosupo/longest_increasing_subsequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Longest Increasing Subsequence
     links: []
@@ -57,7 +57,7 @@ data:
   path: dp/lis.hpp
   requiredBy: []
   timestamp: '2024-01-08 01:32:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/longest_increasing_subsequence.test.cpp
 documentation_of: dp/lis.hpp

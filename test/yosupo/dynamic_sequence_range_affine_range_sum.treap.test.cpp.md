@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/bst/lazy_treap.hpp
     title: Treap with Lazy Propagation
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Mod int
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -41,16 +41,15 @@ data:
     \ c) = split(std::move(b), r - l);\n        b->rev ^= true;\n        root = join(join(std::move(a),\
     \ std::move(b)), std::move(c));\n    }\n\n    void insert(int k, const T& x) {\n\
     \        auto s = split(std::move(root), k);\n        root = join(join(std::move(s.first),\
-    \ std::make_unique<Node>(x)),\n                    std::move(s.second));\n   \
-    \ }\n\n    void erase(int k) {\n        auto p = split(std::move(root), k);\n\
-    \        auto q = split(std::move(p.second), 1);\n        root = join(std::move(p.first),\
-    \ std::move(q.second));\n    }\n\n    void push_front(const T& x) {\n        root\
-    \ = join(std::make_unique<Node>(x), std::move(root));\n    }\n\n    void push_back(const\
-    \ T& x) {\n        root = join(std::move(root), std::make_unique<Node>(x));\n\
-    \    }\n\n    void pop_front() { root = split(std::move(root), 1).second; }\n\n\
-    \    void pop_back() { root = split(std::move(root), size() - 1).first; }\n\n\
-    \    int size() const { return size(root); }\n\n    bool empty() const { return\
-    \ size() == 0; }\n\n   private:\n    struct Node;\n    using node_ptr = std::unique_ptr<Node>;\n\
+    \ new Node(x)), std::move(s.second));\n    }\n\n    void erase(int k) {\n    \
+    \    auto p = split(std::move(root), k);\n        auto q = split(std::move(p.second),\
+    \ 1);\n        root = join(std::move(p.first), std::move(q.second));\n    }\n\n\
+    \    void push_front(const T& x) { root = join(new Node(x), std::move(root));\
+    \ }\n\n    void push_back(const T& x) { root = join(std::move(root), new Node(x));\
+    \ }\n\n    void pop_front() { root = split(std::move(root), 1).second; }\n\n \
+    \   void pop_back() { root = split(std::move(root), size() - 1).first; }\n\n \
+    \   int size() const { return size(root); }\n\n    bool empty() const { return\
+    \ size() == 0; }\n\n   private:\n    struct Node;\n    using node_ptr = Node*;\n\
     \n    static unsigned int rand() {\n        static std::random_device rd;\n  \
     \      static std::mt19937 rng(rd());\n        return rng();\n    }\n\n    struct\
     \ Node {\n        node_ptr left, right;\n        T val, sum;\n        E lazy;\n\
@@ -159,8 +158,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 01:52:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 11:43:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
 layout: document

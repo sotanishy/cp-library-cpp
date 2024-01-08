@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/lca.hpp
     title: Lowest Common Ancestor
   _extendedRequiredBy: []

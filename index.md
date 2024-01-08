@@ -44,7 +44,7 @@ data:
     - icon: ':warning:'
       path: data-structure/inner_product_search.hpp
       title: Inner-Product Search
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/kd_tree.hpp
       title: k-d Tree
     - icon: ':heavy_check_mark:'
@@ -94,7 +94,7 @@ data:
       title: Wavelet Matrix
   - name: data-structure/bst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/lazy_treap.hpp
       title: Treap with Lazy Propagation
     - icon: ':heavy_check_mark:'
@@ -114,10 +114,10 @@ data:
     - icon: ':warning:'
       path: data-structure/cht/convex_hull_trick.hpp
       title: data-structure/cht/convex_hull_trick.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
       title: Convex Hull Trick (Binary Search Tree)
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-structure/cht/li_chao_tree.hpp
       title: Li Chao Tree
     - icon: ':warning:'
@@ -189,7 +189,7 @@ data:
     - icon: ':warning:'
       path: dp/lcs.hpp
       title: Longest Common Subsequence
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/lis.hpp
       title: Longest Increasing Subsequence
     - icon: ':warning:'
@@ -206,7 +206,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/ford_fulkerson.hpp
       title: Ford-Fulkerson Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_b_flow.hpp
       title: Minimum Cost b-flow
     - icon: ':heavy_check_mark:'
@@ -356,7 +356,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/bernoulli.hpp
       title: Bernoulli Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bostan_mori.hpp
       title: Bostan-Mori Algorithm
     - icon: ':warning:'
@@ -653,7 +653,7 @@ data:
     - icon: ':x:'
       path: tree/hld.hpp
       title: Heavy-Light Decomposition
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/lca.hpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -797,7 +797,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_B.test.cpp
       title: test/aoj/DSL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -931,7 +931,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/yosupo/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1000,28 +1000,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lcm_convolution.test.cpp
       title: test/yosupo/lcm_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.cht.test.cpp
       title: test/yosupo/line_add_get_min.cht.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.lct.test.cpp
       title: test/yosupo/line_add_get_min.lct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/log_of_formal_power_series.test.cpp
       title: test/yosupo/log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/longest_common_substring.test.cpp
       title: test/yosupo/longest_common_substring.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/longest_increasing_subsequence.test.cpp
       title: test/yosupo/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1039,7 +1039,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/min_cost_b_flow.test.cpp
       title: test/yosupo/min_cost_b_flow.test.cpp
     - icon: ':heavy_check_mark:'
