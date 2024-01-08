@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree_diameter.hpp
     title: Diameter of a Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree_isomorphism.hpp
     title: Tree Isomorphism
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -106,7 +106,7 @@ data:
   path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   requiredBy: []
   timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
 layout: document

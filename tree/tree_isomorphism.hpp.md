@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree_diameter.hpp
     title: Diameter of a Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
     title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"tree/tree_isomorphism.hpp\"\n#include <algorithm>\n#include\
@@ -135,7 +135,7 @@ data:
   path: tree/tree_isomorphism.hpp
   requiredBy: []
   timestamp: '2024-01-07 23:25:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp

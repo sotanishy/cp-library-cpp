@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/segment_tree_beats.hpp
     title: Segment Tree Beats
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -24,8 +24,8 @@ data:
     \ n)\n        : SegmentTreeBeats(std::vector<T>(n, M::id())) {}\n    explicit\
     \ SegmentTreeBeats(const std::vector<T>& v)\n        : size(std::bit_ceil(v.size())),\n\
     \          node(2 * size, M::id()),\n          lazy(2 * size, O::id()) {\n   \
-    \     std::ranges::copy(v, , node.begin() + size);\n        for (int i = size\
-    \ - 1; i > 0; --i) {\n            node[i] = M::op(node[2 * i], node[2 * i + 1]);\n\
+    \     std::ranges::copy(v, node.begin() + size);\n        for (int i = size -\
+    \ 1; i > 0; --i) {\n            node[i] = M::op(node[2 * i], node[2 * i + 1]);\n\
     \        }\n    }\n\n    T operator[](int k) { return fold(k, k + 1); }\n\n  \
     \  void update(int l, int r, const E& x) { update(l, r, x, 1, 0, size); }\n\n\
     \    T fold(int l, int r) { return fold(l, r, 1, 0, size); }\n\n   private:\n\
@@ -120,8 +120,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 20:49:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 15:51:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
 layout: document

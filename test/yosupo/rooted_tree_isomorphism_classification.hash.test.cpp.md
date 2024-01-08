@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: misc/compress.hpp
     title: Coordinate Compression
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree_diameter.hpp
     title: Diameter of a Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree_isomorphism.hpp
     title: Tree Isomorphism
   _extendedRequiredBy: []

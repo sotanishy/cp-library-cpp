@@ -5,7 +5,7 @@ data:
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
   _extendedVerifiedWith:
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.prim.test.cpp
     title: test/aoj/GRL_2_A.prim.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/mst.hpp\"\n#include <algorithm>\n#include <queue>\n\
@@ -103,7 +103,7 @@ data:
   requiredBy:
   - graph/manhattan_mst.hpp
   timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp
   - test/aoj/GRL_2_A.prim.test.cpp

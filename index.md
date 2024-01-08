@@ -103,10 +103,10 @@ data:
     - icon: ':warning:'
       path: data-structure/bst/red_black_tree.hpp
       title: Red Black Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/splay_tree.hpp
       title: Splay Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/bst/treap.hpp
       title: Treap
   - name: data-structure/cht
@@ -117,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/cht/convex_hull_trick_binsearchtree.hpp
       title: Convex Hull Trick (Binary Search Tree)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/cht/li_chao_tree.hpp
       title: Li Chao Tree
     - icon: ':warning:'
@@ -140,7 +140,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/lazy_segment_tree.hpp
       title: Segment Tree with Lazy Propagation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/persistent_segment_tree.hpp
       title: Persistent Segment Tree
     - icon: ':question:'
@@ -149,7 +149,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_2d.hpp
       title: 2D Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/segment_tree_beats.hpp
       title: Segment Tree Beats
     - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
     - icon: ':question:'
       path: graph/lowlink.hpp
       title: Lowlink
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan Minimum Spanning Tree
     - icon: ':heavy_check_mark:'
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_steiner_tree.hpp
       title: Minimum Steiner Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst.hpp
       title: Minimum Spanning Tree Algorithms
     - icon: ':heavy_check_mark:'
@@ -330,7 +330,7 @@ data:
     - icon: ':warning:'
       path: graph/range_edge_graph.hpp
       title: Range Edge Graph
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/scc.hpp
       title: Strongly Connected Components
     - icon: ':question:'
@@ -665,10 +665,10 @@ data:
     - icon: ':x:'
       path: tree/rerooting.hpp
       title: Rerooting
-    - icon: ':x:'
+    - icon: ':question:'
       path: tree/tree_diameter.hpp
       title: Diameter of a Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: tree/tree_isomorphism.hpp
       title: Tree Isomorphism
   verificationCategories:
@@ -1018,7 +1018,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lyndon_factorization.test.cpp
       title: test/yosupo/lyndon_factorization.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/manhattanmst.test.cpp
       title: test/yosupo/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1099,25 +1099,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_kth_smallest.test.cpp
       title: test/yosupo/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
       title: test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
     - icon: ':x:'
       path: test/yosupo/rectangle_sum.range_tree.test.cpp
       title: test/yosupo/rectangle_sum.range_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
       title: test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
     - icon: ':x:'
@@ -1126,10 +1126,10 @@ data:
     - icon: ':x:'
       path: test/yosupo/runenumerate.test.cpp
       title: test/yosupo/runenumerate.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/scc.test.cpp
       title: test/yosupo/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
     - icon: ':x:'

@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst.hpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/manhattanmst.test.cpp
     title: test/yosupo/manhattanmst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/manhattan_mst.hpp\"\n#include <algorithm>\n#include\
@@ -116,7 +116,7 @@ data:
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
     \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
-    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
+    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(mst_edges.size());\n\
     \    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {\n   \
     \     return std::make_pair(std::get<0>(e), std::get<1>(e));\n    });\n    return\
     \ {weight, ret};\n}\n"
@@ -145,7 +145,7 @@ data:
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
     \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
-    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
+    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(mst_edges.size());\n\
     \    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {\n   \
     \     return std::make_pair(std::get<0>(e), std::get<1>(e));\n    });\n    return\
     \ {weight, ret};\n}"
@@ -156,8 +156,8 @@ data:
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2024-01-08 15:29:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-08 15:51:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp
 documentation_of: graph/manhattan_mst.hpp

@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.treap.test.cpp
     title: test/aoj/1508.treap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_reverse_range_sum.treap.test.cpp
     title: test/yosupo/range_reverse_range_sum.treap.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/bst/treap.hpp\"\n#include <cassert>\n#include\
@@ -143,7 +143,7 @@ data:
   path: data-structure/bst/treap.hpp
   requiredBy: []
   timestamp: '2024-01-08 01:52:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_reverse_range_sum.treap.test.cpp
   - test/aoj/1508.treap.test.cpp

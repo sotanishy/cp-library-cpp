@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst.hpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []

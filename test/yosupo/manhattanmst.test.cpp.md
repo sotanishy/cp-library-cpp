@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan Minimum Spanning Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst.hpp
     title: Minimum Spanning Tree Algorithms
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -119,7 +119,7 @@ data:
     \          }\n\n                for (auto& p : pts) std::swap(p.first, p.second);\n\
     \            }\n            for (auto& p : pts) p.first *= -1;\n        }\n  \
     \      for (auto& p : pts) p.second *= -1;\n    }\n\n    auto [weight, mst_edges]\
-    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(edges.size());\n\
+    \ = kruskal(edges, pts.size());\n    std::vector<std::pair<int, int>> ret(mst_edges.size());\n\
     \    std::ranges::transform(mst_edges, ret.begin(), [&](const auto& e) {\n   \
     \     return std::make_pair(std::get<0>(e), std::get<1>(e));\n    });\n    return\
     \ {weight, ret};\n}\n#line 6 \"test/yosupo/manhattanmst.test.cpp\"\n\nusing namespace\
@@ -143,8 +143,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 15:29:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 15:51:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/manhattanmst.test.cpp
 layout: document
