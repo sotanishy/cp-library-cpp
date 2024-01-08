@@ -8,10 +8,13 @@ data:
     path: data-structure/unionfind/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/directedmst.test.cpp
+    title: test/yosupo/directedmst.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Minimum Spanning Arborescence
     links: []
@@ -125,8 +128,9 @@ data:
   path: graph/minimum_spanning_arborescence.hpp
   requiredBy: []
   timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/directedmst.test.cpp
 documentation_of: graph/minimum_spanning_arborescence.hpp
 layout: document
 redirect_from:

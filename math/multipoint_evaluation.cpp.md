@@ -11,22 +11,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/lagrange_polynomial.hpp
     title: Lagrange Polynomial
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/factorial.test.cpp
     title: test/yosupo/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/multipoint_evaluation.cpp\"\n#include <vector>\n\n\
@@ -176,7 +176,7 @@ data:
   - math/lagrange_polynomial.hpp
   - math/factorial.hpp
   timestamp: '2024-01-08 00:27:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/factorial.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp

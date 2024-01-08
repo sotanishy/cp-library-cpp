@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.cpp
     title: Multipoint Evaluation
   - icon: ':question:'

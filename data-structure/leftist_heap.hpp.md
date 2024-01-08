@@ -5,13 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/hu_tucker.hpp
     title: Hu-Tucker Algorithm
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_arborescence.hpp
     title: Minimum Spanning Arborescence
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2415.test.cpp
     title: test/aoj/2415.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/directedmst.test.cpp
+    title: test/yosupo/directedmst.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,6 +73,7 @@ data:
   timestamp: '2024-01-08 01:32:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/directedmst.test.cpp
   - test/aoj/2415.test.cpp
 documentation_of: data-structure/leftist_heap.hpp
 layout: document

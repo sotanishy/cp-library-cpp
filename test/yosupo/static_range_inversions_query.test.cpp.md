@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-structure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compress.hpp
     title: Coordinate Compression
   - icon: ':x:'

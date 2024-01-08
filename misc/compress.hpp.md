@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
     title: test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yosupo/static_range_inversions_query.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Coordinate Compression
     links: []
@@ -46,7 +46,7 @@ data:
   path: misc/compress.hpp
   requiredBy: []
   timestamp: '2024-01-08 00:27:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp

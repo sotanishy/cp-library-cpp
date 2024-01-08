@@ -10,6 +10,12 @@ data:
     title: 2-Edge-Connected Components
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_3_A.test.cpp
+    title: test/aoj/GRL_3_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_3_B.test.cpp
+    title: test/aoj/GRL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/biconnected_components.test.cpp
     title: test/yosupo/biconnected_components.test.cpp
   - icon: ':x:'
@@ -69,6 +75,8 @@ data:
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/biconnected_components.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/lowlink.hpp
 layout: document
 title: Lowlink

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_matching.hpp
     title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
@@ -16,12 +16,12 @@ data:
     - https://judge.yosupo.jp/problem/bipartitematching
   bundledCode: "#line 1 \"test/yosupo/bipartitematching.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n#line 2 \"graph/bipartite_matching.hpp\"\
-    \n#include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\
-    \nclass BipartiteMatching {\n   public:\n    BipartiteMatching() = default;\n\
-    \    BipartiteMatching(int U, int V)\n        : U(U),\n          V(V),\n     \
-    \     NIL(U + V),\n          G(U),\n          level(U + V + 1),\n          match(U\
-    \ + V + 1, NIL) {}\n\n    void add_edge(int u, int v) { G[u].emplace_back(U +\
-    \ v); }\n\n    std::vector<std::pair<int, int>> max_matching() {\n        while\
+    \n#include <algorithm>\n#include <limits>\n#include <queue>\n#include <utility>\n\
+    #include <vector>\n\nclass BipartiteMatching {\n   public:\n    BipartiteMatching()\
+    \ = default;\n    BipartiteMatching(int U, int V)\n        : U(U),\n         \
+    \ V(V),\n          NIL(U + V),\n          G(U),\n          level(U + V + 1),\n\
+    \          match(U + V + 1, NIL) {}\n\n    void add_edge(int u, int v) { G[u].emplace_back(U\
+    \ + v); }\n\n    std::vector<std::pair<int, int>> max_matching() {\n        while\
     \ (bfs()) {\n            for (int u = 0; u < U; ++u) {\n                if (match[u]\
     \ == NIL) {\n                    dfs(u);\n                }\n            }\n \
     \       }\n        std::vector<std::pair<int, int>> ret;\n        for (int u =\
@@ -78,8 +78,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 14:54:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bipartitematching.test.cpp
 layout: document

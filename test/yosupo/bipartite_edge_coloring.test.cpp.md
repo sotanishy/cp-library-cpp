@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: Bipartite Edge Coloring
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_matching.hpp
     title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bipartite_edge_coloring
@@ -21,8 +21,8 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/bipartite_edge_coloring\"\n\n#line\
     \ 2 \"graph/bipartite_edge_coloring.hpp\"\n#include <algorithm>\n#include <bit>\n\
     #include <map>\n#include <stack>\n#include <utility>\n#include <vector>\n\n#line\
-    \ 2 \"graph/bipartite_matching.hpp\"\n#include <limits>\n#include <queue>\n#line\
-    \ 6 \"graph/bipartite_matching.hpp\"\n\nclass BipartiteMatching {\n   public:\n\
+    \ 3 \"graph/bipartite_matching.hpp\"\n#include <limits>\n#include <queue>\n#line\
+    \ 7 \"graph/bipartite_matching.hpp\"\n\nclass BipartiteMatching {\n   public:\n\
     \    BipartiteMatching() = default;\n    BipartiteMatching(int U, int V)\n   \
     \     : U(U),\n          V(V),\n          NIL(U + V),\n          G(U),\n     \
     \     level(U + V + 1),\n          match(U + V + 1, NIL) {}\n\n    void add_edge(int\
@@ -68,7 +68,7 @@ data:
     \ int>>& edges, int n1, int n2) {\n    const int E = edges.size();\n    // find\
     \ the maximum degree D\n    std::vector<int> deg1(n1), deg2(n2);\n    for (auto\
     \ [a, b] : edges) {\n        ++deg1[a], ++deg2[b];\n    }\n    const int D = std::max(*std::ranges::max_element(deg1),\n\
-    \                           *std::ranges::max_element(deg1));\n\n    // convert\
+    \                           *std::ranges::max_element(deg2));\n\n    // convert\
     \ to D-regular bipartite graph\n    // merge vertices with the sum of degrees\
     \ <= D\n    auto contract = [&](const auto& deg) {\n        const int n = deg.size();\n\
     \        std::vector<std::pair<int, int>> vs(n);\n        for (int i = 0; i <\
@@ -191,8 +191,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-08 14:54:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bipartite_edge_coloring.test.cpp
 layout: document
