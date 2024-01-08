@@ -78,6 +78,8 @@ std::vector<int> dominator_tree(const std::vector<std::vector<int>>& G, int s) {
         int w = vs[i], u = us[w];
         idom[w] = (sdom[w] == sdom[u] ? sdom[w] : idom[u]);
     }
-    std::ranges::transform(idom, idom.begin(), [&](int i) { return vs[i]; });
+    for (int v : vs) {
+        idom[v] = vs[idom[v]];
+    }
     return idom;
 }

@@ -57,9 +57,9 @@ std::pair<T, std::vector<std::pair<int, int>>> manhattan_mst(
         for (auto& p : pts) p.second *= -1;
     }
 
-    auto [weight, edges] = kruskal(edges, pts.size());
+    auto [weight, mst_edges] = kruskal(edges, pts.size());
     std::vector<std::pair<int, int>> ret(edges.size());
-    std::ranges::transform(edges, ret.begin(), [&](auto& e) {
+    std::ranges::transform(mst_edges, ret.begin(), [&](auto& e) {
         auto [u, v, w] = e;
         return {u, v};
     });

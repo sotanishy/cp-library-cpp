@@ -1,6 +1,6 @@
 ---
 title: Offline Deletable Convex Hull Trick
-documentation_of: ../../../data-structure/cht/offline_deletable_convex_hull_trick.cpp
+documentation_of: ../../../data-structure/cht/offline_deletable_convex_hull_trick.hpp
 ---
 
 ## Description

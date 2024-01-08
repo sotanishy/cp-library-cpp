@@ -1,6 +1,6 @@
 ---
 title: Range Edge Graph
-documentation_of: ../../graph/range_edge_graph.cpp
+documentation_of: ../../graph/range_edge_graph.hpp
 ---
 
 ## Description
