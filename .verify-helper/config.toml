@@ -1,3 +1,0 @@
-[[languages.cpp.environments]]
-CXX = "g++"
-CXXFLAGS = ["-std=c++20", "-Wall", "-Wextra"]
