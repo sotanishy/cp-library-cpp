@@ -27,7 +27,7 @@ int main() {
         return 0;
     }
     cout << sol.size() - 1 << "\n";
-    for (int i = 0; i < sol.size(); ++i) {
+    for (int i = 0; i < (int)sol.size(); ++i) {
         for (int j = 0; j < M; ++j)
             cout << sol[i][j] << (j < M - 1 ? " " : "\n");
     }

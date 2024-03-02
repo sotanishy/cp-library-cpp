@@ -22,6 +22,6 @@ long long primitive_root(long long p) {
                 break;
             }
         }
-        if (ok) return a.value();
+        if (ok) return a.val();
     }
 }

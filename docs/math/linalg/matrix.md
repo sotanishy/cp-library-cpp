@@ -9,24 +9,36 @@ documentation_of: ../../../math/linalg/matrix.hpp
 
 ## Operations
 
-- `Matrix(int m, int n)`
-    - $m \times n$ 零行列を構築する
-    - 時間計算量: $O(mn)$
-- `Matrix(initializer_list<initializer_list<T>> list)`
-    - `list` の要素で行列を構築する
-    - 時間計算量: $O(mn)$
-- `static Matrix concatenate(const Matrix& A, const Matrix& B)`
+- `Matrix(int n)`
+    - $n \times n$ 零行列を構築する
+- `Matrix(int row, int col)`
+    - $\mathit{row} \times \mathit{col}$ 零行列を構築する
+- `Matrix(vector<vector<T>> mat)`
+    - `mat` の要素で行列を構築する
+- `static Matrix concat(Matrix A, Matrix B)`
     - $A$ と $B$ を結合した行列を返す
-    - 時間計算量: $O(m(n_A + n_B))$
+- `static Matrix I(int n)`
+    - $n \times n$ 単位行列を返す
+- `Matrix operator*(Matrix rhs)`
+    - 行列積を計算する
+    - 時間計算量: $O(n^3)$
 - `Matrix transpose()`
     - 転置行列を返す
-    - 時間計算量: $O(mn)$
-- `Matrix matmul(const Matrix& B)`
-    - 行列積 $AB$ を返す
-    - 時間計算量: $O(m_A n_A n_B)$
-- `Matrix rref()`
-    - $A$ に対して掃き出し法を行った結果を返す
-    - 時間計算量: $O(mn^2)$
+- `void reduce()`
+    - 行列を掃き出す
+    - 時間計算量: $O(n^3)$
 - `int rank()`
-    - $A$ の階数を返す
-    - 時間計算量: $O(mn^2)$
+    - の階数を返す
+    - 時間計算量: $O(n^3)$
+
+## Operations for Square Matrices
+
+- `Matrix pow(long long k)`
+    - 行列の $k$ 乗を返す
+    - 時間計算量: $O(n^3 \log k)$
+- `T det()`
+    - 行列式を返す
+    - 時間計算量: $O(n^3 \log k)$
+- `Matrix inv()`
+    - 逆行列を返す
+    - 時間計算量: $O(n^3)$

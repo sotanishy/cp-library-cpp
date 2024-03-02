@@ -19,7 +19,7 @@ int main() {
         for (int j = 0; j < M; ++j) cin >> A[i][j];
     for (int i = 0; i < M; ++i)
         for (int j = 0; j < K; ++j) cin >> B[i][j];
-    auto C = A.matmul(B);
+    auto C = A * B;
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < K; ++j) cout << C[i][j] << (j < K - 1 ? " " : "\n");
     }

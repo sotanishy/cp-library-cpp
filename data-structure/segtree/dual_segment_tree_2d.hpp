@@ -7,6 +7,9 @@
 
 #include "dual_segment_tree.hpp"
 
+/**
+ * @brief 2D Dual Segment Tree
+ */
 template <typename X, typename Y, typename M>
 class DualSegmentTree2D {
     using T = M::T;

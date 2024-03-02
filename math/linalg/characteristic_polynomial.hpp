@@ -3,11 +3,12 @@
 #include <vector>
 
 #include "../polynomial.cpp"
-#include "square_matrix.hpp"
+#include "matrix.hpp"
 
 template <typename mint>
-Polynomial<mint> characteristic_polynomial(SquareMatrix<mint> mat) {
-    const int n = mat.row();
+Polynomial<mint> characteristic_polynomial(Matrix<mint> mat) {
+    mat.assert_square();
+    const int n = mat.row_size();
     if (n == 0) return {1};
     // stage 1: reduce mat to upper Hessenberg form
     for (int j = 0; j < n; ++j) {

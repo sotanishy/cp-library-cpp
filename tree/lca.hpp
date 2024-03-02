@@ -68,8 +68,8 @@ class LCA {
    protected:
     const std::vector<std::vector<int>>& G;
     const int LOG;
-    std::vector<std::vector<int>> table;
     std::vector<int> depth;
+    std::vector<std::vector<int>> table;
 
     void dfs(int v, int p, int d) {
         table[0][v] = p;
