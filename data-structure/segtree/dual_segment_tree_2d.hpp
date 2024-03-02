@@ -5,15 +5,15 @@
 #include <utility>
 #include <vector>
 
-#include "segment_tree.hpp"
+#include "dual_segment_tree.hpp"
 
 template <typename X, typename Y, typename M>
-class SegmentTree2D {
+class DualSegmentTree2D {
     using T = M::T;
 
    public:
-    SegmentTree2D() = default;
-    explicit SegmentTree2D(const std::vector<std::pair<X, Y>>& pts) {
+    DualSegmentTree2D() = default;
+    explicit DualSegmentTree2D(const std::vector<std::pair<X, Y>>& pts) {
         for (auto& [x, y] : pts) {
             xs.push_back(x);
         }
@@ -39,60 +39,41 @@ class SegmentTree2D {
             ys[i].erase(std::ranges::unique(ys[i]).begin(), ys[i].end());
         }
         for (int i = 1; i < size + n; ++i) {
-            seg[i] = SegmentTree<M>(ys[i].size());
+            seg[i] = DualSegmentTree<M>(ys[i].size());
         }
     }
 
-    T get(X x, Y y) const {
+    T get(X x, Y y) {
         int kx = getx(x);
         assert(kx < (int)xs.size() && xs[kx] == x);
-        kx += size;
-        int ky = gety(kx, y);
-        assert(ky < (int)ys[kx].size() && ys[kx][ky] == y);
-        return seg[kx][ky];
-    }
-
-    void update(X x, Y y, T val) {
-        int kx = getx(x);
-        assert(kx < (int)xs.size() && xs[kx] == x);
-        kx += size;
-        int ky = gety(kx, y);
-        assert(ky < (int)ys[kx].size() && ys[kx][ky] == y);
-        seg[kx].update(ky, val);
-        while (kx >>= 1) {
-            ky = gety(kx, y);
-            int kl = gety(2 * kx, y), kr = gety(2 * kx + 1, y);
-            T vl = (kl < (int)ys[2 * kx].size() && ys[2 * kx][kl] == y
-                        ? seg[2 * kx][kl]
-                        : M::id());
-            T vr = (kr < (int)ys[2 * kx + 1].size() && ys[2 * kx + 1][kr] == y
-                        ? seg[2 * kx + 1][kr]
-                        : M::id());
-            seg[kx].update(ky, M::op(vl, vr));
-        }
-    }
-
-    T fold(X sx, X tx, Y sy, Y ty) const {
         T ret = M::id();
+        for (kx += size; kx > 0; kx >>= 1) {
+            int ky = gety(kx, y);
+            assert(ky < (int)ys[kx].size() && ys[kx][ky] == y);
+            ret = M::op(ret, seg[kx][ky]);
+        }
+        return ret;
+    }
+
+    void update(X sx, X tx, Y sy, Y ty, T val) {
         for (int l = size + getx(sx), r = size + getx(tx); l < r;
              l >>= 1, r >>= 1) {
             if (l & 1) {
-                ret = M::op(ret, seg[l].fold(gety(l, sy), gety(l, ty)));
+                seg[l].update(gety(l, sy), gety(l, ty), val);
                 ++l;
             }
             if (r & 1) {
                 --r;
-                ret = M::op(ret, seg[r].fold(gety(r, sy), gety(r, ty)));
+                seg[r].update(gety(r, sy), gety(r, ty), val);
             }
         }
-        return ret;
     }
 
    private:
     int size;
     std::vector<X> xs;
     std::vector<std::vector<Y>> ys;
-    std::vector<SegmentTree<M>> seg;
+    std::vector<DualSegmentTree<M>> seg;
 
     int getx(X x) const { return std::ranges::lower_bound(xs, x) - xs.begin(); }
     int gety(int k, Y y) const {

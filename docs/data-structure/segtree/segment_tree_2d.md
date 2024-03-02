@@ -20,5 +20,5 @@ documentation_of: ../../../data-structure/segtree/segment_tree_2d.hpp
     - 点 $(x, y)$ の重みを $val$ に更新する
     - 時間計算量: $O((\log n)^2)$
 - `T fold(X sx, X tx, Y sy, Y ty)`
-    - 矩形領域 $[sx, tx) \times [sy, ty)$ 内の点の重みの積を取得する
+    - 矩形領域 $[s_x, t_x) \times [s_y, t_y)$ 内の点の重みの積を取得する
     - 時間計算量: $O((\log n)^2)$

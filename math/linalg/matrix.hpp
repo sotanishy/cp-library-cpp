@@ -70,8 +70,8 @@ class Matrix {
         assert(n == B.m);
         Matrix ret(m, B.n);
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < B.n; ++j) {
-                for (int k = 0; k < n; ++k) {
+            for (int k = 0; k < n; ++k) {
+                for (int j = 0; j < B.n; ++j) {
                     ret[i][j] += mat[i][k] * B[k][j];
                 }
             }

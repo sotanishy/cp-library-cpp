@@ -20,6 +20,7 @@ class DualSegmentTree {
     }
 
     void update(int l, int r, const T& x) {
+        if (l >= r) return;
         l += size;
         r += size;
         propagate(l);
