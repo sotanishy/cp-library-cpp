@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/enumerate_triangles.hpp
     title: Triangle Enumeration
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   _extendedRequiredBy: []

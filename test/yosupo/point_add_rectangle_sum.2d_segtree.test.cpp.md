@@ -66,7 +66,7 @@ data:
     \                std::ranges::sort(ys[i]);\n            } else {\n           \
     \     std::ranges::merge(ys[2 * i], ys[2 * i + 1],\n                         \
     \          std::back_inserter(ys[i]));\n            }\n            ys[i].erase(std::ranges::unique(ys[i]).begin(),\
-    \ ys[i].end());\n        }\n        for (int i = 0; i < size + n; ++i) {\n   \
+    \ ys[i].end());\n        }\n        for (int i = 1; i < size + n; ++i) {\n   \
     \         seg[i] = SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X\
     \ x, Y y) const {\n        int kx = getx(x);\n        assert(kx < (int)xs.size()\
     \ && xs[kx] == x);\n        kx += size;\n        int ky = gety(kx, y);\n     \
@@ -138,7 +138,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 21:12:19+09:00'
+  timestamp: '2024-03-02 18:46:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp

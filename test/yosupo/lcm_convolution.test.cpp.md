@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convolution/gcd_lcm_convolution.hpp
     title: GCD/LCM Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   _extendedRequiredBy: []

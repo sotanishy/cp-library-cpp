@@ -61,7 +61,7 @@ data:
     \                std::ranges::sort(ys[i]);\n            } else {\n           \
     \     std::ranges::merge(ys[2 * i], ys[2 * i + 1],\n                         \
     \          std::back_inserter(ys[i]));\n            }\n            ys[i].erase(std::ranges::unique(ys[i]).begin(),\
-    \ ys[i].end());\n        }\n        for (int i = 0; i < size + n; ++i) {\n   \
+    \ ys[i].end());\n        }\n        for (int i = 1; i < size + n; ++i) {\n   \
     \         seg[i] = SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X\
     \ x, Y y) const {\n        int kx = getx(x);\n        assert(kx < (int)xs.size()\
     \ && xs[kx] == x);\n        kx += size;\n        int ky = gety(kx, y);\n     \
@@ -101,7 +101,7 @@ data:
     \    std::ranges::sort(ys[i]);\n            } else {\n                std::ranges::merge(ys[2\
     \ * i], ys[2 * i + 1],\n                                   std::back_inserter(ys[i]));\n\
     \            }\n            ys[i].erase(std::ranges::unique(ys[i]).begin(), ys[i].end());\n\
-    \        }\n        for (int i = 0; i < size + n; ++i) {\n            seg[i] =\
+    \        }\n        for (int i = 1; i < size + n; ++i) {\n            seg[i] =\
     \ SegmentTree<M>(ys[i].size());\n        }\n    }\n\n    T get(X x, Y y) const\
     \ {\n        int kx = getx(x);\n        assert(kx < (int)xs.size() && xs[kx] ==\
     \ x);\n        kx += size;\n        int ky = gety(kx, y);\n        assert(ky <\
@@ -131,7 +131,7 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/segment_tree_2d.hpp
   requiredBy: []
-  timestamp: '2024-01-07 21:12:19+09:00'
+  timestamp: '2024-03-02 18:46:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
@@ -157,5 +157,5 @@ title: 2D Segment Tree
     - 点 $(x, y)$ の重みを $val$ に更新する
     - 時間計算量: $O((\log n)^2)$
 - `T fold(X sx, X tx, Y sy, Y ty)`
-    - 矩形領域 $[sx, tx) \times [sy, ty)$ 内の点の重みの積を取得する
+    - 矩形領域 $[s_x, t_x) \times [s_y, t_y)$ 内の点の重みの積を取得する
     - 時間計算量: $O((\log n)^2)$

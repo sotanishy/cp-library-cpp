@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/linalg/matrix.hpp
     title: Matrix
   _extendedRequiredBy:
@@ -53,8 +53,8 @@ data:
     \            for (int j = 0; j < m; ++j) {\n                ret[i][j] = mat[j][i];\n\
     \            }\n        }\n        return ret;\n    }\n\n    Matrix matmul(const\
     \ Matrix& B) const {\n        assert(n == B.m);\n        Matrix ret(m, B.n);\n\
-    \        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < B.n; ++j)\
-    \ {\n                for (int k = 0; k < n; ++k) {\n                    ret[i][j]\
+    \        for (int i = 0; i < m; ++i) {\n            for (int k = 0; k < n; ++k)\
+    \ {\n                for (int j = 0; j < B.n; ++j) {\n                    ret[i][j]\
     \ += mat[i][k] * B[k][j];\n                }\n            }\n        }\n     \
     \   return ret;\n    }\n\n    Matrix rref() const {\n        Matrix A(*this);\n\
     \        int pivot = 0;\n        for (int j = 0; j < n; ++j) {\n            int\
@@ -131,13 +131,13 @@ data:
   path: math/linalg/square_matrix.hpp
   requiredBy:
   - math/linalg/characteristic_polynomial.hpp
-  timestamp: '2024-01-07 21:12:19+09:00'
+  timestamp: '2024-03-02 18:46:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/characteristic_polynomial.test.cpp
-  - test/yosupo/inverse_matrix.test.cpp
   - test/yosupo/pow_of_matrix.test.cpp
+  - test/yosupo/inverse_matrix.test.cpp
   - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/characteristic_polynomial.test.cpp
 documentation_of: math/linalg/square_matrix.hpp
 layout: document
 title: Square Matrix

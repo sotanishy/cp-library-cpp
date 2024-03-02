@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: Factorial
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'

@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/linalg/matrix.hpp
     title: Matrix
   - icon: ':heavy_check_mark:'
     path: math/linalg/square_matrix.hpp
     title: Square Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'
@@ -178,7 +178,7 @@ data:
     \           ret[i][j] = mat[j][i];\n            }\n        }\n        return ret;\n\
     \    }\n\n    Matrix matmul(const Matrix& B) const {\n        assert(n == B.m);\n\
     \        Matrix ret(m, B.n);\n        for (int i = 0; i < m; ++i) {\n        \
-    \    for (int j = 0; j < B.n; ++j) {\n                for (int k = 0; k < n; ++k)\
+    \    for (int k = 0; k < n; ++k) {\n                for (int j = 0; j < B.n; ++j)\
     \ {\n                    ret[i][j] += mat[i][k] * B[k][j];\n                }\n\
     \            }\n        }\n        return ret;\n    }\n\n    Matrix rref() const\
     \ {\n        Matrix A(*this);\n        int pivot = 0;\n        for (int j = 0;\
@@ -301,7 +301,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/characteristic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-03-02 18:46:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/characteristic_polynomial.test.cpp

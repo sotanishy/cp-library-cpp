@@ -52,8 +52,8 @@ data:
   verifiedWith:
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
   - test/yosupo/point_add_rectangle_sum.quadtree.test.cpp
-  - test/yosupo/static_range_inversions_query.test.cpp
   - test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
+  - test/yosupo/static_range_inversions_query.test.cpp
 documentation_of: misc/compress.hpp
 layout: document
 redirect_from:

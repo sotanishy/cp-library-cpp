@@ -134,9 +134,12 @@ data:
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-structure/segtree/dual_segment_tree.hpp
       title: Dual Segment Tree
+    - icon: ':x:'
+      path: data-structure/segtree/dual_segment_tree_2d.hpp
+      title: data-structure/segtree/dual_segment_tree_2d.hpp
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_lazy_segment_tree.hpp
       title: Dynamic Segment Tree with Lazy Propagation
@@ -395,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -428,18 +431,21 @@ data:
   - name: math/linalg
     pages:
     - icon: ':heavy_check_mark:'
+      path: math/linalg/binary_matrix.hpp
+      title: Binary Matrix
+    - icon: ':heavy_check_mark:'
       path: math/linalg/characteristic_polynomial.hpp
       title: Characteristic Polynomial
     - icon: ':heavy_check_mark:'
       path: math/linalg/hafnian.hpp
       title: Hafnian
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/linalg/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
       path: math/linalg/square_matrix.hpp
       title: Square Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/linalg/system_of_linear_equations.hpp
       title: System of Linear Equations
   - name: math/number-theory
@@ -511,9 +517,6 @@ data:
       title: math/set/zeta_moebius_transform.hpp
   - name: misc
     pages:
-    - icon: ':warning:'
-      path: misc/boolean_square_matrix.hpp
-      title: Boolean Square Matrix
     - icon: ':heavy_check_mark:'
       path: misc/compress.hpp
       title: Coordinate Compression
@@ -1030,6 +1033,9 @@ data:
       path: test/yosupo/matrix_product.test.cpp
       title: test/yosupo/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/matrix_product_mod_2.test.cpp
+      title: test/yosupo/matrix_product_mod_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1095,7 +1101,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/range_affine_point_get.test.cpp
       title: test/yosupo/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1113,6 +1119,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
+      title: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
       title: test/yosupo/rectangle_sum.persistent_segment_tree.test.cpp
@@ -1176,7 +1185,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_totient_function.test.cpp
       title: test/yosupo/sum_of_totient_function.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'

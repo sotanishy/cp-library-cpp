@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: data-structure/segtree/dual_segment_tree_2d.hpp
+    title: data-structure/segtree/dual_segment_tree_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_point_get.test.cpp
     title: test/yosupo/range_affine_point_get.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
+    title: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-structure/segtree/dual_segment_tree.hpp\"\n#include\
@@ -18,38 +24,40 @@ data:
     \          height(std::bit_width((unsigned int)size) - 1),\n          lazy(2 *\
     \ size, M::id()) {}\n\n    T operator[](int k) {\n        k += size;\n       \
     \ propagate(k);\n        return lazy[k];\n    }\n\n    void update(int l, int\
-    \ r, const T& x) {\n        l += size;\n        r += size;\n        propagate(l);\n\
-    \        propagate(r - 1);\n        for (; l < r; l >>= 1, r >>= 1) {\n      \
-    \      if (l & 1) lazy[l] = M::op(lazy[l], x), ++l;\n            if (r & 1) --r,\
-    \ lazy[r] = M::op(lazy[r], x);\n        }\n    }\n\n   private:\n    int size,\
-    \ height;\n    std::vector<T> lazy;\n\n    void push(int k) {\n        if (lazy[k]\
-    \ == M::id()) return;\n        lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);\n  \
-    \      lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);\n        lazy[k] = M::id();\n\
-    \    }\n\n    void propagate(int k) {\n        for (int i = height; i > 0; --i)\
-    \ push(k >> i);\n    }\n};\n"
+    \ r, const T& x) {\n        if (l >= r) return;\n        l += size;\n        r\
+    \ += size;\n        propagate(l);\n        propagate(r - 1);\n        for (; l\
+    \ < r; l >>= 1, r >>= 1) {\n            if (l & 1) lazy[l] = M::op(lazy[l], x),\
+    \ ++l;\n            if (r & 1) --r, lazy[r] = M::op(lazy[r], x);\n        }\n\
+    \    }\n\n   private:\n    int size, height;\n    std::vector<T> lazy;\n\n   \
+    \ void push(int k) {\n        if (lazy[k] == M::id()) return;\n        lazy[2\
+    \ * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2\
+    \ * k + 1], lazy[k]);\n        lazy[k] = M::id();\n    }\n\n    void propagate(int\
+    \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};\n"
   code: "#pragma once\n#include <bit>\n#include <vector>\n\ntemplate <typename M>\n\
     class DualSegmentTree {\n    using T = typename M::T;\n\n   public:\n    DualSegmentTree()\
     \ = default;\n    explicit DualSegmentTree(int n)\n        : size(std::bit_ceil((unsigned\
     \ int)n)),\n          height(std::bit_width((unsigned int)size) - 1),\n      \
     \    lazy(2 * size, M::id()) {}\n\n    T operator[](int k) {\n        k += size;\n\
     \        propagate(k);\n        return lazy[k];\n    }\n\n    void update(int\
-    \ l, int r, const T& x) {\n        l += size;\n        r += size;\n        propagate(l);\n\
-    \        propagate(r - 1);\n        for (; l < r; l >>= 1, r >>= 1) {\n      \
-    \      if (l & 1) lazy[l] = M::op(lazy[l], x), ++l;\n            if (r & 1) --r,\
-    \ lazy[r] = M::op(lazy[r], x);\n        }\n    }\n\n   private:\n    int size,\
-    \ height;\n    std::vector<T> lazy;\n\n    void push(int k) {\n        if (lazy[k]\
-    \ == M::id()) return;\n        lazy[2 * k] = M::op(lazy[2 * k], lazy[k]);\n  \
-    \      lazy[2 * k + 1] = M::op(lazy[2 * k + 1], lazy[k]);\n        lazy[k] = M::id();\n\
-    \    }\n\n    void propagate(int k) {\n        for (int i = height; i > 0; --i)\
-    \ push(k >> i);\n    }\n};"
+    \ l, int r, const T& x) {\n        if (l >= r) return;\n        l += size;\n \
+    \       r += size;\n        propagate(l);\n        propagate(r - 1);\n       \
+    \ for (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) lazy[l] = M::op(lazy[l],\
+    \ x), ++l;\n            if (r & 1) --r, lazy[r] = M::op(lazy[r], x);\n       \
+    \ }\n    }\n\n   private:\n    int size, height;\n    std::vector<T> lazy;\n\n\
+    \    void push(int k) {\n        if (lazy[k] == M::id()) return;\n        lazy[2\
+    \ * k] = M::op(lazy[2 * k], lazy[k]);\n        lazy[2 * k + 1] = M::op(lazy[2\
+    \ * k + 1], lazy[k]);\n        lazy[k] = M::id();\n    }\n\n    void propagate(int\
+    \ k) {\n        for (int i = height; i > 0; --i) push(k >> i);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: data-structure/segtree/dual_segment_tree.hpp
-  requiredBy: []
-  timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - data-structure/segtree/dual_segment_tree_2d.hpp
+  timestamp: '2024-03-02 18:46:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/range_affine_point_get.test.cpp
+  - test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
 documentation_of: data-structure/segtree/dual_segment_tree.hpp
 layout: document
 title: Dual Segment Tree

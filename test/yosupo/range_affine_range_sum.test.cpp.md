@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/lazy_segment_tree.hpp
     title: Segment Tree with Lazy Propagation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   _extendedRequiredBy: []

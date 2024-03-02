@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/hafnian.hpp
     title: Hafnian
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'

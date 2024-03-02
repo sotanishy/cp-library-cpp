@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/linalg/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/linalg/system_of_linear_equations.hpp\"\n#include <cassert>\n\
@@ -42,7 +42,7 @@ data:
     \           ret[i][j] = mat[j][i];\n            }\n        }\n        return ret;\n\
     \    }\n\n    Matrix matmul(const Matrix& B) const {\n        assert(n == B.m);\n\
     \        Matrix ret(m, B.n);\n        for (int i = 0; i < m; ++i) {\n        \
-    \    for (int j = 0; j < B.n; ++j) {\n                for (int k = 0; k < n; ++k)\
+    \    for (int k = 0; k < n; ++k) {\n                for (int j = 0; j < B.n; ++j)\
     \ {\n                    ret[i][j] += mat[i][k] * B[k][j];\n                }\n\
     \            }\n        }\n        return ret;\n    }\n\n    Matrix rref() const\
     \ {\n        Matrix A(*this);\n        int pivot = 0;\n        for (int j = 0;\
@@ -99,8 +99,8 @@ data:
   isVerificationFile: false
   path: math/linalg/system_of_linear_equations.hpp
   requiredBy: []
-  timestamp: '2024-01-07 21:12:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-02 18:46:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/system_of_linear_equations.test.cpp
 documentation_of: math/linalg/system_of_linear_equations.hpp

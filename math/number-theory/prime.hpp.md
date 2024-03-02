@@ -73,8 +73,8 @@ data:
   isVerificationFile: false
   path: math/number-theory/prime.hpp
   requiredBy:
-  - math/number-theory/carmichael.hpp
   - math/combination_arbitrary_mod.hpp
+  - math/number-theory/carmichael.hpp
   timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -115,8 +115,8 @@ data:
   timestamp: '2024-01-07 20:09:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/common_interval_decomposition_tree.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/common_interval_decomposition_tree.test.cpp
 documentation_of: data-structure/segtree/lazy_segment_tree.hpp
 layout: document
 title: Segment Tree with Lazy Propagation
