@@ -139,7 +139,7 @@ data:
       title: Dual Segment Tree
     - icon: ':x:'
       path: data-structure/segtree/dual_segment_tree_2d.hpp
-      title: data-structure/segtree/dual_segment_tree_2d.hpp
+      title: 2D Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dynamic_lazy_segment_tree.hpp
       title: Dynamic Segment Tree with Lazy Propagation
@@ -442,9 +442,6 @@ data:
     - icon: ':question:'
       path: math/linalg/matrix.hpp
       title: Matrix
-    - icon: ':heavy_check_mark:'
-      path: math/linalg/square_matrix.hpp
-      title: Square Matrix
     - icon: ':x:'
       path: math/linalg/system_of_linear_equations.hpp
       title: System of Linear Equations

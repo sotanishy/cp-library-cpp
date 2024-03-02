@@ -39,7 +39,7 @@ data:
     \     int dv = depth[v] - depth[l];\n        if (du + dv < k) return -1;\n   \
     \     if (k < du) return parent(u, k);\n        return parent(v, du + dv - k);\n\
     \    }\n\n   protected:\n    const std::vector<std::vector<int>>& G;\n    const\
-    \ int LOG;\n    std::vector<std::vector<int>> table;\n    std::vector<int> depth;\n\
+    \ int LOG;\n    std::vector<int> depth;\n    std::vector<std::vector<int>> table;\n\
     \n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n        depth[v]\
     \ = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c, v, d + 1);\n\
     \        }\n    }\n};\n#line 4 \"test/yosupo/jump_on_tree.test.cpp\"\n\n#include\
@@ -64,7 +64,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 19:16:08+09:00'
+  timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/jump_on_tree.test.cpp

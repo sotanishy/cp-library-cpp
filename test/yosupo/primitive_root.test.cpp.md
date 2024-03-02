@@ -67,7 +67,7 @@ data:
     \ long> rand(1, p - 1);\n    while (true) {\n        long long x = rand(rng);\n\
     \        mint a = x;\n        bool ok = true;\n        for (auto pi : prime) {\n\
     \            if (a.pow((p - 1) / pi) == 1) {\n                ok = false;\n  \
-    \              break;\n            }\n        }\n        if (ok) return a.value();\n\
+    \              break;\n            }\n        }\n        if (ok) return a.val();\n\
     \    }\n}\n#line 4 \"test/yosupo/primitive_root.test.cpp\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\nusing ll = long long;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    int Q;\n    cin >> Q;\n    while (Q--) {\n     \
@@ -85,7 +85,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 17:31:43+09:00'
+  timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/primitive_root.test.cpp

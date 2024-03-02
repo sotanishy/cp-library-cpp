@@ -38,8 +38,8 @@ data:
     \      int du = depth[u] - depth[l];\n        int dv = depth[v] - depth[l];\n\
     \        if (du + dv < k) return -1;\n        if (k < du) return parent(u, k);\n\
     \        return parent(v, du + dv - k);\n    }\n\n   protected:\n    const std::vector<std::vector<int>>&\
-    \ G;\n    const int LOG;\n    std::vector<std::vector<int>> table;\n    std::vector<int>\
-    \ depth;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
+    \ G;\n    const int LOG;\n    std::vector<int> depth;\n    std::vector<std::vector<int>>\
+    \ table;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
     \      depth[v] = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c,\
     \ v, d + 1);\n        }\n    }\n};\n#line 4 \"test/yosupo/lca.test.cpp\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\nint main() {\n\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/lca.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/lca.test.cpp

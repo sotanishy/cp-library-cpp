@@ -63,7 +63,7 @@ data:
     \ long> rand(1, p - 1);\n    while (true) {\n        long long x = rand(rng);\n\
     \        mint a = x;\n        bool ok = true;\n        for (auto pi : prime) {\n\
     \            if (a.pow((p - 1) / pi) == 1) {\n                ok = false;\n  \
-    \              break;\n            }\n        }\n        if (ok) return a.value();\n\
+    \              break;\n            }\n        }\n        if (ok) return a.val();\n\
     \    }\n}\n"
   code: "#pragma once\n#include <random>\n\n#include \"fast_prime.hpp\"\n\nlong long\
     \ primitive_root(long long p) {\n    auto prime = fast_prime::prime_factor(p -\
@@ -72,14 +72,14 @@ data:
     \ long> rand(1, p - 1);\n    while (true) {\n        long long x = rand(rng);\n\
     \        mint a = x;\n        bool ok = true;\n        for (auto pi : prime) {\n\
     \            if (a.pow((p - 1) / pi) == 1) {\n                ok = false;\n  \
-    \              break;\n            }\n        }\n        if (ok) return a.value();\n\
+    \              break;\n            }\n        }\n        if (ok) return a.val();\n\
     \    }\n}\n"
   dependsOn:
   - math/number-theory/fast_prime.hpp
   isVerificationFile: false
   path: math/number-theory/primitive_root.hpp
   requiredBy: []
-  timestamp: '2024-01-08 17:31:43+09:00'
+  timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/primitive_root.test.cpp

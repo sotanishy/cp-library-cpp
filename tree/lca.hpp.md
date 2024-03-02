@@ -43,8 +43,8 @@ data:
     \      int du = depth[u] - depth[l];\n        int dv = depth[v] - depth[l];\n\
     \        if (du + dv < k) return -1;\n        if (k < du) return parent(u, k);\n\
     \        return parent(v, du + dv - k);\n    }\n\n   protected:\n    const std::vector<std::vector<int>>&\
-    \ G;\n    const int LOG;\n    std::vector<std::vector<int>> table;\n    std::vector<int>\
-    \ depth;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
+    \ G;\n    const int LOG;\n    std::vector<int> depth;\n    std::vector<std::vector<int>>\
+    \ table;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
     \      depth[v] = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c,\
     \ v, d + 1);\n        }\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <bit>\n#include <vector>\n\n\
@@ -70,8 +70,8 @@ data:
     \      int du = depth[u] - depth[l];\n        int dv = depth[v] - depth[l];\n\
     \        if (du + dv < k) return -1;\n        if (k < du) return parent(u, k);\n\
     \        return parent(v, du + dv - k);\n    }\n\n   protected:\n    const std::vector<std::vector<int>>&\
-    \ G;\n    const int LOG;\n    std::vector<std::vector<int>> table;\n    std::vector<int>\
-    \ depth;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
+    \ G;\n    const int LOG;\n    std::vector<int> depth;\n    std::vector<std::vector<int>>\
+    \ table;\n\n    void dfs(int v, int p, int d) {\n        table[0][v] = p;\n  \
     \      depth[v] = d;\n        for (int c : G[v]) {\n            if (c != p) dfs(c,\
     \ v, d + 1);\n        }\n    }\n};"
   dependsOn: []
@@ -80,7 +80,7 @@ data:
   requiredBy:
   - tree/binary_lifting.hpp
   - tree/auxiliary_tree.hpp
-  timestamp: '2024-01-07 23:25:49+09:00'
+  timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lca.test.cpp

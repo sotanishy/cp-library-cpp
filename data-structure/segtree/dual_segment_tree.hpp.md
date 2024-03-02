@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: data-structure/segtree/dual_segment_tree_2d.hpp
-    title: data-structure/segtree/dual_segment_tree_2d.hpp
+    title: 2D Dual Segment Tree
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/yosupo/range_affine_point_get.test.cpp

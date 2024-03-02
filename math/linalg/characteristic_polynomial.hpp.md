@@ -8,9 +8,6 @@ data:
     path: math/linalg/matrix.hpp
     title: Matrix
   - icon: ':heavy_check_mark:'
-    path: math/linalg/square_matrix.hpp
-    title: Square Matrix
-  - icon: ':heavy_check_mark:'
     path: math/polynomial.cpp
     title: Polynomial
   _extendedRequiredBy: []
@@ -143,106 +140,119 @@ data:
     \      e[i] = p * fact_inv[i];\n            p *= c;\n        }\n        ret =\
     \ (ret.rev() * e).pre(n).rev();\n        for (int i = n - 1; i >= 0; --i) {\n\
     \            ret[i] *= fact_inv[i];\n        }\n        return ret;\n    }\n};\n\
-    #line 4 \"math/linalg/square_matrix.hpp\"\n#include <initializer_list>\n\n#line\
-    \ 4 \"math/linalg/matrix.hpp\"\n#include <cmath>\n#line 6 \"math/linalg/matrix.hpp\"\
-    \n#include <type_traits>\n#line 8 \"math/linalg/matrix.hpp\"\n\ntemplate <typename\
+    #line 4 \"math/linalg/matrix.hpp\"\n#include <cmath>\n#include <initializer_list>\n\
+    #include <type_traits>\n#line 8 \"math/linalg/matrix.hpp\"\n\ntemplate <typename\
     \ T>\nclass Matrix {\n   public:\n    static Matrix concat(const Matrix& A, const\
-    \ Matrix& B) {\n        assert(A.m == B.m);\n        Matrix C(A.m, A.n + B.n);\n\
-    \        for (int i = 0; i < A.m; ++i) {\n            std::ranges::copy(A[i],\
-    \ C[i].begin());\n            std::ranges::copy(B[i], C[i].begin() + A.n);\n \
-    \       }\n        return C;\n    }\n\n    Matrix() = default;\n    Matrix(int\
-    \ m, int n) : mat(m, std::vector<T>(n)), m(m), n(n) {}\n    Matrix(std::initializer_list<std::initializer_list<T>>\
-    \ list) {\n        for (auto& l : list) mat.emplace_back(l);\n        m = mat.size();\n\
-    \        n = mat[0].size();\n    }\n\n    int row() const { return m; }\n    int\
-    \ col() const { return n; }\n\n    const std::vector<T>& operator[](int i) const\
-    \ { return mat[i]; }\n    std::vector<T>& operator[](int i) { return mat[i]; }\n\
-    \n    Matrix& operator+=(const Matrix& rhs) {\n        assert(m == rhs.m && n\
-    \ == rhs.n);\n        for (int i = 0; i < m; ++i) {\n            for (int j =\
-    \ 0; j < n; ++j) {\n                mat[i][j] += rhs[i][j];\n            }\n \
-    \       }\n        return *this;\n    }\n\n    Matrix& operator-=(const Matrix&\
-    \ rhs) {\n        assert(m == rhs.m && n == rhs.n);\n        for (int i = 0; i\
-    \ < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                mat[i][j]\
-    \ -= rhs[i][j];\n            }\n        }\n        return *this;\n    }\n\n  \
-    \  Matrix operator+(const Matrix& rhs) const { return Matrix(*this) += rhs; }\n\
-    \    Matrix operator-(const Matrix& rhs) const { return Matrix(*this) -= rhs;\
-    \ }\n\n    Matrix transpose() const {\n        Matrix ret(n, m);\n        for\
-    \ (int i = 0; i < n; ++i) {\n            for (int j = 0; j < m; ++j) {\n     \
-    \           ret[i][j] = mat[j][i];\n            }\n        }\n        return ret;\n\
-    \    }\n\n    Matrix matmul(const Matrix& B) const {\n        assert(n == B.m);\n\
-    \        Matrix ret(m, B.n);\n        for (int i = 0; i < m; ++i) {\n        \
-    \    for (int k = 0; k < n; ++k) {\n                for (int j = 0; j < B.n; ++j)\
-    \ {\n                    ret[i][j] += mat[i][k] * B[k][j];\n                }\n\
-    \            }\n        }\n        return ret;\n    }\n\n    Matrix rref() const\
-    \ {\n        Matrix A(*this);\n        int pivot = 0;\n        for (int j = 0;\
-    \ j < n; ++j) {\n            int i = pivot;\n            while (i < m && eq(A[i][j],\
-    \ T(0))) ++i;\n            if (i == m) continue;\n\n            if (i != pivot)\
-    \ A[i].swap(A[pivot]);\n\n            T p = A[pivot][j];\n            for (int\
-    \ l = j; l < n; ++l) A[pivot][l] /= p;\n\n            for (int k = 0; k < m; ++k)\
-    \ {\n                if (k == pivot) continue;\n                T v = A[k][j];\n\
-    \                for (int l = j; l < n; ++l) {\n                    A[k][l] -=\
-    \ A[pivot][l] * v;\n                }\n            }\n\n            ++pivot;\n\
-    \        }\n        return A;\n    }\n\n    int rank() const {\n        auto A\
-    \ = rref();\n        for (int i = 0; i < m; ++i) {\n            bool nonzero =\
-    \ false;\n            for (int j = 0; j < n; ++j) {\n                if (!eq(A[i][j],\
+    \ Matrix& B) {\n        assert(A.row == B.row);\n        Matrix C(A.row, A.col\
+    \ + B.col);\n        for (int i = 0; i < A.row; ++i) {\n            std::ranges::copy(A[i],\
+    \ C[i].begin());\n            std::ranges::copy(B[i], C[i].begin() + A.col);\n\
+    \        }\n        return C;\n    }\n\n    static Matrix I(int n) {\n       \
+    \ Matrix ret(n);\n        for (int i = 0; i < n; ++i) ret[i][i] = 1;\n       \
+    \ return ret;\n    }\n\n    Matrix() = default;\n    Matrix(int n) : Matrix(n,\
+    \ n) {}\n    Matrix(int row, int col)\n        : row(row), col(col), mat(row,\
+    \ std::vector<T>(col)) {}\n    Matrix(const std::vector<std::vector<T>>& mat)\n\
+    \        : row(mat.size()), col(mat[0].size()), mat(mat) {}\n\n    int row_size()\
+    \ const { return row; }\n    int col_size() const { return col; }\n    std::pair<int,\
+    \ int> shape() const { return {row, col}; }\n\n    const std::vector<T>& operator[](int\
+    \ i) const { return mat[i]; }\n    std::vector<T>& operator[](int i) { return\
+    \ mat[i]; }\n\n    Matrix submatrix(int i0, int i1, int j0, int j1) const {\n\
+    \        Matrix ret(i1 - i0, j1 - j0);\n        for (int i = i0; i < i1; ++i)\
+    \ {\n            std::ranges::copy(mat[i].begin() + j0, mat[i].begin() + j1,\n\
+    \                              ret.mat[i - i0].begin());\n        }\n        return\
+    \ ret;\n    }\n\n    // --- binary operations with matrix ---\n\n    Matrix& operator+=(const\
+    \ Matrix& rhs) {\n        assert(shape() == rhs.shape());\n        for (int i\
+    \ = 0; i < row; ++i) {\n            for (int j = 0; j < col; ++j) {\n        \
+    \        mat[i][j] += rhs[i][j];\n            }\n        }\n        return *this;\n\
+    \    }\n    Matrix& operator-=(const Matrix& rhs) {\n        assert(shape() ==\
+    \ rhs.shape());\n        for (int i = 0; i < row; ++i) {\n            for (int\
+    \ j = 0; j < col; ++j) {\n                mat[i][j] -= rhs[i][j];\n          \
+    \  }\n        }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix&\
+    \ rhs) {\n        assert(col == rhs.row);\n        Matrix res(row, rhs.col);\n\
+    \        for (int i = 0; i < row; ++i) {\n            for (int k = 0; k < col;\
+    \ ++k) {\n                for (int j = 0; j < rhs.col; ++j) {\n              \
+    \      res[i][j] += mat[i][k] * rhs.mat[k][j];\n                }\n          \
+    \  }\n        }\n        return *this = res;\n    }\n\n    Matrix operator+(const\
+    \ Matrix& rhs) const { return Matrix(*this) += rhs; }\n    Matrix operator-(const\
+    \ Matrix& rhs) const { return Matrix(*this) -= rhs; }\n    Matrix operator*(const\
+    \ Matrix& rhs) const { return Matrix(*this) *= rhs; }\n\n    constexpr bool operator==(const\
+    \ Matrix& rhs) const {\n        if (shape() != rhs.shape()) return false;\n  \
+    \      for (int i = 0; i < row; ++i) {\n            for (int j = 0; j < col; ++j)\
+    \ {\n                if (!eq(mat[i][j], rhs.mat[i][j])) return false;\n      \
+    \      }\n        }\n        return true;\n    }\n\n    // --- scalar multiplication\
+    \ ---\n\n    Matrix& operator*=(const T& rhs) {\n        for (auto& row : mat)\
+    \ {\n            for (auto& x : row) x *= rhs;\n        }\n        return *this;\n\
+    \    }\n    Matrix& operator/=(const T& rhs) { return *this /= rhs; }\n\n    Matrix\
+    \ operator*(const T& rhs) const { return Matrix(*this) *= rhs; }\n    Matrix operator/(const\
+    \ T& rhs) const { return Matrix(*this) /= rhs; }\n\n    // --- other operations\
+    \ for general matrices ---\n\n    Matrix operator-() const {\n        Matrix ret(*this);\n\
+    \        for (auto& row : ret.mat) {\n            for (auto& x : row) x = -x;\n\
+    \        }\n        return ret;\n    }\n\n    Matrix transpose() const {\n   \
+    \     Matrix ret(col, row);\n        for (int i = 0; i < col; ++i) {\n       \
+    \     for (int j = 0; j < row; ++j) {\n                ret[i][j] = mat[j][i];\n\
+    \            }\n        }\n        return ret;\n    }\n\n    void reduce() {\n\
+    \        int pivot = 0;\n        for (int j = 0; j < col; ++j) {\n           \
+    \ int i = pivot;\n            while (i < row && eq(mat[i][j], T(0))) ++i;\n  \
+    \          if (i == row) continue;\n\n            if (i != pivot) mat[i].swap(mat[pivot]);\n\
+    \n            T pinv = T(1) / mat[pivot][j];\n            for (int l = j; l <\
+    \ col; ++l) mat[pivot][l] *= pinv;\n\n            for (int k = 0; k < row; ++k)\
+    \ {\n                if (k == pivot) continue;\n                T v = mat[k][j];\n\
+    \                for (int l = j; l < col; ++l) {\n                    mat[k][l]\
+    \ -= mat[pivot][l] * v;\n                }\n            }\n\n            ++pivot;\n\
+    \        }\n    }\n\n    int rank() const {\n        auto A = *this;\n       \
+    \ A.reduce();\n        for (int i = 0; i < row; ++i) {\n            bool nonzero\
+    \ = false;\n            for (int j = 0; j < col; ++j) {\n                if (!eq(A[i][j],\
     \ T(0))) {\n                    nonzero = true;\n                    break;\n\
     \                }\n            }\n            if (!nonzero) return i;\n     \
-    \   }\n        return m;\n    }\n\n    template <typename U,\n              typename\
-    \ std::enable_if<std::is_floating_point<U>::value>::type* =\n                \
-    \  nullptr>\n    static constexpr bool eq(U a, U b) {\n        return std::abs(a\
-    \ - b) < 1e-8;\n    }\n\n    template <typename U, typename std::enable_if<!std::is_floating_point<\n\
-    \                              U>::value>::type* = nullptr>\n    static constexpr\
-    \ bool eq(U a, U b) {\n        return a == b;\n    }\n\n   protected:\n    std::vector<std::vector<T>>\
-    \ mat;\n    int m, n;\n};\n#line 7 \"math/linalg/square_matrix.hpp\"\n\ntemplate\
-    \ <typename T>\nclass SquareMatrix : public Matrix<T> {\n    using Matrix<T>::Matrix;\n\
-    \    using Matrix<T>::eq;\n    using Matrix<T>::n;\n\n   public:\n    static SquareMatrix\
-    \ I(int n) {\n        SquareMatrix ret(n);\n        for (int i = 0; i < n; ++i)\
-    \ ret[i][i] = 1;\n        return ret;\n    }\n\n    SquareMatrix() = default;\n\
-    \    explicit SquareMatrix(int n) : Matrix<T>(n, n) {}\n    SquareMatrix(const\
-    \ Matrix<T>& mat) : Matrix<T>(mat) {\n        assert(Matrix<T>::m == n);\n   \
-    \ }\n    SquareMatrix(std::initializer_list<std::initializer_list<T>> list)\n\
-    \        : Matrix<T>(list) {\n        assert(Matrix<T>::m == n);\n    }\n\n  \
-    \  SquareMatrix pow(long long k) const {\n        auto ret = I(n);\n        auto\
-    \ A(*this);\n        while (k > 0) {\n            if (k & 1) ret = ret.matmul(A);\n\
-    \            A = A.matmul(A);\n            k >>= 1;\n        }\n        return\
-    \ ret;\n    }\n\n    T det() const {\n        SquareMatrix A(*this);\n       \
-    \ T ret = 1;\n        for (int j = 0; j < n; ++j) {\n            int i = j;\n\
-    \            while (i < n && eq(A[i][j], T(0))) ++i;\n            if (i == n)\
-    \ return 0;\n\n            if (i != j) {\n                A[i].swap(A[j]);\n \
-    \               ret = -ret;\n            }\n\n            T p = A[j][j];\n   \
-    \         ret *= p;\n            for (int l = j; l < n; ++l) A[j][l] /= p;\n\n\
-    \            for (int k = j + 1; k < n; ++k) {\n                T v = A[k][j];\n\
-    \                for (int l = j; l < n; ++l) {\n                    A[k][l] -=\
-    \ A[j][l] * v;\n                }\n            }\n        }\n        return ret;\n\
-    \    }\n\n    SquareMatrix inv() const {\n        assert(!eq(det(), T(0)));\n\
-    \        auto IB = Matrix<T>::concat(*this, I(n)).rref();\n        SquareMatrix\
-    \ B(n);\n        for (int i = 0; i < n; ++i) {\n            std::copy(IB[i].begin()\
-    \ + n, IB[i].end(), B[i].begin());\n        }\n        return B;\n    }\n};\n\
-    #line 7 \"math/linalg/characteristic_polynomial.hpp\"\n\ntemplate <typename mint>\n\
-    Polynomial<mint> characteristic_polynomial(SquareMatrix<mint> mat) {\n    const\
-    \ int n = mat.row();\n    if (n == 0) return {1};\n    // stage 1: reduce mat\
-    \ to upper Hessenberg form\n    for (int j = 0; j < n; ++j) {\n        int i =\
-    \ j + 1;\n        while (i < n && mat[i][j] == 0) ++i;\n        if (i == n) continue;\n\
-    \n        if (i != j + 1) {\n            // swap mat[i], mat[j+1]\n          \
-    \  mat[i].swap(mat[j + 1]);\n            // swap mat[:,i], mat[:,j+1]\n      \
-    \      for (int k = 0; k < n; ++k) {\n                std::swap(mat[k][i], mat[k][j\
-    \ + 1]);\n            }\n        }\n\n        mint inv = mint(1) / mat[j + 1][j];\n\
-    \        for (int k = j + 2; k < n; ++k) {\n            mint v = mat[k][j] * inv;\n\
-    \            // mat[k] -= mat[j+1] * v\n            for (int l = j; l < n; ++l)\
-    \ {\n                mat[k][l] -= mat[j + 1][l] * v;\n            }\n        \
-    \    // mat[:,j+1] += mat[:,k] * v\n            for (int l = 0; l < n; ++l) {\n\
-    \                mat[l][j + 1] += mat[l][k] * v;\n            }\n        }\n \
-    \   }\n    // stage 2: recursively compute char polys of leading principal submatrices\n\
-    \    std::vector<Polynomial<mint>> p(n + 1);\n    p[0] = {1};\n    for (int i\
-    \ = 0; i < n; ++i) {\n        p[i + 1].resize(i + 1 + 1);\n        // (x - mat[i,i])\
-    \ * p[i]\n        for (int j = 0; j <= i; ++j) {\n            p[i + 1][j] -= mat[i][i]\
-    \ * p[i][j];\n            p[i + 1][j + 1] += p[i][j];\n        }\n\n        mint\
-    \ beta = 1;\n        for (int k = i - 1; k >= 0; --k) {\n            beta *= mat[k\
-    \ + 1][k];\n            p[i + 1] -= p[k] * mat[k][i] * beta;\n        }\n    }\n\
-    \    return p[n];\n}\n"
+    \   }\n        return row;\n    }\n\n    // --- other operations for square matrices\
+    \ ---\n\n    void assert_square() const { assert(row == col); }\n\n    Matrix\
+    \ pow(long long k) const {\n        assert_square();\n        auto ret = I(row);\n\
+    \        auto A = *this;\n        while (k > 0) {\n            if (k & 1) ret\
+    \ *= A;\n            A *= A;\n            k >>= 1;\n        }\n        return\
+    \ ret;\n    }\n\n    T det() const {\n        assert_square();\n        auto A\
+    \ = *this;\n        T ret = 1;\n        for (int j = 0; j < col; ++j) {\n    \
+    \        int i = j;\n            while (i < row && eq(A[i][j], T(0))) ++i;\n \
+    \           if (i == row) return 0;\n\n            if (i != j) {\n           \
+    \     A[i].swap(A[j]);\n                ret = -ret;\n            }\n\n       \
+    \     T p = A[j][j];\n            ret *= p;\n            auto pinv = T(1) / p;\n\
+    \            for (int l = j; l < col; ++l) A[j][l] *= pinv;\n\n            for\
+    \ (int k = j + 1; k < row; ++k) {\n                T v = A[k][j];\n          \
+    \      for (int l = j; l < col; ++l) {\n                    A[k][l] -= A[j][l]\
+    \ * v;\n                }\n            }\n        }\n        return ret;\n   \
+    \ }\n\n    Matrix inv() const {\n        assert_square();\n        auto IB = concat(*this,\
+    \ I(row));\n        IB.reduce();\n        assert(IB.submatrix(0, row, 0, col)\
+    \ == I(row));\n        return IB.submatrix(0, row, col, 2 * col);\n    }\n\n \
+    \   template <typename U,\n              typename std::enable_if<std::is_floating_point<U>::value>::type*\
+    \ =\n                  nullptr>\n    static constexpr bool eq(U a, U b) {\n  \
+    \      return std::abs(a - b) < 1e-8;\n    }\n\n    template <typename U, typename\
+    \ std::enable_if<!std::is_floating_point<\n                              U>::value>::type*\
+    \ = nullptr>\n    static constexpr bool eq(U a, U b) {\n        return a == b;\n\
+    \    }\n\n   protected:\n    int row, col;\n    std::vector<std::vector<T>> mat;\n\
+    };\n#line 7 \"math/linalg/characteristic_polynomial.hpp\"\n\ntemplate <typename\
+    \ mint>\nPolynomial<mint> characteristic_polynomial(Matrix<mint> mat) {\n    mat.assert_square();\n\
+    \    const int n = mat.row_size();\n    if (n == 0) return {1};\n    // stage\
+    \ 1: reduce mat to upper Hessenberg form\n    for (int j = 0; j < n; ++j) {\n\
+    \        int i = j + 1;\n        while (i < n && mat[i][j] == 0) ++i;\n      \
+    \  if (i == n) continue;\n\n        if (i != j + 1) {\n            // swap mat[i],\
+    \ mat[j+1]\n            mat[i].swap(mat[j + 1]);\n            // swap mat[:,i],\
+    \ mat[:,j+1]\n            for (int k = 0; k < n; ++k) {\n                std::swap(mat[k][i],\
+    \ mat[k][j + 1]);\n            }\n        }\n\n        mint inv = mint(1) / mat[j\
+    \ + 1][j];\n        for (int k = j + 2; k < n; ++k) {\n            mint v = mat[k][j]\
+    \ * inv;\n            // mat[k] -= mat[j+1] * v\n            for (int l = j; l\
+    \ < n; ++l) {\n                mat[k][l] -= mat[j + 1][l] * v;\n            }\n\
+    \            // mat[:,j+1] += mat[:,k] * v\n            for (int l = 0; l < n;\
+    \ ++l) {\n                mat[l][j + 1] += mat[l][k] * v;\n            }\n   \
+    \     }\n    }\n    // stage 2: recursively compute char polys of leading principal\
+    \ submatrices\n    std::vector<Polynomial<mint>> p(n + 1);\n    p[0] = {1};\n\
+    \    for (int i = 0; i < n; ++i) {\n        p[i + 1].resize(i + 1 + 1);\n    \
+    \    // (x - mat[i,i]) * p[i]\n        for (int j = 0; j <= i; ++j) {\n      \
+    \      p[i + 1][j] -= mat[i][i] * p[i][j];\n            p[i + 1][j + 1] += p[i][j];\n\
+    \        }\n\n        mint beta = 1;\n        for (int k = i - 1; k >= 0; --k)\
+    \ {\n            beta *= mat[k + 1][k];\n            p[i + 1] -= p[k] * mat[k][i]\
+    \ * beta;\n        }\n    }\n    return p[n];\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <vector>\n\n#include \"../polynomial.cpp\"\
-    \n#include \"square_matrix.hpp\"\n\ntemplate <typename mint>\nPolynomial<mint>\
-    \ characteristic_polynomial(SquareMatrix<mint> mat) {\n    const int n = mat.row();\n\
-    \    if (n == 0) return {1};\n    // stage 1: reduce mat to upper Hessenberg form\n\
+    \n#include \"matrix.hpp\"\n\ntemplate <typename mint>\nPolynomial<mint> characteristic_polynomial(Matrix<mint>\
+    \ mat) {\n    mat.assert_square();\n    const int n = mat.row_size();\n    if\
+    \ (n == 0) return {1};\n    // stage 1: reduce mat to upper Hessenberg form\n\
     \    for (int j = 0; j < n; ++j) {\n        int i = j + 1;\n        while (i <\
     \ n && mat[i][j] == 0) ++i;\n        if (i == n) continue;\n\n        if (i !=\
     \ j + 1) {\n            // swap mat[i], mat[j+1]\n            mat[i].swap(mat[j\
@@ -265,12 +275,11 @@ data:
   dependsOn:
   - math/polynomial.cpp
   - convolution/ntt.hpp
-  - math/linalg/square_matrix.hpp
   - math/linalg/matrix.hpp
   isVerificationFile: false
   path: math/linalg/characteristic_polynomial.hpp
   requiredBy: []
-  timestamp: '2024-03-02 18:46:36+09:00'
+  timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/characteristic_polynomial.test.cpp
