@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/system_of_linear_equations.hpp
     title: System of Linear Equations
   _extendedVerifiedWith:
@@ -22,14 +22,17 @@ data:
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix_rank.test.cpp
+    title: test/yosupo/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/pow_of_matrix.test.cpp
     title: test/yosupo/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/linalg/matrix.hpp\"\n#include <algorithm>\n#include\
@@ -216,11 +219,12 @@ data:
   - math/linalg/system_of_linear_equations.hpp
   - math/linalg/characteristic_polynomial.hpp
   timestamp: '2024-03-02 20:34:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/pow_of_matrix.test.cpp
   - test/yosupo/system_of_linear_equations.test.cpp
   - test/yosupo/inverse_matrix.test.cpp
+  - test/yosupo/matrix_rank.test.cpp
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/characteristic_polynomial.test.cpp
   - test/yosupo/matrix_product.test.cpp

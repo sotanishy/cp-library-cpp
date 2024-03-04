@@ -4,19 +4,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/matrix.hpp
     title: Matrix
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/system_of_linear_equations.test.cpp
-    title: test/yosupo/system_of_linear_equations.test.cpp
+    path: math/modint.hpp
+    title: Mod int
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"math/linalg/system_of_linear_equations.hpp\"\n#include <cassert>\n\
-    #include <vector>\n\n#line 2 \"math/linalg/matrix.hpp\"\n#include <algorithm>\n\
-    #line 4 \"math/linalg/matrix.hpp\"\n#include <cmath>\n#include <initializer_list>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
+    links:
+    - https://judge.yosupo.jp/problem/matrix_rank
+  bundledCode: "#line 1 \"test/yosupo/matrix_rank.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\
+    \n\n#include <bits/stdc++.h>\n\n#line 5 \"math/linalg/matrix.hpp\"\n#include <initializer_list>\n\
     #include <type_traits>\n#line 8 \"math/linalg/matrix.hpp\"\n\ntemplate <typename\
     \ T>\nclass Matrix {\n   public:\n    static Matrix concat(const Matrix& A, const\
     \ Matrix& B) {\n        assert(A.row == B.row);\n        Matrix C(A.row, A.col\
@@ -103,56 +105,59 @@ data:
     \ std::enable_if<!std::is_floating_point<\n                              U>::value>::type*\
     \ = nullptr>\n    static constexpr bool eq(U a, U b) {\n        return a == b;\n\
     \    }\n\n   protected:\n    int row, col;\n    std::vector<std::vector<T>> mat;\n\
-    };\n#line 6 \"math/linalg/system_of_linear_equations.hpp\"\n\ntemplate <typename\
-    \ T>\nstd::vector<std::vector<T>> solve_system(const Matrix<T> A,\n          \
-    \                               const std::vector<T>& b) {\n    auto [row, col]\
-    \ = A.shape();\n    assert(row == (int)b.size());\n    Matrix<T> bb(row, 1);\n\
-    \    for (int i = 0; i < row; ++i) bb[i][0] = b[i];\n    auto sol = Matrix<T>::concat(A,\
-    \ bb);\n    sol.reduce();\n\n    std::vector<bool> independent(col);\n    std::vector\
-    \ ret(1, std::vector<T>(col));\n    std::vector bases(col, std::vector<T>(col));\n\
-    \    for (int j = 0; j < col; ++j) bases[j][j] = 1;\n    int j = 0;\n    for (int\
-    \ i = 0; i < row; ++i) {\n        for (; j < col; ++j) {\n            if (Matrix<T>::eq(sol[i][j],\
-    \ T(1))) {\n                independent[j] = true;\n                for (int k\
-    \ = j + 1; k < col; ++k) {\n                    bases[k][j] = -sol[i][k];\n  \
-    \              }\n                ret[0][j] = sol[i][col];\n                break;\n\
-    \            }\n        }\n        if (j == col && !Matrix<T>::eq(sol[i][col],\
-    \ T(0))) return {};\n    }\n    for (int j = 0; j < col; ++j) {\n        if (!independent[j])\
-    \ ret.push_back(bases[j]);\n    }\n    return ret;\n}\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"matrix.hpp\"\
-    \n\ntemplate <typename T>\nstd::vector<std::vector<T>> solve_system(const Matrix<T>\
-    \ A,\n                                         const std::vector<T>& b) {\n  \
-    \  auto [row, col] = A.shape();\n    assert(row == (int)b.size());\n    Matrix<T>\
-    \ bb(row, 1);\n    for (int i = 0; i < row; ++i) bb[i][0] = b[i];\n    auto sol\
-    \ = Matrix<T>::concat(A, bb);\n    sol.reduce();\n\n    std::vector<bool> independent(col);\n\
-    \    std::vector ret(1, std::vector<T>(col));\n    std::vector bases(col, std::vector<T>(col));\n\
-    \    for (int j = 0; j < col; ++j) bases[j][j] = 1;\n    int j = 0;\n    for (int\
-    \ i = 0; i < row; ++i) {\n        for (; j < col; ++j) {\n            if (Matrix<T>::eq(sol[i][j],\
-    \ T(1))) {\n                independent[j] = true;\n                for (int k\
-    \ = j + 1; k < col; ++k) {\n                    bases[k][j] = -sol[i][k];\n  \
-    \              }\n                ret[0][j] = sol[i][col];\n                break;\n\
-    \            }\n        }\n        if (j == col && !Matrix<T>::eq(sol[i][col],\
-    \ T(0))) return {};\n    }\n    for (int j = 0; j < col; ++j) {\n        if (!independent[j])\
-    \ ret.push_back(bases[j]);\n    }\n    return ret;\n}"
+    };\n#line 4 \"math/modint.hpp\"\n\n/**\n * @brief Mod int\n */\ntemplate <int\
+    \ m>\nclass Modint {\n    using mint = Modint;\n    static_assert(m > 0, \"Modulus\
+    \ must be positive\");\n\n   public:\n    static constexpr int mod() { return\
+    \ m; }\n\n    constexpr Modint(long long y = 0) : x(y >= 0 ? y % m : (y % m +\
+    \ m) % m) {}\n\n    constexpr int val() const { return x; }\n\n    constexpr mint&\
+    \ operator+=(const mint& r) {\n        if ((x += r.x) >= m) x -= m;\n        return\
+    \ *this;\n    }\n    constexpr mint& operator-=(const mint& r) {\n        if ((x\
+    \ += m - r.x) >= m) x -= m;\n        return *this;\n    }\n    constexpr mint&\
+    \ operator*=(const mint& r) {\n        x = static_cast<int>(1LL * x * r.x % m);\n\
+    \        return *this;\n    }\n    constexpr mint& operator/=(const mint& r) {\
+    \ return *this *= r.inv(); }\n\n    constexpr bool operator==(const mint& r) const\
+    \ { return x == r.x; }\n\n    constexpr mint operator+() const { return *this;\
+    \ }\n    constexpr mint operator-() const { return mint(-x); }\n\n    constexpr\
+    \ friend mint operator+(const mint& l, const mint& r) {\n        return mint(l)\
+    \ += r;\n    }\n    constexpr friend mint operator-(const mint& l, const mint&\
+    \ r) {\n        return mint(l) -= r;\n    }\n    constexpr friend mint operator*(const\
+    \ mint& l, const mint& r) {\n        return mint(l) *= r;\n    }\n    constexpr\
+    \ friend mint operator/(const mint& l, const mint& r) {\n        return mint(l)\
+    \ /= r;\n    }\n\n    constexpr mint inv() const {\n        int a = x, b = m,\
+    \ u = 1, v = 0;\n        while (b > 0) {\n            int t = a / b;\n       \
+    \     std::swap(a -= t * b, b);\n            std::swap(u -= t * v, v);\n     \
+    \   }\n        return mint(u);\n    }\n\n    constexpr mint pow(long long n) const\
+    \ {\n        mint ret(1), mul(x);\n        while (n > 0) {\n            if (n\
+    \ & 1) ret *= mul;\n            mul *= mul;\n            n >>= 1;\n        }\n\
+    \        return ret;\n    }\n\n    friend std::ostream& operator<<(std::ostream&\
+    \ os, const mint& r) {\n        return os << r.x;\n    }\n\n    friend std::istream&\
+    \ operator>>(std::istream& is, mint& r) {\n        long long t;\n        is >>\
+    \ t;\n        r = mint(t);\n        return is;\n    }\n\n   private:\n    int\
+    \ x;\n};\n#line 7 \"test/yosupo/matrix_rank.test.cpp\"\nusing namespace std;\n\
+    \nusing mint = Modint<998244353>;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    Matrix<mint>\
+    \ A(N, M);\n    for (int i = 0; i < N; ++i)\n        for (int j = 0; j < M; ++j)\
+    \ cin >> A[i][j];\n    cout << A.rank() << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\n\n#include\
+    \ <bits/stdc++.h>\n\n#include \"../../math/linalg/matrix.hpp\"\n#include \"../../math/modint.hpp\"\
+    \nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nint main() {\n  \
+    \  ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, M;\n\
+    \    cin >> N >> M;\n    Matrix<mint> A(N, M);\n    for (int i = 0; i < N; ++i)\n\
+    \        for (int j = 0; j < M; ++j) cin >> A[i][j];\n    cout << A.rank() <<\
+    \ endl;\n}\n"
   dependsOn:
   - math/linalg/matrix.hpp
-  isVerificationFile: false
-  path: math/linalg/system_of_linear_equations.hpp
+  - math/modint.hpp
+  isVerificationFile: true
+  path: test/yosupo/matrix_rank.test.cpp
   requiredBy: []
-  timestamp: '2024-03-02 20:34:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/system_of_linear_equations.test.cpp
-documentation_of: math/linalg/system_of_linear_equations.hpp
+  timestamp: '2024-03-04 12:16:49+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/matrix_rank.test.cpp
 layout: document
-title: System of Linear Equations
+redirect_from:
+- /verify/test/yosupo/matrix_rank.test.cpp
+- /verify/test/yosupo/matrix_rank.test.cpp.html
+title: test/yosupo/matrix_rank.test.cpp
 ---
-
-## Description
-
-連立一次方程式を解く．
-
-## Operations
-
-- `vector<vector<T>> solve_system(Matrix<T> A, vector<T> b)`
-    - $Ax = b$ の解を返す．返り値を `sol` としたとき，`sol[0]` は解の1つ，`sol[1:]` は解空間の基底である．解がないときは空リストを返す．
-    - 時間計算量: $O(mn^2)$

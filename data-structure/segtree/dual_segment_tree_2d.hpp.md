@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-structure/segtree/dual_segment_tree.hpp
     title: Dual Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
     title: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: 2D Dual Segment Tree
     links: []
@@ -99,7 +99,7 @@ data:
   path: data-structure/segtree/dual_segment_tree_2d.hpp
   requiredBy: []
   timestamp: '2024-03-02 20:34:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
 documentation_of: data-structure/segtree/dual_segment_tree_2d.hpp

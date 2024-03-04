@@ -82,6 +82,9 @@ data:
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix_rank.test.cpp
+    title: test/yosupo/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/multipoint_evaluation.test.cpp
     title: test/yosupo/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_point_get.test.cpp
     title: test/yosupo/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/sum_of_totient_function.test.cpp
     title: test/yosupo/sum_of_totient_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/system_of_linear_equations.test.cpp
     title: test/yosupo/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,9 +147,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Mod int
     links: []
@@ -214,7 +217,7 @@ data:
   requiredBy:
   - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2024-01-07 20:09:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution_mod_1000000007.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
@@ -244,6 +247,7 @@ data:
   - test/yosupo/range_affine_point_get.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.treap.test.cpp
+  - test/yosupo/matrix_rank.test.cpp
   - test/yosupo/matrix_det.test.cpp
   - test/yosupo/factorial.test.cpp
   - test/yosupo/hafnian_of_matrix.test.cpp

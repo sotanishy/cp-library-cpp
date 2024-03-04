@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/fast_prime.hpp
     title: Fast Prime Number Algorithms
   _extendedRequiredBy: []

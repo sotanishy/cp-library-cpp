@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/fast_prime.hpp
     title: Fast Prime Number Algorithms
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/primitive_root.hpp
     title: Primitive Root
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primitive_root
@@ -86,7 +86,7 @@ data:
   path: test/yosupo/primitive_root.test.cpp
   requiredBy: []
   timestamp: '2024-03-02 20:34:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/primitive_root.test.cpp
 layout: document

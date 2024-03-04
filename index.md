@@ -134,10 +134,10 @@ data:
       title: Undoable Li Chao Tree
   - name: data-structure/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dual_segment_tree.hpp
       title: Dual Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-structure/segtree/dual_segment_tree_2d.hpp
       title: 2D Dual Segment Tree
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/lagrange_polynomial.hpp
       title: Lagrange Polynomial
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: Mod int
     - icon: ':heavy_check_mark:'
@@ -439,10 +439,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/linalg/hafnian.hpp
       title: Hafnian
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/linalg/matrix.hpp
       title: Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/linalg/system_of_linear_equations.hpp
       title: System of Linear Equations
   - name: math/number-theory
@@ -462,7 +462,7 @@ data:
     - icon: ':warning:'
       path: math/number-theory/farey_sequence.hpp
       title: Farey Sequence
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/fast_prime.hpp
       title: Fast Prime Number Algorithms
     - icon: ':heavy_check_mark:'
@@ -489,7 +489,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/number-theory/prime_count.hpp
       title: Prime Counting Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/primitive_root.hpp
       title: Primitive Root
     - icon: ':heavy_check_mark:'
@@ -1033,6 +1033,9 @@ data:
       path: test/yosupo/matrix_product_mod_2.test.cpp
       title: test/yosupo/matrix_product_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/matrix_rank.test.cpp
+      title: test/yosupo/matrix_rank.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/maximum_independent_set.test.cpp
       title: test/yosupo/maximum_independent_set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1089,7 +1092,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/primality_test.test.cpp
       title: test/yosupo/primality_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/primitive_root.test.cpp
       title: test/yosupo/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1098,7 +1101,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_point_get.test.cpp
       title: test/yosupo/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1116,7 +1119,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_reverse_range_sum.treap.test.cpp
       title: test/yosupo/range_reverse_range_sum.treap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
       title: test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1182,7 +1185,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sum_of_totient_function.test.cpp
       title: test/yosupo/sum_of_totient_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/system_of_linear_equations.test.cpp
       title: test/yosupo/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'

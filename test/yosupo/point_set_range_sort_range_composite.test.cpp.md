@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-structure/segtree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Mod int
   _extendedRequiredBy: []

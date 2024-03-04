@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/linalg/characteristic_polynomial.hpp
     title: Characteristic Polynomial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/linalg/matrix.hpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Mod int
   - icon: ':heavy_check_mark:'
