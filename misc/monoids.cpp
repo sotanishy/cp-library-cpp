@@ -51,6 +51,16 @@ struct AffineMonoid {
     }
 };
 
+struct CountMinMonoid {
+    using T = pair<int, int>;  // min, count
+    static T id() { return {(1u << 31) - 1, 0}; }
+    static T op(T a, T b) {
+        if (a.first < b.first) return a;
+        if (a.first > b.first) return b;
+        return {a.first, a.second + b.second};
+    }
+};
+
 // actions
 MaxMonoid::T act(MaxMonoid::T a, AddMonoid::T b) {
     return a + b;

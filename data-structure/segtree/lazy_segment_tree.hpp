@@ -30,6 +30,11 @@ class LazySegmentTree {
 
     T fold(int l, int r) { return fold(l, r, 1, 0, size); }
 
+    T fold_all() {
+        push(1);
+        return node[1];
+    }
+
     template <typename F>
     int find_first(int l, F cond) {
         T v = M::id();
