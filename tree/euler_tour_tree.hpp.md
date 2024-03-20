@@ -170,8 +170,8 @@ data:
   timestamp: '2024-01-08 01:08:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/yosupo/dynamic_tree_subtree_add_subtree_sum.test.cpp
+  - test/yosupo/dynamic_tree_vertex_add_subtree_sum.test.cpp
 documentation_of: tree/euler_tour_tree.hpp
 layout: document
 title: Euler Tour Tree

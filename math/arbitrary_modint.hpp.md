@@ -79,8 +79,8 @@ data:
   timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/montmort_number_mod.test.cpp
   - test/yosupo/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/montmort_number_mod.test.cpp
 documentation_of: math/arbitrary_modint.hpp
 layout: document
 redirect_from:

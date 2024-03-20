@@ -216,18 +216,18 @@ data:
   isVerificationFile: false
   path: math/linalg/matrix.hpp
   requiredBy:
-  - math/linalg/system_of_linear_equations.hpp
   - math/linalg/characteristic_polynomial.hpp
+  - math/linalg/system_of_linear_equations.hpp
   timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/pow_of_matrix.test.cpp
-  - test/yosupo/system_of_linear_equations.test.cpp
-  - test/yosupo/inverse_matrix.test.cpp
-  - test/yosupo/matrix_rank.test.cpp
-  - test/yosupo/matrix_det.test.cpp
-  - test/yosupo/characteristic_polynomial.test.cpp
   - test/yosupo/matrix_product.test.cpp
+  - test/yosupo/characteristic_polynomial.test.cpp
+  - test/yosupo/inverse_matrix.test.cpp
+  - test/yosupo/matrix_det.test.cpp
+  - test/yosupo/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix_rank.test.cpp
 documentation_of: math/linalg/matrix.hpp
 layout: document
 title: Matrix

@@ -27,7 +27,8 @@ data:
     \      node[i] = M::op(node[2 * i], node[2 * i + 1]);\n        }\n    }\n\n  \
     \  T operator[](int k) { return fold(k, k + 1); }\n\n    void update(int l, int\
     \ r, const E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r)\
-    \ { return fold(l, r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int\
+    \ { return fold(l, r, 1, 0, size); }\n\n    T fold_all() {\n        push(1);\n\
+    \        return node[1];\n    }\n\n    template <typename F>\n    int find_first(int\
     \ l, F cond) {\n        T v = M::id();\n        return find_first(l, size, 1,\
     \ 0, size, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
     \ r, F cond) {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size,\
@@ -174,7 +175,7 @@ data:
   isVerificationFile: false
   path: tree/permutation_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-08 01:08:59+09:00'
+  timestamp: '2024-03-20 21:25:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/common_interval_decomposition_tree.test.cpp

@@ -3,9 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: misc/rectangle_union.hpp
+    title: misc/rectangle_union.hpp
+  - icon: ':heavy_check_mark:'
     path: tree/permutation_tree.hpp
     title: Permutation Tree
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/area_of_union_of_rectangles.test.cpp
+    title: test/yosupo/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/common_interval_decomposition_tree.test.cpp
@@ -29,7 +35,8 @@ data:
     \      node[i] = M::op(node[2 * i], node[2 * i + 1]);\n        }\n    }\n\n  \
     \  T operator[](int k) { return fold(k, k + 1); }\n\n    void update(int l, int\
     \ r, const E& x) { update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r)\
-    \ { return fold(l, r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int\
+    \ { return fold(l, r, 1, 0, size); }\n\n    T fold_all() {\n        push(1);\n\
+    \        return node[1];\n    }\n\n    template <typename F>\n    int find_first(int\
     \ l, F cond) {\n        T v = M::id();\n        return find_first(l, size, 1,\
     \ 0, size, v, cond);\n    }\n\n    template <typename F>\n    int find_last(int\
     \ r, F cond) {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size,\
@@ -74,11 +81,12 @@ data:
     \ M::op(node[2 * i], node[2 * i + 1]);\n        }\n    }\n\n    T operator[](int\
     \ k) { return fold(k, k + 1); }\n\n    void update(int l, int r, const E& x) {\
     \ update(l, r, x, 1, 0, size); }\n\n    T fold(int l, int r) { return fold(l,\
-    \ r, 1, 0, size); }\n\n    template <typename F>\n    int find_first(int l, F\
-    \ cond) {\n        T v = M::id();\n        return find_first(l, size, 1, 0, size,\
-    \ v, cond);\n    }\n\n    template <typename F>\n    int find_last(int r, F cond)\
-    \ {\n        T v = M::id();\n        return find_last(0, r, 1, 0, size, v, cond);\n\
-    \    }\n\n   private:\n    int size;\n    std::vector<T> node;\n    std::vector<E>\
+    \ r, 1, 0, size); }\n\n    T fold_all() {\n        push(1);\n        return node[1];\n\
+    \    }\n\n    template <typename F>\n    int find_first(int l, F cond) {\n   \
+    \     T v = M::id();\n        return find_first(l, size, 1, 0, size, v, cond);\n\
+    \    }\n\n    template <typename F>\n    int find_last(int r, F cond) {\n    \
+    \    T v = M::id();\n        return find_last(0, r, 1, 0, size, v, cond);\n  \
+    \  }\n\n   private:\n    int size;\n    std::vector<T> node;\n    std::vector<E>\
     \ lazy;\n\n    void push(int k) {\n        if (lazy[k] == O::id()) return;\n \
     \       if (k < size) {\n            lazy[2 * k] = O::op(lazy[2 * k], lazy[k]);\n\
     \            lazy[2 * k + 1] = O::op(lazy[2 * k + 1], lazy[k]);\n        }\n \
@@ -111,12 +119,14 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/lazy_segment_tree.hpp
   requiredBy:
+  - misc/rectangle_union.hpp
   - tree/permutation_tree.hpp
-  timestamp: '2024-01-07 20:09:47+09:00'
+  timestamp: '2024-03-20 21:25:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/common_interval_decomposition_tree.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/area_of_union_of_rectangles.test.cpp
 documentation_of: data-structure/segtree/lazy_segment_tree.hpp
 layout: document
 title: Segment Tree with Lazy Propagation

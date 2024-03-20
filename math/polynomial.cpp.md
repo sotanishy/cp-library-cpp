@@ -309,36 +309,36 @@ data:
   isVerificationFile: false
   path: math/polynomial.cpp
   requiredBy:
-  - math/bernoulli.hpp
-  - math/lagrange_polynomial.hpp
   - math/count_subset_sum.hpp
-  - math/linalg/characteristic_polynomial.hpp
-  - math/partition_function.hpp
-  - math/factorial.hpp
   - math/product_of_polynomial_sequence.hpp
+  - math/partition_function.hpp
+  - math/bernoulli.hpp
   - math/bostan_mori.hpp
-  - math/stirling_first.hpp
   - math/interpolation.cpp
   - math/multipoint_evaluation.cpp
+  - math/linalg/characteristic_polynomial.hpp
+  - math/lagrange_polynomial.hpp
+  - math/factorial.hpp
+  - math/stirling_first.hpp
   timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/characteristic_polynomial.test.cpp
+  - test/yosupo/exp_of_formal_power_series.test.cpp
+  - test/yosupo/factorial.test.cpp
+  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/polynomial_interpolation.test.cpp
   - test/yosupo/bernoulli_number.test.cpp
+  - test/yosupo/partition_function.test.cpp
   - test/yosupo/inv_of_formal_power_series.test.cpp
+  - test/yosupo/pow_of_formal_power_series.test.cpp
+  - test/yosupo/log_of_formal_power_series.test.cpp
+  - test/yosupo/sharp_p_subset_sum.test.cpp
+  - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/division_of_polynomials.test.cpp
   - test/yosupo/product_of_polynomial_sequence.test.cpp
   - test/yosupo/polynomial_taylor_shift.test.cpp
-  - test/yosupo/sharp_p_subset_sum.test.cpp
-  - test/yosupo/polynomial_interpolation.test.cpp
-  - test/yosupo/factorial.test.cpp
-  - test/yosupo/exp_of_formal_power_series.test.cpp
-  - test/yosupo/partition_function.test.cpp
-  - test/yosupo/pow_of_formal_power_series.test.cpp
-  - test/yosupo/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/log_of_formal_power_series.test.cpp
-  - test/yosupo/characteristic_polynomial.test.cpp
-  - test/yosupo/division_of_polynomials.test.cpp
-  - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: math/polynomial.cpp
 layout: document
 title: Polynomial

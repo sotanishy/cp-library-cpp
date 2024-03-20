@@ -63,20 +63,20 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.hpp
   requiredBy:
-  - graph/junction_tree.hpp
-  - graph/minimum_spanning_arborescence.hpp
   - graph/mst.hpp
+  - graph/junction_tree.hpp
   - graph/manhattan_mst.hpp
+  - graph/minimum_spanning_arborescence.hpp
   timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_2_A.prim.test.cpp
+  - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/yosupo/manhattanmst.test.cpp
   - test/yosupo/unionfind.test.cpp
-  - test/yosupo/tree_decomposition_width_2.test.cpp
   - test/yosupo/directedmst.test.cpp
-  - test/aoj/GRL_2_A.prim.test.cpp
-  - test/aoj/GRL_2_A.boruvka.test.cpp
-  - test/aoj/GRL_2_A.kruskal.test.cpp
+  - test/yosupo/tree_decomposition_width_2.test.cpp
 documentation_of: data-structure/unionfind/union_find.hpp
 layout: document
 title: Union Find

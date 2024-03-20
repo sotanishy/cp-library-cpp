@@ -111,9 +111,9 @@ data:
   timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/primitive_root.test.cpp
-  - test/yosupo/primality_test.test.cpp
   - test/yosupo/factorize.test.cpp
+  - test/yosupo/primality_test.test.cpp
+  - test/yosupo/primitive_root.test.cpp
 documentation_of: math/number-theory/fast_prime.hpp
 layout: document
 title: Fast Prime Number Algorithms

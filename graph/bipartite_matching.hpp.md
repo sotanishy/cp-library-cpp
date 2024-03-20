@@ -118,9 +118,9 @@ data:
   timestamp: '2024-01-08 14:54:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRL_7_A.test.cpp
   - test/yosupo/bipartitematching.test.cpp
   - test/yosupo/bipartite_edge_coloring.test.cpp
-  - test/aoj/GRL_7_A.test.cpp
 documentation_of: graph/bipartite_matching.hpp
 layout: document
 title: Bipartite Matching

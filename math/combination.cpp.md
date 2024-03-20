@@ -53,8 +53,8 @@ data:
   timestamp: '2023-05-27 03:55:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/stirling_number_of_the_second_kind.test.cpp
 documentation_of: math/combination.cpp
 layout: document
 title: Combination

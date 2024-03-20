@@ -565,6 +565,9 @@ data:
     - icon: ':warning:'
       path: misc/random.hpp
       title: misc/random.hpp
+    - icon: ':heavy_check_mark:'
+      path: misc/rectangle_union.hpp
+      title: misc/rectangle_union.hpp
     - icon: ':warning:'
       path: misc/sorting.hpp
       title: Sorting Algorithms
@@ -855,6 +858,9 @@ data:
       title: test/aoj/NTL_1_D.test.cpp
   - name: test/yosupo
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/area_of_union_of_rectangles.test.cpp
+      title: test/yosupo/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/assignment.test.cpp
       title: test/yosupo/assignment.test.cpp

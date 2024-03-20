@@ -65,8 +65,8 @@ data:
   timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/scc.test.cpp
   - test/yosupo/two_sat.test.cpp
+  - test/yosupo/scc.test.cpp
 documentation_of: graph/scc.hpp
 layout: document
 title: Strongly Connected Components
