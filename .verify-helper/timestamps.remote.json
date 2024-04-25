@@ -121,6 +121,7 @@
 "test/yosupo/matrix_rank.test.cpp": "2024-03-04 12:16:49 +0900",
 "test/yosupo/maximum_independent_set.test.cpp": "2024-01-08 13:32:33 +0900",
 "test/yosupo/min_cost_b_flow.test.cpp": "2024-01-08 01:08:59 +0900",
+"test/yosupo/min_plus_convolution_convex_arbitrary.test.cpp": "2024-04-25 15:52:43 +0900",
 "test/yosupo/montmort_number_mod.test.cpp": "2024-01-07 20:49:49 +0900",
 "test/yosupo/multipoint_evaluation.test.cpp": "2024-01-08 00:27:17 +0900",
 "test/yosupo/nim_product_64.test.cpp": "2022-04-18 22:20:33 +0900",
