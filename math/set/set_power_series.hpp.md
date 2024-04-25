@@ -135,8 +135,8 @@ data:
   timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/hafnian_of_matrix.test.cpp
   - test/yosupo/exp_of_set_power_series.test.cpp
+  - test/yosupo/hafnian_of_matrix.test.cpp
 documentation_of: math/set/set_power_series.hpp
 layout: document
 redirect_from:

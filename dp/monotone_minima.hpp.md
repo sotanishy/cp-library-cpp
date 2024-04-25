@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: convolution/convex_min_plus_convolution.hpp
+    title: convolution/convex_min_plus_convolution.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/min_plus_convolution_convex_arbitrary.test.cpp
+    title: test/yosupo/min_plus_convolution_convex_arbitrary.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"dp/monotone_minima.hpp\"\n#include <vector>\n\ntemplate\
@@ -31,10 +37,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: dp/monotone_minima.hpp
-  requiredBy: []
+  requiredBy:
+  - convolution/convex_min_plus_convolution.hpp
   timestamp: '2024-01-08 01:32:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/min_plus_convolution_convex_arbitrary.test.cpp
 documentation_of: dp/monotone_minima.hpp
 layout: document
 title: Monotone Minima

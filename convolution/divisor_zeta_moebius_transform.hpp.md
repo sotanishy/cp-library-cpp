@@ -60,8 +60,8 @@ data:
   timestamp: '2024-01-07 22:37:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
 documentation_of: convolution/divisor_zeta_moebius_transform.hpp
 layout: document
 title: "Multiple/Divisor Fast Zeta/M\xF6bius Transform"

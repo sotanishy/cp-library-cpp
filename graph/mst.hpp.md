@@ -105,10 +105,10 @@ data:
   timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_2_A.prim.test.cpp
+  - test/yosupo/manhattanmst.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
-  - test/yosupo/manhattanmst.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
 documentation_of: graph/mst.hpp
 layout: document
 title: Minimum Spanning Tree Algorithms

@@ -40,8 +40,8 @@ data:
   timestamp: '2024-01-07 22:05:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/runenumerate.test.cpp
   - test/yosupo/zalgorithm.test.cpp
+  - test/yosupo/runenumerate.test.cpp
 documentation_of: string/z_array.hpp
 layout: document
 title: Z Array

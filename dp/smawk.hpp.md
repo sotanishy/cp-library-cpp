@@ -71,6 +71,10 @@ SMAWK algorithm は，totally monotone 行列の各行の argmin を高速に求
     - $A_{i,j}=f(i,j)$ である $n \times m$ 行列 $A$ の各行の argmin を求める
     - 時間計算量: $O(n + m)$
 
+## Note
+
+多分壊れてる．monotone minima使って
+
 ## Reference
 
 - [Totally Monotone Matrix Searching (SMAWK algorithm)](https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120923/)

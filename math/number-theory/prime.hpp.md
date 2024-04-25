@@ -78,9 +78,9 @@ data:
   timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/enumerate_primes.test.cpp
   - test/aoj/ALDS1_1_C.is_prime.test.cpp
   - test/aoj/NTL_1_A.test.cpp
-  - test/yosupo/enumerate_primes.test.cpp
 documentation_of: math/number-theory/prime.hpp
 layout: document
 title: Prime Number Algorithms

@@ -173,8 +173,8 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy:
-  - math/lagrange_polynomial.hpp
   - math/factorial.hpp
+  - math/lagrange_polynomial.hpp
   timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
