@@ -11,7 +11,7 @@ class LinkCutTree {
     LinkCutTree() = default;
     explicit LinkCutTree(int n) {
         for (int i = 0; i < n; ++i) {
-            vertex.push_back(std::make_shared<Node>(M::id));
+            vertex.push_back(std::make_shared<Node>(M::id()));
         }
     }
 
@@ -34,6 +34,8 @@ class LinkCutTree {
         expose(vertex[v]);
         reverse(vertex[v]);
     }
+
+    int par(int v) { return vertex[v]->par ? vertex[v]->par->label : -1; }
 
     T get(int v) const { return vertex[v]->val; }
 

@@ -30,6 +30,9 @@ Link/cut tree は，森を管理するデータ構造である．以下の機能
 - `void evert(int v)`
     - 頂点 $v$ を木の根にする
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `int par(int v)`
+    - 頂点 $v$ の親を返す．頂点 $v$ が親ならば $-1$ を返す．
+    - 時間計算量: $O(1)$
 - `void get(int v)`
     - 頂点 $v$ の値を取得する
     - 時間計算量: $O(1)$
