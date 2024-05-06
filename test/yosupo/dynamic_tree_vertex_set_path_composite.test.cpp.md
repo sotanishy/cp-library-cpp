@@ -50,15 +50,16 @@ data:
     \    }\n\n   private:\n    int x;\n};\n#line 5 \"tree/link_cut_tree.hpp\"\n\n\
     template <typename M, typename M::T (*flip)(typename M::T)>\nclass LinkCutTree\
     \ {\n    using T = M::T;\n\n   public:\n    LinkCutTree() = default;\n    explicit\
-    \ LinkCutTree(int n) {\n        for (int i = 0; i < n; ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id));\n\
+    \ LinkCutTree(int n) {\n        for (int i = 0; i < n; ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id()));\n\
     \        }\n    }\n\n    void link(int v, int p) {\n        evert(v);\n      \
     \  expose(vertex[p]);\n        vertex[v]->par = vertex[p];\n        vertex[p]->right\
     \ = vertex[v];\n        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n \
     \       expose(vertex[v]);\n        auto p = vertex[v]->left;\n        vertex[v]->left\
     \ = p->par = nullptr;\n        recalc(vertex[v]);\n    }\n\n    void evert(int\
     \ v) {\n        expose(vertex[v]);\n        reverse(vertex[v]);\n    }\n\n   \
-    \ T get(int v) const { return vertex[v]->val; }\n\n    void set(int v, const T&\
-    \ x) {\n        expose(vertex[v]);\n        vertex[v]->val = x;\n        recalc(vertex[v]);\n\
+    \ int par(int v) { return vertex[v]->par ? vertex[v]->par->label : -1; }\n\n \
+    \   T get(int v) const { return vertex[v]->val; }\n\n    void set(int v, const\
+    \ T& x) {\n        expose(vertex[v]);\n        vertex[v]->val = x;\n        recalc(vertex[v]);\n\
     \    }\n\n    T fold(int u, int v) {\n        evert(u);\n        expose(vertex[v]);\n\
     \        return vertex[v]->sum;\n    }\n\n   private:\n    struct Node;\n    using\
     \ node_ptr = std::shared_ptr<Node>;\n\n    struct Node {\n        node_ptr left,\
@@ -108,9 +109,9 @@ data:
     \                   rotate_left(p);\n                    }\n                }\n\
     \            }\n        }\n    }\n};\n#line 8 \"test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp\"\
     \nusing namespace std;\n\nusing mint = Modint<998244353>;\n\nstruct AffineMonoid\
-    \ {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n    static constexpr\
-    \ T id = {{1, 0}, {1, 0}};\n    static T op(T a, T b) {\n        return {\n  \
-    \          {a.first.first * b.first.first,\n             a.first.second * b.first.first\
+    \ {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n    static T id()\
+    \ { return {{1, 0}, {1, 0}}; }\n    static T op(T a, T b) {\n        return {\n\
+    \            {a.first.first * b.first.first,\n             a.first.second * b.first.first\
     \ + b.first.second},\n            {b.second.first * a.second.first,\n        \
     \     b.second.second * a.second.first + a.second.second},\n        };\n    }\n\
     };\n\nAffineMonoid::T flip(AffineMonoid::T a) {\n    swap(a.first, a.second);\n\
@@ -131,7 +132,7 @@ data:
     \n\n#include <bits/stdc++.h>\n\n#include \"../../math/modint.hpp\"\n#include \"\
     ../../tree/link_cut_tree.hpp\"\nusing namespace std;\n\nusing mint = Modint<998244353>;\n\
     \nstruct AffineMonoid {\n    using T = pair<pair<mint, mint>, pair<mint, mint>>;\n\
-    \    static constexpr T id = {{1, 0}, {1, 0}};\n    static T op(T a, T b) {\n\
+    \    static T id() { return {{1, 0}, {1, 0}}; }\n    static T op(T a, T b) {\n\
     \        return {\n            {a.first.first * b.first.first,\n             a.first.second\
     \ * b.first.first + b.first.second},\n            {b.second.first * a.second.first,\n\
     \             b.second.second * a.second.first + a.second.second},\n        };\n\
@@ -155,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-05-07 01:20:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp

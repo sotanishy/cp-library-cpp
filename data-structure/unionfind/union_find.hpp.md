@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-structure/unionfind/static_range_union_find.hpp
+    title: Static Range Union Find
   - icon: ':heavy_check_mark:'
     path: graph/junction_tree.hpp
     title: Junction Tree (Width 2)
@@ -63,6 +66,7 @@ data:
   isVerificationFile: false
   path: data-structure/unionfind/union_find.hpp
   requiredBy:
+  - data-structure/unionfind/static_range_union_find.hpp
   - graph/manhattan_mst.hpp
   - graph/junction_tree.hpp
   - graph/minimum_spanning_arborescence.hpp

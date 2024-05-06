@@ -15,13 +15,14 @@ data:
     \ <memory>\n#include <vector>\n\ntemplate <typename M, typename M::T (*flip)(typename\
     \ M::T)>\nclass LinkCutTree {\n    using T = M::T;\n\n   public:\n    LinkCutTree()\
     \ = default;\n    explicit LinkCutTree(int n) {\n        for (int i = 0; i < n;\
-    \ ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id));\n     \
-    \   }\n    }\n\n    void link(int v, int p) {\n        evert(v);\n        expose(vertex[p]);\n\
+    \ ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id()));\n   \
+    \     }\n    }\n\n    void link(int v, int p) {\n        evert(v);\n        expose(vertex[p]);\n\
     \        vertex[v]->par = vertex[p];\n        vertex[p]->right = vertex[v];\n\
     \        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n        expose(vertex[v]);\n\
     \        auto p = vertex[v]->left;\n        vertex[v]->left = p->par = nullptr;\n\
     \        recalc(vertex[v]);\n    }\n\n    void evert(int v) {\n        expose(vertex[v]);\n\
-    \        reverse(vertex[v]);\n    }\n\n    T get(int v) const { return vertex[v]->val;\
+    \        reverse(vertex[v]);\n    }\n\n    int par(int v) { return vertex[v]->par\
+    \ ? vertex[v]->par->label : -1; }\n\n    T get(int v) const { return vertex[v]->val;\
     \ }\n\n    void set(int v, const T& x) {\n        expose(vertex[v]);\n       \
     \ vertex[v]->val = x;\n        recalc(vertex[v]);\n    }\n\n    T fold(int u,\
     \ int v) {\n        evert(u);\n        expose(vertex[v]);\n        return vertex[v]->sum;\n\
@@ -75,15 +76,16 @@ data:
   code: "#pragma once\n#include <algorithm>\n#include <memory>\n#include <vector>\n\
     \ntemplate <typename M, typename M::T (*flip)(typename M::T)>\nclass LinkCutTree\
     \ {\n    using T = M::T;\n\n   public:\n    LinkCutTree() = default;\n    explicit\
-    \ LinkCutTree(int n) {\n        for (int i = 0; i < n; ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id));\n\
+    \ LinkCutTree(int n) {\n        for (int i = 0; i < n; ++i) {\n            vertex.push_back(std::make_shared<Node>(M::id()));\n\
     \        }\n    }\n\n    void link(int v, int p) {\n        evert(v);\n      \
     \  expose(vertex[p]);\n        vertex[v]->par = vertex[p];\n        vertex[p]->right\
     \ = vertex[v];\n        recalc(vertex[p]);\n    }\n\n    void cut(int v) {\n \
     \       expose(vertex[v]);\n        auto p = vertex[v]->left;\n        vertex[v]->left\
     \ = p->par = nullptr;\n        recalc(vertex[v]);\n    }\n\n    void evert(int\
     \ v) {\n        expose(vertex[v]);\n        reverse(vertex[v]);\n    }\n\n   \
-    \ T get(int v) const { return vertex[v]->val; }\n\n    void set(int v, const T&\
-    \ x) {\n        expose(vertex[v]);\n        vertex[v]->val = x;\n        recalc(vertex[v]);\n\
+    \ int par(int v) { return vertex[v]->par ? vertex[v]->par->label : -1; }\n\n \
+    \   T get(int v) const { return vertex[v]->val; }\n\n    void set(int v, const\
+    \ T& x) {\n        expose(vertex[v]);\n        vertex[v]->val = x;\n        recalc(vertex[v]);\n\
     \    }\n\n    T fold(int u, int v) {\n        evert(u);\n        expose(vertex[v]);\n\
     \        return vertex[v]->sum;\n    }\n\n   private:\n    struct Node;\n    using\
     \ node_ptr = std::shared_ptr<Node>;\n\n    struct Node {\n        node_ptr left,\
@@ -136,7 +138,7 @@ data:
   isVerificationFile: false
   path: tree/link_cut_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-08 00:27:17+09:00'
+  timestamp: '2024-05-07 01:20:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dynamic_tree_vertex_set_path_composite.test.cpp
@@ -172,6 +174,9 @@ Link/cut tree は，森を管理するデータ構造である．以下の機能
 - `void evert(int v)`
     - 頂点 $v$ を木の根にする
     - 時間計算量: $\mathrm{amortized}\ O(\log n)$
+- `int par(int v)`
+    - 頂点 $v$ の親を返す．頂点 $v$ が親ならば $-1$ を返す．
+    - 時間計算量: $O(1)$
 - `void get(int v)`
     - 頂点 $v$ の値を取得する
     - 時間計算量: $O(1)$

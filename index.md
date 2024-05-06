@@ -178,6 +178,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/persistent_union_find.hpp
       title: Persistent Union Find
+    - icon: ':warning:'
+      path: data-structure/unionfind/static_range_union_find.hpp
+      title: Static Range Union Find
     - icon: ':heavy_check_mark:'
       path: data-structure/unionfind/undoable_union_find.hpp
       title: Undoable Union Find
