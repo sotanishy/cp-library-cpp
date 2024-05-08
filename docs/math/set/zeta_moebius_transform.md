@@ -1,6 +1,6 @@
 ---
 title: Fast Zeta/Möbius Transform
-documentation_of: ../../set/zeta_moebius_transform.hpp
+documentation_of: ../../../math/set/zeta_moebius_transform.hpp
 ---
 
 ## Description

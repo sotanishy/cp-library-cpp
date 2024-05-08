@@ -4,6 +4,9 @@
 
 #include "../data-structure/segtree/lazy_segment_tree.hpp"
 
+/**
+ * @brief Area of Union of Rectangles
+ */
 struct CountMinMonoid {
     using T = std::pair<int, int>;  // min, count
     static T id() { return {(1u << 31) - 1, 0}; }

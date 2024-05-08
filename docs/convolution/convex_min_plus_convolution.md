@@ -1,6 +1,6 @@
 ---
 title: Convex Min-Plus Convolution
-documentation_of: ../../dp/smawk.hpp
+documentation_of: ../../convolution/convex_min_plus_convolution.hpp
 ---
 
 ## Description
