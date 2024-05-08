@@ -8,7 +8,7 @@ data:
       title: Arbitrary Mod Convolution
     - icon: ':heavy_check_mark:'
       path: convolution/convex_min_plus_convolution.hpp
-      title: convolution/convex_min_plus_convolution.hpp
+      title: Convex Min-Plus Convolution
     - icon: ':heavy_check_mark:'
       path: convolution/divisor_zeta_moebius_transform.hpp
       title: "Multiple/Divisor Fast Zeta/M\xF6bius Transform"
@@ -517,7 +517,7 @@ data:
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
       path: math/set/zeta_moebius_transform.hpp
-      title: math/set/zeta_moebius_transform.hpp
+      title: "Fast Zeta/M\xF6bius Transform"
   - name: misc
     pages:
     - icon: ':heavy_check_mark:'
@@ -573,7 +573,7 @@ data:
       title: misc/random.hpp
     - icon: ':heavy_check_mark:'
       path: misc/rectangle_union.hpp
-      title: misc/rectangle_union.hpp
+      title: Area of Union of Rectangles
     - icon: ':warning:'
       path: misc/sorting.hpp
       title: Sorting Algorithms

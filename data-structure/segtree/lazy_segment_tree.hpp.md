@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: misc/rectangle_union.hpp
-    title: misc/rectangle_union.hpp
+    title: Area of Union of Rectangles
   - icon: ':heavy_check_mark:'
     path: tree/permutation_tree.hpp
     title: Permutation Tree

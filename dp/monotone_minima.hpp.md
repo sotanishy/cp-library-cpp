@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: convolution/convex_min_plus_convolution.hpp
-    title: convolution/convex_min_plus_convolution.hpp
+    title: Convex Min-Plus Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/min_plus_convolution_convex_arbitrary.test.cpp

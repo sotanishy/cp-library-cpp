@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: convolution/convex_min_plus_convolution.hpp
-    title: convolution/convex_min_plus_convolution.hpp
+    title: Convex Min-Plus Convolution
   - icon: ':heavy_check_mark:'
     path: dp/monotone_minima.hpp
     title: Monotone Minima

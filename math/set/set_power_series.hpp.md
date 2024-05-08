@@ -6,7 +6,7 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: math/set/zeta_moebius_transform.hpp
-    title: math/set/zeta_moebius_transform.hpp
+    title: "Fast Zeta/M\xF6bius Transform"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/linalg/hafnian.hpp

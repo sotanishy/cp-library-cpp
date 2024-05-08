@@ -6,7 +6,7 @@ data:
     title: Segment Tree with Lazy Propagation
   - icon: ':heavy_check_mark:'
     path: misc/rectangle_union.hpp
-    title: misc/rectangle_union.hpp
+    title: Area of Union of Rectangles
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -65,14 +65,15 @@ data:
     \ m = std::midpoint(l, r);\n        int res = find_last(a, b, 2 * k + 1, m, r,\
     \ v, cond);\n        if (res != -1) return res;\n        return find_last(a, b,\
     \ 2 * k, l, m, v, cond);\n    }\n};\n#line 6 \"misc/rectangle_union.hpp\"\n\n\
-    struct CountMinMonoid {\n    using T = std::pair<int, int>;  // min, count\n \
-    \   static T id() { return {(1u << 31) - 1, 0}; }\n    static T op(T a, T b) {\n\
-    \        if (a.first < b.first) return a;\n        if (a.first > b.first) return\
-    \ b;\n        return {a.first, a.second + b.second};\n    }\n};\n\nstruct AddMonoid\
-    \ {\n    using T = int;\n    static T id() { return 0; }\n    static T op(T a,\
-    \ T b) { return a + b; }\n};\n\nCountMinMonoid::T act(CountMinMonoid::T a, AddMonoid::T\
-    \ b) {\n    return {a.first + b, a.second};\n}\n\n// rectangles are given in the\
-    \ form (l, d, r, u)\nlong long area_of_union_of_rectangles(\n    const std::vector<std::tuple<long\
+    /**\n * @brief Area of Union of Rectangles\n */\nstruct CountMinMonoid {\n   \
+    \ using T = std::pair<int, int>;  // min, count\n    static T id() { return {(1u\
+    \ << 31) - 1, 0}; }\n    static T op(T a, T b) {\n        if (a.first < b.first)\
+    \ return a;\n        if (a.first > b.first) return b;\n        return {a.first,\
+    \ a.second + b.second};\n    }\n};\n\nstruct AddMonoid {\n    using T = int;\n\
+    \    static T id() { return 0; }\n    static T op(T a, T b) { return a + b; }\n\
+    };\n\nCountMinMonoid::T act(CountMinMonoid::T a, AddMonoid::T b) {\n    return\
+    \ {a.first + b, a.second};\n}\n\n// rectangles are given in the form (l, d, r,\
+    \ u)\nlong long area_of_union_of_rectangles(\n    const std::vector<std::tuple<long\
     \ long, long long, long long, long long>>&\n        rects) {\n    std::vector<long\
     \ long> xs, ys;\n    for (auto [l, d, r, u] : rects) {\n        xs.push_back(l);\n\
     \        xs.push_back(r);\n        ys.push_back(d);\n        ys.push_back(u);\n\
@@ -110,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2024-03-20 21:25:02+09:00'
+  timestamp: '2024-05-08 10:29:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/area_of_union_of_rectangles.test.cpp
