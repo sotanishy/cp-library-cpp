@@ -56,8 +56,8 @@ data:
   timestamp: '2024-03-02 18:46:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/range_affine_point_get.test.cpp
   - test/yosupo/rectangle_add_point_get.2d_dual_segtree.test.cpp
+  - test/yosupo/range_affine_point_get.test.cpp
 documentation_of: data-structure/segtree/dual_segment_tree.hpp
 layout: document
 title: Dual Segment Tree

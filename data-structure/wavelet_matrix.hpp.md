@@ -115,8 +115,8 @@ data:
   timestamp: '2024-01-08 02:22:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/range_kth_smallest.test.cpp
   - test/yosupo/static_range_frequency.test.cpp
+  - test/yosupo/range_kth_smallest.test.cpp
 documentation_of: data-structure/wavelet_matrix.hpp
 layout: document
 title: Wavelet Matrix

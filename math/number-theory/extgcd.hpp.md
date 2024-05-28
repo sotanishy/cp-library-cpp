@@ -36,8 +36,8 @@ data:
   isVerificationFile: false
   path: math/number-theory/extgcd.hpp
   requiredBy:
-  - convolution/arbitrary_mod_convolution.hpp
   - math/number-theory/garner.hpp
+  - convolution/arbitrary_mod_convolution.hpp
   timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

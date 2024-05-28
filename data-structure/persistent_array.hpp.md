@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: data-structure/persistent_array.hpp
   requiredBy:
-  - data-structure/persistent_queue.hpp
   - data-structure/unionfind/persistent_union_find.hpp
+  - data-structure/persistent_queue.hpp
   timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

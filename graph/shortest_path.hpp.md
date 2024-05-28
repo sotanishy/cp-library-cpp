@@ -127,10 +127,10 @@ data:
   timestamp: '2024-01-08 13:32:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/shortest_path.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_A.test.cpp
   - test/aoj/GRL_1_B.test.cpp
+  - test/aoj/GRL_1_C.test.cpp
+  - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/shortest_path.hpp
 layout: document
 title: Shortest Path Algorithms

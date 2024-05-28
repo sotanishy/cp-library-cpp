@@ -162,8 +162,8 @@ data:
   timestamp: '2024-01-08 01:52:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
   - test/aoj/1508.splay_tree.test.cpp
+  - test/yosupo/range_reverse_range_sum.splay_tree.test.cpp
 documentation_of: data-structure/bst/splay_tree.hpp
 layout: document
 title: Splay Tree

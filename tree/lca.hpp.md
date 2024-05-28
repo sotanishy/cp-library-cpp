@@ -78,13 +78,13 @@ data:
   isVerificationFile: false
   path: tree/lca.hpp
   requiredBy:
-  - tree/auxiliary_tree.hpp
   - tree/binary_lifting.hpp
+  - tree/auxiliary_tree.hpp
   timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/lca.test.cpp
   - test/yosupo/jump_on_tree.test.cpp
+  - test/yosupo/lca.test.cpp
 documentation_of: tree/lca.hpp
 layout: document
 title: Lowest Common Ancestor

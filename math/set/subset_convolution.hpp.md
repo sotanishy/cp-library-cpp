@@ -88,8 +88,8 @@ data:
   isVerificationFile: false
   path: math/set/subset_convolution.hpp
   requiredBy:
-  - math/linalg/hafnian.hpp
   - math/set/set_power_series.hpp
+  - math/linalg/hafnian.hpp
   timestamp: '2024-01-08 17:31:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

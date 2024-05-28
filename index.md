@@ -207,6 +207,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/lis.hpp
       title: Longest Increasing Subsequence
+    - icon: ':warning:'
+      path: dp/monge_shortest_path.hpp
+      title: Monge Shortest Path
     - icon: ':heavy_check_mark:'
       path: dp/monotone_minima.hpp
       title: Monotone Minima
