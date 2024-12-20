@@ -106,14 +106,26 @@ std::vector<int> cyclic_suffix_array(const std::string& s) {
 /*
 // comparator for substrings
 // used for string matching with the suffix array
+// use cmp1 for lower_bound and cmp2 for upper_bound
+// replace S with your variable name for the string
 
-auto cmp = [&](int si, const string& t) {
+auto cmp1 = [&](int si, const string& t) {
     int sn = S.size(), tn = t.size();
     int ti = 0;
     for (; si < sn && ti < tn; ++si, ++ti) {
-        if (T[si] < t[ti]) return true;
-        if (T[si] > t[ti]) return false;
+        if (S[si] < t[ti]) return true;
+        if (S[si] > t[ti]) return false;
     }
     return si == sn && ti < tn;
+};
+
+auto cmp2 = [&](const string& t, int si) {
+    int sn = S.size(), tn = t.size();
+    int ti = 0;
+    for (; si < sn && ti < tn; ++si, ++ti) {
+        if (S[si] > t[ti]) return true;
+        if (S[si] < t[ti]) return false;
+    }
+    return ti == tn && si < tn;
 };
 */
