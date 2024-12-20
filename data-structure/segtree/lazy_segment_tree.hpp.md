@@ -119,14 +119,14 @@ data:
   isVerificationFile: false
   path: data-structure/segtree/lazy_segment_tree.hpp
   requiredBy:
-  - misc/rectangle_union.hpp
   - tree/permutation_tree.hpp
+  - misc/rectangle_union.hpp
   timestamp: '2024-03-20 21:25:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/area_of_union_of_rectangles.test.cpp
-  - test/yosupo/common_interval_decomposition_tree.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/common_interval_decomposition_tree.test.cpp
 documentation_of: data-structure/segtree/lazy_segment_tree.hpp
 layout: document
 title: Segment Tree with Lazy Propagation

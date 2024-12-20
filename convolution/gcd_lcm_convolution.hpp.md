@@ -64,8 +64,8 @@ data:
   timestamp: '2024-01-07 22:37:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/lcm_convolution.test.cpp
   - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/lcm_convolution.test.cpp
 documentation_of: convolution/gcd_lcm_convolution.hpp
 layout: document
 redirect_from:

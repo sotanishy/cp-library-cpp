@@ -58,7 +58,7 @@ Convex hull trick は，直線集合 $L$ への追加クエリと最小値クエ
 
 ## Operations
 
-- `T add(T a, T b)`
+- `void add(T a, T b)`
     - 直線 $ax + b$ を $L$ に追加する
     - 時間計算量: $\mathrm{amortized}\ O(1)$
 - `T get(T x)`

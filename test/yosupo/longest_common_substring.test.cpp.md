@@ -73,24 +73,28 @@ data:
     \ = cl;\n        }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
     \ cyclic_suffix_array(const std::string& s) {\n    return cyclic_suffix_array(std::vector<char>(s.begin(),\
     \ s.end()));\n}\n\n/*\n// comparator for substrings\n// used for string matching\
-    \ with the suffix array\n\nauto cmp = [&](int si, const string& t) {\n    int\
-    \ sn = S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn;\
-    \ ++si, ++ti) {\n        if (T[si] < t[ti]) return true;\n        if (T[si] >\
-    \ t[ti]) return false;\n    }\n    return si == sn && ti < tn;\n};\n*/\n#line\
-    \ 7 \"string/longest_common_substring.hpp\"\n\n/**\n * @brief Longest Common Substring\n\
-    \ */\nstd::tuple<int, int, int, int> longest_common_substring(const std::string&\
-    \ s,\n                                                        const std::string&\
-    \ t) {\n    const int n = s.size();\n    auto st = s + \"$\" + t;\n    auto sa\
-    \ = suffix_array(st);\n    auto lcp = lcp_array(st, sa);\n    std::pair<int, std::tuple<int,\
-    \ int, int, int>> ans(0, {0, 0, 0, 0});\n    for (int i = 0; i < (int)st.size()\
-    \ - 1; ++i) {\n        int len = lcp[i];\n        if (len == 0) continue;\n  \
-    \      if (sa[i] < n && sa[i + 1] >= n + 1) {\n            int a = sa[i], c =\
-    \ sa[i + 1] - n - 1;\n            ans = std::max(ans, {len, {a, a + len, c, c\
-    \ + len}});\n        } else if (sa[i] >= n + 1 && sa[i + 1] < n) {\n         \
-    \   int a = sa[i + 1], c = sa[i] - n - 1;\n            ans = std::max(ans, {len,\
-    \ {a, a + len, c, c + len}});\n        }\n    }\n    return ans.second;\n}\n#line\
-    \ 4 \"test/yosupo/longest_common_substring.test.cpp\"\n\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \ with the suffix array\n// use cmp1 for lower_bound and cmp2 for upper_bound\n\
+    // replace S with your variable name for the string\n\nauto cmp1 = [&](int si,\
+    \ const string& t) {\n    int sn = S.size(), tn = t.size();\n    int ti = 0;\n\
+    \    for (; si < sn && ti < tn; ++si, ++ti) {\n        if (S[si] < t[ti]) return\
+    \ true;\n        if (S[si] > t[ti]) return false;\n    }\n    return si == sn\
+    \ && ti < tn;\n};\n\nauto cmp2 = [&](const string& t, int si) {\n    int sn =\
+    \ S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn; ++si,\
+    \ ++ti) {\n        if (S[si] > t[ti]) return true;\n        if (S[si] < t[ti])\
+    \ return false;\n    }\n    return ti == tn && si < tn;\n};\n*/\n#line 7 \"string/longest_common_substring.hpp\"\
+    \n\n/**\n * @brief Longest Common Substring\n */\nstd::tuple<int, int, int, int>\
+    \ longest_common_substring(const std::string& s,\n                           \
+    \                             const std::string& t) {\n    const int n = s.size();\n\
+    \    auto st = s + \"$\" + t;\n    auto sa = suffix_array(st);\n    auto lcp =\
+    \ lcp_array(st, sa);\n    std::pair<int, std::tuple<int, int, int, int>> ans(0,\
+    \ {0, 0, 0, 0});\n    for (int i = 0; i < (int)st.size() - 1; ++i) {\n       \
+    \ int len = lcp[i];\n        if (len == 0) continue;\n        if (sa[i] < n &&\
+    \ sa[i + 1] >= n + 1) {\n            int a = sa[i], c = sa[i + 1] - n - 1;\n \
+    \           ans = std::max(ans, {len, {a, a + len, c, c + len}});\n        } else\
+    \ if (sa[i] >= n + 1 && sa[i + 1] < n) {\n            int a = sa[i + 1], c = sa[i]\
+    \ - n - 1;\n            ans = std::max(ans, {len, {a, a + len, c, c + len}});\n\
+    \        }\n    }\n    return ans.second;\n}\n#line 4 \"test/yosupo/longest_common_substring.test.cpp\"\
+    \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n\n    string S, T;\n    cin >> S >> T;\n    auto [a, b,\
     \ c, d] = longest_common_substring(S, T);\n    cout << a << \" \" << b << \" \"\
     \ << c << \" \" << d << endl;\n}\n"
@@ -107,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/longest_common_substring.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 22:37:45+09:00'
+  timestamp: '2024-12-20 23:39:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/longest_common_substring.test.cpp

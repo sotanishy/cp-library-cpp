@@ -68,13 +68,13 @@ data:
   isVerificationFile: false
   path: data-structure/leftist_heap.hpp
   requiredBy:
-  - graph/minimum_spanning_arborescence.hpp
   - dp/hu_tucker.hpp
+  - graph/minimum_spanning_arborescence.hpp
   timestamp: '2024-01-08 01:32:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2415.test.cpp
   - test/yosupo/directedmst.test.cpp
+  - test/aoj/2415.test.cpp
 documentation_of: data-structure/leftist_heap.hpp
 layout: document
 title: Leftist Heap

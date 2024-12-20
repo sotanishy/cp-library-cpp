@@ -61,10 +61,15 @@ data:
     \ = cl;\n        }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
     \ cyclic_suffix_array(const std::string& s) {\n    return cyclic_suffix_array(std::vector<char>(s.begin(),\
     \ s.end()));\n}\n\n/*\n// comparator for substrings\n// used for string matching\
-    \ with the suffix array\n\nauto cmp = [&](int si, const string& t) {\n    int\
-    \ sn = S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn;\
-    \ ++si, ++ti) {\n        if (T[si] < t[ti]) return true;\n        if (T[si] >\
-    \ t[ti]) return false;\n    }\n    return si == sn && ti < tn;\n};\n*/\n"
+    \ with the suffix array\n// use cmp1 for lower_bound and cmp2 for upper_bound\n\
+    // replace S with your variable name for the string\n\nauto cmp1 = [&](int si,\
+    \ const string& t) {\n    int sn = S.size(), tn = t.size();\n    int ti = 0;\n\
+    \    for (; si < sn && ti < tn; ++si, ++ti) {\n        if (S[si] < t[ti]) return\
+    \ true;\n        if (S[si] > t[ti]) return false;\n    }\n    return si == sn\
+    \ && ti < tn;\n};\n\nauto cmp2 = [&](const string& t, int si) {\n    int sn =\
+    \ S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn; ++si,\
+    \ ++ti) {\n        if (S[si] > t[ti]) return true;\n        if (S[si] < t[ti])\
+    \ return false;\n    }\n    return ti == tn && si < tn;\n};\n*/\n"
   code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <string>\n\
     #include <vector>\n\ntemplate <typename T>\nstd::vector<int> suffix_array(const\
     \ std::vector<T>& s) {\n    const int n = s.size();\n    std::vector<int> sa(n);\n\
@@ -106,21 +111,26 @@ data:
     \ = cl;\n        }\n        rank.swap(nrank);\n    }\n    return sa;\n}\n\nstd::vector<int>\
     \ cyclic_suffix_array(const std::string& s) {\n    return cyclic_suffix_array(std::vector<char>(s.begin(),\
     \ s.end()));\n}\n\n/*\n// comparator for substrings\n// used for string matching\
-    \ with the suffix array\n\nauto cmp = [&](int si, const string& t) {\n    int\
-    \ sn = S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn;\
-    \ ++si, ++ti) {\n        if (T[si] < t[ti]) return true;\n        if (T[si] >\
-    \ t[ti]) return false;\n    }\n    return si == sn && ti < tn;\n};\n*/\n"
+    \ with the suffix array\n// use cmp1 for lower_bound and cmp2 for upper_bound\n\
+    // replace S with your variable name for the string\n\nauto cmp1 = [&](int si,\
+    \ const string& t) {\n    int sn = S.size(), tn = t.size();\n    int ti = 0;\n\
+    \    for (; si < sn && ti < tn; ++si, ++ti) {\n        if (S[si] < t[ti]) return\
+    \ true;\n        if (S[si] > t[ti]) return false;\n    }\n    return si == sn\
+    \ && ti < tn;\n};\n\nauto cmp2 = [&](const string& t, int si) {\n    int sn =\
+    \ S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn; ++si,\
+    \ ++ti) {\n        if (S[si] > t[ti]) return true;\n        if (S[si] < t[ti])\
+    \ return false;\n    }\n    return ti == tn && si < tn;\n};\n*/\n"
   dependsOn: []
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy:
   - string/longest_common_substring.hpp
-  timestamp: '2024-01-07 22:37:45+09:00'
+  timestamp: '2024-12-20 23:39:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_of_substrings.test.cpp
-  - test/yosupo/suffixarray.test.cpp
   - test/yosupo/longest_common_substring.test.cpp
+  - test/yosupo/suffixarray.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 title: Suffix Array

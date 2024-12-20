@@ -69,10 +69,15 @@ data:
     \    }\n    return sa;\n}\n\nstd::vector<int> cyclic_suffix_array(const std::string&\
     \ s) {\n    return cyclic_suffix_array(std::vector<char>(s.begin(), s.end()));\n\
     }\n\n/*\n// comparator for substrings\n// used for string matching with the suffix\
-    \ array\n\nauto cmp = [&](int si, const string& t) {\n    int sn = S.size(), tn\
-    \ = t.size();\n    int ti = 0;\n    for (; si < sn && ti < tn; ++si, ++ti) {\n\
-    \        if (T[si] < t[ti]) return true;\n        if (T[si] > t[ti]) return false;\n\
-    \    }\n    return si == sn && ti < tn;\n};\n*/\n#line 7 \"test/yosupo/number_of_substrings.test.cpp\"\
+    \ array\n// use cmp1 for lower_bound and cmp2 for upper_bound\n// replace S with\
+    \ your variable name for the string\n\nauto cmp1 = [&](int si, const string& t)\
+    \ {\n    int sn = S.size(), tn = t.size();\n    int ti = 0;\n    for (; si < sn\
+    \ && ti < tn; ++si, ++ti) {\n        if (S[si] < t[ti]) return true;\n       \
+    \ if (S[si] > t[ti]) return false;\n    }\n    return si == sn && ti < tn;\n};\n\
+    \nauto cmp2 = [&](const string& t, int si) {\n    int sn = S.size(), tn = t.size();\n\
+    \    int ti = 0;\n    for (; si < sn && ti < tn; ++si, ++ti) {\n        if (S[si]\
+    \ > t[ti]) return true;\n        if (S[si] < t[ti]) return false;\n    }\n   \
+    \ return ti == tn && si < tn;\n};\n*/\n#line 7 \"test/yosupo/number_of_substrings.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(0);\n\n    string S;\n    cin >> S;\n    int N = S.size();\n    auto\
     \ sa = suffix_array(S);\n    auto lcp = lcp_array(S, sa);\n    long long ans =\
@@ -91,7 +96,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2024-01-07 22:37:45+09:00'
+  timestamp: '2024-12-20 23:39:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_of_substrings.test.cpp

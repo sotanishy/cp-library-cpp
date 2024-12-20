@@ -130,6 +130,9 @@ data:
       path: data-structure/cht/li_chao_tree.hpp
       title: Li Chao Tree
     - icon: ':warning:'
+      path: data-structure/cht/nonlinear_convex_hull_trick.hpp
+      title: Nonlinear Convex Hull Trick
+    - icon: ':warning:'
       path: data-structure/cht/offline_deletable_convex_hull_trick.hpp
       title: Offline Deletable Convex Hull Trick
     - icon: ':warning:'
