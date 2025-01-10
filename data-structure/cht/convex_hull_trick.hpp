@@ -10,7 +10,7 @@ class ConvexHullTrick {
     void add(T a, T b) {
         Line line(a, b);
         while (lines.size() >= 2 &&
-               check(*(lines.end() - 2), lines.back(), line)) {
+               check(lines[lines.size() - 2], lines.back(), line)) {
             lines.pop_back();
         }
         lines.push_back(line);

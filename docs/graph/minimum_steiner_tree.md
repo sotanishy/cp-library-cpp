@@ -17,5 +17,5 @@ documentation_of: ../../graph/minimum_steiner_tree.hpp
 
 ## Reference
 
-- [Steiner Tree - My Algirithm](https://kopricky.github.io/code/Academic/steiner_tree.html)
+- [Steiner Tree - My Algorithm](https://kopricky.github.io/code/Academic/steiner_tree.html)
 - [指数時間アルゴリズム入門 - slideshare](https://www.slideshare.net/wata_orz/ss-12131479)
