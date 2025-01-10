@@ -147,8 +147,8 @@ data:
   path: geometry/bisector.hpp
   requiredBy:
   - geometry/delaunay_diagram.hpp
-  - geometry/minimum_bounding_circle.hpp
   - geometry/triangle.hpp
+  - geometry/minimum_bounding_circle.hpp
   timestamp: '2024-01-08 01:08:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

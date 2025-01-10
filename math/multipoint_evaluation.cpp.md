@@ -173,14 +173,14 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.cpp
   requiredBy:
-  - math/lagrange_polynomial.hpp
   - math/factorial.hpp
+  - math/lagrange_polynomial.hpp
   timestamp: '2024-01-08 00:27:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/factorial.test.cpp
   - test/yosupo/polynomial_interpolation.test.cpp
   - test/yosupo/multipoint_evaluation.test.cpp
+  - test/yosupo/factorial.test.cpp
 documentation_of: math/multipoint_evaluation.cpp
 layout: document
 title: Multipoint Evaluation

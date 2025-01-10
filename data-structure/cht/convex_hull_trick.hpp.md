@@ -11,8 +11,8 @@ data:
   bundledCode: "#line 2 \"data-structure/cht/convex_hull_trick.hpp\"\n#include <algorithm>\n\
     #include <deque>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
     \ T>\nclass ConvexHullTrick {\n   public:\n    void add(T a, T b) {\n        Line\
-    \ line(a, b);\n        while (lines.size() >= 2 &&\n               check(*(lines.end()\
-    \ - 2), lines.back(), line)) {\n            lines.pop_back();\n        }\n   \
+    \ line(a, b);\n        while (lines.size() >= 2 &&\n               check(lines[lines.size()\
+    \ - 2], lines.back(), line)) {\n            lines.pop_back();\n        }\n   \
     \     lines.push_back(line);\n    }\n\n    T get(T x) {\n        while (lines.size()\
     \ >= 2 && lines.front()(x) > lines[1](x)) {\n            lines.pop_front();\n\
     \        }\n        return lines.front()(x);\n    }\n\n   private:\n    struct\
@@ -25,9 +25,9 @@ data:
   code: "#pragma once\n#include <algorithm>\n#include <deque>\n#include <utility>\n\
     #include <vector>\n\ntemplate <typename T>\nclass ConvexHullTrick {\n   public:\n\
     \    void add(T a, T b) {\n        Line line(a, b);\n        while (lines.size()\
-    \ >= 2 &&\n               check(*(lines.end() - 2), lines.back(), line)) {\n \
-    \           lines.pop_back();\n        }\n        lines.push_back(line);\n   \
-    \ }\n\n    T get(T x) {\n        while (lines.size() >= 2 && lines.front()(x)\
+    \ >= 2 &&\n               check(lines[lines.size() - 2], lines.back(), line))\
+    \ {\n            lines.pop_back();\n        }\n        lines.push_back(line);\n\
+    \    }\n\n    T get(T x) {\n        while (lines.size() >= 2 && lines.front()(x)\
     \ > lines[1](x)) {\n            lines.pop_front();\n        }\n        return\
     \ lines.front()(x);\n    }\n\n   private:\n    struct Line {\n        T a, b;\n\
     \        Line(T a, T b) : a(a), b(b) {}\n        T operator()(T x) const { return\
@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: data-structure/cht/convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2024-01-08 01:32:22+09:00'
+  timestamp: '2025-01-11 01:32:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-structure/cht/convex_hull_trick.hpp

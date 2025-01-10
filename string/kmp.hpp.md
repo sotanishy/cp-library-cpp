@@ -83,8 +83,8 @@ data:
   timestamp: '2024-01-07 22:05:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_14_C.test.cpp
   - test/aoj/ALDS1_14_B.kmp.test.cpp
+  - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: string/kmp.hpp
 layout: document
 title: Knuth-Morris-Pratt Algorithm

@@ -78,8 +78,8 @@ data:
   isVerificationFile: false
   path: tree/lca.hpp
   requiredBy:
-  - tree/binary_lifting.hpp
   - tree/auxiliary_tree.hpp
+  - tree/binary_lifting.hpp
   timestamp: '2024-03-02 20:34:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

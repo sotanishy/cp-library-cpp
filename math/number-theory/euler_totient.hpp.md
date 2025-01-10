@@ -88,8 +88,8 @@ data:
   - test/yosupo/sqrt_mod.test.cpp
   - test/yosupo/sum_of_totient_function.test.cpp
   - test/yosupo/discrete_logarithm_mod.test.cpp
-  - test/aoj/NTL_1_B.test.cpp
   - test/aoj/NTL_1_D.test.cpp
+  - test/aoj/NTL_1_B.test.cpp
 documentation_of: math/number-theory/euler_totient.hpp
 layout: document
 title: Euler's Totient Function
