@@ -53,18 +53,20 @@ data:
     \ {\n        return std::make_pair(v.imag(), v.real());\n    });\n    pts.erase(std::ranges::unique(pts).begin(),\
     \ pts.end());\n    const int n = pts.size();\n    if (n <= 1) return pts;\n  \
     \  int k = 0;  // the number of vertices in the convex hull\n    std::vector<Vec>\
-    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
-    \ > 1 &&\n               leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]),\
-    \ 0))\n            --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n  \
-    \  // left\n    for (int i = n - 2; i >= 0; --i) {\n        while (k > t &&\n\
-    \               leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n  \
-    \          --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n   \
-    \ return ch;\n}\n#line 8 \"test/aoj/CGL_4_A.test.cpp\"\nusing namespace std;\n\
-    \nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \n    int n;\n    cin >> n;\n    vector<Vec> points(n);\n    for (auto& p : points)\
-    \ cin >> p;\n    auto ans = convex_hull(points, false);\n    cout << ans.size()\
-    \ << endl;\n    for (auto& p : ans) cout << p.real() << \" \" << p.imag() << \"\
-    \\n\";\n}\n"
+    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        if (strict)\
+    \ {\n            while (k > 1 &&\n                   leq(cross(ch[k - 1] - ch[k\
+    \ - 2], pts[i] - ch[k - 1]), 0))\n                --k;\n        } else {\n   \
+    \         while (k > 1 &&\n                   lt(cross(ch[k - 1] - ch[k - 2],\
+    \ pts[i] - ch[k - 1]), 0))\n                --k;\n        }\n        ch[k++] =\
+    \ pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >= 0;\
+    \ --i) {\n        while (k > t &&\n               leq(cross(ch[k - 1] - ch[k -\
+    \ 2], pts[i] - ch[k - 1]), 0))\n            --k;\n        ch[k++] = pts[i];\n\
+    \    }\n    ch.resize(k - 1);\n    return ch;\n}\n#line 8 \"test/aoj/CGL_4_A.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<Vec> points(n);\n\
+    \    for (auto& p : points) cin >> p;\n    auto ans = convex_hull(points, false);\n\
+    \    cout << ans.size() << endl;\n    for (auto& p : ans) cout << p.real() <<\
+    \ \" \" << p.imag() << \"\\n\";\n}\n"
   code: "#define PROBLEM \\\n    \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
     \n\n#include <bits/stdc++.h>\n\n#include \"../../geometry/convex_hull.hpp\"\n\
     #include \"../../geometry/geometry.hpp\"\nusing namespace std;\n\nint main() {\n\
@@ -78,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2025-01-11 17:14:05+09:00'
+  timestamp: '2025-01-11 17:52:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_A.test.cpp
