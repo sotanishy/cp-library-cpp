@@ -13,13 +13,9 @@ documentation_of: ../../graph/biconnected_components.hpp
 
 ## Operations
 
-- `vector<vector<pair<int, int>>> biconnected_components(vector<vector<int>> G, Lowlink low)`
-    - グラフ $G$ の隣接リストと，$G$ の lowlink 構造体が与えられたとき，$G$ を二重頂点連結成分分解する
-    - $G$ の二重頂点連結成分を返す
+- `vector<vector<int>> biconnected_components(vector<vector<int>> G, Lowlink low)`
+    - グラフ $G$ の隣接リストと，$G$ の lowlink 構造体が与えられたとき，$G$ を二重頂点連結成分分解する．$G$ の二重頂点連結成分を返す
     - 時間計算量: $O(V + E)$
-
-## Note
-
-多重辺は予め取り除いておく必要がある (多重辺を取り除いても二重頂点連結成分は変化しない)．
-
-また，孤立点にも注意する (孤立点はそれで一つの二重頂点連結成分となるが，この関数は辺を返すため，孤立点からなる成分は含まれない)．
+- `vector<vector<int>> block_cut_tree(vector<vector<int>> blocks, vector<int> cuts)`
+    - ブロック（二重頂点連結成分）とカット（関節点）のリストが与えられたときに，対応する block cut tree の隣接リストを返す
+    - 時間計算量: $O(B + C)$

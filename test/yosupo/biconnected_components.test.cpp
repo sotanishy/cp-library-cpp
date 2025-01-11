@@ -15,34 +15,18 @@ int main() {
     int N, M;
     cin >> N >> M;
     vector<vector<int>> G(N);
-    set<pair<int, int>> st;
-    vector<bool> alone(N, true);
     for (int i = 0; i < M; ++i) {
         int a, b;
         cin >> a >> b;
-        if (!st.count(minmax(a, b))) {
-            G[a].push_back(b);
-            G[b].push_back(a);
-            alone[a] = alone[b] = false;
-        }
-        st.insert(minmax(a, b));
+        G[a].push_back(b);
+        G[b].push_back(a);
     }
     Lowlink low(G);
-    auto comps = biconnected_components(G, low);
-    for (int i = 0; i < N; ++i) {
-        if (alone[i]) {
-            comps.push_back({{i, i}});
-        }
-    }
-    cout << comps.size() << endl;
-    for (auto& comp : comps) {
-        set<int> st;
-        for (auto [u, v] : comp) {
-            st.insert(u);
-            st.insert(v);
-        }
-        cout << st.size();
-        for (int i : st) cout << " " << i;
+    auto blocks = biconnected_components(G, low);
+    cout << blocks.size() << endl;
+    for (auto& block : blocks) {
+        cout << block.size();
+        for (int i : block) cout << " " << i;
         cout << "\n";
     }
 }
