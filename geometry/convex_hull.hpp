@@ -3,7 +3,7 @@
 
 #include "geometry.hpp"
 
-std::vector<Vec> convex_hull(std::vector<Vec> pts) {
+std::vector<Vec> convex_hull(std::vector<Vec> pts, bool strict = true) {
     std::ranges::sort(pts, {}, [](const Vec& v) {
         return std::make_pair(v.imag(), v.real());
     });
