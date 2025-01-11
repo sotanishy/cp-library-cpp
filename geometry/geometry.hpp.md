@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/closest_pair.hpp
     title: Closest Pair
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/convex_hull.hpp
     title: Convex Hull
   - icon: ':warning:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_C.test.cpp
     title: test/aoj/CGL_3_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,9 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_convex_hull.test.cpp
     title: test/yosupo/static_convex_hull.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
@@ -202,7 +202,7 @@ data:
   - geometry/intersect.hpp
   - geometry/intersection.hpp
   timestamp: '2024-01-08 01:08:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/furthest_pair.test.cpp
   - test/yosupo/static_convex_hull.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/closest_pair.hpp
     title: Closest Pair
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
   _extendedRequiredBy: []

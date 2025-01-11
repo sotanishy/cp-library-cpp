@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/geometry.hpp
     title: Geometry
   - icon: ':heavy_check_mark:'

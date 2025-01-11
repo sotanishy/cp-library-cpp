@@ -241,7 +241,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/closest_pair.hpp
       title: Closest Pair
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/convex_hull.hpp
       title: Convex Hull
     - icon: ':warning:'
@@ -253,7 +253,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/furthest_pair.hpp
       title: Furthest Pair
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
@@ -766,7 +766,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_C.test.cpp
       title: test/aoj/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
