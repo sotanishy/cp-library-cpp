@@ -49,22 +49,22 @@ data:
     \ (p.imag() < 0 || (p.imag() == 0 && p.real() > 0));\n            return (p.real()\
     \ > q.real());\n        }\n        return (cross(p, q) > 0);\n    });\n}\n#line\
     \ 5 \"geometry/convex_hull.hpp\"\n\nstd::vector<Vec> convex_hull(std::vector<Vec>\
-    \ pts) {\n    std::ranges::sort(pts, {}, [](const Vec& v) {\n        return std::make_pair(v.imag(),\
-    \ v.real());\n    });\n    pts.erase(std::ranges::unique(pts).begin(), pts.end());\n\
-    \    const int n = pts.size();\n    if (n <= 1) return pts;\n    int k = 0;  //\
-    \ the number of vertices in the convex hull\n    std::vector<Vec> ch(2 * n);\n\
-    \    // right\n    for (int i = 0; i < n; ++i) {\n        while (k > 1 &&\n  \
-    \             leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n    \
-    \        --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n    // left\n\
-    \    for (int i = n - 2; i >= 0; --i) {\n        while (k > t &&\n           \
-    \    leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n            --k;\n\
-    \        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n\
-    #line 7 \"test/yosupo/static_convex_hull.test.cpp\"\nusing namespace std;\n\n\
-    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
-    \ T;\n    cin >> T;\n    while (T--) {\n        int N;\n        cin >> N;\n  \
-    \      vector<Vec> pts(N);\n        for (auto& p : pts) cin >> p;\n        auto\
-    \ conv = convex_hull(pts);\n        cout << conv.size() << \"\\n\";\n        for\
-    \ (auto& p : conv)\n            cout << (int)p.real() << \" \" << (int)p.imag()\
+    \ pts, bool strict = true) {\n    std::ranges::sort(pts, {}, [](const Vec& v)\
+    \ {\n        return std::make_pair(v.imag(), v.real());\n    });\n    pts.erase(std::ranges::unique(pts).begin(),\
+    \ pts.end());\n    const int n = pts.size();\n    if (n <= 1) return pts;\n  \
+    \  int k = 0;  // the number of vertices in the convex hull\n    std::vector<Vec>\
+    \ ch(2 * n);\n    // right\n    for (int i = 0; i < n; ++i) {\n        while (k\
+    \ > 1 &&\n               leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]),\
+    \ 0))\n            --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n  \
+    \  // left\n    for (int i = n - 2; i >= 0; --i) {\n        while (k > t &&\n\
+    \               leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n  \
+    \          --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n   \
+    \ return ch;\n}\n#line 7 \"test/yosupo/static_convex_hull.test.cpp\"\nusing namespace\
+    \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\
+    \n    int T;\n    cin >> T;\n    while (T--) {\n        int N;\n        cin >>\
+    \ N;\n        vector<Vec> pts(N);\n        for (auto& p : pts) cin >> p;\n   \
+    \     auto conv = convex_hull(pts);\n        cout << conv.size() << \"\\n\";\n\
+    \        for (auto& p : conv)\n            cout << (int)p.real() << \" \" << (int)p.imag()\
     \ << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n\
     #include <bits/stdc++.h>\n\n#include \"../../geometry/convex_hull.hpp\"\n#include\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2025-01-11 16:44:40+09:00'
+  timestamp: '2025-01-11 17:14:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_convex_hull.test.cpp

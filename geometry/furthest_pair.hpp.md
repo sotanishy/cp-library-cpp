@@ -50,33 +50,34 @@ data:
     \            if (q == Vec(0, 0))\n                return (p.imag() < 0 || (p.imag()\
     \ == 0 && p.real() > 0));\n            return (p.real() > q.real());\n       \
     \ }\n        return (cross(p, q) > 0);\n    });\n}\n#line 5 \"geometry/convex_hull.hpp\"\
-    \n\nstd::vector<Vec> convex_hull(std::vector<Vec> pts) {\n    std::ranges::sort(pts,\
-    \ {}, [](const Vec& v) {\n        return std::make_pair(v.imag(), v.real());\n\
-    \    });\n    pts.erase(std::ranges::unique(pts).begin(), pts.end());\n    const\
-    \ int n = pts.size();\n    if (n <= 1) return pts;\n    int k = 0;  // the number\
-    \ of vertices in the convex hull\n    std::vector<Vec> ch(2 * n);\n    // right\n\
-    \    for (int i = 0; i < n; ++i) {\n        while (k > 1 &&\n               leq(cross(ch[k\
-    \ - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n            --k;\n        ch[k++]\
-    \ = pts[i];\n    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >=\
-    \ 0; --i) {\n        while (k > t &&\n               leq(cross(ch[k - 1] - ch[k\
-    \ - 2], pts[i] - ch[k - 1]), 0))\n            --k;\n        ch[k++] = pts[i];\n\
-    \    }\n    ch.resize(k - 1);\n    return ch;\n}\n#line 8 \"geometry/furthest_pair.hpp\"\
-    \n\n/**\n * @brief Furthest Pair\n */\nstd::tuple<T, int, int> furthest_pair(const\
-    \ std::vector<Vec>& pts) {\n    assert(pts.size() >= 2);\n    auto conv = convex_hull(pts);\n\
-    \    const int n = conv.size();\n    if (n <= 1) {\n        return {0, 0, 1};\n\
-    \    }\n    std::tuple<T, int, int> furthest;\n    if (n == 2) {\n        furthest\
-    \ = {std::abs(conv[0] - conv[1]), 0, 1};\n    } else {\n        int si = 0, sj\
-    \ = 0;\n        for (int k = 0; k < n; ++k) {\n            if (lt(conv[k].real(),\
-    \ conv[si].real())) si = k;\n            if (lt(conv[sj].real(), conv[k].real()))\
-    \ sj = k;\n        }\n        for (int i = si, j = sj; i != sj || j != si;) {\n\
-    \            furthest = std::max(furthest, {std::abs(conv[i] - conv[j]), i, j});\n\
-    \            if (lt(cross(conv[(i + 1) % n] - conv[i],\n                     \
-    \    conv[(j + 1) % n] - conv[j]),\n                   0)) {\n               \
-    \ i = (i + 1) % n;\n            } else {\n                j = (j + 1) % n;\n \
-    \           }\n        }\n    }\n    auto [d, i0, j0] = furthest;\n    int i1\
-    \ = -1, j1 = -1;\n    for (int k = 0; k < (int)pts.size(); ++k) {\n        if\
-    \ (i1 == -1 && pts[k] == conv[i0]) i1 = k;\n        if (j1 == -1 && pts[k] ==\
-    \ conv[j0]) j1 = k;\n    }\n    return {d, i1, j1};\n}\n"
+    \n\nstd::vector<Vec> convex_hull(std::vector<Vec> pts, bool strict = true) {\n\
+    \    std::ranges::sort(pts, {}, [](const Vec& v) {\n        return std::make_pair(v.imag(),\
+    \ v.real());\n    });\n    pts.erase(std::ranges::unique(pts).begin(), pts.end());\n\
+    \    const int n = pts.size();\n    if (n <= 1) return pts;\n    int k = 0;  //\
+    \ the number of vertices in the convex hull\n    std::vector<Vec> ch(2 * n);\n\
+    \    // right\n    for (int i = 0; i < n; ++i) {\n        while (k > 1 &&\n  \
+    \             leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n    \
+    \        --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n    // left\n\
+    \    for (int i = n - 2; i >= 0; --i) {\n        while (k > t &&\n           \
+    \    leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n            --k;\n\
+    \        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n\
+    #line 8 \"geometry/furthest_pair.hpp\"\n\n/**\n * @brief Furthest Pair\n */\n\
+    std::tuple<T, int, int> furthest_pair(const std::vector<Vec>& pts) {\n    assert(pts.size()\
+    \ >= 2);\n    auto conv = convex_hull(pts);\n    const int n = conv.size();\n\
+    \    if (n <= 1) {\n        return {0, 0, 1};\n    }\n    std::tuple<T, int, int>\
+    \ furthest;\n    if (n == 2) {\n        furthest = {std::abs(conv[0] - conv[1]),\
+    \ 0, 1};\n    } else {\n        int si = 0, sj = 0;\n        for (int k = 0; k\
+    \ < n; ++k) {\n            if (lt(conv[k].real(), conv[si].real())) si = k;\n\
+    \            if (lt(conv[sj].real(), conv[k].real())) sj = k;\n        }\n   \
+    \     for (int i = si, j = sj; i != sj || j != si;) {\n            furthest =\
+    \ std::max(furthest, {std::abs(conv[i] - conv[j]), i, j});\n            if (lt(cross(conv[(i\
+    \ + 1) % n] - conv[i],\n                         conv[(j + 1) % n] - conv[j]),\n\
+    \                   0)) {\n                i = (i + 1) % n;\n            } else\
+    \ {\n                j = (j + 1) % n;\n            }\n        }\n    }\n    auto\
+    \ [d, i0, j0] = furthest;\n    int i1 = -1, j1 = -1;\n    for (int k = 0; k <\
+    \ (int)pts.size(); ++k) {\n        if (i1 == -1 && pts[k] == conv[i0]) i1 = k;\n\
+    \        if (j1 == -1 && pts[k] == conv[j0]) j1 = k;\n    }\n    return {d, i1,\
+    \ j1};\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <utility>\n#include <vector>\n\
     \n#include \"convex_hull.hpp\"\n#include \"geometry.hpp\"\n\n/**\n * @brief Furthest\
     \ Pair\n */\nstd::tuple<T, int, int> furthest_pair(const std::vector<Vec>& pts)\
@@ -101,7 +102,7 @@ data:
   isVerificationFile: false
   path: geometry/furthest_pair.hpp
   requiredBy: []
-  timestamp: '2025-01-11 16:44:40+09:00'
+  timestamp: '2025-01-11 17:14:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/furthest_pair.test.cpp
