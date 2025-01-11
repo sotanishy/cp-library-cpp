@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lowlink.hpp
     title: Lowlink
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/biconnected_components.test.cpp
     title: test/yosupo/biconnected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/biconnected_components.hpp\"\n#include <stack>\n#include\
@@ -34,45 +34,72 @@ data:
     \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
     \            }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
     \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 7 \"\
-    graph/biconnected_components.hpp\"\n\nstd::vector<std::vector<std::pair<int, int>>>\
-    \ biconnected_components(\n    const std::vector<std::vector<int>>& G, const Lowlink&\
-    \ low) {\n    std::vector<bool> used(G.size());\n    std::stack<std::pair<int,\
-    \ int>> st;\n    std::vector<std::vector<std::pair<int, int>>> bc;\n\n    auto\
-    \ dfs = [&](auto& dfs, int v, int p) -> void {\n        used[v] = true;\n    \
-    \    for (int c : G[v]) {\n            if (c == p) continue;\n            if (!used[c]\
-    \ || low.ord[c] < low.ord[v]) {\n                st.emplace(v, c);\n         \
-    \   }\n            if (!used[c]) {\n                dfs(dfs, c, v);\n        \
-    \        if (low.ord[v] <= low.low[c]) {  // v is an articulation point\n    \
-    \                bc.emplace_back();\n                    while (true) {\n    \
-    \                    auto e = st.top();\n                        st.pop();\n \
-    \                       bc.back().push_back(e);\n                        if (e.first\
-    \ == v) {\n                            break;\n                        }\n   \
-    \                 }\n                }\n            }\n        }\n    };\n\n \
-    \   for (int v = 0; v < (int)G.size(); ++v) {\n        if (!used[v]) dfs(dfs,\
-    \ v, -1);\n    }\n\n    return bc;\n}\n"
-  code: "#pragma once\n#include <stack>\n#include <utility>\n#include <vector>\n\n\
-    #include \"lowlink.hpp\"\n\nstd::vector<std::vector<std::pair<int, int>>> biconnected_components(\n\
+    graph/biconnected_components.hpp\"\n\nstd::vector<std::vector<int>> biconnected_components(\n\
     \    const std::vector<std::vector<int>>& G, const Lowlink& low) {\n    std::vector<bool>\
-    \ used(G.size());\n    std::stack<std::pair<int, int>> st;\n    std::vector<std::vector<std::pair<int,\
-    \ int>>> bc;\n\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\n      \
-    \  used[v] = true;\n        for (int c : G[v]) {\n            if (c == p) continue;\n\
-    \            if (!used[c] || low.ord[c] < low.ord[v]) {\n                st.emplace(v,\
-    \ c);\n            }\n            if (!used[c]) {\n                dfs(dfs, c,\
-    \ v);\n                if (low.ord[v] <= low.low[c]) {  // v is an articulation\
-    \ point\n                    bc.emplace_back();\n                    while (true)\
+    \ used(G.size());\n    std::stack<std::pair<int, int>> st;\n    std::vector<std::vector<int>>\
+    \ blocks;\n    std::vector<int> isolated;\n\n    auto dfs = [&](auto& dfs, int\
+    \ v, int p) -> void {\n        used[v] = true;\n        for (int c : G[v]) {\n\
+    \            if (c == p) continue;\n            if (!used[c] || low.ord[c] < low.ord[v])\
+    \ {\n                st.emplace(v, c);\n            }\n            if (!used[c])\
+    \ {\n                dfs(dfs, c, v);\n                if (low.ord[v] <= low.low[c])\
+    \ {  // v is an articulation point\n                    blocks.emplace_back();\n\
+    \                    auto& block = blocks.back();\n                    while (true)\
     \ {\n                        auto e = st.top();\n                        st.pop();\n\
-    \                        bc.back().push_back(e);\n                        if (e.first\
-    \ == v) {\n                            break;\n                        }\n   \
-    \                 }\n                }\n            }\n        }\n    };\n\n \
-    \   for (int v = 0; v < (int)G.size(); ++v) {\n        if (!used[v]) dfs(dfs,\
-    \ v, -1);\n    }\n\n    return bc;\n}"
+    \                        block.push_back(e.first);\n                        block.push_back(e.second);\n\
+    \                        if (e.first == v) {\n                            break;\n\
+    \                        }\n                    }\n                    std::sort(block.begin(),\
+    \ block.end());\n                    block.erase(std::unique(block.begin(), block.end()),\n\
+    \                                block.end());\n                }\n          \
+    \  }\n        }\n    };\n\n    for (int v = 0; v < (int)G.size(); ++v) {\n   \
+    \     if (!used[v]) dfs(dfs, v, -1);\n        if (G[v].empty()) {\n          \
+    \  blocks.push_back({v});\n        }\n    }\n\n    return blocks;\n}\n\n// B:\
+    \ number of blocks, C: number of cut vertices\n// 0 through B - 1: block\n// B\
+    \ through B + C - 1: cut\nstd::vector<std::vector<int>> block_cut_tree(\n    const\
+    \ std::vector<std::vector<int>>& blocks, const std::vector<int>& cuts) {\n   \
+    \ const int B = blocks.size();\n    std::vector<std::vector<int>> bct(B + (int)cuts.size());\n\
+    \    std::unordered_map<int, int> cut_idx;\n    for (int i = 0; i < (int)cuts.size();\
+    \ ++i) cut_idx[cuts[i]] = i;\n\n    for (int i = 0; i < (int)blocks.size(); ++i)\
+    \ {\n        auto& block = blocks[i];\n        for (int v : block) {\n       \
+    \     if (cut_idx.contains(v)) {\n                int j = B + cut_idx[v];\n  \
+    \              bct[i].push_back(j);\n                bct[j].push_back(i);\n  \
+    \          }\n        }\n    }\n\n    return bct;\n}\n"
+  code: "#pragma once\n#include <stack>\n#include <utility>\n#include <vector>\n\n\
+    #include \"lowlink.hpp\"\n\nstd::vector<std::vector<int>> biconnected_components(\n\
+    \    const std::vector<std::vector<int>>& G, const Lowlink& low) {\n    std::vector<bool>\
+    \ used(G.size());\n    std::stack<std::pair<int, int>> st;\n    std::vector<std::vector<int>>\
+    \ blocks;\n    std::vector<int> isolated;\n\n    auto dfs = [&](auto& dfs, int\
+    \ v, int p) -> void {\n        used[v] = true;\n        for (int c : G[v]) {\n\
+    \            if (c == p) continue;\n            if (!used[c] || low.ord[c] < low.ord[v])\
+    \ {\n                st.emplace(v, c);\n            }\n            if (!used[c])\
+    \ {\n                dfs(dfs, c, v);\n                if (low.ord[v] <= low.low[c])\
+    \ {  // v is an articulation point\n                    blocks.emplace_back();\n\
+    \                    auto& block = blocks.back();\n                    while (true)\
+    \ {\n                        auto e = st.top();\n                        st.pop();\n\
+    \                        block.push_back(e.first);\n                        block.push_back(e.second);\n\
+    \                        if (e.first == v) {\n                            break;\n\
+    \                        }\n                    }\n                    std::sort(block.begin(),\
+    \ block.end());\n                    block.erase(std::unique(block.begin(), block.end()),\n\
+    \                                block.end());\n                }\n          \
+    \  }\n        }\n    };\n\n    for (int v = 0; v < (int)G.size(); ++v) {\n   \
+    \     if (!used[v]) dfs(dfs, v, -1);\n        if (G[v].empty()) {\n          \
+    \  blocks.push_back({v});\n        }\n    }\n\n    return blocks;\n}\n\n// B:\
+    \ number of blocks, C: number of cut vertices\n// 0 through B - 1: block\n// B\
+    \ through B + C - 1: cut\nstd::vector<std::vector<int>> block_cut_tree(\n    const\
+    \ std::vector<std::vector<int>>& blocks, const std::vector<int>& cuts) {\n   \
+    \ const int B = blocks.size();\n    std::vector<std::vector<int>> bct(B + (int)cuts.size());\n\
+    \    std::unordered_map<int, int> cut_idx;\n    for (int i = 0; i < (int)cuts.size();\
+    \ ++i) cut_idx[cuts[i]] = i;\n\n    for (int i = 0; i < (int)blocks.size(); ++i)\
+    \ {\n        auto& block = blocks[i];\n        for (int v : block) {\n       \
+    \     if (cut_idx.contains(v)) {\n                int j = B + cut_idx[v];\n  \
+    \              bct[i].push_back(j);\n                bct[j].push_back(i);\n  \
+    \          }\n        }\n    }\n\n    return bct;\n}\n"
   dependsOn:
   - graph/lowlink.hpp
   isVerificationFile: false
   path: graph/biconnected_components.hpp
   requiredBy: []
-  timestamp: '2024-01-08 13:32:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-11 14:37:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/biconnected_components.test.cpp
 documentation_of: graph/biconnected_components.hpp
@@ -90,13 +117,9 @@ title: Biconnected Components
 
 ## Operations
 
-- `vector<vector<pair<int, int>>> biconnected_components(vector<vector<int>> G, Lowlink low)`
-    - グラフ $G$ の隣接リストと，$G$ の lowlink 構造体が与えられたとき，$G$ を二重頂点連結成分分解する
-    - $G$ の二重頂点連結成分を返す
+- `vector<vector<int>> biconnected_components(vector<vector<int>> G, Lowlink low)`
+    - グラフ $G$ の隣接リストと，$G$ の lowlink 構造体が与えられたとき，$G$ を二重頂点連結成分分解する．$G$ の二重頂点連結成分を返す
     - 時間計算量: $O(V + E)$
-
-## Note
-
-多重辺は予め取り除いておく必要がある (多重辺を取り除いても二重頂点連結成分は変化しない)．
-
-また，孤立点にも注意する (孤立点はそれで一つの二重頂点連結成分となるが，この関数は辺を返すため，孤立点からなる成分は含まれない)．
+- `vector<vector<int>> block_cut_tree(vector<vector<int>> blocks, vector<int> cuts)`
+    - ブロック（二重頂点連結成分）とカット（関節点）のリストが与えられたときに，対応する block cut tree の隣接リストを返す
+    - 時間計算量: $O(B + C)$

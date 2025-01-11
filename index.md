@@ -279,7 +279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/assignment.hpp
       title: Assignment Problem (Maximum Weight Perfect Matching)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/biconnected_components.hpp
       title: Biconnected Components
     - icon: ':heavy_check_mark:'
@@ -321,7 +321,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lex_bfs.hpp
       title: Lexicographic BFS
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/lowlink.hpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -879,7 +879,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/bernoulli_number.test.cpp
       title: test/yosupo/bernoulli_number.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
     - icon: ':heavy_check_mark:'
