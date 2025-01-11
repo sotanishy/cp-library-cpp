@@ -14,9 +14,15 @@ std::vector<Vec> convex_hull(std::vector<Vec> pts, bool strict = true) {
     std::vector<Vec> ch(2 * n);
     // right
     for (int i = 0; i < n; ++i) {
-        while (k > 1 &&
-               leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))
-            --k;
+        if (strict) {
+            while (k > 1 &&
+                   leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))
+                --k;
+        } else {
+            while (k > 1 &&
+                   lt(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))
+                --k;
+        }
         ch[k++] = pts[i];
     }
     int t = k;
