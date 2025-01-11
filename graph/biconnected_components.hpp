@@ -1,5 +1,6 @@
 #pragma once
 #include <stack>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -34,7 +35,7 @@ std::vector<std::vector<int>> biconnected_components(
                         }
                     }
                     std::sort(block.begin(), block.end());
-                    block.erase(std::unique(block.begin(), block.end()),
+                    block.erase(std::ranges::unique(block).begin(),
                                 block.end());
                 }
             }

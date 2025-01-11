@@ -16,5 +16,5 @@ int main() {
     cin >> n;
     vector<Vec> pts(n);
     for (auto& p : pts) cin >> p;
-    cout << closest_pair(pts) << endl;
+    cout << get<0>(closest_pair(pts)) << endl;
 }
