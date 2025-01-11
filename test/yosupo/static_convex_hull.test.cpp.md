@@ -2,38 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: geometry/convex_hull.hpp
+    title: Convex Hull
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: geometry/furthest_pair.hpp
-    title: Furthest Pair
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1298.test.cpp
-    title: test/aoj/1298.test.cpp
-  - icon: ':x:'
-    path: test/aoj/CGL_4_A.test.cpp
-    title: test/aoj/CGL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_4_B.test.cpp
-    title: test/aoj/CGL_4_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/furthest_pair.test.cpp
-    title: test/yosupo/furthest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_convex_hull.test.cpp
-    title: test/yosupo/static_convex_hull.test.cpp
-  _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"geometry/convex_hull.hpp\"\n#include <vector>\n\n#line 2\
-    \ \"geometry/geometry.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
-    \ <cmath>\n#include <complex>\n#include <iostream>\n#include <numbers>\n#include\
-    \ <numeric>\n#line 10 \"geometry/geometry.hpp\"\n\n// note that if T is of an\
-    \ integer type, std::abs does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
+    links:
+    - https://judge.yosupo.jp/problem/static_convex_hull
+  bundledCode: "#line 1 \"test/yosupo/static_convex_hull.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n#include <bits/stdc++.h>\n\
+    \n#line 3 \"geometry/convex_hull.hpp\"\n\n#line 7 \"geometry/geometry.hpp\"\n\
+    #include <numbers>\n#line 10 \"geometry/geometry.hpp\"\n\n// note that if T is\
+    \ of an integer type, std::abs does not work\nusing T = double;\nusing Vec = std::complex<T>;\n\
     \nstd::istream& operator>>(std::istream& is, Vec& p) {\n    T x, y;\n    is >>\
     \ x >> y;\n    p = {x, y};\n    return is;\n}\n\nT dot(const Vec& a, const Vec&\
     \ b) { return (std::conj(a) * b).real(); }\n\nT cross(const Vec& a, const Vec&\
@@ -70,44 +58,35 @@ data:
     \        --k;\n        ch[k++] = pts[i];\n    }\n    int t = k;\n    // left\n\
     \    for (int i = n - 2; i >= 0; --i) {\n        while (k > t &&\n           \
     \    leq(cross(ch[k - 1] - ch[k - 2], pts[i] - ch[k - 1]), 0))\n            --k;\n\
-    \        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n"
-  code: "#pragma once\n#include <vector>\n\n#include \"geometry.hpp\"\n\nstd::vector<Vec>\
-    \ convex_hull(std::vector<Vec> pts) {\n    std::ranges::sort(pts, {}, [](const\
-    \ Vec& v) {\n        return std::make_pair(v.imag(), v.real());\n    });\n   \
-    \ pts.erase(std::ranges::unique(pts).begin(), pts.end());\n    const int n = pts.size();\n\
-    \    if (n <= 1) return pts;\n    int k = 0;  // the number of vertices in the\
-    \ convex hull\n    std::vector<Vec> ch(2 * n);\n    // right\n    for (int i =\
-    \ 0; i < n; ++i) {\n        while (k > 1 &&\n               leq(cross(ch[k - 1]\
-    \ - ch[k - 2], pts[i] - ch[k - 1]), 0))\n            --k;\n        ch[k++] = pts[i];\n\
-    \    }\n    int t = k;\n    // left\n    for (int i = n - 2; i >= 0; --i) {\n\
-    \        while (k > t &&\n               leq(cross(ch[k - 1] - ch[k - 2], pts[i]\
-    \ - ch[k - 1]), 0))\n            --k;\n        ch[k++] = pts[i];\n    }\n    ch.resize(k\
-    \ - 1);\n    return ch;\n}\n"
+    \        ch[k++] = pts[i];\n    }\n    ch.resize(k - 1);\n    return ch;\n}\n\
+    #line 7 \"test/yosupo/static_convex_hull.test.cpp\"\nusing namespace std;\n\n\
+    int main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n\n    int\
+    \ T;\n    cin >> T;\n    while (T--) {\n        int N;\n        cin >> N;\n  \
+    \      vector<Vec> pts(N);\n        for (auto& p : pts) cin >> p;\n        auto\
+    \ conv = convex_hull(pts);\n        cout << conv.size() << \"\\n\";\n        for\
+    \ (auto& p : conv)\n            cout << (int)p.real() << \" \" << (int)p.imag()\
+    \ << \"\\n\";\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n\
+    #include <bits/stdc++.h>\n\n#include \"../../geometry/convex_hull.hpp\"\n#include\
+    \ \"../../geometry/geometry.hpp\"\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
+    \    cin.tie(0);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int\
+    \ N;\n        cin >> N;\n        vector<Vec> pts(N);\n        for (auto& p : pts)\
+    \ cin >> p;\n        auto conv = convex_hull(pts);\n        cout << conv.size()\
+    \ << \"\\n\";\n        for (auto& p : conv)\n            cout << (int)p.real()\
+    \ << \" \" << (int)p.imag() << \"\\n\";\n    }\n}"
   dependsOn:
+  - geometry/convex_hull.hpp
   - geometry/geometry.hpp
-  isVerificationFile: false
-  path: geometry/convex_hull.hpp
-  requiredBy:
-  - geometry/furthest_pair.hpp
+  isVerificationFile: true
+  path: test/yosupo/static_convex_hull.test.cpp
+  requiredBy: []
   timestamp: '2025-01-11 16:44:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yosupo/furthest_pair.test.cpp
-  - test/yosupo/static_convex_hull.test.cpp
-  - test/aoj/CGL_4_B.test.cpp
-  - test/aoj/CGL_4_A.test.cpp
-  - test/aoj/1298.test.cpp
-documentation_of: geometry/convex_hull.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/static_convex_hull.test.cpp
 layout: document
-title: Convex Hull
+redirect_from:
+- /verify/test/yosupo/static_convex_hull.test.cpp
+- /verify/test/yosupo/static_convex_hull.test.cpp.html
+title: test/yosupo/static_convex_hull.test.cpp
 ---
-
-## Description
-
-与えられた点の凸包を求める．この実装では Graham scan アルゴリズムを用いている．
-
-## Operations
-
-- `vector<Vec> convex_hull(vector<Vec> pts)`
-    - `pts` の凸包の境界の頂点を返す
-    - 時間計算量: $O(n\log n)$

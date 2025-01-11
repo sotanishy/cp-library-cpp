@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/closest_pair.hpp
     title: Closest Pair
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: Geometry
   _extendedRequiredBy: []
@@ -51,37 +51,42 @@ data:
     \    return (p.real() > q.real());\n        }\n        return (cross(p, q) > 0);\n\
     \    });\n}\n#line 3 \"geometry/closest_pair.hpp\"\n#include <ranges>\n#line 5\
     \ \"geometry/closest_pair.hpp\"\n\n#line 7 \"geometry/closest_pair.hpp\"\n\n/**\n\
-    \ * @brief Closest Pair\n */\nT closest_pair(std::vector<Vec>& pts) {\n    std::ranges::sort(pts,\
-    \ {}, [](const Vec& v) { return v.real(); });\n\n    auto rec = [&](const auto&\
-    \ rec, int l, int r) -> T {\n        if (r - l <= 1) return std::numeric_limits<T>::max();\n\
-    \        int m = std::midpoint(l, r);\n        T x = pts[m].real();\n        T\
-    \ d = std::min(rec(rec, l, m), rec(rec, m, r));\n        std::ranges::inplace_merge(pts.begin()\
-    \ + l, pts.begin() + m,\n                                   pts.begin() + r, {},\n\
-    \                                   [](const Vec& v) { return v.imag(); });\n\
-    \        std::vector<Vec> b;\n        for (int i = l; i < r; ++i) {\n        \
-    \    if (leq(d, std::abs(pts[i].real() - x))) continue;\n            for (auto&\
-    \ p : b | std::views::reverse) {\n                if (leq(d, std::abs(pts[i].imag()\
-    \ - p.imag()))) break;\n                d = std::min(d, std::abs(pts[i] - p));\n\
-    \            }\n            b.push_back(pts[i]);\n        }\n        return d;\n\
+    \ * @brief Closest Pair\n */\nstd::tuple<T, int, int> closest_pair(const std::vector<Vec>&\
+    \ pts_) {\n    std::vector<std::pair<Vec, int>> pts;\n    for (int i = 0; i <\
+    \ (int)pts_.size(); ++i) pts.emplace_back(pts_[i], i);\n    std::ranges::sort(pts,\
+    \ {}, [](const auto& v) { return v.first.real(); });\n\n    auto rec = [&](const\
+    \ auto& rec, int l, int r) -> std::tuple<T, int, int> {\n        if (r - l <=\
+    \ 1) return {std::numeric_limits<T>::max(), -1, -1};\n        int m = std::midpoint(l,\
+    \ r);\n        T x = pts[m].first.real();\n        auto closest = std::min(rec(rec,\
+    \ l, m), rec(rec, m, r));\n        std::ranges::inplace_merge(\n            pts.begin()\
+    \ + l, pts.begin() + m, pts.begin() + r, {},\n            [](const auto& v) {\
+    \ return v.first.imag(); });\n        std::vector<std::pair<Vec, int>> b;\n  \
+    \      for (int i = l; i < r; ++i) {\n            if (leq(std::get<0>(closest),\
+    \ std::abs(pts[i].first.real() - x)))\n                continue;\n           \
+    \ for (auto& p : b | std::views::reverse) {\n                if (leq(std::get<0>(closest),\n\
+    \                        std::abs(pts[i].first.imag() - p.first.imag())))\n  \
+    \                  break;\n                closest = std::min(closest, {std::abs(pts[i].first\
+    \ - p.first),\n                                             pts[i].second, p.second});\n\
+    \            }\n            b.push_back(pts[i]);\n        }\n        return closest;\n\
     \    };\n\n    return rec(rec, 0, pts.size());\n}\n#line 6 \"test/aoj/CGL_5_A.test.cpp\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    cout << fixed << setprecision(15);\n\n    int n;\n\
     \    cin >> n;\n    vector<Vec> pts(n);\n    for (auto& p : pts) cin >> p;\n \
-    \   cout << closest_pair(pts) << endl;\n}\n"
+    \   cout << get<0>(closest_pair(pts)) << endl;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
     \n#define ERROR 0.000001\n\n#include \"../../geometry/geometry.hpp\"\n#include\
     \ \"../../geometry/closest_pair.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \    cout << fixed << setprecision(15);\n\n    int n;\n    cin >> n;\n    vector<Vec>\
-    \ pts(n);\n    for (auto& p : pts) cin >> p;\n    cout << closest_pair(pts) <<\
-    \ endl;\n}\n"
+    \ pts(n);\n    for (auto& p : pts) cin >> p;\n    cout << get<0>(closest_pair(pts))\
+    \ << endl;\n}\n"
   dependsOn:
   - geometry/geometry.hpp
   - geometry/closest_pair.hpp
   isVerificationFile: true
   path: test/aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2024-01-08 01:08:59+09:00'
+  timestamp: '2025-01-11 16:44:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_5_A.test.cpp

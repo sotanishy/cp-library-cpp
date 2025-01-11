@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/biconnected_components.hpp
     title: Biconnected Components
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowlink.hpp
     title: Lowlink
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -19,13 +19,13 @@ data:
     - https://judge.yosupo.jp/problem/biconnected_components
   bundledCode: "#line 1 \"test/yosupo/biconnected_components.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/biconnected_components\"\n\n#line 2 \"graph/biconnected_components.hpp\"\
-    \n#include <stack>\n#include <utility>\n#include <vector>\n\n#line 2 \"graph/lowlink.hpp\"\
-    \n#include <algorithm>\n#line 5 \"graph/lowlink.hpp\"\n\nclass Lowlink {\n   public:\n\
-    \    std::vector<int> ord, low;\n    std::vector<std::pair<int, int>> bridge;\n\
-    \    std::vector<int> articulation;\n\n    Lowlink() = default;\n    explicit\
-    \ Lowlink(const std::vector<std::vector<int>>& G)\n        : ord(G.size(), -1),\
-    \ low(G.size()), G(G) {\n        for (int i = 0; i < (int)G.size(); ++i) {\n \
-    \           if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    bool is_bridge(int\
+    \n#include <stack>\n#include <unordered_map>\n#include <utility>\n#include <vector>\n\
+    \n#line 2 \"graph/lowlink.hpp\"\n#include <algorithm>\n#line 5 \"graph/lowlink.hpp\"\
+    \n\nclass Lowlink {\n   public:\n    std::vector<int> ord, low;\n    std::vector<std::pair<int,\
+    \ int>> bridge;\n    std::vector<int> articulation;\n\n    Lowlink() = default;\n\
+    \    explicit Lowlink(const std::vector<std::vector<int>>& G)\n        : ord(G.size(),\
+    \ -1), low(G.size()), G(G) {\n        for (int i = 0; i < (int)G.size(); ++i)\
+    \ {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    bool is_bridge(int\
     \ u, int v) const {\n        if (ord[u] > ord[v]) std::swap(u, v);\n        return\
     \ ord[u] < low[v];\n    }\n\n   private:\n    std::vector<std::vector<int>> G;\n\
     \    int k = 0;\n\n    void dfs(int v, int p) {\n        ord[v] = k++;\n     \
@@ -38,7 +38,7 @@ data:
     \            if (ord[v] < low[c]) bridge.push_back(std::minmax(v, c));\n     \
     \       } else {\n                low[v] = std::min(low[v], ord[c]);\n       \
     \     }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 7 \"\
+    \        if (is_articulation) articulation.push_back(v);\n    }\n};\n#line 8 \"\
     graph/biconnected_components.hpp\"\n\nstd::vector<std::vector<int>> biconnected_components(\n\
     \    const std::vector<std::vector<int>>& G, const Lowlink& low) {\n    std::vector<bool>\
     \ used(G.size());\n    std::stack<std::pair<int, int>> st;\n    std::vector<std::vector<int>>\
@@ -53,7 +53,7 @@ data:
     \                        block.push_back(e.first);\n                        block.push_back(e.second);\n\
     \                        if (e.first == v) {\n                            break;\n\
     \                        }\n                    }\n                    std::sort(block.begin(),\
-    \ block.end());\n                    block.erase(std::unique(block.begin(), block.end()),\n\
+    \ block.end());\n                    block.erase(std::ranges::unique(block).begin(),\n\
     \                                block.end());\n                }\n          \
     \  }\n        }\n    };\n\n    for (int v = 0; v < (int)G.size(); ++v) {\n   \
     \     if (!used[v]) dfs(dfs, v, -1);\n        if (G[v].empty()) {\n          \
@@ -93,8 +93,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2025-01-11 14:37:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-11 16:44:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/biconnected_components.test.cpp
 layout: document

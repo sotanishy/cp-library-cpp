@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/closest_pair.hpp
     title: Closest Pair
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/convex_hull.hpp
     title: Convex Hull
   - icon: ':warning:'
@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/dist.hpp
     title: geometry/dist.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/furthest_pair.hpp
+    title: Furthest Pair
   - icon: ':heavy_check_mark:'
     path: geometry/intersect.hpp
     title: geometry/intersect.hpp
@@ -72,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_C.test.cpp
     title: test/aoj/CGL_3_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,9 +111,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_I.test.cpp
     title: test/aoj/CGL_7_I.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/closest_pair.test.cpp
+    title: test/yosupo/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/furthest_pair.test.cpp
+    title: test/yosupo/furthest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static_convex_hull.test.cpp
+    title: test/yosupo/static_convex_hull.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/geometry.hpp\"\n#include <algorithm>\n#include\
@@ -183,14 +195,18 @@ data:
   - geometry/bisector.hpp
   - geometry/tangent.hpp
   - geometry/dist.hpp
+  - geometry/furthest_pair.hpp
   - geometry/polygon.hpp
   - geometry/minimum_bounding_circle.hpp
   - geometry/closest_pair.hpp
   - geometry/intersect.hpp
   - geometry/intersection.hpp
   timestamp: '2024-01-08 01:08:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/furthest_pair.test.cpp
+  - test/yosupo/static_convex_hull.test.cpp
+  - test/yosupo/closest_pair.test.cpp
   - test/aoj/CGL_4_B.test.cpp
   - test/aoj/CGL_7_I.test.cpp
   - test/aoj/CGL_3_B.test.cpp

@@ -241,7 +241,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/closest_pair.hpp
       title: Closest Pair
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geometry/convex_hull.hpp
       title: Convex Hull
     - icon: ':warning:'
@@ -251,6 +251,9 @@ data:
       path: geometry/dist.hpp
       title: geometry/dist.hpp
     - icon: ':heavy_check_mark:'
+      path: geometry/furthest_pair.hpp
+      title: Furthest Pair
+    - icon: ':question:'
       path: geometry/geometry.hpp
       title: Geometry
     - icon: ':warning:'
@@ -279,7 +282,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/assignment.hpp
       title: Assignment Problem (Maximum Weight Perfect Matching)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/biconnected_components.hpp
       title: Biconnected Components
     - icon: ':heavy_check_mark:'
@@ -321,7 +324,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lex_bfs.hpp
       title: Lexicographic BFS
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: Lowlink
     - icon: ':heavy_check_mark:'
@@ -529,6 +532,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/compress.hpp
       title: Coordinate Compression
+    - icon: ':warning:'
+      path: misc/die.hpp
+      title: Die
     - icon: ':warning:'
       path: misc/discrete_log_monoid_action.hpp
       title: Discrete Logarithm of Monoid Action
@@ -760,7 +766,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_C.test.cpp
       title: test/aoj/CGL_3_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_4_A.test.cpp
       title: test/aoj/CGL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -879,7 +885,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/bernoulli_number.test.cpp
       title: test/yosupo/bernoulli_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/biconnected_components.test.cpp
       title: test/yosupo/biconnected_components.test.cpp
     - icon: ':heavy_check_mark:'
@@ -909,6 +915,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/chromatic_number.test.cpp
       title: test/yosupo/chromatic_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/closest_pair.test.cpp
+      title: test/yosupo/closest_pair.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/common_interval_decomposition_tree.test.cpp
@@ -987,6 +996,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/frequency_table_of_tree_distance.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/furthest_pair.test.cpp
+      title: test/yosupo/furthest_pair.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
@@ -1176,6 +1188,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sqrt_mod.test.cpp
       title: test/yosupo/sqrt_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/static_convex_hull.test.cpp
+      title: test/yosupo/static_convex_hull.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_frequency.test.cpp
       title: test/yosupo/static_range_frequency.test.cpp
