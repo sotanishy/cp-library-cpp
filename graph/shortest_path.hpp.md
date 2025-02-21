@@ -128,9 +128,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/shortest_path.test.cpp
-  - test/aoj/GRL_1_B.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_A.test.cpp
+  - test/aoj/GRL_1_C.test.cpp
+  - test/aoj/GRL_1_B.test.cpp
 documentation_of: graph/shortest_path.hpp
 layout: document
 title: Shortest Path Algorithms

@@ -112,12 +112,12 @@ data:
   timestamp: '2024-01-07 20:09:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/manhattanmst.test.cpp
-  - test/yosupo/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum.euler_tour.test.cpp
+  - test/yosupo/point_add_rectangle_sum.2d_segtree.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/point_set_range_sort_range_composite.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/manhattanmst.test.cpp
 documentation_of: data-structure/segtree/segment_tree.hpp
 layout: document
 title: Segment Tree

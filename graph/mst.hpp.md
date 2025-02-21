@@ -106,9 +106,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/manhattanmst.test.cpp
+  - test/aoj/GRL_2_A.prim.test.cpp
   - test/aoj/GRL_2_A.boruvka.test.cpp
   - test/aoj/GRL_2_A.kruskal.test.cpp
-  - test/aoj/GRL_2_A.prim.test.cpp
 documentation_of: graph/mst.hpp
 layout: document
 title: Minimum Spanning Tree Algorithms

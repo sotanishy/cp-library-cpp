@@ -128,9 +128,9 @@ data:
   timestamp: '2024-12-20 23:39:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/number_of_substrings.test.cpp
   - test/yosupo/longest_common_substring.test.cpp
   - test/yosupo/suffixarray.test.cpp
-  - test/yosupo/number_of_substrings.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 title: Suffix Array

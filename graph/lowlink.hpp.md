@@ -35,11 +35,11 @@ data:
     \      }\n    }\n\n    bool is_bridge(int u, int v) const {\n        if (ord[u]\
     \ > ord[v]) std::swap(u, v);\n        return ord[u] < low[v];\n    }\n\n   private:\n\
     \    std::vector<std::vector<int>> G;\n    int k = 0;\n\n    void dfs(int v, int\
-    \ p) {\n        ord[v] = k++;\n        low[v] = ord[v];\n        bool is_articulation\
-    \ = false, checked = false;\n        int cnt = 0;\n        for (int c : G[v])\
-    \ {\n            if (c == p && !checked) {\n                checked = true;\n\
-    \                continue;\n            }\n            if (ord[c] == -1) {\n \
-    \               ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
+    \ p) {\n        low[v] = ord[v] = k++;\n        bool is_articulation = false,\
+    \ checked = false;\n        int cnt = 0;\n        for (int c : G[v]) {\n     \
+    \       if (c == p && !checked) {\n                checked = true;\n         \
+    \       continue;\n            }\n            if (ord[c] == -1) {\n          \
+    \      ++cnt;\n                dfs(c, v);\n                low[v] = std::min(low[v],\
     \ low[c]);\n                if (p != -1 && ord[v] <= low[c]) is_articulation =\
     \ true;\n                if (ord[v] < low[c]) bridge.push_back(std::minmax(v,\
     \ c));\n            } else {\n                low[v] = std::min(low[v], ord[c]);\n\
@@ -53,30 +53,30 @@ data:
     \ {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\n    bool is_bridge(int\
     \ u, int v) const {\n        if (ord[u] > ord[v]) std::swap(u, v);\n        return\
     \ ord[u] < low[v];\n    }\n\n   private:\n    std::vector<std::vector<int>> G;\n\
-    \    int k = 0;\n\n    void dfs(int v, int p) {\n        ord[v] = k++;\n     \
-    \   low[v] = ord[v];\n        bool is_articulation = false, checked = false;\n\
-    \        int cnt = 0;\n        for (int c : G[v]) {\n            if (c == p &&\
-    \ !checked) {\n                checked = true;\n                continue;\n  \
-    \          }\n            if (ord[c] == -1) {\n                ++cnt;\n      \
-    \          dfs(c, v);\n                low[v] = std::min(low[v], low[c]);\n  \
-    \              if (p != -1 && ord[v] <= low[c]) is_articulation = true;\n    \
-    \            if (ord[v] < low[c]) bridge.push_back(std::minmax(v, c));\n     \
-    \       } else {\n                low[v] = std::min(low[v], ord[c]);\n       \
-    \     }\n        }\n        if (p == -1 && cnt > 1) is_articulation = true;\n\
-    \        if (is_articulation) articulation.push_back(v);\n    }\n};"
+    \    int k = 0;\n\n    void dfs(int v, int p) {\n        low[v] = ord[v] = k++;\n\
+    \        bool is_articulation = false, checked = false;\n        int cnt = 0;\n\
+    \        for (int c : G[v]) {\n            if (c == p && !checked) {\n       \
+    \         checked = true;\n                continue;\n            }\n        \
+    \    if (ord[c] == -1) {\n                ++cnt;\n                dfs(c, v);\n\
+    \                low[v] = std::min(low[v], low[c]);\n                if (p !=\
+    \ -1 && ord[v] <= low[c]) is_articulation = true;\n                if (ord[v]\
+    \ < low[c]) bridge.push_back(std::minmax(v, c));\n            } else {\n     \
+    \           low[v] = std::min(low[v], ord[c]);\n            }\n        }\n   \
+    \     if (p == -1 && cnt > 1) is_articulation = true;\n        if (is_articulation)\
+    \ articulation.push_back(v);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/lowlink.hpp
   requiredBy:
   - graph/two_edge_connected_components.hpp
   - graph/biconnected_components.hpp
-  timestamp: '2024-01-08 13:32:33+09:00'
+  timestamp: '2025-02-21 23:59:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/biconnected_components.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
-  - test/aoj/GRL_3_A.test.cpp
   - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
 documentation_of: graph/lowlink.hpp
 layout: document
 title: Lowlink

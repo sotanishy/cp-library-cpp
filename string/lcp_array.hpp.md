@@ -45,8 +45,8 @@ data:
   timestamp: '2024-01-07 22:05:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/longest_common_substring.test.cpp
   - test/yosupo/number_of_substrings.test.cpp
+  - test/yosupo/longest_common_substring.test.cpp
 documentation_of: string/lcp_array.hpp
 layout: document
 title: Longest Common Prefix Array

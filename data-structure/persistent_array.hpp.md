@@ -59,8 +59,8 @@ data:
   timestamp: '2024-01-07 20:49:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/persistent_queue.test.cpp
   - test/yosupo/persistent_unionfind.test.cpp
+  - test/yosupo/persistent_queue.test.cpp
 documentation_of: data-structure/persistent_array.hpp
 layout: document
 title: Persistent Array

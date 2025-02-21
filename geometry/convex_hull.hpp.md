@@ -105,9 +105,9 @@ data:
   verifiedWith:
   - test/yosupo/furthest_pair.test.cpp
   - test/yosupo/static_convex_hull.test.cpp
-  - test/aoj/CGL_4_B.test.cpp
-  - test/aoj/CGL_4_A.test.cpp
   - test/aoj/1298.test.cpp
+  - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_4_B.test.cpp
 documentation_of: geometry/convex_hull.hpp
 layout: document
 title: Convex Hull

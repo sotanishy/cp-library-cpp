@@ -73,9 +73,9 @@ data:
   timestamp: '2024-01-07 23:25:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
   - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/rooted_tree_isomorphism_classification.hash.test.cpp
-  - test/yosupo/rooted_tree_isomorphism_classification.ahu.test.cpp
 documentation_of: tree/tree_diameter.hpp
 layout: document
 title: Diameter of a Tree
