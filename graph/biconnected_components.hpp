@@ -1,4 +1,5 @@
 #pragma once
+#include <set>
 #include <stack>
 #include <unordered_map>
 #include <utility>
@@ -11,7 +12,6 @@ std::vector<std::vector<int>> biconnected_components(
     std::vector<bool> used(G.size());
     std::stack<std::pair<int, int>> st;
     std::vector<std::vector<int>> blocks;
-    std::vector<int> isolated;
 
     auto dfs = [&](auto& dfs, int v, int p) -> void {
         used[v] = true;
@@ -23,20 +23,17 @@ std::vector<std::vector<int>> biconnected_components(
             if (!used[c]) {
                 dfs(dfs, c, v);
                 if (low.ord[v] <= low.low[c]) {  // v is an articulation point
-                    blocks.emplace_back();
-                    auto& block = blocks.back();
+                    std::set<int> block;
                     while (true) {
                         auto e = st.top();
                         st.pop();
-                        block.push_back(e.first);
-                        block.push_back(e.second);
+                        block.insert(e.first);
+                        block.insert(e.second);
                         if (e.first == v) {
                             break;
                         }
                     }
-                    std::sort(block.begin(), block.end());
-                    block.erase(std::ranges::unique(block).begin(),
-                                block.end());
+                    blocks.emplace_back(block.begin(), block.end());
                 }
             }
         }

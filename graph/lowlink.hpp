@@ -27,8 +27,7 @@ class Lowlink {
     int k = 0;
 
     void dfs(int v, int p) {
-        ord[v] = k++;
-        low[v] = ord[v];
+        low[v] = ord[v] = k++;
         bool is_articulation = false, checked = false;
         int cnt = 0;
         for (int c : G[v]) {
